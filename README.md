@@ -11,7 +11,7 @@ Modulo uses the flexibility of markdown to develop an extensible description lan
 
 If you plan to use it, remember that this is still :
 
-# WIP // WIP // WIP // WIP
+# WIP
 
 Work in progress, bugs in quantity, use it at your own risks !
 
@@ -21,8 +21,9 @@ Work in progress, bugs in quantity, use it at your own risks !
 * zotero reference managing
 * complex interactions with interactive elements, through scroll and click
 * diversely extended markdown language
+* responsive academic document design (desktop/tablet/mobile/print)
 
-Available modules (external contents) :
+Current available modules (external contents) :
 * google spreadsheet table
 * vimeo
 * youtube
