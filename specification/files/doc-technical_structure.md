@@ -82,7 +82,7 @@ root/api/document/:documentslug?
 ```
 
 | parameter | description |
-| ========= | =========== |
+| --------- | ----------- |
 | filter | coma-separated content type filters |
 
 'filter' parameter - should allow for getting just a part of data (values coma separated) :
@@ -118,6 +118,6 @@ root/api/search/
 ```
 
 | parameter | description |
-| ========= | =========== |
+| -------- | -------- |
 | query | query to perform |
 | filter | coma-separated filters |

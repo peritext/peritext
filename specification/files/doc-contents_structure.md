@@ -5,7 +5,7 @@ Modulo documentation | contents structure | WIP
 Modulo presents a two-level file structure in which the root corresponds to the entire document (book/thesis/monograph) and subfolders correspond each to one part (chapter/article/...).
 
 
-**In the following, *contentRoot* will stand for the content folder of the app, basically root/server/content.**
+**In the following, *contentRoot* will stand for the content folder of the app, basically root/server/contents.**
 
 # Types of folders
 
