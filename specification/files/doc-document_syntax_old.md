@@ -1,76 +1,19 @@
 Modulo documentation | document syntax (modulo-flavoured markdown) | WIP
 =================
 
-
-Modulo-flavoured markdown is supposed to be built upon two legs :
-
-* Markua implementation (from : https://leanpub.com/markua/read) for all document-related markdown specifications
-* criticmarkup implementation for document revision model
-
-
-[TOC]
-
-# Formatting syntax
-
-## Underline
-
-Markua:
+# Markua implementation (from : https://leanpub.com/markua/read)
 
 > Underline
 To produce underlined text, surround it with ____four underscores____ (producing <u> in HTML). This is gross, but it’s a tradeoff for Markdown compatibility: the one, two and three underscore choices were taken. Thankfully, it’s usually preferable to use italic instead of underline. However, underline is not just a typewriter version of italics. In some languages, underlining serves a distinct, legitimate purpose.
 
-## Strikethrough
-
-## Strikethrough:
-
 > Strikethrough
 To produce strikethrough text, surround it with ~~two tildes~~. This is the same syntax as is used by both GitHub Flavored Markdown and by John Macfarlane’s excellent pandoc.) TODO: ADD STRIKETHROUGH TO LEANPUB!
-
-## Superscript
 
 > Superscript
 To produce superscript like the 3 in 53 = 125, surround it with carets like 5^3^ = 125. (This is the same syntax as is used by pandoc.)
 
-## Subscript
-
 > Subscript
 To produce subscript like the 2 in H2O, surround it with single tildes like H~2~O.
-
-## Inline specific classes
-
-Model:
-```
-I'm in the [mood]($classed:cool-stuff)
-```
-
-Description:
-Allows to specify span specific classes
-
-Translates to:
-```
-<p>I'm in the <span class="cool-stuff">mood</span></p>
-
-
-```
-
-## Block specific classes
-
-Model:
-```
-I'm in the mood
-$classed:cool-stuff
-```
-
-Description:
-Allows to specify span specific classes
-
-Translates to:
-```
-<p class="cool-stuff">I'm in the mood</p>
-```
-
-
-# Spaces and newlines
 
 Newlines:
 
@@ -81,123 +24,6 @@ Leading spaces :
 
 > Following exactly one newline, whitespace is preserved. Specifically, a single space produces a single space (a “non-breaking” space, or &nbsp;, in HTML), and a single tab produces four spaces (four “non-breaking” spaces, or &nbsp;&nbsp;&nbsp;&nbsp;, in HTML).
 Following two or more newlines (one or more blank lines), whitespace is ignored. So, you can manually indent your paragraphs if you’re used to doing so, and it will have no effect.
-
-
-# Modulo specific academy-oriented tags
-
-## Footnotes
-
-Model:
-```
-I'm in the text[#][This is the footnote content]
-```
-
-Description:
-Indicates a side/footnote in the content
-
-Translates to:
-```
-<p>I'm in the text<sup>1</sup></p>
-...
-
-<p class="footnote">
-    <span class="footnote-marker">1</span>
-    <span class="footnote-delimitator">.</span>
-    <span class="footnote-content">This is the footnote content</span>
-</p>
-
-```
-
-## Glossary
-
-Model:
-```
-I'm talking about [rhetorics]{} //firt version
-
-I'm being [rhetorical]{rhetorics} //second version
-```
-
-Description:
-Record a word as a rhetorical word.
-Without argument, the word is considered as is.
-With an argument inside brackets, the word is registered is the atlas with an argument.
-
-Translates to:
-```
-<p>I'm talking about <span class="glossary-element" term="rhetorics" >rhetorics</span></p>
-<p>I'm  being <span class="glossary-element" term="rhetorics" >rhetorical</span></p>
-```
-
-
-## Referencing, quoting, generating a bibliography
-
-### Inline citation
-
-Model:
-```
-
-```
-
-Description:
-
-
-Translates to:
-```
-
-```
-
-### Long quote + citation
-
-Model:
-```
-
-```
-
-Description:
-
-
-Translates to:
-```
-
-```
-
-### Single reference
-
-Model:
-```
-
-```
-
-Description:
-
-
-Translates to:
-```
-
-```
-
-### Bibliography
-
-Model:
-```
-
-```
-
-Description:
-
-
-Translates to:
-```
-
-```
-
-
-### Abstract
-
-### Keywords
-
-
-# Resources and figures
 
 Ressources :
 
@@ -260,6 +86,26 @@ If the format is omitted or is plain, the inline resource is assumed to be of ty
 For any other format, the inline resource is assumed to be of type code.
 These defaults mean that Markua can usually do the right thing based on the format, and that the resource type can almost always be inferred for inline resources. Markua is intended to be pleasant to write, so that means eliminating verboseness by using sensible defaults wherever possible.
 
+# CriticMarkup implementation
+
+There are five types of Critic marks:
+
+```
+Addition {++ ++}
+Deletion {-- --}
+Substitution {~~ ~> ~~}
+Comment {>> <<}
+Highlight {== ==}{>> <<}
+```
+
+A highlight followed by a comment creates a commented portion.
+
+```
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. {==Vestibulum at orci magna. Phasellus augue justo, sodales eu pulvinar ac, vulputate eget nulla.==}{>>confusing<<} Mauris massa sem, tempor sed cursus et, semper tincidunt lacus.
+```
+
+# Modulo-specific addings
+
 ```
 ^^vimeo:https://vimeo.com/129051743
 ```
@@ -294,7 +140,26 @@ These defaults mean that Markua can usually do the right thing based on the form
 ^^iframe:http://www.w3schools.com/jsref/jsref_regexp_nxy.asp
 ```
 
+# Modulo academy-oriented tags
 
+## Footnotes
+
+
+## Glossary
+
+
+## Referencing and quotes (hard-written, generated from zotero)
+
+
+## Bibliography generation
+
+
+## Glossary generation
+
+
+## Agregators
+
+Websites quoted in the document.
 
 # Modulo view tags
 
@@ -376,40 +241,3 @@ They will be analysed and removed from content by a file parser.
 
 ## Map
 
-# Document comments (CriticMarkup implementation)
-
-## Basics
-
-There are five types of Critic marks:
-
-```
-Addition {++ ++}
-Deletion {-- --}
-Substitution {~~ ~> ~~}
-Comment {>> <<}
-Highlight {== ==}{>> <<}
-```
-
-A highlight followed by a comment creates a commented portion.
-
-```
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. {==Vestibulum at orci magna. Phasellus augue justo, sodales eu pulvinar ac, vulputate eget nulla.==}{>>confusing<<} Mauris massa sem, tempor sed cursus et, semper tincidunt lacus.
-```
-
-## Possible addings
-
-### Discussion
-
-Several successive comments are a conversation.
-
-```
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. {==Vestibulum at orci magna. Phasellus augue justo, sodales eu pulvinar ac, vulputate eget nulla.==}{>>confusing<<}{>>I don't think so.<<}{>>You should.<<} Mauris massa sem, tempor sed cursus et, semper tincidunt lacus.
-```
-
-### Identification
-
-each annotatation could be followed by an identification of the person who did it, for instance with a {$$ $$} pattern:
-
-```
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. {==Vestibulum at orci magna. Phasellus augue justo, sodales eu pulvinar ac, vulputate eget nulla.==}{$$ Annie $$}{>>confusing<<}{$$ Annie $$}{>>I don't think so.<<}{$$ Alain $$}{>>You should.<<}{$$ Annie $$} Mauris massa sem, tempor sed cursus et, semper tincidunt lacus.
-```
