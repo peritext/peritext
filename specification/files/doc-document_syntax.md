@@ -220,6 +220,8 @@ Figures are described within code blocks:
 key:value
 ```
 
+They will be analysed and removed from content by a file parser.
+
 ## Invariant
 
 | key | value type | description | example |
