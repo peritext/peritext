@@ -2,14 +2,18 @@ Modulo documentation | document syntax (modulo-flavoured markdown) | WIP
 =================
 
 
-Modulo-flavoured markdown is supposed to be built on top of two existing specs, to which it adds some (a minimum) of consistent addings :
+Modulo-flavoured markdown is supposed to be built on top of two existing specs, to which it adds some (a minimum) of features :
 
-* Markua implementation (from : https://leanpub.com/markua/read) for all document-related markdown specifications
-* criticmarkup implementation for document revision model
+* Markua implementation (from : https://leanpub.com/markua/read) that is supposed to adapt markdown to book writing, for all document-related markdown specifications
+* criticmarkup implementation for document revision and comments features (in prevision of future developments)
 
 Modulo is conservative as it still priviledges :
 * text as the main medium of publishing (all other contents are considered as figures)
 * linear top-down scrolling as the main contents navigation practice
+
+Some guidelines to keep in mind :
+* all the data and semantics should be encoded inside html structure (heavy, but reliable)
+* it should comply to existing html semantic standards as much as possible
 
 # Formatting syntax
 
@@ -160,9 +164,14 @@ He said <span class="inline-quote">"leave me"</span>
 
 ### Specifying the bibliography data with bibText data
 
-Bibliography should be handled with a unique .bib file specified in the metadata of the document, or inlined as a resource.
+Bibliography should be handled with .bib file specified in the metadata of the document, or inlined as a resource.
 
-```bibliography
+
+Inline resource :
+
+```
+\```bibliography
+source:inline
 
 @book{berry_understanding_2012,
     title = {Understanding {Digital} {Humanities}},
@@ -176,6 +185,17 @@ Bibliography should be handled with a unique .bib file specified in the metadata
     keywords = {Computers / Digital Media / General, Computers / Social Aspects / General, Social Science / Media Studies}
 }
 
+\```
+```
+
+
+Local file :
+
+```
+\```bibliography
+source:file
+data:bibliography.bib
+\```
 ```
 
 ### Inline short citation
