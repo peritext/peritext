@@ -9,17 +9,16 @@ See an implementation of the first version here : https://github.com/robindemour
 
 The next modulo version will be :
 
-* driven by a genuine node.js flat-file engine
-* consistent with existing stuff like Markua and Criticmarkup
+* driven by a node.js flat-file engine
+* inspired by more established existing markdown specifications like Markua and Criticmarkup - and more internally consistant in terms of markdown syntax
 * editor-friendy for further developpments ...
 * featuring an API for third-party use
 
 * cleaner in terms of front-end dev, easily customable in terms of styles (and even interactions) for specific use cases
-* more precise html and schema
 * more robots-friendly + linked-data friendly
 
 
-If you're curious on what's going [check here the plan of operations](https://github.com/robindemourat/modulo/tree/master/specification).
+If you're curious on what's going [check here the WIP modulo specification](https://github.com/robindemourat/modulo/tree/master/specification).
 
 
 # Presentation
@@ -35,10 +34,9 @@ Modulo uses the flexibility of markdown to develop an extensible description lan
 Then, it propose a neatly designed interface to display the documents. However, everything is supposed to be highly customizable and adaptable to specific needs.
 
 
-# Features
+## Features [deprecated]
 
 * index auto-building and navigation system
-* zotero reference managing
 * complex interactions with interactive elements, through scroll and click
 * diversely extended markdown language
 * responsive academic document design (desktop/tablet/mobile/print)
@@ -59,25 +57,3 @@ Available modules (specific contents) :
 * multi-dimensional timeline
 * sankey diagram
 * network graph
-
-# Roadmap
-
-## Global
-
-* turn Modulo to a flatfile system for scholarly documents publishing
-* clean html structure and css structure to allow for the specification of custom styles
-
-## Markdown & data system
-
-* add glossary handling
-* comply to markua spec [https://leanpub.com/markua/read]
-* implement change tracking ? (http://criticmarkup.com/)
-* implement comments support (and making ? ) --> http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax
-* standardize and simplify aside descriptions
-
-## Forthcoming modules
-
-* map
-* storify
-* heatmap
-* ...

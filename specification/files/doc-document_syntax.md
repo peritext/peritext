@@ -11,9 +11,6 @@ Modulo is conservative as it still priviledges :
 * text as the main medium of publishing (all other contents are considered as figures)
 * linear top-down scrolling as the main contents navigation practice
 
-
-[TOC]
-
 # Formatting syntax
 
 ## Underline
@@ -21,25 +18,31 @@ Modulo is conservative as it still priviledges :
 Markua:
 
 > Underline
+> 
 To produce underlined text, surround it with ____four underscores____ (producing <u> in HTML). This is gross, but it’s a tradeoff for Markdown compatibility: the one, two and three underscore choices were taken. Thankfully, it’s usually preferable to use italic instead of underline. However, underline is not just a typewriter version of italics. In some languages, underlining serves a distinct, legitimate purpose.
 
 
 ## Strikethrough:
 
 > Strikethrough
+> 
 To produce strikethrough text, surround it with ~~two tildes~~. This is the same syntax as is used by both GitHub Flavored Markdown and by John Macfarlane’s excellent pandoc.) TODO: ADD STRIKETHROUGH TO LEANPUB!
 
 ## Superscript
 
 > Superscript
+> 
 To produce superscript like the 3 in 53 = 125, surround it with carets like 5^3^ = 125. (This is the same syntax as is used by pandoc.)
 
 ## Subscript
 
 > Subscript
+> 
 To produce subscript like the 2 in H2O, surround it with single tildes like H~2~O.
 
-## Inline specific classes
+## Inline specific html classes
+
+For design purpose, modulo should allow to specify classes for some document contents.
 
 Model:
 ```
@@ -56,7 +59,9 @@ Translates to:
 
 ```
 
-## Block specific classes
+## Block specific html classes
+
+Blocks specific classes should follow the concerned block with a new line.
 
 Model:
 ```
@@ -65,7 +70,7 @@ $classed:cool-stuff
 ```
 
 Description:
-Allows to specify span specific classes
+Allows to specify block (p, h1, h2, ul, ...) specific classes
 
 Translates to:
 ```
@@ -77,12 +82,12 @@ Translates to:
 
 Newlines:
 
-> In Markua, a single newline inside a paragraph forces a line break, which produces a <br/> tag in HTML. 
+> In Markua, a single newline inside a paragraph forces a line break, which produces a \<br/> tag in HTML. 
 
 
 Leading spaces :
 
-> Following exactly one newline, whitespace is preserved. Specifically, a single space produces a single space (a “non-breaking” space, or &nbsp;, in HTML), and a single tab produces four spaces (four “non-breaking” spaces, or &nbsp;&nbsp;&nbsp;&nbsp;, in HTML).
+> Following exactly one newline, whitespace is preserved. Specifically, a single space produces a single space (a “non-breaking” space, or \&nbsp;, in HTML), and a single tab produces four spaces (four “non-breaking” spaces, or \&nbsp;\&nbsp;\&nbsp;\&nbsp;, in HTML).
 Following two or more newlines (one or more blank lines), whitespace is ignored. So, you can manually indent your paragraphs if you’re used to doing so, and it will have no effect.
 
 
@@ -121,9 +126,12 @@ I'm being [rhetorical]{rhetorics} //second version
 ```
 
 Description:
-Record a word as a rhetorical word.
+
+Records a word as a glossary's word.
+
 Without argument, the word is considered as is.
-With an argument inside brackets, the word is registered is the atlas with an argument.
+
+With an argument inside brackets, the word is registered is the glossary as the specified argument.
 
 Translates to:
 ```
@@ -131,11 +139,16 @@ Translates to:
 <p>I'm  being <span class="glossary-element" term="rhetorics" >rhetorical</span></p>
 ```
 
+(todo : find the more standard-friendly way to record glossary entries in html - schema ?)
+
 ## Inline quotes
+
+Inline quotes should be indicated in html as span elements.
 
 ```
 He said "leave me"
 ```
+
 Should translate to :
 
 ```
@@ -197,10 +210,28 @@ Full citation of a file
 
 Translates to:
 ```
-<div class="bibliographic-reference">
+<div class="long-citation">
     Reference in the style you want ...
 </div>
 ```
+
+### Quotes and semanticity
+
+TODO
+
+There should be a way to link a document's quote with its reference.
+
+Example:
+```
+When Berry writes that "digital must be unpacked" {!berry_understanding_2012,12!} ...
+```
+
+Should translate to :
+
+```
+When Berry writes that <span class="short-citation" author="David Berry" ...>digital must be unpacked"</span><span class="short-citation" id="berry_understanding_2012">(Berry, 2012, p. 12)</span> ...
+```
+
 
 ### Bibliography
 
@@ -210,7 +241,10 @@ Model:
 ```
 
 Description:
-Generates a bibliography (just the quoted)
+Generates a bibliography in the wanted style, with the wanted rules :
+* all : all items
+* quoted : just items quoted in the document
+* additionnal : just items not quoted in the document
 
 Translates to:
 ```
@@ -226,9 +260,9 @@ Translates to:
 ```
 
 
-# Templated metadata calls
+# Template-rendered metadata calls
 
-Modulo should be able to call metadata-based properties into the document.
+Modulo should be able to call metadata-based properties and generated contents into the document.
 
 Example:
 ```
@@ -253,6 +287,8 @@ Forseen templates :
 * [title_complete] --> title, subtitle, authors
 * [general_title] --> title of the book/thesis
 * [abstract] --> abstract or description
+* [toc] --> table of contents
+* [figures] --> list of figures and their captions
 
 
 # Resources and figures
