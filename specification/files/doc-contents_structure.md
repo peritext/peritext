@@ -4,14 +4,15 @@ Modulo documentation | contents structure | WIP
 
 Modulo presents a two-level file structure in which the root corresponds to the entire document (book/thesis/monograph) and subfolders correspond each to one part (chapter/article/...).
 
-
 **In the following, *contentRoot* will stand for the content folder of the app, basically root/server/contents.**
 
 # Types of folders
 
-I see three types of folders in the contents :
+I forsee several types of folders in the contents :
 * ressources folders --> are public and can be processed and called in the documents (default)
 * content folders --> feature the contents of pages to display (they should be accessible with general:type:content)
+* templates folders -->  templates to use for things such as reference, bibliography, ...
+* plugins template that will feature additional/custom modulo modules
 * other folders --> other folder types - for instance for glossary, index, ... - still a mystery (they should be specified with general:type:***)
 
 
@@ -26,6 +27,8 @@ Then, it can optionally :
 
 * contain a style.css file that will specify style for this part (contentRoot/style.css will apply to all subfolders)
 * images, videos, data, and other files, that will be accessed through the documents as if their were root (exemple : "contentRoot/chapter1/img.png" will be accessed in the content file as "img.png")
+* a templates folder that will feature templates to use for things such as reference, bibliography, ...
+* a plugins template that will feature additional/custom modulo modules
 
 ## Overview
 
@@ -57,4 +60,6 @@ Credentials should use a simple structure and separate files for each credential
 .
 +--zotero.txt
 +--analytics.txt
++--editor.txt
 ```
+

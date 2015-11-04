@@ -2,10 +2,14 @@ Modulo documentation | document syntax (modulo-flavoured markdown) | WIP
 =================
 
 
-Modulo-flavoured markdown is supposed to be built upon two legs :
+Modulo-flavoured markdown is supposed to be built on top of two existing specs, to which it adds some (a minimum) of consistent addings :
 
 * Markua implementation (from : https://leanpub.com/markua/read) for all document-related markdown specifications
 * criticmarkup implementation for document revision model
+
+Modulo is conservative as it still priviledges :
+* text as the main medium of publishing (all other contents are considered as figures)
+* linear top-down scrolling as the main contents navigation practice
 
 
 [TOC]
@@ -19,7 +23,6 @@ Markua:
 > Underline
 To produce underlined text, surround it with ____four underscores____ (producing <u> in HTML). This is gross, but it’s a tradeoff for Markdown compatibility: the one, two and three underscore choices were taken. Thankfully, it’s usually preferable to use italic instead of underline. However, underline is not just a typewriter version of italics. In some languages, underlining serves a distinct, legitimate purpose.
 
-## Strikethrough
 
 ## Strikethrough:
 
@@ -70,7 +73,7 @@ Translates to:
 ```
 
 
-# Spaces and newlines
+## Spaces and newlines
 
 Newlines:
 
@@ -128,237 +131,335 @@ Translates to:
 <p>I'm  being <span class="glossary-element" term="rhetorics" >rhetorical</span></p>
 ```
 
+## Inline quotes
+
+```
+He said "leave me"
+```
+Should translate to :
+
+```
+He said <span class="inline-quote">"leave me"</span>
+```
+
 
 ## Referencing, quoting, generating a bibliography
 
-### Inline citation
+### Specifying the bibliography data with bibText data
+
+Bibliography should be handled with a unique .bib file specified in the metadata of the document, or inlined as a resource.
+
+```bibliography
+
+@book{berry_understanding_2012,
+    title = {Understanding {Digital} {Humanities}},
+    isbn = {978-0-230-37193-4},
+    abstract = {The application of new computational techniques and visualisation technologies in the Arts and Humanities are resulting in fresh approaches and methodologies for the study of new and traditional corpora. This 'computational turn' takes the methods and techniques from computer science to create innovative means of close and distant reading. This book discusses the implications and applications of 'Digital Humanities' and the questions raised when using algorithmic techniques. Key researchers in the field provide a comprehensive introduction to important debates surrounding issues such as the contrast between narrative versus database, pattern-matching versus hermeneutics, and the statistical paradigm versus the data mining paradigm. Also discussed are the new forms of collaboration within the Arts and Humanities that are raised through modular research teams and new organisational structures, as well as techniques for collaborating in an interdisciplinary way.},
+    language = {en},
+    publisher = {Palgrave Macmillan},
+    author = {Berry, David M.},
+    month = feb,
+    year = {2012},
+    keywords = {Computers / Digital Media / General, Computers / Social Aspects / General, Social Science / Media Studies}
+}
+
+```
+
+### Inline short citation
+
+Example:
+```
+As Berry {!berry_understanding_2012,12!} wrote
+```
 
 Model:
 ```
-
+{!bibText_id,page!}
 ```
-
-Description:
 
 
 Translates to:
 ```
-
+As Berry <span class="short-citation" id="berry_understanding_2012">(Berry, 2012, p. 12)</span> wrote
 ```
 
-### Long quote + citation
+Note, if quoted content before it should somehow encode in the html content that the quote is from this citation.
+
+### Single reference rendering
 
 Model:
 ```
-
+{!!bibText id!!}
 ```
 
 Description:
-
-
-Translates to:
-```
-
-```
-
-### Single reference
-
-Model:
-```
-
-```
-
-Description:
-
+Full citation of a file
 
 Translates to:
 ```
-
+<div class="bibliographic-reference">
+    Reference in the style you want ...
+</div>
 ```
 
 ### Bibliography
 
 Model:
 ```
-
+[Bibliography:APA|my style|...:all|quoted|additionnal]
 ```
 
 Description:
-
+Generates a bibliography (just the quoted)
 
 Translates to:
 ```
-
+<div class="bibliographic-reference">
+    Reference in the style you want ...
+</div>
+<div class="bibliographic-reference">
+    Reference in the style you want ...
+</div>
+<div class="bibliographic-reference">
+    Reference in the style you want ...
+</div>
 ```
 
 
-### Abstract
+# Templated metadata calls
 
-### Keywords
+Modulo should be able to call metadata-based properties into the document.
+
+Example:
+```
+[abstract]
+```
+
+Translates to:
+```
+<div class="abstract">
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga eveniet nihil ab consectetur reprehenderit voluptatum ipsum dicta, sed atque. Inventore repudiandae doloribus nam enim modi nemo asperiores voluptatum earum, esse.
+</div>
+```
+
+(grounding on the "abstract" or "description" metadata)
+
+
+Forseen templates :
+
+* [authors] --> authors
+* [title] --> title + subtitle
+* [title_simple] --> title
+* [title_complete] --> title, subtitle, authors
+* [general_title] --> title of the book/thesis
+* [abstract] --> abstract or description
 
 
 # Resources and figures
 
-Ressources :
+## Figures : global logic
 
-> Resources vary in four different ways:
+Figures are essential to Modulo. They represent all the non-textual arguments of a multimodal publication.
 
-> Insertion Methods: Span and Figure
-Locations: Local, Web and Inline
-Types: image, video, audio, code, math or text
-Formats: png, m4a, mp3, ruby, latex, plain, etc.
+Modulo figures are inspired from the principe of "resource" of markua specification.
 
+Three parameters :
+* figure insertion method (primary or secondary)
+* type (image, video, carousel, timeline, ...)
+* origin (web url or inline description)
 
-Resource Locations and Insertion Methods
-A resource is either considered a local, web or inline resource based on its location:
+### Figure insertion methods
 
-Local Resource
-The resource is stored along with the manuscript–either in a resources directory on a local filesystem, or uploaded to the same web service where the manuscript is being written.
-Web Resource
-The resource is referred to via an http or https URL.
-Inline Resource
-The resource is defined right in the body of a Markua document.
-Resources can be inserted either as spans or as figures.
+Figures can be inserted as inline links, or block links.
 
-Span
-The resource is inserted as part of the flow of text of a paragraph with no newlines before or after it. A span resource cannot have an attribute list.
-Figure
-The resource is inserted with at least one newline before and after it. A figure can have an attribute list. A figure can either be top-level (with a blank line before and after it), or it can be part of the flow of text of a paragraph (with a single newline before it, and one or more newlines after it).
-The syntax for a local resource or a web resource inserted as a span is as follows:
+In modulo default front-rendered, primary figures will be triggered through scroll, and secondary figures through click (as a <a> hyperlink).
 
-It's just ![optional alt text](resource_path_or_url) right in the text.
-The syntax for a local resource or a web resource inserted as a figure is as follows:
-
-{key: value, comma: separated, optional: attribute_list}
-![Optional Figure Caption](resource_path_or_url)
-
-The syntax for an inline resource inserted as a span is as follows:
-
-It's a single backtick `followed by inline resource content\`optional_format and then a single backtick.
-The syntax for an inline resource inserted as a figure is as follows:
-
-{key: value, comma: separated, optional: attribute_list}
-```optional_format
-inline resource content
-```
-Resource Types and Formats
-There are six types of resources: image, video, audio, code, math and text.
-
-Each type of resource has a number of supported formats, which can either be specified by the format attribute or (in most cases) inferred from the file extension for local and web resources. (Inline resources obviously have no file extension, since they are contained in the body of a Markua manuscript file.)
-
-Any of the six resource types can be inserted as a local resource or web resource, and many of the resource types can also be inserted as an inline resource.
-
-Inline resources can be of type code, math or text (regardless of format), and they can also be image resources of svg format.
-
-The default type of a local resource or web resource is always image. This means images in Markua are inserted in essentially the same way they are in Markdown.
-
-The default type of an inline resource depends on the format specified:
-
-If the format is svg, the inline resource is assumed to be of type image.
-If the format is latex or mathml, the inline resource is assumed to be of type math.
-If the format is omitted or is plain, the inline resource is assumed to be of type text.
-For any other format, the inline resource is assumed to be of type code.
-These defaults mean that Markua can usually do the right thing based on the format, and that the resource type can almost always be inferred for inline resources. Markua is intended to be pleasant to write, so that means eliminating verboseness by using sensible defaults wherever possible.
+Syntax :
 
 ```
-^^vimeo:https://vimeo.com/129051743
-```
-
-```
-^^youtube:https://www.youtube.com/watch?v=G5OicZrhkHg
-```
-
-```
-^^tableau-embed:<script type='text/javascript' src='https://public.tableau.com/javascripts/api/viz_v1.js'></script><div class='tableauPlaceholder' style='width: 1004px; height: 669px;'><noscript><a href='#'><img alt='Countries and their participation to IPCC ARs ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ma&#47;map_medea3&#47;Dash&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz' width='1004' height='669' style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='site_root' value='' /><param name='name' value='map_medea3&#47;Dash' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;ma&#47;map_medea3&#47;Dash&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='showVizHome' value='no' /><param name='showTabs' value='y' /><param name='bootstrapWhenNotified' value='true' /></object></div>
+This is a [secondary figure insertion](myResourceCaller)
 ```
 
 
 ```
-^^carousel:/data/images/1.png,/data/images/2.png,/data/images/3.png
+![This is a primary figure insertion](myResourceCaller)
 ```
 
-```
-^^twitter-msg-oembed:https://twitter.com/Strabic/status/565086840370528256
-```
+### Origin
+
+Basically :
+*  if resource caller starts with "http" or "/", it is a URL caller
+*  else it is a inline resource caller
+
+### Types
+
+Resource type is infered from the resource caller.
+If the resource is defined as inline resource, type will be described in it.
+Else, modulo should try to guess the type of the resources with the following tests :
+
+* if URL matches with some service (eg : vimeo, youtube, slideshare, ...)
+* else by catching a file extension at the end of a caller
+    * images (svg, png, jpg)
+    * videos (mp4, ogv, ...)
+
+If it fails to determine a resource, it will display a simple link.
+
+
+All figure types come in two declinations : single item or item array (gallery, iframes collection, tweets collections, ...).
+These are recognized by catching ',' in the ressource call. 
+
+
+## Modulo figures calls typology
+
+### inferences-from-url
+
+If specified as an inline link, will be added after the current block as a figure.secondary-figure;
+
+If specified on a single line, will be added as a figure.primary-figure
+
+Link can be followed by {} containing key:value comma-separated addings such as figure title, figure caption, figure background, ...
+
+Vimeo :
 
 ```
-^^slideshare://fr.slideshare.net/slideshow/embed_code/key/rGQLsk1BvwQ2Ik
+As we can see in this [vimeo video](https://vimeo.com/129051743)
+
+![A cool video](https://vimeo.com/129051743)
+```
+
+Youtube :
+
+```
+As we can see in this [vimeo video](https://www.youtube.com/watch?v=G5OicZrhkHg)
+
+![A cool video](https://www.youtube.com/watch?v=G5OicZrhkHg)
+```
+
+Carrousel :
+
+```
+As we can see in [these images](/data/images/1.png,/data/images/2.png,/data/images/3.png)
+
+![Check this carrousel](/data/images/1.png,/data/images/2.png,/data/images/3.png)
+```
+
+Tweet :
+
+```
+![An enlightening tweet](https://twitter.com/Strabic/status/565086840370528256)
 ```
 
 
-```
-^^pdf-embed:data/pdf/Mémoire - Castelletti A. (2013) - la place du public dans les nouveaux médias.pdf
-```
+Todo : storify
+
+Slideshare :
 
 ```
-^^iframe:http://www.w3schools.com/jsref/jsref_regexp_nxy.asp
+![An enlightening slide](http://fr.slideshare.net/slideshow/embed_code/key/rGQLsk1BvwQ2Ik)
+```
+
+Pdf :
+
+```
+![check this pdf](data/pdf/Mémoire - Castelletti A. (2013) - la place du public dans les nouveaux médias.pdf)
+```
+
+Iframe :
+
+```
+Check [this iframe](http://www.w3schools.com/jsref/jsref_regexp_nxy.asp)
+```
+
+### File extensions
+
+### Links without figures
+
+By default, all hyperlinks will be considered as figures if not specified otherwise :
+
+```
+Check [this iframe](http://www.w3schools.com/jsref/jsref_regexp_nxy.asp){figure : false}
+```
+
+###Inline figures call
+
+They are done by calling the id a of figure.
+
+```
+Check [this timeline](my cool timeline)
+```
+
+Figure contextual data will be added with {} just after, or one line before :
+
+```
+{title : "an important period", caption:"look at this period"}
+Check [this timeline](my cool timeline)
+
+Or
+
+Check [this timeline](my cool timeline)
+{title : "an important period", caption:"look at this period"}
+
+
+Or
+
+Check [this timeline](my cool timeline){title : "an important period", caption:"look at this period"}
+
 ```
 
 
+# Inline figure description (former modulo-views)
 
-# Modulo view tags
+An inline figure description is portion of markdown which describes an (interactive) figure to be used by the front-end document renderer.
 
-## Modulo-aside
+It is identified by an id (if no Id specified, it will try to find a title and use it as id, otherwise it will not consider it).
 
-### Modulo aside marker
+It translate to an html <inline-resource></inline-resource> tag that will contain the data description as a data property containing json data.
 
-Model:
+Input model:
+
+
 ```
-^^modulo-aside:My aside
-```
-
-Description:
-Indicates the end of a modulo view (if it is active)
-
-Translates to:
-```
-<div class="modulo-aside-trigger" id="My aside">My aside</div>
-<figure class="modulo-aside-figure" id="My aside">My aside</figure>
+\```type-of-figure
+key:value
+key:value
+...
+\```
 ```
 
-### Modulo aside end marker
+Output model:
 
-Model:
 ```
-^^modulo-aside-end:My aside
-```
-
-Description:
-Indicates the end of a modulo view (if it is active)
-
-Translates to:
-```
-<div class="modulo-aside-end" id="My aside"></div>
+<inline-resource style="display:none" data="{key:value,comma-separated,type:type-of-resource}"></inline-resource>
 ```
 
-### Href modulo View
 
-Model:
-```
-[link to a modulo view](^^modulo-href:My aside)
-```
+If the type-of-figure is not recognized as a modulo figure, it will be displayed as a regular code block.
 
-Description:
-Creates an inline link that will be linked to a modulo view.
+Example :
 
-Translates to:
 ```
-<a class="modulo-href-marker" target="My aside"></a>
+\```json
+{
+    key : "actual json code block"
+}
+\```
 ```
 
-# Modulo view description in json
+
+# Special figures (former modulo-view) description
 
 ## Pattern
 
-Figures are described within code blocks:
+Example :
 
-```figure-description
-key:value
+{title:My timeline}
+```
+\```timeline
+title:my cool timeline
+\```
 ```
 
-They will be analysed and removed from content by a file parser.
-
-## Invariant
+## Invariant properties
 
 | key | value type | description | example |
 | --- | ---------- | ----------- | ------- |
@@ -372,7 +473,7 @@ They will be analysed and removed from content by a file parser.
 
 ## Sankey
 
-## Graph
+## Network graph
 
 ## Map
 
@@ -406,9 +507,9 @@ Several successive comments are a conversation.
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. {==Vestibulum at orci magna. Phasellus augue justo, sodales eu pulvinar ac, vulputate eget nulla.==}{>>confusing<<}{>>I don't think so.<<}{>>You should.<<} Mauris massa sem, tempor sed cursus et, semper tincidunt lacus.
 ```
 
-### Identification
+### Identification (to think through)
 
-each annotatation could be followed by an identification of the person who did it, for instance with a {$$ $$} pattern:
+Each annotatation could be followed by an identification of the person who made it, for instance with a {$$ $$} pattern:
 
 ```
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. {==Vestibulum at orci magna. Phasellus augue justo, sodales eu pulvinar ac, vulputate eget nulla.==}{$$ Annie $$}{>>confusing<<}{$$ Annie $$}{>>I don't think so.<<}{$$ Alain $$}{>>You should.<<}{$$ Annie $$} Mauris massa sem, tempor sed cursus et, semper tincidunt lacus.

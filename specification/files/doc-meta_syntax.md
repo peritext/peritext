@@ -5,7 +5,7 @@ Modulo documentation | metadata files syntax | WIP
 
 # Syntax pattern
 
-Meta files are composed of plain text - for which each property is separated by others through a linebreak plus the * symbol.
+Meta files are composed of plain text - for which each property is separated by others through a linebreak plus '*' .
 
 Model:
 ```
@@ -13,9 +13,15 @@ meta property one
 *
 meta property two
 *
+metadata property three
+
+this property spreads 
+on several lines
+*
+metadata property four
 ```
 
-Then each line is composed of at least three parts, that are separated with the ':' symbol.
+Then each metadata item is composed of at least three parts, that are separated with the ':' symbol.
 
 * first part describes the domain of the meta property (example: "general", "dublincore", "twitter", ...)
 * second part represents the key of the property to specify (example: "title")
@@ -37,7 +43,8 @@ To unset a meta property, it should be done by specifying no value (example : "t
 
 # Properties dissemination
 
-Modulo is supposed to be intelligent and disseminate similar metadata accross metadata domains if not specified otherwise. For example, the "title" property should automatically spread to "dublincore:title", "facebook:title", ... if specified otherwise accross the document parsing, metadata should be able to be different.
+Modulo is supposed to be smart and disseminate similar metadata accross metadata domains if not specified otherwise. For example, the "title" property should automatically spread to "dublincore:title", "og:title" ... if not specified otherwise later on in the metadata file.
+
 
 # Custom properties
 
