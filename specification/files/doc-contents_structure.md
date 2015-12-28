@@ -8,7 +8,7 @@ Modulo presents a two-level file structure in which the root corresponds to the 
 
 # Types of folders
 
-I forsee several types of folders in the contents :
+Several types of folders in the contents :
 * ressources folders --> are public and can be processed and called in the documents (default)
 * content folders --> feature the contents of pages to display (they should be accessible with general:type:content)
 * templates folders -->  templates to use for things such as reference, bibliography, ...

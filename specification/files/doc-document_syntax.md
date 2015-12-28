@@ -166,7 +166,6 @@ He said <span class="inline-quote">"leave me"</span>
 
 Bibliography should be handled with .bib file specified in the metadata of the document, or inlined as a resource.
 
-
 Inline resource :
 
 ```
@@ -396,7 +395,7 @@ Carrousel :
 ```
 As we can see in [these images](/data/images/1.png,/data/images/2.png,/data/images/3.png)
 
-![Check this carrousel](/data/images/1.png,/data/images/2.png,/data/images/3.png)
+![The carousel title](/data/images/1.png,/data/images/2.png,/data/images/3.png)
 ```
 
 Tweet :
@@ -428,6 +427,10 @@ Check [this iframe](http://www.w3schools.com/jsref/jsref_regexp_nxy.asp)
 
 ### File extensions
 
+gif, png, jpeg, svg, svgz, gif, tif   > img
+mp4, webm > video player
+mp3, aac, wav, ogg  > audio
+
 ### Links without figures
 
 By default, all hyperlinks will be considered as figures if not specified otherwise :
@@ -436,29 +439,42 @@ By default, all hyperlinks will be considered as figures if not specified otherw
 Check [this iframe](http://www.w3schools.com/jsref/jsref_regexp_nxy.asp){figure : false}
 ```
 
-###Inline figures call
+### Figure descriptions
+
+Figures can be described in two ways :
+* file : link to a .figure file
+* inline : written in the body of the document (anywhere)
+
+Example of figure file link :
+
+```
+Check [this timeline](my_cool_timeline.figure)
+```
+
+
+### Inline figures call
 
 They are done by calling the id a of figure.
 
 ```
-Check [this timeline](my cool timeline)
+Check [this timeline](my_cool_timeline)
 ```
 
 Figure contextual data will be added with {} just after, or one line before :
 
 ```
 {title : "an important period", caption:"look at this period"}
-Check [this timeline](my cool timeline)
+Check [this timeline](my_cool_timeline)
 
 Or
 
-Check [this timeline](my cool timeline)
+Check [this timeline](my_cool_timeline)
 {title : "an important period", caption:"look at this period"}
 
 
 Or
 
-Check [this timeline](my cool timeline){title : "an important period", caption:"look at this period"}
+Check [this timeline](my_cool_timeline){title : "an important period", caption:"look at this period"}
 
 ```
 
@@ -472,7 +488,6 @@ It is identified by an id (if no Id specified, it will try to find a title and u
 It translate to an html <inline-resource></inline-resource> tag that will contain the data description as a data property containing json data.
 
 Input model:
-
 
 ```
 \```type-of-figure
@@ -491,7 +506,7 @@ Output model:
 
 If the type-of-figure is not recognized as a modulo figure, it will be displayed as a regular code block.
 
-Example :
+Example 1 :
 
 ```
 \```json
@@ -499,6 +514,18 @@ Example :
     key : "actual json code block"
 }
 \```
+```
+
+Outputs to :
+
+```
+<figure style="display:none">
+    <code>
+    {
+        key : "actual json code block"
+    }
+    </code>
+</figure>
 ```
 
 
@@ -514,6 +541,7 @@ Example :
 title:my cool timeline
 \```
 ```
+
 
 ## Invariant properties
 
