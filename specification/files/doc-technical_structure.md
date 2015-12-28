@@ -25,7 +25,7 @@ Modulo documentation | technical structure | WIP
 +--credentials //all private credentials (zotero, google analytics, editor ...)
 +--contents //documents contents
 +--htmltemplates//html templates to use and populate
-+--middlewares//data communication
++--plugins//data communication and middlewares
 |   +--flatfile //handle CRUD on flatfiles
 |   +--s3//handle CRUD on S3
 |   +--zotero //handle zotero querying and templating
@@ -46,7 +46,7 @@ Should :
 * handle CRUD operations at an abstract level (data management type agnostic)
 * check if data is available for a give part slug (availabilityLookup)
 * check if data is viewable/public to serve (visibilityLookup)
-* verifying the type of a folder (content, resource, ...)
+* verify the type of a folder (content, resource, ...)
 * get the title of a part (titleLookUp)
 * organize the parsing and rendering of a specific folder (rendering)
 

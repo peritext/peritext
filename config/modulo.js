@@ -1,0 +1,4 @@
+{
+  "contentSource" : "local",
+  "contentFolder" : "contents"
+}
