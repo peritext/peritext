@@ -6,7 +6,6 @@ It Should :
 * check if data is available for a give part slug (availabilityLookup)
 * check if data is viewable/public to serve (visibilityLookup)
 * verify the type of a folder (content, resource, ...)
-* get the title of a part (titleLookUp)
 * organize the parsing and rendering of a specific folder (rendering)
 */
 
@@ -68,13 +67,20 @@ var getDocument = function(slug, callback){
     }
     //verify the presence of meta and contents
     var meta, content;
+    var prefix = (slug && slug != 'undefined')?slug+'/':'';
+    console.log('prefix : ', prefix, ', looking for : ', prefix + 'meta');
     files.forEach(function(file){
-      if(file.fileName == 'content' && file.fileType == 'md'){
+      if(file.path.indexOf(prefix + 'content') == 0 && file.fileType == 'md'){
         content = file;
-      }else if(file.fileName == 'meta'){
+        // console.log('got content : ', content);
+      }else if(file.path.indexOf(prefix + 'meta') == 0){
         meta = file;
+        // console.log('got meta : ', meta);
       }
     });
+
+    //console.log('final meta : ', meta);
+
 
     if(!meta){
       err = {

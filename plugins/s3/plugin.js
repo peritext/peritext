@@ -64,7 +64,7 @@ plugin.getTextFile = function(input, callback){
     if(!err){
       console.log(key, ' read successfully');
     }
-    console.log('data obtained : ', data);
+    //console.log('data obtained : ', data);
     callback(err, data.Body.toString('utf-8'));
   });
 }
