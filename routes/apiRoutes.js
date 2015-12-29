@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var controller = require('./../controller');
 
 /* GET home page. */
 
@@ -21,7 +22,14 @@ router.put('/document/:slug', function(req, res) {
 
 //GET summary
 router.get('/summary', function(req, res) {
-  res.json({api : 'this endpoint will serve document summary'});
+
+  controller.getSummary(function(err, summary){
+    if(err){
+      res.status(err.status).json({error : err, message:err.message, status : err.status});
+    }else{
+      res.json(summary);
+    }
+  });
 });
 
 //GET glossary

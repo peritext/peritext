@@ -23,6 +23,8 @@ var provider;
 var setProvider = function(){
   if(config.sourceType == 'local'){
     provider = require('./plugins/local/plugin');
+  }else if(config.sourceType == 's3'){
+    provider = require('./plugins/s3/plugin');
   }
 }
 

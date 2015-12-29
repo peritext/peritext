@@ -11,7 +11,7 @@ router.get('/', function(req, res) {
     }else{
       res.render('summary', { summary: summary });
     }
-  })
+  });
 });
 
 module.exports = router;
