@@ -70,10 +70,10 @@ var getDocument = function(slug, callback){
     var prefix = (slug && slug != 'undefined')?slug+'/':'';
     console.log('prefix : ', prefix, ', looking for : ', prefix + 'meta');
     files.forEach(function(file){
-      if(file.path.indexOf(prefix + 'content') == 0 && file.fileType == 'md'){
+      if(file.path.indexOf(prefix + 'content') > -1 && file.fileType == 'md'){
         content = file;
         // console.log('got content : ', content);
-      }else if(file.path.indexOf(prefix + 'meta') == 0){
+      }else if(file.path.indexOf(prefix + 'meta') > -1){
         meta = file;
         // console.log('got meta : ', meta);
       }

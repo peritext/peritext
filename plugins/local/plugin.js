@@ -37,6 +37,9 @@ plugin.serveRawFile = function(path, res){
 
 
 plugin.getTextFile = function(input, callback){
+  if(!input){
+    return callback({msg: 'no input'}, undefined);
+  }
   var path = (typeof input === 'string')?input:input.path;
   console.log('asked to fs read : ', path);
   fs.readFile(path, 'utf8', function(err, contents){

@@ -11,12 +11,11 @@ var populateTemplate = function(key, value, template){
 }
 
 //to do : check if no title or other verification on meta
-parser.parse = function(str, callback){
+parser.parse = function(str, callback, parent){
 
   var props = {},
       metadata = {},
-      splitted = str.split('\n');
-  //first : inherit parent metadata
+      splitted = str.split('\n\n');
 
   //second : parse specified metadata props
   splitted.forEach(function(statement){
@@ -33,10 +32,20 @@ parser.parse = function(str, callback){
         value = els.slice(2, els.length).join(':');
       }
 
-      props[domain+':'+key] = {value:value};
+      if(!props[domain+':'+key]){
+        props[domain+':'+key] = {value:value};
 
-      if(domain == 'general'){
-        metadata[key] = value;
+        if(domain == 'general'){
+          metadata[key] = value;
+        }
+      //if duplicate, turn to array
+      }else{
+        props[domain+':'+key] = [props[domain+':'+key]];
+        props[domain+':'+key].push({value:value});
+        if(domain == 'general'){
+          metadata[key] = [metadata[key]];
+          metadata[key].push(value);
+        }
       }
     }
   });
@@ -49,25 +58,54 @@ parser.parse = function(str, callback){
     model.forEach(function(mod){
       for(var key in props){
         if(mod.type + ':' + mod.key == key){
-          if(mod.pattern.length > 0){
-            props[key].html = populateTemplate(key, props[key].value, mod.pattern);
-          }
-
-          var propagation = mod.propagation.split(',');
-          propagation.forEach(function(toKey){
-            if(!props[toKey]){
-              model.forEach(function(mod2){
-                if(mod2.type + ':' + mod2.key == toKey){
-                  props[toKey] = {
-                    value : props[key].value
-                  };
-                  if(mod2.pattern.length > 0){
-                    props[toKey].html = populateTemplate(toKey, props[toKey].value, mod2.pattern);
-                  }
-                }
-              })
+          //case single value
+          if(!props[key].length){
+            if(mod.pattern.length > 0){
+              props[key].html = populateTemplate(key, props[key].value, mod.pattern);
             }
-          });
+
+            var propagation = mod.propagation.split(',');
+            propagation.forEach(function(toKey){
+              if(!props[toKey]){
+                model.forEach(function(mod2){
+                  if(mod2.type + ':' + mod2.key == toKey){
+                    props[toKey] = {
+                      value : props[key].value
+                    };
+                    if(mod2.pattern.length > 0){
+                      props[toKey].html = populateTemplate(toKey, props[toKey].value, mod2.pattern);
+                    }
+                  }
+                });
+              }
+            });
+            }else{//case multiple values
+              var suffix = 1;
+              props[key].forEach(function(p){
+                var nKey = key+'_'+suffix;
+                props[nKey] = p;
+                if(mod.pattern.length > 0){
+                  props[nKey].html = populateTemplate(key, p.value, mod.pattern);
+                }
+                var propagation = mod.propagation.split(',');
+                propagation.forEach(function(toKey){
+                  if(!props[nKey]){
+                    model.forEach(function(mod2){
+                      if(mod2.type + ':' + mod2.key == toKey){
+                        props[nKey] = {
+                          value : p.value
+                        };
+                        if(mod2.pattern.length > 0){
+                          props[nKey].html = populateTemplate(toKey, props[nKey].value, mod2.pattern);
+                        }
+                      }
+                    });
+                  }
+                });
+                suffix++;
+              });
+              delete props[key];
+            }
         }
       }
     });
