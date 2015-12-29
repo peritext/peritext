@@ -10,6 +10,7 @@ var bodyParser = require('body-parser');
 var defaultRoutes = require('./routes/defaultRoutes');
 var apiRoutes = require('./routes/apiRoutes');
 var rawContentsRoutes = require('./routes/rawContentsRoutes');
+var summary = require('./routes/summary');
 
 
 var app = express();
@@ -34,6 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/', apiRoutes);
 app.use('/contents/', rawContentsRoutes);
+app.use('/summary/', summary);
 app.use('/', defaultRoutes);
 
 

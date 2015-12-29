@@ -55,7 +55,7 @@ Should :
 * should use an easily editable data model
 * should be easily pluginable/evolutive
 
-I forsee several parsing scripts :
+Forsee several parsing scripts :
 
 * file structure parser (that could be turned someday into an api middleware to s3 or another database)
 * content file parser
