@@ -2,11 +2,12 @@
 controller.js
 It Should :
 
-* handle CRUD operations at an abstract level (data management type agnostic)
-* check if data is available for a give part slug (availabilityLookup)
+* handle CRUD operations at an abstract level (data source agnostic)
 * check if data is viewable/public to serve (visibilityLookup)
 * verify the type of a folder (content, resource, ...)
 * organize the parsing and rendering of a specific folder (rendering)
+* get the summary of the doc
+* organize global data parsing operations (search, get glossary, get all figures, ...)
 */
 
 var config = require('./config/modulo');
