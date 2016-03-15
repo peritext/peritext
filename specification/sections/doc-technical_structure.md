@@ -28,7 +28,7 @@ Flux architecture is not required for the v1 of the project, as it is a read-onl
 
 Though, this architecture would ensure maximum scalability for the future.
 
-![Modulo architecture](https://github.com/robindemourat/modulo/tree/master/specification/assets/modulo-architecture.png)
+![Modulo architecture](https://raw.githubusercontent.com/robindemourat/modulo/master/specification/assets/modulo-architecture.png)
 
 # Data sources purposes
 
