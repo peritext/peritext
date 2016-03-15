@@ -1,14 +1,36 @@
 Modulo documentation | document syntax (modulo-flavoured markdown) | WIP
 =================
 
-Modulo-flavoured markdown is supposed to be built on top of two existing specs, to which it adds some (as little as possible) of features :
+Modulo-flavoured markdown is supposed to be built on top of Markua implementation (from : https://leanpub.com/markua/read) that is supposed to adapt markdown to book writing.
 
-* Markua implementation (from : https://leanpub.com/markua/read) that is supposed to adapt markdown to book writing, for all document-related markdown specifications
-* criticmarkup implementation for document revision and comments features (in prevision of future developments)
 
-Some guidelines to keep in mind :
-* all the data and semantics should be encoded inside html structure (heavy, but reliable)
-* it should comply to existing html semantic standards as much as possible
+What it is supposed to add is the notion of resource specification, and resource contextualization, intelligent contextualization of content, and templating.
+
+
+## Intelligent contextualisation
+
+To develop ...
+Typically, for instance, a quote followed by a reference citation should bind the quote to this reference citation at html level, and data API level.
+
+## Resources contextualization and specification
+
+Resources are of 3 types :
+* bibliographical records
+* figures
+* entities (or, in book vocab, glossary entries)
+
+Basically, resource description (all constant, non-changing properties) and resource contextualisation (how to display it at a specific point of the contents) are separated.
+
+Resource description can occur either in separate files or inside the content.md file of a modulo node.
+
+Resource contextualisation can occur only in a content.md file, as it is where it is instanciated and contextualized.
+
+## Templating
+
+Things should be easily template-based rendered, such as :
+* authors names
+* table of content
+
 
 # Formatting syntax
 
@@ -38,44 +60,6 @@ To produce superscript like the 3 in 53 = 125, surround it with carets like 5^3^
 > Subscript
 > 
 To produce subscript like the 2 in H2O, surround it with single tildes like H~2~O.
-
-## Inline specific html classes
-
-For design purpose, modulo should allow to specify classes for some document contents.
-
-Model:
-```
-I'm in the [mood]($classed:cool-stuff)
-```
-
-Description:
-Allows to specify span specific classes
-
-Translates to:
-```
-<p>I'm in the <span class="cool-stuff">mood</span></p>
-
-
-```
-
-## Block specific html classes
-
-Blocks specific classes should follow the concerned block with a new line.
-
-Model:
-```
-I'm in the mood
-$classed:cool-stuff
-```
-
-Description:
-Allows to specify block (p, h1, h2, ul, ...) specific classes
-
-Translates to:
-```
-<p class="cool-stuff">I'm in the mood</p>
-```
-
 
 ## Spaces and newlines
 
@@ -116,33 +100,8 @@ Translates to:
     <span class="footnote-delimitator">.</span>
     <span class="footnote-content">This is the footnote content</span>
 </p>
-
 ```
 
-## Glossary
-
-Model:
-```
-I'm talking about [rhetorics]{} //firt version : glossary key is the same as the word being marked
-
-I'm being [rhetorical]{rhetorics} //second version : glossary key is different from the word being marked and specified independantly
-```
-
-Description:
-
-Records a word as a glossary's entry.
-
-Without argument, the word is considered as is.
-
-With an argument inside brackets, the word is registered is the glossary as the specified argument.
-
-Translates to:
-```
-<p>I'm talking about <span class="glossary-element" term="rhetorics" >rhetorics</span></p>
-<p>I'm  being <span class="glossary-element" term="rhetorics" >rhetorical</span></p>
-```
-
-(todo : find the more standard-friendly way to record glossary entries in html - schema ? example : concept:rhetorics)
 
 ## Inline quotes
 
@@ -159,90 +118,14 @@ He said <span class="inline-quote">"leave me"</span>
 ```
 
 
-## Referencing, quoting, generating a bibliography
 
-### Specifying the bibliography data
-
-Bibliography should be handled with .bib file specified in the metadata of the document, or inlined as a resource in bibtext format.
-
-Inline resource :
-
-```
-\```bibliography
-source:inline
-
-@book{berry_understanding_2012,
-    title = {Understanding {Digital} {Humanities}},
-    isbn = {978-0-230-37193-4},
-    abstract = {The application of new computational techniques and visualisation technologies in the Arts and Humanities are resulting in fresh approaches and methodologies for the study of new and traditional corpora. This 'computational turn' takes the methods and techniques from computer science to create innovative means of close and distant reading. This book discusses the implications and applications of 'Digital Humanities' and the questions raised when using algorithmic techniques. Key researchers in the field provide a comprehensive introduction to important debates surrounding issues such as the contrast between narrative versus database, pattern-matching versus hermeneutics, and the statistical paradigm versus the data mining paradigm. Also discussed are the new forms of collaboration within the Arts and Humanities that are raised through modular research teams and new organisational structures, as well as techniques for collaborating in an interdisciplinary way.},
-    language = {en},
-    publisher = {Palgrave Macmillan},
-    author = {Berry, David M.},
-    month = feb,
-    year = {2012},
-    keywords = {Computers / Digital Media / General, Computers / Social Aspects / General, Social Science / Media Studies}
-}
-
-\```
-```
-
-
-Local file :
-
-```
-\```bibliography
-source:file
-data:bibliography.bib
-\```
-```
-
-### Inline short citation
-
-Example:
-```
-As Berry {!berry_understanding_2012,12!} wrote
-```
-
-Model:
-```
-{!bibText_id,page!}
-```
-
-
-Translates to:
-```
-As Berry <span class="short-citation" id="berry_understanding_2012">(Berry, 2012, p. 12)</span> wrote
-```
-
-Note, if quoted content before it should somehow encode in the html content that the quote is from this citation.
-
-Note : it also should translate to a COiNS span item, when applicable.
-
-### Single reference rendering
-
-Model:
-```
-{!!bibText id!!}
-```
-
-Description:
-Full citation of a file
-
-Translates to:
-```
-<div class="long-citation">
-    Reference in the style you want ...
-</div>
-```
-
-### Quotes and semanticity
-
+### Quotes and contextual semanticity
 
 #### Inline quotes
 
 Example:
 ```
-When Berry writes that "digital must be unpacked" {!berry_understanding_2012,12!} ...
+When Berry writes that "digital must be unpacked" {!berry_understanding_2012,p12!} ...
 ```
 
 Should translate to :
@@ -256,7 +139,7 @@ When Berry writes that <span class="short-quote" author="David Berry" quote-id="
 Example:
 ```
 > digital must be unpacked
-{!berry_understanding_2012,12!}
+{!berry_understanding_2012,p12!}
 ```
 
 Should translate to :
@@ -268,31 +151,6 @@ digital must be unpacked
 <sup><a>[1]</a></sup>
 ```
 
-### Bibliography
-
-Model:
-```
-[Bibliography:APA|my style|...:all|quoted|additionnal]
-```
-
-Description:
-Generates a bibliography in the wanted style, with the wanted rules :
-* all : all items
-* quoted : just items quoted in the document
-* additionnal : just items not quoted in the document
-
-Translates to:
-```
-<div class="bibliographic-reference">
-    Reference in the style you want ...
-</div>
-<div class="bibliographic-reference">
-    Reference in the style you want ...
-</div>
-<div class="bibliographic-reference">
-    Reference in the style you want ...
-</div>
-```
 
 
 # Template-rendered metadata calls
@@ -325,38 +183,91 @@ Forseen templates :
 * [toc] --> table of contents
 * [figures] --> list of figures and their captions
 
+# Resources
 
-# Resources and figures
+## Resources : global rationale
 
-## Figures : global rationale
+Resources are discourse-external elements that are cited and inserted into the core flow of a document.
 
-Figures are essential to Modulo. They represent all the non-textual arguments of a multimodal publication. They come as interactive figures (for on-screen versions) and static figures (for print version).
+Writers do two types of actions concerning resources :
+* they define them with constant information (url/uri, owner, rights, ...)
+* they instantiate them within a specific context, decorating them with contextual indications
 
-Modulo figures are inspired from the principle of "resource" of markua specification.
+### Resources definition
+
+... todo (it must be the more homogeneous possible)
+
+### Resources instantiation and contextualization methods
+
+Resources can be inserted as inline links, or block links.
+
+In both cases they are composed of the three following parts :
+* resource contextual name inside []
+* resource constant name inside ()
+* resource contextual indications inside {}
+
+In modulo default interface behaviour, primary figures will be triggered through scroll, and secondary figures through click (as a <a> hyperlink).
+
+Syntax of a  :
+
+```
+This is a [secondary figure insertion commentary](resource constant name){optional json-style contextual indications about additional data, comments, or displaying options}
+```
+
+
+```
+![This is a primary figure insertion commentary](resource constant name)
+{optional json-style contextual indications about additional data, comments, or displaying options}
+```
+
+
+Resource constant name can be of two types :
+* either they point to a resource description data that would have been provided inline elswhere in the .md file, or in a separate file
+* or they are implicitly asking to create a new resource from scratch : this is the case for direct media (image, video, ...) calling or for on-the-go glossary entries.
+
+Some will need to have additional resource constant description data, such as data-related or bibliography-related resource instances.
+
+## Entity resources
+
+Todo ...
+
+Should translate to:
+```
+<p>I'm talking about <span class="glossary-element" term="rhetorics" >rhetorics</span></p>
+<p>I'm  being <span class="glossary-element" term="rhetorics" >rhetorical</span></p>
+```
+
+
+## Bibliographical resources
+
+Todo ...
+
+### Specifying the bibliography data
+
+Bibliography should be handled with .bib file specified in the metadata of the document, or inlined as a resource in bibtext format.
+
+### Inline short citation
+
+Note, if quoted content before it should somehow encode in the html content that the quote is from this citation.
+
+Note : it also should translate to a COiNS span item, when applicable.
+
+### Single reference rendering
+
+### Bibliography
+
+## Figures
+
+Figures can point to a single source of data, or to several.
+They can be self-dependent, such as images or vimeo link (no indispensable need to give additional information to display them), or context-depend (i.e. : timeline data needs to specify begin and end dates).
+
+### Origin
 
 Three parameters :
 * figure insertion method (primary or secondary)
 * type (image, video, carousel, timeline, ...)
 * origin (web url or inline description)
 
-### Figure insertion methods
-
-Figures can be inserted as inline links, or block links.
-
-In modulo default front-rendered, primary figures will be triggered through scroll, and secondary figures through click (as a <a> hyperlink).
-
-Syntax :
-
-```
-This is a [secondary figure insertion](myResourceCaller)
-```
-
-
-```
-![This is a primary figure insertion](myResourceCaller)
-```
-
-### Origin
 
 Basically :
 *  if resource caller starts with "http" or "/", it is a URL caller
@@ -469,11 +380,11 @@ Figures can be described in two ways :
 Example of figure file link :
 
 ```
-Check [this timeline](my_cool_timeline.figure)
+Check [this timeline](my_cool_timeline.fig)
 ```
 
 
-### Inline figures call
+### Inline resources contextualization
 
 They are done by calling the id a of figure.
 
@@ -498,87 +409,3 @@ Or
 Check [this timeline](my_cool_timeline){title : "an important period", caption:"look at this period"}
 
 ```
-
-
-# Inline figure description (former modulo-views)
-
-An inline figure description is portion of markdown which describes an (interactive) figure to be used by the front-end document renderer.
-
-It is identified by an id (if no Id specified, it will try to find a title and use it as id, otherwise it will not consider it).
-
-It translate to an html <inline-resource></inline-resource> tag that will contain the data description as a data property containing json data.
-
-Input model:
-
-```
-\```type-of-figure
-key:value
-key:value
-...
-\```
-```
-
-Output model:
-
-```
-<inline-resource style="display:none" data="{key:value,comma-separated,type:type-of-resource}"></inline-resource>
-```
-
-
-If the type-of-figure is not recognized as a modulo figure, it will be displayed as a regular code block.
-
-Example 1 :
-
-```
-\```json
-{
-    key : "actual json code block"
-}
-\```
-```
-
-Outputs to :
-
-```
-<figure style="display:none">
-    <code>
-    {
-        key : "actual json code block"
-    }
-    </code>
-</figure>
-```
-
-
-# Special figures (former modulo-view) description
-
-## Pattern
-
-Example :
-
-{title:My timeline}
-```
-\```timeline
-title:my cool timeline
-\```
-```
-
-
-## Invariant properties
-
-| key | value type | description | example |
-| --- | ---------- | ----------- | ------- |
-| title | string | title of the figure/ressource | a good figure |
-
-## Html content
-
-## Timeline
-
-## Iframe
-
-## Sankey
-
-## Network graph
-
-## Map
-

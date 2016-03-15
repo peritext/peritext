@@ -42,8 +42,34 @@ There are three different data source supporting different needs.
 * in the future of the project, read/write and git-based version of modulo, comments should be able to be targeted both at a specific entity and a specific record of the publication
 * ideally, it could be great to add a layer on top of discuss system (through inline syntax ?) in order to support more precise contributions : support the editorial process (change suggestions, ...), opinion giving, fact-checking, linking to another entity of the publication, ...
 
+# Conceptual model of a Modulo node
 
-# Forseen structure elements (not finished)
+Modulo is made of nodes. Each node is a linear "part" of the document to display, figuring either a chapter, a section, or even a paragraph if the writer wants to go to this level of granularity.
+
+Each node inherits by default some data (like metadata) from the root, and possibly from a specified parent, and change other (like its content).
+
+However, some elements of the content will be repeatedly called in the document within several times : images, bibliographical references, data sources visualized in different ways.
+
+That's why we should separate "resources" and "resources mobilizations" in modulo's conceptual models.
+
+"Resources" are of three types :
+* bibliographical records : books, documents, ... accessed at a specific time and possibly quoted, commented, and translated in different places of the document
+* figures : image, video, data, ... which has invariant information (owner, technical information, way to retrieve it) and contextual uses (through legend, data visualization, ...)
+* entities (or glossary entries) : bound to notions, persons, places, ... these are "things" cited in the document.
+
+Typically, each type of resource should be represented by a type of file :
+* .bib files represent bibliographical records
+* .entity files represent entities description
+* .fig files represent document descriptions
+
+And each of these files should be able to describe one or several resources.
+
+The game of Modulo is to enable writing of a document in a "traditional", linear way (chapters and their attachements), but to provide multiple and non-linear ways of displaying the data then.
+
+When resources have been described, modulo should provide with a (most uniform possible) way of contextualizing resources.
+
+
+# Forseen code structure elements (not finished)
 
 ```
 .
