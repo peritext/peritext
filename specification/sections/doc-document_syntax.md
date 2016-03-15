@@ -1,15 +1,10 @@
 Modulo documentation | document syntax (modulo-flavoured markdown) | WIP
 =================
 
-
-Modulo-flavoured markdown is supposed to be built on top of two existing specs, to which it adds some (a minimum) of features :
+Modulo-flavoured markdown is supposed to be built on top of two existing specs, to which it adds some (as little as possible) of features :
 
 * Markua implementation (from : https://leanpub.com/markua/read) that is supposed to adapt markdown to book writing, for all document-related markdown specifications
 * criticmarkup implementation for document revision and comments features (in prevision of future developments)
-
-Modulo is conservative as it still priviledges :
-* text as the main medium of publishing (all other contents are considered as figures)
-* linear top-down scrolling as the main contents navigation practice
 
 Some guidelines to keep in mind :
 * all the data and semantics should be encoded inside html structure (heavy, but reliable)
@@ -94,6 +89,10 @@ Leading spaces :
 > Following exactly one newline, whitespace is preserved. Specifically, a single space produces a single space (a “non-breaking” space, or \&nbsp;, in HTML), and a single tab produces four spaces (four “non-breaking” spaces, or \&nbsp;\&nbsp;\&nbsp;\&nbsp;, in HTML).
 Following two or more newlines (one or more blank lines), whitespace is ignored. So, you can manually indent your paragraphs if you’re used to doing so, and it will have no effect.
 
+# Modulo multiple files handling
+
+It should contain an "include" function allowing to concatenate/follow several markdown files.
+
 
 # Modulo specific academy-oriented tags
 
@@ -124,14 +123,14 @@ Translates to:
 
 Model:
 ```
-I'm talking about [rhetorics]{} //firt version
+I'm talking about [rhetorics]{} //firt version : glossary key is the same as the word being marked
 
-I'm being [rhetorical]{rhetorics} //second version
+I'm being [rhetorical]{rhetorics} //second version : glossary key is different from the word being marked and specified independantly
 ```
 
 Description:
 
-Records a word as a glossary's word.
+Records a word as a glossary's entry.
 
 Without argument, the word is considered as is.
 
@@ -143,7 +142,7 @@ Translates to:
 <p>I'm  being <span class="glossary-element" term="rhetorics" >rhetorical</span></p>
 ```
 
-(todo : find the more standard-friendly way to record glossary entries in html - schema ?)
+(todo : find the more standard-friendly way to record glossary entries in html - schema ? example : concept:rhetorics)
 
 ## Inline quotes
 
@@ -162,9 +161,9 @@ He said <span class="inline-quote">"leave me"</span>
 
 ## Referencing, quoting, generating a bibliography
 
-### Specifying the bibliography data with bibText data
+### Specifying the bibliography data
 
-Bibliography should be handled with .bib file specified in the metadata of the document, or inlined as a resource.
+Bibliography should be handled with .bib file specified in the metadata of the document, or inlined as a resource in bibtext format.
 
 Inline resource :
 
@@ -217,6 +216,8 @@ As Berry <span class="short-citation" id="berry_understanding_2012">(Berry, 2012
 
 Note, if quoted content before it should somehow encode in the html content that the quote is from this citation.
 
+Note : it also should translate to a COiNS span item, when applicable.
+
 ### Single reference rendering
 
 Model:
@@ -236,9 +237,8 @@ Translates to:
 
 ### Quotes and semanticity
 
-TODO
 
-There should be a way to link a document's quote with its reference.
+#### Inline quotes
 
 Example:
 ```
@@ -248,9 +248,25 @@ When Berry writes that "digital must be unpacked" {!berry_understanding_2012,12!
 Should translate to :
 
 ```
-When Berry writes that <span class="short-citation" author="David Berry" ...>digital must be unpacked"</span><span class="short-citation" id="berry_understanding_2012">(Berry, 2012, p. 12)</span> ...
+When Berry writes that <span class="short-quote" author="David Berry" quote-id="berry_understanding_2012" quote-pages="12">digital must be unpacked"</span><span class="short-citation" id="berry_understanding_2012">(Berry, 2012, p. 12)</span> ...
 ```
 
+#### Block quotes
+
+Example:
+```
+> digital must be unpacked
+{!berry_understanding_2012,12!}
+```
+
+Should translate to :
+
+```
+<blockquote class="short-quote" author="David Berry" quote-id="berry_understanding_2012" quote-pages="12">
+digital must be unpacked
+</blockquote>
+<sup><a>[1]</a></sup>
+```
 
 ### Bibliography
 
@@ -312,11 +328,11 @@ Forseen templates :
 
 # Resources and figures
 
-## Figures : global logic
+## Figures : global rationale
 
-Figures are essential to Modulo. They represent all the non-textual arguments of a multimodal publication.
+Figures are essential to Modulo. They represent all the non-textual arguments of a multimodal publication. They come as interactive figures (for on-screen versions) and static figures (for print version).
 
-Modulo figures are inspired from the principe of "resource" of markua specification.
+Modulo figures are inspired from the principle of "resource" of markua specification.
 
 Three parameters :
 * figure insertion method (primary or secondary)
@@ -377,16 +393,20 @@ Link can be followed by {} containing key:value comma-separated addings such as 
 Vimeo :
 
 ```
+Inline call :
 As we can see in this [vimeo video](https://vimeo.com/129051743)
 
+Block call :
 ![A cool video](https://vimeo.com/129051743)
 ```
 
 Youtube :
 
 ```
+Inline call :
 As we can see in this [vimeo video](https://www.youtube.com/watch?v=G5OicZrhkHg)
 
+Block call :
 ![A cool video](https://www.youtube.com/watch?v=G5OicZrhkHg)
 ```
 
@@ -398,12 +418,13 @@ As we can see in [these images](/data/images/1.png,/data/images/2.png,/data/imag
 ![The carousel title](/data/images/1.png,/data/images/2.png,/data/images/3.png)
 ```
 
-Tweet :
+Tweet message :
 
 ```
 ![An enlightening tweet](https://twitter.com/Strabic/status/565086840370528256)
 ```
 
+Todo : tweet timeline, tweet list.
 
 Todo : storify
 
@@ -561,40 +582,3 @@ title:my cool timeline
 
 ## Map
 
-# Document comments (CriticMarkup implementation)
-
-## Basics
-
-There are five types of Critic marks:
-
-```
-Addition {++ ++}
-Deletion {-- --}
-Substitution {~~ ~> ~~}
-Comment {>> <<}
-Highlight {== ==}{>> <<}
-```
-
-A highlight followed by a comment creates a commented portion.
-
-```
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. {==Vestibulum at orci magna. Phasellus augue justo, sodales eu pulvinar ac, vulputate eget nulla.==}{>>confusing<<} Mauris massa sem, tempor sed cursus et, semper tincidunt lacus.
-```
-
-## Possible addings
-
-### Discussion
-
-Several successive comments are a conversation.
-
-```
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. {==Vestibulum at orci magna. Phasellus augue justo, sodales eu pulvinar ac, vulputate eget nulla.==}{>>confusing<<}{>>I don't think so.<<}{>>You should.<<} Mauris massa sem, tempor sed cursus et, semper tincidunt lacus.
-```
-
-### Identification (to think through)
-
-Each annotatation could be followed by an identification of the person who made it, for instance with a {$$ $$} pattern:
-
-```
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. {==Vestibulum at orci magna. Phasellus augue justo, sodales eu pulvinar ac, vulputate eget nulla.==}{$$ Annie $$}{>>confusing<<}{$$ Annie $$}{>>I don't think so.<<}{$$ Alain $$}{>>You should.<<}{$$ Annie $$} Mauris massa sem, tempor sed cursus et, semper tincidunt lacus.
-```

@@ -39,7 +39,7 @@ second property domain:second property key:second property value
 
 By default, all contentRoot's metaproperties are disseminated to the children parts.
 
-To unset a meta property, it should be done by specifying no value (example : "twitter:card:"") or by preceding the meta property with "unset " (example : "unset dublincore:author:popol").
+To unset an inherited meta property, it should be done by specifying no value (example : "twitter:card:"") or by preceding the meta property with "unset " (example : "unset dublincore:author:popol").
 
 # Properties dissemination
 
@@ -58,6 +58,15 @@ becomes :
 
 <meta name="property" name="value"/>
 ```
+
+# Internal metadata
+
+Need for metadata that does not translates necessarily to a `<meta>` tag (e.g. : order of parts, or hierarchical level).
+
+Exemple of metadata properties :
+* after [that section]'s slug
+* after [that section]'s title
+* hierarchical level of the section
 
 # Metadata API
 
