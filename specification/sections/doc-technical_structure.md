@@ -4,9 +4,9 @@ Modulo documentation | technical structure | WIP
 
 # Requirements
 
-Modularity of the convertions model and data access :
+Modularity of the data parsing model and data access :
 
-* modulo is purposed to be source-agnostic, and not indispensable for source reviewing (data should be easily readable, even without modulo)
+* modulo is purposed to be source-agnostic, and not indispensable for source reviewing (data should be easily readable without using modulo)
 * data access, data management and data processing should be separated
 * data models (for metadata, markdown, referencing) should be encoded in separate data files (.csv, .json) from the code
 * external resources transactions (zotero, google spreadsheet ...) should be clearly separated from the core of the engine
@@ -16,19 +16,39 @@ Flatfile-to-rich-document process:
 * document parsers should be lazy and process only the necessary data for a given query
 * document parsers should not perform several times the same operations on files
 
+SEO and indexability :
+* app must be isomorphic/universal (all views rendered as html server-side)
+* html schema props must be used whenever possible
+
+Social :
+* all the internal data logic of a publication should be available as a public API
+* should be possible to share specific parts of the document with different levels of granularity
+* should be possible to access through permalinks specific parts of the document with different levels of granularity
+
 
 Scalability and project evolution:
+* it should be internationalized from the begining
+* it should be test-driven from the begining
 * it should be easily scalable (library, collection, ...) later on
 * it should be able to welcome a further possible editing back-office interface
 * it should be easily convertible into a SaaS platform
 
-# Global architecture : flux architecture
+# Global architecture : flux/redux architecture
 
 Flux architecture is not required for the v1 of the project, as it is a read-only app, not dynamically supporting data-intensive operations.
 
 Though, this architecture would ensure maximum scalability for the future.
 
 ![Modulo architecture](https://raw.githubusercontent.com/robindemourat/modulo/master/specification/assets/modulo-architecture.png)
+
+# Envisionned technologies
+
+* Redux for global architecture handling
+* React for components rendering
+* (possibly) Atomizer for component-based styling
+* (possibly) Pacomo for styling management
+* zotero-bib-parser and bib-parser for ... bib parsing
+
 
 # Data sources purposes
 
@@ -68,28 +88,20 @@ The game of Modulo is to enable writing of a document in a "traditional", linear
 
 When resources have been described, modulo should provide with a (most uniform possible) way of contextualizing resources.
 
+### Reloading process
 
-# Forseen code structure elements (not finished)
+1. list all the files tree of contents directory
+2. load all the string text content of the files
+3. parse the content files and extract resource data (.bib, ...) and concatenate it with raw resource contents
+4. parse each file separately according to its type
+5. resolve properties and resources cascading
+6. possibly link data if needed 
 
-```
-.
-+--api
-|   +--queries //all utils for preparing API responses
-|   +--routes //index and controllers for the different API views
-    |   +--someRoute
-+--config //dev and prod configs + application sources (for contents, assets, and comments : flatfile, s3, disqus ...)
-+--credentials //all private credentials (zotero, google analytics, data sources, ...)
-+--contents //documents contents
-+--htmltemplates//html templates to use and populate
-+--plugins//data communication and middlewares
-|   +--flatfile //handle CRUD on flatfiles
-|   +--s3//handle CRUD on S3
-|   +--zotero //handle zotero querying and templating
-+--models //default templating, markdown and metadata models
-+--parsers //string parsers : metadata parser, figure/resource parser, modulo-markdown parser, ...
-+--routes.js //handle classical routes
-```
+### Data source middleware
 
+Should all provide with two simple methods :
+* list the contents of a folder
+* get the string content of a text file
 
 ### Metadata file parser
 
@@ -128,6 +140,43 @@ It should return several things :
 * html representation of the table of contents
 * json library of the modulo resources used
 
+
+
+
+# Forseen code structure (instable)
+
+Everything here should be in a src/ file distinct from built code :
+
+```
+.
+|+--appConfig //everything related to the bootstrapping and specification of the app
+|   +--default-models //default templating, markdown and metadata models for the application
+|   +--config.json //dev and prod configs + application sources (for contents, assets, and comments : flatfile, s3, disqus ...)
+|   +--credentials.json //all private credentials (zotero, google analytics, data sources, ...)
++--utils//everything not related to the app itself
+|   +--middlewares
+|       +--local //handle flatfiles management on local server files
+|       +--s3//handle flatfiles management on S3
+|       +--drive//handle flatfiles management on drive
+|       +--ftp//handle flatfiles management on ftp
+|       +--github//handle flatfiles management on github
+|   +--parsers //string parsers : metadata parser, figure/resource parser, modulo-markdown parser, ...
+|+--apis //expose APIs for transactions with different sources (contents, assets, annotations)
+|       +--annotationsApi
+|       +--contentsApi
+|       +--assetsApi
+
+|+--actions // Redux action creators
+|+--actors // Handle changes to the store's state
+|+--components // React components, stateless where possible
+|+--constants // Define stateless data
+|+--containers // Unstyled "smart" components which take the store's state and * dispatch, and possibly navigation location, and pass them to "dumb" components
+|+--reducers // Redux reducers
+|+--static // Files which will be copied across to the root directory on build
+|+--styles // Helpers for stylesheets for individual components
+|+--validators // Functions which take an object containing user entry and return an object containing any errors
+```
+
 # (client) routes access
 
 public/** should be freely accessible
@@ -160,6 +209,7 @@ rooturl/:slug
 ```
 
 --> will serve a particular document or a 404 screen
+
 
 
 # Forseen API endpoints (read-only for now)
@@ -219,4 +269,24 @@ GET root/api/search/
 | filter | coma-separated filters |
 
 
+# "Read mode" interface structure
 
+Grounding on [first interface](http://modesofexistence.org/anomalies) and rapid prototyping/wireframing of the new reader (https://marvelapp.com/5212b6g)
+
+React components hierarchy :
+
+```
+- navbar
+    - logo and title
+    - search block
+    - table of contents
+    - views related links
+- main column
+    - (loop) content blocks
+    - (loop) sidenotes
+    - footer
+- aside column
+    - header
+    - body
+    - footer
+```
