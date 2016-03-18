@@ -4,7 +4,7 @@ Modulo documentation | contents structure | WIP
 
 Modulo presents a two-level file structure in which the root corresponds to the entire document (book/thesis/monograph) and subfolders correspond each to one part (chapter/article/...).
 
-**In the following, *contentRoot* will stand for the content folder of the app, basically root/server/contents.**
+**In the following, *contentRoot* will stand for the content folder of the app, for instance root/server/contents.**
 
 # Types of folders
 
@@ -21,7 +21,7 @@ Several types of folders in the contents :
 Contents folders are the contentRoot folder and all folders that contain a meta.txt file featuring the meta property "general:type:content".
 
 * each content folder ***must feature a meta.txt file*** that describes the metadata of the entity
-* each content folder ***must feature a content.md file*** that describes the content of the part (chapter, or cover for the rootfolder)
+* each content folder ***should feature a content.md file*** that describes the content of the part (chapter, or cover for the rootfolder), **except if it used only for hierarchical structure (eg : part title)**
 
 Then, it can optionally :
 

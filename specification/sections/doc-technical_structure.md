@@ -174,6 +174,7 @@ Everything here should be in a src/ file distinct from built code :
 |+--reducers // Redux reducers
 |+--static // Files which will be copied across to the root directory on build
 |+--styles // Helpers for stylesheets for individual components
+|+--intl //internationalized UI contents
 |+--validators // Functions which take an object containing user entry and return an object containing any errors
 ```
 
