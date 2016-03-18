@@ -6,13 +6,30 @@ Modulo-flavoured markdown is supposed to be built on top of Markua implementatio
 
 What it is supposed to add is the notion of resource specification, and resource contextualization, intelligent contextualization of content, and templating.
 
+# Ideas and principles
 
-## Intelligent contextualisation
+## #1 : Grounded on Markua
+
+Modulo tends to be as simple and standard-compliant as possible by following the markdown Markua specification.
+
+## #2 : Templating
+
+Modulo should provide ways to generate html content from metadata-generated information through templates, such as :
+* authors names
+* table of content
+* ...
+
+This would also contribute to emphasazing the importance of metadata.
+
+## #3 : Intelligent contextualisation
 
 To develop ...
 Typically, for instance, a quote followed by a reference citation should bind the quote to this reference citation at html level, and data API level.
 
-## Resources contextualization and specification
+Markdown specs are often rather poor in term of (html) semanticity : it could be better.
+
+
+## #3 : Resources contextualization and specification
 
 Resources are of 3 types :
 * bibliographical records
@@ -25,60 +42,13 @@ Resource description can occur either in separate files or inside the content.md
 
 Resource contextualisation can occur only in a content.md file, as it is where it is instanciated and contextualized.
 
-## Templating
+# Language region #1 : Based on markua specification (and implementation ?)
 
-Things should be easily template-based rendered, such as :
-* authors names
-* table of content
+Specification there : https://github.com/markuadoc/markua
 
+In-progress implementation there : https://github.com/markuadoc/markua-js
 
-# Formatting syntax
-
-## Underline
-
-Markua:
-
-> Underline
-> 
-To produce underlined text, surround it with ____four underscores____ (producing <u> in HTML). This is gross, but it’s a tradeoff for Markdown compatibility: the one, two and three underscore choices were taken. Thankfully, it’s usually preferable to use italic instead of underline. However, underline is not just a typewriter version of italics. In some languages, underlining serves a distinct, legitimate purpose.
-
-
-## Strikethrough:
-
-> Strikethrough
-> 
-To produce strikethrough text, surround it with ~~two tildes~~. This is the same syntax as is used by both GitHub Flavored Markdown and by John Macfarlane’s excellent pandoc.) TODO: ADD STRIKETHROUGH TO LEANPUB!
-
-## Superscript
-
-> Superscript
-> 
-To produce superscript like the 3 in 53 = 125, surround it with carets like 5^3^ = 125. (This is the same syntax as is used by pandoc.)
-
-## Subscript
-
-> Subscript
-> 
-To produce subscript like the 2 in H2O, surround it with single tildes like H~2~O.
-
-## Spaces and newlines
-
-Newlines:
-
-> In Markua, a single newline inside a paragraph forces a line break, which produces a \<br/> tag in HTML. 
-
-
-Leading spaces :
-
-> Following exactly one newline, whitespace is preserved. Specifically, a single space produces a single space (a “non-breaking” space, or \&nbsp;, in HTML), and a single tab produces four spaces (four “non-breaking” spaces, or \&nbsp;\&nbsp;\&nbsp;\&nbsp;, in HTML).
-Following two or more newlines (one or more blank lines), whitespace is ignored. So, you can manually indent your paragraphs if you’re used to doing so, and it will have no effect.
-
-# Modulo multiple files handling
-
-It should contain an "include" function allowing to concatenate/follow several markdown files.
-
-
-# Modulo specific academy-oriented tags
+# Language region #2 : intelligent contextualization
 
 ## Footnotes
 
@@ -118,14 +88,14 @@ He said <span class="inline-quote">"leave me"</span>
 ```
 
 
-
-### Quotes and contextual semanticity
+### Quotes and resources linking
 
 #### Inline quotes
 
-Example:
+This modulo assertion :
+
 ```
-When Berry writes that "digital must be unpacked" {!berry_understanding_2012,p12!} ...
+When Berry writes that "digital must be unpacked" (@)[berry_understanding_2012,p12] ...
 ```
 
 Should translate to :
@@ -136,10 +106,11 @@ When Berry writes that <span class="short-quote" author="David Berry" quote-id="
 
 #### Block quotes
 
-Example:
+This modulo assertion :
+
 ```
 > digital must be unpacked
-{!berry_understanding_2012,p12!}
+!(@)[berry_understanding_2012,p12]
 ```
 
 Should translate to :
@@ -155,14 +126,15 @@ digital must be unpacked
 
 # Template-rendered metadata calls
 
-Modulo should be able to call metadata-based properties and generated contents into the document.
+Modulo should be able to render metadata-based properties and generated contents into the document.
 
-Example:
+This modulo assertion :
 ```
-[abstract]
+$abstract$
 ```
 
-Translates to:
+Should translate to :
+
 ```
 <div class="abstract">
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga eveniet nihil ab consectetur reprehenderit voluptatum ipsum dicta, sed atque. Inventore repudiandae doloribus nam enim modi nemo asperiores voluptatum earum, esse.
@@ -174,46 +146,169 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga eveniet nihil ab 
 
 Forseen templates :
 
-* [authors] --> authors
-* [title] --> title + subtitle
-* [title_simple] --> title
-* [title_complete] --> title, subtitle, authors
-* [general_title] --> title of the book/thesis
-* [abstract] --> abstract or description
-* [toc] --> table of contents
-* [figures] --> list of figures and their captions
+* $authors$ --> authors
+* $title$ --> title + subtitle
+* $title_simple$ --> title
+* $title_complete$ --> title, subtitle, authors
+* $general_title$ --> title of the book/thesis
+* $abstract$ --> abstract or description
+* $toc$ --> table of contents
+* $figures$ --> list of figures and their captions
 
-# Resources
+## Multiple files inclusions
 
-## Resources : global rationale
+The template language should also allow to include external parts of text coming from a markdown file in the same folder of section's one.
 
-Resources are discourse-external elements that are cited and inserted into the core flow of a document.
+E.g. include the file ``subpart.md`` in a section :
 
-Writers do two types of actions concerning resources :
+```
+$include:subpart$
+```
+
+
+# Resources and figures
+
+## Resources and figures : global idea
+
+Resources are of 3 types :
+
+* bibliographical records
+* data source : data file, video, image, ...
+* entities (or, in book vocab, glossary entries)
+
+Basically, resource description (all constant, non-changing properties) and resource contextualisation (how to display it at a specific point of the contents) are separated.
+
+Resource description can occur either in separate files or inside the ``content.md`` file of a modulo node.
+
+Resource contextualisation can occur only in a ``content.md`` file, as it is where it is instanciated and contextualized.
+
+Resources are discourse-external elements that are cited and/or inserted into the core flow of a document with a form specific to the context.
+
+The key idea is to distinguish the resource, which is the description of a source, data, ... and its contextualization through a figure, a citation, ...
+
+Therefore, writers do two types of actions concerning resources :
 * they define them with constant information (url/uri, owner, rights, ...)
 * they instantiate them within a specific context, decorating them with contextual indications
 
-### Resources definition
+## Resources definition
 
-... todo (it must be the more homogeneous possible)
+A resource definition specifies immutable information about a resource, such as :
+* where its data can be fetched
+* its name
+* its author
+* ...
 
-### Resources instantiation and contextualization methods
+As we will see, resources definition syntax stands on the shoulders of bibText syntax.
+
+This means that data sources, persons, places, ... will all be encoded in bibText syntax, though with different properties.
+
+Therefore, **modulo resource definition syntax is not a brand new syntax but an extension of the bibText established syntax to data sources, images, entities, etc. and so on.**
+
+## Where/how to define a resource
+
+Ressource definition can occur either inside markdown documents or outside them is specific ``.bib`` files.
+
+Resource definition inside a markdown document is wrapped between ```$$$``` statements.
+
+```
+$$$
+my resource definition
+$$$
+```
+
+Inside a file, resources are directly described. There can be either one or several resources in a given file.
+
+Example of several resources inside a file :
+
+```
+@article{hamilton_publishing_????,
+    title = {Publishing by -- and for? -- the {Numbers}},
+    volume = {250},
+    url = {http://www.garfield.library.upenn.edu/papers/hamilton1.html},
+    number = {1331-2},
+    journal = {Science},
+    author = {Hamilton, D.P.}
+}
+
+@article{barnet_machine_2012,
+    title = {Machine {Enhanced} ({Re})minding: the {Development} of {Storyspace}},
+    volume = {6},
+    shorttitle = {Machine {Enhanced} ({Re})minding},
+    url = {http://www.digitalhumanities.org/dhq/vol/6/2/000128/000128.html},
+    number = {2},
+    urldate = {2014-01-23},
+    author = {Barnet, Belinda},
+    year = {2012}
+}
+```
+
+### Defining a bibliographical resource
+
+For defining a bibliographical resource, bibtext is used in a vernacular way.
+
+Zotero idiomatic bibtext formatting should be possible.
+
+Nothing else new under the sun about that !
+
+### Defining an entity
+
+Entities are defined using a specific set of new bibtext types (in the form of ``@type``) preceded by ``ent_``.
+
+Example of a person :
+
+```
+@ent_person{marie_dupre,
+    firstName = "Marie",
+    lastName = "Dupré",
+    aliases = "Marie D., Marie Dup."
+}
+```
+
+Todo : detail of models for entities (kip it simple and generic in the first place)
+
+### Defining a data or media source
+
+Data is cited with ``@data``.
+Image is cited with ``@image``.
+
+Todo : how to link to data provided in the ``assets`` source.
+
+## Resources instantiation and contextualization
+
+### Resource identification
+
+Ressources are identifed with their bibText Identificator preceded by ``@``.
+
+For instance, for the resource :
+```
+@ent_person{marie_dupre,
+    firstName = "Marie",
+    lastName = "Dupré",
+    aliases = "Marie D., Marie Dup."
+}
+```
+
+... the identificator is ``@marie_dupre``.
+
+### Resource insertion and contextualization
 
 Resources can be inserted as inline links, or block links.
 
 In both cases they are composed of the three following parts :
+
 * resource contextual name inside []
-* resource constant name inside ()
+* resource identificator inside ()
 * resource contextual indications inside {}
 
 In modulo default interface behaviour, primary figures will be triggered through scroll, and secondary figures through click (as a <a> hyperlink).
 
-Syntax of a  :
+Syntax of an inline resource contextualization  :
 
 ```
 This is a [secondary figure insertion commentary](resource constant name){optional json-style contextual indications about additional data, comments, or displaying options}
 ```
 
+Syntax of a block resource contextualization :
 
 ```
 ![This is a primary figure insertion commentary](resource constant name)
@@ -221,191 +316,120 @@ This is a [secondary figure insertion commentary](resource constant name){option
 ```
 
 
-Resource constant name can be of two types :
-* either they point to a resource description data that would have been provided inline elswhere in the .md file, or in a separate file
-* or they are implicitly asking to create a new resource from scratch : this is the case for direct media (image, video, ...) calling or for on-the-go glossary entries.
+So for instance with our Marie Dupré :
 
-Some will need to have additional resource constant description data, such as data-related or bibliography-related resource instances.
+```
+As experienced by [Marie Dupré](@marie_dupre), we can argue that ...
+```
 
-## Entity resources
+... we are stating that there is here a reference to the entity marie_dupre inserted inside the document at this point of text.
 
-Todo ...
+### Invariant contextualization of resources
+
+By default, all resource citation/contextualization in a modulo document affects the aside content displayer.
+
+So, there are invariant contextualization information elements that can be used with every type of resource being cited :
+* ``caption`` : the caption or legend of the resource in the context in which it is cited
+
+## Combined contextualization
+
+It should be possible to combine several resources citations to "build" their display.
+
+For instance combining a ``.srt`` data with a video media should give a figure displaying the video subtitled with the provided data.
+
+```
+As experienced by [Marie Dupré](@marie_dupre) and seen in her [Interview](@marie_interview_video, @marie_interview_transcription), ...
+```
+
+
+## Entity resources contextualizations
+
+### Inline contextualization
+
+In that case, entity is considered as a in-html reference to the entity.
+
+For instance :
+```
+I'm talking about [rhetorics](@rhetorics).
+```
+
 
 Should translate to:
 ```
-<p>I'm talking about <span class="glossary-element" term="rhetorics" >rhetorics</span></p>
-<p>I'm  being <span class="glossary-element" term="rhetorics" >rhetorical</span></p>
+<p>I'm talking about <span class="entity-inline-reference" resource="rhetorics" >rhetorics</span>.</p>
 ```
 
+Todo : possible contextualization ...
+
+### Block contextualization
+
+In that case, it should translate to a sort of templated "card" of the entity.
+
+For instance :
+```
+![rhetorics](@rhetorics).
+```
+
+
+Should translate to:
+```
+<div class="entity-block-reference">
+    <p>Rhetorics was created in the ancient Greece ...</p>
+</div>
+```
+
+This would be a kind of template call to consume entity resource's data.
 
 ## Bibliographical resources
 
-Todo ...
+Note : all bibligraphical resources contextualizations should translate to a COiNS span item, when applicable.
 
-### Specifying the bibliography data
+### Inline contextualization
 
-Bibliography should be handled with .bib file specified in the metadata of the document, or inlined as a resource in bibtext format.
+This corresponds by default to a short citation if not specified by the contextualization data.
 
-### Inline short citation
-
-Note, if quoted content before it should somehow encode in the html content that the quote is from this citation.
-
-Note : it also should translate to a COiNS span item, when applicable.
-
-### Single reference rendering
-
-### Bibliography
-
-## Figures
-
-Figures can point to a single source of data, or to several.
-They can be self-dependent, such as images or vimeo link (no indispensable need to give additional information to display them), or context-depend (i.e. : timeline data needs to specify begin and end dates).
-
-### Origin
-
-Three parameters :
-* figure insertion method (primary or secondary)
-* type (image, video, carousel, timeline, ...)
-* origin (web url or inline description)
+Possible contextualization data :
+* display as short citation (eg *(Dupré, 1983)* or *[DUPRE]*)
+* page(s) being referenced
+* display as long citation
 
 
-Basically :
-*  if resource caller starts with "http" or "/", it is a URL caller
-*  else it is a inline resource caller
+Note related to *intelligent contextualization* : if quoted content before it should somehow encode in the html content that the quote is from this citation.
 
-### Types
+Note : abbreviations such as *ibid* should be automatically generated.
 
-Resource type is infered from the resource caller.
-If the resource is defined as inline resource, type will be described in it.
-Else, modulo should try to guess the type of the resources with the following tests :
+### Block contextualization
 
-* if URL matches with some service (eg : vimeo, youtube, slideshare, ...)
-* else by catching a file extension at the end of a caller
-    * images (svg, png, jpg)
-    * videos (mp4, ogv, ...)
+This corresponds by default to a long citation (think bibliography-like display) if not specified by the contextualization data.
 
-If it fails to determine a resource, it will display a simple link.
+## Media and URL resources
 
+This is where modulo aims at be constraining, and specifically fit for academic rigor.
 
-All figure types come in two declinations : single item or item array (gallery, iframes collection, tweets collections, ...).
-These are recognized by catching ',' in the ressource call. 
+**It should be impossible to reference an image, a video, or even an external link in a Modulo document without having it referenced (and documented) as a resource.**
 
+The only way to point to these kinds of contents in modulo is to use resources descriptions as "middlewares".
 
-## Modulo figures calls typology
+By default they will affect (by click or scroll) the aside contents of the interface/document :
+* videos will be displayed in videos
 
-### inferences-from-url
+Possible contextualization properties :
+* ``directLink`` : not using the aside-contents and directly pointing to the link of the resource
+* ``directShow`` (for links) : aside will automatically display an iframe of the targeted website
 
-If specified as an inline link, will be added after the current block as a figure.secondary-figure;
+## Data resources and their contextualization
 
-If specified on a single line, will be added as a figure.primary-figure
+By default, Modulo displays a data source in a ``code`` block, with according footer.
 
-Link can be followed by {} containing key:value comma-separated addings such as figure title, figure caption, figure background, ...
+Otherwise, if the editor wants to display the source as a data visualization, contextual information will be crucial.
 
-Vimeo :
+How does it work ?
+
+First, the editor must specify a specific visualization *template* that will process and present data in a specific way. Then she will specify *parameters* to provide the template with the information necessary to display the resource(s).
+
+Brainstorming from there
 
 ```
-Inline call :
-As we can see in this [vimeo video](https://vimeo.com/129051743)
-
-Block call :
-![A cool video](https://vimeo.com/129051743)
-```
-
-Youtube :
-
-```
-Inline call :
-As we can see in this [vimeo video](https://www.youtube.com/watch?v=G5OicZrhkHg)
-
-Block call :
-![A cool video](https://www.youtube.com/watch?v=G5OicZrhkHg)
-```
-
-Carrousel :
-
-```
-As we can see in [these images](/data/images/1.png,/data/images/2.png,/data/images/3.png)
-
-![The carousel title](/data/images/1.png,/data/images/2.png,/data/images/3.png)
-```
-
-Tweet message :
-
-```
-![An enlightening tweet](https://twitter.com/Strabic/status/565086840370528256)
-```
-
-Todo : tweet timeline, tweet list.
-
-Todo : storify
-
-Slideshare :
-
-```
-![An enlightening slide](http://fr.slideshare.net/slideshow/embed_code/key/rGQLsk1BvwQ2Ik)
-```
-
-Pdf :
-
-```
-![check this pdf](data/pdf/Mémoire - Castelletti A. (2013) - la place du public dans les nouveaux médias.pdf)
-```
-
-Iframe :
-
-```
-Check [this iframe](http://www.w3schools.com/jsref/jsref_regexp_nxy.asp)
-```
-
-### File extensions
-
-gif, png, jpeg, svg, svgz, gif, tif   > img
-mp4, webm > video player
-mp3, aac, wav, ogg  > audio
-
-### Links without figures
-
-By default, all hyperlinks will be considered as figures if not specified otherwise :
-
-```
-Check [this iframe](http://www.w3schools.com/jsref/jsref_regexp_nxy.asp){figure : false}
-```
-
-### Figure descriptions
-
-Figures can be described in two ways :
-* file : link to a .figure file
-* inline : written in the body of the document (anywhere)
-
-Example of figure file link :
-
-```
-Check [this timeline](my_cool_timeline.fig)
-```
-
-
-### Inline resources contextualization
-
-They are done by calling the id a of figure.
-
-```
-Check [this timeline](my_cool_timeline)
-```
-
-Figure contextual data will be added with {} just after, or one line before :
-
-```
-{title : "an important period", caption:"look at this period"}
-Check [this timeline](my_cool_timeline)
-
-Or
-
-Check [this timeline](my_cool_timeline)
-{title : "an important period", caption:"look at this period"}
-
-
-Or
-
-Check [this timeline](my_cool_timeline){title : "an important period", caption:"look at this period"}
-
+![My cool timeline](@timeline_data)
+{timeline, display_as_events:event}
 ```

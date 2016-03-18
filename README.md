@@ -5,18 +5,7 @@ Modulo - *make a multimodal academic publication from simple text files*
 # Caution : Work In Progress
 
 Modulo is being rewritten at the moment as a flat-file node.js application.
-See an implementation of the first, front-end only, version of Dicto here : https://github.com/robindemourat/clues-anomaly-understanding
-
-The next version of Modulo will feature :
-
-* a node.js, data source agnostic (local file system, ftp, amazon ASW, github, google drive, ...), flat-file engine. 
-* a better data exposition of publications, SEO-friendly through the use of rich metadata and element-level proper description through microformats
-* a new enhanced markdown syntax for the description of interactive figures and scholar-friendly apparatus, complying to emerging specifications such as Markua and Criticmarkup
-* a simple flat-file organization of documents that will enable the production of large documents (such as books, thesis or proceedings)
-* a better front-end flexibility and the possibility to edit document-specific stylesheets and javascript figures modules
-* more homogeneous figure modules markdown syntax, and better front-end performance
-* scholarly features such as glossary management, zotero-friendly reference management and exposition in publications through COiNS
-* an API for third-party use
+See an implementation of the first, front-end only, version of Dicto here : http://modesofexistence.org/anomalies/ (source : https://github.com/robindemourat/clues-anomaly-understanding )
 
 
 If you're curious on what's going on, [check here the in-progress modulo v2 working documents about markdown specification, contents structures and technical choices](https://github.com/robindemourat/modulo/tree/master/specification).

@@ -150,7 +150,10 @@ Everything here should be in a src/ file distinct from built code :
 ```
 .
 |+--appConfig //everything related to the bootstrapping and specification of the app
-|   +--default-models //default templating, markdown and metadata models for the application
+|   +--defaultModels //default templating, markdown and metadata models for the application
+|   +--moduloMarkdownTemplates.json
+|   +--metadataEntities.json
+|   +--metadataPropagation.json
 |   +--config.json //dev and prod configs + application sources (for contents, assets, and comments : flatfile, s3, disqus ...)
 |   +--credentials.json //all private credentials (zotero, google analytics, data sources, ...)
 +--utils//everything not related to the app itself
