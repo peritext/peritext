@@ -66,8 +66,8 @@ config:parent:Part 1
 ```
 
 Here is a first (provisionnal) list of metadata properties :
-* ``config:parent`` : after [that section]'s slug (folder title)
-* ``config:parent-title`` : after [that section]'s title
+* ``config:after`` : after [that section]'s slug (folder title)
+* ``config:after-title`` : after [that section]'s title
 * ``config:importance-level`` : importance level of the section (computed by addition with the importance-level of parent)
 * ``config:parent`` : id (folder title) of the parent of the section
 * ``config:parent-title`` : title of the parent of the section

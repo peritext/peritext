@@ -54,94 +54,39 @@ Though, this architecture would ensure maximum scalability for the future.
 
 There are three different data source supporting different needs.
 
-**Document source** represents the actual text-based contents of a document.
+**Document source (eg=Google Drive)** represents the actual text-based contents of a document and its structure - represented by folders and ``.metadata`` files.
 
-**Assets source** represents all assets being used in resources and figures. They are typically images, videos, data files, and so on ...
+**Assets source (eg=Amazon s3)** represents all assets being used in resources and figures. They are typically images, videos, data files, and so on ...
 
-**Disqus** is used to allow for comments on specific entities of the document (paragraphs / figures / citations / ...). For the future two things must be kept in mind :
+**Annotation source (default=Disqus)** is used to allow for comments on specific entities of the document (paragraphs / figures / citations / ...). For the future two things must be kept in mind :
 * in the future of the project, read/write and git-based version of modulo, comments should be able to be targeted both at a specific entity and a specific record of the publication
-* ideally, it could be great to add a layer on top of discuss system (through inline syntax ?) in order to support more precise contributions : support the editorial process (change suggestions, ...), opinion giving, fact-checking, linking to another entity of the publication, ...
+* ideally, it could be great to add a layer on top of discussion system (through inline syntax ?) in order to support more precise contributions : support the editorial process (change suggestions, ...), opinion giving, fact-checking, linking to another entity of the publication, ...
 
-# Conceptual model of a Modulo node
+# Modulo document model
 
-Modulo is made of nodes. Each node is a linear "part" of the document to display, figuring either a chapter, a section, or even a paragraph if the writer wants to go to this level of granularity.
+Modulo is made of sections. Each section is a linear "part" of the document to display, figuring either a chapter, a section, or even a paragraph if the writer wants to go to this level of granularity.
 
-Each node inherits by default some data (like metadata) from the root, and possibly from a specified parent, and change other (like its content).
+Each section is made of two types of data :
+* *content* : linear, xml/html structured, textual content
+* *resources* : objects which are quoted, used, cited, visualized inside the section
 
-However, some elements of the content will be repeatedly called in the document within several times : images, bibliographical references, data sources visualized in different ways.
+Each section inherits by default some data (like metadata) from the root section, and possibly from its parent when it has one.
 
-That's why we should separate "resources" and "resources mobilizations" in modulo's conceptual models.
+However, some elements of the contents will be repeatedly called in the document within several times : images, bibliographical references, data sources visualized in different ways.
 
-"Resources" are of three types :
-* bibliographical records : books, documents, ... accessed at a specific time and possibly quoted, commented, and translated in different places of the document
-* figures : image, video, data, ... which has invariant information (owner, technical information, way to retrieve it) and contextual uses (through legend, data visualization, ...)
+That's why we should separate "resources" and "resources contextualization" in modulo's conceptual lidek.
+
+"Resources" are of several types :
+* bibliographical records : books, documents, ...
+* data/media : images, video, tables, ... which has invariant information (owner, technical information, way to retrieve it)
 * entities (or glossary entries) : bound to notions, persons, places, ... these are "things" cited in the document.
 
-Typically, each type of resource should be represented by a type of file :
-* .bib files represent bibliographical records
-* .entity files represent entities description
-* .fig files represent document descriptions
+They are handled in very different way when featured in sections, but described with the same type of syntax, extended from the BibTex standard.
 
-And each of these files should be able to describe one or several resources.
-
-The game of Modulo is to enable writing of a document in a "traditional", linear way (chapters and their attachements), but to provide multiple and non-linear ways of displaying the data then.
-
-When resources have been described, modulo should provide with a (most uniform possible) way of contextualizing resources.
-
-### Reloading process
-
-1. list all the files tree of contents directory
-2. load all the string text content of the files
-3. parse the content files and extract resource data (.bib, ...) and concatenate it with raw resource contents
-4. parse each file separately according to its type
-5. resolve properties and resources cascading
-6. possibly link data if needed 
-
-### Data source middleware
-
-Should all provide with two simple methods :
-* list the contents of a folder
-* get the string content of a text file
-
-### Metadata file parser
-
-The metadata file parser will use an external model file to process data.
-
-It will take as input a String representing the metadata of a folder, and its type (root or part). It will render a json file presented metadata in structured+html form.
-
-Algorithm to process a file :
-
-1. (if applicable) parse parent folder metadata
-2. populate all unset metadata which have a default value
-3. parse the current metadata file and isolate items. For each metadata item :
-4. process and record the statement as is for the pointed property (override any previous inherited/default/propagated value)
-5. if it has propagation features, try to propagate the metadata for each related item **if it has not been set before in the current metadata file** but **no matter if it has a default value or is inherited from parent**
-
-Additionnally it should be able to quickly render a file :
-
-* check if data is available for a give part slug (availabilityLookup)
-* check if data is viewable/public to serve (visibilityLookup)
-* verifying the type of a folder (content, resource, ...)
-* get the title of a part (titleLookUp)
-
-## Content file parser
-
-The content file parser will use an external model file to process data.
-
-It will take as input a String representing the markdown content of a folder.
-
-It should do two things :
-
-* process markdown content according to a modulo-flavoured marked renderer
-* possibly enrich the content with some external calls (zotero, google docs, document metadata) through modules
-
-It should return several things :
-* html representation of the content (that would fit into a template)
-* html representation of the table of contents
-* json library of the modulo resources used
-
-
-
+Then, they are called inside the document through what I chose call 'contextualization', which is a way of specifying how it should be displayed.
+* bibliographical records can be short-cited or long-cited, at specific pages, ...
+* data/media can be inserted inside the document, used to produce a visualization, displayed in rough form as aside figure
+* entities can be used to generate a glossary, or just to enrich the semanticity of a page ...
 
 # Forseen code structure (instable)
 
@@ -150,10 +95,13 @@ Everything here should be in a src/ file distinct from built code :
 ```
 .
 |+--appConfig //everything related to the bootstrapping and specification of the app
-|   +--defaultModels //default templating, markdown and metadata models for the application
-|   +--moduloMarkdownTemplates.json
-|   +--metadataEntities.json
-|   +--metadataPropagation.json
+|   +--defaultModels //default metadata models for the application
+|       +--metadataEntities.json //escription (by domain) of the diverse metadata entities
+|       +--metadataPropagation.json // "table" of metadata entity propagation relations (ordered)
+|   +--defaultTemplates //default templates models for the application
+|       +--toc.md
+|       +--short-citation.md
+|       +--long-citation.md
 |   +--config.json //dev and prod configs + application sources (for contents, assets, and comments : flatfile, s3, disqus ...)
 |   +--credentials.json //all private credentials (zotero, google analytics, data sources, ...)
 +--utils//everything not related to the app itself
@@ -181,15 +129,74 @@ Everything here should be in a src/ file distinct from built code :
 |+--validators // Functions which take an object containing user entry and return an object containing any errors
 ```
 
-# (client) routes access
+# Technology stack
 
-public/** should be freely accessible
+Architecture :
+* redux
+* Immutable
 
----
+* uniloc (routing)
+* axios (http requests)
 
+Parsers helpers :
+* marked
+* (markua-js ?)
+* bibtex-parser
+
+Interface components :
+
+* react-redux
+* react
+* react-dom
+* react-css-modules --> https://github.com/gajus/react-css-modules
+* PaCoMo
+* d3.js
+
+Tests :
+
+* chai
+
+
+# Parsers
+
+## Parsers order and repetition
+
+Because of metadata vertical propagation, metadata should always be processed for the whole document (therefore most probably cached - both separately (section by section) - and when computed).
+
+Section contents could be parsed on demand - or all processed then cached (case of printed document ...).
+
+## Metadata parser
+
+The metadata file parser will use an external model file to process data.
+
+It will take as input a String representing the metadata of a folder, and its type (root or part). It will render a json file presented metadata in structured+html form.
+
+1. parse all folders metadata file by mapping them to objects containing an array of metadata entities
+2. resolve hierarchy (by nesting the structure, or by adding a 'parent' reference property ?)
+3. resolve specific metadata enrichment and lateral propagation from root to leaves of the sections tree
+4. resolve order of sections (``config:after`` || alphabetical)
+
+
+## Section parser
+
+1. get metadata
+2. resolve ``$include:blabla$`` by trying to include related files
+3. strip out from the completed ``content.md`` file all the resources description statements
+4. parse external resource descriptions statements (``.bib``)
+5. parse markdown content (to html)
+6. bind html resource contextualisations to resources descriptions ?
+
+
+# Data-source transactions middlewares
+
+Should all provide with two simple methods :
+* list the contents of a folder
+* get the string content of a text file
+
+# UI routes and permalinks
 
 ```
-rooturl/contents/*
+rooturl/lectio/contents/*
 ```
 
 --> files should be freely accessible at root/contents/ if not specified otherwise in the folder's meta.txt document.
@@ -203,20 +210,19 @@ api/*
 Otherwise : 
 
 ```
-rooturl/
+rooturl/lectio/
 ```
 
 --> will serve the document root
 
 ```
-rooturl/:slug
+rooturl/lectio/:slug
 ```
 
 --> will serve a particular document or a 404 screen
 
 
-
-# Forseen API endpoints (read-only for now)
+# Forseen external API endpoints
 
 ## Get document data (root or part)
 
