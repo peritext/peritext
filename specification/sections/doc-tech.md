@@ -41,7 +41,7 @@ Though, this architecture would ensure maximum scalability for the future.
 
 ![Modulo architecture](https://raw.githubusercontent.com/robindemourat/modulo/master/specification/assets/modulo-architecture.png)
 
-# Envisionned technologies
+# Technological stack survey
 
 Architecture :
 * redux
@@ -69,7 +69,20 @@ Interface components :
 Tests :
 
 * chai
+* redux-test-reducer --> https://github.com/amsardesai/redux-test-reducer
+* chai-immutable
 
+Git organization :
+
+* Commitizen --> http://commitizen.github.io/cz-cli/
+
+Starter kits :
+
+1. Universal JS https://github.com/colinmeinke/universal-js#terms-concepts-and-reasoning (nice - )
+1. https://github.com/davezuko/react-redux-starter-kit (maybe too new and too much technos that I don't know)
+1. MERN https://github.com/hashnode/mern-starter (not finished - but seems to have nice cli utils)
+
+TODO : dig deeper into https://github.com/xgrommx/awesome-redux
 
 # Data sources purposes
 

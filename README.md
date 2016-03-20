@@ -9,7 +9,7 @@ Modulo is being rewritten at the moment as a source-agnostic, annotation-ready, 
 See an implementation of the first, front-end only, version of Modulo there : http://modesofexistence.org/anomalies/ (source there : https://github.com/robindemourat/clues-anomaly-understanding )
 
 
-If you're curious on what's going on, [check here the in-progress modulo v2 working documents about markdown specification, contents structures and technical choices](https://github.com/robindemourat/modulo/tree/master/specification).
+If you're curious about what's going on, [check here the in-progress modulo v2 working documents about markdown specification, contents structures and technical choices](https://github.com/robindemourat/modulo/tree/master/specification).
 
 
 # Presentation
