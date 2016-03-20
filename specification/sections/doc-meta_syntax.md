@@ -1,89 +1,132 @@
 Modulo documentation | metadata files syntax | WIP
 =================
 
-# Principles
-
-* hierarchical representation of components is not mandatory
-* metadata inheritance system
 
 # Global considerations
 
-# Syntax pattern
+## Targets : root section and children sections
 
-Meta files are composed of plain text - for which each property is separated by others through a linebreak plus '*' .
+Metadata is represented by ``metadata.bib`` files which can target :
+* the root of the document
+* a section of the document
 
-Model:
+## Metadata types : private and public purposes
+
+Metadata entries can deal with two types of information :
+* public metadata : title, author, ... basically used to populate the ``head`` tag of html pages, or to generate templates, it deals with information about the contents of the section being displayed
+* private metadata : deals with sections identification, ordering and hierarchization - see below
+
+## Metadata vertical and lateral propagation
+
+Metadata propagates in a Modulo document in two ways :
+* vertically (i.e. hierarchically) : from root to children, to the possible children of these children, and so on
+* laterally : from one metadata domain to another (e.g. from dublincore metadata to twitter metadata)
+
+
+# Syntax pattern : bibTeX
+
+## What is BibTex
+
+Here is a bibTeX definition of a book chapter :
+
 ```
-meta property one
-*
-meta property two
-*
-metadata property three
-
-this property spreads 
-on several lines
-*
-metadata property four
+@inbook{inbook,
+  author       = {Peter Eston}, 
+  title        = {The title of the work},
+  chapter      = 8,
+  pages        = {201-213},
+  publisher    = {The name of the publisher},
+  year         = 1993,
+  volume       = 4,
+  series       = 5,
+  address      = {The address of the publisher},
+  edition      = 3,
+  month        = 7,
+  note         = {An optional note}
+}
 ```
 
-Then each metadata item is composed of at least three parts, that are separated with the ':' symbol.
+And of a periodical's article :
 
-* first part describes the domain of the meta property (example: "general", "dublincore", "twitter", ...)
-* second part represents the key of the property to specify (example: "title")
-* third properties
-* additional properties can be specified with additional ':' when required (example : "dublincore:creator:author:Popol") - if not required by the 
-
-Model:
 ```
-first property domain:first property key:first property value
-*
-second property domain:second property key:second property value
+@incollection{incollection,
+  author       = {Peter Farindon}, 
+  title        = {The title of the work},
+  booktitle    = {The title of the book},
+  publisher    = {The name of the publisher},
+  year         = 1993,
+  editor       = {The editor},
+  volume       = 4,
+  series       = 5,
+  chapter      = 8,
+  pages        = {201-213},
+  address      = {The address of the publisher},
+  edition      = 3,
+  month        = 7,
+  note         = {An optional note}
+}
 ```
 
-# Config metadata - sections' organization
+## Modulo metadata BibTeX
 
-There is a specific domain for metadata which deals with the organization of the sections.
+Modulo uses the BibTeX syntax to describe its documents.
+The first part (eg ``@incollection``) describe the type of the section being written. The second just after the opening bracket (eg ``incollection``) would describe a ``cite_key`` in regular BibTeX : **in Modulo it should be also used as the slug of this section, usable to reference it in other content sections or for other purposes** - slug is an internal metadata.
 
-There are three types of organizational information that can be given to a Modulo's section :
+Then follows a collection of key+value pairs, that Modulo respects but also extends for its own purposes.
+
+Modulo follows and extends BibTex syntax to other types following a systematic syntax featuring three different information pieces :
+
+*  the domain of the meta property (example: "general", "dublincore", "twitter", ...)
+* the key of the property to specify (example: "title")
+* the value of the property to specifiy
+
+
+```
+[domain of the property]__[key of the property]
+
+//Note that there are two underscores ('_')
+
+This would give us for example as a property name :
+twitter_title
+
+And in context :
+
+@inbook{chapter_slug,
+    //....
+
+    twitter_title = "My chapter",
+
+    //....
+
+}
+```
+
+# Metadata types and propagation
+
+## Internal metadata : Sections' organization and hierarchy
+
+There is a specific domain for metadata which deals with the organization of the sections - we call them internal metadata.
+
+There are four types of organizational information that can be given to a Modulo's section :
+* slug information : *this section will be identified by this expression*
 * ordering information : *this section follows that other section*
 * importance information : *this section is of that importance regarding its parent section* (think of html titles h1, h2, h3, ...)
 * hierarchy information : *this section is the children section of that other section*
 
-**Logical conflicts.** *What if, on one hand, I specify the ordering of an element by specifying a preceding element at begining of sections list, and on the other hand I specify as parent an element which is in a totally different part of the list of sections, like in the end ?*
+**WIP : Logical conflicts handling.** *What if, on one hand, I specify the ordering of an element by specifying a preceding element at begining of sections list, and on the other hand I specify as parent an element which is in a totally different part of the list of sections, like in the end ?*
 For now I think concerns should be separated : hierarchy deals with metadata propagation (see below), ordering with display of the document. So that could be logically possible but, later on, prevented or displayed as a bad practice (with warnings and stuff) by the editor's UI.
 
-**Question**. *Should hierarchy information be inherited from the previous section if specified ? (this would avoid to have to reset the parent section for each subsection)*
+**WIP : Question**. *Should hierarchy information be inherited from the previous section if specified ? (this would avoid to have to reset the parent section for each subsection)*
 I don't think so.
 
-This variety is provided in order to allow for a maximum flexibility in terms of organization of the editorial content. 
-
-*Personal note about that : most text's digital representation stand between two extreme designs : considering a text as a linear suite of blocks, or considering it as a tree structure of parts, subparts, sub-subparts, etc. With this part of Modulo's design I want to match with the complexity of print documents structures in terms of summary and index, where for instance a 'Forewords' or an 'interlude' does not fit into a well-organized tree structure of parts, subparts, etc.*
-
-
-The domain used could be ``config``. So for instance in order to specify the parent of a section :
-```
-config:parent:Part 1
-```
+*Personal note about that : This variety is provided in order to allow for a maximum flexibility in terms of organization of the editorial content. most text's digital representation stand between two extreme designs : considering a text as a linear suite of blocks, or considering it as a tree structure of parts, subparts, sub-subparts, etc. With this part of Modulo's design I want to match with the complexity of print documents structures in terms of summary and index, where for instance a 'Forewords' or an 'interlude' does not fit into a well-organized tree structure of parts, subparts, etc.*
 
 Here is a first (provisionnal) list of metadata properties :
-* ``config:after`` : after [that section]'s slug (folder title)
-* ``config:after-title`` : after [that section]'s title
-* ``config:importance-level`` : importance level of the section (computed by addition with the importance-level of parent)
-* ``config:parent`` : id (folder title) of the parent of the section
-* ``config:parent-title`` : title of the parent of the section
+* ``general__after`` : after [that section]'s slug
+* ``general__importance`` : importance level of the section (computed by addition with the importance-level of parent)
+* ``general__parent`` : id (folder title) of the parent of the section
 
-# Properties lateral propagation
-
-Modulo is supposed to be smart and disseminate similar metadata accross metadata domains if not specified otherwise. For example, the "title" property should automatically spread to "dublincore:title", "og:title", "twitter:title" ... if not specified otherwise later on in the metadata file.
-
-See assets/modulo metadata model to see the propagation table.
-
-A metadata model entry features a template that specified how to represent it in the ``<head>`` of HTML documents - so for instance (using es2015's string templating feature) :
-```
-'<meta name="DC.subject" content="$value" />'
-```
-
-# Property vertical propagation
+### Property vertical propagation
 
 By default, all contentRoot's metaproperties are disseminated to the children parts.
 
@@ -92,11 +135,36 @@ By default, all contentRoot's metaproperties are disseminated to the children pa
 Another case of propagation is when a section features a 'parent' metadata property. In this case the inheritance tree is nested, and the element inherits from its parent's metadata (which therefore will have to be parsed first). *If a section has as a parent another section which feature Jean as its author, it will have itself Jean as author.*
 
 
-## Breaking vertical propagation/inheritance
+### Breaking vertical propagation/inheritance
 
 There should be two ways to make a children element having a different metaproperty than its inherited one :
 * set a new value for this metaproperty
 * unset the metaproperty
 
 To unset an inherited meta property, it could be done by specifying no value (example : "twitter:card:") or by preceding the meta property with "unset " (example : "unset dublincore:author:popol").
+
+# External metadata and lateral propagation
+
+## External metadata models definition
+
+External metadata properties are characterized by several information :
+* the domain they belong to (Dublin Core, Twitter, OpenGraph, ...)
+* the key they expose (title, authors, ...)
+* whether their key calls for a single value or possibly several
+* if their validity is dependent on the presence of another metadata property
+* their html insertion model (how to feature them inside)
+
+A metadata model entry features a template that specified how to represent it in the ``<head>`` of HTML documents - so for instance (using es2015's string templating feature) :
+
+```
+'<meta name="DC.subject" content="${value}" />'
+```
+
+
+## Properties lateral propagation
+
+Modulo is supposed to be smart and disseminate similar metadata accross metadata domains if not specified otherwise. For example, the "title" property should automatically spread to "dublincore:title", "og:title", "twitter:title" ... if not specified otherwise later on in the metadata file.
+
+See assets/modulo metadata model to see the WIP lateral propagation table.
+
 
