@@ -4,7 +4,7 @@ Modulo - *make a multimodal academic publication from simple text files*
 
 # Caution : Work In Progress
 
-Modulo is being rewritten at the moment as a source-agnostic, annotation-ready, and editor-ready, (universal javascript application)[https://medium.com/@mjackson/universal-javascript-4761051b7ae9].
+Modulo is being rewritten at the moment as a source-agnostic, annotation-ready, and editor-ready, [universal javascript application](https://medium.com/@mjackson/universal-javascript-4761051b7ae9).
 
 See an implementation of the first, front-end only, version of Modulo there : http://modesofexistence.org/anomalies/ (source there : https://github.com/robindemourat/clues-anomaly-understanding )
 
