@@ -1,4 +1,4 @@
-Modulo documentation | technical structure | WIP
+Modulo documentation | technical reflections | WIP
 =================
 
 
@@ -43,11 +43,32 @@ Though, this architecture would ensure maximum scalability for the future.
 
 # Envisionned technologies
 
-* Redux for global architecture handling
-* React for components rendering
-* (possibly) Atomizer for component-based styling
-* (possibly) Pacomo for styling management
+Architecture :
+* redux
+* Immutable
+
+* uniloc (routing)
+* axios (http requests)
+* redux-api-middleware --> https://www.npmjs.com/package/redux-api-middleware
+
+Parsers helpers :
+* marked
+* (markua-js ?)
 * zotero-bib-parser and bib-parser for ... bib parsing
+
+Interface components :
+
+* react head (html head metadata) --> https://github.com/nfl/react-helmet
+* react-redux
+* react
+* react-dom
+* react-css-modules --> https://github.com/gajus/react-css-modules
+* PaCoMo
+* d3.js
+
+Tests :
+
+* chai
 
 
 # Data sources purposes
@@ -128,33 +149,6 @@ Everything here should be in a src/ file distinct from built code :
 |+--intl //internationalized UI contents
 |+--validators // Functions which take an object containing user entry and return an object containing any errors
 ```
-
-# Technology stack
-
-Architecture :
-* redux
-* Immutable
-
-* uniloc (routing)
-* axios (http requests)
-
-Parsers helpers :
-* marked
-* (markua-js ?)
-* bibtex-parser
-
-Interface components :
-
-* react-redux
-* react
-* react-dom
-* react-css-modules --> https://github.com/gajus/react-css-modules
-* PaCoMo
-* d3.js
-
-Tests :
-
-* chai
 
 
 # Parsers
