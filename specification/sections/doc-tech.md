@@ -203,30 +203,24 @@ Should all provide with two simple methods :
 # UI routes and permalinks
 
 ```
-rooturl/lectio/contents/*
+rooturl/lectio/section/:sectionSlug?
 ```
 
---> files should be freely accessible at root/contents/ if not specified otherwise in the folder's meta.txt document.
+--> will serve the root section, a particular document or a 404 screen
 
 ```
-api/* 
+rooturl/lectio/glossary/:sectionSlug?
 ```
 
---> will feature api endpoints
-
-Otherwise : 
-
 ```
-rooturl/lectio/
+rooturl/lectio/figures/:sectionSlug?
 ```
 
---> will serve the document root
-
 ```
-rooturl/lectio/:slug
+rooturl/lectio/social/:sectionSlug?
 ```
 
---> will serve a particular document or a 404 screen
+
 
 
 # Forseen external API endpoints
@@ -285,8 +279,25 @@ GET root/api/search/
 | query | query to perform |
 | filter | coma-separated filters |
 
+# Components and modules planning
 
-# "Read mode" interface structure
+## Sources middlewares
+
+Public fonctions :
+
+* connect to source / authenticate / setup
+* getFileFromPath
+* getTreeFromPath
+
+## API Controllers
+
+### Content API controller
+
+### Assets API controller
+
+### Annotations API controller
+
+## "Read mode" interface structure
 
 Grounding on [first interface](http://modesofexistence.org/anomalies) and rapid prototyping/wireframing of the new reader (https://marvelapp.com/5212b6g)
 
@@ -299,11 +310,44 @@ React components hierarchy :
     - table of contents
     - views related links
 - main column
-    - (loop) content blocks
-    - (loop) sidenotes
+    - content container
+        - (loop) content blocks
+    - sidenotes container
+        - (loop) sidenotes
     - footer
 - aside column
     - header
     - body
     - footer
+```
+
+## Application state
+
+```
+{
+    navigation : {},//for routing
+    data : {//data is composed of "sectionObject" objects - they all have the same recursive structure
+            metadata : [{
+                    domain : string,
+                    key : string,
+                    vertically_inherited : sectionObjectReference|undefined,
+                    laterally_inherited : metadataObjectReference|undefined
+                }],
+            contents : [
+                {}, //ordered list of elements to be displayed as primary content
+                //technically they are all html blocks (possibly containing onclick and onscroll aside triggers)
+                {
+                    html : '<html>',
+                    resourcesReferences : []//list of references to resources
+                }
+            ],
+            resources : [], //resources used in the section
+            children : []//same structure as the root, recursively repeating for all the data tree
+        },
+    config : {
+        assetsSource : {}, // metadata about sources (source type, user id, api key, root)
+        contentSource : {},
+        annotationSource : {}
+    }
+}
 ```

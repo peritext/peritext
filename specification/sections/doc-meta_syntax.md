@@ -122,9 +122,9 @@ I don't think so.
 *Personal note about that : This variety is provided in order to allow for a maximum flexibility in terms of organization of the editorial content. most text's digital representation stand between two extreme designs : considering a text as a linear suite of blocks, or considering it as a tree structure of parts, subparts, sub-subparts, etc. With this part of Modulo's design I want to match with the complexity of print documents structures in terms of summary and index, where for instance a 'Forewords' or an 'interlude' does not fit into a well-organized tree structure of parts, subparts, etc.*
 
 Here is a first (provisionnal) list of metadata properties :
-* ``general__after`` : after [that section]'s slug
-* ``general__importance`` : importance level of the section (computed by addition with the importance-level of parent)
-* ``general__parent`` : id (folder title) of the parent of the section
+* ``after`` : after [that section]'s slug
+* ``importance`` : importance level of the section (computed by addition with the importance-level of parent)
+* ``parent`` : slug of the parent of the section
 
 ### Property vertical propagation
 
@@ -166,5 +166,17 @@ A metadata model entry features a template that specified how to represent it in
 Modulo is supposed to be smart and disseminate similar metadata accross metadata domains if not specified otherwise. For example, the "title" property should automatically spread to "dublincore:title", "og:title", "twitter:title" ... if not specified otherwise later on in the metadata file.
 
 See assets/modulo metadata model to see the WIP lateral propagation table.
+
+## BibTeX types
+
+Each bibtex starts with the specification of a type of item.
+
+In Modulo only the root metadata should mandatorily comply to established BBibTeX types, so that it should be either :
+* ``@book``
+* ``@proceedings``
+* ...
+
+By default, subparts should be typed as ``section`` and their type should be derived from parent (if parent is ``@book``, children section will be ``@bookchapter``, and so on ...).
+However it should be possible to not use the ``section`` feature (allowing to build, for instance, a collection of several ``@book`` with Dicto).
 
 

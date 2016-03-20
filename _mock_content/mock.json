@@ -1,0 +1,62 @@
+{
+  "metadata" : {
+      "slug" : "mybook",
+      "general" : {
+        "title" : "My awesome book",
+        "authors" : ["Robin"],
+        "date" : "2016",
+        "bibtype" : "book"
+      }
+  },
+  "contents" : [],
+  "resources" : [],
+  "children" : [
+    {
+      "metadata" : {
+          "slug" : "partie_1",
+          "parent" : "mybook",
+          "general" : {
+            "title" : "Partie 1",
+            "bibtype" : "bookchapter",
+            "authors" : ["Robin"],
+            "date" : "2016"
+          }
+        },
+      "contents" : [],
+      "resources" : [],
+      "children" : []
+    },
+    {
+      "metadata" : {
+          "slug" : "partie_2",
+          "parent" : "mybook",
+          "after" : "partie_1",
+          "general" : {
+            "title" : "Partie 2",
+            "bibtype" : "bookchapter",
+            "authors" : ["Francis", "Viviane"],
+            "date" : "2016"
+          }
+        },
+      "contents" : [],
+      "resources" : [],
+      "children" : [
+          {
+            "metadata" : {
+                "slug" : "partie_2_2",
+                "parent" : "partie_2",
+                "general" : {
+                  "title" : "Partie 2.2",
+                  "bibtype" : "bookchapter",
+                  "authors" : ["Francis", "Viviane"],
+                  "date" : "2015"
+                }
+            },
+            "contents" : [],
+            "resources" : [],
+            "children" : []
+          }
+      ]
+    }
+  ]
+}
