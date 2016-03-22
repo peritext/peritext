@@ -107,6 +107,44 @@ And in context :
 
 There is a specific domain for metadata which deals with the organization of the sections - we call them internal metadata.
 
+### type property
+
+Each bibtex starts with the specification of a type of item.
+
+In Modulo only the root metadata should mandatorily comply to established BBibTeX types, so that it should be either :
+* ``@book``
+* ``@proceedings``
+* ...
+
+```
+@modulo_book
+```
+
+By default, subparts should be typed as ``section`` and their type should be derived from parent (if parent is ``@book``, children section will be ``@bookchapter``, and so on ...).
+
+However it should be possible to not use the ``section`` feature (allowing to build, for instance, a collection of several ``@book`` with Dicto).
+
+* a metadata property is recognized by the fact that its type begins by ``@modulo_``
+* the word after ``@modulo_`` belongs to traditional bibTeX typology
+
+
+There is a special type used for inheritance : 
+* ``@modulo_section`` - when using this one, section type is guessed from an inheritance system
+
+There are several types that are proposed that don't belong to ``BibTex`` standard typology :
+* ``inherits`` : occurs when a section is specified as the child of an item which should not have citation child (for instance : an article)
+* ``collection`` : typically : a books collection, a journal issue, etc ...
+
+
+The model of accepted types should contain therefore the type of possible children ``@modulo_section`` and the default type to apply when root is a ``@modulo_section``
+
+## citeKey property
+
+* should be unique for each metadata object (to decide in app : throw error or thrown warning and overwrite choice or automatic rename)
+
+### Organization properties
+
+
 There are four types of organizational information that can be given to a Modulo's section :
 * slug information : *this section will be identified by this expression*
 * ordering information : *this section follows that other section*
@@ -151,13 +189,30 @@ External metadata properties are characterized by several information :
 * the domain they belong to (Dublin Core, Twitter, OpenGraph, ...)
 * the key they expose (title, authors, ...)
 * whether their key calls for a single value or possibly several
-* if their validity is dependent on the presence of another metadata property
+* whether they should be unique or could be several (and then merged into a single array)
+* possibly in which sectionTypes they are applicable
+* if they are required for a given sectionType (book, article, ...)
+* a description of the metadata entry
 * their html insertion model (how to feature them inside)
+* the other properties to which they propagate (in the form of ``domain_key`` or ``key`` if domain is ``general``)
 
 A metadata model entry features a template that specified how to represent it in the ``<head>`` of HTML documents - so for instance (using es2015's string templating feature) :
 
 ```
 '<meta name="DC.subject" content="${value}" />'
+```
+
+Which gives us for a property description :
+```
+[key] : {
+  "description" : "", // for doc, editor UI, etc.
+  "valueType" : "", // string | stringArray | ...
+  "unique" : true, // required - what to do if there is this key several times in a metadata object ?
+  "headTemplate" : "", //html template
+  "requiredForTypes" : [],
+  "applicableInTypes" : [],
+  "propagatesTo" : []
+}
 ```
 
 
@@ -167,16 +222,5 @@ Modulo is supposed to be smart and disseminate similar metadata accross metadata
 
 See assets/modulo metadata model to see the WIP lateral propagation table.
 
-## BibTeX types
-
-Each bibtex starts with the specification of a type of item.
-
-In Modulo only the root metadata should mandatorily comply to established BBibTeX types, so that it should be either :
-* ``@book``
-* ``@proceedings``
-* ...
-
-By default, subparts should be typed as ``section`` and their type should be derived from parent (if parent is ``@book``, children section will be ``@bookchapter``, and so on ...).
-However it should be possible to not use the ``section`` feature (allowing to build, for instance, a collection of several ``@book`` with Dicto).
 
 

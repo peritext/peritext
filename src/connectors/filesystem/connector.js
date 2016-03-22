@@ -91,7 +91,7 @@ export function readFromPath ({path=[], depth = 1, parseFiles=false, acceptedExt
 }
 
 //Crud
-export function createFromPath({path, type, strContents=''}, callback){
+export function createFromPath({path, type, strContents='', overwrite=true}, callback){
 
 }
 

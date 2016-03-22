@@ -128,7 +128,8 @@ Everything here should be in a src/ file distinct from built code :
 
 ```
 .
-|+--appConfig //everything related to the bootstrapping and specification of the app
+//logic and utils modules
+|+--config //everything related to the bootstrapping and specification of the app
 |   +--defaultModels //default metadata models for the application
 |       +--metadataEntities.json //escription (by domain) of the diverse metadata entities
 |       +--metadataPropagation.json // "table" of metadata entity propagation relations (ordered)
@@ -138,29 +139,37 @@ Everything here should be in a src/ file distinct from built code :
 |       +--long-citation.md
 |   +--config.json //dev and prod configs + application sources (for contents, assets, and comments : flatfile, s3, disqus ...)
 |   +--credentials.json //all private credentials (zotero, google analytics, data sources, ...)
-+--utils//everything not related to the app itself
-|   +--middlewares
-|       +--local //handle flatfiles management on local server files
-|       +--s3//handle flatfiles management on S3
-|       +--drive//handle flatfiles management on drive
-|       +--ftp//handle flatfiles management on ftp
-|       +--github//handle flatfiles management on github
-|   +--parsers //string parsers : metadata parser, figure/resource parser, modulo-markdown parser, ...
-|+--apis //expose APIs for transactions with different sources (contents, assets, annotations)
-|       +--annotationsApi
-|       +--contentsApi
-|       +--assetsApi
++--connectors
+|      +--filesystem //handle flatfiles management on local server files
+|      +--s3//handle flatfiles management on S3
+|      +--drive//handle flatfiles management on drive
+|      +--ftp//handle flatfiles management on ftp
+|      +--github//handle flatfiles management on github
+|      +--disqus//default system for annotation management
+|+--converters //parsers/serialisers at different levels on top of the file structure tree level
+|      +--bibTexConverter
+|      +--sectionConverter
+|+--apis //expose internal APIs for transactions with different sources (contents, assets, annotations)
+|       +--annotationApi
+|       +--contentApi
+|       +--assetApi
+|+--validators // Functions which take an object containing inputs and return an object containing any errors and also a "purified" version of the object
+|      +--metadataValidator
+|      +--resourceValidator
+|+--models //unchangeable models (using Immutable lib ?) for metadata parsing, ...
+|      +--resourceTypes.json //types of accepted resources types and related information
+|      +--sectionTypes.json //types of sections/documents (book, ...) with inheritance and accepted metadata
 
+//app-relative architecture
 |+--actions // Redux action creators
 |+--actors // Handle changes to the store's state
 |+--components // React components, stateless where possible
 |+--constants // Define stateless data
-|+--containers // Unstyled "smart" components which take the store's state and * dispatch, and possibly navigation location, and pass them to "dumb" components
+|+--containers // Unstyled "smart" components which take the store's state and dispatch, and possibly navigation location, and pass them to "dumb" components
 |+--reducers // Redux reducers
 |+--static // Files which will be copied across to the root directory on build
 |+--styles // Helpers for stylesheets for individual components
 |+--intl //internationalized UI contents
-|+--validators // Functions which take an object containing user entry and return an object containing any errors
 ```
 
 
@@ -203,21 +212,21 @@ Should all provide with two simple methods :
 # UI routes and permalinks
 
 ```
-rooturl/lectio/section/:sectionSlug?
+rooturl/lectio/section/:sectionCiteKey?
 ```
 
 --> will serve the root section, a particular document or a 404 screen
 
 ```
-rooturl/lectio/glossary/:sectionSlug?
+rooturl/lectio/glossary/:sectionCiteKey?
 ```
 
 ```
-rooturl/lectio/figures/:sectionSlug?
+rooturl/lectio/figures/:sectionCiteKey?
 ```
 
 ```
-rooturl/lectio/social/:sectionSlug?
+rooturl/lectio/social/:sectionCiteKey?
 ```
 
 
@@ -228,7 +237,7 @@ rooturl/lectio/social/:sectionSlug?
 ## Get document data (root or part)
 
 ```
-GET root/api/document/:documentslug?
+GET root/api/document/:documentCiteKey?
 ```
 
 | parameter | description |

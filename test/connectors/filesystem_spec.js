@@ -15,6 +15,16 @@ describe('filesystem:readFromPath', function(){
   let path;
 
 
+  it('should return an error if the path asked leads to a non accepted file', function(done){
+    path = [base_path, 'for_tests.gif'];
+    readFromPath({path}, function(err, data){
+      expect(err).not.to.be.null;
+      expect(data).to.be.undefined;
+      done();
+    });
+  });
+
+
   it('should throw an error if the path asked does not exist', function(done){
     path = [base_path, 'kikalou', 'pouetpouet.md'];
     readFromPath({path}, function(err, data){
@@ -50,7 +60,7 @@ describe('filesystem:readFromPath', function(){
     });
   })
 
-  it('should parse all the tree if depth option is set to true', function(done){
+  it('should parse all the dir tree if depth option is set to true', function(done){
     path = base_path + '/';
     readFromPath({path, depth : true}, function(err, data){
       expect(err).to.be.null;
@@ -69,7 +79,7 @@ describe('filesystem:readFromPath', function(){
     });
   });
 
-  it('should parse all accepted files if parse option is specified', function(done){
+  it('should parse all accepted files if parseFiles option is specified', function(done){
     path = base_path + '/';
     readFromPath({path, depth : true, parseFiles : true, acceptedExtensions : ['.md', '.bib']}, function(err, data){
       expect(err).to.be.null
@@ -95,15 +105,6 @@ describe('filesystem:readFromPath', function(){
       done();
     });
   });
-
-  it('should return an error if the path asked leads to a non accepted file', function(done){
-    path = [base_path, 'for_tests.gif'];
-    readFromPath({path}, function(err, data){
-      expect(err).not.to.be.null;
-      expect(data).to.be.undefined;
-      done();
-    });
-  });
 });
 
 describe('filesystem:createFromPath', function(){
@@ -118,6 +119,10 @@ describe('filesystem:createFromPath', function(){
   });
 
   it('should be able to create a folder', function(done){
+    done();
+  });
+
+  it('should be able not to overwrite an existing file if specified', function(done){
     done();
   });
 
