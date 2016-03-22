@@ -52,3 +52,26 @@ describe('models:metadataModels', function(){
     done();
   })
 })
+
+describe("models:resourceModels", function(){
+  it('should have all properties categories pointing to an existing category', function(done){
+
+    for(let i in resourceModels.individual){
+      let model = resourceModels.individual[i];
+      if(model.categories){
+        model.categories.forEach((modelCategory) => {
+          let hasCat;
+
+          for(let cat in resourceModels.collective){
+            if(modelCategory === cat){
+              hasCat = true;
+            }
+          }
+
+          expect(hasCat).to.be.true
+        })
+      }
+    }
+    done();
+  })
+})

@@ -149,10 +149,10 @@ Everything here should be in a src/ file distinct from built code :
 |+--converters //parsers/serialisers at different levels on top of the file structure tree level
 |      +--bibTexConverter
 |      +--sectionConverter
-|+--apis //expose internal APIs for transactions with different sources (contents, assets, annotations)
-|       +--annotationApi
-|       +--contentApi
-|       +--assetApi
+|+--controllers // internal controllers for transactions with different sources (contents, assets, annotations)
+|       +--annotationsController
+|       +--contentsController
+|       +--assetsController
 |+--validators // Functions which take an object containing inputs and return an object containing any errors and also a "purified" version of the object
 |      +--metadataValidator
 |      +--resourceValidator
