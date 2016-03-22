@@ -3,15 +3,27 @@ Figures and data resources
 
 # Parameters for resources description and contextualization description
 
+## Models populating through general-to-specific class inheritance-like system
+
+See the *wip* folder models/resourceModels.json.
+
+Individual resources' models are inherited from collective models.
+
+If, for instance, I take the "image" resource model, here is how its resource model should be built :
+
+* first, populate ``image resource`` model with the ``collective.all`` properties
+* then, as image is a ``usableResource``, populate ``image resource`` model with the ``collective.usableResource`` properties (overwrite existing if needed)
+* then, populate ``image resource`` model with the ``individual.image`` properties (overwrite existing if needed)
+
 ## For all
 
-### Resource description
+### Resource description props
 
 <table>
     <tr>
         <thead>
             <td>Name</td>
-            <td>Mandatory</td>
+            <td>Mandatory?</td>
             <td>Description</td>
         </thead>
     </tr>
@@ -27,16 +39,22 @@ Figures and data resources
         <td></td>
         <td></td>
     </tr>
+
+    <tr>
+        <td>Url</td>
+        <td></td>
+        <td>Note : there should be a specific syntax for ``assets``-based resources (eg : ``@assets/``) data and a related url-resolver middleware</td>
+    </tr>
         
 </table>
 
-### Resource contextualization
+### Resource contextualization props
 
 <table>
     <tr>
         <thead>
             <td>Name</td>
-            <td>Mandatory</td>
+            <td>Mandatory?</td>
             <td>Description</td>
         </thead>
     </tr>
@@ -71,15 +89,6 @@ Figures and data resources
         <td>To specify if the figure is supposed not to be displayed in interactive version</td>
     </tr>
 </table>
-
-
-## Timeline
-
-## Sankey
-
-## Network
-
-## Dicto
 
 # Recension of parameters used in the former Modulo syntax
 
@@ -133,7 +142,7 @@ Figures and data resources
         + keyAttribute
         + value
     - active
-    - settiongs
+    - settings
         + labelThreshold
         + drawEdges
         + drawNodes

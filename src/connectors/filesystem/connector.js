@@ -17,7 +17,7 @@ const analyseContents = function(filesList, absPath){
     return undefined;
   } else return filesList.map((fileName) => {
       return analyseElement(fileName, absPath)
-    });
+  });
 }
 
 

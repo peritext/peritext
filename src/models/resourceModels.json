@@ -1,12 +1,183 @@
 {
   "collective" : {
     "all" : {
-      "models" : []
+      "properties" : [
+        {
+          "key" : "title",
+          "valueType" : "string",
+          "description" : "The title of the resource",
+          "required" : true
+        },
+        {
+          "key" : "description",
+          "valueType" : "string",
+          "description" : "The description of the resource",
+          "required" : false
+        },
+        {
+          "key" : "url",
+          "valueType" : "string",
+          "description" : "The url at which the resource can be browsed",
+          "required" : false
+        },
+        {
+          "key" : "creators",
+          "valueType" : "array",
+          "description" : "The creators of the resource",
+          "required" : false
+        },
+        {
+          "key" : "keywords",
+          "valueType" : "array",
+          "description" : "The keywords for describing the resource",
+          "required" : false
+        },
+        {
+          "key" : "date",
+          "valueType" : "yyyymmddDate",
+          "description" : "The date in which the resource was published",
+          "required" : false
+        }
+      ]
+    },
+    "usableResource" : {
+      "properties" : [
+        {
+          "key" : "url",
+          "valueType" : "string",
+          "description" : "The url at which the resource can be fetched",
+          "required" : true
+        }
+      ]
+    },
+    "entityResource" : {
+      "properties" : []
+    },
+    "bibliographicResource" : {
+      "properties" : []
     }
   },
   "individual" : {
     "image" : {
-      "models" : []
+      "categories" : ["usableResource"],
+      "properties" : [
+        {
+          "key" : "width",
+          "valueType" : "string",
+          "description" : "The original width of the image",
+          "required" : false
+        },
+        {
+          "key" : "description",
+          "valueType" : "string",
+          "description" : "The original height of the image",
+          "required" : true
+        }
+      ],
+      "acceptedFileExtensions" : [".jpg", ".png", ".jpeg", ".gif", ".tiff", ".bmp", ".webp"]
+    },
+    "webpage" : {
+      "categories" : ["usableResource"],
+      "properties" : [],
+      "acceptedFileExtensions" : []
+    },
+    "vectorsImage" : {
+      "categories" : ["usableResource"],
+      "properties" : [],
+      "acceptedFileExtensions" : [".svg"]
+    },
+    "tabularData" : {
+      "categories" : ["usableResource"],
+      "properties" : [
+        {
+          "key" : "separator",
+          "valueType" : "string",
+          "description" : "The separator character of the tabular data file (',', ';', ...)",
+          "required" : true
+        }
+      ],
+      "acceptedFileExtensions" : [".txt", ".csv", ".tsv"]
+    },
+    "jsonData" : {
+      "categories" : ["usableResource"],
+      "properties" : [],
+      "acceptedFileExtensions" : []
+    },
+    "gefxData" : {
+      "categories" : ["usableResource"],
+      "properties" : [],
+      "acceptedFileExtensions" : []
+    },
+    "video" : {
+      "categories" : ["usableResource"],
+      "properties" : [],
+      "acceptedFileExtensions" : []
+    },
+
+
+    "article" : {
+      "categories" : ["bibliographicResource"],
+      "properties" : []
+    },
+    "book" : {
+      "categories" : ["bibliographicResource"],
+      "properties" : []
+    },
+    "booklet" : {
+      "categories" : ["bibliographicResource"],
+      "properties" : []
+    },
+    "conference" : {
+      "categories" : ["bibliographicResource"],
+      "properties" : []
+    },
+    "inbook" : {
+      "categories" : ["bibliographicResource"],
+      "properties" : []
+    },
+    "collection" : {
+      "categories" : ["bibliographicResource"],
+      "properties" : []
+    },
+    "incollection" : {
+      "categories" : ["bibliographicResource"],
+      "properties" : []
+    },
+    "inproceedings" : {
+      "categories" : ["bibliographicResource"],
+      "properties" : []
+    },
+    "inherits" : {
+      "categories" : ["bibliographicResource"],
+      "properties" : []
+    },
+    "manual" : {
+      "categories" : ["bibliographicResource"],
+      "properties" : []
+    },
+    "mastersthesis" : {
+      "categories" : ["bibliographicResource"],
+      "properties" : []
+    },
+    "phdthesis" :{
+      "categories" : ["bibliographicResource"],
+      "properties" : []
+    },
+    "proceedings" : {
+      "categories" : ["bibliographicResource"],
+      "properties" : []
+    },
+    "techreport" : {
+      "categories" : ["bibliographicResource"],
+      "properties" : []
+    },
+    "unpublished" : {
+      "categories" : ["bibliographicResource"],
+      "properties" : []
+    },
+    "misc" : {
+      "categories" : ["bibliographicResource"],
+      "properties" : []
     }
   }
 }

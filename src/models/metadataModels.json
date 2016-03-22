@@ -27,6 +27,15 @@
       "applicableInTypes" : ["*"],
       "propagatesTo" : ["dublincore_subject"]
     },
+    "doi" : {
+      "description" : "The Digital Object Identifier used to identify the section",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "requiredForTypes" : [],
+      "applicableInTypes" : [],
+      "propagatesTo" : ["dublincore_identifier"]
+    },
     "author" : {
       "description" : "The author(s) of the section",
       "valueType" : "stringArray",
@@ -35,6 +44,15 @@
       "requiredForTypes" : [],
       "applicableInTypes" : ["*"],
       "propagatesTo" : ["dublincore_creator"]
+    },
+    "crossref" : {
+      "description" : "citeKey of a section or a resource to which this section would be affiliated",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "requiredForTypes" : [],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
     },
     "date" : {
       "description" : "The date of publication of the section",
