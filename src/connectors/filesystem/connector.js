@@ -1,6 +1,7 @@
-import {readFile, readdir, lstatSync, accessSync, readFileSync} from 'fs';
+import {readFile, readdir, lstatSync, mkdir, rmdir, exists, writeFile, unlink} from 'fs';
 import {resolve, extname, basename, join as joinPath} from 'path';
-import {map as asyncMap} from 'async';
+import {map as asyncMap, reduce as asyncReduce} from 'async';
+import removeFolderRecursively from 'rmdir';
 
 const analyseElement = function(fileName, absPath){
   let path = joinPath(absPath, fileName);
@@ -90,17 +91,88 @@ export function readFromPath ({path=[], depth = 1, parseFiles=false, acceptedExt
   }
 }
 
-//Crud
-export function createFromPath({path, type, strContents='', overwrite=true}, callback){
 
+
+//Crud
+export function createFromPath({path, type='file', stringContents='', overwrite=false}, callback){
+  const finalPath = resolve((Array.isArray(path))?path.join('/'):path);
+  const pathSteps = finalPath.split('/').filter((p)=> {return p.length > 0});
+  const elementName = pathSteps.pop();
+  //first check-or-create path folders
+  let activePath = '/';
+  asyncReduce(pathSteps, activePath, function(memo, pathStep, callback){
+    memo += pathStep + '/';
+    exists(memo, function(exists){
+      if(exists){
+        callback(null, memo);
+      }else{
+        mkdir(memo, function(e){
+          callback(e, memo);
+        })
+      }
+    })
+  }, function(err, result){
+    //check if element already exists
+    exists(finalPath, function(exists){
+      if((exists && overwrite === true) || !exists){
+        if(type === 'file'){
+          writeFile(finalPath, stringContents, 'utf8', function(e){
+            callback(e);
+          });
+        }else if(type === 'directory'){
+          mkdir(finalPath, function(e){
+            callback(e);
+          });
+        }else{
+          callback(new Error('No element type matching'));
+        }
+      }else{
+        callback(new Error('File/directory already exists and overwrite option is set to false'))
+      }
+    });
+  });
 }
 
 //crUd
-export function updateFromPath({path, strContents}, callback){
-
+export function updateFromPath({path, stringContents=''}, callback){
+  const finalPath = resolve((Array.isArray(path))?path.join('/'):path);
+  exists(finalPath, function(exists){
+    if(exists){
+      const pathSteps = finalPath.split('/').filter((p)=> {return p.length > 0});
+      const elementName = pathSteps.pop();
+      const element = analyseElement(elementName, '/' + pathSteps.join('/'));
+      if(element.type === 'directory'){
+        callback(new Error('cannot update directories'));
+      }else if(element.type === 'file'){
+        writeFile(finalPath, stringContents, function(e){
+          callback(e);
+        })
+      }
+    }else{
+      callback(new Error('Path does not exists'));
+    }
+  })
 }
 
 //cruD
 export function deleteFromPath({path}, callback){
-
+  const finalPath = resolve((Array.isArray(path))?path.join('/'):path);
+  exists(finalPath, function(exists){
+    if(exists){
+      const pathSteps = finalPath.split('/').filter((p)=> {return p.length > 0});
+      const elementName = pathSteps.pop();
+      const element = analyseElement(elementName, '/' + pathSteps.join('/'));
+      if(element.type === 'directory'){
+        removeFolderRecursively(finalPath, function(e){
+          callback(e);
+        })
+      }else if(element.type === 'file'){
+        unlink(finalPath, function(e){
+          callback(e);
+        })
+      }
+    }else{
+      callback(new Error('Path does not exists'));
+    }
+  });
 }
