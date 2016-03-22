@@ -1,0 +1,442 @@
+{
+  "general" : {
+    "title" : {
+      "description" : "The title of the section",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<title>${value}</title>",
+      "requiredForTypes" : ["*"],
+      "applicableInTypes" : ["*"],
+      "propagatesTo" : ["dublincore_title", "opengraph_title", "twitter_title"]
+    },
+    "abstract" : {
+      "description" : "The abstract of the section",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name='description' content='${value}'>",
+      "requiredForTypes" : [],
+      "applicableInTypes" : ["*"],
+      "propagatesTo" : ["dublincore_description", "opengraph_description", "twitter_description"]
+    },
+    "keyword" : {
+      "description" : "The keyword(s) used to describe the section",
+      "valueType" : "stringArray",
+      "unique" : false,
+      "headTemplate" : "<meta name='keywords' content='${value,join(, )}'>",
+      "requiredForTypes" : [],
+      "applicableInTypes" : ["*"],
+      "propagatesTo" : ["dublincore_subject"]
+    },
+    "author" : {
+      "description" : "The author(s) of the section",
+      "valueType" : "stringArray",
+      "unique" : false,
+      "headTemplate" : "<meta name='author' content='${value,join(, )}'>",
+      "requiredForTypes" : [],
+      "applicableInTypes" : ["*"],
+      "propagatesTo" : ["dublincore_creator"]
+    },
+    "date" : {
+      "description" : "The date of publication of the section",
+      "valueType" : "yyymmddDateString",
+      "unique" : true,
+      "headTemplate" : "<meta name='${key}' content='${value}'>",
+      "requiredForTypes" : ["*"],
+      "applicableInTypes" : [],
+      "propagatesTo" : ["dublincore_date"]
+    },
+    "address" : {
+      "description" : "Usually the address of the publisher or other type of institution. For major publishing houses, van Leunen recommends omitting the information entirely. For small publishers, on the other hand, you can help the reader by giving the complete address.",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "requiredForTypes" : [],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    },
+    "chapter" : {
+      "description" : "A chapter (or section or whatever) number",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "requiredForTypes" : ["inbook"],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    },
+    "edition" : {
+      "description" : "Name(s) of editor(s), typed as indicated in the LATEX book. If there is also an author field, then the editor field gives the editor of the book or collection in which the reference appears.",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "requiredForTypes" : [],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    },
+    "howpublished" : {
+      "description" : "How something strange has been published. The first word should be capitalized.",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "requiredForTypes" : [],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    },
+    "institution" : {
+      "description" : "The sponsoring institution of a technical report.",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "requiredForTypes" : ["techreport"],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    },
+    "journal" : {
+      "description" : "A journal's name",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "requiredForTypes" : ["article"],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    },
+    "organization" : {
+      "description" : "The organization that sponsors a conference or that publishes a manual",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "requiredForTypes" : [],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    },
+    "pages" : {
+      "description" : "One or more page numbers or range of numbers, such as 42–111 or 7,41,73–97 or 43+ (the ‘+’ in this last example indicates pages following that don’t form a simple range).",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "requiredForTypes" : ["inbook"],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    },
+    "publisher" : {
+      "description" : "The publisher's name",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "requiredForTypes" : ["book", "inbook"],
+      "applicableInTypes" : [],
+      "propagatesTo" : ["dublincore_publisher"]
+    },
+    "school" : {
+      "description" : "The name of the school where a thesis was written.",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "requiredForTypes" : ["mastersthesis", "phdthesis"],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    },
+    "series" : {
+      "description" : "The name of a series or set of books. When citing an entire book, the title field gives its title and an optional series field gives the name of a series or multi-volume set in which the book is published.",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "requiredForTypes" : [],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    },
+    "type" : {
+      "description" : "The type of a technical report for example, “Research Note”.",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "requiredForTypes" : [],
+      "applicableInTypes" : ["techreport"],
+      "propagatesTo" : []
+    },
+    "volume" : {
+      "description" : "The volume of a journal or multi-volume book.",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "requiredForTypes" : ["article"],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    },
+    "language" : {
+      "description" : "The language",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta http-equiv='content-language' content='${value}'>",
+      "requiredForTypes" : [],
+      "applicableInTypes" : [],
+      "propagatesTo" : ["dublincore_language"]
+    }
+  },
+  "dublincore" : {
+    "title" : {
+      "description" : "The dublincore title",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name='dc.${key}' content='${value}'>",
+      "requiredForTypes" : [],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    },
+    "creator" : {
+      "description" : "The dublincore creator(s)",
+      "valueType" : "stringArray",
+      "unique" : false,
+      "headTemplate" : "<meta name='dc.${key}' content='${value}'>",
+      "requiredForTypes" : [],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    },
+    "subject" : {
+      "description" : "The dublincore subject(s)",
+      "valueType" : "stringArray",
+      "unique" : false,
+      "headTemplate" : "<meta name='dc.${key}' content='${value}'>",
+      "requiredForTypes" : [],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    },
+    "description" : {
+      "description" : "The dublincore description",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name='dc.${key}' content='${value}'>",
+      "requiredForTypes" : [],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    },
+    "publisher" : {
+      "description" : "The dublincore publisher",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name='dc.${key}' content='${value}'>",
+      "requiredForTypes" : [],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    },
+    "contributor" : {
+      "description" : "A dublincore conributor",
+      "valueType" : "stringArray",
+      "unique" : false,
+      "headTemplate" : "",
+      "requiredForTypes" : [],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    },
+    "date" : {
+      "description" : "The dublincore date",
+      "valueType" : "yyymmddDateString",
+      "unique" : true,
+      "headTemplate" : "<meta name='dc.${key}' content='${value}'>",
+      "requiredForTypes" : [],
+      "applicableInTypes" : [],
+      "propagatesTo" : ["dublincore_dateIssued"]
+    },
+    "dateAvailable" : {
+      "description" : "The date the resource became available",
+      "valueType" : "yyymmddDateString",
+      "unique" : true,
+      "headTemplate" : "<meta name='dcterms.available' content='${value}'>",
+      "requiredForTypes" : [],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    },
+    "dateCreated" : {
+      "description" : "The creation date of the resource",
+      "valueType" : "yyymmddDateString",
+      "unique" : true,
+      "headTemplate" : "<meta name='dcterms.created' content='${value}'>",
+      "requiredForTypes" : [],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    },
+    "dateAccepted" : {
+      "description" : "The date the resource was accepted",
+      "valueType" : "yyymmddDateString",
+      "unique" : true,
+      "headTemplate" : "<meta name='dcterms.dateAccepted' content='${value}'>",
+      "requiredForTypes" : [],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    },
+    "dateSubmitted" : {
+      "description" : "The date the resource was submitted",
+      "valueType" : "yyymmddDateString",
+      "unique" : true,
+      "headTemplate" : "<meta name='dcterms.submitted' content='${value}'>",
+      "requiredForTypes" : [],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    },
+    "dateIssued" : {
+      "description" : "The publication date of a resource",
+      "valueType" : "yyymmddDateString",
+      "unique" : true,
+      "headTemplate" : "<meta name='dcterms.issued' content='${value}'>",
+      "requiredForTypes" : [],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    },
+    "type" : {
+      "description" : "The dublincore type",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name='dc.${key}' content='${value}'>",
+      "requiredForTypes" : [],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    },
+    "format" : {
+      "description" : "The dublincore format",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name='dc.${key}' content='${value}'>",
+      "requiredForTypes" : [],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    },
+    "identifier" : {
+      "description" : "The dublincore identifier",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name='dc.${key}' content='${value}'>",
+      "requiredForTypes" : [],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    },
+    "source" : {
+      "description" : "The dublincore source",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name='dc.${key}' content='${value}'>",
+      "requiredForTypes" : [],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    },
+    "language" : {
+      "description" : "The dublincore language",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name='dc.${key}' content='${value}'>",
+      "requiredForTypes" : [],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    },
+    "rights" : {
+      "description" : "The dublincore rights",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name='dc.${key}' content='${value}'>",
+      "requiredForTypes" : [],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    }
+  },
+  "opengraph" : {
+    "title" : {
+      "description" : "The opengraph title",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta property='og:${key}' content='${value}'>",
+      "requiredForTypes" : [],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    },
+    "description" : {
+      "description" : "The opengraph description",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta property='og:${key}' content='${value}'>",
+      "requiredForTypes" : [],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    },
+    "type" : {
+      "description" : "The opengraph type",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta property='og:${key}' content='${value}'>",
+      "requiredForTypes" : [],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    },
+    "image" : {
+      "description" : "The opengraph image",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta property='og:${key}' content='${value}'>",
+      "requiredForTypes" : [],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    },
+    "url" : {
+      "description" : "The opengraph url",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta property='og:${key}' content='${value}'>",
+      "requiredForTypes" : [],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    }
+  },
+  "twitter" : {
+    "card" : {
+      "description" : "The twitter card",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name='twitter:${key}' content='${value}'>",
+      "requiredForTypes" : [],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    },
+    "site" : {
+      "description" : "The twitter site",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name='twitter:${key}' content='${value}'>",
+      "requiredForTypes" : [],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    },
+    "creator" : {
+      "description" : "The twitter creator (@)",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name='twitter:${key}' content='${value}'>",
+      "requiredForTypes" : [],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    },
+    "description" : {
+      "description" : "The twitter description",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name='twitter:${key}' content='${value}'>",
+      "requiredForTypes" : [],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    },
+    "title" : {
+      "description" : "The twitter title",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name='twitter:${key}' content='${value}'>",
+      "requiredForTypes" : [],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    },
+    "image" : {
+      "description" : "The twitter image url",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name='twitter:${key}' content='${value}'>",
+      "requiredForTypes" : [],
+      "applicableInTypes" : [],
+      "propagatesTo" : []
+    }
+  }
+}

@@ -223,4 +223,70 @@ Modulo is supposed to be smart and disseminate similar metadata accross metadata
 See assets/modulo metadata model to see the WIP lateral propagation table.
 
 
+## Todolist
 
+### general properties
+
+* title
+* abstract
+* keyword
+* author
+* date
+* address
+* chapter
+* editor
+* edition
+* howpublished
+* institution
+* journal
+* organization
+* pages
+* publisher
+* school
+* series
+* type
+* volume
+* language
+* language
+
+### Dublincore properties
+
+* title
+* creator
+* subject
+* description
+* publisher
+* contributors
+* date
+* type
+* format
+* identifier
+* source
+* language
+* rights
+* dcterms.available - The date the resource became available.
+* dcterms.created - The creation date of the resource.
+* dcterms.dateAccepted - The date the resource was accepted.
+* dcterms.submitted - The date the resource was submitted.
+* dcterms.issued - The publication date of a resource.
+
+
+
+### OpenGraph properties (minimal)
+
+* title
+* description
+* type
+* image
+* url
+
+### Twitter properties
+
+* card
+* site
+* siteId
+* creator
+* creatorId
+* description
+* title
+* image
