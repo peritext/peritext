@@ -20,23 +20,28 @@ Project's goal is to simplify and democratize the possibility of setting up a sc
 
 To do so, the tool reads as input some simple text files, and produces as output a browsable, printable, indexing-friendly document.
 
-Modulo grounds on several design goals :
+Modulo grounds on several design goals.
 
-Content-related principles :
+Contextualization-related goals :
+
+1. **feature all the richness of the web while respecting academic needs** : first of all, Modulo's main goal is to allow users to take the maximum advantage of the web as input (in terms of data sources, media, ...) and as output (as printable webpage, API-served data, embedded widget, mobile-friendly app, ...) - while encouraging to document and design the use of all of this richness users thanks to a constraining content description system that requires
 1. **resources contextualizations** : the core intellectual process at the root of Modulo is a reflection about the future of the "editorial figure" notion in digital publishing environments. In order to reflect on this issue through practice, Modulo proposes to reframe "figures" as the encounter between one or several given "resources" and their "contextualization" through editorial design. Following this model and giving an example, a data visualization inserted inside the core content will be written as the contextualization of a data source featuring temporal data (more explanation to come)
+1. **standard syntaxes extension** : Modulo writing syntax tries to ground on existing standards' specifications (e.g. : bibtex, markdown) and to extend them for the sake of the specific needs of the project
 
-Freedom-related goals :
+Flexibility-related goals :
+
 1. **source agnostic** : Modulo is designed with freedom as one of its main core value : it should be possible to "plugin" the app into a various array of data sources (Google Drive, Dropbox, Github, Amazon S3, ftp server, local data, ...) with the same result. Different storage origins can be specified for main contents, assets (images, videos, data ...) and annotation (e.g. : Disqus)
 1. **non-captive data** : it should be possible to read and write the contents written with/for Modulo independently from it
 1. **modulo users' permissions are source users' permissions** : Modulo should do nothing but to allow the display of contents according to source's own permission settings. If a section's source is publicly readable, it should be publicly readable in its modulo version. If a section's source is modifiable by Marc, it should be (in future versions of the tool including an editor) editable by Marc in Modulo's editor after logging in through source' authentication protocol. *Modulo should take no responsability at all in permissions and just be a pure interface to the sources' own permission settings.*
-1. **standard syntaxes extension** : Modulo writing syntax tries to ground on existing standards' specifications (e.g. : bibtex, markdown) and to extend them for the sake of the specific needs of the project
 
-Fluidity-related principles :
+Fluidity-related goals :
+
 1. **built for indexation** : Modulo should render all of its contents (even the "interactive" ones) to indexing agents. It should cover as metadata languages as possible, and be as precise as possible. It should use ``schema`` micro-format specification for semantically describing html contents when possible.
 1. **built for fetching, exporting and embedding** : a modulo document should be highly exploitable and sharable from other places of the web : it should be possible to embed/comment/quote all kinds of its contents, and it should be possible access all kinds of its contents through a public API
 1. **built for multiple supports** : everything written in a Modulo document should be by default viewable both on a screen and on paper (even "interactive" figures).
 
-Experience-related principles :
+Experience-related goals :
+
 1. **outside web should be at least 2 clicks away** : as projects like AIME, Modulo cares about readers' attention, and for that matters, all external links and resources should be displayed inside document's interface in the first place, then accessible genuinely
 1. **orientation-driven** : modulo's interface goal is to take advantage of the hypertextuality and knowledge-linking capabilities of digital content while always focusing on not getting the reader (and maybe later, the writer) lost. This is seeked by emphasizing strongly a linear, hierarchical mental model of the document accessible at all times
 2. **built for reuse, citation and quoting** : it should be extremely easy to precisely quote a part of a Modulo document, and to retrieve cited sources from any bibliography management software (like Zotero)

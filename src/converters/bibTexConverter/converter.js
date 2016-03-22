@@ -78,6 +78,7 @@ class bibTexParser{
           });
           temp += this.consumable.charAt(index);
           index = 1;
+        //default, by security
         }else{
           temp += this.consumable.charAt(index);
           index = 1;
