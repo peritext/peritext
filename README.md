@@ -42,7 +42,7 @@ Fluidity-related goals :
 
 Experience-related goals :
 
-1. **outside web should be at least 2 clicks away** : as projects like AIME, Modulo cares about readers' attention, and for that matters, all external links and resources should be displayed inside document's interface in the first place, then accessible genuinely
+1. **outside web should be always accessible but at least 2 clicks away** : Modulo cares about readers' attention, and for that matters, all external links and resources should be displayed inside document's interface in the first place
 1. **orientation-driven** : modulo's interface goal is to take advantage of the hypertextuality and knowledge-linking capabilities of digital content while always focusing on not getting the reader (and maybe later, the writer) lost. This is seeked by emphasizing strongly a linear, hierarchical mental model of the document accessible at all times
 2. **built for reuse, citation and quoting** : it should be extremely easy to precisely quote a part of a Modulo document, and to retrieve cited sources from any bibliography management software (like Zotero)
 
