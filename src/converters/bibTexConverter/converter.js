@@ -43,16 +43,29 @@ class bibTexParser{
         this.consumable = this.consumable.substr(match[1].length + 2);
         return this.currentState = this.STATES[2];
       }else return this.error = new Error('could not find correct citeKey');
+
+    /*
+     * ``key = value`` structure
+     * value is always wrapped inside character couples that vary depending on bibtex implementation (" { ')
+     * possibility of nested wrapping (eg {Name {{S}urname}})
+     */
     }else if(this.currentState === 'properties'){
       let wrapped = [wrappers[0]],
           index = 0,
           mode = 'key',
           temp = '',
-          tempKey = '';
+          tempKey = '',
+          trespassing
+          // notClosed
+          ;
 
       while(wrapped.length > 0){
-        if(index > this.consumable.length - 1){
+
+        trespassing = index > this.consumable.length - 1;
+
+        if(trespassing){
           return this.error = new Error('finished to parse bibtex string without finding closing character '+ wrapped[wrapped.length - 1][1]);
+        //end of wrapped expression - if matches with last recorded wrapper's closing character
         }else if(this.consumable.charAt(index) === wrapped[wrapped.length - 1][1]){
           wrapped.pop();
           temp += this.consumable.charAt(index);

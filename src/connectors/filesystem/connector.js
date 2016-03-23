@@ -4,7 +4,7 @@ import {map as asyncMap, reduce as asyncReduce} from 'async';
 import removeFolderRecursively from 'rmdir';
 
 const analyseElement = function(fileName, absPath){
-  let path = joinPath(absPath, fileName);
+  const path = joinPath(absPath, fileName);
   return {
     name : fileName,
     path,
@@ -42,7 +42,7 @@ const parseElement = function({path, element, parseFiles, depth, actualDepth, ac
   //dir to parse
   } else if(element.type === 'directory' && (actualDepth < depth || depth === true)){
     readdir(element.path + '/', function(err, files){
-      let children = analyseContents(files, path)
+      const children = analyseContents(files, path)
                       .filter((child)=>{
                         return child.type === 'directory' || acceptedExtensions.indexOf(child.extname) > -1
                       });
@@ -159,7 +159,7 @@ export function deleteFromPath({path}, callback){
   const finalPath = resolve((Array.isArray(path))?path.join('/'):path);
   exists(finalPath, function(exists){
     if(exists){
-      const pathSteps = finalPath.split('/').filter((p)=> {return p.length > 0});
+      const pathSteps = finalPath.split('/').filter((p) => {return p.length > 0});
       const elementName = pathSteps.pop();
       const element = analyseElement(elementName, '/' + pathSteps.join('/'));
       if(element.type === 'directory'){

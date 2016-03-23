@@ -77,25 +77,6 @@ const invalidSyntaxes = [
       month        = 7,
       note         = {An optional note}
     }`,
-    `@incollection{in_collection,
-      author       = {Peter Farindon},
-      author       = {Jimmy Hendrix},
-      keyword     = {test1}
-      keyword     = {test2},
-      title        = {The title of the work},
-      booktitle    = {The title of the book},
-      publisher    = {The name of {the} publisher},
-      year         = 1993,
-      editor       = {The editor},
-      volume       = 4,
-      series       = 5,
-      chapter      = 8,
-      pages        = {201-213},
-      address      = {The address of the publisher},
-      edition      = 3,
-      month        = 7,
-      note         = {An optional note}
-    }`,
     `incollection{in_collection,
       author       = "Peter Farindon",
       author       = "Jimmy {H}endrix",
@@ -163,22 +144,23 @@ describe('bibtext parser', function(){
     });
   });
 
-  // it('should throw errors for all types of invalid syntaxes', function(done){
-  //   invalidSyntaxes.forEach((str, i) => {
-  //     parseBibTexStr(str, function(err, results){
-  //       if(err){
-  //         console.log(i, results);
-  //       }
-  //       expect(err).not.to.be.null;
-  //       done();
-  //     });
-  //   });
-  //   done();
-  // })
+  it('should throw errors for all types of invalid syntaxes', function(done){
+    invalidSyntaxes.forEach((str, i) => {
+      parseBibTexStr(str, function(err, results){
+        if(err){
+          console.log(i, err);
+        }else{
+          console.log(i, results);
+        }
+        expect(err).not.to.be.null;
+      });
+    });
+    done();
+  })
 });
 
 describe('bibtext serializer', function(){
-  it('should throw an error if there is no bibType or citeKey', function(done){
+  it('should throw an error if no bibType or citeKey specified in argument object', function(done){
     const bibObj = {};
 
     serializeBibTexObject(bibObj, function(err, result){
