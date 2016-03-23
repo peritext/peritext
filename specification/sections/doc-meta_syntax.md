@@ -117,7 +117,7 @@ In Modulo only the root metadata should mandatorily comply to established BBibTe
 * ...
 
 ```
-@modulo_book
+@modulobook
 ```
 
 By default, subparts should be typed as ``section`` and their type should be derived from parent (if parent is ``@book``, children section will be ``@bookchapter``, and so on ...).

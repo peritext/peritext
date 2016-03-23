@@ -190,7 +190,7 @@ It will take as input a String representing the metadata of a folder, and its ty
 1. parse all folders metadata file by mapping them to objects containing an array of metadata entities
 2. resolve hierarchy (by nesting the structure, or by adding a 'parent' reference property ?)
 3. resolve specific metadata enrichment and lateral propagation from root to leaves of the sections tree
-4. resolve order of sections (``config:after`` || alphabetical)
+4. resolve order of sections (``general:after`` || alphabetical)
 
 
 ## Section parser
@@ -340,7 +340,7 @@ React components hierarchy :
                     domain : string,
                     key : string,
                     vertically_inherited : sectionObjectReference|undefined,
-                    laterally_inherited : metadataObjectReference|undefined
+                    laterally_inherited : metadataObjectReference|undefined,
                 }],
             contents : [
                 {}, //ordered list of elements to be displayed as primary content
@@ -351,7 +351,6 @@ React components hierarchy :
                 }
             ],
             resources : [], //resources used in the section
-            children : []//same structure as the root, recursively repeating for all the data tree
         },
     config : {
         assetsSource : {}, // metadata about sources (source type, user id, api key, root)

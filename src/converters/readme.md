@@ -1,1 +1,1 @@
-Each converter should both a parser and a serializer from one data format to another.
+Each converter should expose a parser and/or a serializer from one data format to another, without having any app dependency.

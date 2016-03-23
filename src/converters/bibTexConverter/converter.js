@@ -67,6 +67,7 @@ class bibTexParser{
           return this.error = new Error('finished to parse bibtex string without finding closing character '+ wrapped[wrapped.length - 1][1]);
         //end of wrapped expression - if matches with last recorded wrapper's closing character
         }else if(this.consumable.charAt(index) === wrapped[wrapped.length - 1][1]){
+          // console.log('in mode ', mode, ' removing wrapper ', wrapped[wrapped.length - 1][1]);
           wrapped.pop();
           temp += this.consumable.charAt(index);
           index = 1;
@@ -86,6 +87,7 @@ class bibTexParser{
         }else if (mode === 'value'){
           wrappers.some((wrapper) => {
             if(this.consumable.charAt(index) === wrapper[0]){
+              // console.log('in mode ', mode, ' adding wrapper ', wrapper[1], ' level is ', wrappers.length);
               return wrapped.push(wrapper);
             }
           });
@@ -98,6 +100,7 @@ class bibTexParser{
         }
         this.consumable = this.consumable.substr(index);
       }
+      this.addValue(this.currentObject, tempKey.trim(), temp.trim())
 
       //add if not empty
       if(Object.keys(this.currentObject).length){

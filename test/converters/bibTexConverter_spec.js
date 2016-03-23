@@ -2,6 +2,8 @@ import {expect} from 'chai';
 
 import {serializeBibTexObject, parseBibTexStr} from './../../src/converters/bibTexConverter';
 
+
+
 const validSyntaxes = [
   `@incollection{in_collection,
       author       = {Peter Farindon},
@@ -151,7 +153,7 @@ describe('bibtext parser', function(){
       });
     });
     done();
-  })
+  });
 });
 
 describe('bibtext serializer', function(){
