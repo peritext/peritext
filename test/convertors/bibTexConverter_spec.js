@@ -147,11 +147,6 @@ describe('bibtext parser', function(){
   it('should throw errors for all types of invalid syntaxes', function(done){
     invalidSyntaxes.forEach((str, i) => {
       parseBibTexStr(str, function(err, results){
-        if(err){
-          console.log(i, err);
-        }else{
-          console.log(i, results);
-        }
         expect(err).not.to.be.null;
       });
     });
