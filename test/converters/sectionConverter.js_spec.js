@@ -1,5 +1,6 @@
 import {expect} from 'chai';
 import {waterfall} from 'async';
+import {writeFile} from 'fs';
 
 import {parseSection, serializeSection} from './../../src/converters/sectionConverter';
 import {createFromPath, updateFromPath, deleteFromPath, readFromPath} from './../../src/connectors/filesystem';
@@ -22,6 +23,9 @@ describe('sectionConverter:parser', function(){
         }
       ],
       function(err, tree){
+        writeFile(base_path + '/parsing_output.json', JSON.stringify(tree, null, 2), 'utf8', function(err){
+          console.log(err, ' done')
+        })
         // console.log(tree,  err);
         done();
       });

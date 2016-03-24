@@ -113,6 +113,22 @@ const resolveNestedIncludes = function({resourcesStr, mdFilesWithIncludes, param
   cb(null, {contentStr, resourcesStr, params});
 }
 
+const concatCustomizers = function(newTree){
+  return newTree.children
+      .filter((child) => {
+        return child.type === 'directory' && child.name.charAt(0) === '_';
+      })
+      .map((child) => {
+        let contents = child.children.reduce((c, file) =>{
+          return c + file.stringContents + '\n\n';
+        }, '');
+        return {
+          type : child.name.substr(1),
+          contents
+        }
+      });
+}
+
 /*
  * MAIN
  * I turn a fsTree into a dumTree, that is a tree which presents
@@ -137,9 +153,9 @@ export function concatTree(tree, params, callback){
                     });
   let childrenDirs = newTree.children
                     .filter((child) => {
-                      return child.type === 'directory';
+                      return child.type === 'directory' && child.name.charAt(0) !== '_';
                     });
-
+  let childrenCustomizers = concatCustomizers(newTree);
   waterfall([
       //extract md files elements includes statements
       function(cb){
@@ -165,6 +181,9 @@ export function concatTree(tree, params, callback){
     ], function(err, {resourcesStr, contentStr}){
         newTree.resourcesStr = resourcesStr;
         newTree.contentStr = contentStr;
+        if(childrenCustomizers.length > 0){
+          newTree.customizers = childrenCustomizers;
+        }
         //recursively repeat dat stuf with children dirs
         asyncMap(childrenDirs, function(dir, callback){
           concatTree(dir, params, callback);

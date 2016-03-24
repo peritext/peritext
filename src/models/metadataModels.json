@@ -5,8 +5,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "<title>${value}</title>",
-      "requiredForTypes" : ["*"],
-      "applicableInTypes" : ["*"],
       "propagatesTo" : ["dublincore_title", "opengraph_title", "twitter_title"]
     },
     "abstract" : {
@@ -14,8 +12,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "<meta name='description' content='${value}'>",
-      "requiredForTypes" : [],
-      "applicableInTypes" : ["*"],
       "propagatesTo" : ["dublincore_description", "opengraph_description", "twitter_description"]
     },
     "keyword" : {
@@ -23,8 +19,6 @@
       "valueType" : "stringArray",
       "unique" : false,
       "headTemplate" : "<meta name='keywords' content='${value,join(, )}'>",
-      "requiredForTypes" : [],
-      "applicableInTypes" : ["*"],
       "propagatesTo" : ["dublincore_subject"]
     },
     "doi" : {
@@ -32,8 +26,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "",
-      "requiredForTypes" : [],
-      "applicableInTypes" : [],
       "propagatesTo" : ["dublincore_identifier"]
     },
     "author" : {
@@ -41,8 +33,6 @@
       "valueType" : "stringArray",
       "unique" : false,
       "headTemplate" : "<meta name='author' content='${value,join(, )}'>",
-      "requiredForTypes" : [],
-      "applicableInTypes" : ["*"],
       "propagatesTo" : ["dublincore_creator"]
     },
     "crossref" : {
@@ -50,8 +40,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "",
-      "requiredForTypes" : [],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     },
     "date" : {
@@ -59,8 +47,6 @@
       "valueType" : "yyymmddDateString",
       "unique" : true,
       "headTemplate" : "<meta name='${key}' content='${value}'>",
-      "requiredForTypes" : ["*"],
-      "applicableInTypes" : [],
       "propagatesTo" : ["dublincore_date"]
     },
     "address" : {
@@ -68,8 +54,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "",
-      "requiredForTypes" : [],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     },
     "chapter" : {
@@ -77,8 +61,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "",
-      "requiredForTypes" : ["inbook"],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     },
     "edition" : {
@@ -86,8 +68,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "",
-      "requiredForTypes" : [],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     },
     "howpublished" : {
@@ -95,8 +75,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "",
-      "requiredForTypes" : [],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     },
     "institution" : {
@@ -104,8 +82,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "",
-      "requiredForTypes" : ["techreport"],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     },
     "journal" : {
@@ -113,8 +89,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "",
-      "requiredForTypes" : ["article"],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     },
     "organization" : {
@@ -122,8 +96,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "",
-      "requiredForTypes" : [],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     },
     "pages" : {
@@ -131,8 +103,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "",
-      "requiredForTypes" : ["inbook"],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     },
     "publisher" : {
@@ -140,8 +110,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "",
-      "requiredForTypes" : ["book", "inbook"],
-      "applicableInTypes" : [],
       "propagatesTo" : ["dublincore_publisher"]
     },
     "school" : {
@@ -149,8 +117,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "",
-      "requiredForTypes" : ["mastersthesis", "phdthesis"],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     },
     "series" : {
@@ -158,8 +124,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "",
-      "requiredForTypes" : [],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     },
     "type" : {
@@ -167,8 +131,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "",
-      "requiredForTypes" : [],
-      "applicableInTypes" : ["techreport"],
       "propagatesTo" : []
     },
     "volume" : {
@@ -176,8 +138,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "",
-      "requiredForTypes" : ["article"],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     },
     "language" : {
@@ -185,8 +145,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "<meta http-equiv='content-language' content='${value}'>",
-      "requiredForTypes" : [],
-      "applicableInTypes" : [],
       "propagatesTo" : ["dublincore_language"]
     }
   },
@@ -196,8 +154,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "<meta name='dc.${key}' content='${value}'>",
-      "requiredForTypes" : [],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     },
     "creator" : {
@@ -205,8 +161,6 @@
       "valueType" : "stringArray",
       "unique" : false,
       "headTemplate" : "<meta name='dc.${key}' content='${value}'>",
-      "requiredForTypes" : [],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     },
     "subject" : {
@@ -214,8 +168,6 @@
       "valueType" : "stringArray",
       "unique" : false,
       "headTemplate" : "<meta name='dc.${key}' content='${value}'>",
-      "requiredForTypes" : [],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     },
     "description" : {
@@ -223,8 +175,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "<meta name='dc.${key}' content='${value}'>",
-      "requiredForTypes" : [],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     },
     "publisher" : {
@@ -232,8 +182,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "<meta name='dc.${key}' content='${value}'>",
-      "requiredForTypes" : [],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     },
     "contributor" : {
@@ -241,8 +189,6 @@
       "valueType" : "stringArray",
       "unique" : false,
       "headTemplate" : "",
-      "requiredForTypes" : [],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     },
     "date" : {
@@ -250,8 +196,6 @@
       "valueType" : "yyymmddDateString",
       "unique" : true,
       "headTemplate" : "<meta name='dc.${key}' content='${value}'>",
-      "requiredForTypes" : [],
-      "applicableInTypes" : [],
       "propagatesTo" : ["dublincore_dateIssued"]
     },
     "dateAvailable" : {
@@ -259,8 +203,6 @@
       "valueType" : "yyymmddDateString",
       "unique" : true,
       "headTemplate" : "<meta name='dcterms.available' content='${value}'>",
-      "requiredForTypes" : [],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     },
     "dateCreated" : {
@@ -268,8 +210,6 @@
       "valueType" : "yyymmddDateString",
       "unique" : true,
       "headTemplate" : "<meta name='dcterms.created' content='${value}'>",
-      "requiredForTypes" : [],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     },
     "dateAccepted" : {
@@ -277,8 +217,6 @@
       "valueType" : "yyymmddDateString",
       "unique" : true,
       "headTemplate" : "<meta name='dcterms.dateAccepted' content='${value}'>",
-      "requiredForTypes" : [],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     },
     "dateSubmitted" : {
@@ -286,8 +224,6 @@
       "valueType" : "yyymmddDateString",
       "unique" : true,
       "headTemplate" : "<meta name='dcterms.submitted' content='${value}'>",
-      "requiredForTypes" : [],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     },
     "dateIssued" : {
@@ -295,8 +231,6 @@
       "valueType" : "yyymmddDateString",
       "unique" : true,
       "headTemplate" : "<meta name='dcterms.issued' content='${value}'>",
-      "requiredForTypes" : [],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     },
     "type" : {
@@ -304,8 +238,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "<meta name='dc.${key}' content='${value}'>",
-      "requiredForTypes" : [],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     },
     "format" : {
@@ -313,8 +245,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "<meta name='dc.${key}' content='${value}'>",
-      "requiredForTypes" : [],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     },
     "identifier" : {
@@ -322,8 +252,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "<meta name='dc.${key}' content='${value}'>",
-      "requiredForTypes" : [],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     },
     "source" : {
@@ -331,8 +259,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "<meta name='dc.${key}' content='${value}'>",
-      "requiredForTypes" : [],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     },
     "language" : {
@@ -340,8 +266,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "<meta name='dc.${key}' content='${value}'>",
-      "requiredForTypes" : [],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     },
     "rights" : {
@@ -349,8 +273,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "<meta name='dc.${key}' content='${value}'>",
-      "requiredForTypes" : [],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     }
   },
@@ -360,8 +282,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "<meta property='og:${key}' content='${value}'>",
-      "requiredForTypes" : [],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     },
     "description" : {
@@ -369,8 +289,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "<meta property='og:${key}' content='${value}'>",
-      "requiredForTypes" : [],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     },
     "type" : {
@@ -378,8 +296,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "<meta property='og:${key}' content='${value}'>",
-      "requiredForTypes" : [],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     },
     "image" : {
@@ -387,8 +303,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "<meta property='og:${key}' content='${value}'>",
-      "requiredForTypes" : [],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     },
     "url" : {
@@ -396,8 +310,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "<meta property='og:${key}' content='${value}'>",
-      "requiredForTypes" : [],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     }
   },
@@ -407,8 +319,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "<meta name='twitter:${key}' content='${value}'>",
-      "requiredForTypes" : [],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     },
     "site" : {
@@ -416,8 +326,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "<meta name='twitter:${key}' content='${value}'>",
-      "requiredForTypes" : [],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     },
     "creator" : {
@@ -425,8 +333,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "<meta name='twitter:${key}' content='${value}'>",
-      "requiredForTypes" : [],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     },
     "description" : {
@@ -434,8 +340,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "<meta name='twitter:${key}' content='${value}'>",
-      "requiredForTypes" : [],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     },
     "title" : {
@@ -443,8 +347,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "<meta name='twitter:${key}' content='${value}'>",
-      "requiredForTypes" : [],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     },
     "image" : {
@@ -452,8 +354,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "<meta name='twitter:${key}' content='${value}'>",
-      "requiredForTypes" : [],
-      "applicableInTypes" : [],
       "propagatesTo" : []
     }
   }

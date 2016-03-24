@@ -1,6 +1,6 @@
 {
   "collective" : {
-    "all" : {
+    "common" : {
       "properties" : [
         {
           "key" : "title",
@@ -22,13 +22,13 @@
         },
         {
           "key" : "creators",
-          "valueType" : "array",
+          "valueType" : "bibAuthorsArray",
           "description" : "The creators of the resource",
           "required" : false
         },
         {
           "key" : "keywords",
-          "valueType" : "array",
+          "valueType" : "stringArray",
           "description" : "The keywords for describing the resource",
           "required" : false
         },
@@ -54,7 +54,14 @@
       "properties" : []
     },
     "bibliographicResource" : {
-      "properties" : []
+      "properties" : [
+        {
+          "key" : "author",
+          "valueType" : "bibAuthorsArray",
+          "description" : "The author(s) of the bibliographic resource",
+          "required" : false
+        }
+      ]
     }
   },
   "individual" : {

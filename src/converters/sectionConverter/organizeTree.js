@@ -3,10 +3,7 @@ import {map as asyncMap, waterfall} from 'async';
 const formatMetadata = function(metadataObj){
   let output = [], value, keydetail, domain;
   for(var key in metadataObj){
-    value = (!Array.isArray(value))?metadataObj[key].replace(/[\{\}\"\']/g, '')
-              :metadataObj[key].map((val) =>{
-                return val.replace(/[\{\}\"\']/g, '');
-              })
+    value = metadataObj[key];
     keydetail = key.split('_');
     domain = (keydetail.length > 1)?keydetail.shift():'general';
     key = keydetail.join('_');
@@ -41,7 +38,8 @@ const formatSection = (section) =>{
     metadata,
     contents : section.contentStr,
     resources : section.resources,
-    parent : section.parent
+    parent : section.parent,
+    customizers : section.customizers
   }
 };
 
