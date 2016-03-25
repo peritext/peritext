@@ -28,6 +28,5 @@ export function serializeHtmlMeta(metadata, template){
     value = persons.join(', ');
   }else value = metadata.value;
   let output = template.replace('${key}', metadata.key).replace(/\${value:?([^}]*)?}/, value);
-
   return output;
 }

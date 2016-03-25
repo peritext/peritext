@@ -1,4 +1,4 @@
-Figures and data resources
+Resources and contextualization
 ====
 
 # Resources description
@@ -61,7 +61,7 @@ Check out [this resource](@my_resource_cite_key)
 
 When this is done, default contextualization params are automatically provided to specify a way to display this contextualization in the document (as an aside-caller, as a footnote caller, as a html-replacement caller (for bib references)).
 
-However, it is also possible to provide some params to specify how to contextualize the resource in the document. This is done by **following or preceding the resource contextualization call with a javascript-like object, therefore surrounded by ``{}``.** Example :
+However, it is also possible to provide some params to specify how to contextualize the resource in the document. This is done by **following or preceding the resource contextualization call with a bibtex contextualization object.** Example :
 
 ```
 //possible params location #1
@@ -79,19 +79,53 @@ However, it is also possible to provide some params to specify how to contextual
 {params}![this resource](@my_resource_cite_key)
 ```
 
-So a param object will look like that : 
+## Contextualizations syntax
+
+There are two ways to describe a contextualization :
+* in one time, by describing the contextualization just in its context
+* in two times, by describing contextualization separately, as a bib resource
+
 ```
+// Separate description of a contextualization :
+
+@contextualization{my_timeline,
+    figure={timeline},
+    columns={layers={@source.data.dates,@source.data.descriptions}}
+}
+
+// Inline description of a contextualization :
+
+![this resource](@my_resource_cite_key){figure={timeline},columns={layers={@source.data.dates,@source.data.descriptions}}}
+```
+
+### Nested bibTeX objects expressions
+
+Modulo extends the principle of nesting in bibTex in order to allow for complex parameters.
+
+```
+This bibtex contextualization description :
+@contextualization{my_timeline,
+    columns={layers={data=@source.data.dates,tooltips=@source.data.descriptions}}
+}
+
+Would become this :
 {
-    title : "a view on my resource",
-    caption : "this is not done with"
+    //...
+    columns : {
+        layers : {
+            data : '@source.data.dates',
+            tooltip : '@source.data.dates'
+        }
+    }
 }
 ```
 
+
 ## Contextualization models
 
-Therefore, contextualization model is defined by resource types (or combo of resources type) and the related accepted contextualization types.
+A contextualization model is defined by resource types (or combo of resources type) and the related accepted contextualization types and parameters.
 
-Contextualization types should all have a default params object.
+Contextualization resources+type combo should all correspond a default params object.
 
 ## Accessing resource properties
 
@@ -100,10 +134,10 @@ This is done by calling the resource citeKey followed by javascript object-like 
 
 ```
 
-@resouce_cite_key.metadata.title //accesses the title of the resource
-@resouce_cite_key['metadata']['title'] //accesses the title of the resource (other syntax)
+@source.metadata.title //accesses the title of the resource
+@source['metadata']['title'] //accesses the title of the resource (other syntax)
 
-@resouce_cite_key.data.keys.date //access the "date" column of an array specified by the ressource
+@source.data.keys.date //access the "date" column of an array specified by the ressource
 
 // ...
 

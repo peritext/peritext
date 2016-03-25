@@ -6,7 +6,7 @@
           "key" : "title",
           "valueType" : "string",
           "description" : "The title of the resource",
-          "required" : true
+          "required" : false
         },
         {
           "key" : "description",
@@ -43,6 +43,12 @@
     "usableResource" : {
       "properties" : [
         {
+          "key" : "title",
+          "valueType" : "string",
+          "description" : "The title of the resource",
+          "required" : true
+        },
+        {
           "key" : "url",
           "valueType" : "string",
           "description" : "The url at which the resource can be fetched",
@@ -55,6 +61,12 @@
     },
     "bibliographicResource" : {
       "properties" : [
+        {
+          "key" : "title",
+          "valueType" : "string",
+          "description" : "The title of the resource",
+          "required" : true
+        },
         {
           "key" : "author",
           "valueType" : "bibAuthorsArray",
@@ -120,6 +132,11 @@
       "properties" : [],
       "acceptedFileExtensions" : []
     },
+
+
+
+
+
     "article" : {
       "categories" : ["bibliographicResource"],
       "properties" : []
@@ -182,6 +199,35 @@
     },
     "misc" : {
       "categories" : ["bibliographicResource"],
+      "properties" : []
+    },
+
+    "person" : {
+      "categories" : ["entityResource"],
+      "properties" : []
+    },
+    "place" : {
+      "categories" : ["entityResource"],
+      "properties" : []
+    },
+    "topic" : {
+      "categories" : ["entityResource"],
+      "properties" : []
+    },
+    "concept" : {
+      "categories" : ["entityResource"],
+      "properties" : []
+    },
+    "organization" : {
+      "categories" : ["entityResource"],
+      "properties" : []
+    },
+    "technology" : {
+      "categories" : ["entityResource"],
+      "properties" : []
+    },
+    "artefact" : {
+      "categories" : ["entityResource"],
       "properties" : []
     }
   }
