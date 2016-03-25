@@ -6,6 +6,19 @@ function inheritMetadataFromParent(section, sectionTypeModels, sections, parentM
     return section;
   }
 
+  //inherit meta props
+  let inherited = parentMetadata.filter((pmeta) =>{
+    let presentInChild = hasMeta(section.metadata, pmeta);
+    if(presentInChild){
+      return false;
+    }else return true;
+  });
+
+  let parentKey = getMetaValue(parentMetadata, 'general', 'citeKey');
+  section.metadata = section.metadata.concat(inherited.map((meta) =>{
+    return Object.assign(meta, {inheritedVerticallyFrom : parentKey})
+  }));
+
   //set final bibType
   let bibType = getMetaValue(section.metadata, 'general', 'bibType');
   if(bibType === 'section'){
@@ -16,15 +29,24 @@ function inheritMetadataFromParent(section, sectionTypeModels, sections, parentM
     }
   }
 
-  //inherit meta props
-  let inherited = parentMetadata.filter((pmeta) =>{
-    return hasMeta(section.metadata, pmeta);
-  });
-
-  let parentKey = getMetaValue(parentMetadata, 'general', 'citeKey');
-  section.metadata = section.metadata.concat(inherited.map((meta) =>{
-    return Object.assign(meta, {inheritedVerticallyFrom : parentKey})
-  }));
+  //hierarchical level addition
+  let parentLevel = getMetaValue(parentMetadata, 'general', 'hierarchicalLevel');
+  let ownLevel = getMetaValue(section.metadata, 'general', 'hierarchicalLevel');
+  if(parentLevel && ownLevel){
+    section.metadata = setMetaValue(section.metadata, 'general', 'hierarchicalValue', parentLevel + ownLevel)
+  }else if (parentLevel){
+    section.metadata.push({
+      domain : 'general',
+      key : 'hierarchicalLevel',
+      value : parentLevel + 1
+    });
+  }else {
+    section.metadata.push({
+      domain : 'general',
+      key : 'hierarchicalLevel',
+      value : 1
+    });
+  }
   return section;
 }
 
@@ -138,7 +160,7 @@ function populateLaterally(section, models){
       spreaded.forEach((sp) =>{
         let existantProp = hasMeta(section.metadata, sp);
         if(!existantProp){
-          toInclude.push(Object.assign({}, sp, {inheritedHorizontallyFrom : meta.domain  +'_' + meta.key}));
+          toInclude.push(Object.assign({}, sp, {value : meta.value}, {inheritedHorizontallyFrom : meta.domain  +'_' + meta.key}));
         }
       })
     }
@@ -166,11 +188,18 @@ export function propagateData({errors, sections, models, parent}, callback){
       section.rvInherited = true;
       section = inheritResourcesFromParent(section, sections, inheritedResources, parentKey);
     });
-    //inherit customizeers from arguments
+    //inherit customizers from arguments
   } else {
     noParents.forEach((section) =>{
+      //hierarchical level bootstrapping
+      section.metadata.push({
+        domain : 'general',
+        key : 'hierarchicalLevel',
+        value : 1
+      });
       section.rvInherited = true;
       section.vInherited = true;
+      section.cInherited = true;
     });
   }
   //clean bibType
@@ -179,6 +208,7 @@ export function propagateData({errors, sections, models, parent}, callback){
     section.metadata = setMetaValue(section.metadata, 'general', 'bibType', newBibType);
     return section;
   });
+
   //inherit metadata from parents to children
   sections = sections.map((section) =>{
     return doInheritMetadataFromParent(section, models.sectionTypeModels, sections);

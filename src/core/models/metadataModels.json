@@ -7,6 +7,27 @@
       "headTemplate" : "<title>${value}</title>",
       "propagatesTo" : ["dublincore_title", "opengraph_title", "twitter_title"]
     },
+    "bibType" : {
+      "description" : "The bibtex-like type of the section",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "propagatesTo" : []
+    },
+    "citeKey" : {
+      "description" : "The bibtex-like unique citekey identifier of the section",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "propagatesTo" : []
+    },
+    "hierarchicalLevel" : {
+      "description" : "The hierarchical level of the section in the table of content (will be computed on top of the section's parent hierarchical level).",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "propagatesTo" : []
+    },
     "abstract" : {
       "description" : "The abstract of the section",
       "valueType" : "string",
@@ -14,11 +35,11 @@
       "headTemplate" : "<meta name='description' content='${value}'>",
       "propagatesTo" : ["dublincore_description", "opengraph_description", "twitter_description"]
     },
-    "keyword" : {
+    "keywords" : {
       "description" : "The keyword(s) used to describe the section",
       "valueType" : "stringArray",
       "unique" : false,
-      "headTemplate" : "<meta name='keywords' content='${value,join(, )}'>",
+      "headTemplate" : "<meta name='keywords' content='${value:join(, )}'>",
       "propagatesTo" : ["dublincore_subject"]
     },
     "doi" : {
@@ -30,9 +51,9 @@
     },
     "author" : {
       "description" : "The author(s) of the section",
-      "valueType" : "stringArray",
+      "valueType" : "bibAuthorsArray",
       "unique" : false,
-      "headTemplate" : "<meta name='author' content='${value,join(, )}'>",
+      "headTemplate" : "<meta name='author' content='${value:personsToString}'>",
       "propagatesTo" : ["dublincore_creator"]
     },
     "crossref" : {

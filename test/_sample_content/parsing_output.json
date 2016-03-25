@@ -1,5 +1,7 @@
 {
   "errors": [
+    {},
+    {},
     {}
   ],
   "sections": [
@@ -8,111 +10,158 @@
         {
           "domain": "general",
           "key": "bibType",
-          "value": "book",
-          "inheritedVerticallyFrom": "mybook"
+          "value": "book"
         },
         {
           "domain": "general",
           "key": "citeKey",
-          "value": "mybook",
-          "inheritedVerticallyFrom": "mybook"
+          "value": "mybook"
         },
         {
           "domain": "general",
           "key": "title",
-          "value": "{My awesome book}",
-          "inheritedVerticallyFrom": "mybook"
-        },
-        {
-          "domain": "twitter",
-          "key": "title",
-          "value": "{My awesome book on twitter}"
+          "value": "My awesome book",
+          "htmlHead": "<title>My awesome book</title>"
         },
         {
           "domain": "general",
           "key": "author",
-          "value": "{Robin}",
-          "inheritedVerticallyFrom": "mybook"
+          "value": [
+            {
+              "firstName": "Robin",
+              "lastName": "De Mourat"
+            }
+          ],
+          "inheritedVerticallyFrom": "mybook",
+          "htmlHead": "<meta name='author' content='Robin De Mourat'>"
         },
         {
           "domain": "general",
           "key": "keywords",
-          "value": "{{val1a, val1b}, val2,val3,val4}"
+          "value": [
+            "val1a, val1b, val2,val3,val4",
+            "another random set of keywords"
+          ],
+          "inheritedVerticallyFrom": "partie_2",
+          "htmlHead": "<meta name='keywords' content='val1a, val1b, val2,val3,val4,another random set of keywords'>"
         },
         {
           "domain": "general",
           "key": "date",
-          "value": "{2016}",
-          "inheritedVerticallyFrom": "mybook"
+          "value": "2016",
+          "inheritedVerticallyFrom": "mybook",
+          "htmlHead": "<meta name='date' content='2016'>"
         },
         {
           "domain": "general",
           "key": "test",
-          "value": "\"test\"\n}"
+          "value": "test",
+          "inheritedVerticallyFrom": "partie_2"
+        },
+        {
+          "domain": "general",
+          "key": "hierarchicalLevel",
+          "value": 1,
+          "inheritedVerticallyFrom": "partie_2"
         },
         {
           "domain": "dublincore",
           "key": "title",
-          "inheritedHorizontallyFrom": "general_title"
+          "value": "My awesome book",
+          "inheritedHorizontallyFrom": "general_title",
+          "htmlHead": "<meta name='dc.title' content='My awesome book'>"
         },
         {
           "domain": "opengraph",
           "key": "title",
-          "inheritedHorizontallyFrom": "general_title"
+          "value": "My awesome book",
+          "inheritedHorizontallyFrom": "general_title",
+          "htmlHead": "<meta property='og:title' content='My awesome book'>"
+        },
+        {
+          "domain": "twitter",
+          "key": "title",
+          "value": "My awesome book",
+          "inheritedHorizontallyFrom": "general_title",
+          "htmlHead": "<meta name='twitter:title' content='My awesome book'>"
         },
         {
           "domain": "dublincore",
           "key": "creator",
-          "inheritedHorizontallyFrom": "general_author"
+          "value": [
+            "{De Mourat}",
+            "Robin"
+          ],
+          "inheritedHorizontallyFrom": "general_author",
+          "htmlHead": "<meta name='dc.creator' content='{De Mourat},Robin'>"
+        },
+        {
+          "domain": "dublincore",
+          "key": "subject",
+          "value": [
+            "val1a, val1b, val2,val3,val4",
+            "another random set of keywords"
+          ],
+          "inheritedHorizontallyFrom": "general_keywords",
+          "htmlHead": "<meta name='dc.subject' content='val1a, val1b, val2,val3,val4,another random set of keywords'>"
         },
         {
           "domain": "dublincore",
           "key": "date",
-          "inheritedHorizontallyFrom": "general_date"
+          "value": "2016",
+          "inheritedHorizontallyFrom": "general_date",
+          "htmlHead": "<meta name='dc.date' content='2016'>"
         }
       ],
       "contents": "# Welcome\n\nWelcome to my awesome book.\n\nThanks to all !\n\nMomanddad\nThe dog\nMy imaginary friend Serge\nI am just there, not linked to ``content.md``. I should be put at the end of content by alphabetical order.\n",
       "resources": [
         {
-          "bibType": "article",
-          "citeKey": "martin_change_2002",
-          "title": "{Change the {Metaphor}: {The} {Archive} as an {Ecosystem}}",
-          "volume": "{7}",
-          "issn": "{1080-2711}",
-          "shorttitle": "{Change the {Metaphor}}",
-          "url": "{http://hdl.handle.net/2027/spo.3336451.0007.301}",
-          "doi": "{http://dx.doi.org/10.3998/3336451.0007.301}",
-          "number": "{3}",
-          "journal": "{Journal of Electronic Publishing}",
-          "author": "{{Martin}, Julia; Coleman}",
-          "month": "apr",
-          "year": "{2002}\n}",
-          "inheritedVerticallyFrom": "mybook"
+          "author": [
+            {
+              "firstName": "Julia",
+              "lastName": "Martin"
+            },
+            {
+              "lastName": "Coleman"
+            }
+          ],
+          "title": "Change the {Metaphor}: {The} {Archive} as an {Ecosystem}",
+          "url": "http://hdl.handle.net/2027/spo.3336451.0007.301"
         },
         {
-          "bibType": "misc",
-          "citeKey": "jakubowicz_bridging",
-          "type": "{text}",
-          "title": "{Bridging the mire between e-research and e-publishing for multimedia digital scholarship in the humanities and social sciences: {An} {Australian} case study}",
-          "shorttitle": "{Bridging the mire between e-research and e-publishing for multimedia digital scholarship in the humanities and social sciences}",
-          "url": "{http://www.webology.org/2007/v4n1/a38.html}",
-          "abstract": "{Digital data chain, Open access repositories, Humanities and social sciences, Scholarly e-publishing, Semantic web, Multimedia, Australia, Interactivity, World Wide Web, Australian}",
-          "language": "{en}",
-          "urldate": "{2014-05-15}",
-          "author": "{{Jakubowicz}, Andrew}",
-          "note": "{Digital data chain, Open access repositories, Humanities and social sciences, Scholarly e-publishing, Semantic web, Multimedia, Australia, Interactivity, World Wide Web, Australian}",
-          "keywords": "{Australia, Australian, Digital data chain, Humanities and social sciences, Interactivity, Multimedia, Open access repositories, Scholarly e-publishing, Semantic web, World Wide Web}\n}",
-          "inheritedVerticallyFrom": "mybook"
+          "author": [
+            {
+              "firstName": "Andrew",
+              "lastName": "Jakubowicz"
+            }
+          ],
+          "title": "Bridging the mire between e-research and e-publishing for multimedia digital scholarship in the humanities and social sciences: {An} {Australian} case study",
+          "url": "http://www.webology.org/2007/v4n1/a38.html",
+          "keywords": [
+            "Australia",
+            "Australian",
+            "Digital data chain",
+            "Humanities and social sciences",
+            "Interactivity",
+            "Multimedia",
+            "Open access repositories",
+            "Scholarly e-publishing",
+            "Semantic web",
+            "World Wide Web"
+          ]
         },
         {
-          "bibType": "book",
-          "citeKey": "ab94",
-          "author": "{{Charalambos}, D. Aliprantis and Kim C. {Border}}",
-          "year": "{1994}",
-          "title": "{Infinite Dimensional Analysis}",
-          "publisher": "{Springer}",
-          "address": "{Berlin}\n}",
-          "inheritedVerticallyFrom": "mybook"
+          "author": [
+            {
+              "firstName": "D. Aliprantis",
+              "lastName": "Charalambos"
+            },
+            {
+              "firstName": "Kim C.",
+              "lastName": "Border"
+            }
+          ],
+          "title": "Infinite Dimensional Analysis"
         }
       ],
       "customizers": {
@@ -140,110 +189,156 @@
         {
           "domain": "general",
           "key": "title",
-          "value": "{Partie 1}"
+          "value": "Partie 1",
+          "htmlHead": "<title>Partie 1</title>"
         },
         {
           "domain": "general",
           "key": "subject",
-          "value": "\"ça va\"\n}"
+          "value": "ça va"
         },
         {
           "domain": "general",
-          "key": "bibType",
-          "value": "book",
-          "inheritedVerticallyFrom": "mybook"
+          "key": "author",
+          "value": [
+            {
+              "firstName": "Robin",
+              "lastName": "De Mourat"
+            }
+          ],
+          "inheritedVerticallyFrom": "mybook",
+          "htmlHead": "<meta name='author' content='Robin De Mourat'>"
         },
         {
           "domain": "general",
-          "key": "citeKey",
-          "value": "mybook",
-          "inheritedVerticallyFrom": "mybook"
+          "key": "keywords",
+          "value": [
+            "val1a, val1b, val2,val3,val4",
+            "another random set of keywords"
+          ],
+          "inheritedVerticallyFrom": "partie_2",
+          "htmlHead": "<meta name='keywords' content='val1a, val1b, val2,val3,val4,another random set of keywords'>"
         },
         {
           "domain": "general",
-          "key": "title",
-          "value": "{My awesome book}",
-          "inheritedVerticallyFrom": "mybook"
+          "key": "date",
+          "value": "2016",
+          "inheritedVerticallyFrom": "mybook",
+          "htmlHead": "<meta name='date' content='2016'>"
+        },
+        {
+          "domain": "general",
+          "key": "test",
+          "value": "test",
+          "inheritedVerticallyFrom": "partie_2"
+        },
+        {
+          "domain": "general",
+          "key": "hierarchicalLevel",
+          "value": 1,
+          "inheritedVerticallyFrom": "partie_2"
         },
         {
           "domain": "dublincore",
           "key": "title",
-          "inheritedHorizontallyFrom": "general_title"
+          "value": "Partie 1",
+          "inheritedHorizontallyFrom": "general_title",
+          "htmlHead": "<meta name='dc.title' content='Partie 1'>"
         },
         {
           "domain": "opengraph",
           "key": "title",
-          "inheritedHorizontallyFrom": "general_title"
+          "value": "Partie 1",
+          "inheritedHorizontallyFrom": "general_title",
+          "htmlHead": "<meta property='og:title' content='Partie 1'>"
         },
         {
           "domain": "twitter",
           "key": "title",
-          "inheritedHorizontallyFrom": "general_title"
+          "value": "Partie 1",
+          "inheritedHorizontallyFrom": "general_title",
+          "htmlHead": "<meta name='twitter:title' content='Partie 1'>"
         },
         {
           "domain": "dublincore",
-          "key": "title",
-          "inheritedHorizontallyFrom": "general_title"
+          "key": "creator",
+          "value": [
+            "{De Mourat}",
+            "Robin"
+          ],
+          "inheritedHorizontallyFrom": "general_author",
+          "htmlHead": "<meta name='dc.creator' content='{De Mourat},Robin'>"
         },
         {
-          "domain": "opengraph",
-          "key": "title",
-          "inheritedHorizontallyFrom": "general_title"
+          "domain": "dublincore",
+          "key": "subject",
+          "value": [
+            "val1a, val1b, val2,val3,val4",
+            "another random set of keywords"
+          ],
+          "inheritedHorizontallyFrom": "general_keywords",
+          "htmlHead": "<meta name='dc.subject' content='val1a, val1b, val2,val3,val4,another random set of keywords'>"
         },
         {
-          "domain": "twitter",
-          "key": "title",
-          "inheritedHorizontallyFrom": "general_title"
+          "domain": "dublincore",
+          "key": "date",
+          "value": "2016",
+          "inheritedHorizontallyFrom": "general_date",
+          "htmlHead": "<meta name='dc.date' content='2016'>"
         }
       ],
       "contents": "# This is part one\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nAn inline resource :\n\n",
       "resources": [
         {
-          "bibType": "video",
-          "citeKey": "my_interview",
-          "name": "{My interview}",
-          "url": "{https://www.youtube.com/watch?v=dX3k_QDnzHE&list=RDEMKE7uLtY3Y63qMHubgnxcew&index=14}\n}"
+          "url": "https://www.youtube.com/watch?v=dX3k_QDnzHE&list=RDEMKE7uLtY3Y63qMHubgnxcew&index=14"
         },
         {
-          "bibType": "article",
-          "citeKey": "martin_change_2002",
-          "title": "{Change the {Metaphor}: {The} {Archive} as an {Ecosystem}}",
-          "volume": "{7}",
-          "issn": "{1080-2711}",
-          "shorttitle": "{Change the {Metaphor}}",
-          "url": "{http://hdl.handle.net/2027/spo.3336451.0007.301}",
-          "doi": "{http://dx.doi.org/10.3998/3336451.0007.301}",
-          "number": "{3}",
-          "journal": "{Journal of Electronic Publishing}",
-          "author": "{{Martin}, Julia; Coleman}",
-          "month": "apr",
-          "year": "{2002}\n}",
-          "inheritedVerticallyFrom": "mybook"
+          "author": [
+            {
+              "firstName": "Julia",
+              "lastName": "Martin"
+            },
+            {
+              "lastName": "Coleman"
+            }
+          ],
+          "title": "Change the {Metaphor}: {The} {Archive} as an {Ecosystem}",
+          "url": "http://hdl.handle.net/2027/spo.3336451.0007.301"
         },
         {
-          "bibType": "misc",
-          "citeKey": "jakubowicz_bridging",
-          "type": "{text}",
-          "title": "{Bridging the mire between e-research and e-publishing for multimedia digital scholarship in the humanities and social sciences: {An} {Australian} case study}",
-          "shorttitle": "{Bridging the mire between e-research and e-publishing for multimedia digital scholarship in the humanities and social sciences}",
-          "url": "{http://www.webology.org/2007/v4n1/a38.html}",
-          "abstract": "{Digital data chain, Open access repositories, Humanities and social sciences, Scholarly e-publishing, Semantic web, Multimedia, Australia, Interactivity, World Wide Web, Australian}",
-          "language": "{en}",
-          "urldate": "{2014-05-15}",
-          "author": "{{Jakubowicz}, Andrew}",
-          "note": "{Digital data chain, Open access repositories, Humanities and social sciences, Scholarly e-publishing, Semantic web, Multimedia, Australia, Interactivity, World Wide Web, Australian}",
-          "keywords": "{Australia, Australian, Digital data chain, Humanities and social sciences, Interactivity, Multimedia, Open access repositories, Scholarly e-publishing, Semantic web, World Wide Web}\n}",
-          "inheritedVerticallyFrom": "mybook"
+          "author": [
+            {
+              "firstName": "Andrew",
+              "lastName": "Jakubowicz"
+            }
+          ],
+          "title": "Bridging the mire between e-research and e-publishing for multimedia digital scholarship in the humanities and social sciences: {An} {Australian} case study",
+          "url": "http://www.webology.org/2007/v4n1/a38.html",
+          "keywords": [
+            "Australia",
+            "Australian",
+            "Digital data chain",
+            "Humanities and social sciences",
+            "Interactivity",
+            "Multimedia",
+            "Open access repositories",
+            "Scholarly e-publishing",
+            "Semantic web",
+            "World Wide Web"
+          ]
         },
         {
-          "bibType": "book",
-          "citeKey": "ab94",
-          "author": "{{Charalambos}, D. Aliprantis and Kim C. {Border}}",
-          "year": "{1994}",
-          "title": "{Infinite Dimensional Analysis}",
-          "publisher": "{Springer}",
-          "address": "{Berlin}\n}",
-          "inheritedVerticallyFrom": "mybook"
+          "author": [
+            {
+              "firstName": "D. Aliprantis",
+              "lastName": "Charalambos"
+            },
+            {
+              "firstName": "Kim C.",
+              "lastName": "Border"
+            }
+          ],
+          "title": "Infinite Dimensional Analysis"
         }
       ],
       "parent": "mybook",
@@ -272,132 +367,162 @@
         {
           "domain": "general",
           "key": "title",
-          "value": "{Partie 2}"
+          "value": "Partie 2",
+          "htmlHead": "<title>Partie 2</title>"
         },
         {
           "domain": "general",
           "key": "author",
-          "value": "{Francis, Viviane}\n}"
+          "value": [
+            {
+              "firstName": "Westwood",
+              "lastName": "Viviane"
+            },
+            {
+              "firstName": "Lalane",
+              "lastName": "Francis"
+            }
+          ],
+          "inheritedVerticallyFrom": "partie_2",
+          "htmlHead": "<meta name='author' content='Westwood Viviane, Lalane Francis'>"
         },
         {
           "domain": "general",
-          "key": "bibType",
-          "value": "book",
-          "inheritedVerticallyFrom": "mybook"
+          "key": "keywords",
+          "value": [
+            "val1a, val1b, val2,val3,val4",
+            "another random set of keywords"
+          ],
+          "inheritedVerticallyFrom": "partie_2",
+          "htmlHead": "<meta name='keywords' content='val1a, val1b, val2,val3,val4,another random set of keywords'>"
         },
         {
           "domain": "general",
-          "key": "citeKey",
-          "value": "mybook",
-          "inheritedVerticallyFrom": "mybook"
+          "key": "date",
+          "value": "2016",
+          "inheritedVerticallyFrom": "mybook",
+          "htmlHead": "<meta name='date' content='2016'>"
         },
         {
           "domain": "general",
-          "key": "title",
-          "value": "{My awesome book}",
-          "inheritedVerticallyFrom": "mybook"
+          "key": "test",
+          "value": "test",
+          "inheritedVerticallyFrom": "partie_2"
         },
         {
           "domain": "general",
-          "key": "author",
-          "value": "{Robin}",
-          "inheritedVerticallyFrom": "mybook"
+          "key": "hierarchicalLevel",
+          "value": 1,
+          "inheritedVerticallyFrom": "partie_2"
         },
         {
           "domain": "dublincore",
           "key": "title",
-          "inheritedHorizontallyFrom": "general_title"
+          "value": "Partie 2",
+          "inheritedHorizontallyFrom": "general_title",
+          "htmlHead": "<meta name='dc.title' content='Partie 2'>"
         },
         {
           "domain": "opengraph",
           "key": "title",
-          "inheritedHorizontallyFrom": "general_title"
+          "value": "Partie 2",
+          "inheritedHorizontallyFrom": "general_title",
+          "htmlHead": "<meta property='og:title' content='Partie 2'>"
         },
         {
           "domain": "twitter",
           "key": "title",
-          "inheritedHorizontallyFrom": "general_title"
+          "value": "Partie 2",
+          "inheritedHorizontallyFrom": "general_title",
+          "htmlHead": "<meta name='twitter:title' content='Partie 2'>"
         },
         {
           "domain": "dublincore",
           "key": "creator",
-          "inheritedHorizontallyFrom": "general_author"
+          "value": [
+            "Westwood",
+            "Viviane and Lalane",
+            "Francis"
+          ],
+          "inheritedHorizontallyFrom": "general_author",
+          "htmlHead": "<meta name='dc.creator' content='Westwood,Viviane and Lalane,Francis'>"
         },
         {
           "domain": "dublincore",
-          "key": "title",
-          "inheritedHorizontallyFrom": "general_title"
-        },
-        {
-          "domain": "opengraph",
-          "key": "title",
-          "inheritedHorizontallyFrom": "general_title"
-        },
-        {
-          "domain": "twitter",
-          "key": "title",
-          "inheritedHorizontallyFrom": "general_title"
+          "key": "subject",
+          "value": [
+            "val1a, val1b, val2,val3,val4",
+            "another random set of keywords"
+          ],
+          "inheritedHorizontallyFrom": "general_keywords",
+          "htmlHead": "<meta name='dc.subject' content='val1a, val1b, val2,val3,val4,another random set of keywords'>"
         },
         {
           "domain": "dublincore",
-          "key": "creator",
-          "inheritedHorizontallyFrom": "general_author"
+          "key": "date",
+          "value": "2016",
+          "inheritedHorizontallyFrom": "general_date",
+          "htmlHead": "<meta name='dc.date' content='2016'>"
         }
       ],
       "contents": "# This is part two\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\n",
       "resources": [
         {
-          "bibType": "incollection",
-          "citeKey": "m85",
-          "author": "{Maskin, Eric S.}",
-          "year": "{1985}",
-          "title": "{The theory of implementation in {N}ash equilibrium: a survey}",
-          "booktitle": "{Social Goals and Social Organization}",
-          "editor": "{Leonid Hurwicz and David Schmeidler and Hugo Sonnenschein}",
-          "pages": "{173-204}",
-          "publisher": "{Cambridge University Press}",
-          "address": "{Cambridge}\n}"
+          "author": [
+            {
+              "firstName": "Maskin",
+              "lastName": "Eric S."
+            }
+          ],
+          "title": "The theory of implementation in {N}ash equilibrium: a survey"
         },
         {
-          "bibType": "article",
-          "citeKey": "martin_change_2002",
-          "title": "{Change the {Metaphor}: {The} {Archive} as an {Ecosystem}}",
-          "volume": "{7}",
-          "issn": "{1080-2711}",
-          "shorttitle": "{Change the {Metaphor}}",
-          "url": "{http://hdl.handle.net/2027/spo.3336451.0007.301}",
-          "doi": "{http://dx.doi.org/10.3998/3336451.0007.301}",
-          "number": "{3}",
-          "journal": "{Journal of Electronic Publishing}",
-          "author": "{{Martin}, Julia; Coleman}",
-          "month": "apr",
-          "year": "{2002}\n}",
-          "inheritedVerticallyFrom": "mybook"
+          "author": [
+            {
+              "firstName": "Julia",
+              "lastName": "Martin"
+            },
+            {
+              "lastName": "Coleman"
+            }
+          ],
+          "title": "Change the {Metaphor}: {The} {Archive} as an {Ecosystem}",
+          "url": "http://hdl.handle.net/2027/spo.3336451.0007.301"
         },
         {
-          "bibType": "misc",
-          "citeKey": "jakubowicz_bridging",
-          "type": "{text}",
-          "title": "{Bridging the mire between e-research and e-publishing for multimedia digital scholarship in the humanities and social sciences: {An} {Australian} case study}",
-          "shorttitle": "{Bridging the mire between e-research and e-publishing for multimedia digital scholarship in the humanities and social sciences}",
-          "url": "{http://www.webology.org/2007/v4n1/a38.html}",
-          "abstract": "{Digital data chain, Open access repositories, Humanities and social sciences, Scholarly e-publishing, Semantic web, Multimedia, Australia, Interactivity, World Wide Web, Australian}",
-          "language": "{en}",
-          "urldate": "{2014-05-15}",
-          "author": "{{Jakubowicz}, Andrew}",
-          "note": "{Digital data chain, Open access repositories, Humanities and social sciences, Scholarly e-publishing, Semantic web, Multimedia, Australia, Interactivity, World Wide Web, Australian}",
-          "keywords": "{Australia, Australian, Digital data chain, Humanities and social sciences, Interactivity, Multimedia, Open access repositories, Scholarly e-publishing, Semantic web, World Wide Web}\n}",
-          "inheritedVerticallyFrom": "mybook"
+          "author": [
+            {
+              "firstName": "Andrew",
+              "lastName": "Jakubowicz"
+            }
+          ],
+          "title": "Bridging the mire between e-research and e-publishing for multimedia digital scholarship in the humanities and social sciences: {An} {Australian} case study",
+          "url": "http://www.webology.org/2007/v4n1/a38.html",
+          "keywords": [
+            "Australia",
+            "Australian",
+            "Digital data chain",
+            "Humanities and social sciences",
+            "Interactivity",
+            "Multimedia",
+            "Open access repositories",
+            "Scholarly e-publishing",
+            "Semantic web",
+            "World Wide Web"
+          ]
         },
         {
-          "bibType": "book",
-          "citeKey": "ab94",
-          "author": "{{Charalambos}, D. Aliprantis and Kim C. {Border}}",
-          "year": "{1994}",
-          "title": "{Infinite Dimensional Analysis}",
-          "publisher": "{Springer}",
-          "address": "{Berlin}\n}",
-          "inheritedVerticallyFrom": "mybook"
+          "author": [
+            {
+              "firstName": "D. Aliprantis",
+              "lastName": "Charalambos"
+            },
+            {
+              "firstName": "Kim C.",
+              "lastName": "Border"
+            }
+          ],
+          "title": "Infinite Dimensional Analysis"
         }
       ],
       "parent": "mybook",
@@ -409,14 +534,15 @@
         "templates": {
           "my_template.md": ""
         }
-      }
+      },
+      "after": "partie_1"
     },
     {
       "metadata": [
         {
           "domain": "general",
           "key": "bibType",
-          "value": "inbook"
+          "value": "inherits"
         },
         {
           "domain": "general",
@@ -426,130 +552,167 @@
         {
           "domain": "general",
           "key": "title",
-          "value": "{Partie 2.2}"
+          "value": "Partie 2.2",
+          "htmlHead": "<title>Partie 2.2</title>"
         },
         {
           "domain": "general",
           "key": "date",
-          "value": "{2015}\n}"
+          "value": "2015",
+          "htmlHead": "<meta name='date' content='2015'>"
         },
         {
           "domain": "general",
-          "key": "bibType",
-          "value": "book",
-          "inheritedVerticallyFrom": "mybook"
+          "key": "author",
+          "value": [
+            {
+              "firstName": "Westwood",
+              "lastName": "Viviane"
+            },
+            {
+              "firstName": "Lalane",
+              "lastName": "Francis"
+            }
+          ],
+          "inheritedVerticallyFrom": "partie_2",
+          "htmlHead": "<meta name='author' content='Westwood Viviane, Lalane Francis'>"
         },
         {
           "domain": "general",
-          "key": "citeKey",
-          "value": "mybook",
-          "inheritedVerticallyFrom": "mybook"
+          "key": "keywords",
+          "value": [
+            "val1a, val1b, val2,val3,val4",
+            "another random set of keywords"
+          ],
+          "inheritedVerticallyFrom": "partie_2",
+          "htmlHead": "<meta name='keywords' content='val1a, val1b, val2,val3,val4,another random set of keywords'>"
         },
         {
           "domain": "general",
-          "key": "title",
-          "value": "{My awesome book}",
-          "inheritedVerticallyFrom": "mybook"
+          "key": "test",
+          "value": "test",
+          "inheritedVerticallyFrom": "partie_2"
         },
         {
           "domain": "general",
-          "key": "date",
-          "value": "{2016}",
-          "inheritedVerticallyFrom": "mybook"
+          "key": "hierarchicalLevel",
+          "value": 1,
+          "inheritedVerticallyFrom": "partie_2"
         },
         {
           "domain": "dublincore",
           "key": "title",
-          "inheritedHorizontallyFrom": "general_title"
+          "value": "Partie 2.2",
+          "inheritedHorizontallyFrom": "general_title",
+          "htmlHead": "<meta name='dc.title' content='Partie 2.2'>"
         },
         {
           "domain": "opengraph",
           "key": "title",
-          "inheritedHorizontallyFrom": "general_title"
+          "value": "Partie 2.2",
+          "inheritedHorizontallyFrom": "general_title",
+          "htmlHead": "<meta property='og:title' content='Partie 2.2'>"
         },
         {
           "domain": "twitter",
           "key": "title",
-          "inheritedHorizontallyFrom": "general_title"
+          "value": "Partie 2.2",
+          "inheritedHorizontallyFrom": "general_title",
+          "htmlHead": "<meta name='twitter:title' content='Partie 2.2'>"
         },
         {
           "domain": "dublincore",
           "key": "date",
-          "inheritedHorizontallyFrom": "general_date"
+          "value": "2015",
+          "inheritedHorizontallyFrom": "general_date",
+          "htmlHead": "<meta name='dc.date' content='2015'>"
         },
         {
           "domain": "dublincore",
-          "key": "title",
-          "inheritedHorizontallyFrom": "general_title"
-        },
-        {
-          "domain": "opengraph",
-          "key": "title",
-          "inheritedHorizontallyFrom": "general_title"
-        },
-        {
-          "domain": "twitter",
-          "key": "title",
-          "inheritedHorizontallyFrom": "general_title"
+          "key": "creator",
+          "value": [
+            "Westwood",
+            "Viviane and Lalane",
+            "Francis"
+          ],
+          "inheritedHorizontallyFrom": "general_author",
+          "htmlHead": "<meta name='dc.creator' content='Westwood,Viviane and Lalane,Francis'>"
         },
         {
           "domain": "dublincore",
-          "key": "date",
-          "inheritedHorizontallyFrom": "general_date"
+          "key": "subject",
+          "value": [
+            "val1a, val1b, val2,val3,val4",
+            "another random set of keywords"
+          ],
+          "inheritedHorizontallyFrom": "general_keywords",
+          "htmlHead": "<meta name='dc.subject' content='val1a, val1b, val2,val3,val4,another random set of keywords'>"
         }
       ],
       "contents": "# This is part two point two\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\n",
       "resources": [
         {
-          "bibType": "image",
-          "citeKey": "image_book",
-          "name": "{The first book}",
-          "data_url": "{http://www.myimage.com/book.jpg}",
-          "description": "{image of the first book}\n}"
+          "description": "image of the first book"
         },
         {
-          "bibType": "article",
-          "citeKey": "martin_change_2002",
-          "title": "{Change the {Metaphor}: {The} {Archive} as an {Ecosystem}}",
-          "volume": "{7}",
-          "issn": "{1080-2711}",
-          "shorttitle": "{Change the {Metaphor}}",
-          "url": "{http://hdl.handle.net/2027/spo.3336451.0007.301}",
-          "doi": "{http://dx.doi.org/10.3998/3336451.0007.301}",
-          "number": "{3}",
-          "journal": "{Journal of Electronic Publishing}",
-          "author": "{{Martin}, Julia; Coleman}",
-          "month": "apr",
-          "year": "{2002}\n}",
-          "inheritedVerticallyFrom": "mybook"
+          "author": [
+            {
+              "firstName": "Maskin",
+              "lastName": "Eric S."
+            }
+          ],
+          "title": "The theory of implementation in {N}ash equilibrium: a survey"
         },
         {
-          "bibType": "misc",
-          "citeKey": "jakubowicz_bridging",
-          "type": "{text}",
-          "title": "{Bridging the mire between e-research and e-publishing for multimedia digital scholarship in the humanities and social sciences: {An} {Australian} case study}",
-          "shorttitle": "{Bridging the mire between e-research and e-publishing for multimedia digital scholarship in the humanities and social sciences}",
-          "url": "{http://www.webology.org/2007/v4n1/a38.html}",
-          "abstract": "{Digital data chain, Open access repositories, Humanities and social sciences, Scholarly e-publishing, Semantic web, Multimedia, Australia, Interactivity, World Wide Web, Australian}",
-          "language": "{en}",
-          "urldate": "{2014-05-15}",
-          "author": "{{Jakubowicz}, Andrew}",
-          "note": "{Digital data chain, Open access repositories, Humanities and social sciences, Scholarly e-publishing, Semantic web, Multimedia, Australia, Interactivity, World Wide Web, Australian}",
-          "keywords": "{Australia, Australian, Digital data chain, Humanities and social sciences, Interactivity, Multimedia, Open access repositories, Scholarly e-publishing, Semantic web, World Wide Web}\n}",
-          "inheritedVerticallyFrom": "mybook"
+          "author": [
+            {
+              "firstName": "Julia",
+              "lastName": "Martin"
+            },
+            {
+              "lastName": "Coleman"
+            }
+          ],
+          "title": "Change the {Metaphor}: {The} {Archive} as an {Ecosystem}",
+          "url": "http://hdl.handle.net/2027/spo.3336451.0007.301"
         },
         {
-          "bibType": "book",
-          "citeKey": "ab94",
-          "author": "{{Charalambos}, D. Aliprantis and Kim C. {Border}}",
-          "year": "{1994}",
-          "title": "{Infinite Dimensional Analysis}",
-          "publisher": "{Springer}",
-          "address": "{Berlin}\n}",
-          "inheritedVerticallyFrom": "mybook"
+          "author": [
+            {
+              "firstName": "Andrew",
+              "lastName": "Jakubowicz"
+            }
+          ],
+          "title": "Bridging the mire between e-research and e-publishing for multimedia digital scholarship in the humanities and social sciences: {An} {Australian} case study",
+          "url": "http://www.webology.org/2007/v4n1/a38.html",
+          "keywords": [
+            "Australia",
+            "Australian",
+            "Digital data chain",
+            "Humanities and social sciences",
+            "Interactivity",
+            "Multimedia",
+            "Open access repositories",
+            "Scholarly e-publishing",
+            "Semantic web",
+            "World Wide Web"
+          ]
+        },
+        {
+          "author": [
+            {
+              "firstName": "D. Aliprantis",
+              "lastName": "Charalambos"
+            },
+            {
+              "firstName": "Kim C.",
+              "lastName": "Border"
+            }
+          ],
+          "title": "Infinite Dimensional Analysis"
         }
       ],
-      "parent": "mybook",
+      "parent": "partie_2",
       "customizers": {
         "components": {},
         "styles": {

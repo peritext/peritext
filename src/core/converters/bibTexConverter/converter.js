@@ -35,7 +35,8 @@ class bibTexParser{
         this.currentObject.bibType = match[1];
         this.consumable = this.consumable.substr(match[1].length + 1);
         return this.currentState = this.STATES[1];
-      }else return this.error = new Error('could not fine bibtype');
+      }else return this.error = new Error('could not find bibtype');
+
     }else if(this.currentState === "citeKey"){
       match =  matchCiteKey.exec(this.consumable);
       if(match){
@@ -50,52 +51,58 @@ class bibTexParser{
      * possibility of nested wrapping (eg {Name {{S}urname}})
      */
     }else if(this.currentState === 'properties'){
-      let wrapped = [wrappers[0]],
-          index = 0,
-          mode = 'key',
-          temp = '',
-          tempKey = '',
-          trespassing
-          // notClosed
+      let wrapped    = [wrappers[0]],
+          index      = 0,
+          mode       = 'key',
+          temp       = '',
+          tempKey    = '',
+          trespassing,
+          character,
+          entering
           ;
 
       while(wrapped.length > 0){
 
         trespassing = index > this.consumable.length - 1;
+        character = this.consumable.charAt(index);
 
         if(trespassing){
           return this.error = new Error('finished to parse bibtex string without finding closing character '+ wrapped[wrapped.length - 1][1]);
         //end of wrapped expression - if matches with last recorded wrapper's closing character
-        }else if(this.consumable.charAt(index) === wrapped[wrapped.length - 1][1]){
-          // console.log('in mode ', mode, ' removing wrapper ', wrapped[wrapped.length - 1][1]);
+        }else if(character === wrapped[wrapped.length - 1][1]){
           wrapped.pop();
-          temp += this.consumable.charAt(index);
-          index = 1;
+          if(wrapped.length > 1)
+            temp += character;
+          index =  1;
         //end of key specification, record tempkey and wait to have found value
-        }else if (mode === 'key' && this.consumable.charAt(index) === '='){
+        }else if (mode === 'key' && character === '='){
           tempKey = temp.trim();
           temp = '';
           mode = 'value';
           index = 1;
         //end of value specification - add value and reboot temp
-        }else if(mode === 'value' && wrapped.length < 2 && this.consumable.charAt(index) === ','){
+        }else if(mode === 'value' && wrapped.length < 2 && character === ','){
           this.addValue(this.currentObject, tempKey, temp.trim());
           temp = '';
           mode = 'key';
           index = 1;
         //in the middle of some key or value = continue
         }else if (mode === 'value'){
+          entering = false;
+          //catch wrapper char
           wrappers.some((wrapper) => {
             if(this.consumable.charAt(index) === wrapper[0]){
-              // console.log('in mode ', mode, ' adding wrapper ', wrapper[1], ' level is ', wrappers.length);
+              entering = true;
               return wrapped.push(wrapper);
             }
           });
-          temp += this.consumable.charAt(index);
+          if(!(entering && wrapped.length <= 2)){
+            temp += character;
+          }
           index = 1;
         //default, by security
         }else{
-          temp += this.consumable.charAt(index);
+          temp += character;
           index = 1;
         }
         this.consumable = this.consumable.substr(index);
@@ -173,4 +180,43 @@ export function parseBibTexStr(str, callback){
   }else{
     return callback(new Error('must input a string'), undefined);
   }
+}
+
+/*Accepted input (to add in doc/spec):
+{Martin}, Julia; Coleman
+{Jakubowicz}, Andrew
+{Charalambos}, D. Aliprantis and Kim C. {Border}
+{Martin}, Julia; Coleman
+{Jakubowicz}, Andrew
+{Charalambos}, D. Aliprantis and Kim C. {Border}
+Maskin, Eric S.
+{Martin}, Julia; Coleman
+{Jakubowicz}, Andrew
+{Charalambos}, D. Aliprantis and Kim C. {Border}
+Maskin, Eric S.
+{Martin}, Julia; Coleman
+{Jakubowicz}, Andrew
+{Charalambos}, D. Aliprantis and Kim C. {Border}
+*/
+export function parseBibAuthors(str){
+  let authors = str.split(/;|and/);
+  return authors.map((authorStr) =>{
+    let lastNameMatch = authorStr.match(/{([^}]*)}/),
+        firstName,
+        lastName;
+    if(lastNameMatch){
+      lastName = lastNameMatch[1].trim();
+      authorStr = [authorStr.substr(0, lastNameMatch.index), authorStr.substr(lastNameMatch.index +lastNameMatch[0].length)].join('');
+      firstName = authorStr.replace(',','').trim();
+    }else{
+      let vals = authorStr.split(',');
+      if(vals.length > 1){
+        firstName = vals[0].trim();
+        lastName = vals[1].trim();
+      }else {
+        lastName = authorStr.trim();
+      }
+    }
+    return {firstName, lastName};
+  })
 }

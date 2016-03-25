@@ -1,5 +1,7 @@
 import {map as asyncMap, waterfall} from 'async';
 
+import {getMetaValue, deleteMeta} from './../../utils/sectionUtils';
+
 const formatMetadata = function(metadataObj){
   let output = [], value, keydetail, domain;
   for(var key in metadataObj){
@@ -54,38 +56,23 @@ const formatSections = function(sections, callback){
   return callback(null, formatted);
 }
 
-
-const makeOneRelation = function(section, sections, pointedProp, sourcePropKey){
-  let pointerIndex;
-  let pointer = section.metadata.find((metadata, i) => {
-      if(metadata.domain === 'general' && metadata.key === pointedProp){
-        pointerIndex = i;
-        return true;
-      }
-  });
-  if(pointer){
-    let target = sections.find((section)=>{
-      return section.metadata.find((meta2) =>{
-        return meta2.domain === 'general' && meta2.key === 'citeKey' && meta2.value === pointer.value;
-      });
-    });
-    if(target){
-      section[sourcePropKey] = pointer.value;//target.metadata.find((meta)=>{return meta.name ==='citeKey'}).value;
-    }
-    section.metadata.splice(pointerIndex, 1);
-  }
-  return section;
-}
-
 const makeRelations = function(sections, callback){
 
   //find parents and predecessors
   sections = sections.map((section) =>{
-    makeOneRelation(section, sections, 'parent', 'parent');
-    makeOneRelation(section, sections, 'after', 'after');
+    let parent = getMetaValue(section.metadata, 'general', 'parent'),
+        after = getMetaValue(section.metadata, 'general', 'after');
+    if(parent){
+      section.parent = parent;
+      section.metadata = deleteMeta(section.metadata, 'general', 'parent');
+    }
+    if(after){
+      section.after = after;
+      section.metadata = deleteMeta(section.metadata, 'general', 'after');
+    }
     return section;
   });
-  //order
+  //order sections
   for(let i = sections.length - 1 ; i >= 0 ; i--){
     let section = sections[i];
     if(section.after){
@@ -118,7 +105,7 @@ export function organizeTree({errors, validTree}, callback){
       },
       function(sections, cb){
         makeRelations(sections, cb);
-      }
+      },
     ], function(err, sections){
       callback(err, {sections, errors})
     });

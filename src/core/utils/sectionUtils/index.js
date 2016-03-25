@@ -11,13 +11,13 @@ export function getMetaValue (metaList, domain, key){
 }
 
 export function setMetaValue (metaList, domain, key, newValue){
-  let newMeta = metaList.map((meta) =>{
+  let newMetaList = metaList.map((meta) =>{
     if(meta.domain === domain && meta.key === key){
       meta.value = newValue;
     }
     return meta;
   });
-  return newMeta;
+  return newMetaList;
 }
 
 export function hasMeta(metaList, domain, key){
@@ -34,6 +34,18 @@ export function findByMetadata(sections, domain, key, value) {
     return meta === value;
   });
 }
+
+export function sameMetaScope(meta1, meta2){
+  return meta1.domain === meta2.domain && meta1.key === meta2.key;
+}
+
+export function deleteMeta(metaList, domain, key){
+
+  return metaList.filter((meta)=>{
+    return !(domain === meta.domain && key === meta.key);
+  });
+}
+
 
 export function metaStringToCouple(str){
   let parts  = str.split('_'),
@@ -53,3 +65,4 @@ export function filterResources(resourcesList, key, value){
     return res[key] === value;
   });
 }
+

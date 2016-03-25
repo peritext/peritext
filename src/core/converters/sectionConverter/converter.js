@@ -67,6 +67,7 @@ export function parseSection({tree, parameters, parent, models}, callback){
     }
     //todo : substitute and populate markdown templates calls against templates resources
     //todo : parse markdown contents and organize them as blocks lists, and parse+resolve contextualization objects
+
     //todo : validate contextualization objects against section resources availability + contextualizations models
     //all done - return a documentTree to use as data state in the app
   ], callback);
