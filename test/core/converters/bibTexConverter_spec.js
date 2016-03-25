@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 
-import {serializeBibTexObject, parseBibTexStr} from './../../src/converters/bibTexConverter';
+import {serializeBibTexObject, parseBibTexStr} from './../../../src/core/converters/bibTexConverter';
 
 
 

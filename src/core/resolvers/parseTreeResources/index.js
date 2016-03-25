@@ -1,4 +1,4 @@
-import {parseBibTexStr} from './../bibTexConverter/';
+import {parseBibTexStr} from './../../converters/bibTexConverter/';
 import {map as asyncMap} from 'async';
 
 export function parseTreeResources(dumbTree, callback){
@@ -9,6 +9,6 @@ export function parseTreeResources(dumbTree, callback){
           callback(err, Object.assign({}, dumbTree, {resources}, {children}));
         });
       }
-    })
+    });
   }else callback(null, Object.assign({}, dumbTree));
 }

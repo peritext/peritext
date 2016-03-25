@@ -20,7 +20,6 @@ const flattenSections = function(tree, callback){
 
   if(tree.children){
     asyncMap(tree.children, flattenSections, function(err, children){
-
       let newTree = Object.assign({}, tree);
       let newChildren = children.map((child)=>{
         return Object.assign({}, child[0], {parent : tree.metadata.citeKey});
@@ -34,12 +33,19 @@ const flattenSections = function(tree, callback){
 
 const formatSection = (section) =>{
   let metadata = formatMetadata(section.metadata);
+  let keyedCustomizers;
+  if(section.customizers){
+    keyedCustomizers = {};
+    section.customizers.forEach((customizer) => {
+      keyedCustomizers[customizer.type] = customizer.contents;
+    })
+  }
   return {
     metadata,
     contents : section.contentStr,
     resources : section.resources,
     parent : section.parent,
-    customizers : section.customizers
+    customizers : keyedCustomizers
   }
 };
 

@@ -3,11 +3,11 @@ import {waterfall} from 'async';
 import {resolve} from 'path';
 
 
-import {createFromPath, updateFromPath, deleteFromPath, readFromPath} from './../../src/connectors/filesystem'
+import {createFromPath, updateFromPath, deleteFromPath, readFromPath} from './../../../src/core/connectors/filesystem'
 
-import {sample_folder_path, crud_cobaye_path} from "./../test_settings.json";
-const base_path = __dirname + '/../' + sample_folder_path;
-const crud_path = __dirname + '/../' + crud_cobaye_path;
+import {sample_folder_path, crud_cobaye_path} from "./../../test_settings.json";
+const base_path = __dirname + '/../../' + sample_folder_path;
+const crud_path = __dirname + '/../../' + crud_cobaye_path;
 
 
 describe('filesystem:readFromPath', function(){

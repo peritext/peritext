@@ -20,7 +20,7 @@ export function getResourceModel(bibType, resourceModels){
       properties = properties.concat(otherProps);
     });
 
-    //then finally parse common props
+    //then finally parsed common props
     otherProps = resourceModels.collective.common
                     .properties
                     .filter((prop) =>{

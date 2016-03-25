@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 
-import {sectionTypeModels, resourceModels, metadataModels} from './../../src/models'
+import {sectionTypeModels, resourceModels, metadataModels} from './../../../src/core/models'
 
 
 describe('models:metadataModels', function(){

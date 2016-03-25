@@ -1,9 +1,6 @@
 import {map as asyncMap} from 'async';
 
-import {getMetaValue, filterResources} from './../../utils/sectionUtils';
-import {getResourceModel} from './../../utils/modelUtils';
-
-export function validateAndFilterNaiveTree({errors=[], validTree}, models, callback){
+export function cleanNaiveTree({errors=[], validTree}, models, callback){
   let metadata;
   let naiveTree = Object.assign({}, validTree);
 
@@ -45,7 +42,7 @@ export function validateAndFilterNaiveTree({errors=[], validTree}, models, callb
     // console.log('naive tree has children ', naiveTree.children.length);
     asyncMap(naiveTree.children, function(child, cb){
       // console.log('child : ' , child);
-      validateAndFilterNaiveTree({validTree : child}, models, cb);
+      cleanNaiveTree({validTree : child}, models, cb);
     }, function(err, results){
 
       //filter valid children tree leaves
@@ -67,23 +64,4 @@ export function validateAndFilterNaiveTree({errors=[], validTree}, models, callb
     errors = (errors.length > 0)?errors.reverse():null;
     return callback(null, {errors, validTree : Object.assign({}, naiveTree, {metadata})});
   }
-}
-
-export function validateSection(section, models, callback){
-  const errors = [];
-  //validate metadata
-  section.resources.forEach((resource) =>{
-    //validate resources unicity
-    let other = filterResources(section.resources, 'citeKey', resource.citeKey);
-    if(other.length > 1){
-      errors.push(new Error('Resource ID ', resource.citeKey, 'is not unique for section ', getMetaValue(section.metadata, 'general', 'citeKey')))
-    }
-    //validate resources models
-    let model = getResourceModel(getMetaValue(section.metadata, 'general', 'bibType'), models.resourceModels);
-  });
-
-
-
-
-  return callback(null, {errors, section});
 }

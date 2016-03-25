@@ -36,6 +36,11 @@
         },
         {
           "domain": "general",
+          "key": "keywords",
+          "value": "{{val1a, val1b}, val2,val3,val4}"
+        },
+        {
+          "domain": "general",
           "key": "date",
           "value": "{2016}",
           "inheritedVerticallyFrom": "mybook"
@@ -79,7 +84,7 @@
           "doi": "{http://dx.doi.org/10.3998/3336451.0007.301}",
           "number": "{3}",
           "journal": "{Journal of Electronic Publishing}",
-          "author": "{Martin, Julia; Coleman}",
+          "author": "{{Martin}, Julia; Coleman}",
           "month": "apr",
           "year": "{2002}\n}",
           "inheritedVerticallyFrom": "mybook"
@@ -94,7 +99,7 @@
           "abstract": "{Digital data chain, Open access repositories, Humanities and social sciences, Scholarly e-publishing, Semantic web, Multimedia, Australia, Interactivity, World Wide Web, Australian}",
           "language": "{en}",
           "urldate": "{2014-05-15}",
-          "author": "{Jakubowicz, Andrew}",
+          "author": "{{Jakubowicz}, Andrew}",
           "note": "{Digital data chain, Open access repositories, Humanities and social sciences, Scholarly e-publishing, Semantic web, Multimedia, Australia, Interactivity, World Wide Web, Australian}",
           "keywords": "{Australia, Australian, Digital data chain, Humanities and social sciences, Interactivity, Multimedia, Open access repositories, Scholarly e-publishing, Semantic web, World Wide Web}\n}",
           "inheritedVerticallyFrom": "mybook"
@@ -102,7 +107,7 @@
         {
           "bibType": "book",
           "citeKey": "ab94",
-          "author": "{Charalambos D. Aliprantis and Kim C. Border}",
+          "author": "{{Charalambos}, D. Aliprantis and Kim C. {Border}}",
           "year": "{1994}",
           "title": "{Infinite Dimensional Analysis}",
           "publisher": "{Springer}",
@@ -110,20 +115,15 @@
           "inheritedVerticallyFrom": "mybook"
         }
       ],
-      "customizers": [
-        {
-          "type": "components",
-          "contents": ""
+      "customizers": {
+        "components": {},
+        "styles": {
+          "my_style.css": "body{\n  color : black;\n}\n"
         },
-        {
-          "type": "styles",
-          "contents": "body{\n  color : black;\n}\n\n\n"
-        },
-        {
-          "type": "templates",
-          "contents": "\n\n"
+        "templates": {
+          "my_template.md": ""
         }
-      ]
+      }
     },
     {
       "metadata": [
@@ -215,7 +215,7 @@
           "doi": "{http://dx.doi.org/10.3998/3336451.0007.301}",
           "number": "{3}",
           "journal": "{Journal of Electronic Publishing}",
-          "author": "{Martin, Julia; Coleman}",
+          "author": "{{Martin}, Julia; Coleman}",
           "month": "apr",
           "year": "{2002}\n}",
           "inheritedVerticallyFrom": "mybook"
@@ -230,7 +230,7 @@
           "abstract": "{Digital data chain, Open access repositories, Humanities and social sciences, Scholarly e-publishing, Semantic web, Multimedia, Australia, Interactivity, World Wide Web, Australian}",
           "language": "{en}",
           "urldate": "{2014-05-15}",
-          "author": "{Jakubowicz, Andrew}",
+          "author": "{{Jakubowicz}, Andrew}",
           "note": "{Digital data chain, Open access repositories, Humanities and social sciences, Scholarly e-publishing, Semantic web, Multimedia, Australia, Interactivity, World Wide Web, Australian}",
           "keywords": "{Australia, Australian, Digital data chain, Humanities and social sciences, Interactivity, Multimedia, Open access repositories, Scholarly e-publishing, Semantic web, World Wide Web}\n}",
           "inheritedVerticallyFrom": "mybook"
@@ -238,7 +238,7 @@
         {
           "bibType": "book",
           "citeKey": "ab94",
-          "author": "{Charalambos D. Aliprantis and Kim C. Border}",
+          "author": "{{Charalambos}, D. Aliprantis and Kim C. {Border}}",
           "year": "{1994}",
           "title": "{Infinite Dimensional Analysis}",
           "publisher": "{Springer}",
@@ -246,7 +246,16 @@
           "inheritedVerticallyFrom": "mybook"
         }
       ],
-      "parent": "mybook"
+      "parent": "mybook",
+      "customizers": {
+        "components": {},
+        "styles": {
+          "my_style.css": "body{\n  color : black;\n}\n"
+        },
+        "templates": {
+          "my_template.md": ""
+        }
+      }
     },
     {
       "metadata": [
@@ -360,7 +369,7 @@
           "doi": "{http://dx.doi.org/10.3998/3336451.0007.301}",
           "number": "{3}",
           "journal": "{Journal of Electronic Publishing}",
-          "author": "{Martin, Julia; Coleman}",
+          "author": "{{Martin}, Julia; Coleman}",
           "month": "apr",
           "year": "{2002}\n}",
           "inheritedVerticallyFrom": "mybook"
@@ -375,7 +384,7 @@
           "abstract": "{Digital data chain, Open access repositories, Humanities and social sciences, Scholarly e-publishing, Semantic web, Multimedia, Australia, Interactivity, World Wide Web, Australian}",
           "language": "{en}",
           "urldate": "{2014-05-15}",
-          "author": "{Jakubowicz, Andrew}",
+          "author": "{{Jakubowicz}, Andrew}",
           "note": "{Digital data chain, Open access repositories, Humanities and social sciences, Scholarly e-publishing, Semantic web, Multimedia, Australia, Interactivity, World Wide Web, Australian}",
           "keywords": "{Australia, Australian, Digital data chain, Humanities and social sciences, Interactivity, Multimedia, Open access repositories, Scholarly e-publishing, Semantic web, World Wide Web}\n}",
           "inheritedVerticallyFrom": "mybook"
@@ -383,7 +392,7 @@
         {
           "bibType": "book",
           "citeKey": "ab94",
-          "author": "{Charalambos D. Aliprantis and Kim C. Border}",
+          "author": "{{Charalambos}, D. Aliprantis and Kim C. {Border}}",
           "year": "{1994}",
           "title": "{Infinite Dimensional Analysis}",
           "publisher": "{Springer}",
@@ -391,7 +400,16 @@
           "inheritedVerticallyFrom": "mybook"
         }
       ],
-      "parent": "mybook"
+      "parent": "mybook",
+      "customizers": {
+        "components": {},
+        "styles": {
+          "my_style.css": "body{\n  color : black;\n}\n"
+        },
+        "templates": {
+          "my_template.md": ""
+        }
+      }
     },
     {
       "metadata": [
@@ -500,7 +518,7 @@
           "doi": "{http://dx.doi.org/10.3998/3336451.0007.301}",
           "number": "{3}",
           "journal": "{Journal of Electronic Publishing}",
-          "author": "{Martin, Julia; Coleman}",
+          "author": "{{Martin}, Julia; Coleman}",
           "month": "apr",
           "year": "{2002}\n}",
           "inheritedVerticallyFrom": "mybook"
@@ -515,7 +533,7 @@
           "abstract": "{Digital data chain, Open access repositories, Humanities and social sciences, Scholarly e-publishing, Semantic web, Multimedia, Australia, Interactivity, World Wide Web, Australian}",
           "language": "{en}",
           "urldate": "{2014-05-15}",
-          "author": "{Jakubowicz, Andrew}",
+          "author": "{{Jakubowicz}, Andrew}",
           "note": "{Digital data chain, Open access repositories, Humanities and social sciences, Scholarly e-publishing, Semantic web, Multimedia, Australia, Interactivity, World Wide Web, Australian}",
           "keywords": "{Australia, Australian, Digital data chain, Humanities and social sciences, Interactivity, Multimedia, Open access repositories, Scholarly e-publishing, Semantic web, World Wide Web}\n}",
           "inheritedVerticallyFrom": "mybook"
@@ -523,7 +541,7 @@
         {
           "bibType": "book",
           "citeKey": "ab94",
-          "author": "{Charalambos D. Aliprantis and Kim C. Border}",
+          "author": "{{Charalambos}, D. Aliprantis and Kim C. {Border}}",
           "year": "{1994}",
           "title": "{Infinite Dimensional Analysis}",
           "publisher": "{Springer}",
@@ -531,7 +549,16 @@
           "inheritedVerticallyFrom": "mybook"
         }
       ],
-      "parent": "mybook"
+      "parent": "mybook",
+      "customizers": {
+        "components": {},
+        "styles": {
+          "my_style.css": "body{\n  color : black;\n}\n"
+        },
+        "templates": {
+          "my_template.md": ""
+        }
+      }
     }
   ]
 }

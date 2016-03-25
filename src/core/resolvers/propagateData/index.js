@@ -1,7 +1,7 @@
 import {getMetaValue, setMetaValue, hasMeta, findByMetadata, metaStringToCouple, hasResource} from './../../utils/sectionUtils';
 
 
-function inheritFromParent(section, sectionTypeModels, sections, parentMetadata){
+function inheritMetadataFromParent(section, sectionTypeModels, sections, parentMetadata){
   if(parentMetadata === undefined){
     return section;
   }
@@ -29,17 +29,17 @@ function inheritFromParent(section, sectionTypeModels, sections, parentMetadata)
 }
 
 
-function doInheritFromParent(section, sectionTypeModels, sections){
+function doInheritMetadataFromParent(section, sectionTypeModels, sections){
   if(section.parent && !section.vInherited){
     section.vInherited = true;
 
     let parent = findByMetadata(sections, 'general', 'citeKey', section.parent);
     //first, make your parent inherit from its parent
     if(!parent.vInherited){
-      parent = doInheritFromParent(section, sectionTypeModels, sections);
+      parent = doInheritMetadataFromParent(section, sectionTypeModels, sections);
     }
     //then inherit yourself from your parent
-    return inheritFromParent(section, sectionTypeModels, sections, parent.metadata);
+    return inheritMetadataFromParent(section, sectionTypeModels, sections, parent.metadata);
   }else{
     section.vInherited = true;
     return section;
@@ -81,6 +81,51 @@ function doInheritResourcesFromParent(section, sections){
 }
 
 
+function inheritCustomizersFromParent(section, sections, parentCustomizers, parentKey){
+  if(parentCustomizers === undefined){
+    return section;
+  }else if(section.customizers === undefined){
+    section.customizers = Object.assign({}, parentCustomizers);
+  }else {
+    for(let i in section.customizers){
+      if(parentCustomizers[i] !== undefined){
+        //if customizer is a string (e.g. : css data) append child data after parent data
+        if(typeof section.customizers[i] === 'string'){
+          section.customizers[i] = parentCustomizers[i] + '\n\n\n'+ section.customizers[i];
+        }else{
+          for(let j in parentCustomizers[i]){
+            //add customizer from parent (e.g. : template) if not defined in child
+            if(section.customizers[i][j] === undefined){
+              section.customizers[i][j] = parentCustomizers[i][j]
+            }
+          }
+        }
+      }
+    }
+  }
+
+  return section;
+}
+
+
+function doInheritCustomizersFromParent(section, sections){
+  if(section.parent && !section.cInherited){
+    section.cInherited = true;
+    let parent = findByMetadata(sections, 'general', 'citeKey', section.parent);
+    //first, make your parent inherit from its parent
+    if(!parent.cInherited){
+      parent = doInheritCustomizersFromParent(section, sections);
+    }
+    //then inherit yourself from your parent
+    return inheritCustomizersFromParent(section, sections, parent.customizers, getMetaValue(parent.metadata, 'general', 'citeKey'));
+  }else{
+    section.cInherited = true;
+    return section;
+  }
+}
+
+
+
 function populateLaterally(section, models){
   let toInclude = [],
       model;
@@ -107,19 +152,27 @@ export function propagateData({errors, sections, models, parent}, callback){
   let noParents = sections.filter((section) =>{
     return !section.parent;
   });
-  //inherit metadata from args
   if(parent){
+    //inherit metadata from args
     let inheritedMetadata = parent.metadata;
     noParents.forEach((section) =>{
       section.vInherited = true;
-      section = inheritFromParent(section, models.sectionTypeModels, sections, inheritedMetadata);
+      section = inheritMetadataFromParent(section, models.sectionTypeModels, sections, inheritedMetadata);
     });
+    //inherit resources from arguments
+    let inheritedResources = parent.resources;
+    let parentKey = getMetaValue(inheritedMetadata, 'general', 'citeKey')
+    noParents.forEach((section) =>{
+      section.rvInherited = true;
+      section = inheritResourcesFromParent(section, sections, inheritedResources, parentKey);
+    });
+    //inherit customizeers from arguments
   } else {
     noParents.forEach((section) =>{
+      section.rvInherited = true;
       section.vInherited = true;
     });
   }
-  // }
   //clean bibType
   sections = sections.map((section) =>{
     let newBibType = getMetaValue(section.metadata, 'general', 'bibType').split('modulo')[1];
@@ -128,25 +181,17 @@ export function propagateData({errors, sections, models, parent}, callback){
   });
   //inherit metadata from parents to children
   sections = sections.map((section) =>{
-    return doInheritFromParent(section, models.sectionTypeModels, sections);
+    return doInheritMetadataFromParent(section, models.sectionTypeModels, sections);
   });
 
-  //inherit resources from argument
-  if(parent){
-    let inheritedResources = parent.resources;
-    let parentKey = getMetaValue(inheritedMetadata, 'general', 'citeKey')
-    noParents.forEach((section) =>{
-      section.rvInherited = true;
-      section = inheritResourcesFromParent(section, sections, inheritedResources, parentKey);
-    });
-  } else {
-    noParents.forEach((section) =>{
-      section.rvInherited = true;
-    });
-  }
   //inherit resources from parents to children
   sections = sections.map((section) =>{
     return doInheritResourcesFromParent(section, sections);
+  });
+
+  //inherit customizers form parents to children
+  sections = sections.map((section) =>{
+    return doInheritCustomizersFromParent(section, sections);
   });
 
   //inherit metadata laterally, from one property to another
@@ -156,6 +201,7 @@ export function propagateData({errors, sections, models, parent}, callback){
   //cleaning control props
   sections.forEach((section) =>{
     delete section.vInherited;
+    delete section.cInherited;
     delete section.rvInherited;
   });
 

@@ -1,4 +1,4 @@
-import {parseMarkdown as extractIncludes} from './../markdownIncludesParser';
+import {parseMarkdown as extractIncludes} from './../../converters/markdownIncludesParser';
 import {map as asyncMap, waterfall} from 'async';
 
 /*
@@ -119,9 +119,10 @@ const concatCustomizers = function(newTree){
         return child.type === 'directory' && child.name.charAt(0) === '_';
       })
       .map((child) => {
-        let contents = child.children.reduce((c, file) =>{
-          return c + file.stringContents + '\n\n';
-        }, '');
+        let contents = {};
+        child.children.forEach((c) =>{
+          contents[c.name] = c.stringContents;
+        })
         return {
           type : child.name.substr(1),
           contents

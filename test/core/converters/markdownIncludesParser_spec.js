@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 
-import {parseMarkdown} from './../../src/converters/markdownIncludesParser'
+import {parseMarkdown} from './../../../src/core/converters/markdownIncludesParser'
 
 // import {templateWrappingCharacters as includeWrappingChars, inlineResourceDescriptionWrappingCharacters as resWrappingChars} from './../../src/config/defaultParameters';
 
