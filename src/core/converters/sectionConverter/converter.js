@@ -4,7 +4,7 @@ import {concatTree} from './../../resolvers/concatTree';
 import {parseTreeResources} from './../../resolvers/parseTreeResources';
 import {organizeTree} from './../../resolvers/organizeTree';
 import {propagateData} from './../../resolvers/propagateData';
-import {validateResources} from './../../validators/sectionMetadataValidator';
+import {validateResources} from './../../validators/sectionValidator';
 import {cleanNaiveTree} from './../../resolvers/cleanNaiveTree';
 import {resolveSectionAgainstModels} from './../../resolvers/resolveSectionAgainstModels';
 

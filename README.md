@@ -1,6 +1,11 @@
 Modulo - *make a multimodal academic publication from simple text files*
 ==========
 
+Modulo is a *pure interface* application that turns flatfile contents into several forms of output academic publication forms : indexable webpage, print/pdf document, REST Api, embeddable widgets, ...
+
+Contents are written only once in plain text files (in ``markdown`` and ``bibtex`` syntaxes), and possibly hosted on several flatfile-structured data sources (ftp server, local files, google drive, amazon s3, ...).
+
+Modulo is designed to be a "reader" in the first place, though its structure would allow later for connecting with /implementing an edition application.
 
 # Caution : Work In Progress
 
@@ -14,31 +19,31 @@ If you're curious about what's going on, [check here the in-progress modulo v2 w
 
 # Presentation
 
-Modulo is aimed at being a rendering engine for multimodal academic publishing projects - built with flexibility, extensibility and lightness as core values.
+Modulo is aimed at being an interface and rendering engine to multimodal academic publishing projects - built with flexibility, extensibility and lightness as core values.
 
-Project's goal is to simplify and democratize the possibility of setting up a scholarly textual document accompanied with various interactive/multimodal figures (whether they be embedded from web services, or interactive figures presenting data such as timelines, graphs, or interviews).
+Project's goal is to simplify and democratize the possibility of setting up a scholarly textual document accompanied with various interactive/multimodal figures (whether they be embedded from web services, or interactive figures presenting data such as timelines, graphs, interviews, ...).
 
-To do so, the tool reads as input some simple text files, and produces as output a browsable, printable, indexing-friendly document.
+To do so, the tool reads as input some simple text files (and possibly annotation attached to them through tierce sources such as Disqus), and produces as output a browsable, printable, indexing-friendly document.
 
-Modulo grounds on several design goals.
+# Design goals
 
 Contextualization-related goals :
 
-1. **feature all the richness of the web while respecting academic needs** : first of all, Modulo's main goal is to allow users to take the maximum advantage of the web as input (in terms of data sources, media, ...) and as output (as printable webpage, API-served data, embedded widget, mobile-friendly app, ...) - while encouraging to document and design the use of all of this richness users thanks to a constraining content description system that requires
-1. **resources contextualizations** : the core intellectual process at the root of Modulo is a reflection about the future of the "editorial figure" notion in digital publishing environments. In order to reflect on this issue through practice, Modulo proposes to reframe "figures" as the encounter between one or several given "resources" and their "contextualization" through editorial design. Following this model and giving an example, a data visualization inserted inside the core content will be written as the contextualization of a data source featuring temporal data (more explanation to come)
-1. **standard syntaxes extension** : Modulo writing syntax tries to ground on existing standards' specifications (e.g. : bibtex, markdown) and to extend them for the sake of the specific needs of the project
+1. **feature all the richness of the web while respecting academic needs** : first of all, Modulo's main goal is to allow users to take the maximum advantage of the web as input (in terms of data sources, media, ...) and as output (as printable webpage, API-served data, embedded widget, mobile-friendly app, ...) - while encouraging writers to document and design the use of all of this richness according to academic rigorousness standards
+1. **resources+contextualizations mental model** : one of the core intellectual endeavours at the origin of Modulo is a reflection about the future of the "editorial figure" notion in digital publishing environments. In order to reflect on this issue through practice, Modulo proposes to reframe "figures" as the encounter between one or several given "resources" and their "contextualization" through a set of parameters. Following this model and giving an example, a data visualization inserted inside the core content will be written as the contextualization of a data source featuring temporal data (more explanation to come)
+1. **standard syntaxes extension** : Modulo writing syntax tries to ground on existing standards' specifications (e.g. : ``bibtex``, ``markdown``) and to extend them for the sake of the specific needs of academic publication projects
 
 Flexibility-related goals :
 
-1. **source agnostic** : Modulo is designed with freedom as one of its main core value : it should be possible to "plugin" the app into a various array of data sources (Google Drive, Dropbox, Github, Amazon S3, ftp server, local data, ...) with the same result. Different storage origins can be specified for main contents, assets (images, videos, data ...) and annotation (e.g. : Disqus)
+1. **source agnostic** : Modulo is designed with freedom as one of its main core values : it should be possible to "plugin" the app into a various array of data sources (Google Drive, Dropbox, Github, Amazon S3, ftp server, local data, ...) with the same results in terms of outputs. Distinct storage origins can be specified for main contents, assets (images, videos, data ...) and annotations (e.g. : Disqus)
 1. **non-captive data** : it should be possible to read and write the contents written with/for Modulo independently from it
 1. **modulo users' permissions are source users' permissions** : Modulo should do nothing but to allow the display of contents according to source's own permission settings. If a section's source is publicly readable, it should be publicly readable in its modulo version. If a section's source is modifiable by Marc, it should be (in future versions of the tool including an editor) editable by Marc in Modulo's editor after logging in through source' authentication protocol. *Modulo should take no responsability at all in permissions and just be a pure interface to the sources' own permission settings.*
 
 Fluidity-related goals :
 
-1. **built for indexation** : Modulo should render all of its contents (even the "interactive" ones) to indexing agents. It should cover as metadata languages as possible, and be as precise as possible. It should use ``schema`` micro-format specification for semantically describing html contents when possible.
-1. **built for fetching, exporting and embedding** : a modulo document should be highly exploitable and sharable from other places of the web : it should be possible to embed/comment/quote all kinds of its contents, and it should be possible access all kinds of its contents through a public API
-1. **built for multiple supports** : everything written in a Modulo document should be by default viewable both on a screen and on paper (even "interactive" figures).
+1. **built for indexation** : Modulo should render all of its contents (even the "interactive" ones) to indexing agents and javascript-less browsers. It should cover as metadata domains as possible, and be as precise as possible regarding metadata. It should use ``schema`` micro-format specification for semantically describing html contents when possible.
+1. **built for fetching, exporting and embedding** : a modulo document should be highly exploitable and sharable from other places of the web : it should be possible to embed/comment/quote all kinds of its contents, and it should be possible access all kinds of these contents through a public API
+1. **built for multiple supports** : everything written in a Modulo document should be by default viewable both on a screen and on paper (even "interactive" figures that should have a meaningfull initial visual state).
 
 Experience-related goals :
 
@@ -52,9 +57,9 @@ To commit to these goals, Modulo grounds on existing description languages that 
 
 **Bibtex** is used for **all** resources descriptions, including convential bibliographical records AND images, links, data sources, etc. descriptions.
 
-**Markdown, and more specifically its book-oriented specification, Markua**, is used as basis for writing the main body of the text and resource contextualizations (see above).
+**Markdown, and more specifically its book-oriented specification, Markua**, is used as basis for writing the main body of the text.
 
-On top of its peculiar writing system, Modulo proposes a neatly designed interface to display scholarly document. It is supposed to be desktop/mobile/print friendly and is highly customizable through css and javascript additional components proposition.
+On top of its peculiar writing system, Modulo proposes a neatly designed interface to display scholarly document. It is supposed to be desktop/mobile/print friendly - and is highly customizable through css and javascript additional components proposition.
 
 ---
 
