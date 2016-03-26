@@ -47,7 +47,8 @@ const formatSection = (section) =>{
     contents : section.contentStr,
     resources : section.resources,
     parent : section.parent,
-    customizers : keyedCustomizers
+    customizers : keyedCustomizers,
+    contextualizers : section.contextualizers
   }
 };
 

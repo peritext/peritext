@@ -3,6 +3,18 @@
     "common" : {
       "properties" : [
         {
+          "key" : "bibType",
+          "valueType" : "string",
+          "description" : "The type of the resource",
+          "required" : true
+        },
+        {
+          "key" : "citeKey",
+          "valueType" : "string",
+          "description" : "The id of the resource",
+          "required" : true
+        },
+        {
           "key" : "title",
           "valueType" : "string",
           "description" : "The title of the resource",
@@ -79,6 +91,9 @@
   "individual" : {
     "image" : {
       "categories" : ["usableResource"],
+      "default_contextualizer_inline" : "imageInline",
+      "default_contextualizer_block" : "imageBlock",
+
       "properties" : [
         {
           "key" : "width",
@@ -97,16 +112,23 @@
     },
     "webpage" : {
       "categories" : ["usableResource"],
+      "default_contextualizer_inline" : "webpageInline",
+      "default_contextualizer_block" : "webpageBlock",
+
       "properties" : [],
       "acceptedFileExtensions" : []
     },
     "vectorsImage" : {
       "categories" : ["usableResource"],
+      "default_contextualizer_inline" : "svgInline",
+      "default_contextualizer_block" : "svgBlock",
       "properties" : [],
       "acceptedFileExtensions" : [".svg"]
     },
     "tabularData" : {
       "categories" : ["usableResource"],
+      "default_contextualizer_inline" : "tableInline",
+      "default_contextualizer_block" : "tableBlock",
       "properties" : [
         {
           "key" : "separator",
@@ -119,16 +141,15 @@
     },
     "jsonData" : {
       "categories" : ["usableResource"],
-      "properties" : [],
-      "acceptedFileExtensions" : []
-    },
-    "gefxData" : {
-      "categories" : ["usableResource"],
+      "default_contextualizer_inline" : "jsonInline",
+      "default_contextualizer_block" : "jsonBlock",
       "properties" : [],
       "acceptedFileExtensions" : []
     },
     "video" : {
       "categories" : ["usableResource"],
+      "default_contextualizer_inline" : "videoInline",
+      "default_contextualizer_block" : "videoBlock",
       "properties" : [],
       "acceptedFileExtensions" : []
     },
@@ -139,95 +160,141 @@
 
     "article" : {
       "categories" : ["bibliographicResource"],
+      "default_contextualizer_inline" : "shortCitation",
+      "default_contextualizer_block" : "longCitation",
       "properties" : []
     },
     "book" : {
       "categories" : ["bibliographicResource"],
+      "default_contextualizer_inline" : "shortCitation",
+      "default_contextualizer_block" : "longCitation",
       "properties" : []
     },
     "booklet" : {
       "categories" : ["bibliographicResource"],
+      "default_contextualizer_inline" : "shortCitation",
+      "default_contextualizer_block" : "longCitation",
       "properties" : []
     },
     "conference" : {
       "categories" : ["bibliographicResource"],
+      "default_contextualizer_inline" : "shortCitation",
+      "default_contextualizer_block" : "longCitation",
       "properties" : []
     },
     "inbook" : {
       "categories" : ["bibliographicResource"],
+      "default_contextualizer_inline" : "shortCitation",
+      "default_contextualizer_block" : "longCitation",
       "properties" : []
     },
     "collection" : {
       "categories" : ["bibliographicResource"],
+      "default_contextualizer_inline" : "shortCitation",
+      "default_contextualizer_block" : "longCitation",
       "properties" : []
     },
     "incollection" : {
       "categories" : ["bibliographicResource"],
+      "default_contextualizer_inline" : "shortCitation",
+      "default_contextualizer_block" : "longCitation",
       "properties" : []
     },
     "inproceedings" : {
       "categories" : ["bibliographicResource"],
+      "default_contextualizer_inline" : "shortCitation",
+      "default_contextualizer_block" : "longCitation",
       "properties" : []
     },
     "inherits" : {
       "categories" : ["bibliographicResource"],
+      "default_contextualizer_inline" : "shortCitation",
+      "default_contextualizer_block" : "longCitation",
       "properties" : []
     },
     "manual" : {
       "categories" : ["bibliographicResource"],
+      "default_contextualizer_inline" : "shortCitation",
+      "default_contextualizer_block" : "longCitation",
       "properties" : []
     },
     "mastersthesis" : {
       "categories" : ["bibliographicResource"],
+      "default_contextualizer_inline" : "shortCitation",
+      "default_contextualizer_block" : "longCitation",
       "properties" : []
     },
     "phdthesis" :{
       "categories" : ["bibliographicResource"],
+      "default_contextualizer_inline" : "shortCitation",
+      "default_contextualizer_block" : "longCitation",
       "properties" : []
     },
     "proceedings" : {
       "categories" : ["bibliographicResource"],
+      "default_contextualizer_inline" : "shortCitation",
+      "default_contextualizer_block" : "longCitation",
       "properties" : []
     },
     "techreport" : {
       "categories" : ["bibliographicResource"],
+      "default_contextualizer_inline" : "shortCitation",
+      "default_contextualizer_block" : "longCitation",
       "properties" : []
     },
     "unpublished" : {
       "categories" : ["bibliographicResource"],
+      "default_contextualizer_inline" : "shortCitation",
+      "default_contextualizer_block" : "longCitation",
       "properties" : []
     },
     "misc" : {
       "categories" : ["bibliographicResource"],
+      "default_contextualizer_inline" : "shortCitation",
+      "default_contextualizer_block" : "longCitation",
       "properties" : []
     },
 
     "person" : {
       "categories" : ["entityResource"],
+      "default_contextualizer_inline" : "entityInline",
+      "default_contextualizer_block" : "entityCartel",
       "properties" : []
     },
     "place" : {
       "categories" : ["entityResource"],
+      "default_contextualizer_inline" : "entityInline",
+      "default_contextualizer_block" : "entityCartel",
       "properties" : []
     },
     "topic" : {
       "categories" : ["entityResource"],
+      "default_contextualizer_inline" : "entityInline",
+      "default_contextualizer_block" : "entityCartel",
       "properties" : []
     },
     "concept" : {
       "categories" : ["entityResource"],
+      "default_contextualizer_inline" : "entityInline",
+      "default_contextualizer_block" : "entityCartel",
       "properties" : []
     },
     "organization" : {
       "categories" : ["entityResource"],
+      "default_contextualizer_inline" : "entityInline",
+      "default_contextualizer_block" : "entityCartel",
       "properties" : []
     },
     "technology" : {
       "categories" : ["entityResource"],
+      "default_contextualizer_inline" : "entityInline",
+      "default_contextualizer_block" : "entityCartel",
       "properties" : []
     },
     "artefact" : {
       "categories" : ["entityResource"],
+      "default_contextualizer_inline" : "entityInline",
+      "default_contextualizer_block" : "entityCartel",
       "properties" : []
     }
   }

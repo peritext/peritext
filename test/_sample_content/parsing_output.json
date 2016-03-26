@@ -32,7 +32,11 @@
               "lastName": "De Mourat"
             }
           ],
-          "inheritedVerticallyFrom": "mybook",
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "mybook"
+          },
           "htmlHead": "<meta name='author' content='Robin De Mourat'>"
         },
         {
@@ -42,47 +46,72 @@
             "val1a, val1b, val2,val3,val4",
             "another random set of keywords"
           ],
-          "inheritedVerticallyFrom": "partie_2",
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "partie_2"
+          },
           "htmlHead": "<meta name='keywords' content='val1a, val1b, val2,val3,val4,another random set of keywords'>"
         },
         {
           "domain": "general",
           "key": "date",
           "value": "2016",
-          "inheritedVerticallyFrom": "mybook",
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "mybook"
+          },
           "htmlHead": "<meta name='date' content='2016'>"
         },
         {
           "domain": "general",
           "key": "test",
           "value": "test",
-          "inheritedVerticallyFrom": "partie_2"
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "partie_2"
+          }
         },
         {
           "domain": "general",
           "key": "hierarchicalLevel",
           "value": 1,
-          "inheritedVerticallyFrom": "partie_2"
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "partie_2"
+          }
         },
         {
           "domain": "dublincore",
           "key": "title",
           "value": "My awesome book",
-          "inheritedHorizontallyFrom": "general_title",
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "title"
+          },
           "htmlHead": "<meta name='dc.title' content='My awesome book'>"
         },
         {
           "domain": "opengraph",
           "key": "title",
           "value": "My awesome book",
-          "inheritedHorizontallyFrom": "general_title",
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "title"
+          },
           "htmlHead": "<meta property='og:title' content='My awesome book'>"
         },
         {
           "domain": "twitter",
           "key": "title",
           "value": "My awesome book",
-          "inheritedHorizontallyFrom": "general_title",
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "title"
+          },
           "htmlHead": "<meta name='twitter:title' content='My awesome book'>"
         },
         {
@@ -92,7 +121,10 @@
             "{De Mourat}",
             "Robin"
           ],
-          "inheritedHorizontallyFrom": "general_author",
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "author"
+          },
           "htmlHead": "<meta name='dc.creator' content='{De Mourat},Robin'>"
         },
         {
@@ -102,20 +134,104 @@
             "val1a, val1b, val2,val3,val4",
             "another random set of keywords"
           ],
-          "inheritedHorizontallyFrom": "general_keywords",
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "keywords"
+          },
           "htmlHead": "<meta name='dc.subject' content='val1a, val1b, val2,val3,val4,another random set of keywords'>"
         },
         {
           "domain": "dublincore",
           "key": "date",
           "value": "2016",
-          "inheritedHorizontallyFrom": "general_date",
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "date"
+          },
           "htmlHead": "<meta name='dc.date' content='2016'>"
         }
       ],
-      "contents": "# Welcome\n\nWelcome to my awesome book.\n\nThanks to all !\n\nMomanddad\nThe dog\nMy imaginary friend Serge\nI am just there, not linked to ``content.md``. I should be put at the end of content by alphabetical order.\n",
+      "contents": [
+        {
+          "notes": [],
+          "contextualizations": [],
+          "html": "<h1 id=\"welcome\">Welcome</h1>"
+        },
+        {
+          "notes": [],
+          "contextualizations": [
+            {
+              "contextualizer": "cool_timeline",
+              "resources": [
+                "temporal_data"
+              ],
+              "type": "block"
+            }
+          ],
+          "html": "<p><span class=\"block-contextualization\" contextualization=\"0\">A reference</span></p>"
+        },
+        {
+          "notes": [
+            {
+              "html": "<p>with a footnote here</p>\n",
+              "id": "note_2_1",
+              "paragraphIndex": 2,
+              "noteIndex": 1
+            }
+          ],
+          "contextualizations": [],
+          "html": "<p>I will talk about that<sup class=\"note-pointer\"><a href=\"#note_2_1\">1</a></sup> :\n<img src=\"@martin_change_2002\" alt=\"Another reference\">{\n    layer={data=@source.data.dates,labels=@source.data.labels},\n    title=&quot;My title&quot;\n}</p>"
+        },
+        {
+          "notes": [],
+          "contextualizations": [
+            {
+              "contextualizer": "mybook_2",
+              "resources": [
+                "martin_change_2002"
+              ],
+              "type": "inline"
+            }
+          ],
+          "html": "<p>I&apos;m talking about a <a href=\"@martin_change_2002\" contextualization=\"0\">reference</a></p>"
+        },
+        {
+          "notes": [],
+          "contextualizations": [
+            {
+              "contextualizer": "mybook_3",
+              "resources": [
+                "temporal_data"
+              ],
+              "type": "inline"
+            }
+          ],
+          "html": "<p>Now let&apos;s say I want to link to this <a href=\"@temporal_data\" contextualization=\"0\">timeline</a> and continue my paragraph quietly.</p>"
+        },
+        {
+          "notes": [],
+          "contextualizations": [],
+          "html": "<p>Welcome to my awesome book.</p>"
+        },
+        {
+          "notes": [],
+          "contextualizations": [],
+          "html": "<p>Thanks to all !</p>"
+        },
+        {
+          "notes": [],
+          "contextualizations": [],
+          "html": "<p>Momanddad\nThe dog\nMy imaginary friend Serge</p>"
+        },
+        {
+          "notes": [],
+          "contextualizations": [],
+          "html": "<p>I am just there, not linked to <code>content.md</code>. I should be put at the end of content by alphabetical order.</p>"
+        }
+      ],
       "resources": [
         {
+          "title": "Change the {Metaphor}: {The} {Archive} as an {Ecosystem}",
           "author": [
             {
               "firstName": "Julia",
@@ -125,17 +241,26 @@
               "lastName": "Coleman"
             }
           ],
-          "title": "Change the {Metaphor}: {The} {Archive} as an {Ecosystem}",
+          "bibType": "article",
+          "citeKey": "martin_change_2002",
           "url": "http://hdl.handle.net/2027/spo.3336451.0007.301"
         },
         {
+          "title": "cool data",
+          "bibType": "jsonData",
+          "citeKey": "temporal_data",
+          "url": "cool_url"
+        },
+        {
+          "title": "Bridging the mire between e-research and e-publishing for multimedia digital scholarship in the humanities and social sciences: {An} {Australian} case study",
           "author": [
             {
               "firstName": "Andrew",
               "lastName": "Jakubowicz"
             }
           ],
-          "title": "Bridging the mire between e-research and e-publishing for multimedia digital scholarship in the humanities and social sciences: {An} {Australian} case study",
+          "bibType": "misc",
+          "citeKey": "jakubowicz_bridging",
           "url": "http://www.webology.org/2007/v4n1/a38.html",
           "keywords": [
             "Australia",
@@ -151,6 +276,7 @@
           ]
         },
         {
+          "title": "Infinite Dimensional Analysis",
           "author": [
             {
               "firstName": "D. Aliprantis",
@@ -161,7 +287,8 @@
               "lastName": "Border"
             }
           ],
-          "title": "Infinite Dimensional Analysis"
+          "bibType": "book",
+          "citeKey": "ab94"
         }
       ],
       "customizers": {
@@ -172,7 +299,39 @@
         "templates": {
           "my_template.md": ""
         }
-      }
+      },
+      "contextualizers": [
+        {
+          "bibType": "contextualizer",
+          "citeKey": "cool_timeline",
+          "title": "My cool timeline",
+          "layer": [
+            "data=@source1.data.dates,title=hello ça va,labels=@source1.data.labels",
+            "data=@source2.data.dates,labels=@source2.data.labels"
+          ],
+          "inheritedVerticallyFrom": "partie_2"
+        },
+        {
+          "type": "short_ref",
+          "citeKey": "mybook_2"
+        },
+        {
+          "layer": [
+            {
+              "data": "@source1.data.dates",
+              "labels": "@source1.data.labels"
+            },
+            {
+              "data": "@source2.data.dates",
+              "labels": "@source2.data.labels"
+            }
+          ],
+          "type": "timeline",
+          "caption": "This is a text with {stuf} but it should work",
+          "citeKey": "mybook_3"
+        }
+      ],
+      "markdownContents": "# Welcome\n\n![A reference](@temporal_data){cool_timeline}\n\n\nI will talk about that[^](with a footnote here) :\n![Another reference](@martin_change_2002){\n    layer={data=@source.data.dates,labels=@source.data.labels},\n    title=\"My title\"\n}\n\nI'm talking about a [reference](@martin_change_2002){type=\"short_ref\"}\n\nNow let's say I want to link to this [timeline](@temporal_data){\n    type=\"timeline\",\n    layer={data=@source1.data.dates,labels=@source1.data.labels},\n    layer={data=@source2.data.dates,labels=@source2.data.labels},\n    caption=\"This is a text with {stuf} but it should work\"\n} and continue my paragraph quietly.\n\nWelcome to my awesome book.\n\nThanks to all !\n\nMomanddad\nThe dog\nMy imaginary friend Serge\n\n\nI am just there, not linked to ``content.md``. I should be put at the end of content by alphabetical order.\n\n\n"
     },
     {
       "metadata": [
@@ -206,7 +365,11 @@
               "lastName": "De Mourat"
             }
           ],
-          "inheritedVerticallyFrom": "mybook",
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "mybook"
+          },
           "htmlHead": "<meta name='author' content='Robin De Mourat'>"
         },
         {
@@ -216,47 +379,72 @@
             "val1a, val1b, val2,val3,val4",
             "another random set of keywords"
           ],
-          "inheritedVerticallyFrom": "partie_2",
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "partie_2"
+          },
           "htmlHead": "<meta name='keywords' content='val1a, val1b, val2,val3,val4,another random set of keywords'>"
         },
         {
           "domain": "general",
           "key": "date",
           "value": "2016",
-          "inheritedVerticallyFrom": "mybook",
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "mybook"
+          },
           "htmlHead": "<meta name='date' content='2016'>"
         },
         {
           "domain": "general",
           "key": "test",
           "value": "test",
-          "inheritedVerticallyFrom": "partie_2"
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "partie_2"
+          }
         },
         {
           "domain": "general",
           "key": "hierarchicalLevel",
           "value": 1,
-          "inheritedVerticallyFrom": "partie_2"
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "partie_2"
+          }
         },
         {
           "domain": "dublincore",
           "key": "title",
           "value": "Partie 1",
-          "inheritedHorizontallyFrom": "general_title",
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "title"
+          },
           "htmlHead": "<meta name='dc.title' content='Partie 1'>"
         },
         {
           "domain": "opengraph",
           "key": "title",
           "value": "Partie 1",
-          "inheritedHorizontallyFrom": "general_title",
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "title"
+          },
           "htmlHead": "<meta property='og:title' content='Partie 1'>"
         },
         {
           "domain": "twitter",
           "key": "title",
           "value": "Partie 1",
-          "inheritedHorizontallyFrom": "general_title",
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "title"
+          },
           "htmlHead": "<meta name='twitter:title' content='Partie 1'>"
         },
         {
@@ -266,7 +454,10 @@
             "{De Mourat}",
             "Robin"
           ],
-          "inheritedHorizontallyFrom": "general_author",
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "author"
+          },
           "htmlHead": "<meta name='dc.creator' content='{De Mourat},Robin'>"
         },
         {
@@ -276,23 +467,48 @@
             "val1a, val1b, val2,val3,val4",
             "another random set of keywords"
           ],
-          "inheritedHorizontallyFrom": "general_keywords",
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "keywords"
+          },
           "htmlHead": "<meta name='dc.subject' content='val1a, val1b, val2,val3,val4,another random set of keywords'>"
         },
         {
           "domain": "dublincore",
           "key": "date",
           "value": "2016",
-          "inheritedHorizontallyFrom": "general_date",
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "date"
+          },
           "htmlHead": "<meta name='dc.date' content='2016'>"
         }
       ],
-      "contents": "# This is part one\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nAn inline resource :\n\n",
+      "contents": [
+        {
+          "notes": [],
+          "contextualizations": [],
+          "html": "<h1 id=\"this-is-part-one\">This is part one</h1>"
+        },
+        {
+          "notes": [],
+          "contextualizations": [],
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>"
+        },
+        {
+          "notes": [],
+          "contextualizations": [],
+          "html": "<p>An inline resource :</p>"
+        }
+      ],
       "resources": [
         {
+          "bibType": "video",
+          "citeKey": "my_interview",
           "url": "https://www.youtube.com/watch?v=dX3k_QDnzHE&list=RDEMKE7uLtY3Y63qMHubgnxcew&index=14"
         },
         {
+          "title": "Change the {Metaphor}: {The} {Archive} as an {Ecosystem}",
           "author": [
             {
               "firstName": "Julia",
@@ -302,17 +518,26 @@
               "lastName": "Coleman"
             }
           ],
-          "title": "Change the {Metaphor}: {The} {Archive} as an {Ecosystem}",
+          "bibType": "article",
+          "citeKey": "martin_change_2002",
           "url": "http://hdl.handle.net/2027/spo.3336451.0007.301"
         },
         {
+          "title": "cool data",
+          "bibType": "jsonData",
+          "citeKey": "temporal_data",
+          "url": "cool_url"
+        },
+        {
+          "title": "Bridging the mire between e-research and e-publishing for multimedia digital scholarship in the humanities and social sciences: {An} {Australian} case study",
           "author": [
             {
               "firstName": "Andrew",
               "lastName": "Jakubowicz"
             }
           ],
-          "title": "Bridging the mire between e-research and e-publishing for multimedia digital scholarship in the humanities and social sciences: {An} {Australian} case study",
+          "bibType": "misc",
+          "citeKey": "jakubowicz_bridging",
           "url": "http://www.webology.org/2007/v4n1/a38.html",
           "keywords": [
             "Australia",
@@ -328,6 +553,7 @@
           ]
         },
         {
+          "title": "Infinite Dimensional Analysis",
           "author": [
             {
               "firstName": "D. Aliprantis",
@@ -338,7 +564,8 @@
               "lastName": "Border"
             }
           ],
-          "title": "Infinite Dimensional Analysis"
+          "bibType": "book",
+          "citeKey": "ab94"
         }
       ],
       "parent": "mybook",
@@ -350,7 +577,27 @@
         "templates": {
           "my_template.md": ""
         }
-      }
+      },
+      "contextualizers": [
+        {
+          "bibType": "contextualizer",
+          "citeKey": "cool_timeline",
+          "title": "My cool timeline",
+          "layer": [
+            {
+              "data": "@source1.data.dates",
+              "title": "hello ça va",
+              "labels": "@source1.data.labels"
+            },
+            {
+              "data": "@source2.data.dates",
+              "labels": "@source2.data.labels"
+            }
+          ],
+          "inheritedVerticallyFrom": "partie_2"
+        }
+      ],
+      "markdownContents": "# This is part one\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nAn inline resource :\n\n"
     },
     {
       "metadata": [
@@ -383,7 +630,11 @@
               "lastName": "Francis"
             }
           ],
-          "inheritedVerticallyFrom": "partie_2",
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "partie_2"
+          },
           "htmlHead": "<meta name='author' content='Westwood Viviane, Lalane Francis'>"
         },
         {
@@ -393,47 +644,72 @@
             "val1a, val1b, val2,val3,val4",
             "another random set of keywords"
           ],
-          "inheritedVerticallyFrom": "partie_2",
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "partie_2"
+          },
           "htmlHead": "<meta name='keywords' content='val1a, val1b, val2,val3,val4,another random set of keywords'>"
         },
         {
           "domain": "general",
           "key": "date",
           "value": "2016",
-          "inheritedVerticallyFrom": "mybook",
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "mybook"
+          },
           "htmlHead": "<meta name='date' content='2016'>"
         },
         {
           "domain": "general",
           "key": "test",
           "value": "test",
-          "inheritedVerticallyFrom": "partie_2"
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "partie_2"
+          }
         },
         {
           "domain": "general",
           "key": "hierarchicalLevel",
           "value": 1,
-          "inheritedVerticallyFrom": "partie_2"
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "partie_2"
+          }
         },
         {
           "domain": "dublincore",
           "key": "title",
           "value": "Partie 2",
-          "inheritedHorizontallyFrom": "general_title",
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "title"
+          },
           "htmlHead": "<meta name='dc.title' content='Partie 2'>"
         },
         {
           "domain": "opengraph",
           "key": "title",
           "value": "Partie 2",
-          "inheritedHorizontallyFrom": "general_title",
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "title"
+          },
           "htmlHead": "<meta property='og:title' content='Partie 2'>"
         },
         {
           "domain": "twitter",
           "key": "title",
           "value": "Partie 2",
-          "inheritedHorizontallyFrom": "general_title",
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "title"
+          },
           "htmlHead": "<meta name='twitter:title' content='Partie 2'>"
         },
         {
@@ -444,7 +720,10 @@
             "Viviane and Lalane",
             "Francis"
           ],
-          "inheritedHorizontallyFrom": "general_author",
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "author"
+          },
           "htmlHead": "<meta name='dc.creator' content='Westwood,Viviane and Lalane,Francis'>"
         },
         {
@@ -454,29 +733,49 @@
             "val1a, val1b, val2,val3,val4",
             "another random set of keywords"
           ],
-          "inheritedHorizontallyFrom": "general_keywords",
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "keywords"
+          },
           "htmlHead": "<meta name='dc.subject' content='val1a, val1b, val2,val3,val4,another random set of keywords'>"
         },
         {
           "domain": "dublincore",
           "key": "date",
           "value": "2016",
-          "inheritedHorizontallyFrom": "general_date",
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "date"
+          },
           "htmlHead": "<meta name='dc.date' content='2016'>"
         }
       ],
-      "contents": "# This is part two\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\n",
+      "contents": [
+        {
+          "notes": [],
+          "contextualizations": [],
+          "html": "<h1 id=\"this-is-part-two\">This is part two</h1>"
+        },
+        {
+          "notes": [],
+          "contextualizations": [],
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>"
+        }
+      ],
       "resources": [
         {
+          "title": "The theory of implementation in {N}ash equilibrium: a survey",
           "author": [
             {
               "firstName": "Maskin",
               "lastName": "Eric S."
             }
           ],
-          "title": "The theory of implementation in {N}ash equilibrium: a survey"
+          "bibType": "incollection",
+          "citeKey": "m85"
         },
         {
+          "title": "Change the {Metaphor}: {The} {Archive} as an {Ecosystem}",
           "author": [
             {
               "firstName": "Julia",
@@ -486,17 +785,26 @@
               "lastName": "Coleman"
             }
           ],
-          "title": "Change the {Metaphor}: {The} {Archive} as an {Ecosystem}",
+          "bibType": "article",
+          "citeKey": "martin_change_2002",
           "url": "http://hdl.handle.net/2027/spo.3336451.0007.301"
         },
         {
+          "title": "cool data",
+          "bibType": "jsonData",
+          "citeKey": "temporal_data",
+          "url": "cool_url"
+        },
+        {
+          "title": "Bridging the mire between e-research and e-publishing for multimedia digital scholarship in the humanities and social sciences: {An} {Australian} case study",
           "author": [
             {
               "firstName": "Andrew",
               "lastName": "Jakubowicz"
             }
           ],
-          "title": "Bridging the mire between e-research and e-publishing for multimedia digital scholarship in the humanities and social sciences: {An} {Australian} case study",
+          "bibType": "misc",
+          "citeKey": "jakubowicz_bridging",
           "url": "http://www.webology.org/2007/v4n1/a38.html",
           "keywords": [
             "Australia",
@@ -512,6 +820,7 @@
           ]
         },
         {
+          "title": "Infinite Dimensional Analysis",
           "author": [
             {
               "firstName": "D. Aliprantis",
@@ -522,7 +831,8 @@
               "lastName": "Border"
             }
           ],
-          "title": "Infinite Dimensional Analysis"
+          "bibType": "book",
+          "citeKey": "ab94"
         }
       ],
       "parent": "mybook",
@@ -535,7 +845,27 @@
           "my_template.md": ""
         }
       },
-      "after": "partie_1"
+      "contextualizers": [
+        {
+          "bibType": "contextualizer",
+          "citeKey": "cool_timeline",
+          "title": "My cool timeline",
+          "layer": [
+            {
+              "data": "@source1.data.dates",
+              "title": "hello ça va",
+              "labels": "@source1.data.labels"
+            },
+            {
+              "data": "@source2.data.dates",
+              "labels": "@source2.data.labels"
+            }
+          ],
+          "inheritedVerticallyFrom": "partie_2"
+        }
+      ],
+      "after": "partie_1",
+      "markdownContents": "# This is part two\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n"
     },
     {
       "metadata": [
@@ -574,7 +904,11 @@
               "lastName": "Francis"
             }
           ],
-          "inheritedVerticallyFrom": "partie_2",
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "partie_2"
+          },
           "htmlHead": "<meta name='author' content='Westwood Viviane, Lalane Francis'>"
         },
         {
@@ -584,47 +918,71 @@
             "val1a, val1b, val2,val3,val4",
             "another random set of keywords"
           ],
-          "inheritedVerticallyFrom": "partie_2",
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "partie_2"
+          },
           "htmlHead": "<meta name='keywords' content='val1a, val1b, val2,val3,val4,another random set of keywords'>"
         },
         {
           "domain": "general",
           "key": "test",
           "value": "test",
-          "inheritedVerticallyFrom": "partie_2"
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "partie_2"
+          }
         },
         {
           "domain": "general",
           "key": "hierarchicalLevel",
           "value": 1,
-          "inheritedVerticallyFrom": "partie_2"
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "partie_2"
+          }
         },
         {
           "domain": "dublincore",
           "key": "title",
           "value": "Partie 2.2",
-          "inheritedHorizontallyFrom": "general_title",
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "title"
+          },
           "htmlHead": "<meta name='dc.title' content='Partie 2.2'>"
         },
         {
           "domain": "opengraph",
           "key": "title",
           "value": "Partie 2.2",
-          "inheritedHorizontallyFrom": "general_title",
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "title"
+          },
           "htmlHead": "<meta property='og:title' content='Partie 2.2'>"
         },
         {
           "domain": "twitter",
           "key": "title",
           "value": "Partie 2.2",
-          "inheritedHorizontallyFrom": "general_title",
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "title"
+          },
           "htmlHead": "<meta name='twitter:title' content='Partie 2.2'>"
         },
         {
           "domain": "dublincore",
           "key": "date",
           "value": "2015",
-          "inheritedHorizontallyFrom": "general_date",
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "date"
+          },
           "htmlHead": "<meta name='dc.date' content='2015'>"
         },
         {
@@ -635,7 +993,10 @@
             "Viviane and Lalane",
             "Francis"
           ],
-          "inheritedHorizontallyFrom": "general_author",
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "author"
+          },
           "htmlHead": "<meta name='dc.creator' content='Westwood,Viviane and Lalane,Francis'>"
         },
         {
@@ -645,25 +1006,44 @@
             "val1a, val1b, val2,val3,val4",
             "another random set of keywords"
           ],
-          "inheritedHorizontallyFrom": "general_keywords",
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "keywords"
+          },
           "htmlHead": "<meta name='dc.subject' content='val1a, val1b, val2,val3,val4,another random set of keywords'>"
         }
       ],
-      "contents": "# This is part two point two\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit sapiente doloribus pariatur quos rerum architecto voluptatibus ut consectetur modi rem laudantium, commodi accusantium enim similique! Earum ducimus, nostrum ut.\n",
+      "contents": [
+        {
+          "notes": [],
+          "contextualizations": [],
+          "html": "<h1 id=\"this-is-part-two-point-two\">This is part two point two</h1>"
+        },
+        {
+          "notes": [],
+          "contextualizations": [],
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>"
+        }
+      ],
       "resources": [
         {
+          "bibType": "image",
+          "citeKey": "image_book",
           "description": "image of the first book"
         },
         {
+          "title": "The theory of implementation in {N}ash equilibrium: a survey",
           "author": [
             {
               "firstName": "Maskin",
               "lastName": "Eric S."
             }
           ],
-          "title": "The theory of implementation in {N}ash equilibrium: a survey"
+          "bibType": "incollection",
+          "citeKey": "m85"
         },
         {
+          "title": "Change the {Metaphor}: {The} {Archive} as an {Ecosystem}",
           "author": [
             {
               "firstName": "Julia",
@@ -673,17 +1053,26 @@
               "lastName": "Coleman"
             }
           ],
-          "title": "Change the {Metaphor}: {The} {Archive} as an {Ecosystem}",
+          "bibType": "article",
+          "citeKey": "martin_change_2002",
           "url": "http://hdl.handle.net/2027/spo.3336451.0007.301"
         },
         {
+          "title": "cool data",
+          "bibType": "jsonData",
+          "citeKey": "temporal_data",
+          "url": "cool_url"
+        },
+        {
+          "title": "Bridging the mire between e-research and e-publishing for multimedia digital scholarship in the humanities and social sciences: {An} {Australian} case study",
           "author": [
             {
               "firstName": "Andrew",
               "lastName": "Jakubowicz"
             }
           ],
-          "title": "Bridging the mire between e-research and e-publishing for multimedia digital scholarship in the humanities and social sciences: {An} {Australian} case study",
+          "bibType": "misc",
+          "citeKey": "jakubowicz_bridging",
           "url": "http://www.webology.org/2007/v4n1/a38.html",
           "keywords": [
             "Australia",
@@ -699,6 +1088,7 @@
           ]
         },
         {
+          "title": "Infinite Dimensional Analysis",
           "author": [
             {
               "firstName": "D. Aliprantis",
@@ -709,7 +1099,8 @@
               "lastName": "Border"
             }
           ],
-          "title": "Infinite Dimensional Analysis"
+          "bibType": "book",
+          "citeKey": "ab94"
         }
       ],
       "parent": "partie_2",
@@ -721,7 +1112,27 @@
         "templates": {
           "my_template.md": ""
         }
-      }
+      },
+      "contextualizers": [
+        {
+          "bibType": "contextualizer",
+          "citeKey": "cool_timeline",
+          "title": "My cool timeline",
+          "layer": [
+            {
+              "data": "@source1.data.dates",
+              "title": "hello ça va",
+              "labels": "@source1.data.labels"
+            },
+            {
+              "data": "@source2.data.dates",
+              "labels": "@source2.data.labels"
+            }
+          ],
+          "inheritedVerticallyFrom": "partie_2"
+        }
+      ],
+      "markdownContents": "# This is part two point two\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n"
     }
   ]
 }

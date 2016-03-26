@@ -1,6 +1,7 @@
 import {map as asyncMap} from 'async';
 
 export function cleanNaiveTree({errors=[], validTree}, models, callback){
+  const contextualizers = [];
   let metadata;
   let naiveTree = Object.assign({}, validTree);
 
@@ -9,6 +10,12 @@ export function cleanNaiveTree({errors=[], validTree}, models, callback){
     naiveTree.resources = naiveTree.resources.filter(function(res, i){
       //catch metadata
       let validated;
+
+      //extract contextualizer descriptions
+      if(res.bibType === 'contextualizer'){
+        contextualizers.push(res);
+        return false;
+      }
       for(var type in models.sectionTypeModels.acceptedTypes){
 
         if(res.bibType === 'modulo'+type){
@@ -57,11 +64,11 @@ export function cleanNaiveTree({errors=[], validTree}, models, callback){
       errors = results.reduce((errors, result)=>{
         return errors.concat(result.errors);
       }, errors);
-      return callback(null, {errors, validTree : Object.assign({}, naiveTree, {metadata}, {children})});
+      return callback(null, {errors, validTree : Object.assign({}, naiveTree, {metadata}, {children}, {contextualizers})});
     });
   }else{
     // console.log('returning default ', naiveTree.name);
     errors = (errors.length > 0)?errors.reverse():null;
-    return callback(null, {errors, validTree : Object.assign({}, naiveTree, {metadata})});
+    return callback(null, {errors, validTree : Object.assign({}, naiveTree, {metadata}, {contextualizers})});
   }
 }

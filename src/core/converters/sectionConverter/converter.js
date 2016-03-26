@@ -7,7 +7,8 @@ import {propagateData} from './../../resolvers/propagateData';
 import {validateResources} from './../../validators/sectionValidator';
 import {cleanNaiveTree} from './../../resolvers/cleanNaiveTree';
 import {resolveSectionAgainstModels} from './../../resolvers/resolveSectionAgainstModels';
-
+import {markdownToContentsList} from './../markdownConverter'
+import {resolveContextualizations} from './../../resolvers/resolveContextualizations'
 //from documentSectionsList to fsTree
 export function serializeSection(section, callback){
 
@@ -64,11 +65,36 @@ export function parseSection({tree, parameters, parent, models}, callback){
         }, errors);
         cb(err, {errors, sections});
       });
+    },
+    //todo : substitute and populate templates
+    //parse markdown contents and organize them as blocks lists, and parse+resolve contextualization objects
+    function({errors, sections}, cb){
+      asyncMap(sections, function(section, callback){
+        markdownToContentsList(section, callback);
+      }, function(err, results){
+        let sections = results.map((result)=>{
+          return result.section;
+        });
+        errors = results.reduce((total, result) =>{
+          return errors.concat(result.errors);
+        }, errors);
+        cb(err, {errors, sections});
+      });
+    },
+    //(todo/ongoing) : validate contextualization objects against section resources availability + contextualizations models
+    function({errors, sections}, cb){
+      asyncMap(sections, function(section, callback){
+        resolveContextualizations({section, models}, callback);
+      }, function(err, results){
+        let sections = results.map((result)=>{
+          return result.section;
+        });
+        errors = results.reduce((total, result) =>{
+          return errors.concat(result.errors);
+        }, errors);
+        cb(err, {errors, sections});
+      });
     }
-    //todo : substitute and populate markdown templates calls against templates resources
-    //todo : parse markdown contents and organize them as blocks lists, and parse+resolve contextualization objects
-
-    //todo : validate contextualization objects against section resources availability + contextualizations models
     //all done - return a documentTree to use as data state in the app
   ], callback);
 }

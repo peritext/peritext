@@ -61,7 +61,7 @@ Check out [this resource](@my_resource_cite_key)
 
 When this is done, default contextualization params are automatically provided to specify a way to display this contextualization in the document (as an aside-caller, as a footnote caller, as a html-replacement caller (for bib references)).
 
-However, it is also possible to provide some params to specify how to contextualize the resource in the document. This is done by **following or preceding the resource contextualization call with a bibtex contextualization object.** Example :
+However, it is also possible to provide some params to specify how to contextualize the resource in the document. This is done by **following the resource contextualization call with a bibtex contextualization object.** Example :
 
 ```
 //possible params location #1
@@ -69,14 +69,8 @@ However, it is also possible to provide some params to specify how to contextual
 {params}
 
 //possible params location #2
-{params}
-![this resource](@my_resource_cite_key)
-
-//possible params location #3
 ![this resource](@my_resource_cite_key){params}
 
-//possible params location #4
-{params}![this resource](@my_resource_cite_key)
 ```
 
 ## Contextualizations syntax

@@ -56,6 +56,14 @@ Parsers helpers :
 * (markua-js ?)
 * zotero-bib-parser and bib-parser for ... bib parsing
 
+Exports : 
+* pdfkit : http://pdfkit.org/
+* phantomjs > pdf : http://www.feedhenry.com/server-side-pdf-generation-node-js/
+* wkhtmltopdf -> https://www.npmjs.com/package/wkhtmltopdf
+* **phantomjs-pdf** -> https://www.npmjs.com/package/phantomjs-pdf
+* epub --> https://www.npmjs.com/package/epub
+* indesign --> http://networkcultures.org/digitalpublishing/2014/05/15/import-html-into-indesign-via-xml/
+
 Interface components :
 
 * react head (html head metadata) --> https://github.com/nfl/react-helmet
@@ -347,10 +355,11 @@ React components hierarchy :
                 //technically they are all html blocks (possibly containing onclick and onscroll aside triggers)
                 {
                     html : '<html>',
-                    resourcesReferences : []//list of references to resources
+                    contextualizations : []//list of references to resources
                 }
             ],
             resources : [], //resources used in the section
+            contextualizations : []//the contextualizations lirary of the section
         },
     config : {
         assetsSource : {}, // metadata about sources (source type, user id, api key, root)

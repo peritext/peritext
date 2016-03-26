@@ -220,3 +220,130 @@ export function parseBibAuthors(str){
     return {firstName, lastName};
   })
 }
+
+//nested json-like bib objects
+export function parseBibContextualization(str){
+  const bracketsRE = /([^=^,]+)=(?:{)([^}]+)(?:}),?/g;
+  const quoteRE = /([^=^,]+)="([^"]+)",?/g;
+  const paramsObject = {};
+
+
+  str = str.substr(1, str.length - 2);
+  let match,
+      key,
+      expression,
+      subObject,
+      newObj;
+
+
+  while((match = bracketsRE.exec(str)) !== null){
+    key = match[1].trim();
+    expression = match[2].trim().split(',');
+    //simple
+    if (expression.length === 1){
+      paramsObject[key] = expression[0];
+    //nested
+    } else{
+      subObject = {};
+
+      let isArray;
+
+      expression = expression.map((exp) =>{
+        let split = exp.split('=');
+        if(split.length === 2){
+          isArray = false;
+          return {
+            key : split[0],
+            value : split[1]
+          }
+        } else {
+          isArray = true;
+          return exp;
+        }
+      });
+
+      if(!isArray){
+        subObject = expression.reduce((obj, exp)=>{
+          obj[exp.key] = exp.value;
+          return obj;
+        }, subObject);
+      }
+
+      newObj = Object.assign({}, subObject);
+
+      if(paramsObject[key] === undefined){
+        paramsObject[key] = newObj;
+      } else if(Array.isArray(paramsObject[key])){
+        paramsObject[key].push(newObj)
+      } else paramsObject[key] = [paramsObject[key], newObj];
+    }
+
+  }
+
+  while((match = quoteRE.exec(str)) !== null){
+    key = match[1].trim();
+    expression = match[2].trim();
+    paramsObject[key] = expression;
+  }
+
+
+  return paramsObject;
+}
+
+
+function resolveNested(subVal){
+  if(typeof subVal !== 'string'){
+    return subVal;
+  }
+  let expression = subVal.split(','),
+    subObject,
+    newObj;
+  //simple
+  if (expression.length === 1){
+    return subVal;
+  //nested
+  } else{
+    subObject = {};
+    let isArray;
+
+    expression = expression.map((exp) =>{
+      let split = exp.split('=');
+      if(split.length === 2){
+        isArray = false;
+        return {
+          key : split[0],
+          value : split[1]
+        }
+      } else {
+        isArray = true;
+        return exp;
+      }
+    });
+
+    if(!isArray){
+      subObject = expression.reduce((obj, exp)=>{
+        obj[exp.key] = exp.value;
+        return obj;
+      }, subObject);
+    }
+
+    newObj = Object.assign({}, subObject);
+    return newObj;
+  }
+}
+
+export function parseBibNestedValues(bibObject){
+  let newObject = Object.assign({}, bibObject);
+  let subVal, expression, subObject, newObj;
+  for(let i in newObject){
+    subVal = newObject[i];
+    // console.log('subval : ', subVal);
+    if(Array.isArray(subVal)){
+      bibObject[i] = newObject[i].map(resolveNested);
+    }else{
+      newObject[i] = resolveNested(newObject[i]);
+    }
+  }
+  // console.log(bibObject);
+  return newObject;
+}
