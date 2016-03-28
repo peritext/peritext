@@ -38,6 +38,54 @@ export function getResourceModel(bibType, resourceModels){
   }else return undefined;
 }
 
+
+export function serializePropAgainstType(prop, valueType, model){
+  let val;
+  if(prop === undefined){
+    return undefined;
+  }else switch(valueType){
+
+    case 'string':
+      return prop;
+    break;
+
+    case 'stringArray':
+      return prop.join(', ');
+    break;
+
+    case 'bibAuthorsArray':
+
+      return prop.map((author) =>{
+
+        if(author.firstName){
+          return author.firstName + ' {'+author.lastName + '}';
+        } else return author.lastName;
+      }).join('; ');
+    break;
+
+    case 'objectArray' : {
+      if(model.children && Array.isArray(prop)){
+        prop = prop.map((obj)=>{
+          if(typeof obj === 'object'){
+            let vals = Object.keys(obj).map((key)=>{
+              if(obj[key] !== undefined){
+                return key + '=' + obj[key];
+              }else return '';
+            });
+            return vals.filter((part)=>{return part.length}).join(',');
+          }else return undefined;
+        });
+        return prop;
+      }
+    }
+
+    default:
+      return prop;
+    break;
+  }
+}
+
+
 export function resolvePropAgainstType(prop, valueType, model){
   let val;
   if(prop === undefined){

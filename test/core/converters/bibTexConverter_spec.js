@@ -121,8 +121,10 @@ const serializationInput = {
 }
 
 const serializationOutput = `@incollection{in_collection,
-\tauthor = {Peter Farindon,Jimmy Hendrix},
-\tkeywords = {test1,test2},
+\tauthor = {Peter Farindon},
+\tauthor = {Jimmy Hendrix},
+\tkeywords = {test1},
+\tkeywords = {test2},
 \ttitle = {The title of the work},
 \tbooktitle = {The title of the book},
 \tpublisher = {The name of the publisher},

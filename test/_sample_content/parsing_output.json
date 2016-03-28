@@ -36,11 +36,6 @@
               "lastName": "De Mourat"
             }
           ],
-          "inheritedVerticallyFrom": {
-            "domain": "general",
-            "key": "citeKey",
-            "value": "mybook"
-          },
           "htmlHead": "<meta name='author' content='Robin De Mourat'>"
         },
         {
@@ -50,43 +45,23 @@
             "val1a, val1b, val2,val3,val4",
             "another random set of keywords"
           ],
-          "inheritedVerticallyFrom": {
-            "domain": "general",
-            "key": "citeKey",
-            "value": "partie_2"
-          },
           "htmlHead": "<meta name='keywords' content='val1a, val1b, val2,val3,val4,another random set of keywords'>"
         },
         {
           "domain": "general",
           "key": "date",
           "value": "2016",
-          "inheritedVerticallyFrom": {
-            "domain": "general",
-            "key": "citeKey",
-            "value": "mybook"
-          },
           "htmlHead": "<meta name='date' content='2016'>"
         },
         {
           "domain": "general",
           "key": "test",
-          "value": "test",
-          "inheritedVerticallyFrom": {
-            "domain": "general",
-            "key": "citeKey",
-            "value": "partie_2"
-          }
+          "value": "test"
         },
         {
           "domain": "general",
           "key": "hierarchicalLevel",
-          "value": 1,
-          "inheritedVerticallyFrom": {
-            "domain": "general",
-            "key": "citeKey",
-            "value": "partie_2"
-          }
+          "value": 1
         },
         {
           "domain": "dublincore",
@@ -290,7 +265,8 @@
             }
           ],
           "title": "My cool timeline",
-          "inheritedVerticallyFrom": "partie_2"
+          "citeKey": "cool_timeline",
+          "type": "timeline"
         },
         {
           "layer": {
@@ -298,15 +274,28 @@
             "data": "@source.data.dates",
             "labels": "@source.data.labels"
           },
-          "title": "My title"
+          "title": "My title",
+          "citeKey": 1,
+          "type": "timeline",
+          "describedInline": true
         },
         {
-          "pages": "12-13"
+          "pages": "12-13",
+          "citeKey": 2,
+          "type": "shortcitation",
+          "describedInline": true
         },
         {
-          "pages": "12-13"
+          "pages": "12-13",
+          "citeKey": 3,
+          "type": "shortcitation",
+          "describedInline": true
         },
-        {},
+        {
+          "citeKey": 4,
+          "type": "shortcitation",
+          "describedInline": true
+        },
         {
           "layer": [
             {
@@ -317,7 +306,10 @@
               "data": "@source2.data.dates",
               "labels": "@source2.data.labels"
             }
-          ]
+          ],
+          "citeKey": 5,
+          "type": "timeline",
+          "describedInline": true
         }
       ],
       "markdownContents": "# Welcome\n\n![A reference](@temporal_data){cool_timeline}\n\n\nI will talk about that[^]{with a footnote here} :\n\n![Another reference](@temporal_data){\n    type=\"timeline\",\n    layer={layertype=events,data=@source.data.dates,labels=@source.data.labels},\n    title=\"My title\"\n}\n\n\nAnd as says [](@martin_change_2002){pages=\"12-13\"}\n\nAnd for the footnotes, I want to say that Martin said that[^]{I'm referencing to [Martin](@martin_change_2002){pages=\"12-13\"} when he says : \"hello\"}\n\nI'm talking about a [reference](@martin_change_2002).\n\nNow let's say I want to link to this [timeline](@temporal_data){\n    type=\"timeline\",\n    layer={data=@source1.data.dates,labels=@source1.data.labels},\n    layer={data=@source2.data.dates,labels=@source2.data.labels},\n    caption=\"This is a text with {stuf} but it should work\"\n} and continue my paragraph quietly.\n\nWelcome to my awesome book.\n\nThanks to all !\n\nMomanddad\nThe dog\nMy imaginary friend Serge\n\n\nI am just there, not linked to ``content.md``. I should be put at the end of content by alphabetical order.\n\n\n",
@@ -425,7 +417,7 @@
           "inheritedVerticallyFrom": {
             "domain": "general",
             "key": "citeKey",
-            "value": "partie_2"
+            "value": "mybook"
           },
           "htmlHead": "<meta name='keywords' content='val1a, val1b, val2,val3,val4,another random set of keywords'>"
         },
@@ -447,7 +439,7 @@
           "inheritedVerticallyFrom": {
             "domain": "general",
             "key": "citeKey",
-            "value": "partie_2"
+            "value": "mybook"
           }
         },
         {
@@ -457,7 +449,7 @@
           "inheritedVerticallyFrom": {
             "domain": "general",
             "key": "citeKey",
-            "value": "partie_2"
+            "value": "mybook"
           }
         },
         {
@@ -636,7 +628,9 @@
             }
           ],
           "title": "My cool timeline",
-          "inheritedVerticallyFrom": "partie_2"
+          "inheritedVerticallyFrom": "mybook",
+          "citeKey": "cool_timeline",
+          "type": "timeline"
         }
       ],
       "markdownContents": "# This is part one\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nAn inline resource :\n\n\n\n* a first list level\n    - second list level\n* return to first list level\n",
@@ -674,11 +668,6 @@
               "lastName": "Francis"
             }
           ],
-          "inheritedVerticallyFrom": {
-            "domain": "general",
-            "key": "citeKey",
-            "value": "partie_2"
-          },
           "htmlHead": "<meta name='author' content='Westwood Viviane, Lalane Francis'>"
         },
         {
@@ -691,7 +680,7 @@
           "inheritedVerticallyFrom": {
             "domain": "general",
             "key": "citeKey",
-            "value": "partie_2"
+            "value": "mybook"
           },
           "htmlHead": "<meta name='keywords' content='val1a, val1b, val2,val3,val4,another random set of keywords'>"
         },
@@ -713,7 +702,7 @@
           "inheritedVerticallyFrom": {
             "domain": "general",
             "key": "citeKey",
-            "value": "partie_2"
+            "value": "mybook"
           }
         },
         {
@@ -723,7 +712,7 @@
           "inheritedVerticallyFrom": {
             "domain": "general",
             "key": "citeKey",
-            "value": "partie_2"
+            "value": "mybook"
           }
         },
         {
@@ -901,7 +890,9 @@
             }
           ],
           "title": "My cool timeline",
-          "inheritedVerticallyFrom": "partie_2"
+          "inheritedVerticallyFrom": "mybook",
+          "citeKey": "cool_timeline",
+          "type": "timeline"
         }
       ],
       "after": "partie_1",
@@ -1171,7 +1162,9 @@
             }
           ],
           "title": "My cool timeline",
-          "inheritedVerticallyFrom": "partie_2"
+          "inheritedVerticallyFrom": "partie_2",
+          "citeKey": "cool_timeline",
+          "type": "timeline"
         }
       ],
       "markdownContents": "# This is part two point two\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam nesciunt molestias hic error dignissimos blanditiis, quo, voluptas necessitatibus neque, aliquid cupiditate commodi sed dolor consequatur ipsum fugiat esse placeat illo.\n",

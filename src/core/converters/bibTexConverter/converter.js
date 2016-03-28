@@ -191,12 +191,15 @@ export function serializeBibTexObject(bibObject, callback){
   for(let key in bibObject){
     val = bibObject[key];
     if(Array.isArray(val)){
-      val = val.join(',');
-    }
-    if(key !== 'citeKey' && key !== 'bibType'){
+      val.forEach((value)=>{
+        str += '\t' + key + ' = {'+value+'},\n';
+      });
+      // val = val.join(',');
+    }else if(key !== 'citeKey' && key !== 'bibType'){
       str += '\t' + key + ' = {' + val + '},\n';
     }
   }
+  //removing the last coma
   if(str.length > 1){
     str = str.substr(0, str.length - 2);
   }

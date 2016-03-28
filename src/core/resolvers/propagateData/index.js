@@ -16,7 +16,7 @@ function inheritMetadataFromParent(section, sectionTypeModels, sections, parentM
 
   const parentKey = getMetaValue(parentMetadata, 'general', 'citeKey');
   section.metadata = section.metadata.concat(inherited.map((meta) =>{
-    return Object.assign(meta, {inheritedVerticallyFrom : {domain : 'general', key : 'citeKey', value : parentKey}})
+    return Object.assign({}, meta, {inheritedVerticallyFrom : {domain : 'general', key : 'citeKey', value : parentKey}})
   }));
 
   //set final bibType
@@ -53,6 +53,7 @@ function inheritMetadataFromParent(section, sectionTypeModels, sections, parentM
 
 function doInheritMetadataFromParent(section, sectionTypeModels, sections){
   if(section.parent && !section.metadataInherited){
+
     section.metadataInherited = true;
 
     let parent = findByMetadata(sections, 'general', 'citeKey', section.parent);
@@ -63,6 +64,9 @@ function doInheritMetadataFromParent(section, sectionTypeModels, sections){
     //then inherit yourself from your parent
     return inheritMetadataFromParent(section, sectionTypeModels, sections, parent.metadata);
   }else{
+    // if(getMetaValue(section.metadata, 'general', 'citeKey') === 'mybook'){
+    //   console.log(section.metadata);
+    // }
     section.metadataInherited = true;
     return section;
   }
@@ -80,7 +84,7 @@ function inheritResourcesFromParent(section, sections, parentResources, parentKe
   });
 
   section.resources = section.resources.concat(inherited.map((meta) =>{
-    return Object.assign(meta, {inheritedVerticallyFrom : parentKey})
+    return Object.assign({}, meta, {inheritedVerticallyFrom : parentKey})
   }));
   return section;
 }
@@ -112,7 +116,7 @@ function inheritContextualizersFromParent(section, sections, parentContextualize
   });
 
   section.contextualizers = section.contextualizers.concat(inherited.map((meta) =>{
-    return Object.assign(meta, {inheritedVerticallyFrom : parentKey})
+    return Object.assign({}, meta, {inheritedVerticallyFrom : parentKey})
   }));
   return section;
 }
@@ -272,6 +276,7 @@ export function propagateData({errors, sections, models, parent}, callback){
 
   //cleaning control properties
   sections.forEach((section) =>{
+
     delete section.metadataInherited;
     delete section.customizersInherited;
     delete section.resourcesInherited;
