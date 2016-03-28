@@ -1,18 +1,22 @@
 Modulo - *make a multimodal academic publication from simple text files*
 ==========
 
-Modulo is an "interfacing" application that turns flatfile contents coming from storing platforms into several types of academic publication : indexable webpage, pdf document, REST Api, embeddable widgets, ...
+![Modulo project in one image](https://raw.githubusercontent.com/robindemourat/modulo/master/specification/assets/modulo-project.png)
 
-Contents are written only once in plain text files (in ``markdown`` and ``bibtex`` syntaxes), and possibly hosted on several flatfile-structured data sources (ftp server, local files, google drive, amazon s3, ...).
 
-Modulo is designed to be a "reader" in the first place, though its structure would be able to allow later for connecting with or implementing inside the project a content-edition application.
+Modulo is an application aimed at facilitating the making of media-rich, data-driven and multimodal academic publication projects.
+
+To do so, it turns flatfile contents coming from web platforms into several formats of academic publishing : webtext, pdf document, REST Api,  ...
+
+Contents are written in plain text files (in ``markdown`` and ``bibtex`` syntaxes), and hosted mainly in external flatfile-structured data sources (ftp server, local files, google drive, amazon s3, ...).
+
+Modulo is designed to be a "reader" in the first place, though its structure allows for connecting it to a content-edition application.
 
 # Caution : Work In Progress
 
 Modulo is being rewritten at the moment as a source-agnostic, annotation-ready, and editor-ready, [universal javascript application](https://medium.com/@mjackson/universal-javascript-4761051b7ae9).
 
 See an implementation of the first, front-end only, version of Modulo there : http://modesofexistence.org/anomalies/ (source there : https://github.com/robindemourat/clues-anomaly-understanding )
-
 
 If you're curious about what's going on, [check here the in-progress modulo v2 working documents about markdown specification, contents structures and technical choices](https://github.com/robindemourat/modulo/tree/master/specification).
 
