@@ -228,7 +228,7 @@ export function parseBibContextualization(str){
   const paramsObject = {};
 
 
-  str = str.substr(1, str.length - 2);
+  str = str.substr(1, str.length - 2).replace(/&quot;/g, '"');;
   let match,
       key,
       expression,
@@ -337,13 +337,11 @@ export function parseBibNestedValues(bibObject){
   let subVal, expression, subObject, newObj;
   for(let i in newObject){
     subVal = newObject[i];
-    // console.log('subval : ', subVal);
     if(Array.isArray(subVal)){
-      bibObject[i] = newObject[i].map(resolveNested);
+      newObject[i] = bibObject[i].map(resolveNested);
     }else{
       newObject[i] = resolveNested(newObject[i]);
     }
   }
-  // console.log(bibObject);
   return newObject;
 }

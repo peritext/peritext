@@ -8,9 +8,11 @@ What it is supposed to add is the notion of resource specification, and resource
 
 # Ideas and principles
 
-## #1 : Grounded on Markua
+## #1 : Grounded on Markdown/Markua
 
 Modulo tends to be as simple and standard-compliant as possible by following the markdown Markua specification.
+
+For now, Modulo is based on classical Markdown standard (through the ``marked`` library) but it should switch to markua as soon as a stable implementation is provided.
 
 ## #2 : Templating
 
@@ -36,25 +38,27 @@ Resources are of 3 types :
 * figures
 * entities (or, in book vocab, glossary entries)
 
-Basically, resource description (all constant, non-changing properties) and resource contextualisation (how to display it at a specific point of the contents) are separated.
+Basically, resource description (all constant, non-changing properties) and resource contextualizers (how to display it at a specific point of the contents) are separated.
+
+Following that mindset, any alien content inside the main text is a *contextualization* of a *resource* through a *contextualizer*.
 
 Resource description can occur either in separate files or inside the content.md file of a modulo node.
 
 Resource contextualisation can occur only in a content.md file, as it is where it is instanciated and contextualized.
 
-# Language region #1 : Based on markua specification (and implementation ?)
+# Principle #1 : Based on markua specification (and implementation ?)
 
 Specification there : https://github.com/markuadoc/markua
 
 In-progress implementation there : https://github.com/markuadoc/markua-js
 
-# Language region #2 : intelligent contextualization
+# Principle #2 : intelligent contextualization
 
 ## Footnotes
 
 Model:
 ```
-I'm in the text[#][This is the footnote content]
+I'm in the text[^]{This is the footnote content}
 ```
 
 Description:
@@ -67,41 +71,27 @@ Translates to:
 
 <p class="footnote">
     <span class="footnote-marker">1</span>
-    <span class="footnote-delimitator">.</span>
     <span class="footnote-content">This is the footnote content</span>
 </p>
 ```
 
 
-## Inline quotes
 
-Inline quotes should be indicated in html as span elements.
-
-```
-He said "leave me"
-```
-
-Should translate to :
-
-```
-He said <span class="inline-quote">"leave me"</span>
-```
-
-
-### Quotes and resources linking
+## Quotes and resources linking
 
 #### Inline quotes
 
 This modulo assertion :
 
 ```
-When Berry writes that "digital must be unpacked" (@)[berry_understanding_2012,p12] ...
+When Martin writes ["it should not be done"](@martin_change_2002){pages="12-13"}
+
 ```
 
 Should translate to :
 
 ```
-When Berry writes that <span class="short-quote" author="David Berry" quote-id="berry_understanding_2012" quote-pages="12">digital must be unpacked"</span><span class="short-citation" id="berry_understanding_2012">(Berry, 2012, p. 12)</span> ...
+When Martin writes <q>it should not be done</q><cite>(Martin, 2012, pp. 12-13)</cite>
 ```
 
 #### Block quotes
@@ -110,7 +100,8 @@ This modulo assertion :
 
 ```
 > digital must be unpacked
-!(@)[berry_understanding_2012,p12]
+![](@berry_understanding_2012){page:12}
+
 ```
 
 Should translate to :
@@ -119,7 +110,6 @@ Should translate to :
 <blockquote class="short-quote" author="David Berry" quote-id="berry_understanding_2012" quote-pages="12">
 digital must be unpacked
 </blockquote>
-<sup><a>[1]</a></sup>
 ```
 
 
@@ -130,7 +120,7 @@ Modulo should be able to render metadata-based properties and generated contents
 
 This modulo assertion :
 ```
-$abstract$
+${abstract}
 ```
 
 Should translate to :
@@ -146,14 +136,14 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga eveniet nihil ab 
 
 Forseen templates :
 
-* $authors$ --> authors
-* $title$ --> title + subtitle
-* $title_simple$ --> title
-* $title_complete$ --> title, subtitle, authors
-* $general_title$ --> title of the book/thesis
-* $abstract$ --> abstract or description
-* $toc$ --> table of contents
-* $figures$ --> list of figures and their captions
+* ${authors} --> authors
+* ${title} --> title + subtitle
+* ${title_simple} --> title
+* ${title_complete} --> title, subtitle, authors
+* ${general_title} --> title of the book/thesis
+* ${abstract} --> abstract or description
+* ${toc} --> table of contents
+* ${figures} --> list of figures and their captions
 
 ## Multiple files inclusions
 
@@ -162,13 +152,13 @@ The template language should also allow to include external parts of text coming
 E.g. include the file ``subpart.md`` in a section :
 
 ```
-$include:subpart$
+${include:subpart}
 ```
 
 
-# Resources and figures
+# Resources and their contextualization
 
-## Resources and figures : global idea
+## Resources and their contextualization : global idea
 
 Resources are of 3 types :
 
@@ -202,7 +192,7 @@ As we will see, resources definition syntax stands on the shoulders of bibText s
 
 This means that data sources, persons, places, ... will all be encoded in bibText syntax, though with different properties.
 
-Therefore, **modulo resource definition syntax is not a brand new syntax but an extension of the bibText established syntax to data sources, images, entities, etc. and so on.**
+Therefore, **modulo resource definition syntax is not a brand new syntax but an extension of the bibText established syntax, extended to the description of data sources, images, entities, etc. and so on.**
 
 ## Where/how to define a resource
 
@@ -390,7 +380,7 @@ This corresponds by default to a short citation if not specified by the contextu
 
 Possible contextualization data :
 * display as short citation (eg *(Dupré, 1983)* or *[DUPRE]*)
-* page(s) being referenced
+* page(s) being referenced (eg *(Dupré, 1983, pp. 12-13)* or *[DUPRE, 12-13]*)
 * display as long citation
 
 
@@ -402,7 +392,7 @@ Note : abbreviations such as *ibid* should be automatically generated.
 
 This corresponds by default to a long citation (think bibliography-like display) if not specified by the contextualization data.
 
-## Media and URL resources
+## Media and URL resources : outside web should always be 2 clicks away
 
 This is where modulo aims at be constraining, and specifically fit for academic rigor.
 

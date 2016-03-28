@@ -1,31 +1,14 @@
-import {getResourceModel} from './../../utils/modelUtils';
+import {getResourceModel, resolvePropAgainstType} from './../../utils/modelUtils';
 import {getMetaValue, sameMetaScope} from './../../utils/sectionUtils';
-import {parseBibAuthors} from './../../converters/bibTexConverter';
 import {serializeHtmlMeta} from './../../resolvers/htmlMetaTemplateSerializer';
 
 
 
-function resolvePropAgainstType(prop, valueType){
-  switch(valueType){
-
-    case 'stringArray':
-      return prop.split(/,|;/).map((val)=>{return val.trim()});
-    break;
-
-    case 'bibAuthorsArray':
-      return parseBibAuthors(prop);
-    break;
-
-    default:
-      return prop;
-    break;
-  }
-}
 
 function processPropValue(prop, propertyModel){
   let cleanVal = prop.match(/^\{(.*)\}$|^\"(.*)\"$/);
   prop = (cleanVal)?cleanVal[1]:prop;
-  prop = resolvePropAgainstType(prop, propertyModel.valueType);
+  prop = resolvePropAgainstType(prop, propertyModel.valueType, propertyModel);
   return prop;
 }
 
@@ -41,7 +24,7 @@ export function resolveSectionAgainstModels(section, models, callback){
         if(propModel.required && !resource[key]){
           errors.push(new Error('property ' + key+ ' is required in resource '+resource.citeKey+' and not present'));
         }else if(resource[key]){
-          resolvedResource[key] = resolvePropAgainstType(resource[key], propModel.valueType);
+          resolvedResource[key] = resolvePropAgainstType(resource[key], propModel.valueType, propModel);
         }
         return resolvedResource;
       }, {});
@@ -66,12 +49,12 @@ export function resolveSectionAgainstModels(section, models, callback){
       if(Array.isArray(metadata.value)){
         metadata.value = metadata.value.map((val, j)=>{
           if(typeof metadata.value === 'string')
-           return resolvePropAgainstType(val, model.valueType);
+           return resolvePropAgainstType(val, model.valueType, model);
           else return val;
         });
 
       }else if(typeof metadata.value === 'string'){
-        metadata.value = resolvePropAgainstType(metadata.value, model.valueType);
+        metadata.value = resolvePropAgainstType(metadata.value, model.valueType, model);
       }
 
       if(model.headTemplate){

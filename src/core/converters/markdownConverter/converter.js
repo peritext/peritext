@@ -1,7 +1,5 @@
 var marked = require('marked');
-var cheerio = require('cheerio');
 import {parseBibContextualization, parseBibNestedValues} from './../bibTexConverter';
-import {getMetaValue} from './../../utils/sectionUtils';
 
 //basic marked parser
 marked.setOptions({
@@ -16,6 +14,7 @@ marked.setOptions({
 });
 
 function eatParamsObject(str){
+  // str = str
   let index = 0,
       wrappingLevel = 0,
       paramsObject = '',
@@ -47,139 +46,269 @@ function eatParamsObject(str){
   return undefined;
 }
 
-const analyzeCalls = function($, el, child, paragraphIndex, contextualizationCount, parentKey){
-  const html = $(el);
-  const inline = html.find('a');
-  const block = html.find('img');
 
-  child.notes = [];
-  child.contextualizations = [];
-  const contextualizers = [];
-  let noteIndex = 1,
-      footnoteId,
-      inlineText,
-      inlineHref,
-      rawParams = [],
+
+function eatFootnotes(outputHtml){
+  let footnotes = [],
+      footnotesCount = 0,
+      newEl,
+      footnoteContent,
+      index = 0,
+      displace = 0,
+      beginIndex,
+      endIndex,
+      nestingLevel = 0,
+      ch;
+
+
+  while(outputHtml.substr(displace).indexOf('[^]{') > -1){
+    index = displace + outputHtml.substring(displace).indexOf('[^]{') + 4;
+    beginIndex = index;
+    nestingLevel = 1;
+
+
+    while(index < outputHtml.length && nestingLevel > 0){
+      ch = outputHtml.charAt(index);
+      if(ch === '{'){
+        nestingLevel++;
+      } else if(ch === '}'){
+        nestingLevel--;
+      }
+      index++;
+    }
+    // console.log('content begining : ', outputHtml.substr(beginIndex))
+
+
+    // console.log('content after : ', outputHtml.substr(index));
+    footnoteContent = outputHtml.substring(beginIndex, index - 1);
+    footnotesCount++;
+    footnotes.push({
+      content : '<sup class="note"><span class="footnote-number">'+footnotesCount+'</span><a id="#note_'+footnotesCount+'" href="#notepointer_'+footnotesCount+'">'+footnoteContent+'</a></sup>',
+      footnoteNumber : footnotesCount
+    });
+    newEl = '<sup class="note_pointer"><a id="#notepointer_'+footnotesCount+'" href="#note_'+footnotesCount+'"><span class="footnote-number">'+footnotesCount+'</span></a></sup>';
+    outputHtml = outputHtml.substr(0, beginIndex - 4) + newEl + outputHtml.substr(index);
+
+
+    displace = index;
+  }
+
+  return {footnotes, outputHtml};
+}
+
+function eatContextualizations(outputHtml){
+
+
+  const inlineContextRE = /<a href="@(.*)">(.*)<\/a>/g,
+        blockContextRE = /<img src="@(.*)" alt="(.*)">/g;
+
+  let match,
+      contextualizationCount = 0,
       contextualizerKey,
-      count = 0;
+      contextualizers = [],
+      contextualizations = [],
+      paramsObject,
+      newEl,
+      footnoteContent;
 
-  inline.each(function(i, el){
-    inlineText = $(this).text();
-    inlineHref = $(this).attr('href');
-    if(inlineText === '^'){
-      let content = marked(inlineHref);
-      footnoteId = 'note_' + paragraphIndex + '_' + noteIndex;
-      child.notes.push({
-        html : content,
-        id : footnoteId,
-        paragraphIndex : paragraphIndex,
-        noteIndex : noteIndex
-      });
 
-      let newSpan = '<sup class="note-pointer"><a href="#note_'+paragraphIndex + '_' + noteIndex
-                    + '">' + noteIndex + '</a></sup>'
-      $(this).replaceWith($(newSpan))
-
-      // $(this).attr('href', footnoteId);
-      // $(this).text(noteIndex);
-      noteIndex ++;
-
-    } else if(inlineHref.indexOf('@') === 0){
-      let els = $(html).contents().filter(function(j) {
-          return this.nodeType == 3 && j >= i + 2;
-      });
-      let paramsObject = eatParamsObject(els.text());
-      if(paramsObject){
-        //reference to contextualization set as reference
-        if(paramsObject.indexOf('=') === -1){
-          contextualizerKey = paramsObject.match(/^\{([^}]+)\}$/)[1]
-          //parse contexutalization
-        }else{
-          let formattedParams = parseBibContextualization(paramsObject);
-          contextualizationCount ++;
-          contextualizerKey = parentKey + '_' + contextualizationCount;
-          formattedParams.citeKey = contextualizerKey;
-          contextualizers.push(formattedParams);
-        }
-        child.contextualizations.push({
-            'contextualizer' : contextualizerKey,
-            resources : $(this).attr('href').replace('@', '').split(','),
-            type : 'inline'
-          });
-        $(this).attr('contextualization', count);
-        rawParams.push(paramsObject);
-        count++;
-      }
+  //parse block contextualizations
+  while((match = blockContextRE.exec(outputHtml)) !== null){
+    paramsObject = eatParamsObject(outputHtml.substr(match.index + match[0].length));
+    if(paramsObject.indexOf('=') === -1){
+      contextualizerKey = paramsObject.match(/^\{([^}]+)\}$/)[1]
+      //parse contexutalization
+    }else{
+      let formattedParams = parseBibContextualization(paramsObject);
+      contextualizationCount ++;
+      contextualizerKey = contextualizationCount;
+      formattedParams.citeKey = contextualizerKey;
+      formattedParams.describedInline = true;
+      formattedParams.resources = match[1].replace('@', '').split(',');
+      contextualizers.push(formattedParams);
     }
-  });
-  let imgSrc,
-      imgAlt;
-  block.each(function(i, el){
-    imgSrc = $(this).attr('src');
-    imgAlt = $(this).attr('alt');
-    if(imgSrc.indexOf('@') === 0){
-      let els = $(html).contents().filter(function(j) {
-          return this.nodeType == 3 && j >= i + 1;
+    contextualizations.push({
+      'contextualizer' : contextualizerKey,
+      resources : match[1].replace('@', '').split(','),
+      type : 'block'
+    });
+    newEl = '<blockcontext resources="@'+match[1]+'" contextualizer="'+contextualizerKey+'">'+match[2]+'</blockcontext>';
+    outputHtml = outputHtml.substr(0, match.index) + newEl + outputHtml.substr(match.index + match[0].length + paramsObject.length);
+  }
+
+  //parse inline contextualizations
+  while((match = inlineContextRE.exec(outputHtml)) !== null){
+    paramsObject = eatParamsObject(outputHtml.substr(match.index + match[0].length));
+
+    //contextualizer call
+    if(paramsObject && paramsObject.indexOf('=') === -1){
+      contextualizerKey = paramsObject.match(/^\{([^}]+)\}$/)[1]
+    //contextualizer inline definition
+    }else if(paramsObject){
+      let formattedParams = parseBibContextualization(paramsObject);
+      contextualizationCount ++;
+      contextualizerKey = contextualizationCount;
+      formattedParams.citeKey = contextualizerKey;
+      formattedParams.describedInline = true;
+      formattedParams.resources = match[1].replace('@', '').split(',');
+      contextualizers.push(formattedParams);
+    //no contextualizer
+    }else{
+      contextualizationCount ++;
+      contextualizerKey = contextualizationCount;
+      contextualizers.push({
+        citeKey : contextualizerKey,
+        describedInline : true,
+        resources : match[1].replace('@', '').split(',')
       });
-      // console.log(els.text());
-      let paramsObject = eatParamsObject(els.text());
-      if(paramsObject){
-        //reference to contextualization set as reference
-        if(paramsObject.indexOf('=') === -1){
-          contextualizerKey = paramsObject.match(/^\{([^}]+)\}$/)[1]
-          //parse contexutalization
-        }else{
-          let formattedParams = parseBibContextualization(paramsObject);
-          contextualizationCount ++;
-          contextualizerKey = parentKey + '_' + contextualizationCount;
-          formattedParams.citeKey = contextualizerKey;
-          contextualizers.push(formattedParams);
-        }
-        child.contextualizations.push({
-            'contextualizer' : contextualizerKey,
-            resources : imgSrc.replace('@', '').split(','),
-            type : 'block'
-          });
-        let newDiv = '<span class="block-contextualization" contextualization="'
-                      +count + '">' + imgAlt + '</span>';
-        $(this).replaceWith($(newDiv));
-        rawParams.push(paramsObject);
-        count++;
-      }
+      paramsObject = '';
     }
-  });
+    contextualizations.push({
+      'contextualizer' : contextualizerKey,
+      resources : match[1].replace('@', '').split(','),
+      type : 'inline'
+    });
+    newEl = '<inlinecontext resources="@'+match[1]+'" contextualizer="'+contextualizerKey+'">'+match[2]+'</inlinecontext>';
+    outputHtml = outputHtml.substr(0, match.index) + newEl + outputHtml.substr(match.index + match[0].length + paramsObject.length);
+  }
+  return {contextualizers, contextualizations, newHtml : outputHtml};
+}
 
-  let newHtml = $(html).toString();
-  newHtml = rawParams.reduce((html, paramsObject) => {
-    let obj = $('<div>' + paramsObject + '</div>').html();
-    return html.replace(obj, '');
-  }, newHtml);
+
+function eatBlock(sub, REobj, match){
+  let tag = match[0].split('<')[1],
+      closingTag = '</'+tag+'>',
+      closingIndex,
+      outputHtml;
+
+  if(REobj.tagType === 'blockcontext'){
+    tag = '<blockcontext';
+    closingTag = '</blockcontext>';
+    let openingIndex = sub.indexOf(tag);
+    closingIndex = sub.indexOf(closingTag);
+    outputHtml = sub.substr(openingIndex, closingIndex + closingTag.length - 4);
+  } else if(!REobj.nested){
+    closingIndex = sub.indexOf(closingTag);
+    outputHtml = sub.substr(0, closingIndex + closingTag.length);
+  }else{
+    outputHtml = '';
+    let nestingLevel = 0,
+        openingTag = '<'+tag;
+
+    let nestedBegin,
+        nestedEnd,
+        index = 0;
+
+    do{
+      nestedBegin = sub.substr(index).indexOf(openingTag);
+      nestedEnd = sub.substr(index).indexOf(closingTag);
+      //nest
+      if(nestedBegin !== -1 && nestedBegin < nestedEnd){
+        nestingLevel++;
+        index = index + nestedBegin + openingTag.length;
+      }else{
+        nestingLevel --;
+        index = index + nestedEnd + closingTag.length;
+      }
+    }while (nestingLevel > 0 && index < sub.length);
+    outputHtml = sub.substr(0, index);
+  }
+
+   return {newIndex : outputHtml.length, element : {html:outputHtml.trim(), tagType : REobj.tagType}};
+}
 
 
-  child.html = newHtml;
+function divideHtmlInBlocks(outputHtml){
+  const html = outputHtml;
+  const blocksRE = [
+    {
+      tagType : 'blockcontext',
+      RE : /^(?:[\s]*)(<p><blockcontext)/g,
+      nested : false
+    },
+    {
+      tagType : 'p',
+      RE : /^(?:[\s]*)(<p)/g,
+      nested : false
+    },
+    {
+      tagType : 'ul',
+      RE : /^(?:[\s]*)(<ul)/g,
+      nested : true
+    },
+    {
+      tagType : 'heading',
+      RE : /^(?:[\s]*)(<h([\d]))/g,
+      nested : false
+    },
+    {
+      tagType : 'pre',
+      RE : /^(?:[\s]*)(<pre)/g,
+      nested : false
+    },
+    {
+      tagType : 'blockquote',
+      RE : /^(?:[\s]*)(<blockquote)/g,
+      nested : false
+    },
+    {
+      tagType : 'table',
+      RE : /^(?:[\s]*)(<table)/g,
+      nested : false
+    }
+  ]
 
-  return {child, contextualizers, newContextualizationCount : contextualizationCount};
+
+  let index = 0,
+      elements = [],
+      match,
+      sub;
+
+  while(index < html.length){
+    sub = html.substr(index);
+
+    //find block type
+    blocksRE.some((REobj)=>{
+      match = sub.match(REobj.RE);
+      if(match){
+        const {newIndex, element} = eatBlock(sub, REobj, match);
+        index += newIndex;
+        elements.push(element);
+        sub = undefined;//used as marker that block has been processed
+        return true;
+      }else{
+        return false;
+      }
+    });
+
+    //security : continue parsing if no block found (should not happen though ...)
+    if(sub){
+      index++;
+    }
+  }
+  return elements;
+}
+
+
+
+function eatHtml(html){
+  const {contextualizers, contextualizations, newHtml} = eatContextualizations(html);
+  const {footnotes, outputHtml} = eatFootnotes(newHtml);
+  const elements = divideHtmlInBlocks(outputHtml);
+  return {contentBlocks : elements, contextualizers, footnotes, contextualizations};
 }
 
 export function markdownToContentsList(section, callback){
   const errors = [];
-  section.markdownContents = section.contents;
 
+  section.markdownContents = section.contents;
   section.contextualizers = section.contextualizers.map(parseBibNestedValues);
 
-  let contents = marked(section.contents),
-      $ = cheerio.load('<div id="parent">'+contents+'</div>'),
-      childrenEl = $('#parent').children(),
-      children = [],
-      contextualizationCount = 1;
-  childrenEl.each(function(i, el){
-    let {child, contextualizers, newContextualizationCount} = analyzeCalls($, this, {}, i, contextualizationCount, getMetaValue(section.metadata, 'general', 'citeKey'));
-    contextualizationCount = newContextualizationCount;
-    section.contextualizers = section.contextualizers.concat(contextualizers);
-    children.push(child);
-  });
-
-  section.contents = children;
+  const {contentBlocks, contextualizers, footnotes, contextualizations} = eatHtml(marked(section.contents));
+  section.footnotes = footnotes;
+  section.contents = contentBlocks;
+  section.contextualizers = section.contextualizers.concat(contextualizers);
+  section.contextualizations = contextualizations;
 
   callback(null, {errors, section});
 }

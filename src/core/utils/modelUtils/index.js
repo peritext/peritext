@@ -1,3 +1,4 @@
+import {parseBibAuthors} from './../../converters/bibTexConverter';
 
 
 export function getResourceModel(bibType, resourceModels){
@@ -35,4 +36,49 @@ export function getResourceModel(bibType, resourceModels){
 
     return Object.assign({}, model, {properties});
   }else return undefined;
+}
+
+export function resolvePropAgainstType(prop, valueType, model){
+  let val;
+  if(prop === undefined){
+    return undefined;
+  }else switch(valueType){
+
+    case 'string':
+      if(model.values){
+        //nominal set of possible values
+        val = model.values.some((mval)=>{
+          return mval === prop;
+        });
+        return val;
+      }else return prop;
+    break;
+
+    case 'stringArray':
+      return prop.split(/,|;/).map((val)=>{return val.trim()});
+    break;
+
+    case 'bibAuthorsArray':
+      return parseBibAuthors(prop);
+    break;
+
+    case 'objectArray' : {
+      if(model.children && Array.isArray(prop)){
+        prop = prop.map((obj)=>{
+          if(typeof obj === 'object'){
+            obj = model.children.reduce((o, childModel) =>{
+              o[childModel.key] = resolvePropAgainstType(obj[childModel.key], childModel.valueType, childModel);
+              return o;
+            }, {});
+            return obj;
+          }else return undefined;
+        });
+        return prop;
+      }
+    }
+
+    default:
+      return prop;
+    break;
+  }
 }

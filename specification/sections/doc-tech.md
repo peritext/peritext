@@ -59,7 +59,7 @@ Parsers helpers :
 Exports : 
 * pdfkit : http://pdfkit.org/
 * phantomjs > pdf : http://www.feedhenry.com/server-side-pdf-generation-node-js/
-* wkhtmltopdf -> https://www.npmjs.com/package/wkhtmltopdf
+* **wkhtmltopdf** -> https://www.npmjs.com/package/wkhtmltopdf
 * **phantomjs-pdf** -> https://www.npmjs.com/package/phantomjs-pdf
 * epub --> https://www.npmjs.com/package/epub
 * indesign --> http://networkcultures.org/digitalpublishing/2014/05/15/import-html-into-indesign-via-xml/

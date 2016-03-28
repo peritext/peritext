@@ -9,16 +9,102 @@
       "defaultType" : "table"
     }
   ],
-  "types" : {
-    "timeline" : {
-      "defaultParams" : {
-
+  "collective" : {
+      "common" : {
+        "properties" : [
+          {
+            "key" : "title",
+            "valueType" : "string",
+            "required" : false
+          },
+          {
+            "key" : "inheritedVerticallyFrom",
+            "valueType" : "string",
+            "required" : false
+          }
+        ]
+      },
+      "figureContextualizer" : {
+        "properties" : [
+          {
+            "key" : "title",
+            "valueType" : "string",
+            "required" : true
+          }
+        ]
+      },
+      "bibliographicContextualizer" : {
+        "properties" : [
+        ]
       }
     },
-    "table" : {
-      "defaultParams" : {
+  "individual" : {
+    "shortcitation" : {
+      "properties" : [
+        {
+          "key" : "pages",
+          "valueType" : "string",
+          "required" : false
+        },
+        {
+          "key" : "page",
+          "valueType" : "string",
+          "required" : false
+        }
+      ],
+      "categories" : ["bibliographicContextualizer"]
+    },
+    "timeline" : {
+      "properties" : [
+        {
+          "key" : "layer",
+          "valueType" : "objectArray",
+          "required" : true,
+          "children" : [
+            {
+              "key" : "data",
+              "valueType" : "string",
+              "required" : true
+            },
+            {
+              "key" : "labels",
+              "valueType" : "string",
+              "required" : false
+            },
+            {
+              "key" : "title",
+              "valueType" : "string",
+              "required" : false
+            },
+            {
+              "key" : "layertype",
+              "valueType" : "string",
+              "required" : false,
+              "values" : [
+                "events",
+                "periods",
+                "metrics"
+              ]
+            }
+          ]
+        },
+        {
+          "key" : "disposition",
+          "valueType" : "string",
+          "required" : false,
+          "values" : [
+            "superpose",
+            "juxtapose"
+          ]
+        }
 
-      }
+      ],
+      "categories" : ["figureContextualizer"]
+    },
+    "table" : {
+      "properties" : [
+      ],
+      "categories" : ["figureContextualizer"]
     }
   }
 }

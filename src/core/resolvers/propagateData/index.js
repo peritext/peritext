@@ -102,13 +102,12 @@ function doInheritResourcesFromParent(section, sections){
   }
 }
 
-function inheritContextualizationsFromParent(section, sections, parentContextualizations, parentKey){
-  if(parentContextualizations === undefined){
+function inheritContextualizersFromParent(section, sections, parentContextualizers, parentKey){
+  if(parentContextualizers === undefined){
     return section;
   }
-
-  //inherit meta props - take anything that you don't already have
-  const inherited = parentContextualizations.filter((presource) =>{
+  //inherit context props - take anything that you don't already have
+  const inherited = parentContextualizers.filter((presource) =>{
     return !hasResource(section.contextualizers, presource);
   });
 
@@ -119,7 +118,7 @@ function inheritContextualizationsFromParent(section, sections, parentContextual
 }
 
 
-function doInheritContextualizationsFromParent(section, sections){
+function doInheritContextualizersFromParent(section, sections){
   if(section.parent && !section.contextualizersInherited){
     section.contextualizersInherited = true;
     let parent = findByMetadata(sections, 'general', 'citeKey', section.parent);
@@ -128,7 +127,7 @@ function doInheritContextualizationsFromParent(section, sections){
       parent = doInheritResourcesFromParent(section, sections);
     }
     //then inherit yourself from your parent
-    return inheritContextualizationsFromParent(section, sections, parent.contextualizers, getMetaValue(parent.metadata, 'general', 'citeKey'));
+    return inheritContextualizersFromParent(section, sections, parent.contextualizers, getMetaValue(parent.metadata, 'general', 'citeKey'));
   }else{
     section.contextualizersInherited = true;
     return section;
@@ -220,7 +219,7 @@ export function propagateData({errors, sections, models, parent}, callback){
       section.resourcesInherited = true;
       section.contextualizersInherited = true;
       section = inheritResourcesFromParent(section, sections, inheritedResources, parentKey);
-      section = inheritContextualizationsFromParent(section, sections, inheritedContextualizations, parentKey);
+      section = inheritContextualizersFromParent(section, sections, inheritedContextualizations, parentKey);
       section = inheritMetadataFromParent(section, models.sectionTypeModels, sections, inheritedMetadata);
     });
     //inherit resources from arguments
@@ -258,7 +257,7 @@ export function propagateData({errors, sections, models, parent}, callback){
 
   //inherit contextualizers from parents to children
   sections = sections.map((section) =>{
-    return doInheritContextualizationsFromParent(section, sections);
+    return doInheritContextualizersFromParent(section, sections);
   });
 
   //inherit customizers form parents to children

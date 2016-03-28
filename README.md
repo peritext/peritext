@@ -1,11 +1,11 @@
 Modulo - *make a multimodal academic publication from simple text files*
 ==========
 
-Modulo is a *pure interface* application that turns flatfile contents into several forms of output academic publication forms : indexable webpage, print/pdf document, REST Api, embeddable widgets, ...
+Modulo is an "interfacing" application that turns flatfile contents coming from storing platforms into several types of academic publication : indexable webpage, pdf document, REST Api, embeddable widgets, ...
 
 Contents are written only once in plain text files (in ``markdown`` and ``bibtex`` syntaxes), and possibly hosted on several flatfile-structured data sources (ftp server, local files, google drive, amazon s3, ...).
 
-Modulo is designed to be a "reader" in the first place, though its structure would allow later for connecting with /implementing an edition application.
+Modulo is designed to be a "reader" in the first place, though its structure would be able to allow later for connecting with or implementing inside the project a content-edition application.
 
 # Caution : Work In Progress
 
@@ -30,8 +30,8 @@ To do so, the tool reads as input some simple text files (and possibly annotatio
 Contextualization-related goals :
 
 1. **feature all the richness of the web while respecting academic needs** : first of all, Modulo's main goal is to allow users to take the maximum advantage of the web as input (in terms of data sources, media, ...) and as output (as printable webpage, API-served data, embedded widget, mobile-friendly app, ...) - while encouraging writers to document and design the use of all of this richness according to academic rigorousness standards
-1. **resources+contextualizations mental model** : one of the core intellectual endeavours at the origin of Modulo is a reflection about the future of the "editorial figure" notion in digital publishing environments. In order to reflect on this issue through practice, Modulo proposes to reframe "figures" as the encounter between one or several given "resources" and their "contextualization" through a set of parameters. Following this model and giving an example, a data visualization inserted inside the core content will be written as the contextualization of a data source featuring temporal data (more explanation to come)
-1. **standard syntaxes extension** : Modulo writing syntax tries to ground on existing standards' specifications (e.g. : ``bibtex``, ``markdown``) and to extend them for the sake of the specific needs of academic publication projects
+1. **resources+contextualizations mental model** : one of the core intellectual endeavours at the origin of Modulo is a reflection about the future of the "editorial figure" notion in digital publishing environments. In order to reflect on this issue through practice, Modulo proposes to reframe "figures" as the *contextualization* of one or several given *resources*  through a set of parameters called a *contextualizer*. Following this model and giving an example, a data visualization inserted inside the core content will be written as the contextualization of a data source featuring temporal data through a *timeline* contextualizer
+1. **standard syntaxes extension** : Modulo writing syntax tries to ground on existing standard specifications (e.g. : ``bibtex``, ``markdown``) and to extend them for the sake of the specific needs of multimodal academic publication projects
 
 Flexibility-related goals :
 
