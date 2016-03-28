@@ -10,7 +10,7 @@ import {resolveSectionAgainstModels} from './../../resolvers/resolveSectionAgain
 import {markdownToContentsList} from './../markdownConverter'
 import {resolveContextualizations} from './../../resolvers/resolveContextualizations'
 //from documentSectionsList to fsTree
-export function serializeSection(section, callback){
+export function serializeSection(sectionList, callback){
 
 }
 

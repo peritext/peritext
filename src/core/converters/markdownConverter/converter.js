@@ -111,7 +111,6 @@ function eatContextualizations(outputHtml){
       newEl,
       footnoteContent;
 
-
   //parse block contextualizations
   while((match = blockContextRE.exec(outputHtml)) !== null){
     paramsObject = eatParamsObject(outputHtml.substr(match.index + match[0].length));
@@ -132,7 +131,7 @@ function eatContextualizations(outputHtml){
       resources : match[1].replace('@', '').split(','),
       type : 'block'
     });
-    newEl = '<blockcontext resources="@'+match[1]+'" contextualizer="'+contextualizerKey+'">'+match[2]+'</blockcontext>';
+    newEl = '<blockcontext resources="@'+match[1]+'" contextualizer="'+contextualizerKey+'" contextualization-index='+(contextualizations.length - 1)+'>'+match[2]+'</blockcontext>';
     outputHtml = outputHtml.substr(0, match.index) + newEl + outputHtml.substr(match.index + match[0].length + paramsObject.length);
   }
 
@@ -168,7 +167,7 @@ function eatContextualizations(outputHtml){
       resources : match[1].replace('@', '').split(','),
       type : 'inline'
     });
-    newEl = '<inlinecontext resources="@'+match[1]+'" contextualizer="'+contextualizerKey+'">'+match[2]+'</inlinecontext>';
+    newEl = '<inlinecontext resources="@'+match[1]+'" contextualizer="'+contextualizerKey+'" contextualization-index='+(contextualizations.length - 1)+'>'+match[2]+'</inlinecontext>';
     outputHtml = outputHtml.substr(0, match.index) + newEl + outputHtml.substr(match.index + match[0].length + paramsObject.length);
   }
   return {contextualizers, contextualizations, newHtml : outputHtml};
@@ -256,8 +255,7 @@ function divideHtmlInBlocks(outputHtml){
       RE : /^(?:[\s]*)(<table)/g,
       nested : false
     }
-  ]
-
+  ];
 
   let index = 0,
       elements = [],

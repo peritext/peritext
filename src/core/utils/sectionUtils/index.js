@@ -25,7 +25,7 @@ export function hasMeta(metaList, domain, key){
     return getMetaValue(metaList, domain, key) !== undefined;
   }else if(domain.domain){
     return getMetaValue(metaList, domain.domain, domain.key) !== undefined;
-  }else throw new Error('hasMeta method needs either a domain+key pair or a metadata prop object')
+  }else throw new Error('error in couple '+domain+'_'+key+': hasMeta method needs either a domain+key pair or a metadata prop object')
 }
 
 export function findByMetadata(sections, domain, key, value) {

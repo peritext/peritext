@@ -28,7 +28,13 @@ export function resolveContextualizations({section, models}, cb){
             contextualizer.type = models.resourceModels.individual[source.bibType].default_contextualizer_block;
           }
         }else{
-         errors.push(new Error('could not determine contextualizer type of contextualization '+contextualizer));
+         errors.push({
+            type : 'error',
+            preciseType : 'invalidContextualizer',
+            sectionCiteKey : getMetaValue(section.metadata, 'general', 'citeKey'),
+            contextualizerCiteKey : contextualizer.citeKey,
+            message : 'could not determine contextualizer type of contextualizer '+contextualizer.citeKey
+          });
          return undefined;
        }
       }//else if (contextualize.resources.length > 1){
@@ -44,8 +50,6 @@ export function resolveContextualizations({section, models}, cb){
       return obj;
     }, {});
 
-    // console.log(contextualizer);
-
     return contextualizer;
   });
 
@@ -57,7 +61,12 @@ export function resolveContextualizations({section, models}, cb){
       if(hasResource(section.resources, {citeKey : res})){
         return true;
       }else  {
-        errors.push(new Error('resource ' + res + ' was asked in a contextualization but was not found'));
+        errors.push({
+            type : 'error',
+            preciseType : 'invalidContextualization',
+            sectionCiteKey : getMetaValue(section.metadata, 'general', 'citeKey'),
+            message : 'resource ' + res + ' was asked in a contextualization but was not found'
+          });
         return ok = false;
       }
     });

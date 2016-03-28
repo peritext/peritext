@@ -10,7 +10,13 @@ export function validateResources(section, models, callback){
     //validate resources unicity
     let other = filterResources(section.resources, 'citeKey', resource.citeKey);
     if(other.length > 1){
-      errors.push(new Error('Resource ID ', resource.citeKey, 'is not unique for section ', getMetaValue(section.metadata, 'general', 'citeKey')))
+      errors.push({
+        type : 'error',
+        preciseType : 'invalidResource',
+        sectionCiteKey : getMetaValue(section.metadata, 'general', 'citeKey'),
+        resourceCiteKey : resource.citeKey,
+        message : 'Resource ID '+ resource.citeKey+ 'is not unique'
+      })
     }
   });
 

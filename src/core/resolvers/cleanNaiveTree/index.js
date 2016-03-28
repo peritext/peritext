@@ -34,7 +34,13 @@ export function cleanNaiveTree({errors=[], validTree}, models, callback){
       }
       //if not validated, record error and don't take resource
       if(!validated){
-        errors.push(new Error('could not find resource type ' + type.bibType + ' in modulo models for folder ' + naiveTree.name));
+        errors.push({
+          type : 'error',
+          preciseType : 'invalidResource',
+          sectionCiteKey : getMetaValue(section.metadata, 'general', 'citeKey'),
+          resourceCiteKey : resource.citeKey,
+          message : 'could not find resource type '+type.bibType+' for Resource ID '+ resource.citeKey
+        });
         return false;
       }else{
         return true;
@@ -42,7 +48,11 @@ export function cleanNaiveTree({errors=[], validTree}, models, callback){
     });
   }
   if(metadata === undefined && naiveTree.name.charAt(0) !== '_'){
-    errors.push(new Error ('no metadata specified for the folder '+ naiveTree.name));
+    errors.push({
+          type : 'error',
+          preciseType : 'metadataError',
+          message : 'no metadata specified for the folder '+ naiveTree.name
+        });
     errors = (errors.length > 0)?errors.reverse():null;
     return callback(null, {errors, validTree :  undefined});
   }else if(naiveTree.children){

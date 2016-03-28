@@ -1,6 +1,10 @@
 {
   "errors": [
-    {},
+    {
+      "type": "error",
+      "preciseType": "metadataError",
+      "message": "no metadata specified for the folder empty_folder"
+    },
     {},
     {}
   ],
@@ -157,7 +161,7 @@
           "tagType": "heading"
         },
         {
-          "html": "<blockcontext resources=\"@temporal_data\" contextualizer=\"cool_timeline\">A reference</blockcontext>",
+          "html": "<blockcontext resources=\"@temporal_data\" contextualizer=\"cool_timeline\" contextualization-index=0>A reference</blockcontext>",
           "tagType": "blockcontext"
         },
         {
@@ -165,11 +169,11 @@
           "tagType": "p"
         },
         {
-          "html": "<blockcontext resources=\"@temporal_data\" contextualizer=\"1\">Another reference</blockcontext>",
+          "html": "<blockcontext resources=\"@temporal_data\" contextualizer=\"1\" contextualization-index=1>Another reference</blockcontext>",
           "tagType": "blockcontext"
         },
         {
-          "html": "<p>And as says <inlinecontext resources=\"@martin_change_2002\" contextualizer=\"2\"></inlinecontext></p>",
+          "html": "<p>And as says <inlinecontext resources=\"@martin_change_2002\" contextualizer=\"2\" contextualization-index=2></inlinecontext></p>",
           "tagType": "p"
         },
         {
@@ -177,11 +181,11 @@
           "tagType": "p"
         },
         {
-          "html": "<p>I&#39;m talking about a <inlinecontext resources=\"@martin_change_2002\" contextualizer=\"4\">reference</inlinecontext>.</p>",
+          "html": "<p>I&#39;m talking about a <inlinecontext resources=\"@martin_change_2002\" contextualizer=\"4\" contextualization-index=4>reference</inlinecontext>.</p>",
           "tagType": "p"
         },
         {
-          "html": "<p>Now let&#39;s say I want to link to this <inlinecontext resources=\"@temporal_data\" contextualizer=\"5\">timeline</inlinecontext> and continue my paragraph quietly.</p>",
+          "html": "<p>Now let&#39;s say I want to link to this <inlinecontext resources=\"@temporal_data\" contextualizer=\"5\" contextualization-index=5>timeline</inlinecontext> and continue my paragraph quietly.</p>",
           "tagType": "p"
         },
         {
@@ -323,7 +327,7 @@
           "footnoteNumber": 1
         },
         {
-          "content": "<sup class=\"note\"><span class=\"footnote-number\">2</span><a id=\"#note_2\" href=\"#notepointer_2\">I&#39;m referencing to <inlinecontext resources=\"@martin_change_2002\" contextualizer=\"3\">Martin</inlinecontext> when he says : &quot;hello&quot;</a></sup>",
+          "content": "<sup class=\"note\"><span class=\"footnote-number\">2</span><a id=\"#note_2\" href=\"#notepointer_2\">I&#39;m referencing to <inlinecontext resources=\"@martin_change_2002\" contextualizer=\"3\" contextualization-index=3>Martin</inlinecontext> when he says : &quot;hello&quot;</a></sup>",
           "footnoteNumber": 2
         }
       ],

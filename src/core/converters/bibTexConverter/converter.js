@@ -35,7 +35,12 @@ class bibTexParser{
         this.currentObject.bibType = match[1];
         this.consumable = this.consumable.substr(match[1].length + 1);
         return this.currentState = this.STATES[1];
-      }else return this.error = new Error('could not find bibtype');
+      }else return this.error = {
+        type : 'error',
+        preciseType : 'bibParsingError',
+        message : 'could not find bibType',
+        initialString : this.initialStr
+      }
 
     }else if(this.currentState === "citeKey"){
       match =  matchCiteKey.exec(this.consumable);
@@ -43,7 +48,12 @@ class bibTexParser{
         this.currentObject.citeKey = match[1];
         this.consumable = this.consumable.substr(match[1].length + 2);
         return this.currentState = this.STATES[2];
-      }else return this.error = new Error('could not find correct citeKey');
+      }else return this.error = {
+        type : 'error',
+        preciseType : 'bibParsingError',
+        message : 'could not find citekey',
+        initialString : this.initialStr
+      }
 
     /*
      * ``key = value`` structure
@@ -67,7 +77,12 @@ class bibTexParser{
         character = this.consumable.charAt(index);
 
         if(trespassing){
-          return this.error = new Error('finished to parse bibtex string without finding closing character '+ wrapped[wrapped.length - 1][1]);
+          return this.error = {
+                  type : 'error',
+                  preciseType : 'bibParsingError',
+                  message : 'finished to parse bibtex string without finding closing character '+ wrapped[wrapped.length - 1][1],
+                  initialString : this.initialStr
+                }
         //end of wrapped expression - if matches with last recorded wrapper's closing character
         }else if(character === wrapped[wrapped.length - 1][1]){
           wrapped.pop();
@@ -125,6 +140,7 @@ class bibTexParser{
     this.currentState = this.STATES[0];
     this.results = [];
     this.consumable = str.trim();
+    this.initialStr = str.trim();
     this.error = null;
     while(this.error === null && this.consumable.trim().length > 0){
       this.consume();
@@ -138,13 +154,28 @@ const parser = new bibTexParser();
 
 const validateBibObject = function(bibObject){
   if(bibObject.citeKey === undefined){
-    return new Error('bibObject must have a citeKey property');
+    return {
+              type : 'error',
+              preciseType : 'bibObjectValidationError',
+              message : 'bibObject must have a citeKey property',
+              bibObject : bibObject
+            }
   } else if (bibObject.bibType === undefined){
-    return new Error('bibObject must have a bibType property');
+    return {
+              type : 'error',
+              preciseType : 'bibObjectValidationError',
+              message : 'bibObject must have a bibType property',
+              bibObject : bibObject
+            }
   } else{
     for (let key in bibObject){
       if(typeof bibObject[key] === 'object' && !Array.isArray(bibObject[key])){
-        return new Error('bibObject cannot contain nested objects');
+        return {
+              type : 'error',
+              preciseType : 'bibObjectValidationError',
+              message : 'bibObject cannot contain nested objects',
+              bibObject : bibObject
+            }
       }
     }
   }
@@ -153,7 +184,7 @@ const validateBibObject = function(bibObject){
 
 export function serializeBibTexObject(bibObject, callback){
   var validated = validateBibObject(bibObject);
-  if(validated !== true){
+  if(validated.type === 'error'){
     return callback(validated, undefined);
   }
   let str = '', val;
