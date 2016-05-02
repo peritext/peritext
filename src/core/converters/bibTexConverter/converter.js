@@ -1,4 +1,8 @@
 /*
+ * This module parses and serializes bibTex objects
+ */
+
+/*
  * homemade bibTeX syntax parser (performance could perhaps be improved I guess)
  * it needs a second pass to parse {} in values and analyze them against a model - that should be done elsewhere, as this converter just deals with syntax-to-object conversion
  */
@@ -216,7 +220,7 @@ export function parseBibTexStr(str, callback){
   }
 }
 
-/*Accepted input (to add in doc/spec):
+/*Accepted inputs for authors and persons (to add in doc/spec):
 {Martin}, Julia; Coleman
 {Jakubowicz}, Andrew
 {Charalambos}, D. Aliprantis and Kim C. {Border}

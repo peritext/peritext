@@ -1,3 +1,7 @@
+/*
+ * This module converts an fsTree flatfile abstraction to a documentTree modulo document abstraction
+ */
+
 import {waterfall, map as asyncMap} from 'async';
 
 import {concatTree} from './../../resolvers/concatTree';

@@ -283,6 +283,5 @@ export function propagateData({errors, sections, models, parent}, callback){
     delete section.contextualizersInherited;
   });
 
-
   callback(null, {errors, sections});
 }

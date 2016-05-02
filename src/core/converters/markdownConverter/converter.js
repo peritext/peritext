@@ -1,3 +1,8 @@
+/*
+ * This module resolves markdown contents + modulo-specific assertions (footnotes, contextualizations, contextualizers)
+* It returns a representation of a section's content as an object containing arrays of : paragraphs, footnotes, contextualizations, contextualizers
+ */
+
 var marked = require('marked');
 import {parseBibContextualization, parseBibNestedValues} from './../bibTexConverter';
 

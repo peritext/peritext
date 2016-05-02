@@ -1,6 +1,10 @@
+/*
+ * Dedicated to everything that deals with models (composing, translating values, ...)
+ */
+
 import {parseBibAuthors} from './../../converters/bibTexConverter';
 
-
+// I build a model object from a specific bibType, composing it according to its inheritance dependencies, from more general models to the specific bibType
 export function getResourceModel(bibType, resourceModels){
   let model  = resourceModels.individual[bibType];
   if(model){
@@ -21,7 +25,7 @@ export function getResourceModel(bibType, resourceModels){
       properties = properties.concat(otherProps);
     });
 
-    //then finally parsed common props
+    //then finally parse common props
     otherProps = resourceModels.collective.common
                     .properties
                     .filter((prop) =>{
@@ -38,7 +42,7 @@ export function getResourceModel(bibType, resourceModels){
   }else return undefined;
 }
 
-
+//I turn a (possibly not primitive : array, object, bibAuthor) value to a string-friendly value, thanks to its model's type
 export function serializePropAgainstType(prop, valueType, model){
   let val;
   if(prop === undefined){
@@ -85,7 +89,7 @@ export function serializePropAgainstType(prop, valueType, model){
   }
 }
 
-
+// I turn a string value into another (possibly complex) value, thanks to its model's type
 export function resolvePropAgainstType(prop, valueType, model){
   let val;
   if(prop === undefined){

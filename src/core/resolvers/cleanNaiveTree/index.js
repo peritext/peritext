@@ -1,3 +1,8 @@
+/*
+ * This module cleans resources and metadata from a naive (resource concatenated) tree
+ */
+
+
 import {map as asyncMap} from 'async';
 
 export function cleanNaiveTree({errors=[], validTree}, models, callback){

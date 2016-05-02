@@ -70,7 +70,18 @@ And of a periodical's article :
 ## Modulo metadata BibTeX
 
 Modulo uses the BibTeX syntax to describe its documents.
-The first part (eg ``@incollection``) describe the type of the section being written. The second just after the opening bracket (eg ``incollection``) would describe a ``cite_key`` in regular BibTeX : **in Modulo it should be also used as the slug of this section, usable to reference it in other content sections or for other purposes** - slug is an internal metadata.
+It uses a weak and "tolerant" definition of BibTeX, accepting zotero-flavoured BibTeX, and adding its own specificities to the format.
+
+The first part of a BibTeX object (eg ``@incollection``) describes the type of the section being written. 
+
+Concerning modulo metadata, a modulo section metadata will always be recognized by the fact it is preceded by ``modulo`` :
+
+```
+@incollection{mycollection} //resource, not modulo metadata
+@moduloincollection{mycollection} //metadata
+```
+
+The second just after the opening bracket (eg ``incollection``) would describe a ``cite_key`` in regular BibTeX : **in Modulo the citeKey is central, and should be also used as the slug of this section, usable to reference it in other content sections or for other purposes** - slug is an internal metadata. **All citeKeys should be unique along a whole document**.
 
 Then follows a collection of key+value pairs, that Modulo respects but also extends for its own purposes.
 
@@ -111,7 +122,7 @@ There is a specific domain for metadata which deals with the organization of the
 
 Each bibtex starts with the specification of a type of item.
 
-In Modulo only the root metadata should mandatorily comply to established BBibTeX types, so that it should be either :
+In Modulo only the root metadata should mandatorily comply to established BibTeX types, so that it should be either :
 * ``@book``
 * ``@proceedings``
 * ...
@@ -136,14 +147,41 @@ There are several types that are proposed that don't belong to ``BibTex`` standa
 * ``collection`` : typically : a books collection, a journal issue, etc ...
 
 
-The model of accepted types should contain therefore the type of possible children ``@modulo_section`` and the default type to apply when root is a ``@modulo_section``
+The model of accepted types should contain therefore the type of possible children ``@modulosection`` and the default type to apply when root is a ``@modulosection``
 
-## citeKey property
+### The case of authors
 
-* should be unique for each metadata object (to decide in app : throw error or thrown warning and overwrite choice or automatic rename)
+Names definition in BibTeX are a mess in practice.
+The choice is made to handle as much as possible of them.
+
+Accepted inputs for authors :
+
+```
+{Martin}, Julia; Coleman
+{Jakubowicz}, Andrew
+{Charalambos}, D. Aliprantis and Kim C. {Border}
+{Martin}, Julia; Coleman
+{Jakubowicz}, Andrew
+{Charalambos}, D. Aliprantis and Kim C. {Border}
+Maskin, Eric S.
+{Martin}, Julia; Coleman
+{Jakubowicz}, Andrew
+{Charalambos}, D. Aliprantis and Kim C. {Border}
+Maskin, Eric S.
+{Martin}, Julia; Coleman
+{Jakubowicz}, Andrew
+{Charalambos}, D. Aliprantis and Kim C. {Border}
+```
+
+### citeKey property
+
+The citeKey of metadata object should be unique. To decide for app logic :
+
+* throw error 
+* throw warning and overwrite choice 
+* automatic rename
 
 ### Organization properties
-
 
 There are four types of organizational information that can be given to a Modulo's section :
 * slug information : *this section will be identified by this expression*
@@ -151,24 +189,24 @@ There are four types of organizational information that can be given to a Modulo
 * importance information : *this section is of that importance regarding its parent section* (think of html titles h1, h2, h3, ...)
 * hierarchy information : *this section is the children section of that other section*
 
-**WIP : Logical conflicts handling.** *What if, on one hand, I specify the ordering of an element by specifying a preceding element at begining of sections list, and on the other hand I specify as parent an element which is in a totally different part of the list of sections, like in the end ?*
+**WIP : Logical conflicts handling.** *What if, on one hand, I specify the ordering of an element by declaring a preceding element at begining of sections list, and on the other hand I specify as parent an element which is in a totally different part of the list of sections, like in the end ?*
 For now I think concerns should be separated : hierarchy deals with metadata propagation (see below), ordering with display of the document. So that could be logically possible but, later on, prevented or displayed as a bad practice (with warnings and stuff) by the editor's UI.
 
-**WIP : Question**. *Should hierarchy information be inherited from the previous section if specified ? (this would avoid to have to reset the parent section for each subsection)*
-I don't think so.
+**WIP : Question**. *Should hierarchy information be inherited from the previous section if specified ? (this would avoid to have to declare the parent section for each subsection)*
+I don't think so. **Parent metadata should be declared for each section.**
 
 *Personal note about that : This variety is provided in order to allow for a maximum flexibility in terms of organization of the editorial content. most text's digital representation stand between two extreme designs : considering a text as a linear suite of blocks, or considering it as a tree structure of parts, subparts, sub-subparts, etc. With this part of Modulo's design I want to match with the complexity of print documents structures in terms of summary and index, where for instance a 'Forewords' or an 'interlude' does not fit into a well-organized tree structure of parts, subparts, etc.*
 
 Here is a first (provisionnal) list of metadata properties :
 * ``after`` : after [that section]'s slug
-* ``importance`` : importance level of the section (computed by addition with the importance-level of parent)
+* ``hierarchicalLevel`` : importance level of the section (computed by addition with the hierarchicalLevel of parent)
 * ``parent`` : slug of the parent of the section
 
 ### Property vertical propagation
 
 By default, all contentRoot's metaproperties are disseminated to the children parts.
 
-*So for instance, if I specify at the root's metadata file that the author is Paul, all children sections will feature metadata's author as Paul, if not specified otherwise.*
+*So for instance, if I specify at the root's metadata file that the author is Paolo, all children sections will feature metadata's author as Paolo, if not specified otherwise.*
 
 Another case of propagation is when a section features a 'parent' metadata property. In this case the inheritance tree is nested, and the element inherits from its parent's metadata (which therefore will have to be parsed first). *If a section has as a parent another section which feature Jean as its author, it will have itself Jean as author.*
 
@@ -179,7 +217,7 @@ There should be two ways to make a children element having a different metaprope
 * set a new value for this metaproperty
 * unset the metaproperty
 
-To unset an inherited meta property, it could be done by specifying no value (example : "twitter:card:") or by preceding the meta property with "unset " (example : "unset dublincore:author:popol").
+To unset an inherited meta property, it could be done by specifying no value (example : "twitter:card:").
 
 # External metadata and lateral propagation
 

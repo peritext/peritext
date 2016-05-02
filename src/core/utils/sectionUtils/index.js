@@ -1,4 +1,6 @@
-
+/*
+ * section metadata & resources utils : access, filter, deletion, ...
+ */
 
 //section metadata access util
 export function getMetaValue (metaList, domain, key){

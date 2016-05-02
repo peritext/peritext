@@ -9,7 +9,9 @@ See the *wip* folder models/resourceModels.json.
 
 Individual resources' models are inherited from collective models.
 
-If, for instance, I take the "image" resource model, here is how its resource model should be built :
+Let's inspect for instance, the "image" resource model. It is on top of the following models inheritance tree : ``collective ==> usableResource ==> imageResource``.
+
+Here is how its resource model should therefore be built :
 
 * first, populate ``image resource`` model with the ``collective.all`` properties
 * then, as image is a ``usableResource``, populate ``image resource`` model with the ``collective.usableResource`` properties (overwrite existing if needed)

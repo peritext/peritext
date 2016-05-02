@@ -65,10 +65,6 @@ To commit to these goals, Modulo grounds on existing description languages that 
 
 On top of its peculiar writing system, Modulo proposes a neatly designed interface to display scholarly document. It is supposed to be desktop/mobile/print friendly - and is highly customizable through css and javascript additional components proposition.
 
----
-
-Project's name comes from the desire of contributing to digital academic publishing landscape by proposing a lightweight and extensible system for rich digital scholarly publishing. Besides, it is a reference to Lecorbusier's [modulor](https://en.wikipedia.org/wiki/Modulor), a set of proportions aimed at adapting industrial means of architectural building to human scale : same goal of bridging industrial and personal scales here, the industrial being the huge digital infrastructures being built right now in the academic world.
-
 ## (Previous version) existing features
 
 * index auto-building and navigation system

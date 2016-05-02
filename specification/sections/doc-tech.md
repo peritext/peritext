@@ -35,10 +35,6 @@ Scalability and project evolution:
 
 # Global architecture : flux/redux architecture
 
-Flux architecture is not required for the v1 of the project, as it is a read-only app, not dynamically supporting data-intensive operations.
-
-Though, this architecture would ensure maximum scalability for the future.
-
 ![Modulo architecture](https://raw.githubusercontent.com/robindemourat/modulo/master/specification/assets/modulo-architecture.png)
 
 # Technological stack survey
@@ -47,13 +43,12 @@ Architecture :
 * redux
 * Immutable
 
-* uniloc (routing)
+* uniloc or react-router (routing)
 * axios (http requests)
 * redux-api-middleware --> https://www.npmjs.com/package/redux-api-middleware
 
 Parsers helpers :
 * marked
-* (markua-js ?)
 * zotero-bib-parser and bib-parser for ... bib parsing
 
 Exports : 
@@ -96,7 +91,7 @@ TODO : dig deeper into https://github.com/xgrommx/awesome-redux
 
 There are three different data source supporting different needs.
 
-**Document source (eg=Google Drive)** represents the actual text-based contents of a document and its structure - represented by folders and ``.metadata`` files.
+**Document source (eg=Google Drive)** represents the actual text-based contents of a document and its structure.
 
 **Assets source (eg=Amazon s3)** represents all assets being used in resources and figures. They are typically images, videos, data files, and so on ...
 
@@ -108,20 +103,24 @@ There are three different data source supporting different needs.
 
 Modulo is made of sections. Each section is a linear "part" of the document to display, figuring either a chapter, a section, or even a paragraph if the writer wants to go to this level of granularity.
 
-Each section is made of two types of data :
-* *content* : linear, xml/html structured, textual content
+Each section is made of several types of data :
+* *metadata* : title, author, abstract, ...
 * *resources* : objects which are quoted, used, cited, visualized inside the section
+* *content* : linear, xml/html structured, textual content
+* *notes* : pointed in contents, aside contents
+* *contextualizers* : descriptions of some ways to display resources
+* *contextualizations* : pointed in contents, resources contextualizations through a contextualizer
 
 Each section inherits by default some data (like metadata) from the root section, and possibly from its parent when it has one.
 
 However, some elements of the contents will be repeatedly called in the document within several times : images, bibliographical references, data sources visualized in different ways.
 
-That's why we should separate "resources" and "resources contextualization" in modulo's conceptual lidek.
+That's why we should separate "resources" and "resources contextualization" in modulo's conceptual model.
 
 "Resources" are of several types :
-* bibliographical records : books, documents, ...
-* data/media : images, video, tables, ... which has invariant information (owner, technical information, way to retrieve it)
-* entities (or glossary entries) : bound to notions, persons, places, ... these are "things" cited in the document.
+* **bibliographical records** : books, documents, ...
+* *data/media** source metadata : images, video, tables, ... which has invariant information (owner, technical information, way to retrieve it)
+* **entities (or glossary entries)** : bound to notions, persons, places, ... these are "things" cited in the document.
 
 They are handled in very different way when featured in sections, but described with the same type of syntax, extended from the BibTex standard.
 
@@ -236,8 +235,6 @@ rooturl/lectio/figures/:sectionCiteKey?
 ```
 rooturl/lectio/social/:sectionCiteKey?
 ```
-
-
 
 
 # Forseen external API endpoints
