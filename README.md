@@ -12,6 +12,9 @@ Contents are written in plain text files (in ``markdown`` and ``bibtex`` syntaxe
 
 Modulo is designed to be a "reader" in the first place, though its structure allows for connecting it to a content-edition application.
 
+![Modulo resource model in one image](https://raw.githubusercontent.com/robindemourat/modulo/master/specification/assets/modulo-context.png)
+
+
 # Caution : Work In Progress
 
 Modulo is being rewritten at the moment as a source-agnostic, annotation-ready, and editor-ready, [universal javascript application](https://medium.com/@mjackson/universal-javascript-4761051b7ae9).
