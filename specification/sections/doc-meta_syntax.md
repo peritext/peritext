@@ -70,7 +70,24 @@ And of a periodical's article :
 ## Modulo metadata BibTeX
 
 Modulo uses the BibTeX syntax to describe its documents.
-It uses a weak and "tolerant" definition of BibTeX, accepting zotero-flavoured BibTeX, and adding its own specificities to the format.
+It uses a loosely and "tolerant" definition of BibTeX, accepting zotero-flavoured BibTeX, and adding its own specificities to the format :
+
+```
+Strict BibTeX [key, value] syntax is as following :
+
+For a number :
+  key = value
+For a string :
+  key = {value}
+
+Tolerant bibtext also accepts these notations :
+  key = 'value'
+  key = "value"
+  key = "va'l'ue"
+  key = {va{l}ue}
+  key = "val{u}e"
+
+```
 
 The first part of a BibTeX object (eg ``@incollection``) describes the type of the section being written. 
 
@@ -78,7 +95,7 @@ Concerning modulo metadata, a modulo section metadata will always be recognized 
 
 ```
 @incollection{mycollection} //resource, not modulo metadata
-@moduloincollection{mycollection} //metadata
+@moduloincollection{mycollection} //metadata, because it begins with "modulo"
 ```
 
 The second just after the opening bracket (eg ``incollection``) would describe a ``cite_key`` in regular BibTeX : **in Modulo the citeKey is central, and should be also used as the slug of this section, usable to reference it in other content sections or for other purposes** - slug is an internal metadata. **All citeKeys should be unique along a whole document**.
@@ -183,24 +200,64 @@ The citeKey of metadata object should be unique. To decide for app logic :
 
 ### Organization properties
 
-There are four types of organizational information that can be given to a Modulo's section :
-* slug information : *this section will be identified by this expression*
-* ordering information : *this section follows that other section*
-* importance information : *this section is of that importance regarding its parent section* (think of html titles h1, h2, h3, ...)
-* hierarchy information : *this section is the children section of that other section*
+Let's consider the following print document summary :
 
-**WIP : Logical conflicts handling.** *What if, on one hand, I specify the ordering of an element by declaring a preceding element at begining of sections list, and on the other hand I specify as parent an element which is in a totally different part of the list of sections, like in the end ?*
-For now I think concerns should be separated : hierarchy deals with metadata propagation (see below), ordering with display of the document. So that could be logically possible but, later on, prevented or displayed as a bad practice (with warnings and stuff) by the editor's UI.
+```
+---Forewords
+---Introduction
+--Part 1
+-----Chapter 1
+-----Chapter 2
+--Part 2
+-----Chapter 3
+-----Chapter 4
+---Conclusion
+```
 
-**WIP : Question**. *Should hierarchy information be inherited from the previous section if specified ? (this would avoid to have to declare the parent section for each subsection)*
-I don't think so. **Parent metadata should be declared for each section.**
 
-*Personal note about that : This variety is provided in order to allow for a maximum flexibility in terms of organization of the editorial content. most text's digital representation stand between two extreme designs : considering a text as a linear suite of blocks, or considering it as a tree structure of parts, subparts, sub-subparts, etc. With this part of Modulo's design I want to match with the complexity of print documents structures in terms of summary and index, where for instance a 'Forewords' or an 'interlude' does not fit into a well-organized tree structure of parts, subparts, etc.*
+Content pieces such as 'Forewords' or 'Introduction' have no "parents", though they don't have the same level of importance or generality than Part 1 or 2.
 
-Here is a first (provisionnal) list of metadata properties :
+This demonstrate that when we deal with a text organization everything can not be fit in a tree-like structure. Relevant organization is rather defined by the **sequentiality** of elements.
+But sequentiality does not suffice to assert that 'Introduction' is less general than 'Part 1' (information that could graphically be coded as a larger left-gutter distance). We therefore need a **generality** parameter for structuring information.
+To finish with, we have nevertheless **inclusion or belonging** informations, that are distinct from the previous : Chapter 1 *belongs* to the Part 1, and is affected by it in a number of ways - for instance, it would share the same keywords, maybe the same author(s), or the same typographic setting, etc.
+
+Therefore, there are four types of organizational information that can be given to a Modulo's section :
+* **identification information** : *this section will be identified by this expression*
+* **sequentiality information** : *this section follows that other section*
+* **generality information** : *this section is of that importance regarding its parent section* (think of html titles h1, h2, h3, ...)
+* **belonging information** : *this section is the children section of that other section*
+
+Here is a list of organization metadata properties derived from this typology :
 * ``after`` : after [that section]'s slug
-* ``hierarchicalLevel`` : importance level of the section (computed by addition with the hierarchicalLevel of parent)
-* ``parent`` : slug of the parent of the section
+* ``generalityLevel`` : importance level of the section (computed by addition with the hierarchicalLevel of parent)
+* ``parent`` : child of [that section] slug
+
+E.g : 
+```bibtex
+
+@modulosection{chapter2,
+  title : "Chapter 2",
+  after : "chapter1",
+  parent : "part1"
+}
+
+```
+
+
+*Personal note about that :*
+*This variety is provided in order to allow for a maximum flexibility in terms of organization of editorial content. Most text's digital representation paradigms stand between two extreme designs : considering a text as an unordered and linear sequence of characters, or considering it as a tree structure composed of parts, subparts, sub-subparts, etc. (e.g. : xml and other sgml-derivated formats). A third, more recent family abolishes completely the linearity or hierarchization of contents and deals with a set of small content elements handled as a flat graph structure in which 'paths' are specified to build on-the-fly linear experiences (e.g. Scalar). It seems to me a bit hard and too bold for intuitively building stories. With this part of Modulo's design I just want to "remediate", in a humble and analogy-minded manner, all the possibilities of print documents structures - and then take advantage of the potential of the digital in terms of reuse and navigation inside generated contents.*
+
+
+#### WIP points & open questions
+
+**WIP : Logical conflicts between ordering and belonging.** *What if, on one hand, I specify the ordering of an element by declaring a preceding element at begining of sections list, and on the other hand I specify as parent an element which is in a totally different part of the list of sections, like in the end ?*
+
+This could not happen in a print document, but is logically conceivable (having "disseminated kindred" dispersed along a linear sequence that does not follows hierarchical trees). For now I think concerns should be separated : hierarchy deals mainly with parent-to-children propagation of metadata and plugins (see below), and ordering deals mainly with display of the document's story or argument. So **that should be logically possible** but, later on, **that displayed as an unusual practice** (with warnings and stuff) by the editor's UI, somehow.
+
+**WIP : Question**. *Should hierarchy information be inherited from the previous section if previous section is specified ? (this would avoid to have to declare the parent section for each subsection)*
+
+I don't think so. **Parent metadata should be declared explicitely for each section.**
+
 
 ### Property vertical propagation
 
@@ -217,7 +274,7 @@ There should be two ways to make a children element having a different metaprope
 * set a new value for this metaproperty
 * unset the metaproperty
 
-To unset an inherited meta property, it could be done by specifying no value (example : "twitter:card:").
+To unset an inherited meta property, it could be done by specifying no value (example : ``twitter_card : ""``).
 
 # External metadata and lateral propagation
 
@@ -256,9 +313,9 @@ Which gives us for a property description :
 
 ## Properties lateral propagation
 
-Modulo is supposed to be smart and disseminate similar metadata accross metadata domains if not specified otherwise. For example, the "title" property should automatically spread to "dublincore:title", "og:title", "twitter:title" ... if not specified otherwise later on in the metadata file.
+Modulo is supposed to be smart and **disseminate similar metadata accross metadata domains** if not specified otherwise. For example, the "title" property should automatically spread to "dublincore:title", "og:title", "twitter:title" ... if not specified otherwise later on in the metadata file.
 
-See assets/modulo metadata model to see the WIP lateral propagation table.
+See source's ``src/core/models/metadataModel.json`` to see the WIP lateral propagation system.
 
 
 ## Todolist

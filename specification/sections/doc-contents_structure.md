@@ -4,13 +4,13 @@ Modulo documentation | contents structure | WIP
 
 Modulo presents a two-level file structure in which the root corresponds to the entire document (book/thesis/monograph) and subfolders correspond each to one section (chapter, article, ...).
 
-**In the following, *contentRoot* will stand for the content folder of the app, for instance root/server/contents.**
+**During the flatfile-to-modulo transformation process**, all sections (root and subsections) are gathered in one flat array of sections. Each section contains informations about its relations to other sections (child or parent section, preceding section, ...).
 
 # Types of folders
 
 There are two types of folders :
-* those that don't start with a ``_`` are content folders
-* those that start with a ``_`` are plugin folders
+* those that **don't start** with a ``_`` are content folders
+* those that **do start** with a ``_`` are plugin folders
 
 ## Plugin folders
 
@@ -19,19 +19,35 @@ They can be either at the root of the document, or inside a section.
 They are plugins that deal with the look of the document or section. They can be either :
 * css styles
 * react components : they correspond to additional/alternative ways to display figures or even main content
-* html templates for displaying bibliography, references, ...
+* templates for displaying bibliography, references, ...
 
+By default, plugins follow the inheritance process : if a css style plugin is applied to some section, it will be inherited by its children sections unless they have their own plugin ; in that latter case, child's plugin always override inherited plugin.
 
 ## Content folders
 
-Contents folders are the contentRoot folder and all folders that contain a meta.txt file featuring the meta property "general:type:content".
+Content folders must contain to types of files :
+* ``.md`` files, which feature markdown content
+* ``.bib`` files, which feature simili-BibTeX content
 
-* each content folder ***must feature a meta.txt file*** that describes the metadata of the section
-* each content folder ***should feature a content.md file*** that describes the content of the section (chapter, or cover for the rootfolder), **except if it used only for hierarchical structure (eg : part title)**
+**Each content folder must include a ``content.md`` main file which be used as the entrance to markdown contents of this folder.** 
 
-Then, it can optionally contain :
-* other ``.md`` files that will be able to be concatenated in to the main.md file
-* ``.bib`` files that will be loaded as bibliographical resources
+**Each content folder can include additionnal ``.md`` files** are used to display content :
+* the modulo transformation algorithm first looks for ``include`` statements in order to include files in one another, starting with the ones inside ``content.md``
+* then, once all ``include`` are resolved, it includes automatically at the end of content the remaining contents, using filename's alphabetical order for ordering
+
+**Each content folder can include one or several ``.bib`` files, which are concatenated in filename's alphabetical order** and then processed.
+
+BibTeX objects describe two categories of objects :
+* **modulo sections metadata** : each BibTeX object of which filename begins with ``modulo`` (e.g. : ``modulobook``) is a description of the curent section-folder metadata (e.g. : author, title, keywords, ...)
+* **modulo resources description** : bibliographical records, static or dynamic data source description, entity description.
+
+## Contents ordering and sections hierarchization
+
+See meta_syntax spec.
+
+## Contents metadata populating system
+
+See meta_syntax spec.
 
 ## Overview
 
@@ -39,17 +55,13 @@ Example of data structure from contentRoot:
 
 ```
 .
-+--meta.txt
++--meta.bib
 +--content.md
 +--chapter 1
-|   +--meta.txt
+|   +--meta.bib
 |   +--content.md
-|   +--images
-    |   +--myimage.png
 +--chapter 2
-|   +--meta.txt
+|   +--meta.bib
 |   +--content.md
-+--cover-files
-|   +--cover-image.jpg
 ```
 

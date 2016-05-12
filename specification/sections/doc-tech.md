@@ -4,7 +4,7 @@ Modulo documentation | technical reflections | WIP
 
 # Requirements
 
-Modularity of the data parsing model and data access :
+Modularity of the data parsing model and data access:
 
 * modulo is purposed to be source-agnostic, and not indispensable for source reviewing (data should be easily readable without using modulo)
 * data access, data management and data processing should be separated
@@ -12,21 +12,25 @@ Modularity of the data parsing model and data access :
 * external resources transactions (zotero, google spreadsheet ...) should be clearly separated from the core of the engine
 
 Flatfile-to-rich-document process:
+
 * metadata and encoding models must be separed from the scripts
 * document parsers should be lazy and process only the necessary data for a given query
 * document parsers should not perform several times the same operations on files
 
-SEO and indexability :
+SEO and indexability:
+
 * app must be isomorphic/universal (all views rendered as html server-side)
 * html schema props must be used whenever possible
 
-Social :
+Social:
+
 * all the internal data logic of a publication should be available as a public API
 * should be possible to share specific parts of the document with different levels of granularity
 * should be possible to access through permalinks specific parts of the document with different levels of granularity
 
 
 Scalability and project evolution:
+
 * it should be internationalized from the begining
 * it should be test-driven from the begining
 * it should be easily scalable (library, collection, ...) later on
@@ -51,7 +55,7 @@ Parsers helpers :
 * marked
 * zotero-bib-parser and bib-parser for ... bib parsing
 
-Exports : 
+Outputs : 
 * pdfkit : http://pdfkit.org/
 * phantomjs > pdf : http://www.feedhenry.com/server-side-pdf-generation-node-js/
 * **wkhtmltopdf** -> https://www.npmjs.com/package/wkhtmltopdf
@@ -67,6 +71,7 @@ Interface components :
 * react-dom
 * react-css-modules --> https://github.com/gajus/react-css-modules
 * PaCoMo
+* radium
 * d3.js
 
 Tests :
@@ -105,26 +110,27 @@ Modulo is made of sections. Each section is a linear "part" of the document to d
 
 Each section is made of several types of data :
 * *metadata* : title, author, abstract, ...
-* *resources* : objects which are quoted, used, cited, visualized inside the section
-* *content* : linear, xml/html structured, textual content
-* *notes* : pointed in contents, aside contents
-* *contextualizers* : descriptions of some ways to display resources
+* *resources* : objects which are quoted, used, cited, visualized inside the section. Linkd to contextualizations.
+* *content* : linear, xml/html structured, textual content. Linked to contextualizations and notes, and possibly to metadata through template calls.
+* *notes* : pointed in contents and similar, aside or foot contents. Linked to contents and contextualizations.
+* *contextualizers* : descriptions of some ways to display resources. Linked to contextualizatiosn.
 * *contextualizations* : pointed in contents, resources contextualizations through a contextualizer
 
 Each section inherits by default some data (like metadata) from the root section, and possibly from its parent when it has one.
 
 However, some elements of the contents will be repeatedly called in the document within several times : images, bibliographical references, data sources visualized in different ways.
 
-That's why we should separate "resources" and "resources contextualization" in modulo's conceptual model.
+That's why we should separate "resources" and "resources contextualization" through "contextualizers" in modulo's conceptual model.
 
 "Resources" are of several types :
 * **bibliographical records** : books, documents, ...
-* *data/media** source metadata : images, video, tables, ... which has invariant information (owner, technical information, way to retrieve it)
+* **data/media** source metadata : images, video, tables, ... which have invariant information (owner, technical information, way to retrieve it)
 * **entities (or glossary entries)** : bound to notions, persons, places, ... these are "things" cited in the document.
 
-They are handled in very different way when featured in sections, but described with the same type of syntax, extended from the BibTex standard.
+They are handled in very different way when featured in sections, but described with the same type of syntax, extended from the BibTeX standard.
 
-Then, they are called inside the document through what I chose call 'contextualization', which is a way of specifying how it should be displayed.
+Then, they are called inside the document through what I chose to call 'countextualizer', which is a way of specifying how it should be displayed. The conjunction of a resource, a contextualizer and a anchoring point inside the contents constitute a "contextualization".
+
 * bibliographical records can be short-cited or long-cited, at specific pages, ...
 * data/media can be inserted inside the document, used to produce a visualization, displayed in rough form as aside figure
 * entities can be used to generate a glossary, or just to enrich the semanticity of a page ...

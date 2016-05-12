@@ -3,19 +3,21 @@ Resources and contextualization
 
 # Resources description
 
-## Models populating through general-to-specific class inheritance-like system
+## Models populating through general-to-specific model inheritance system
+
+Resource models are described through a tree structure rooted in generic properties and growing to more and more resource specific properties.
 
 See the *wip* folder models/resourceModels.json.
 
-Individual resources' models are inherited from collective models.
+Individual resources' models are inherited from their relative collective models.
 
 Let's inspect for instance, the "image" resource model. It is on top of the following models inheritance tree : ``collective ==> usableResource ==> imageResource``.
 
 Here is how its resource model should therefore be built :
 
 * first, populate ``image resource`` model with the ``collective.all`` properties
-* then, as image is a ``usableResource``, populate ``image resource`` model with the ``collective.usableResource`` properties (overwrite existing if needed)
-* then, populate ``image resource`` model with the ``individual.image`` properties (overwrite existing if needed)
+* then, as image is a ``usableResource``, populate ``image resource`` model with the ``collective.usableResource`` properties (overwrite inherited properties if needed)
+* then, populate ``image resource`` model with the ``individual.image`` properties (overwrite inherited properties if needed)
 
 
 ## Resource description props
@@ -51,7 +53,9 @@ Here is how its resource model should therefore be built :
 
 # Resource contextualization
 
-A contextualization is summoned every time the pattern ``[]()`` is found.
+A contextualization is summoned at all time if the pattern ``[]()`` is found.
+The presence of a ``linebreak`` followed by a ``!`` defines it as block contextualization, if not it is a inline contextualization.
+
 ```
 //inline contextualization
 Check out [this resource](@my_resource_cite_key)
@@ -61,9 +65,11 @@ Check out [this resource](@my_resource_cite_key)
 
 ```
 
-When this is done, default contextualization params are automatically provided to specify a way to display this contextualization in the document (as an aside-caller, as a footnote caller, as a html-replacement caller (for bib references)).
+*Note : in regular markdown these two notations would be dedicated to coding respectively hyperlinks and images. However, as one of the principles of Modulo is to keep external web two clicks away and to force writers to rigorously describe all external resources they are using (including links and images), there is no conflict between regular markdown's notation and modulo markdown's notation : images or links are not supposed to be specifiable directly in the linear markdown contents, so their notation can be used for something else, inline and block contextualizations.*
 
-However, it is also possible to provide some params to specify how to contextualize the resource in the document. This is done by **following the resource contextualization call with a bibtex contextualization object.** Example :
+Default contextualization params are automatically provided to specify a way to display a resource in the document (as an aside-caller, as a footnote caller, as a html-replacement caller (for bib references), ... ).
+
+However, it is also possible to provide some params to specify more precisely how to contextualize the resource in the document (for instance : specify a page number when contextualizing a bibliographical resource, call a visualization module when contextualizing a data resource, ...). This is done by **following the resource contextualization call with a bibtex contextualizer object.** Example :
 
 ```
 //possible params location #1
@@ -75,28 +81,40 @@ However, it is also possible to provide some params to specify how to contextual
 
 ```
 
-## Contextualizations syntax
+## Contextualizers syntax
 
-There are two ways to describe a contextualization :
-* in one time, by describing the contextualization just in its context
-* in two times, by describing contextualization separately, as a bib resource
+There are two ways to describe a contextualizer :
+* **inline contextualizer description** : the contextualizer is described directly in the markdown file, just at the location in which it is used
+* **separate contextualizer description** : contextualizer is described separately as a bib resource, and called in the contextualization through its citekey
 
 ```
 // Separate description of a contextualization :
 
-@contextualization{my_timeline,
+//meta.bib :
+@contextualizer{my_timeline,
     figure={timeline},
     columns={layers={@source.data.dates,@source.data.descriptions}}
 }
 
+//content.md
+
+Look at this [vis](@vis_data){my_timeline}
+
+//
+=============================
+//
+
 // Inline description of a contextualization :
 
-![this resource](@my_resource_cite_key){figure={timeline},columns={layers={@source.data.dates,@source.data.descriptions}}}
+![this resource](@my_resource_cite_key){
+    figure={timeline},
+    columns={layers={@source.data.dates,@source.data.descriptions}}
+}
 ```
 
 ### Nested bibTeX objects expressions
 
-Modulo extends the principle of nesting in bibTex in order to allow for complex parameters.
+When dealing with contextualizers such as datavis-related contextualizations, contextualization params can become complex. Therefore, Modulo extends the principle of nesting in bibTex in order to allow for complex parameters.
 
 ```
 This bibtex contextualization description :
@@ -104,7 +122,7 @@ This bibtex contextualization description :
     columns={layers={data=@source.data.dates,tooltips=@source.data.descriptions}}
 }
 
-Would become this :
+Would become this in json :
 {
     //...
     columns : {
@@ -130,14 +148,16 @@ This is done by calling the resource citeKey followed by javascript object-like 
 
 ```
 
-@source.metadata.title //accesses the title of the resource
-@source['metadata']['title'] //accesses the title of the resource (other syntax)
+@resource.metadata.title //accesses the title of the resource
+@resource['metadata']['title'] //accesses the title of the resource (other syntax)
 
-@source.data.keys.date //access the "date" column of an array specified by the ressource
+@resource.data.keys.date //access the "date" column of an array specified by the ressource
 
 // ...
 
 ```
+
+The ``@resource`` assertion is handled with the related resource at the moment of contextualization. If the writer calls the same contextualizer on several resources, the ``@resource`` assertion will correspond to the related resource for each contextualization.
 
 ### Resource contextualization props
 
