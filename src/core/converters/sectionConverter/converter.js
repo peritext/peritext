@@ -110,13 +110,14 @@ function sectionListToFsTree(inputSectionList, basePath, callback) {
   const sectionList = inputSectionList.map((section)=>{
     const folderTitle = section.citeKey;
     const relPath = (section.root) ? basePath : basePath + '/' + folderTitle;
-    const children = [{
-      type: 'file',
-      extname: '.md',
-      name: 'contents.md',
-      path: relPath + '/contents.md',
-      'stringContents': section.markdownContents
-    },
+    const children = [
+      {
+        type: 'file',
+        extname: '.md',
+        name: 'contents.md',
+        path: relPath + '/contents.md',
+        'stringContents': section.markdownContent
+      },
       {
         type: 'file',
         extname: '.bib',
@@ -124,7 +125,7 @@ function sectionListToFsTree(inputSectionList, basePath, callback) {
         path: relPath + '/resources.bib',
         'stringContents': section.bibResources
       }
-    // todo: customizers
+      // todo: customizers
     ];
     const folder = {
       type: 'folder',

@@ -34,10 +34,12 @@ describe('sectionConverter:parser', function(){
 
 
 describe('sectionConverter:serializer', function(){
-  it('should serialize', function(done){
+  it('should serialize without errors, inconsistancies or undefined values', function(done){
+    let parsedFsTree;
     waterfall([
         function(callback){
           readFromPath({path:base_path, depth : true, parseFiles : true}, function(err, results){
+            parsedFsTree = results;
             callback(err, results);
           });
         },
@@ -49,11 +51,18 @@ describe('sectionConverter:serializer', function(){
         }
       ],
       function(err, fsTree){
-        writeFile(base_path + '/serializing_fstree.json', JSON.stringify(fsTree, null, 2), 'utf8', function(err){
-          console.log(err, ' done')
+        // tests
+        fsTree.children.forEach((child) => {
+          expect(child.stringContents).not.to.equal("undefined");
+          if(child.type === "file"){
+            expect(child).not.to.have.key("children");
+          } else if(child.type === "folder"){
+            expect(child.extname).to.equal("");
+          }
+        })
+        writeFile(base_path + '/serialized_fstree.json', JSON.stringify(fsTree, null, 2), 'utf8', function(err){
         });
-        // console.log(tree,  err);
         done();
       });
-  })
-})
+  });
+});
