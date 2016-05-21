@@ -2,7 +2,7 @@
 /*
  * parses source and returns new content states
  */
-export function updateFromSource(){
+export function updateFromSource() {
 
 }
 
@@ -11,6 +11,6 @@ export function updateFromSource(){
  * then makes a diff list
  * then updates source tree (with C.U.D. ops) accordingly
  */
-export function updateToSource(){
+export function updateToSource() {
 
 }

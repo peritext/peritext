@@ -18,32 +18,32 @@ marked.setOptions({
   smartypants: false
 });
 
-function eatParamsObject(str){
+function eatParamsObject(str) {
   // str = str
   let index = 0,
-      wrappingLevel = 0,
-      paramsObject = '',
-      inObject = false,
-      ch;
+    wrappingLevel = 0,
+    paramsObject = '',
+    inObject = false,
+    ch;
 
-  while(index < str.length){
+  while (index < str.length) {
     ch = str.charAt(index);
-    if(ch === '{'){
+    if (ch === '{') {
       wrappingLevel++;
-    }else if(ch === '}'){
+    }else if (ch === '}') {
       wrappingLevel--;
     }
 
-    if(!inObject && wrappingLevel > 0){
+    if (!inObject && wrappingLevel > 0) {
       inObject = true;
       paramsObject += ch;
-    } else if(inObject && wrappingLevel === 0){
+    } else if (inObject && wrappingLevel === 0) {
       paramsObject += ch;
       return paramsObject;
-    } else if(inObject){
+    } else if (inObject) {
       paramsObject += ch;
       //not in object, character is neither a wrapper nor a whitespace, leave
-    } else if(!inObject && ch.match(/([\s])/) === null){
+    } else if (!inObject && ch.match(/([\s])/) === null) {
       return undefined;
     }
     index++;
@@ -53,30 +53,30 @@ function eatParamsObject(str){
 
 
 
-function eatFootnotes(outputHtml){
+function eatFootnotes(outputHtml) {
   let footnotes = [],
-      footnotesCount = 0,
-      newEl,
-      footnoteContent,
-      index = 0,
-      displace = 0,
-      beginIndex,
-      endIndex,
-      nestingLevel = 0,
-      ch;
+    footnotesCount = 0,
+    newEl,
+    footnoteContent,
+    index = 0,
+    displace = 0,
+    beginIndex,
+    endIndex,
+    nestingLevel = 0,
+    ch;
 
 
-  while(outputHtml.substr(displace).indexOf('[^]{') > -1){
+  while (outputHtml.substr(displace).indexOf('[^]{') > -1) {
     index = displace + outputHtml.substring(displace).indexOf('[^]{') + 4;
     beginIndex = index;
     nestingLevel = 1;
 
 
-    while(index < outputHtml.length && nestingLevel > 0){
+    while (index < outputHtml.length && nestingLevel > 0) {
       ch = outputHtml.charAt(index);
-      if(ch === '{'){
+      if (ch === '{') {
         nestingLevel++;
-      } else if(ch === '}'){
+      } else if (ch === '}') {
         nestingLevel--;
       }
       index++;
@@ -88,10 +88,10 @@ function eatFootnotes(outputHtml){
     footnoteContent = outputHtml.substring(beginIndex, index - 1);
     footnotesCount++;
     footnotes.push({
-      content : '<sup class="note"><span class="footnote-number">'+footnotesCount+'</span><a id="#note_'+footnotesCount+'" href="#notepointer_'+footnotesCount+'">'+footnoteContent+'</a></sup>',
+      content : '<sup class="note"><span class="footnote-number">' + footnotesCount + '</span><a id="#note_' + footnotesCount + '" href="#notepointer_' + footnotesCount + '">' + footnoteContent + '</a></sup>',
       footnoteNumber : footnotesCount
     });
-    newEl = '<sup class="note_pointer"><a id="#notepointer_'+footnotesCount+'" href="#note_'+footnotesCount+'"><span class="footnote-number">'+footnotesCount+'</span></a></sup>';
+    newEl = '<sup class="note_pointer"><a id="#notepointer_' + footnotesCount + '" href="#note_' + footnotesCount + '"><span class="footnote-number">' + footnotesCount + '</span></a></sup>';
     outputHtml = outputHtml.substr(0, beginIndex - 4) + newEl + outputHtml.substr(index);
 
 
@@ -101,28 +101,28 @@ function eatFootnotes(outputHtml){
   return {footnotes, outputHtml};
 }
 
-function eatContextualizations(outputHtml){
+function eatContextualizations(outputHtml) {
 
 
   const inlineContextRE = /<a href="@(.*)">(.*)<\/a>/g,
-        blockContextRE = /<img src="@(.*)" alt="(.*)">/g;
+    blockContextRE = /<img src="@(.*)" alt="(.*)">/g;
 
   let match,
-      contextualizationCount = 0,
-      contextualizerKey,
-      contextualizers = [],
-      contextualizations = [],
-      paramsObject,
-      newEl,
-      footnoteContent;
+    contextualizationCount = 0,
+    contextualizerKey,
+    contextualizers = [],
+    contextualizations = [],
+    paramsObject,
+    newEl,
+    footnoteContent;
 
   //parse block contextualizations
-  while((match = blockContextRE.exec(outputHtml)) !== null){
+  while ((match = blockContextRE.exec(outputHtml)) !== null) {
     paramsObject = eatParamsObject(outputHtml.substr(match.index + match[0].length));
-    if(paramsObject.indexOf('=') === -1){
-      contextualizerKey = paramsObject.match(/^\{([^}]+)\}$/)[1]
+    if (paramsObject.indexOf('=') === -1) {
+      contextualizerKey = paramsObject.match(/^\{([^}]+)\}$/)[1];
       //parse contexutalization
-    }else{
+    }else {
       let formattedParams = parseBibContextualization(paramsObject);
       contextualizationCount ++;
       contextualizerKey = contextualizationCount;
@@ -136,19 +136,19 @@ function eatContextualizations(outputHtml){
       resources : match[1].replace('@', '').split(','),
       type : 'block'
     });
-    newEl = '<blockcontext resources="@'+match[1]+'" contextualizer="'+contextualizerKey+'" contextualization-index='+(contextualizations.length - 1)+'>'+match[2]+'</blockcontext>';
+    newEl = '<blockcontext resources="@' + match[1] + '" contextualizer="' + contextualizerKey + '" contextualization-index=' + (contextualizations.length - 1) + '>' + match[2] + '</blockcontext>';
     outputHtml = outputHtml.substr(0, match.index) + newEl + outputHtml.substr(match.index + match[0].length + paramsObject.length);
   }
 
   //parse inline contextualizations
-  while((match = inlineContextRE.exec(outputHtml)) !== null){
+  while ((match = inlineContextRE.exec(outputHtml)) !== null) {
     paramsObject = eatParamsObject(outputHtml.substr(match.index + match[0].length));
 
     //contextualizer call
-    if(paramsObject && paramsObject.indexOf('=') === -1){
-      contextualizerKey = paramsObject.match(/^\{([^}]+)\}$/)[1]
+    if (paramsObject && paramsObject.indexOf('=') === -1) {
+      contextualizerKey = paramsObject.match(/^\{([^}]+)\}$/)[1];
     //contextualizer inline definition
-    }else if(paramsObject){
+    }else if (paramsObject) {
       let formattedParams = parseBibContextualization(paramsObject);
       contextualizationCount ++;
       contextualizerKey = contextualizationCount;
@@ -157,7 +157,7 @@ function eatContextualizations(outputHtml){
       formattedParams.resources = match[1].replace('@', '').split(',');
       contextualizers.push(formattedParams);
     //no contextualizer
-    }else{
+    }else {
       contextualizationCount ++;
       contextualizerKey = contextualizationCount;
       contextualizers.push({
@@ -172,45 +172,45 @@ function eatContextualizations(outputHtml){
       resources : match[1].replace('@', '').split(','),
       type : 'inline'
     });
-    newEl = '<inlinecontext resources="@'+match[1]+'" contextualizer="'+contextualizerKey+'" contextualization-index='+(contextualizations.length - 1)+'>'+match[2]+'</inlinecontext>';
+    newEl = '<inlinecontext resources="@' + match[1] + '" contextualizer="' + contextualizerKey + '" contextualization-index=' + (contextualizations.length - 1) + '>' + match[2] + '</inlinecontext>';
     outputHtml = outputHtml.substr(0, match.index) + newEl + outputHtml.substr(match.index + match[0].length + paramsObject.length);
   }
   return {contextualizers, contextualizations, newHtml : outputHtml};
 }
 
 
-function eatBlock(sub, REobj, match){
+function eatBlock(sub, REobj, match) {
   let tag = match[0].split('<')[1],
-      closingTag = '</'+tag+'>',
-      closingIndex,
-      outputHtml;
+    closingTag = '</' + tag + '>',
+    closingIndex,
+    outputHtml;
 
-  if(REobj.tagType === 'blockcontext'){
+  if (REobj.tagType === 'blockcontext') {
     tag = '<blockcontext';
     closingTag = '</blockcontext>';
     let openingIndex = sub.indexOf(tag);
     closingIndex = sub.indexOf(closingTag);
     outputHtml = sub.substr(openingIndex, closingIndex + closingTag.length - 4);
-  } else if(!REobj.nested){
+  } else if (!REobj.nested) {
     closingIndex = sub.indexOf(closingTag);
     outputHtml = sub.substr(0, closingIndex + closingTag.length);
-  }else{
+  }else {
     outputHtml = '';
     let nestingLevel = 0,
-        openingTag = '<'+tag;
+      openingTag = '<' + tag;
 
     let nestedBegin,
-        nestedEnd,
-        index = 0;
+      nestedEnd,
+      index = 0;
 
-    do{
+    do {
       nestedBegin = sub.substr(index).indexOf(openingTag);
       nestedEnd = sub.substr(index).indexOf(closingTag);
       //nest
-      if(nestedBegin !== -1 && nestedBegin < nestedEnd){
+      if (nestedBegin !== -1 && nestedBegin < nestedEnd) {
         nestingLevel++;
         index = index + nestedBegin + openingTag.length;
-      }else{
+      }else {
         nestingLevel --;
         index = index + nestedEnd + closingTag.length;
       }
@@ -218,11 +218,11 @@ function eatBlock(sub, REobj, match){
     outputHtml = sub.substr(0, index);
   }
 
-   return {newIndex : outputHtml.length, element : {html:outputHtml.trim(), tagType : REobj.tagType}};
+  return {newIndex : outputHtml.length, element : {html:outputHtml.trim(), tagType : REobj.tagType}};
 }
 
 
-function divideHtmlInBlocks(outputHtml){
+function divideHtmlInBlocks(outputHtml) {
   const html = outputHtml;
   const blocksRE = [
     {
@@ -263,29 +263,29 @@ function divideHtmlInBlocks(outputHtml){
   ];
 
   let index = 0,
-      elements = [],
-      match,
-      sub;
+    elements = [],
+    match,
+    sub;
 
-  while(index < html.length){
+  while (index < html.length) {
     sub = html.substr(index);
 
     //find block type
     blocksRE.some((REobj)=>{
       match = sub.match(REobj.RE);
-      if(match){
+      if (match) {
         const {newIndex, element} = eatBlock(sub, REobj, match);
         index += newIndex;
         elements.push(element);
         sub = undefined;//used as marker that block has been processed
         return true;
-      }else{
+      }else {
         return false;
       }
     });
 
     //security : continue parsing if no block found (should not happen though ...)
-    if(sub){
+    if (sub) {
       index++;
     }
   }
@@ -294,14 +294,14 @@ function divideHtmlInBlocks(outputHtml){
 
 
 
-function eatHtml(html){
+function eatHtml(html) {
   const {contextualizers, contextualizations, newHtml} = eatContextualizations(html);
   const {footnotes, outputHtml} = eatFootnotes(newHtml);
   const elements = divideHtmlInBlocks(outputHtml);
   return {contentBlocks : elements, contextualizers, footnotes, contextualizations};
 }
 
-export function markdownToContentsList(section, callback){
+export function markdownToContentsList(section, callback) {
   const errors = [];
 
   section.markdownContents = section.contents;

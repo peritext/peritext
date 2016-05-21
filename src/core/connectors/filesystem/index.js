@@ -1,4 +1,4 @@
-import * as lib from './connector.js'
+import * as lib from './connector.js';
 
 export const readFromPath = lib.readFromPath;
 export const createFromPath = lib.createFromPath;

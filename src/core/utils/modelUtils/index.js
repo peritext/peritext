@@ -5,9 +5,9 @@
 import {parseBibAuthors} from './../../converters/bibTexConverter';
 
 // I build a model object from a specific bibType, composing it according to its inheritance dependencies, from more general models to the specific bibType
-export function getResourceModel(bibType, resourceModels){
-  let model  = resourceModels.individual[bibType];
-  if(model){
+export function getResourceModel(bibType, resourceModels) {
+  let model = resourceModels.individual[bibType];
+  if (model) {
     //first set highestly specific props
     let properties = model.properties, otherProps, existing;
     //then parse related categories
@@ -16,9 +16,9 @@ export function getResourceModel(bibType, resourceModels){
                     .properties
                     .filter((prop) =>{
                       existing = properties.find((p) =>{
-                        return p.key === prop.key
+                        return p.key === prop.key;
                       });
-                      if(existing){
+                      if (existing) {
                         return false;
                       }else return true;
                     });
@@ -30,9 +30,9 @@ export function getResourceModel(bibType, resourceModels){
                     .properties
                     .filter((prop) =>{
                       existing = properties.find((p) =>{
-                        return p.key === prop.key
+                        return p.key === prop.key;
                       });
-                      if(existing){
+                      if (existing) {
                         return false;
                       }else return true;
                     });
@@ -43,61 +43,61 @@ export function getResourceModel(bibType, resourceModels){
 }
 
 //I turn a (possibly not primitive : array, object, bibAuthor) value to a string-friendly value, thanks to its model's type
-export function serializePropAgainstType(prop, valueType, model){
+export function serializePropAgainstType(prop, valueType, model) {
   let val;
-  if(prop === undefined){
+  if (prop === undefined) {
     return undefined;
-  }else switch(valueType){
+  }else switch (valueType) {
 
-    case 'string':
-      return prop;
+  case 'string':
+    return prop;
     break;
 
-    case 'stringArray':
-      return prop.join(', ');
+  case 'stringArray':
+    return prop.join(', ');
     break;
 
-    case 'bibAuthorsArray':
+  case 'bibAuthorsArray':
 
-      return prop.map((author) =>{
+    return prop.map((author) =>{
 
-        if(author.firstName){
-          return author.firstName + ' {'+author.lastName + '}';
+        if (author.firstName) {
+          return author.firstName + ' {' + author.lastName + '}';
         } else return author.lastName;
       }).join('; ');
     break;
 
-    case 'objectArray' : {
-      if(model.children && Array.isArray(prop)){
+  case 'objectArray' : {
+      if (model.children && Array.isArray(prop)) {
         prop = prop.map((obj)=>{
-          if(typeof obj === 'object'){
+          if (typeof obj === 'object') {
             let vals = Object.keys(obj).map((key)=>{
-              if(obj[key] !== undefined){
+              if (obj[key] !== undefined) {
                 return key + '=' + obj[key];
               }else return '';
             });
-            return vals.filter((part)=>{return part.length}).join(',');
+            return vals.filter((part)=>{return part.length;}).join(',');
           }else return undefined;
         });
         return prop;
       }
     }
 
-    default:
-      return prop;
+  default:
+    return prop;
     break;
   }
 }
 
 // I turn a string value into another (possibly complex) value, thanks to its model's type
-export function resolvePropAgainstType(prop, valueType, model){
+export function resolvePropAgainstType(prop, valueType, model) {
   let val;
-  if(prop === undefined){
+  if (prop === undefined) {
     return undefined;
-  }else switch(valueType){
+  }else switch (valueType) {
 
-    case 'string':
-      if(model.values){
+  case 'string':
+    if (model.values) {
         //nominal set of possible values
         val = model.values.some((mval)=>{
           return mval === prop;
@@ -106,18 +106,18 @@ export function resolvePropAgainstType(prop, valueType, model){
       }else return prop;
     break;
 
-    case 'stringArray':
-      return prop.split(/,|;/).map((val)=>{return val.trim()});
+  case 'stringArray':
+    return prop.split(/,|;/).map((val)=>{return val.trim();});
     break;
 
-    case 'bibAuthorsArray':
-      return parseBibAuthors(prop);
+  case 'bibAuthorsArray':
+    return parseBibAuthors(prop);
     break;
 
-    case 'objectArray' : {
-      if(model.children && Array.isArray(prop)){
+  case 'objectArray' : {
+      if (model.children && Array.isArray(prop)) {
         prop = prop.map((obj)=>{
-          if(typeof obj === 'object'){
+          if (typeof obj === 'object') {
             obj = model.children.reduce((o, childModel) =>{
               o[childModel.key] = resolvePropAgainstType(obj[childModel.key], childModel.valueType, childModel);
               return o;
@@ -129,8 +129,8 @@ export function resolvePropAgainstType(prop, valueType, model){
       }
     }
 
-    default:
-      return prop;
+  default:
+    return prop;
     break;
   }
 }
