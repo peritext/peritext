@@ -3,9 +3,9 @@ Modulo documentation | contextualizers (modulo-flavoured markdown) | WIP
 
 # Contextualizer states
 
-A contextualizer describes a set of parameters to materialize a resource in a specific way, but is still one step away from the actual materialization of the resource.
+A contextualizer describes a set of parameters aimed at materializing a resource in an output document in a specific way. It is still one step away from the actual materialization of the resource, which means it doesn't describe where and how elements should be displayed, but rather how the contextualization algorithm should do that.
 
-Indeed, the parameters described in a contextualizers **must be applicable in all the case studies of contextualization' input (inline or as block) or output (app, pdf, epub, xml/svg, ...)**.
+Indeed, the parameters described in a contextualizer **must be applicable in all the case studies of contextualization' input (inline or as block) or output (app, pdf, epub, xml/svg, ...)**.
 
 Therefore, each contextualizer type covers two input states :
 * inline state
@@ -77,7 +77,7 @@ This contextualizers inserts a reference to a website.
 
 
 | State        | Output description |
-| ------------- |:-------------| 
+| ------------- |:------------- | 
 | inline static      | footnote to url |
 | inline dynamic      | anchor to website iframe + reference |
 | block static      | screenshot of the website + reference |
@@ -85,7 +85,7 @@ This contextualizers inserts a reference to a website.
 
 
 | property        | description | valueType | defaultValue | possibleValues | required |
-| ------------- |:-------------|:-------------|:-------------|:-------------| 
+| ------------- |:------------- |:------------- |:------------- |:------------- | 
 | | | | | |
 
 ## citation
@@ -93,14 +93,14 @@ This contextualizers inserts a reference to a website.
 This contextualizer displays the reference to a bibliographic reference, either as a short or long citation.
 
 | State        | Output description |
-| ------------- |:-------------| 
+| ------------- |:------------- | 
 | inline static      | short citation |
 | inline dynamic      | short citation |
 | block static      | long citation/biblio style |
 | block dynamic      | long citation/biblio style |
 
 | property        | description | valueType | defaultValue | possibleValues | required |
-| ------------- |:-------------|:-------------|:-------------|:-------------| 
+| ------------- |:------------- |:------------- |:------------- |:------------- | 
 | | | | | |
 
 Note : citation formatting should be resolved with document's ``citationStyle`` param (e.g. : APA)
@@ -110,14 +110,14 @@ Note : citation formatting should be resolved with document's ``citationStyle`` 
 This contextualizer displays one or more image resources.
 
 | State        | Output description |
-| ------------- |:-------------| 
+| ------------- |:------------- | 
 | inline static      | reference to figure and figure display just after |
 | inline dynamic      | anchor to gallery display in aside space |
 | block static      | figure and its ref |
 | block dynamic      | anchor to gallery display in aside space |
 
 | property        | description | valueType | defaultValue | possibleValues | required |
-| ------------- |:-------------|:-------------|:-------------|:-------------| 
+| ------------- |:------------- |:------------- |:------------- |:------------- | 
 | | | | | |
 
 ## videoplayer
@@ -125,14 +125,14 @@ This contextualizer displays one or more image resources.
 This contextualizer displays a video, either from raw video files or from video services (vimeo, youtube).
 
 | State        | Output description |
-| ------------- |:-------------| 
+| ------------- |:------------- | 
 | inline static      | link to url in note |
 | inline dynamic      | anchor to video display in aside space |
 | block static      | poster of the video with reference |
 | block dynamic      | anchor to video display in aside space |
 
 | property        | description | valueType | defaultValue | possibleValues | required |
-| ------------- |:-------------|:-------------|:-------------|:-------------| 
+| ------------- |:------------- |:------------- |:------------- |:------------- | 
 | | | | | |
 
 
@@ -141,14 +141,14 @@ This contextualizer displays a video, either from raw video files or from video 
 This contextualizer displays an audio document, either from raw video files or from audio services (soundcloud, etc.).
 
 | State        | Output description |
-| ------------- |:-------------| 
+| ------------- |:------------- | 
 | inline static      | link to url in note |
 | inline dynamic      | anchor to audio display in aside space |
 | block static      | Audio cartel with reference |
 | block dynamic      | anchor to audio display in aside space |
 
 | property        | description | valueType | defaultValue | possibleValues | required |
-| ------------- |:-------------|:-------------|:-------------|:-------------| 
+| ------------- |:------------- |:------------- |:------------- |:------------- | 
 | | | | | |
 
 
@@ -157,14 +157,14 @@ This contextualizer displays an audio document, either from raw video files or f
 This contextualizer displays the transcription of a speech (without media) from a .srt formatted file.
 
 | State        | Output description |
-| ------------- |:-------------| 
+| ------------- |:------------- | 
 | inline static      | link to url in note |
 | inline dynamic      | text display in aside space |
 | block static      | text cartel of the transcription + ref |
 | block dynamic      | text display in aside space |
 
 | property        | description | valueType | defaultValue | possibleValues | required |
-| ------------- |:-------------|:-------------|:-------------|:-------------| 
+| ------------- |:------------- |:------------- |:------------- |:------------- | 
 | | | | | |
 
 
@@ -173,14 +173,14 @@ This contextualizer displays the transcription of a speech (without media) from 
 This contextualizer displays a web resource as raw source code.
 
 | State        | Output description |
-| ------------- |:-------------| 
+| ------------- |:------------- | 
 | inline static      | link to url in note |
 | inline dynamic      | source code display in aside space |
 | block static      | text cartel with source code |
 | block dynamic      | source code display in aside space |
 
 | property        | description | valueType | defaultValue | possibleValues | required |
-| ------------- |:-------------|:-------------|:-------------|:-------------| 
+| ------------- |:------------- |:------------- |:------------- |:------------- | 
 | | | | | |
 
 
@@ -189,14 +189,14 @@ This contextualizer displays a web resource as raw source code.
 This contextualizer displays tabular data as a table.
 
 | State        | Output description |
-| ------------- |:-------------| 
+| ------------- |:------------- | 
 | inline static      | table is displayed after current block, and pointed from the anchor |
 | inline dynamic      | table is displayed in aside space |
 | block static      | tabled is displayed in cartel |
 | block dynamic      | table is displayed in aside space |
 
 | property        | description | valueType | defaultValue | possibleValues | required |
-| ------------- |:-------------|:-------------|:-------------|:-------------| 
+| ------------- |:------------- |:------------- |:------------- |:------------- | 
 | | | | | |
 
 
@@ -205,14 +205,14 @@ This contextualizer displays tabular data as a table.
 This contextualizer displays events, eras and timestamped quantitative data, from tabular data.
 
 | State        | Output description |
-| ------------- |:-------------| 
+| ------------- |:------------- | 
 | inline static      | timeline is displayed statically after calling block and pointed as a figure |
 | inline dynamic      | timeline is displayed dynamically in aside space |
 | block static      | timeline is displayed as a figure |
 | block dynamic      | timeline is displayed dynamically in aside space |
 
 | property        | description | valueType | defaultValue | possibleValues | required |
-| ------------- |:-------------|:-------------|:-------------|:-------------| 
+| ------------- |:------------- |:------------- |:------------- |:------------- | 
 | | | | | |
 
 
@@ -221,14 +221,14 @@ This contextualizer displays events, eras and timestamped quantitative data, fro
 This contextualizer displays geographical data from tabular data.
 
 | State        | Output description |
-| ------------- |:-------------|
+| ------------- |:------------- |
 | inline static      | map is displayed statically after calling block and pointed as a figure |
 | inline dynamic      | map is displayed dynamically in aside space |
 | block static      | map is displayed as a figure |
 | block dynamic      | map is displayed dynamically in aside space |
 
 | property        | description | valueType | defaultValue | possibleValues | required |
-| ------------- |:-------------|:-------------|:-------------|:-------------| 
+| ------------- |:------------- |:------------- |:------------- |:------------- | 
 | | | | | |
 
 
@@ -237,14 +237,14 @@ This contextualizer displays geographical data from tabular data.
 This contextualizer displays an entity mark or call.
 
 | State        | Output description |
-| ------------- |:-------------| 
+| ------------- |:------------- | 
 | inline static      | glossary term registration |
 | inline dynamic      | glossary term registration |
 | block static      | more info as note |
 | block dynamic      | text cartel (for instance : display entity picture, ...) |
 
 | property        | description | valueType | defaultValue | possibleValues | required |
-| ------------- |:-------------|:-------------|:-------------|:-------------| 
+| ------------- |:------------- |:------------- |:------------- |:------------- | 
 | | | | | |
 
 
