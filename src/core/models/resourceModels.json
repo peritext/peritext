@@ -15,6 +15,12 @@
           "required" : true
         },
         {
+          "key" : "doi",
+          "valueType" : "string",
+          "description" : "The digital object identifier of the resource",
+          "required" : false
+        },
+        {
           "key" : "title",
           "valueType" : "string",
           "description" : "The title of the resource",
@@ -84,6 +90,46 @@
           "valueType" : "bibAuthorsArray",
           "description" : "The author(s) of the bibliographic resource",
           "required" : false
+        },
+        {
+          "key" : "editor",
+          "valueType" : "bibAuthorsArray",
+          "description" : "The editor(s) of the bibliographic resource",
+          "required" : false
+        },
+        {
+          "key" : "year",
+          "valueType" : "number",
+          "description" : "The year of publication of the resource",
+          "required" : false
+        },
+        {
+          "key" : "month",
+          "valueType" : "string",
+          "description" : "The month of publication of the resource",
+          "required" : false
+        },
+        {
+          "key" : "isbn",
+          "valueType" : "string",
+          "description" : "The isbn of the reference",
+          "required" : false
+        },
+        {
+          "key" : "issn",
+          "valueType" : "string",
+          "description" : "The issn identifier of the reference",
+          "required" : false
+        }
+      ]
+    },
+    "childResource" : {
+      "properties" : [
+        {
+          "key" : "parent",
+          "valueType" : "string",
+          "description" : "The parent publication's citeKey",
+          "required" : true
         }
       ]
     }
@@ -162,49 +208,217 @@
       "categories" : ["bibliographicResource"],
       "default_contextualizer_inline" : "shortcitation",
       "default_contextualizer_block" : "longcitation",
-      "properties" : []
+      "properties" : [
+        {
+          "key" : "journal",
+          "valueType" : "string",
+          "description" : "The journal in which the article is cited",
+          "required" : true
+        },
+        {
+          "key" : "number",
+          "valueType" : "number",
+          "description" : "The tome number of the article's hosting resource",
+          "required" : false
+        },
+        {
+          "key" : "volume",
+          "valueType" : "number",
+          "description" : "The volume number of the article's hosting resource",
+          "required" : false
+        },
+        {
+          "key" : "pages",
+          "valueType" : "string",
+          "description" : "The pages of begining and end of the reference",
+          "required" : false
+        }
+      ]
     },
     "book" : {
       "categories" : ["bibliographicResource"],
       "default_contextualizer_inline" : "shortcitation",
       "default_contextualizer_block" : "longcitation",
-      "properties" : []
+      "properties" : [
+        {
+          "key" : "publisher",
+          "valueType" : "string",
+          "description" : "The publisher's name",
+          "required" : true
+        },
+        {
+          "key" : "edition",
+          "valueType" : "string",
+          "description" : "The edition of the publication",
+          "required" : false
+        },
+        {
+          "key" : "volume",
+          "valueType" : "number",
+          "description" : "The volume's number",
+          "required" : false
+        },
+        {
+          "key" : "series",
+          "valueType" : "string",
+          "description" : "The series of books in which is the publication",
+          "required" : false
+        },
+        {
+          "key" : "address",
+          "valueType" : "string",
+          "description" : "The address of publication",
+          "required" : false
+        },
+        {
+          "key" : "nb_pages",
+          "valueType" : "string",
+          "description" : "The number of pages",
+          "required" : false
+        }
+      ]
     },
     "booklet" : {
       "categories" : ["bibliographicResource"],
       "default_contextualizer_inline" : "shortcitation",
       "default_contextualizer_block" : "longcitation",
-      "properties" : []
-    },
-    "conference" : {
-      "categories" : ["bibliographicResource"],
-      "default_contextualizer_inline" : "shortcitation",
-      "default_contextualizer_block" : "longcitation",
-      "properties" : []
+      "properties" : [
+        {
+          "key" : "address",
+          "valueType" : "string",
+          "description" : "The address of publication",
+          "required" : false
+        },
+        {
+          "key" : "howpublished",
+          "valueType" : "string",
+          "description" : "Details about the publication context.",
+          "required" : false
+        }
+      ]
     },
     "inbook" : {
-      "categories" : ["bibliographicResource"],
+      "categories" : ["bibliographicResource", "childResource"],
       "default_contextualizer_inline" : "shortcitation",
       "default_contextualizer_block" : "longcitation",
-      "properties" : []
-    },
-    "collection" : {
-      "categories" : ["bibliographicResource"],
-      "default_contextualizer_inline" : "shortcitation",
-      "default_contextualizer_block" : "longcitation",
-      "properties" : []
+      "properties" : [
+        {
+          "key" : "publisher",
+          "valueType" : "string",
+          "description" : "The publisher's name",
+          "required" : true
+        },
+        {
+          "key" : "edition",
+          "valueType" : "string",
+          "description" : "The edition of the publication",
+          "required" : false
+        },
+        {
+          "key" : "volume",
+          "valueType" : "number",
+          "description" : "The volume's number",
+          "required" : false
+        },
+        {
+          "key" : "series",
+          "valueType" : "string",
+          "description" : "The series of books in which is the publication",
+          "required" : false
+        },
+        {
+          "key" : "address",
+          "valueType" : "string",
+          "description" : "The address of publication",
+          "required" : false
+        },
+        {
+          "key" : "nb_pages",
+          "valueType" : "string",
+          "description" : "The number of pages",
+          "required" : false
+        },
+        {
+          "key" : "chapter",
+          "valueType" : "string",
+          "description" : "The chapter name of the sample",
+          "required" : false
+        },
+        {
+          "key" : "pages",
+          "valueType" : "string",
+          "description" : "The starting and ending pages of the sample",
+          "required" : false
+        }
+      ]
     },
     "incollection" : {
-      "categories" : ["bibliographicResource"],
+      "categories" : ["bibliographicResource", "childResource"],
       "default_contextualizer_inline" : "shortcitation",
       "default_contextualizer_block" : "longcitation",
-      "properties" : []
+      "properties" : [
+        {
+          "key" : "booktitle",
+          "valueType" : "string",
+          "description" : "The title of the parent book",
+          "required" : false
+        },
+        {
+          "key" : "organization",
+          "valueType" : "string",
+          "description" : "The organization behind this resource.",
+          "required" : false
+        },
+        {
+          "key" : "pages",
+          "valueType" : "string",
+          "description" : "The starting and ending pages of the sample",
+          "required" : false
+        },
+        {
+          "key" : "publisher",
+          "valueType" : "string",
+          "description" : "The publisher's name",
+          "required" : true
+        },
+        {
+          "key" : "address",
+          "valueType" : "string",
+          "description" : "The address of publication",
+          "required" : false
+        }
+      ]
     },
     "inproceedings" : {
-      "categories" : ["bibliographicResource"],
+      "categories" : ["bibliographicResource", "childResource"],
       "default_contextualizer_inline" : "shortcitation",
       "default_contextualizer_block" : "longcitation",
-      "properties" : []
+      "properties" : [
+        {
+          "key" : "organization",
+          "valueType" : "string",
+          "description" : "The organization behind this resource.",
+          "required" : false
+        },
+        {
+          "key" : "address",
+          "valueType" : "string",
+          "description" : "The address of publication",
+          "required" : false
+        },
+        {
+          "key" : "pages",
+          "valueType" : "string",
+          "description" : "The starting and ending pages of the sample",
+          "required" : false
+        },
+        {
+          "key" : "publisher",
+          "valueType" : "string",
+          "description" : "The publisher's name",
+          "required" : true
+        }
+      ]
     },
     "inherits" : {
       "categories" : ["bibliographicResource"],
@@ -216,31 +430,114 @@
       "categories" : ["bibliographicResource"],
       "default_contextualizer_inline" : "shortcitation",
       "default_contextualizer_block" : "longcitation",
-      "properties" : []
+      "properties" : [
+        {
+          "key" : "edition",
+          "valueType" : "string",
+          "description" : "The edition of the publication",
+          "required" : false
+        },
+        {
+          "key" : "organization",
+          "valueType" : "string",
+          "description" : "The organization behind this resource.",
+          "required" : false
+        },
+        {
+          "key" : "address",
+          "valueType" : "string",
+          "description" : "The address of publication",
+          "required" : false
+        }
+      ]
     },
     "mastersthesis" : {
       "categories" : ["bibliographicResource"],
       "default_contextualizer_inline" : "shortcitation",
       "default_contextualizer_block" : "longcitation",
-      "properties" : []
+      "properties" : [
+        {
+          "key" : "address",
+          "valueType" : "string",
+          "description" : "The address of publication.",
+          "required" : false
+        },
+        {
+          "key" : "school",
+          "valueType" : "string",
+          "description" : "The school to which the document has been submitted.",
+          "required" : false
+        }
+      ]
     },
     "phdthesis" :{
       "categories" : ["bibliographicResource"],
       "default_contextualizer_inline" : "shortcitation",
       "default_contextualizer_block" : "longcitation",
-      "properties" : []
+      "properties" : [
+        {
+          "key" : "address",
+          "valueType" : "string",
+          "description" : "The address of publication.",
+          "required" : false
+        },
+        {
+          "key" : "school",
+          "valueType" : "string",
+          "description" : "The school to which the document has been submitted.",
+          "required" : false
+        }
+      ]
     },
     "proceedings" : {
       "categories" : ["bibliographicResource"],
       "default_contextualizer_inline" : "shortcitation",
       "default_contextualizer_block" : "longcitation",
-      "properties" : []
+      "properties" : [
+        {
+          "key" : "address",
+          "valueType" : "string",
+          "description" : "The address of publication.",
+          "required" : false
+        },
+        {
+          "key" : "organization",
+          "valueType" : "string",
+          "description" : "The organization behind this resource.",
+          "required" : false
+        },
+        {
+          "key" : "publisher",
+          "valueType" : "string",
+          "description" : "The publisher's name",
+          "required" : true
+        }
+      ]
     },
     "techreport" : {
       "categories" : ["bibliographicResource"],
       "default_contextualizer_inline" : "shortcitation",
       "default_contextualizer_block" : "longcitation",
-      "properties" : []
+      "properties" : [
+        {
+          "key" : "address",
+          "valueType" : "string",
+          "description" : "The address of publication.",
+          "required" : false
+        },
+        {
+          "key" : "institution",
+          "valueType" : "string",
+          "description" : "The institution behind the report.",
+          "required" : false
+        },
+        {
+          "key" : "number",
+          "valueType" : "string",
+          "description" : "The number of the tech report.",
+          "required" : false
+        },
+      ]
     },
     "unpublished" : {
       "categories" : ["bibliographicResource"],
@@ -252,8 +549,19 @@
       "categories" : ["bibliographicResource"],
       "default_contextualizer_inline" : "shortcitation",
       "default_contextualizer_block" : "longcitation",
-      "properties" : []
+      "properties" : [
+        {
+          "key" : "howpublished",
+          "valueType" : "string",
+          "description" : "Details about the publication context.",
+          "required" : false
+        }
+      ]
     },
+
+
+
+
 
     "person" : {
       "categories" : ["entityResource"],
