@@ -3,17 +3,22 @@ import {map as asyncMap, waterfall} from 'async';
 import {getMetaValue, deleteMeta} from './../../utils/sectionUtils';
 
 const formatMetadata = function(metadataObj) {
-  let output = [], value, keydetail, domain;
-  for (var key in metadataObj) {
-    value = metadataObj[key];
-    keydetail = key.split('_');
-    domain = (keydetail.length > 1) ? keydetail.shift():'general';
-    key = keydetail.join('_');
-    output.push({
-      domain,
-      key,
-      value
-    });
+  const output = [];
+  let value;
+  let keydetail;
+  let domain;
+  for (let key in metadataObj) {
+    if (metadataObj[key] !== undefined) {
+      value = metadataObj[key];
+      keydetail = key.split('_');
+      domain = (keydetail.length > 1) ? keydetail.shift() : 'general';
+      key = keydetail.join('_');
+      output.push({
+        domain,
+        key,
+        value
+      });
+    }
   }
   return output;
 };
@@ -22,9 +27,9 @@ const flattenSections = function(tree, callback) {
 
   if (tree.children) {
     asyncMap(tree.children, flattenSections, function(err, children) {
-      let newTree = Object.assign({}, tree);
-      let newChildren = children.map((child)=>{
-        return Object.assign({}, child[0], {parent : tree.metadata.citeKey});
+      const newTree = Object.assign({}, tree);
+      const newChildren = children.map((child)=>{
+        return Object.assign({}, child[0], {parent: tree.metadata.citeKey});
       });
 
       return callback(null, [newTree, ...newChildren]);
@@ -34,7 +39,7 @@ const flattenSections = function(tree, callback) {
 
 
 const formatSection = (section) =>{
-  let metadata = formatMetadata(section.metadata);
+  const metadata = formatMetadata(section.metadata);
   let keyedCustomizers;
   if (section.customizers) {
     keyedCustomizers = {};
@@ -44,25 +49,26 @@ const formatSection = (section) =>{
   }
   return {
     metadata,
-    contents : section.contentStr,
-    resources : section.resources,
-    parent : section.parent,
-    customizers : keyedCustomizers,
-    contextualizers : section.contextualizers
+    contents: section.contentStr,
+    resources: section.resources,
+    parent: section.parent,
+    customizers: keyedCustomizers,
+    contextualizers: section.contextualizers
   };
 };
 
 const formatSections = function(sections, callback) {
-  let formatted = sections.map(formatSection);
+  const formatted = sections.map(formatSection);
   return callback(null, formatted);
 };
 
-const makeRelations = function(sections, callback) {
+const makeRelations = function(inputSections, callback) {
 
-  //find parents and predecessors
-  sections = sections.map((section) =>{
-    let parent = getMetaValue(section.metadata, 'general', 'parent'),
-      after = getMetaValue(section.metadata, 'general', 'after');
+  // find parents and predecessors
+  const sections = inputSections.map((inputSection) =>{
+    const section = Object.assign({}, inputSection);
+    const parent = getMetaValue(section.metadata, 'general', 'parent');
+    const after = getMetaValue(section.metadata, 'general', 'after');
     if (parent) {
       section.parent = parent;
       section.metadata = deleteMeta(section.metadata, 'general', 'parent');
@@ -73,22 +79,23 @@ const makeRelations = function(sections, callback) {
     }
     return section;
   });
-  //order sections
-  for (let i = sections.length - 1 ; i >= 0 ; i--) {
-    let section = sections[i];
+  // order sections
+  for (let index = sections.length - 1; index >= 0; index--) {
+    const section = sections[index];
     if (section.after) {
       let indexAfter;
       sections.some((sec, id) =>{
-        let citeKey = sec.metadata.find((meta)=>{
+        const citeKey = sec.metadata.find((meta)=>{
           return meta.domain === 'general' && meta.key === 'citeKey';
         }).value;
 
         if (section.after === citeKey) {
-          return indexAfter = id;
+          indexAfter = id;
+          return true;
         }
       });
       sections.splice(indexAfter + 1, 0, section);
-      sections.splice(i + 1, 1);
+      sections.splice(index + 1, 1);
     }
   }
 
@@ -99,14 +106,14 @@ export function organizeTree({errors, validTree}, callback) {
 
   waterfall([
     function(cb) {
-        flattenSections(validTree, cb);
-      },
+      flattenSections(validTree, cb);
+    },
     function(sections, cb) {
-        formatSections(sections, cb);
-      },
+      formatSections(sections, cb);
+    },
     function(sections, cb) {
-        makeRelations(sections, cb);
-      },
+      makeRelations(sections, cb);
+    },
   ], function(err, sections) {
     callback(err, {sections, errors});
   });

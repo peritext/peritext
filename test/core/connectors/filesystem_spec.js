@@ -224,21 +224,21 @@ describe('filesystem:deleteFromPath', function(){
     waterfall([
       function(callback){
         //create a folder
-        createFromPath({path : localPath, overwrite : true, stringContents : 'hello'}, function(err){
+        createFromPath({path: localPath, overwrite: true, stringContents: 'hello'}, function(err){
           expect(err).to.be.null;
           callback(null);
         });
       },
       //delete it
       function(callback){
-        deleteFromPath({path : path + '/folder_to_delete/'}, function(err){
+        deleteFromPath({path: path + '/folder_to_delete/'}, function(err){
           expect(err).to.be.null;
           callback(null);
         });
       },
       //try to read it
       function(callback){
-        readFromPath({path : path + '/folder_to_delete/'}, function(err){
+        readFromPath({path: path + '/folder_to_delete/'}, function(err){
           expect(err).not.to.be.null;
           callback(null);
         });

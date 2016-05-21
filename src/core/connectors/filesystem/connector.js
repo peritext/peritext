@@ -1,4 +1,4 @@
-import {readFile, readdir, lstatSync, mkdir, rmdir, exists, writeFile, unlink} from 'fs';
+import {readFile, readdir, lstatSync, mkdir, exists, writeFile, unlink} from 'fs';
 import {resolve, extname, basename, join as joinPath} from 'path';
 import {map as asyncMap, reduce as asyncReduce} from 'async';
 import removeFolderRecursively from 'rmdir';
@@ -6,122 +6,126 @@ import removeFolderRecursively from 'rmdir';
 const analyseElement = function(fileName, absPath) {
   const path = joinPath(absPath, fileName);
   return {
-    name : fileName,
+    name: fileName,
     path,
-    type : (lstatSync(path).isDirectory()) ? 'directory':'file',
-    extname : extname(path)
+    type: (lstatSync(path).isDirectory()) ? 'directory' : 'file',
+    extname: extname(path)
   };
 };
 
 const analyseContents = function(filesList, absPath) {
   if (!filesList) {
     return undefined;
-  } else return filesList.map((fileName) => {
+  }
+  return filesList.map((fileName) => {
     return analyseElement(fileName, absPath);
   });
 };
 
 
-//recursive fs element parser
+// recursive fs element parser
 const parseElement = function({path, element, parseFiles, depth, actualDepth, acceptedExtensions}, callback) {
-  //file to parse
+  // file to parse
   if (element.type === 'file' && parseFiles === true && acceptedExtensions.indexOf(element.extname) > -1) {
     try {
       readFile(path, 'utf8', function(err, str) {
         if (err) {
           return callback(err, undefined);
-        } else {
-          return callback(null, Object.assign({}, element, {stringContents : str}));
         }
+        return callback(null, Object.assign({}, element, {stringContents: str}));
       });
-    } catch (e) {
+    } catch (exception) {
       callback(null, element);
     }
 
 
-  //dir to parse
+  // dir to parse
   } else if (element.type === 'directory' && (actualDepth < depth || depth === true)) {
     readdir(element.path + '/', function(err, files) {
       const children = analyseContents(files, path)
                       .filter((child)=>{
                         return child.type === 'directory' || acceptedExtensions.indexOf(child.extname) > -1;
                       });
-      actualDepth ++;
-      asyncMap(children, function(element, colback) {
-        parseElement({element, path : path + '/' + element.name, parseFiles, depth, actualDepth : actualDepth, acceptedExtensions}, colback);
-      }, function(err, children) {
-        return callback(err, Object.assign({}, element, {children}));
+      const newDepth = actualDepth + 1;
+      asyncMap(children, function(elem, colback) {
+        parseElement({element: elem, path: path + '/' + elem.name, parseFiles, depth, actualDepth: newDepth, acceptedExtensions}, colback);
+      }, function(error, otherChildren) {
+        return callback(error, Object.assign({}, element, {children: otherChildren}));
       });
     });
-  //default return element as it was input
+  // default return element as it was input
   } else {
     return callback(null, Object.assign({}, element));
   }
 };
 
-//cRud
+// cRud
 export function readFromPath({path = [], depth = 1, parseFiles = false, acceptedExtensions = ['.md', '.bib', '.css', '.jsx']}, callback) {
-  const finalPath = resolve((Array.isArray(path)) ? path.join('/'):path);
-  let element,
-    name = basename(finalPath);
+  const finalPath = resolve((Array.isArray(path)) ? path.join('/') : path);
+  let element;
+  const name = basename(finalPath);
 
   try {
     element = {
-      name : name,
-      path : finalPath,
-      type : (lstatSync(finalPath).isDirectory()) ? 'directory':'file',
-      extname : extname(name)
+      name: name,
+      path: finalPath,
+      type: (lstatSync(finalPath).isDirectory()) ? 'directory' : 'file',
+      extname: extname(name)
     };
-  }catch (e) {
-    return callback(e, undefined);
+  }catch (err) {
+    return callback(err, undefined);
   }
 
   if (element.type === 'directory') {
-    return parseElement({path:finalPath, element, parseFiles, depth, actualDepth : 0, acceptedExtensions}, callback);
+    return parseElement({path: finalPath, element, parseFiles, depth, actualDepth: 0, acceptedExtensions}, callback);
   } else if (acceptedExtensions.indexOf(element.extname) > -1) {
     readFile(finalPath, 'utf8', (err, str) => {
       if (err) {
         return callback(err, undefined);
-      } else {
-        return callback(null, Object.assign({}, element, {stringContents : str}));
       }
+      return callback(null, Object.assign({}, element, {stringContents: str}));
     });
   } else {
     return callback(new Error('the file extension is not accepted'), undefined);
   }
 }
 
-
-
-//Crud
+// Crud
 export function createFromPath({path, type = 'file', stringContents = '', overwrite = false}, callback) {
-  const finalPath = resolve((Array.isArray(path)) ? path.join('/'):path);
-  const pathSteps = finalPath.split('/').filter((p)=> {return p.length > 0;});
-  const elementName = pathSteps.pop();
-  //first check-or-create path folders
-  let activePath = '/';
-  asyncReduce(pathSteps, activePath, function(memo, pathStep, callback) {
-    memo += pathStep + '/';
-    exists(memo, function(exists) {
-      if (exists) {
-        callback(null, memo);
-      }else {
-        mkdir(memo, function(e) {
-          callback(e, memo);
-        });
-      }
-    });
+  const finalPath = resolve((Array.isArray(path)) ? path.join('/') : path);
+  const pathSteps = finalPath.split('/').filter((thatPath)=> {return thatPath.length > 0;});
+  // first check-or-create path folders
+  const activePath = '/';
+  asyncReduce(pathSteps, activePath, function(inputMemo, pathStep, cback) {
+    // case : not end of path, walking through
+    if (pathStep !== pathSteps[pathSteps.length - 1]) {
+      const memo = inputMemo + pathStep + '/';
+      exists(memo, function(isThere) {
+        if (isThere) {
+          cback(null, memo);
+        }else {
+          mkdir(memo, function(err) {
+            cback(err, memo);
+          });
+        }
+      });
+    // case : end of path
+    } else {
+      cback(null, inputMemo + pathStep);
+    }
+
   }, function(err, result) {
-    //check if element already exists
-    exists(finalPath, function(exists) {
-      if ((exists && overwrite === true) || !exists) {
+    // check if element already exists
+    exists(finalPath, function(isThere) {
+      if ((isThere && overwrite === true) || !isThere) {
         if (type === 'file') {
-          writeFile(finalPath, stringContents, 'utf8', function(e) {
-            callback(e);
+          console.log('final path : ', finalPath);
+          writeFile(finalPath, stringContents, 'utf8', function(error) {
+            callback(error);
           });
         }else if (type === 'directory') {
-          mkdir(finalPath, function(e) {
-            callback(e);
+          mkdir(finalPath, function(error) {
+            callback(error);
           });
         }else {
           callback(new Error('No element type matching'));
@@ -133,19 +137,19 @@ export function createFromPath({path, type = 'file', stringContents = '', overwr
   });
 }
 
-//crUd
+// crUd
 export function updateFromPath({path, stringContents = ''}, callback) {
-  const finalPath = resolve((Array.isArray(path)) ? path.join('/'):path);
-  exists(finalPath, function(exists) {
-    if (exists) {
-      const pathSteps = finalPath.split('/').filter((p)=> {return p.length > 0;});
+  const finalPath = resolve((Array.isArray(path)) ? path.join('/') : path);
+  exists(finalPath, function(isThere) {
+    if (isThere) {
+      const pathSteps = finalPath.split('/').filter((thatPath)=> {return thatPath.length > 0;});
       const elementName = pathSteps.pop();
       const element = analyseElement(elementName, '/' + pathSteps.join('/'));
       if (element.type === 'directory') {
         callback(new Error('cannot update directories'));
       }else if (element.type === 'file') {
-        writeFile(finalPath, stringContents, function(e) {
-          callback(e);
+        writeFile(finalPath, stringContents, function(err) {
+          callback(err);
         });
       }
     }else {
@@ -154,21 +158,21 @@ export function updateFromPath({path, stringContents = ''}, callback) {
   });
 }
 
-//cruD
+// cruD
 export function deleteFromPath({path}, callback) {
-  const finalPath = resolve((Array.isArray(path)) ? path.join('/'):path);
-  exists(finalPath, function(exists) {
-    if (exists) {
-      const pathSteps = finalPath.split('/').filter((p) => {return p.length > 0;});
+  const finalPath = resolve((Array.isArray(path)) ? path.join('/') : path);
+  exists(finalPath, function(isThere) {
+    if (isThere) {
+      const pathSteps = finalPath.split('/').filter((thatPath) => {return thatPath.length > 0;});
       const elementName = pathSteps.pop();
       const element = analyseElement(elementName, '/' + pathSteps.join('/'));
       if (element.type === 'directory') {
-        removeFolderRecursively(finalPath, function(e) {
-          callback(e);
+        removeFolderRecursively(finalPath, function(err) {
+          callback(err);
         });
       }else if (element.type === 'file') {
-        unlink(finalPath, function(e) {
-          callback(e);
+        unlink(finalPath, function(err) {
+          callback(err);
         });
       }
     }else {

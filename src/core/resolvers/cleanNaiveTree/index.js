@@ -2,27 +2,24 @@
  * This module cleans resources and metadata from a naive (resource concatenated) tree
  */
 
-
 import {map as asyncMap} from 'async';
 
 export function cleanNaiveTree({errors = [], validTree}, models, callback) {
   const contextualizers = [];
+  const naiveTree = Object.assign({}, validTree);
   let metadata;
-  let naiveTree = Object.assign({}, validTree);
 
   const hasResources = naiveTree && naiveTree.resources;
   if (hasResources) {
-    naiveTree.resources = naiveTree.resources.filter(function(res, i) {
-      //catch metadata
+    naiveTree.resources = naiveTree.resources.filter(function(res) {
+      // catch metadata
       let validated;
-
-      //extract contextualizer descriptions
+      // extract contextualizer descriptions
       if (res.bibType === 'contextualizer') {
         contextualizers.push(res);
         return false;
       }
-      for (var type in models.sectionTypeModels.acceptedTypes) {
-
+      for (const type in models.sectionTypeModels.acceptedTypes) {
         if (res.bibType === 'modulo' + type) {
           metadata = res;
           return false;
@@ -30,45 +27,40 @@ export function cleanNaiveTree({errors = [], validTree}, models, callback) {
       }
 
       if (!validated) {
-        //verify that the resource type are known
-        for (var type in models.resourceModels.individual) {
-          if (res.bibType === type) {
+        // verify that the resource type are known
+        for (const otherType in models.resourceModels.individual) {
+          if (res.bibType === otherType) {
             return true;
           }
         }
       }
-      //if not validated, record error and don't take resource
+      // if not validated, record error and don't take resource
       if (!validated) {
         errors.push({
-          type : 'error',
-          preciseType : 'invalidResource',
-          sectionCiteKey : getMetaValue(section.metadata, 'general', 'citeKey'),
-          resourceCiteKey : resource.citeKey,
-          message : 'could not find resource type ' + type.bibType + ' for Resource ID ' + resource.citeKey
+          type: 'error',
+          preciseType: 'invalidResource',
+          resourceCiteKey: res.citeKey,
+          message: 'could not find resource type ' + res.bibType + ' for Resource ID ' + res.citeKey
         });
         return false;
-      }else {
-        return true;
       }
+      return true;
     });
   }
   if (metadata === undefined && naiveTree.name.charAt(0) !== '_') {
     errors.push({
-      type : 'error',
-      preciseType : 'metadataError',
-      message : 'no metadata specified for the folder ' + naiveTree.name
+      type: 'error',
+      preciseType: 'metadataError',
+      message: 'no metadata specified for the folder ' + naiveTree.name
     });
-    errors = (errors.length > 0) ? errors.reverse():null;
-    return callback(null, {errors, validTree :  undefined});
+    const newErrors = (errors.length > 0) ? errors.reverse() : null;
+    return callback(null, {errors: newErrors, validTree: undefined});
   }else if (naiveTree.children) {
-    // console.log('naive tree has children ', naiveTree.children.length);
     asyncMap(naiveTree.children, function(child, cb) {
-      // console.log('child : ' , child);
-      cleanNaiveTree({validTree : child}, models, cb);
+      cleanNaiveTree({validTree: child}, models, cb);
     }, function(err, results) {
-
-      //filter valid children tree leaves
-      let children = results
+      // filter valid children tree leaves
+      const children = results
                       .filter((result)=>{
                         return result.validTree !== undefined;
                       })
@@ -76,14 +68,12 @@ export function cleanNaiveTree({errors = [], validTree}, models, callback) {
                         return result.validTree;
                       });
 
-      errors = results.reduce((errors, result)=>{
-        return errors.concat(result.errors);
+      const newErrors = results.reduce((theseErrors, result)=>{
+        return theseErrors.concat(result.errors);
       }, errors);
-      return callback(null, {errors, validTree : Object.assign({}, naiveTree, {metadata}, {children}, {contextualizers})});
+      return callback(null, {errors: newErrors, validTree: Object.assign({}, naiveTree, {metadata}, {children}, {contextualizers})});
     });
-  }else {
-    // console.log('returning default ', naiveTree.name);
-    errors = (errors.length > 0) ? errors.reverse():null;
-    return callback(null, {errors, validTree : Object.assign({}, naiveTree, {metadata}, {contextualizers})});
   }
+  const newErrors = (errors.length > 0) ? errors.reverse() : null;
+  return callback(null, {errors: newErrors, validTree: Object.assign({}, naiveTree, {metadata}, {contextualizers})});
 }

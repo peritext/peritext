@@ -2,18 +2,19 @@
  * section metadata & resources utils : access, filter, deletion, ...
  */
 
-//section metadata access util
+// section metadata access util
 export function getMetaValue(metaList, domain, key) {
-  let prop = metaList.find((meta) =>{
+  const prop = metaList.find((meta) =>{
     return meta.domain === domain && meta.key === key;
   });
   if (prop) {
     return prop.value;
-  }else return undefined;
+  }
+  return undefined;
 }
 
 export function setMetaValue(metaList, domain, key, newValue) {
-  let newMetaList = metaList.map((meta) =>{
+  const newMetaList = metaList.map((meta) =>{
     if (meta.domain === domain && meta.key === key) {
       meta.value = newValue;
     }
@@ -27,12 +28,13 @@ export function hasMeta(metaList, domain, key) {
     return getMetaValue(metaList, domain, key) !== undefined;
   }else if (domain.domain) {
     return getMetaValue(metaList, domain.domain, domain.key) !== undefined;
-  }else throw new Error('error in couple ' + domain + '_' + key + ': hasMeta method needs either a domain+key pair or a metadata prop object');
+  }
+  throw new Error('error in couple ' + domain + '_' + key + ': hasMeta method needs either a domain+key pair or a metadata prop object');
 }
 
 export function findByMetadata(sections, domain, key, value) {
   return sections.find((section) =>{
-    let meta = getMetaValue(section.metadata, domain, key);
+    const meta = getMetaValue(section.metadata, domain, key);
     return meta === value;
   });
 }
@@ -42,7 +44,6 @@ export function sameMetaScope(meta1, meta2) {
 }
 
 export function deleteMeta(metaList, domain, key) {
-
   return metaList.filter((meta)=>{
     return !(domain === meta.domain && key === meta.key);
   });
@@ -50,9 +51,9 @@ export function deleteMeta(metaList, domain, key) {
 
 
 export function metaStringToCouple(str) {
-  let parts = str.split('_'),
-    domain = (parts.length > 1) ? parts.shift() : 'general',
-    key = parts.join('_');
+  const parts = str.split('_');
+  const domain = (parts.length > 1) ? parts.shift() : 'general';
+  const key = parts.join('_');
   return {domain, key};
 }
 

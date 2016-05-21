@@ -9,8 +9,8 @@ import {map as asyncMap, waterfall} from 'async';
 const populateElementWithIncludes = function(child, params, callback) {
   extractIncludes(child.stringContents,
     {
-      includeWrappingChars : params.templateWrappingCharacters,
-      resWrappingChars : params.inlineResourceDescriptionWrappingCharacters
+      includeWrappingChars: params.templateWrappingCharacters,
+      resWrappingChars: params.inlineResourceDescriptionWrappingCharacters
     }, function(err, {extracted, cleanStr}) {
       if (!err) {
         child.extracted = extracted;
@@ -20,6 +20,8 @@ const populateElementWithIncludes = function(child, params, callback) {
     });
 };
 
+
+let resolveFileIncludes;
 /*
  * I produce a nested structure of the included files in a given file
  * @ex : the include expression object
@@ -27,42 +29,43 @@ const populateElementWithIncludes = function(child, params, callback) {
  */
 const include = (ex, file, mdFilesWithIncludes)=>{
   let fileIndex;
-  let fileToInclude = mdFilesWithIncludes
-      .find((file, index)=>{
-        if (file.name === ex.statement) {
+  const fileToInclude = mdFilesWithIncludes
+      .find((otherFile, index)=>{
+        if (otherFile.name === ex.statement) {
           fileIndex = index;
           return true;
         }
       });
   if (fileToInclude !== undefined) {
-      var fileHasIncludes = fileToInclude
+    const fileHasIncludes = fileToInclude
                               .extracted
-                                .filter((ex)=>{
-                                  return ex.type === 'includeStatement';
+                                .filter((rawExtracted)=>{
+                                  return rawExtracted.type === 'includeStatement';
                                 }).length > 0;
-      if (fileHasIncludes) {
-        resolveFileIncludes(fileToInclude, mdFilesWithIncludes);
-      }
-      file.includes.push(fileToInclude);
-      mdFilesWithIncludes.splice(fileIndex, 1);
+    if (fileHasIncludes) {
+      resolveFileIncludes(fileToInclude, mdFilesWithIncludes);
     }
+    file.includes.push(fileToInclude);
+    mdFilesWithIncludes.splice(fileIndex, 1);
+  }
 };
 
 /*
  * I monitor the nested including structure population process of a file
  */
-const resolveFileIncludes = function(file, mdFilesWithIncludes) {
+resolveFileIncludes = function(file, mdFilesWithIncludes) {
   file.includes = [];
   file.includeStatements = [];
-  for (let i = file.extracted.length - 1 ; i >= 0 ; i--) {
-    let ex = file.extracted[i];
+  for (let index = file.extracted.length - 1; index >= 0; index--) {
+    const ex = file.extracted[index];
     if (ex.type === 'includeStatement') {
       include(ex, file, mdFilesWithIncludes);
-      file.extracted.splice(i, 1);
+      file.extracted.splice(index, 1);
       file.includeStatements.push(ex);
     }
   }
 };
+
 
 /*
  * I turn non nested file object into include-based nested file objects
@@ -90,10 +93,10 @@ const buildFinalMdContent = function(file) {
         return ex.type === 'includeStatement';
       })
       .forEach((ex)=>{
-        let targetIncluded = file.includes.find((file2)=>{
+        const targetIncluded = file.includes.find((file2)=>{
           return file2.name === ex.statement;
         });
-        let contentToInclude = buildFinalMdContent(targetIncluded);
+        const contentToInclude = buildFinalMdContent(targetIncluded);
         content = [content.substr(0, ex.index), contentToInclude, content.substr(ex.index)].join('');
       });
   }
@@ -106,7 +109,7 @@ const buildFinalMdContent = function(file) {
  * @mdFilesWithIncludes : non nested file objects
  */
 const resolveNestedIncludes = function({resourcesStr, mdFilesWithIncludes, params}, cb) {
-  let contentStr = mdFilesWithIncludes
+  const contentStr = mdFilesWithIncludes
                       .reduce((str, file) => {
                         return str + buildFinalMdContent(file);
                       }, '');
@@ -119,12 +122,12 @@ const concatCustomizers = function(newTree) {
         return child.type === 'directory' && child.name.charAt(0) === '_';
       })
       .map((child) => {
-        let contents = {};
-        child.children.forEach((c) =>{
-          contents[c.name] = c.stringContents;
+        const contents = {};
+        child.children.forEach((subChild) =>{
+          contents[subChild.name] = subChild.stringContents;
         });
         return {
-          type : child.name.substr(1),
+          type: child.name.substr(1),
           contents
         };
       });
@@ -136,61 +139,63 @@ const concatCustomizers = function(newTree) {
  * .bib resources and .md files contents concatenated by folder (according to inner 'include' statements and then automatically)
  */
 export function concatTree(tree, params, callback) {
-  let newTree = Object.assign({}, tree);
-  //concat .bib res files
-  let resources = newTree.children
+  const newTree = Object.assign({}, tree);
+  // concat .bib res files
+  const resources = newTree.children
                     .filter((child) => {
                       return child.type === 'file' && child.extname === '.bib';
                     })
                     .reduce((str, child) => {
                       if (child.stringContents !== undefined) {
                         return str + '\n' + child.stringContents;
-                      } else return str;
+                      }
+                      return str;
                     }, '');
 
-  let mdContents = newTree.children
+  const mdContents = newTree.children
                     .filter((child) => {
                       return child.type === 'file' && child.extname === '.md';
                     });
-  let childrenDirs = newTree.children
+  const childrenDirs = newTree.children
                     .filter((child) => {
                       return child.type === 'directory' && child.name.charAt(0) !== '_';
                     });
-  let childrenCustomizers = concatCustomizers(newTree);
+  const childrenCustomizers = concatCustomizers(newTree);
   waterfall([
-      //extract md files elements includes statements
+    // extract md files elements includes statements
     function(cb) {
-        asyncMap(mdContents, function(child, callback) {
-          populateElementWithIncludes(child, params, callback);
-        }, function(err, mdFilesWithIncludes) {
-          //concat extracted bibtex resources
-          let resourcesStr = mdFilesWithIncludes
-                        .reduce((str, mdFile) => {
-                          mdFile.extracted
-                            .filter((ex)=>{
-                              return ex.type === 'resourceStatement';
-                            }).forEach((ex)=>{
-                              str += ex.statement;
-                            });
-                          return str;
-                        }, resources);
-          cb(null, {resourcesStr, mdFilesWithIncludes, params});
-        });
-      },
+      asyncMap(mdContents, function(child, cback) {
+        populateElementWithIncludes(child, params, cback);
+      }, function(err, mdFilesWithIncludes) {
+        // concat extracted bibtex resources
+        const resourcesStr = mdFilesWithIncludes
+                      .reduce((str, mdFile) => {
+                        let newStr = str;
+                        mdFile.extracted
+                          .filter((ex)=>{
+                            return ex.type === 'resourceStatement';
+                          }).forEach((ex)=>{
+                            newStr += ex.statement;
+                          });
+                        return newStr;
+                      }, resources);
+        cb(null, {resourcesStr, mdFilesWithIncludes, params});
+      });
+    },
     nestIncludes,
     resolveNestedIncludes
   ], function(err, {resourcesStr, contentStr}) {
     newTree.resourcesStr = resourcesStr;
     newTree.contentStr = contentStr;
     if (childrenCustomizers.length > 0) {
-          newTree.customizers = childrenCustomizers;
-        }
-        //recursively repeat dat stuf with children dirs
-    asyncMap(childrenDirs, function(dir, callback) {
-          concatTree(dir, params, callback);
-        }, function(err, populatedDirs) {
-          newTree.children = populatedDirs;
-          callback(err, newTree);
-        });
+      newTree.customizers = childrenCustomizers;
+    }
+    // recursively repeat dat stuf with children dirs
+    asyncMap(childrenDirs, function(dir, cback) {
+      concatTree(dir, params, cback);
+    }, function(error, populatedDirs) {
+      newTree.children = populatedDirs;
+      callback(error, newTree);
+    });
   });
 }
