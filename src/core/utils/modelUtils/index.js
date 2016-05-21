@@ -10,6 +10,7 @@ export function getResourceModel(bibType, resourceModels) {
   if (model) {
     // first set highestly specific props
     let properties = model.properties;
+    let defaultContextualizer = model.defaultContextualizer;
     let otherProps;
     let existing;
     // then parse related categories
@@ -26,6 +27,11 @@ export function getResourceModel(bibType, resourceModels) {
                       return true;
                     });
       properties = properties.concat(otherProps);
+
+      // inherit default contextualizer
+      if (resourceModels.collective[category].defaultContextualizer && !defaultContextualizer) {
+        defaultContextualizer = resourceModels.collective[category].defaultContextualizer;
+      }
     });
 
     // then finally parse common props
@@ -42,7 +48,7 @@ export function getResourceModel(bibType, resourceModels) {
                     });
     properties = properties.concat(otherProps);
 
-    return Object.assign({}, model, {properties});
+    return Object.assign({}, model, {properties}, {defaultContextualizer});
   }
   return undefined;
 }

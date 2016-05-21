@@ -8,13 +8,17 @@ What it is supposed to add is the notion of resource specification, and resource
 
 # Ideas and principles
 
-## #1 : Grounded on Markdown/Markua
+## Grounded on Markdown
 
-Modulo tends to be as simple and standard-compliant as possible by following the markdown Markua specification.
+Modulo tends to be as simple and standard-compliant as possible by following the markdown standard specification.
 
-For now, Modulo is based on classical Markdown standard (through the ``marked`` library) but it should switch to markua as soon as a stable implementation is provided.
+## Smart contextualisation and semanticity
 
-## #2 : Templating
+Typically, for instance, a quote followed by a reference citation should bind the quote to this reference citation at html level, and data API level.
+
+Markdown specs are often rather poor in term of (html) semanticity : it could be better.
+
+## Templating
 
 Modulo should provide ways to generate html content from metadata-generated information through templates, such as :
 * authors names
@@ -23,36 +27,22 @@ Modulo should provide ways to generate html content from metadata-generated info
 
 This would also contribute to emphasazing the importance of metadata.
 
-## #3 : Intelligent contextualisation
+## Resources contextualization model
 
-To develop ...
-Typically, for instance, a quote followed by a reference citation should bind the quote to this reference citation at html level, and data API level.
-
-Markdown specs are often rather poor in term of (html) semanticity : it could be better.
-
-
-## #3 : Resources contextualization and specification
+Every external content summoned inside the main text is conceptualized as the *contextualization* of a *resource* through a *contextualizer*.
 
 Resources are of 3 types :
 * bibliographical records
 * figures
 * entities (or, in book vocab, glossary entries)
 
-Basically, resource description (all constant, non-changing properties) and resource contextualizers (how to display it at a specific point of the contents) are separated.
+Basically, resource description (all constant, non-changing properties) and resource contextualizers (how to display it at a specific point of the contents) are separated from each others, and separated from contextualizations, which are the only entites to be situated inside the text body.
 
-Following that mindset, any alien content inside the main text is a *contextualization* of a *resource* through a *contextualizer*.
-
-Resource description can occur either in separate files or inside the content.md file of a modulo node.
+Resource description can occur either in separate files or inside the ``content.md`` file (in this case we speak about *one-shot* contextualizers).
 
 Resource contextualisation can occur only in a content.md file, as it is where it is instanciated and contextualized.
 
-# Principle #1 : Based on markua specification (and implementation ?)
-
-Specification there : https://github.com/markuadoc/markua
-
-In-progress implementation there : https://github.com/markuadoc/markua-js
-
-# Principle #2 : intelligent contextualization
+# Smart contextualization
 
 ## Footnotes
 
@@ -74,7 +64,6 @@ Translates to:
     <span class="footnote-content">This is the footnote content</span>
 </p>
 ```
-
 
 
 ## Quotes and resources linking
@@ -120,7 +109,7 @@ Modulo should be able to render metadata-based properties and generated contents
 
 This modulo assertion :
 ```
-${abstract}
+${abstract}$
 ```
 
 Should translate to :
@@ -160,25 +149,21 @@ ${include:subpart}
 
 ## Resources and their contextualization : global idea
 
-Resources are of 3 types :
+The key idea is to distinguish the resource, which is the description of a source, data, ... and its contextualization through a figure, a citation, ...
+
+Resources are discourse-external elements that are cited and/or inserted into the core flow of a document with a form specific to the context.
+
+
+Resources are of 3 global types :
 
 * bibliographical records
 * data source : data file, video, image, ...
 * entities (or, in book vocab, glossary entries)
 
-Basically, resource description (all constant, non-changing properties) and resource contextualisation (how to display it at a specific point of the contents) are separated.
-
 Resource description can occur either in separate files or inside the ``content.md`` file of a modulo node.
 
 Resource contextualisation can occur only in a ``content.md`` file, as it is where it is instanciated and contextualized.
 
-Resources are discourse-external elements that are cited and/or inserted into the core flow of a document with a form specific to the context.
-
-The key idea is to distinguish the resource, which is the description of a source, data, ... and its contextualization through a figure, a citation, ...
-
-Therefore, writers do two types of actions concerning resources :
-* they define them with constant information (url/uri, owner, rights, ...)
-* they instantiate them within a specific context, decorating them with contextual indications
 
 ## Resources definition
 
@@ -319,6 +304,7 @@ As experienced by [Marie Dupré](@marie_dupre), we can argue that ...
 By default, all resource citation/contextualization in a modulo document affects the aside content displayer.
 
 So, there are invariant contextualization information elements that can be used with every type of resource being cited :
+
 * ``caption`` : the caption or legend of the resource in the context in which it is cited
 
 ## Combined contextualization
@@ -406,20 +392,3 @@ By default they will affect (by click or scroll) the aside contents of the inter
 Possible contextualization properties :
 * ``directLink`` : not using the aside-contents and directly pointing to the link of the resource
 * ``directShow`` (for links) : aside will automatically display an iframe of the targeted website
-
-## Data resources and their contextualization
-
-By default, Modulo displays a data source in a ``code`` block, with according footer.
-
-Otherwise, if the editor wants to display the source as a data visualization, contextual information will be crucial.
-
-How does it work ?
-
-First, the editor must specify a specific visualization *template* that will process and present data in a specific way. Then she will specify *parameters* to provide the template with the information necessary to display the resource(s).
-
-Brainstorming from there
-
-```
-![My cool timeline](@timeline_data)
-{timeline, display_as_events:event}
-```

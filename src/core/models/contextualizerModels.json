@@ -1,51 +1,65 @@
 {
-  "triggers" : [
-    {
-      "resourceCombo" : ["tabularData"],
-      "acceptedTypes" : [
-        "timeline",
-        "table"
-      ],
-      "defaultType" : "table"
-    }
-  ],
   "collective" : {
       "common" : {
         "properties" : [
           {
             "key" : "title",
+            "description" : "The title of the contextualizer (appears as default related contextualizations name if not specified)",
             "valueType" : "string",
             "required" : false
           },
           {
             "key" : "inheritedVerticallyFrom",
+            "description" : "The section from which the contextualizer is inherited",
             "valueType" : "string",
             "required" : false
           },
           {
             "key" : "citeKey",
+            "description" : "The citekey of the contextualizer",
             "valueType" : "string",
             "required" : true
           },
           {
             "key" : "type",
+            "description" : "The type of the contextualizer",
             "valueType" : "string",
             "required" : false
           },
           {
             "key" : "describedInline",
+            "description" : "Whether the contextualizer is described inline or as a bibTeX object",
+            "valueType" : "string",
+            "required" : false
+          },
+          {
+            "key" : "caption",
+            "description" : "The caption of the contextualization.",
             "valueType" : "string",
             "required" : false
           }
+          {
+            "key" : "note",
+            "description" : "A note from the author about the contextualization.",
+            "valueType" : "string",
+            "required" : false
+          },
+          {
+            "key" : "nostatic",
+            "description" : "Ignore the contextualizer in static outputs",
+            "valueType" : "string",
+            "required" : false
+          },
+          {
+            "key" : "nodynamic",
+            "description" : "Ignore the contextualizer in dynamic outputs",
+            "valueType" : "string",
+            "required" : false
+          },
         ]
       },
       "figureContextualizer" : {
         "properties" : [
-          {
-            "key" : "title",
-            "valueType" : "string",
-            "required" : true
-          }
         ]
       },
       "bibliographicContextualizer" : {
@@ -54,22 +68,77 @@
       }
     },
   "individual" : {
-    "shortcitation" : {
+
+    "webpage" : {
+      "description" : "This contextualizers inserts a reference to a website.",
+      "acceptedResourceTypes" : [],
+      "properties" : [
+      ],
+      "categories" : []
+    },
+    "citation" : {
+      "description" : "This contextualizer displays the reference to a bibliographic reference, either as a short or long citation.",
+      "acceptedResourceTypes" : [],
       "properties" : [
         {
           "key" : "pages",
+          "description" : "The target pages of the contextualization",
           "valueType" : "string",
           "required" : false
         },
         {
           "key" : "page",
+          "description" : "The target page of the contextualization",
           "valueType" : "string",
           "required" : false
         }
       ],
       "categories" : ["bibliographicContextualizer"]
     },
+    "imageplayer" : {
+      "description" : "This contextualizer displays one or more image resources.",
+      "acceptedResourceTypes" : [],
+      "properties" : [
+      ],
+      "categories" : []
+    },
+    "videoplayer" : {
+      "description" : "This contextualizer displays a video, either from raw video files or from video services (vimeo, youtube).",
+      "acceptedResourceTypes" : [],
+      "properties" : [
+      ],
+      "categories" : []
+    },
+    "audioplayer" : {
+      "description" : "This contextualizer displays an audio document, either from raw video files or from audio services (soundcloud, etc.).",
+      "acceptedResourceTypes" : [],
+      "properties" : [
+      ],
+      "categories" : []
+    },
+    "speechtranscription" : {
+      "description" : "This contextualizer displays the transcription of a speech (without media) from a .srt formatted file.",
+      "acceptedResourceTypes" : [],
+      "properties" : [
+      ],
+      "categories" : []
+    },
+    "sourcecodedisplay" : {
+      "description" : "This contextualizer displays a web resource as raw source code.",
+      "acceptedResourceTypes" : [],
+      "properties" : [
+      ],
+      "categories" : []
+    },
+    "table" : {
+      "description" : "This contextualizer displays tabular data as a table.",
+      "acceptedResourceTypes" : [],
+      "properties" : [
+      ],
+      "categories" : []
+    },
     "timeline" : {
+      "acceptedResourceTypes" : [],
       "properties" : [
         {
           "key" : "layer",
@@ -116,10 +185,19 @@
       ],
       "categories" : ["figureContextualizer"]
     },
-    "table" : {
+    "map" : {
+      "description" : "This contextualizer displays geographical data from tabular data.",
+      "acceptedResourceTypes" : [],
       "properties" : [
       ],
-      "categories" : ["figureContextualizer"]
+      "categories" : []
+    },
+    "glossary" : {
+      "description" : "This contextualizer displays an entity mark or call.",
+      "acceptedResourceTypes" : [],
+      "properties" : [
+      ],
+      "categories" : []
     }
   }
 }
