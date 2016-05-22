@@ -77,6 +77,16 @@ For instance, for the resource :
 
 ... the identificator is ``@marie_dupre``.
 
+## Additional resources types
+
+* tabularData
+* jsonData
+* transcriptionData
+* video
+* audio
+* image
+* online
+
 # Contextualization
 
 Resources can be contextualized as inline links, or block links.
@@ -206,7 +216,7 @@ Let's say we have the following ``.bib`` content :
 Overloading this contextualizer could look like that in the ``content.md`` file :
 
 ```
-As we can see in [the the timeline](@tabularData){cooltimeline, endat="2012-15-02"}, it is clear that they are right.
+As we can see in [the the timeline](@tabularData){@cooltimeline, endat="2012-15-02"}, it is clear that they are right.
 ```
 
 Here the original timeline contextualizer ends at 2012-30-01, but is *overloaded* at contextualization to end at 2012-15-02.
@@ -298,11 +308,13 @@ When switching from one aside to another in these cases of "resource traveling",
 
 ### Value types
 
-* number
-* numberArray
-* string
-* stringArray
-* accessor
+* number : number (integer or floating)
+* numberArray : comma-separated number
+* coordinate : a coordinate
+* string : string
+* stringArray : comma-separated string
+* accessor : accessor to a resource's field
+* objectArray : one or several objects containing properties
 
 ### Working with accessors
 
@@ -374,8 +386,7 @@ This contextualizers inserts a reference to a website.
 
 | property        | description | valueType | defaultValue | possibleValues | required |
 | ------------- |:------------- |:------------- |:------------- |:------------- |:------------- | 
-|url | | | | |yes |
-|directlink |whether to allow for direct hypertext | | | | |
+|directlink |whether to allow for direct hypertext | | |yes,no | |
 
 ### citation
 
@@ -425,6 +436,7 @@ This contextualizer displays a video, either from raw video files or from video 
 | ------------- |:------------- |:------------- |:------------- |:------------- |:------------- |
 |startat |Where to start the sample at (exemple : "1h3m2s", "5s", ...) |string | | | |
 |endat |Where to end the sample at (exemple : "1h3m2s", "5s", ...) |string | | | |
+|timeformat |Describes how time is formatted |string |HhMmSs | | |
 
 
 ### audioplayer
@@ -442,6 +454,7 @@ This contextualizer displays an audio document, either from raw video files or f
 | ------------- |:------------- |:------------- |:------------- |:------------- |:------------- |
 |startat |Where to start the sample at (exemple : "1h3m2s", "5s", ...) |string | | | |
 |endat |Where to end the sample at (exemple : "1h3m2s", "5s", ...) |string | | | |
+|timeformat |Describes how time is formatted |string |HhMmSs | | |
 
 
 ### speechtranscription
@@ -473,7 +486,7 @@ This contextualizer displays a web resource as raw source code.
 
 | property        | description | valueType | defaultValue | possibleValues | required |
 | ------------- |:------------- |:------------- |:------------- |:------------- |:------------- | 
-|language |describes the language in which to highlight the source code. |string | | |no |
+|language |Describes the language in which to highlight the source code. |string | | |no |
 
 
 ### table
@@ -489,8 +502,8 @@ This contextualizer displays tabular data as a table.
 
 | property        | description | valueType | defaultValue | possibleValues | required |
 | ------------- |:------------- |:------------- |:------------- |:------------- |:------------- | 
-|columns |columns to display |accessorArray | | | |
-|limit |maximum number of lines to display |number | | | |
+|columns |Describes which columns to display |accessorArray | | | |
+|maxlines |maximum number of lines to display |number | | | |
 
 
 ### timeline
@@ -507,18 +520,18 @@ This contextualizer displays events, eras and timestamped quantitative data, fro
 | property        | description | valueType | defaultValue | possibleValues | required |
 | ------------- |:------------- |:------------- |:------------- |:------------- |:------------- | 
 |disposition |how to dispose layers ? one on top of another or side by side ? | string |juxtapose|superpose,juxtapose | |
-|dateformat |how dates are formatted for the whole timeline ? |string |yyyy-mm-dd | | |
-|startat |at what date should the timeline begin to be displayed ? |string | | | |
-|endat |at what date should the timeline begin to be displayed ? |string | | | |
-|layer |describes a specific layer of timeline, working with one source of data and one type of data | object | | | |
+|dateformat |Describes how dates are formatted for the whole timeline ? |string |yyyy-mm-dd | | |
+|startat |Describes at what date should the timeline begin to be displayed ? |string | | | |
+|endat |Describes at what date should the timeline begin to be displayed ? |string | | | |
+|layer |describes a specific layer of timeline, working with one source of data and one type of data | objectArray | | | |
+|layertype (child of layer) |Describes what type of data is displayed in the layer ? |string |events|events,periods,metrics | |
 |title (child of layer) |title of a layer |string | |yes |
 |dateformat (child of layer) | describes how dates are formatted for the given layer|string | | |
-|dates (child of layer) |dates to use for positioning events/datapoints/periods beginings |accessor | | | |
-|layertype (child of layer) |what type of data is displayed in the layer ? |string |events|events,periods,metrics | |
+|dates (child of layer) |Describes which data field to use for positioning events/datapoints/periods beginings |accessor | | | |
 |labels (child of layer)|(event layer) describes which datafield to use for naming events or periods |accessor | | | |
-|eventcategories (child of layer)|(event layer) describes which datafield to use for categorizing events or periods |accessor | | | |
+|categories (child of layer)|(event layer) Describes which datafield to use for categorizing events, periods, or quantitative data |accessor | | | |
 |description (child of layer)|(event layer) describes which datafield to use for describing events or periods |accessor | | | |
-|ends (child of layer) |dates to use for positioning periods ends |accessor | | | |
+|ends (child of layer) |Describes the dates to use for positioning periods ends |accessor | | | |
 |values (child of layer) |(metrics layer) which field to use for quantitizing datapoints |accessor | | | |
 
 
@@ -535,15 +548,16 @@ This contextualizer displays geographical data from tabular data.
 
 | property        | description | valueType | defaultValue | possibleValues | required |
 | ------------- |:------------- |:------------- |:------------- |:------------- |:------------- |
-|disposition |how to dispose layers ? one on top of another or side by side ? | string |juxtapose|superpose,juxtapose | ||zoomlevel |The zoom level of the view. | | | | |
-|zoomlatitude |The center latitude of the view. | | | | |
-|zoomlongitude |The center longitude of the view. | | | | |
-|layer |describes a specific layer of the map, working with one source of data and one type of data |object | | | |
+|disposition |hDescribes ow to dispose layers ? one on top of another or side by side ? | string |juxtapose|superpose,juxtapose | |
+|zoomlevel |The zoom level of the view. |number | | | |
+|zoomlatitude |The center latitude of the view. |coordinate | | | |
+|zoomlongitude |The center longitude of the view. |coordinate | | | |
+|layer |describes a specific layer of the map, working with one source of data and one type of data |objectArray |string | | |
 |title (child of layer) |title of a layer |string | |yes |
-|latitude (child of layer) |describes which data field to use for displaying datapoints latitude |accessor | | | |
+|latitude (child of layer) |Describes which data field to use for displaying datapoints latitude |accessor | | | |
 |longitude (child of layer) |describes which data field to use for displaying datapoints longitude |accessor | | | |
 |labels (child of layer) |describes which data field to use for displaying datapoints labels |accessor | | | |
-|category (child of layer) |describes which data field to use for displaying datapoints category (e.g. for colors) |accessor | | | |
+|categories (child of layer) |describes which data field to use for displaying datapoints category (e.g. for colors) |accessor | | | |
 
 ### glossary
 

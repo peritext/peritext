@@ -6,6 +6,7 @@
             "key" : "title",
             "description" : "The title of the contextualizer (appears as default related contextualizations name if not specified)",
             "valueType" : "string",
+            "default" : "@res.title",
             "required" : false
           },
           {
@@ -37,7 +38,7 @@
             "description" : "The caption of the contextualization.",
             "valueType" : "string",
             "required" : false
-          }
+          },
           {
             "key" : "note",
             "description" : "A note from the author about the contextualization, typically a comment.",
@@ -48,12 +49,36 @@
             "key" : "outputmode",
             "description" : "Describes whether the contextualizer should be activated in static outputs, dynamic outputs, or both.",
             "valueType" : "string",
+            "values" : [
+              "static",
+              "dynamic",
+              "all"
+            ],
             "required" : false
           }
         ]
       },
-      "figureContextualizer" : {
+      "seekableContextualizer" : {
         "properties" : [
+          {
+              "key" : "startat",
+              "description" : "Where to start the sample at (exemple : 1h3m2s, 5s, ...)",
+              "valueType" : "string",
+              "required" : false
+          },
+          {
+              "key" : "endat",
+              "description" : "Where to end the sample at (exemple : 1h3m2s, 5s, ...)",
+              "valueType" : "string",
+              "required" : false
+          },
+          {
+              "key" : "timeformat",
+              "description" : "Describes how time is formatted",
+              "valueType" : "string",
+              "default" : "HhMmSs",
+              "required" : false
+          }
         ]
       },
       "bibliographicContextualizer" : {
@@ -65,14 +90,21 @@
 
     "webpage" : {
       "description" : "This contextualizers inserts a reference to a website.",
-      "acceptedResourceTypes" : [],
+      "acceptedResourceTypes" : ["online"],
       "properties" : [
+        {
+            "key" : "directlink",
+            "description" : "Describes wwhether to allow for direct hypertext",
+            "valueType" : "string",
+            "values" : ["yes", "no"],
+            "required" : false
+        }
       ],
       "categories" : []
     },
     "citation" : {
       "description" : "This contextualizer displays the reference to a bibliographic reference, either as a short or long citation.",
-      "acceptedResourceTypes" : [],
+      "acceptedResourceTypes" : ["*"],
       "properties" : [
         {
           "key" : "pages",
@@ -91,72 +123,193 @@
     },
     "imageplayer" : {
       "description" : "This contextualizer displays one or more image resources.",
-      "acceptedResourceTypes" : [],
+      "acceptedResourceTypes" : ["image"],
       "properties" : [
       ],
       "categories" : []
     },
     "videoplayer" : {
       "description" : "This contextualizer displays a video, either from raw video files or from video services (vimeo, youtube).",
-      "acceptedResourceTypes" : [],
+      "acceptedResourceTypes" : ["video"],
       "properties" : [
       ],
-      "categories" : []
+      "categories" : ["seekableContextualizer"]
     },
     "audioplayer" : {
       "description" : "This contextualizer displays an audio document, either from raw video files or from audio services (soundcloud, etc.).",
-      "acceptedResourceTypes" : [],
+      "acceptedResourceTypes" : ["audio"],
       "properties" : [
       ],
-      "categories" : []
+      "categories" : ["seekableContextualizer"]
     },
     "speechtranscription" : {
       "description" : "This contextualizer displays the transcription of a speech (without media) from a .srt formatted file.",
-      "acceptedResourceTypes" : [],
+      "acceptedResourceTypes" : ["transcriptionData"],
       "properties" : [
       ],
       "categories" : []
     },
     "sourcecodedisplay" : {
       "description" : "This contextualizer displays a web resource as raw source code.",
-      "acceptedResourceTypes" : [],
+      "acceptedResourceTypes" : ["tabularData","jsonData","misc"],
       "properties" : [
       ],
-      "categories" : []
+      "categories" : [
+        {
+            "key" : "language",
+            "description" : "Describes the language in which to highlight the source code.",
+            "valueType" : "string",
+            "required" : false
+        }
+      ]
     },
     "table" : {
       "description" : "This contextualizer displays tabular data as a table.",
-      "acceptedResourceTypes" : [],
+      "acceptedResourceTypes" : ["tabularData"],
       "properties" : [
       ],
-      "categories" : []
+      "categories" : [
+        {
+            "key" : "columns",
+            "description" : "Describes which columns to display.",
+            "valueType" : "accessorArray",
+            "required" : false
+        },
+        {
+            "key" : "maxlines",
+            "description" : "maximum number of lines to display.",
+            "valueType" : "number",
+            "required" : false
+        }
+      ]
     },
     "timeline" : {
-      "acceptedResourceTypes" : [],
+      "acceptedResourceTypes" : ["tabularData"],
       "properties" : [
+        {
+            "key" : "startat",
+            "description" : "Describes at what date should the timeline begin to be displayed ?",
+            "valueType" : "string",
+            "required" : false
+        },
+        {
+            "key" : "endat",
+            "description" : "Describes at what date should the timeline begin to be displayed ?",
+            "valueType" : "string",
+            "required" : false
+        },
+        {
+            "key" : "dateformat",
+            "description" : "Describes how dates are formatted for the whole timeline ?",
+            "default" : "yyyy-mm-dd",
+            "valueType" : "string",
+            "required" : false
+        },
+        {
+          "key" : "disposition",
+          "valueType" : "string",
+          "description" : "Describes ow to dispose layers ? one on top of another or side by side ?",
+          "default" : "superpose",
+          "required" : false,
+          "values" : [
+            "superpose",
+            "juxtapose"
+          ]
+        },
+        {
+          "key" : "dates",
+          "valueType" : "accessor",
+          "description" : "Describes which data field to use for positioning events/datapoints/periods beginings",
+          "required" : true
+        },
+        {
+          "key" : "ends",
+          "valueType" : "accessor",
+          "description" : "Describes the dates to use for positioning periods ends.",
+          "required" : false
+        },
+        {
+          "key" : "labels",
+          "valueType" : "accessor",
+          "description" : "Describes which datafield to use for naming events or periods",
+          "required" : false
+        },
+        {
+          "key" : "categories",
+          "valueType" : "accessor",
+          "description" : "Describes which datafield to use for categorizing events, periods, or quantitative data.",
+          "required" : false
+        },
+        {
+          "key" : "description",
+          "valueType" : "accessor",
+          "description" : "Describes which datafield to use for describing events or periods.",
+          "required" : false
+        },
+        {
+          "key" : "values",
+          "valueType" : "accessor",
+          "description" : "Describes (metrics layer) which field to use for quantitizing datapoints.",
+          "required" : false
+        },
         {
           "key" : "layer",
           "valueType" : "objectArray",
-          "required" : true,
+          "required" : false,
           "children" : [
             {
               "key" : "dates",
-              "valueType" : "string",
+              "valueType" : "accessor",
+              "description" : "Describes which data field to use for positioning events/datapoints/periods beginings",
               "required" : true
             },
             {
+              "key" : "ends",
+              "valueType" : "accessor",
+              "description" : "Describes the dates to use for positioning periods ends.",
+              "required" : false
+            },
+            {
               "key" : "labels",
+              "valueType" : "accessor",
+              "description" : "Describes which datafield to use for naming events or periods",
+              "required" : false
+            },
+            {
+              "key" : "categories",
+              "valueType" : "accessor",
+              "description" : "Describes which datafield to use for categorizing events, periods, or quantitative data.",
+              "required" : false
+            },
+            {
+              "key" : "description",
+              "valueType" : "accessor",
+              "description" : "Describes which datafield to use for describing events or periods.",
+              "required" : false
+            },
+            {
+              "key" : "values",
+              "valueType" : "accessor",
+              "description" : "Describes (metrics layer) which field to use for quantitizing datapoints.",
+              "required" : false
+            },
+            {
+              "key" : "dateformat",
+              "description" : "Describes how dates are formatted for the whole timeline ?",
+              "default" : "yyyy-mm-dd",
               "valueType" : "string",
               "required" : false
             },
             {
               "key" : "title",
               "valueType" : "string",
+              "description" : "Describes the title of a layer.",
               "required" : false
             },
             {
               "key" : "layertype",
               "valueType" : "string",
+              "description" : "Describes what type of data is displayed in the layer ?",
               "required" : false,
               "values" : [
                 "events",
@@ -165,26 +318,113 @@
               ]
             }
           ]
-        },
+        }
+      ],
+      "categories" : []
+    },
+    "map" : {
+      "description" : "This contextualizer displays geographical data from tabular data.",
+      "acceptedResourceTypes" : ["tabularData"],
+      "properties" : [
+      ],
+      "categories" : [
         {
           "key" : "disposition",
           "valueType" : "string",
+          "description" : "Describes ow to dispose layers ? one on top of another or side by side ?",
+          "default" : "superpose",
           "required" : false,
           "values" : [
             "superpose",
             "juxtapose"
           ]
+        },
+        {
+          "key" : "zoomlevel",
+          "valueType" : "number",
+          "description" : "The zoom level of the view.",
+          "required" : false
+        },
+        {
+          "key" : "zoomlatitude",
+          "valueType" : "number",
+          "description" : "The center latitude of the view.",
+          "required" : false
+        },
+        {
+          "key" : "zoomlongitude",
+          "valueType" : "number",
+          "description" : "The center longitude of the view.",
+          "required" : false
+        },
+        {
+          "key" : "latitude",
+          "valueType" : "accessor",
+          "description" : "Describes which data field to use for displaying datapoints latitude.",
+          "required" : false
+        },
+        {
+          "key" : "longitude",
+          "valueType" : "accessor",
+          "description" : "Describes which data field to use for displaying datapoints longitude.",
+          "required" : false
+        },
+        {
+          "key" : "labels",
+          "valueType" : "accessor",
+          "description" : "Describes which datafield to use for naming data points.",
+          "required" : false
+        },
+        {
+          "key" : "categories",
+          "valueType" : "accessor",
+          "description" : "Describes which datafield to use for categorizing data points.",
+          "required" : false
+        },
+        {
+          "key" : "layer",
+          "valueType" : "objectArray",
+          "required" : false,
+          "children" : [
+            {
+              "key" : "latitude",
+              "valueType" : "accessor",
+              "description" : "Describes which data field to use for displaying datapoints latitude.",
+              "required" : false
+            },
+            {
+              "key" : "longitude",
+              "valueType" : "accessor",
+              "description" : "Describes which data field to use for displaying datapoints longitude.",
+              "required" : false
+            },
+            {
+              "key" : "labels",
+              "valueType" : "accessor",
+              "description" : "Describes which datafield to use for naming datapoints.",
+              "required" : false
+            },
+            {
+              "key" : "categories",
+              "valueType" : "accessor",
+              "description" : "Describes which datafield to use for categorizing datapoints",
+              "required" : false
+            },
+            {
+              "key" : "description",
+              "valueType" : "accessor",
+              "description" : "Describes which datafield to use for describing datapoints.",
+              "required" : false
+            },
+            {
+              "key" : "title",
+              "valueType" : "string",
+              "description" : "Describes the title of a layer.",
+              "required" : false
+            }
+          ]
         }
-
-      ],
-      "categories" : ["figureContextualizer"]
-    },
-    "map" : {
-      "description" : "This contextualizer displays geographical data from tabular data.",
-      "acceptedResourceTypes" : [],
-      "properties" : [
-      ],
-      "categories" : []
+      ]
     },
     "glossary" : {
       "description" : "This contextualizer displays an entity mark or call.",
