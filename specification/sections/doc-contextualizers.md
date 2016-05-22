@@ -85,7 +85,7 @@ This contextualizers inserts a reference to a website.
 
 
 | property        | description | valueType | defaultValue | possibleValues | required |
-| ------------- |:------------- |:------------- |:------------- |:------------- | 
+| ------------- |:------------- |:------------- |:------------- |:------------- |:------------- | 
 | | | | | | |
 
 ## citation
@@ -100,7 +100,7 @@ This contextualizer displays the reference to a bibliographic reference, either 
 | block dynamic      | long citation/biblio style |
 
 | property        | description | valueType | defaultValue | possibleValues | required |
-| ------------- |:------------- |:------------- |:------------- |:------------- | 
+| ------------- |:------------- |:------------- |:------------- |:------------- |:------------- |
 | | | | | | |
 
 Note : citation formatting should be resolved with document's ``citationStyle`` param (e.g. : APA)
@@ -117,7 +117,7 @@ This contextualizer displays one or more image resources.
 | block dynamic      | anchor to gallery display in aside space |
 
 | property        | description | valueType | defaultValue | possibleValues | required |
-| ------------- |:------------- |:------------- |:------------- |:------------- | 
+| ------------- |:------------- |:------------- |:------------- |:------------- |:------------- |
 | | | | | | |
 
 ## videoplayer
@@ -132,7 +132,7 @@ This contextualizer displays a video, either from raw video files or from video 
 | block dynamic      | anchor to video display in aside space |
 
 | property        | description | valueType | defaultValue | possibleValues | required |
-| ------------- |:------------- |:------------- |:------------- |:------------- | 
+| ------------- |:------------- |:------------- |:------------- |:------------- |:------------- |
 | | | | | | |
 
 
@@ -148,7 +148,7 @@ This contextualizer displays an audio document, either from raw video files or f
 | block dynamic      | anchor to audio display in aside space |
 
 | property        | description | valueType | defaultValue | possibleValues | required |
-| ------------- |:------------- |:------------- |:------------- |:------------- | 
+| ------------- |:------------- |:------------- |:------------- |:------------- |:------------- |
 | | | | | | |
 
 
@@ -164,7 +164,7 @@ This contextualizer displays the transcription of a speech (without media) from 
 | block dynamic      | text display in aside space |
 
 | property        | description | valueType | defaultValue | possibleValues | required |
-| ------------- |:------------- |:------------- |:------------- |:------------- | 
+| ------------- |:------------- |:------------- |:------------- |:------------- |:------------- | 
 | | | | | | |
 
 
@@ -180,7 +180,7 @@ This contextualizer displays a web resource as raw source code.
 | block dynamic      | source code display in aside space |
 
 | property        | description | valueType | defaultValue | possibleValues | required |
-| ------------- |:------------- |:------------- |:------------- |:------------- | 
+| ------------- |:------------- |:------------- |:------------- |:------------- |:------------- | 
 | | | | | | |
 
 
@@ -196,7 +196,7 @@ This contextualizer displays tabular data as a table.
 | block dynamic      | table is displayed in aside space |
 
 | property        | description | valueType | defaultValue | possibleValues | required |
-| ------------- |:------------- |:------------- |:------------- |:------------- | 
+| ------------- |:------------- |:------------- |:------------- |:------------- |:------------- | 
 | | | | | | |
 
 
@@ -212,7 +212,7 @@ This contextualizer displays events, eras and timestamped quantitative data, fro
 | block dynamic      | timeline is displayed dynamically in aside space |
 
 | property        | description | valueType | defaultValue | possibleValues | required |
-| ------------- |:------------- |:------------- |:------------- |:------------- | 
+| ------------- |:------------- |:------------- |:------------- |:------------- |:------------- | 
 |disposition |how to dispose layers ? one on top of another or side by side ? | string |juxtapose|superpose,juxtapose | |
 |dateformat |how dates are formatted for the whole timeline ? |string |yyyy-mm-dd | | |
 |layer |describes a specific layer of timeline, working with one source of data and one type of data | object | | | |
@@ -239,7 +239,7 @@ This contextualizer displays geographical data from tabular data.
 | block dynamic      | map is displayed dynamically in aside space |
 
 | property        | description | valueType | defaultValue | possibleValues | required |
-| ------------- |:------------- |:------------- |:------------- |:------------- | 
+| ------------- |:------------- |:------------- |:------------- |:------------- |:------------- |
 | | | | | | |
 
 
@@ -255,7 +255,7 @@ This contextualizer displays an entity mark or call.
 | block dynamic      | text cartel (for instance : display entity picture, ...) |
 
 | property        | description | valueType | defaultValue | possibleValues | required |
-| ------------- |:------------- |:------------- |:------------- |:------------- | 
+| ------------- |:------------- |:------------- |:------------- |:------------- |:------------- |
 | | | | | | |
 
 
