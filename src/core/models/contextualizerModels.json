@@ -40,22 +40,16 @@
           }
           {
             "key" : "note",
-            "description" : "A note from the author about the contextualization.",
+            "description" : "A note from the author about the contextualization, typically a comment.",
             "valueType" : "string",
             "required" : false
           },
           {
-            "key" : "nostatic",
-            "description" : "Ignore the contextualizer in static outputs",
+            "key" : "outputmode",
+            "description" : "Describes whether the contextualizer should be activated in static outputs, dynamic outputs, or both.",
             "valueType" : "string",
             "required" : false
-          },
-          {
-            "key" : "nodynamic",
-            "description" : "Ignore the contextualizer in dynamic outputs",
-            "valueType" : "string",
-            "required" : false
-          },
+          }
         ]
       },
       "figureContextualizer" : {

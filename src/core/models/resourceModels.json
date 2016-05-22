@@ -75,7 +75,14 @@
       ]
     },
     "entityResource" : {
-      "properties" : [],
+      "properties" : [
+        {
+          "key" : "aliases",
+          "valueType" : "stringArray",
+          "description" : "THe aliases with which the entity can be named",
+          "required" : false
+        }
+      ],
       "defaultContextualizer" : "glossary"
     },
     "bibliographicResource" : {
@@ -181,10 +188,16 @@
       "defaultContextualizer" : "table",
       "properties" : [
         {
+          "key" : "format",
+          "valueType" : "string",
+          "description" : "The format of the tabular data.",
+          "required" : true
+        },
+        {
           "key" : "separator",
           "valueType" : "string",
           "description" : "The separator character of the tabular data file (',', ';', ...)",
-          "required" : true
+          "required" : false
         }
       ],
       "acceptedFileExtensions" : [".txt", ".csv", ".tsv"]

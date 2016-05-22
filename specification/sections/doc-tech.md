@@ -56,12 +56,22 @@ Parsers helpers :
 * zotero-bib-parser and bib-parser for ... bib parsing
 
 Outputs : 
+
+Pdf :
 * pdfkit : http://pdfkit.org/
 * phantomjs > pdf : http://www.feedhenry.com/server-side-pdf-generation-node-js/
 * **wkhtmltopdf** -> https://www.npmjs.com/package/wkhtmltopdf
+* example with heroku impl : https://github.com/gr2m/wkhtmltopdf-node-heorku
 * **phantomjs-pdf** -> https://www.npmjs.com/package/phantomjs-pdf
-* epub --> https://www.npmjs.com/package/epub
-* indesign --> http://networkcultures.org/digitalpublishing/2014/05/15/import-html-into-indesign-via-xml/
+
+epub :
+
+* --> https://www.npmjs.com/package/epub
+* https://github.com/fabi1cazenave/node-html2epub
+
+indesign :
+
+* --> http://networkcultures.org/digitalpublishing/2014/05/15/import-html-into-indesign-via-xml/
 
 Interface components :
 
@@ -205,7 +215,6 @@ It will take as input a String representing the metadata of a folder, and its ty
 3. resolve specific metadata enrichment and lateral propagation from root to leaves of the sections tree
 4. resolve order of sections (``general:after`` || alphabetical)
 
-
 ## Section parser
 
 1. get metadata
@@ -215,6 +224,11 @@ It will take as input a String representing the metadata of a folder, and its ty
 5. parse markdown content (to html)
 6. bind html resource contextualisations to resources descriptions ?
 
+# Outputs
+
+From a moduloSectionsList, outputs allow to render the document or a section of the document in a certain way (pdf, epub, react app, ...).
+
+This is where document customizers (e.g. : css styles) are resolved, citation style is applied, and contextualizations are resolved to add content in the body (html code, footnotes, plain svg, dynamic React components calls, ...).
 
 # Data-source transactions middlewares
 
