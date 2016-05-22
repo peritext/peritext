@@ -1,10 +1,6 @@
-Modulo documentation | document syntax (modulo-flavoured markdown) | WIP
+Modulo documentation | markdown document syntax (modulo-flavoured markdown) | WIP
 =================
 
-Modulo-flavoured markdown is supposed to be built on top of Markua implementation (from : https://leanpub.com/markua/read) that is supposed to adapt markdown to book writing.
-
-
-What it is supposed to add is the notion of resource specification, and resource contextualization, intelligent contextualization of content, and templating.
 
 # Ideas and principles
 
@@ -181,17 +177,9 @@ Therefore, **modulo resource definition syntax is not a brand new syntax but an 
 
 ## Where/how to define a resource
 
-Ressource definition can occur either inside markdown documents or outside them is specific ``.bib`` files.
+Ressource definition must occur inside ``.bib`` files.
 
-Resource definition inside a markdown document is wrapped between ```$$$``` statements.
-
-```
-$$$
-my resource definition
-$$$
-```
-
-Inside a file, resources are directly described. There can be either one or several resources in a given file.
+There can be either one or several resources in a given file.
 
 Example of several resources inside a file :
 
@@ -217,37 +205,6 @@ Example of several resources inside a file :
 }
 ```
 
-### Defining a bibliographical resource
-
-For defining a bibliographical resource, bibtext is used in a vernacular way.
-
-Zotero idiomatic bibtext formatting should be possible.
-
-Nothing else new under the sun about that !
-
-### Defining an entity
-
-Entities are defined using a specific set of new bibtext types (in the form of ``@type``) preceded by ``ent_``.
-
-Example of a person :
-
-```
-@ent_person{marie_dupre,
-    firstName = "Marie",
-    lastName = "Dupré",
-    aliases = "Marie D., Marie Dup."
-}
-```
-
-Todo : detail of models for entities (kip it simple and generic in the first place)
-
-### Defining a data or media source
-
-Data is cited with ``@data``.
-Image is cited with ``@image``.
-
-Todo : how to link to data provided in the ``assets`` source.
-
 ## Resources instantiation and contextualization
 
 ### Resource identification
@@ -267,13 +224,13 @@ For instance, for the resource :
 
 ### Resource insertion and contextualization
 
-Resources can be inserted as inline links, or block links.
+Resources can be contextualized as inline links, or block links.
 
 In both cases they are composed of the three following parts :
 
 * resource contextual name inside []
 * resource identificator inside ()
-* resource contextual indications inside {}
+* resource contextualizer (call or definition) inside {}
 
 In modulo default interface behaviour, primary figures will be triggered through scroll, and secondary figures through click (as a <a> hyperlink).
 
@@ -299,14 +256,6 @@ As experienced by [Marie Dupré](@marie_dupre), we can argue that ...
 
 ... we are stating that there is here a reference to the entity marie_dupre inserted inside the document at this point of text.
 
-### Invariant contextualization of resources
-
-By default, all resource citation/contextualization in a modulo document affects the aside content displayer.
-
-So, there are invariant contextualization information elements that can be used with every type of resource being cited :
-
-* ``caption`` : the caption or legend of the resource in the context in which it is cited
-
 ## Combined contextualization
 
 It should be possible to combine several resources citations to "build" their display.
@@ -317,44 +266,6 @@ For instance combining a ``.srt`` data with a video media should give a figure d
 As experienced by [Marie Dupré](@marie_dupre) and seen in her [Interview](@marie_interview_video, @marie_interview_transcription), ...
 ```
 
-
-## Entity resources contextualizations
-
-### Inline contextualization
-
-In that case, entity is considered as a in-html reference to the entity.
-
-For instance :
-```
-I'm talking about [rhetorics](@rhetorics).
-```
-
-
-Should translate to:
-```
-<p>I'm talking about <span class="entity-inline-reference" resource="rhetorics" >rhetorics</span>.</p>
-```
-
-Todo : possible contextualization ...
-
-### Block contextualization
-
-In that case, it should translate to a sort of templated "card" of the entity.
-
-For instance :
-```
-![rhetorics](@rhetorics).
-```
-
-
-Should translate to:
-```
-<div class="entity-block-reference">
-    <p>Rhetorics was created in the ancient Greece ...</p>
-</div>
-```
-
-This would be a kind of template call to consume entity resource's data.
 
 ## Bibliographical resources
 
@@ -376,7 +287,7 @@ Note : abbreviations such as *ibid* should be automatically generated.
 
 ### Block contextualization
 
-This corresponds by default to a long citation (think bibliography-like display) if not specified by the contextualization data.
+This corresponds by default to a long citation (think bibliography-like display) if not specified otherwise by the contextualization data.
 
 ## Media and URL resources : outside web should always be 2 clicks away
 

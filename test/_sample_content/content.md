@@ -20,8 +20,8 @@ I'm talking about a [reference](@martin_change_2002).
 
 Now let's say I want to link to this [timeline](@temporal_data){
     type="timeline",
-    layer={data=@source1.data.dates,labels=@source1.data.labels},
-    layer={data=@source2.data.dates,labels=@source2.data.labels},
+    layer={dates=@res.data.dates,labels=@res.data.labels},
+    layer={dates=@res.data.dates,labels=@res.data.labels},
     caption="This is a text with {stuf} but it should work"
 } and continue my paragraph quietly.
 

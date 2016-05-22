@@ -86,7 +86,7 @@ This contextualizers inserts a reference to a website.
 
 | property        | description | valueType | defaultValue | possibleValues | required |
 | ------------- |:------------- |:------------- |:------------- |:------------- | 
-| | | | | |
+| | | | | | |
 
 ## citation
 
@@ -101,7 +101,7 @@ This contextualizer displays the reference to a bibliographic reference, either 
 
 | property        | description | valueType | defaultValue | possibleValues | required |
 | ------------- |:------------- |:------------- |:------------- |:------------- | 
-| | | | | |
+| | | | | | |
 
 Note : citation formatting should be resolved with document's ``citationStyle`` param (e.g. : APA)
 
@@ -118,7 +118,7 @@ This contextualizer displays one or more image resources.
 
 | property        | description | valueType | defaultValue | possibleValues | required |
 | ------------- |:------------- |:------------- |:------------- |:------------- | 
-| | | | | |
+| | | | | | |
 
 ## videoplayer
 
@@ -133,7 +133,7 @@ This contextualizer displays a video, either from raw video files or from video 
 
 | property        | description | valueType | defaultValue | possibleValues | required |
 | ------------- |:------------- |:------------- |:------------- |:------------- | 
-| | | | | |
+| | | | | | |
 
 
 ## audioplayer
@@ -149,7 +149,7 @@ This contextualizer displays an audio document, either from raw video files or f
 
 | property        | description | valueType | defaultValue | possibleValues | required |
 | ------------- |:------------- |:------------- |:------------- |:------------- | 
-| | | | | |
+| | | | | | |
 
 
 ## speechtranscription
@@ -165,7 +165,7 @@ This contextualizer displays the transcription of a speech (without media) from 
 
 | property        | description | valueType | defaultValue | possibleValues | required |
 | ------------- |:------------- |:------------- |:------------- |:------------- | 
-| | | | | |
+| | | | | | |
 
 
 ## sourcecodedisplay
@@ -181,7 +181,7 @@ This contextualizer displays a web resource as raw source code.
 
 | property        | description | valueType | defaultValue | possibleValues | required |
 | ------------- |:------------- |:------------- |:------------- |:------------- | 
-| | | | | |
+| | | | | | |
 
 
 ## table
@@ -197,7 +197,7 @@ This contextualizer displays tabular data as a table.
 
 | property        | description | valueType | defaultValue | possibleValues | required |
 | ------------- |:------------- |:------------- |:------------- |:------------- | 
-| | | | | |
+| | | | | | |
 
 
 ## timeline
@@ -213,7 +213,18 @@ This contextualizer displays events, eras and timestamped quantitative data, fro
 
 | property        | description | valueType | defaultValue | possibleValues | required |
 | ------------- |:------------- |:------------- |:------------- |:------------- | 
-| | | | | |
+|disposition |how to dispose layers ? one on top of another or side by side ? | string |juxtapose|superpose,juxtapose | |
+|dateformat |how dates are formatted for the whole timeline ? |string |yyyy-mm-dd | | |
+|layer |describes a specific layer of timeline, working with one source of data and one type of data | object | | | |
+|title (child of layer) |title of a layer |string | |yes |
+|dateformat (child of layer) | describes how dates are formatted for the given layer|string | | |
+|dates (child of layer) |dates to use for positioning events/datapoints/periods beginings |string | | | |
+|layertype (child of layer) |what type of data is displayed in the layer ? |string |events|events,periods,metrics | |
+|labels (child of layer)|(event layer) describes which datafield to use for naming events or periods |string | | | |
+|eventcategories (child of layer)|(event layer) describes which datafield to use for categorizing events or periods |string | | | |
+|description (child of layer)|(event layer) describes which datafield to use for describing events or periods |string | | | |
+|ends (child of layer) |dates to use for positioning periods ends |string | | | |
+|values (child of layer) |(metrics layer) which field to use for quantitizing datapoints |string | | | |
 
 
 ## map
@@ -229,7 +240,7 @@ This contextualizer displays geographical data from tabular data.
 
 | property        | description | valueType | defaultValue | possibleValues | required |
 | ------------- |:------------- |:------------- |:------------- |:------------- | 
-| | | | | |
+| | | | | | |
 
 
 ## glossary
@@ -245,7 +256,7 @@ This contextualizer displays an entity mark or call.
 
 | property        | description | valueType | defaultValue | possibleValues | required |
 | ------------- |:------------- |:------------- |:------------- |:------------- | 
-| | | | | |
+| | | | | | |
 
 
 
