@@ -53,6 +53,49 @@ export function getResourceModel(bibType, resourceModels) {
   return undefined;
 }
 
+// I build a model object from a specific bibType, composing it according to its inheritance dependencies, from more general models to the specific bibType
+export function getContextualizerModel(bibType, contextualizerModels) {
+  const model = contextualizerModels.individual[bibType];
+  if (model) {
+    // first set highestly specific props
+    let properties = model.properties;
+    let otherProps;
+    let existing;
+    // then parse related categories
+    model.categories.forEach((category) => {
+      otherProps = contextualizerModels.collective[category]
+                    .properties
+                    .filter((prop) =>{
+                      existing = properties.find((property) =>{
+                        return property.key === prop.key;
+                      });
+                      if (existing) {
+                        return false;
+                      }
+                      return true;
+                    });
+      properties = properties.concat(otherProps);
+
+    });
+
+    // then finally parse common props
+    otherProps = contextualizerModels.collective.common
+                    .properties
+                    .filter((prop) =>{
+                      existing = properties.find((property) =>{
+                        return property.key === prop.key;
+                      });
+                      if (existing) {
+                        return false;
+                      }
+                      return true;
+                    });
+    properties = properties.concat(otherProps);
+    return Object.assign({}, model, {properties});
+  }
+  return undefined;
+}
+
 // I turn a (possibly not primitive : array, object, bibAuthor) value to a string-friendly value, thanks to its model's type
 export function serializePropAgainstType(prop, valueType, model) {
   if (prop === undefined) {
@@ -102,9 +145,35 @@ export function serializePropAgainstType(prop, valueType, model) {
 export function resolvePropAgainstType(prop, valueType, model) {
   let val;
   if (prop === undefined) {
+    // looking for a default value if no value specified
+    if (model.default) {
+      return model.default;
+    }
     return undefined;
+  // looking for restricted values
+  } else if (model.values) {
+    const validValue = model.values.find((value) => {
+      return value === prop;
+    });
+    // value not allowed
+    if (validValue === undefined) {
+      // look for default
+      if (model.default) {
+        return model.default;
+      }
+      // or return undefined
+      return undefined;
+    }
   }
   switch (valueType) {
+  case 'number':
+    return +prop;
+
+  case 'numberArray':
+    return prop.split(',').map((number)=> {
+      return +number.trim();
+    });
+
   case 'string':
     if (model.values) {
       // nominal set of possible values

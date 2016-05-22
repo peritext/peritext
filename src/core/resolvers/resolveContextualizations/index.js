@@ -1,54 +1,41 @@
 import {hasResource, getMetaValue} from './../../utils/sectionUtils';
-import {getResourceModel, resolvePropAgainstType} from './../../utils/modelUtils';
+import {getResourceModel, getContextualizerModel, resolvePropAgainstType} from './../../utils/modelUtils';
 
 export function resolveContextualizations({section, models}, cb) {
   const errors = [];
 
   // populate contextualizers against their models
   section.contextualizers = section.contextualizers.map((contextualizer)=>{
+    const newContextualizer = Object.assign({}, contextualizer);
     // guess contextualizer type if needed
-    if (!contextualizer.type) {
+    if (!newContextualizer.type) {
       // one resource
       if (contextualizer.resources.length === 1) {
         const sourceKey = contextualizer.resources[0];
         const source = section.resources.find((resource)=>{
           return resource.citeKey === sourceKey;
         });
-        let type = section.contextualizations.find((contextualization)=>{
-          return contextualization.contextualizer === contextualizer.citeKey;
-        });
-
-        if (source && type) {
-          type = type.type;
-          if (type === 'inline') {
-            contextualizer.type = models.resourceModels.individual[source.bibType].default_contextualizer_inline;
-          } else {
-            contextualizer.type = models.resourceModels.individual[source.bibType].default_contextualizer_block;
-          }
-        }else {
-          errors.push({
-            type: 'error',
-            preciseType: 'invalidContextualizer',
-            sectionCiteKey: getMetaValue(section.metadata, 'general', 'citeKey'),
-            contextualizerCiteKey: contextualizer.citeKey,
-            message: 'could not determine contextualizer type of contextualizer ' + contextualizer.citeKey
-          });
-          return undefined;
-        }
-      }// else if (contextualize.resources.length > 1){
-      // todo : handle resources combo verification here
-      // }
+        const sourceModel = getResourceModel(source.bibType, models.resourceModels);
+        newContextualizer.type = sourceModel.defaultContextualizer;
+      }
     }
-
     // resolve contextualizer object against its model
-    const model = getResourceModel(contextualizer.type, models.contextualizerModels);
-
-    const newContextualizer = model.properties.reduce((obj, thatModel) =>{
+    const contextualizerModel = getContextualizerModel(newContextualizer.type, models.contextualizerModels);
+    const finalContextualizer = contextualizerModel.properties.reduce((obj, thatModel) =>{
       obj[thatModel.key] = resolvePropAgainstType(contextualizer[thatModel.key], thatModel.valueType, thatModel);
+      // record error if required field is undefined
+      if (obj[thatModel.key] === undefined && thatModel.required === true) {
+        errors.push({
+          type: 'error',
+          preciseType: 'invalidContextualizer',
+          sectionCiteKey: getMetaValue(section.metadata, 'general', 'citeKey'),
+          message: 'contextualizer ' + newContextualizer.citeKey + ' does not provide required type ' + thatModel.key
+        });
+      }
       return obj;
     }, {});
 
-    return newContextualizer;
+    return finalContextualizer;
   });
 
 

@@ -304,7 +304,7 @@ When switching from one aside to another in these cases of "resource traveling",
 * ``valueType`` : see below
 * ``required`` : required or not
 * (not required) ``defaultValue`` : value if the prop is not specified
-* (not required) ``possibleValues`` : array of possible values
+* (not required) ``restrictedValues`` : array of possible values
 
 ### Value types
 
@@ -363,7 +363,7 @@ If ``@res`` is used inside a string field, it will be interpreted as an accessor
 
 ### Global
 
-| property        | description | valueType | defaultValue | possibleValues | required |
+| property        | description | valueType | defaultValue | restrictedValues | required |
 | ------------- |:------------- |:------------- |:------------- |:------------- |:------------- |
 |title |The title to display for the contextualizer | | | | |
 |type |Contextualizer type | | | | |
@@ -384,7 +384,7 @@ This contextualizers inserts a reference to a website.
 | block dynamic      | anchor to website iframe + reference |
 
 
-| property        | description | valueType | defaultValue | possibleValues | required |
+| property        | description | valueType | defaultValue | restrictedValues | required |
 | ------------- |:------------- |:------------- |:------------- |:------------- |:------------- | 
 |directlink |whether to allow for direct hypertext | | |yes,no | |
 
@@ -399,7 +399,7 @@ This contextualizer displays the reference to a bibliographic reference, either 
 | block static      | long citation/biblio style |
 | block dynamic      | long citation/biblio style |
 
-| property        | description | valueType | defaultValue | possibleValues | required |
+| property        | description | valueType | defaultValue | restrictedValues | required |
 | ------------- |:------------- |:------------- |:------------- |:------------- |:------------- |
 |pages |Pages of the citation |string | | | |
 |page |Page of the citation |string | | | |
@@ -417,7 +417,7 @@ This contextualizer displays one or more image resources.
 | block static      | figure and its ref |
 | block dynamic      | anchor to gallery display in aside space |
 
-| property        | description | valueType | defaultValue | possibleValues | required |
+| property        | description | valueType | defaultValue | restrictedValues | required |
 | ------------- |:------------- |:------------- |:------------- |:------------- |:------------- |
 | | | | | | |
 
@@ -432,11 +432,11 @@ This contextualizer displays a video, either from raw video files or from video 
 | block static      | poster of the video with reference |
 | block dynamic      | anchor to video display in aside space |
 
-| property        | description | valueType | defaultValue | possibleValues | required |
+| property        | description | valueType | defaultValue | restrictedValues | required |
 | ------------- |:------------- |:------------- |:------------- |:------------- |:------------- |
 |startat |Where to start the sample at (exemple : "1h3m2s", "5s", ...) |string | | | |
 |endat |Where to end the sample at (exemple : "1h3m2s", "5s", ...) |string | | | |
-|timeformat |Describes how time is formatted |string |HhMmSs | | |
+|timeformat |Describes how time is formatted |string |%HhM%Mm%Ss | | |
 
 
 ### audioplayer
@@ -450,11 +450,11 @@ This contextualizer displays an audio document, either from raw video files or f
 | block static      | Audio cartel with reference |
 | block dynamic      | anchor to audio display in aside space |
 
-| property        | description | valueType | defaultValue | possibleValues | required |
+| property        | description | valueType | defaultValue | restrictedValues | required |
 | ------------- |:------------- |:------------- |:------------- |:------------- |:------------- |
 |startat |Where to start the sample at (exemple : "1h3m2s", "5s", ...) |string | | | |
 |endat |Where to end the sample at (exemple : "1h3m2s", "5s", ...) |string | | | |
-|timeformat |Describes how time is formatted |string |HhMmSs | | |
+|timeformat |Describes how time is formatted |string |%HhM%Mm%Ss | | |
 
 
 ### speechtranscription
@@ -468,7 +468,7 @@ This contextualizer displays the transcription of a speech (without media) from 
 | block static      | text cartel of the transcription + ref |
 | block dynamic      | text display in aside space |
 
-| property        | description | valueType | defaultValue | possibleValues | required |
+| property        | description | valueType | defaultValue | restrictedValues | required |
 | ------------- |:------------- |:------------- |:------------- |:------------- |:------------- | 
 | | | | | | |
 
@@ -484,7 +484,7 @@ This contextualizer displays a web resource as raw source code.
 | block static      | text cartel with source code |
 | block dynamic      | source code display in aside space |
 
-| property        | description | valueType | defaultValue | possibleValues | required |
+| property        | description | valueType | defaultValue | restrictedValues | required |
 | ------------- |:------------- |:------------- |:------------- |:------------- |:------------- | 
 |language |Describes the language in which to highlight the source code. |string | | |no |
 
@@ -500,7 +500,7 @@ This contextualizer displays tabular data as a table.
 | block static      | tabled is displayed in cartel |
 | block dynamic      | table is displayed in aside space |
 
-| property        | description | valueType | defaultValue | possibleValues | required |
+| property        | description | valueType | defaultValue | restrictedValues | required |
 | ------------- |:------------- |:------------- |:------------- |:------------- |:------------- | 
 |columns |Describes which columns to display |accessorArray | | | |
 |maxlines |maximum number of lines to display |number | | | |
@@ -517,15 +517,15 @@ This contextualizer displays events, eras and timestamped quantitative data, fro
 | block static      | timeline is displayed as a figure |
 | block dynamic      | timeline is displayed dynamically in aside space |
 
-| property        | description | valueType | defaultValue | possibleValues | required |
+| property        | description | valueType | defaultValue | restrictedValues | required |
 | ------------- |:------------- |:------------- |:------------- |:------------- |:------------- | 
 |disposition |how to dispose layers ? one on top of another or side by side ? | string |juxtapose|superpose,juxtapose | |
-|dateformat |Describes how dates are formatted for the whole timeline ? |string |yyyy-mm-dd | | |
+|dateformat |Describes how dates are formatted for the whole timeline ? |string |%Y-%m-%d | | |
 |startat |Describes at what date should the timeline begin to be displayed ? |string | | | |
 |endat |Describes at what date should the timeline begin to be displayed ? |string | | | |
 |layer |describes a specific layer of timeline, working with one source of data and one type of data | objectArray | | | |
 |layertype (child of layer) |Describes what type of data is displayed in the layer ? |string |events|events,periods,metrics | |
-|title (child of layer) |title of a layer |string | |yes |
+|title (child of layer) |title of a layer |string | | |
 |dateformat (child of layer) | describes how dates are formatted for the given layer|string | | |
 |dates (child of layer) |Describes which data field to use for positioning events/datapoints/periods beginings |accessor | | | |
 |labels (child of layer)|(event layer) describes which datafield to use for naming events or periods |accessor | | | |
@@ -546,7 +546,7 @@ This contextualizer displays geographical data from tabular data.
 | block static      | map is displayed as a figure |
 | block dynamic      | map is displayed dynamically in aside space |
 
-| property        | description | valueType | defaultValue | possibleValues | required |
+| property        | description | valueType | defaultValue | restrictedValues | required |
 | ------------- |:------------- |:------------- |:------------- |:------------- |:------------- |
 |disposition |hDescribes ow to dispose layers ? one on top of another or side by side ? | string |juxtapose|superpose,juxtapose | |
 |zoomlevel |The zoom level of the view. |number | | | |
@@ -570,7 +570,7 @@ This contextualizer displays an entity mark (when inline) or cartel display (whe
 | block static      | more info as note |
 | block dynamic      | text cartel (for instance : display entity picture, ...) |
 
-| property        | description | valueType | defaultValue | possibleValues | required |
+| property        | description | valueType | defaultValue | restrictedValues | required |
 | ------------- |:------------- |:------------- |:------------- |:------------- |:------------- |
 | | | | | | |
 

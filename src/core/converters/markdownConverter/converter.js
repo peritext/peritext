@@ -111,62 +111,115 @@ function eatContextualizations(inputHtml) {
   // parse block contextualizations
   while ((match = blockContextRE.exec(outputHtml)) !== null) {
     paramsObject = eatParamsObject(outputHtml.substr(match.index + match[0].length));
-    if (paramsObject.indexOf('=') === -1) {
-      contextualizerKey = paramsObject.match(/^\{([^}]+)\}$/)[1];
-      // parse contexutalization
+
+    let explicitKey;
+    if (paramsObject && paramsObject.indexOf('@') === 1) {
+      explicitKey = true;
+      contextualizerKey = paramsObject.match(/^\{(@[^,}]+)/)[1];
+    // inline implicit contextualization
     }else {
-      const formattedParams = parseBibContextualization(paramsObject);
       contextualizationCount ++;
-      contextualizerKey = contextualizationCount;
+      contextualizerKey = 'contextualizer' + contextualizationCount;
+    }
+    let formattedParams;
+    if (paramsObject !== undefined) {
+      formattedParams = parseBibContextualization(paramsObject);
+      const emptyParams = JSON.stringify(formattedParams).length <= 2;
+      // no empty, so inline (implicit new contextualizer, or contextualizer overloading)
+      if (!emptyParams) {
+        formattedParams.describedInline = true;
+        // params + explicit key = overload
+        if (explicitKey) {
+          formattedParams.overloading = contextualizerKey;
+          let counter = 1;
+          let newKey = contextualizerKey + '_' + counter;
+          let unique = false;
+          // getting a unique citeKey for the overloaded contextualizer
+          while (!unique) {
+            unique = true;
+            contextualizers.forEach((cont) => {
+              if (cont.citeKey === newKey) {
+                unique = false;
+                counter++;
+                newKey = contextualizerKey + '_' + counter;
+              }
+            });
+          }
+          contextualizerKey = newKey;
+        }
+      } else {
+        formattedParams = {};
+      }
       formattedParams.citeKey = contextualizerKey;
-      formattedParams.describedInline = true;
       formattedParams.resources = match[1].replace('@', '').split(',');
       contextualizers.push(formattedParams);
     }
+
     contextualizations.push({
       'contextualizer': contextualizerKey,
-      resources: match[1].replace('@', '').split(','),
+      resources: match[1].replace(/^@/, '').split(','),
       type: 'block'
     });
     newEl = '<BlockContextualization resources="@' + match[1] + '" contextualizer="' + contextualizerKey + '" contextualization-index=' + (contextualizations.length - 1) + '>' + match[2] + '</BlockContextualization>';
-    outputHtml = outputHtml.substr(0, match.index) + newEl + outputHtml.substr(match.index + match[0].length + paramsObject.length);
+    outputHtml = outputHtml.substr(0, match.index) + newEl + outputHtml.substr(match.index + match[0].length + (paramsObject ? paramsObject.length : 0));
   }
 
   // parse inline contextualizations
   while ((match = inlineContextRE.exec(outputHtml)) !== null) {
     paramsObject = eatParamsObject(outputHtml.substr(match.index + match[0].length));
 
-    // contextualizer call
-    if (paramsObject && paramsObject.indexOf('=') === -1) {
-      contextualizerKey = paramsObject.match(/^\{([^}]+)\}$/)[1];
-    // contextualizer inline definition
-    }else if (paramsObject) {
-      const formattedParams = parseBibContextualization(paramsObject);
-      contextualizationCount ++;
-      contextualizerKey = contextualizationCount;
-      formattedParams.citeKey = contextualizerKey;
-      formattedParams.describedInline = true;
-      formattedParams.resources = match[1].replace('@', '').split(',');
-      contextualizers.push(formattedParams);
-    // no contextualizer
+    let explicitKey;
+    if (paramsObject && paramsObject.indexOf('@') === 1) {
+      explicitKey = true;
+      contextualizerKey = paramsObject.match(/^\{(@[^,}]+)/)[1];
+    // inline implicit contextualization
     }else {
       contextualizationCount ++;
-      contextualizerKey = contextualizationCount;
-      contextualizers.push({
-        citeKey: contextualizerKey,
-        describedInline: true,
-        resources: match[1].replace('@', '').split(',')
-      });
-      paramsObject = '';
+      contextualizerKey = 'contextualizer' + contextualizationCount;
     }
+    let formattedParams;
+    if (paramsObject !== undefined) {
+      formattedParams = parseBibContextualization(paramsObject);
+      const emptyParams = JSON.stringify(formattedParams).length <= 2;
+      // no empty, so inline (implicit new contextualizer, or contextualizer overloading)
+      if (!emptyParams) {
+        formattedParams.describedInline = true;
+        // params + explicit key = overload
+        if (explicitKey) {
+          formattedParams.overloading = contextualizerKey;
+          let counter = 1;
+          let newKey = contextualizerKey + '_' + counter;
+          let unique = false;
+          // getting a unique citeKey for the overloaded contextualizer
+          while (!unique) {
+            unique = true;
+            contextualizers.forEach((cont) => {
+              if (cont.citeKey === newKey) {
+                unique = false;
+                counter++;
+                newKey = contextualizerKey + '_' + counter;
+              }
+            });
+          }
+          contextualizerKey = newKey;
+        }
+      } else {
+        formattedParams = {};
+      }
+      formattedParams.citeKey = contextualizerKey;
+      formattedParams.resources = match[1].replace('@', '').split(',');
+      contextualizers.push(formattedParams);
+    }
+
     contextualizations.push({
       'contextualizer': contextualizerKey,
       resources: match[1].replace('@', '').split(','),
       type: 'inline'
     });
     newEl = '<InlineContextualization resources="@' + match[1] + '" contextualizer="' + contextualizerKey + '" contextualization-index=' + (contextualizations.length - 1) + '>' + match[2] + '</InlineContextualization>';
-    outputHtml = outputHtml.substr(0, match.index) + newEl + outputHtml.substr(match.index + match[0].length + paramsObject.length);
+    outputHtml = outputHtml.substr(0, match.index) + newEl + outputHtml.substr(match.index + match[0].length + (paramsObject ? paramsObject.length : 0));
   }
+  console.log(contextualizers);
   return {contextualizers, contextualizations, newHtml: outputHtml};
 }
 

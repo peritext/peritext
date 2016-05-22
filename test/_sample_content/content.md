@@ -1,11 +1,15 @@
 # Welcome
 
-![A reference](@temporal_data){cool_timeline}
+![A reference](@temporal_data){@cool_timeline}
+
+![Another view on the timeline](@temporal_data){@cool_timeline,
+    startat="2012-21-01"
+}
 
 
 I will talk about that[^]{with a footnote here} :
 
-![Another reference](@temporal_data){
+![Another reference with unnamed contextualizer](@temporal_data){
     type="timeline",
     layer={layertype=events,data=@source.data.dates,labels=@source.data.labels},
     title="My title"
