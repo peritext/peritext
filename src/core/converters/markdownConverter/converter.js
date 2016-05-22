@@ -128,7 +128,7 @@ function eatContextualizations(inputHtml) {
       resources: match[1].replace('@', '').split(','),
       type: 'block'
     });
-    newEl = '<blockcontext resources="@' + match[1] + '" contextualizer="' + contextualizerKey + '" contextualization-index=' + (contextualizations.length - 1) + '>' + match[2] + '</blockcontext>';
+    newEl = '<BlockContextualization resources="@' + match[1] + '" contextualizer="' + contextualizerKey + '" contextualization-index=' + (contextualizations.length - 1) + '>' + match[2] + '</BlockContextualization>';
     outputHtml = outputHtml.substr(0, match.index) + newEl + outputHtml.substr(match.index + match[0].length + paramsObject.length);
   }
 
@@ -164,7 +164,7 @@ function eatContextualizations(inputHtml) {
       resources: match[1].replace('@', '').split(','),
       type: 'inline'
     });
-    newEl = '<inlinecontext resources="@' + match[1] + '" contextualizer="' + contextualizerKey + '" contextualization-index=' + (contextualizations.length - 1) + '>' + match[2] + '</inlinecontext>';
+    newEl = '<InlineContextualization resources="@' + match[1] + '" contextualizer="' + contextualizerKey + '" contextualization-index=' + (contextualizations.length - 1) + '>' + match[2] + '</InlineContextualization>';
     outputHtml = outputHtml.substr(0, match.index) + newEl + outputHtml.substr(match.index + match[0].length + paramsObject.length);
   }
   return {contextualizers, contextualizations, newHtml: outputHtml};

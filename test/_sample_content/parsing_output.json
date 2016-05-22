@@ -137,19 +137,19 @@
           "tagType": "heading"
         },
         {
-          "html": "<blockcontext resources=\"@temporal_data\" contextualizer=\"cool_timeline\" contextualization-index=0>A reference</blockcontext>",
-          "tagType": "blockcontext"
+          "html": "<p><BlockContextualization resources=\"@temporal_data\" contextualizer=\"cool_timeline\" contextualization-index=0>A reference</BlockContextualization></p>",
+          "tagType": "p"
         },
         {
           "html": "<p>I will talk about that<sup class=\"note_pointer\"><a id=\"#notepointer_1\" href=\"#note_1\"><span class=\"footnote-number\">1</span></a></sup> :</p>",
           "tagType": "p"
         },
         {
-          "html": "<blockcontext resources=\"@temporal_data\" contextualizer=\"1\" contextualization-index=1>Another reference</blockcontext>",
-          "tagType": "blockcontext"
+          "html": "<p><BlockContextualization resources=\"@temporal_data\" contextualizer=\"1\" contextualization-index=1>Another reference</BlockContextualization></p>",
+          "tagType": "p"
         },
         {
-          "html": "<p>And as says <inlinecontext resources=\"@martin_change_2002\" contextualizer=\"2\" contextualization-index=2></inlinecontext></p>",
+          "html": "<p>And as says <InlineContextualization resources=\"@martin_change_2002\" contextualizer=\"2\" contextualization-index=2></InlineContextualization></p>",
           "tagType": "p"
         },
         {
@@ -157,11 +157,11 @@
           "tagType": "p"
         },
         {
-          "html": "<p>I&#39;m talking about a <inlinecontext resources=\"@martin_change_2002\" contextualizer=\"4\" contextualization-index=4>reference</inlinecontext>.</p>",
+          "html": "<p>I&#39;m talking about a <InlineContextualization resources=\"@martin_change_2002\" contextualizer=\"4\" contextualization-index=4>reference</InlineContextualization>.</p>",
           "tagType": "p"
         },
         {
-          "html": "<p>Now let&#39;s say I want to link to this <inlinecontext resources=\"@temporal_data\" contextualizer=\"5\" contextualization-index=5>timeline</inlinecontext> and continue my paragraph quietly.</p>",
+          "html": "<p>Now let&#39;s say I want to link to this <InlineContextualization resources=\"@temporal_data\" contextualizer=\"5\" contextualization-index=5>timeline</InlineContextualization> and continue my paragraph quietly.</p>",
           "tagType": "p"
         },
         {
@@ -300,12 +300,10 @@
         {
           "layer": [
             {
-              "data": "@source1.data.dates",
-              "labels": "@source1.data.labels"
+              "labels": "@res.data.labels"
             },
             {
-              "data": "@source2.data.dates",
-              "labels": "@source2.data.labels"
+              "labels": "@res.data.labels"
             }
           ],
           "citeKey": 5,
@@ -313,14 +311,14 @@
           "describedInline": true
         }
       ],
-      "markdownContents": "# Welcome\n\n![A reference](@temporal_data){cool_timeline}\n\n\nI will talk about that[^]{with a footnote here} :\n\n![Another reference](@temporal_data){\n    type=\"timeline\",\n    layer={layertype=events,data=@source.data.dates,labels=@source.data.labels},\n    title=\"My title\"\n}\n\n\nAnd as says [](@martin_change_2002){pages=\"12-13\"}\n\nAnd for the footnotes, I want to say that Martin said that[^]{I'm referencing to [Martin](@martin_change_2002){pages=\"12-13\"} when he says : \"hello\"}\n\nI'm talking about a [reference](@martin_change_2002).\n\nNow let's say I want to link to this [timeline](@temporal_data){\n    type=\"timeline\",\n    layer={data=@source1.data.dates,labels=@source1.data.labels},\n    layer={data=@source2.data.dates,labels=@source2.data.labels},\n    caption=\"This is a text with {stuf} but it should work\"\n} and continue my paragraph quietly.\n\nWelcome to my awesome book.\n\nThanks to all !\n\nMomanddad\nThe dog\nMy imaginary friend Serge\n\n\nI am just there, not linked to ``content.md``. I should be put at the end of content by alphabetical order.\n\n\n",
+      "markdownContents": "# Welcome\n\n![A reference](@temporal_data){cool_timeline}\n\n\nI will talk about that[^]{with a footnote here} :\n\n![Another reference](@temporal_data){\n    type=\"timeline\",\n    layer={layertype=events,data=@source.data.dates,labels=@source.data.labels},\n    title=\"My title\"\n}\n\n\nAnd as says [](@martin_change_2002){pages=\"12-13\"}\n\nAnd for the footnotes, I want to say that Martin said that[^]{I'm referencing to [Martin](@martin_change_2002){pages=\"12-13\"} when he says : \"hello\"}\n\nI'm talking about a [reference](@martin_change_2002).\n\nNow let's say I want to link to this [timeline](@temporal_data){\n    type=\"timeline\",\n    layer={dates=@res.data.dates,labels=@res.data.labels},\n    layer={dates=@res.data.dates,labels=@res.data.labels},\n    caption=\"This is a text with {stuf} but it should work\"\n} and continue my paragraph quietly.\n\nWelcome to my awesome book.\n\nThanks to all !\n\nMomanddad\nThe dog\nMy imaginary friend Serge\n\n\nI am just there, not linked to ``content.md``. I should be put at the end of content by alphabetical order.\n\n\n",
       "footnotes": [
         {
           "content": "<sup class=\"note\"><span class=\"footnote-number\">1</span><a id=\"#note_1\" href=\"#notepointer_1\">with a footnote here</a></sup>",
           "footnoteNumber": 1
         },
         {
-          "content": "<sup class=\"note\"><span class=\"footnote-number\">2</span><a id=\"#note_2\" href=\"#notepointer_2\">I&#39;m referencing to <inlinecontext resources=\"@martin_change_2002\" contextualizer=\"3\" contextualization-index=3>Martin</inlinecontext> when he says : &quot;hello&quot;</a></sup>",
+          "content": "<sup class=\"note\"><span class=\"footnote-number\">2</span><a id=\"#note_2\" href=\"#notepointer_2\">I&#39;m referencing to <InlineContextualization resources=\"@martin_change_2002\" contextualizer=\"3\" contextualization-index=3>Martin</InlineContextualization> when he says : &quot;hello&quot;</a></sup>",
           "footnoteNumber": 2
         }
       ],
