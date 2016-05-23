@@ -1,7 +1,7 @@
 import {getMetaValue} from './../../utils/sectionUtils';
 import {getResourceModel, getContextualizerModel, resolvePropAgainstType} from './../../utils/modelUtils';
 
-
+// I resolve a contextualizer assertion against its model and context, and record errors
 function resolveContextualizer(contextualizer, section, models) {
   const err = [];
   let newContextualizer = Object.assign({}, contextualizer);
@@ -56,6 +56,7 @@ function resolveContextualizer(contextualizer, section, models) {
   return {err, finalContextualizer};
 }
 
+// I build formatted objects for contextualizers and contextualizations, and record related parsing and model-related errors
 export function resolveContextualizersAndContextualizations({section, models}, cb) {
   let errors = [];
 

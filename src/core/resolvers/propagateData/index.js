@@ -31,20 +31,20 @@ function inheritMetadataFromParent(section, sectionTypeModels, sections, parentM
   }
 
   // set hierarchical level (parent + 1 or parent + own level)
-  const parentLevel = getMetaValue(parentMetadata, 'general', 'hierarchicalLevel');
-  const ownLevel = getMetaValue(section.metadata, 'general', 'hierarchicalLevel');
+  const parentLevel = getMetaValue(parentMetadata, 'general', 'generalityLevel');
+  const ownLevel = getMetaValue(section.metadata, 'general', 'generalityLevel');
   if (parentLevel && ownLevel) {
-    section.metadata = setMetaValue(section.metadata, 'general', 'hierarchicalValue', parentLevel + ownLevel);
+    section.metadata = setMetaValue(section.metadata, 'general', 'generalityValue', parentLevel + ownLevel);
   }else if (parentLevel) {
     section.metadata.push({
       domain: 'general',
-      key: 'hierarchicalLevel',
+      key: 'generalityLevel',
       value: parentLevel + 1
     });
   }else {
     section.metadata.push({
       domain: 'general',
-      key: 'hierarchicalLevel',
+      key: 'generalityLevel',
       value: 1
     });
   }
@@ -223,7 +223,7 @@ export function propagateData({errors, sections, models, parent}, callback) {
       // hierarchical level bootstrapping
       section.metadata.push({
         domain: 'general',
-        key: 'hierarchicalLevel',
+        key: 'generalityLevel',
         value: 1
       });
       section.resourcesInherited = true;

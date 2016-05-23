@@ -12,14 +12,24 @@ export function resolveSectionAgainstModels(section, models, callback) {
       return model.properties.reduce((resolvedResource, propModel) => {
         const key = propModel.key;
         if (propModel.required && !resource[key]) {
-          errors.push(new Error('property ' + key + ' is required in resource ' + resource.citeKey + ' and not present'));
+          errors.push({
+            type: 'error',
+            preciseType: 'invalidResource',
+            sectionCiteKey: getMetaValue(section.metadata, 'general', 'citeKey'),
+            message: 'property ' + key + ' is required in resource ' + resource.citeKey + '(bibType: ' + resource.bibType + ') and not present'
+          });
         }else if (resource[key]) {
           resolvedResource[key] = resolvePropAgainstType(resource[key], propModel.valueType, propModel);
         }
         return resolvedResource;
       }, {});
     }
-    errors.push(new Error('Could not find suitable data model for resource ' + resource.citeKey));
+    errors.push({
+      type: 'error',
+      preciseType: 'invalidResource',
+      sectionCiteKey: getMetaValue(section.metadata, 'general', 'citeKey'),
+      message: 'Could not find suitable data model for resource ' + resource.citeKey
+    });
     return {};
   });
 
@@ -30,7 +40,12 @@ export function resolveSectionAgainstModels(section, models, callback) {
     if (model) {
       const uniquePb = model.unique && Array.isArray(metadata.value) && metadata.value.length > 1;
       if (uniquePb) {
-        errors.push(new Error(metadata.key + ' value was set more than once for section ' + getMetaValue(section.metadata, 'general', 'title')));
+        errors.push({
+          type: 'error',
+          preciseType: 'invalidMetadata',
+          sectionCiteKey: getMetaValue(section.metadata, 'general', 'citeKey'),
+          message: metadata.key + ' value was set more than once for section ' + getMetaValue(section.metadata, 'general', 'title')
+        });
         metadata.value = metadata.value[0];
       }
 
@@ -51,7 +66,12 @@ export function resolveSectionAgainstModels(section, models, callback) {
       }
 
     }else {
-      errors.push(new Error(metadata.domain + ' metadata property ' + metadata.key + ' is invalid in section ' + getMetaValue(section.metadata, 'general', 'title')));
+      errors.push({
+        type: 'warning',
+        preciseType: 'invalidMetadata',
+        sectionCiteKey: getMetaValue(section.metadata, 'general', 'citeKey'),
+        message: metadata.domain + ' metadata property ' + metadata.key + ' is invalid in section ' + getMetaValue(section.metadata, 'general', 'title') + ' and therefore was not taken into account'
+      });
     }
 
     return metadata;

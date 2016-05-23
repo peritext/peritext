@@ -5,15 +5,12 @@
       "preciseType": "metadataError",
       "message": "no metadata specified for the folder empty_folder"
     },
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {}
+    {
+      "type": "warning",
+      "preciseType": "invalidMetadata",
+      "sectionCiteKey": "partie_2_2",
+      "message": "general metadata property test is invalid in section Partie 2.2 and therefore was not taken into account"
+    }
   ],
   "sections": [
     {
@@ -67,7 +64,7 @@
         },
         {
           "domain": "general",
-          "key": "hierarchicalLevel",
+          "key": "generalityLevel",
           "value": 1
         },
         {
@@ -529,7 +526,7 @@
         },
         {
           "domain": "general",
-          "key": "hierarchicalLevel",
+          "key": "generalityLevel",
           "value": 1,
           "inheritedVerticallyFrom": {
             "domain": "general",
@@ -801,7 +798,7 @@
         },
         {
           "domain": "general",
-          "key": "hierarchicalLevel",
+          "key": "generalityLevel",
           "value": 1,
           "inheritedVerticallyFrom": {
             "domain": "general",
@@ -1087,7 +1084,7 @@
         },
         {
           "domain": "general",
-          "key": "hierarchicalLevel",
+          "key": "generalityLevel",
           "value": 1,
           "inheritedVerticallyFrom": {
             "domain": "general",
@@ -1179,6 +1176,7 @@
       ],
       "resources": [
         {
+          "title": "The first book image",
           "bibType": "image",
           "citeKey": "image_book",
           "description": "image of the first book"

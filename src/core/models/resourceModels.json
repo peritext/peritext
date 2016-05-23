@@ -61,12 +61,6 @@
     "usableResource" : {
       "properties" : [
         {
-          "key" : "title",
-          "valueType" : "string",
-          "description" : "The title of the resource",
-          "required" : true
-        },
-        {
           "key" : "url",
           "valueType" : "string",
           "description" : "The url at which the resource can be fetched",
@@ -99,12 +93,7 @@
           "description" : "The author(s) of the bibliographic resource",
           "required" : false
         },
-        {
-          "key" : "fulltexturl",
-          "valueType" : "string",
-          "description" : "The url where the full text of the resource can be browsed (if different from url field).",
-          "required" : true
-        },
+
         {
           "key" : "editor",
           "valueType" : "bibAuthorsArray",
