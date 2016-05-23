@@ -224,7 +224,7 @@ export function parseSection({tree, parameters, parent, models}, callback) {
     // parse markdown contents and organize them as blocks lists, and parse+resolve contextualization objects
     function({errors, sections}, cb) {
       asyncMap(sections, function(section, cback) {
-        markdownToContentsList(section, cback);
+        markdownToContentsList(section, parameters, cback);
       }, function(err, results) {
         const newSections = results.map((result)=>{
           return result.section;

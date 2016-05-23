@@ -233,7 +233,7 @@ function eatContextualizations(inputHtml) {
     newEl = '<InlineContextualization resources="@' + match[1] + '" contextualizer="' + contextualizerKey + '" contextualization-index=' + (contextualizations.length - 1) + '>' + match[2] + '</InlineContextualization>';
     outputHtml = outputHtml.substr(0, match.index) + newEl + outputHtml.substr(match.index + match[0].length + (paramsObject ? paramsObject.length : 0));
   }
-  return {contextualizers, contextualizations, newHtml: outputHtml};
+  return {contextualizers, contextualizations, tempHtml: outputHtml};
 }
 
 function eatBlock(sub, REobj, match) {
@@ -347,20 +347,43 @@ function divideHtmlInBlocks(outputHtml) {
   return elements;
 }
 
-function eatHtml(html) {
-  const {contextualizers, contextualizations, newHtml} = eatContextualizations(html);
+const regexEscape = function(str) {
+  return str.replace(/[\\^$*+?.()|[\]{}]/g, '\\$&');
+};
+
+function formatTemplateCalls(input, wrappers) {
+  const tempRegexp = new RegExp(regexEscape(wrappers[0]) + '([^' + regexEscape(wrappers[1]) + ']*)' + regexEscape(wrappers[1]), 'g');
+  let match;
+  let outputHtml = input;
+  let vals;
+  let templateType;
+  let options;
+  let expression;
+  while ((match = tempRegexp.exec(outputHtml)) !== null) {
+    vals = match[1].split(':');
+    templateType = vals.shift().trim();
+    options = vals.map((val)=>{return val.trim();}).join(',');
+    expression = '<TemplateCall type="' + templateType + '" options="' + options + '"/>';
+    outputHtml = outputHtml.substr(0, match.index) + expression + outputHtml.substr(match.index + match[0].length);
+  }
+  return outputHtml;
+}
+
+function eatHtml(html, parameters) {
+  const {contextualizers, contextualizations, tempHtml} = eatContextualizations(html);
+  const newHtml = formatTemplateCalls(tempHtml, parameters.templateWrappingCharacters);
   const {footnotes, outputHtml} = eatFootnotes(newHtml);
   const elements = divideHtmlInBlocks(outputHtml);
   return {contentBlocks: elements, contextualizers, footnotes, contextualizations};
 }
 
-export function markdownToContentsList(section, callback) {
+export function markdownToContentsList(section, parameters, callback) {
   const errors = [];
 
   section.markdownContents = section.contents;
   section.contextualizers = section.contextualizers.map(parseBibNestedValues);
 
-  const {contentBlocks, contextualizers, footnotes, contextualizations} = eatHtml(marked(section.contents));
+  const {contentBlocks, contextualizers, footnotes, contextualizations} = eatHtml(marked(section.contents), parameters);
   section.footnotes = footnotes;
   section.contents = contentBlocks;
   section.contextualizers = section.contextualizers.concat(contextualizers);

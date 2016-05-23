@@ -1,5 +1,7 @@
 # Welcome
 
+${toc}
+
 ![A reference](@temporal_data){@cool_timeline}
 
 ![Another view on the timeline](@temporal_data){@cool_timeline,
