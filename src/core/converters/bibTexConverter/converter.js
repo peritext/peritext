@@ -259,12 +259,16 @@ export function parseBibAuthors(str) {
       lastName = lastNameMatch[1].trim();
       authorStr = [inputAuthorStr.substr(0, lastNameMatch.index), inputAuthorStr.substr(lastNameMatch.index + lastNameMatch[0].length)].join('');
       firstName = authorStr.replace(',', '').trim();
-    }else {
-      const vals = authorStr.split(',');
+    } else {
+      let vals = inputAuthorStr.split(',');
       if (vals.length > 1) {
-        firstName = vals[0].trim();
-        lastName = vals[1].trim();
-      }else {
+        firstName = vals[1].trim();
+        lastName = vals[0].trim();
+      } else if (inputAuthorStr.trim().indexOf(' ') > -1) {
+        vals = inputAuthorStr.trim().split(' ');
+        firstName = vals.shift().trim();
+        lastName = vals.join(' ').trim();
+      } else {
         lastName = authorStr.trim();
       }
     }
