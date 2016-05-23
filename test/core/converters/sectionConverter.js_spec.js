@@ -11,7 +11,7 @@ import {sample_folder_path, crud_cobaye_path} from "./../../test_settings.json";
 const base_path = __dirname + '/../../' + sample_folder_path;
 
 describe('sectionConverter:parser', function(){
-  it('should parse', function(done){
+  it('should parse sample content successfully', function(done){
     waterfall([
         function(callback){
           readFromPath({path:base_path, depth : true, parseFiles : true}, function(err, results){
@@ -24,12 +24,53 @@ describe('sectionConverter:parser', function(){
       ],
       function(err, results){
         writeFile(base_path + '/parsing_output.json', JSON.stringify(results, null, 2), 'utf8', function(err){
-          console.log(err, ' done')
         });
         // console.log(tree,  err);
         done();
       });
-  })
+  });
+
+  it('should have attributed unique identifiers to all original objects', function(done){
+    waterfall([
+        function(callback){
+          readFromPath({path:base_path, depth : true, parseFiles : true}, function(err, results){
+            callback(err, results);
+          });
+        },
+        function(tree, callback){
+          parseSection({tree, models, parameters : defaultParameters}, callback);
+        }
+      ],
+      function(err, results){
+        let number = 0;
+        results.sections.forEach((section) =>{
+          //verifying metadata
+          section.metadata.forEach((meta1) => {
+            number = 0;
+            section.metadata.forEach((meta2) =>{
+              if(meta1.domain === meta2.domain && meta1.key === meta2.key){
+                number ++;
+              };
+            });
+            expect(number).to.equal(1);
+          });
+          //verifying citekeys, first listing all citekeyed objects (resources and contextualizers)
+          const citeKeyed = section.resources.concat(section.contextualizers);
+          citeKeyed.forEach((obj)=>{
+            expect(obj).to.have.property('citeKey');
+            number = 0;
+            citeKeyed.forEach((obj2)=>{
+              if(obj.citeKey === obj2.citeKey){
+                number++;
+              }
+            });
+            expect(number).to.equal(1);
+          })
+        });
+        // console.log(tree,  err);
+        done();
+      });
+  });
 })
 
 

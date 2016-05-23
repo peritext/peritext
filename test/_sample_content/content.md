@@ -11,7 +11,7 @@ I will talk about that[^]{with a footnote here} :
 
 ![Another reference with unnamed contextualizer](@temporal_data){
     type="timeline",
-    layer={layertype=events,data=@source.data.dates,labels=@source.data.labels},
+    layer={layertype=events,data=@res.data.dates,labels=@res.data.labels},
     title="My title"
 }
 
