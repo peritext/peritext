@@ -63,7 +63,8 @@ describe('contentController:updateToSource', function(){
       }
     ],
     function(err, results) {
-      console.log('results', results);
+      expect(err).to.be.null;
+      expect(results).to.be.defined;
       done();
     });
   });

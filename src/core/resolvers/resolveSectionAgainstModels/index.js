@@ -20,6 +20,8 @@ export function resolveSectionAgainstModels(section, models, callback) {
           });
         }else if (resource[key]) {
           resolvedResource[key] = resolvePropAgainstType(resource[key], propModel.valueType, propModel);
+        } else if (propModel.default) {
+          resource[key] = propModel.default;
         }
         return resolvedResource;
       }, {});

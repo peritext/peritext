@@ -167,6 +167,28 @@
       "unique" : true,
       "headTemplate" : "<meta http-equiv='content-language' content='${value}'>",
       "propagatesTo" : ["dublincore_language"]
+    },
+    "citationStyle" : {
+      "description" : "The style of bibliographic citations.",
+      "valueType" : "string",
+      "unique" : true,
+      "propagatesTo" : []
+    },
+    "citationPosition" : {
+      "description" : "Where to put short citations (in notes or inline) ?",
+      "valueType" : "string",
+      "values" : ["inline", "innotes"],
+      "default" : "inline",
+      "unique" : true,
+      "propagatesTo" : []
+    },
+    "notesPosition" : {
+      "description" : "Where to put notes in the document ?",
+      "valueType" : "string",
+      "values" : ["footer", "aside", "sectionend", "documentend"],
+      "default" : "aside",
+      "unique" : true,
+      "propagatesTo" : []
     }
   },
   "dublincore" : {

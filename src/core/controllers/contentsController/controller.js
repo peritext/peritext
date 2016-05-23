@@ -44,15 +44,15 @@ function applyDifference(difference, connector, callback) {
     case 'N':
       item = difference.item.rhs;
       waterfall([
-        //create root
-        function(cb){
+        // create root
+        function(cb) {
           connector.createFromPath({path: item.path, type: item.type, overwrite: true, stringContents: (item.stringContents || '')}, cb);
         },
-        //create children
-        function(cb){
+        // create children
+        function(cb) {
           if (item.children) {
-            asyncMap(item.children, function(child, cb2){
-              connector.createFromPath({path: child.path, type: child.type, overwrite: true, stringContents : (child.stringContents || '')}, cb2);
+            asyncMap(item.children, function(child, cb2) {
+              connector.createFromPath({path: child.path, type: child.type, overwrite: true, stringContents: (child.stringContents || '')}, cb2);
             }, cb);
           } else cb();
         }
@@ -64,7 +64,21 @@ function applyDifference(difference, connector, callback) {
       connector.deleteFromPath({path: item.path}, callback);
       break;
     case 'E':
-      console.log('unhandled edit difference ', difference);
+      item = difference.item.rhs;
+      waterfall([
+        // create root
+        function(cb) {
+          connector.updateFromPath({path: item.path, stringContents: (item.stringContents || '')}, cb);
+        },
+        // create children
+        function(cb) {
+          if (item.children) {
+            asyncMap(item.children, function(child, cb2) {
+              connector.updateFromPath({path: child.path, stringContents: (child.stringContents || '')}, cb2);
+            }, cb);
+          } else cb();
+        }
+      ], callback);
       break;
     default:
       console.log('unhandled difference ', difference);
@@ -92,7 +106,7 @@ export function updateToSource(connector, outputPath, sections, models, oldFsTre
     asyncMap(differences, function(difference, cb) {
       applyDifference(difference, connector, cb);
     }, function(errors, res) {
-      callback(null, 'coucou');
+      callback(errors, sections);
     });
   });
 }
