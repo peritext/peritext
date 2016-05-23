@@ -98,7 +98,7 @@ function eatFootnotes(inputHtml) {
 function eatContextualizations(inputHtml) {
   let outputHtml = inputHtml;
   const inlineContextRE = /<a href="@(.*)">(.*)<\/a>/g;
-  const blockContextRE = /<img src="@(.*)" alt="(.*)">/g;
+  const BlockContextualizationRE = /<img src="@(.*)" alt="(.*)">/g;
 
   let match;
   let contextualizationCount = 0;
@@ -109,51 +109,57 @@ function eatContextualizations(inputHtml) {
   let newEl;
 
   // parse block contextualizations
-  while ((match = blockContextRE.exec(outputHtml)) !== null) {
+  while ((match = BlockContextualizationRE.exec(outputHtml)) !== null) {
     paramsObject = eatParamsObject(outputHtml.substr(match.index + match[0].length));
-
-    let explicitKey;
+    let overloading;
+    // detect explicit call to a contextualizer ==> overload
     if (paramsObject && paramsObject.indexOf('@') === 1) {
-      explicitKey = true;
       contextualizerKey = paramsObject.match(/^\{(@[^,}]+)/)[1];
-    // inline implicit contextualization
+      overloading = contextualizerKey;
+      let counter = 1;
+      let newKey = contextualizerKey + '_' + counter;
+      let unique = false;
+      // getting a unique citeKey for the overloaded contextualizer
+      while (!unique) {
+        unique = true;
+        contextualizers.forEach((cont) => {
+          if (cont.citeKey === newKey) {
+            unique = false;
+            counter++;
+            newKey = contextualizerKey + '_' + counter;
+          }
+        });
+      }
+      contextualizerKey = newKey;
+    // no explicit call to a contextualizer ==> inline implicit contextualization, determine citeKey automatically
     }else {
       contextualizationCount ++;
-      contextualizerKey = 'contextualizer' + contextualizationCount;
+      contextualizerKey = 'contextualizer_' + contextualizationCount;
     }
+
     let formattedParams;
     if (paramsObject !== undefined) {
       formattedParams = parseBibContextualization(paramsObject);
       const emptyParams = JSON.stringify(formattedParams).length <= 2;
-      // no empty, so inline (implicit new contextualizer, or contextualizer overloading)
+      // not empty = params present, so inline (implicit new contextualizer, or contextualizer overloading)
       if (!emptyParams) {
         formattedParams.describedInline = true;
-        // params + explicit key = overload
-        if (explicitKey) {
-          formattedParams.overloading = contextualizerKey;
-          let counter = 1;
-          let newKey = contextualizerKey + '_' + counter;
-          let unique = false;
-          // getting a unique citeKey for the overloaded contextualizer
-          while (!unique) {
-            unique = true;
-            contextualizers.forEach((cont) => {
-              if (cont.citeKey === newKey) {
-                unique = false;
-                counter++;
-                newKey = contextualizerKey + '_' + counter;
-              }
-            });
-          }
-          contextualizerKey = newKey;
-        }
+      // no additionnal params ==> no parameters
       } else {
         formattedParams = {};
       }
-      formattedParams.citeKey = contextualizerKey;
-      formattedParams.resources = match[1].replace('@', '').split(',');
-      contextualizers.push(formattedParams);
+    // case of fully implicit contextualizer (no contextualizer specified)
+    } else {
+      formattedParams = {};
+      formattedParams.describedInline = true;
+      formattedParams.fullyImplicit = true;
     }
+    if (overloading) {
+      formattedParams.overloading = overloading;
+    }
+    formattedParams.citeKey = contextualizerKey;
+    formattedParams.resources = match[1].replace('@', '').split(',');
+    contextualizers.push(formattedParams);
 
     contextualizations.push({
       'contextualizer': contextualizerKey,
@@ -168,48 +174,56 @@ function eatContextualizations(inputHtml) {
   while ((match = inlineContextRE.exec(outputHtml)) !== null) {
     paramsObject = eatParamsObject(outputHtml.substr(match.index + match[0].length));
 
-    let explicitKey;
+    let overloading;
+    // detect explicit call to a contextualizer ==> overload
     if (paramsObject && paramsObject.indexOf('@') === 1) {
-      explicitKey = true;
       contextualizerKey = paramsObject.match(/^\{(@[^,}]+)/)[1];
-    // inline implicit contextualization
+      overloading = contextualizerKey;
+      let counter = 1;
+      let newKey = contextualizerKey + '_' + counter;
+      let unique = false;
+      // getting a unique citeKey for the overloaded contextualizer
+      while (!unique) {
+        unique = true;
+        contextualizers.forEach((cont) => {
+          if (cont.citeKey === newKey) {
+            unique = false;
+            counter++;
+            newKey = contextualizerKey + '_' + counter;
+          }
+        });
+      }
+      contextualizerKey = newKey;
+    // no explicit call to a contextualizer ==> inline implicit contextualization, determine citeKey automatically
     }else {
       contextualizationCount ++;
-      contextualizerKey = 'contextualizer' + contextualizationCount;
+      contextualizerKey = 'contextualizer_' + contextualizationCount;
     }
+
     let formattedParams;
     if (paramsObject !== undefined) {
       formattedParams = parseBibContextualization(paramsObject);
       const emptyParams = JSON.stringify(formattedParams).length <= 2;
-      // no empty, so inline (implicit new contextualizer, or contextualizer overloading)
+      // not empty = params present, so inline (implicit new contextualizer, or contextualizer overloading)
       if (!emptyParams) {
         formattedParams.describedInline = true;
-        // params + explicit key = overload
-        if (explicitKey) {
-          formattedParams.overloading = contextualizerKey;
-          let counter = 1;
-          let newKey = contextualizerKey + '_' + counter;
-          let unique = false;
-          // getting a unique citeKey for the overloaded contextualizer
-          while (!unique) {
-            unique = true;
-            contextualizers.forEach((cont) => {
-              if (cont.citeKey === newKey) {
-                unique = false;
-                counter++;
-                newKey = contextualizerKey + '_' + counter;
-              }
-            });
-          }
-          contextualizerKey = newKey;
-        }
+      // no additionnal params ==> no parameters
       } else {
         formattedParams = {};
       }
-      formattedParams.citeKey = contextualizerKey;
-      formattedParams.resources = match[1].replace('@', '').split(',');
-      contextualizers.push(formattedParams);
+    // case of fully implicit contextualizer (no contextualizer specified)
+    } else {
+      formattedParams = {};
+      formattedParams.describedInline = true;
+      formattedParams.fullyImplicit = true;
     }
+    if (overloading) {
+      formattedParams.overloading = overloading;
+    }
+
+    formattedParams.citeKey = contextualizerKey;
+    formattedParams.resources = match[1].replace('@', '').split(',');
+    contextualizers.push(formattedParams);
 
     contextualizations.push({
       'contextualizer': contextualizerKey,
@@ -219,7 +233,6 @@ function eatContextualizations(inputHtml) {
     newEl = '<InlineContextualization resources="@' + match[1] + '" contextualizer="' + contextualizerKey + '" contextualization-index=' + (contextualizations.length - 1) + '>' + match[2] + '</InlineContextualization>';
     outputHtml = outputHtml.substr(0, match.index) + newEl + outputHtml.substr(match.index + match[0].length + (paramsObject ? paramsObject.length : 0));
   }
-  console.log(contextualizers);
   return {contextualizers, contextualizations, newHtml: outputHtml};
 }
 
@@ -229,9 +242,9 @@ function eatBlock(sub, REobj, match) {
   let closingIndex;
   let outputHtml;
 
-  if (REobj.tagType === 'blockcontext') {
-    tag = '<blockcontext';
-    closingTag = '</blockcontext>';
+  if (REobj.tagType === 'BlockContextualization') {
+    tag = '<BlockContextualization';
+    closingTag = '</BlockContextualization>';
     const openingIndex = sub.indexOf(tag);
     closingIndex = sub.indexOf(closingTag);
     outputHtml = sub.substr(openingIndex, closingIndex + closingTag.length - 4);
@@ -269,8 +282,8 @@ function divideHtmlInBlocks(outputHtml) {
   const html = outputHtml;
   const blocksRE = [
     {
-      tagType: 'blockcontext',
-      RE: /^(?:[\s]*)(<p><blockcontext)/g,
+      tagType: 'BlockContextualization',
+      RE: /^(?:[\s]*)(<p><BlockContextualization)/g,
       nested: false
     },
     {

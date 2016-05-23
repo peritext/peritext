@@ -13,13 +13,7 @@
     {},
     {},
     {},
-    {},
-    {
-      "type": "error",
-      "preciseType": "invalidContextualizer",
-      "sectionCiteKey": "partie_2_2",
-      "message": "contextualizer cool_timeline does not provide required type dates"
-    }
+    {}
   ],
   "sections": [
     {
@@ -149,23 +143,23 @@
           "tagType": "heading"
         },
         {
-          "html": "<p><BlockContextualization resources=\"@temporal_data\" contextualizer=\"@cool_timeline\" contextualization-index=0>A reference</BlockContextualization></p>",
-          "tagType": "p"
+          "html": "<BlockContextualization resources=\"@temporal_data\" contextualizer=\"@cool_timeline_1\" contextualization-index=0>A reference</BlockContextualization>",
+          "tagType": "BlockContextualization"
         },
         {
-          "html": "<p><BlockContextualization resources=\"@temporal_data\" contextualizer=\"@cool_timeline_1\" contextualization-index=1>Another view on the timeline</BlockContextualization></p>",
-          "tagType": "p"
+          "html": "<BlockContextualization resources=\"@temporal_data\" contextualizer=\"@cool_timeline_2\" contextualization-index=1>Another view on the timeline</BlockContextualization>",
+          "tagType": "BlockContextualization"
         },
         {
           "html": "<p>I will talk about that<sup class=\"note_pointer\"><a id=\"#notepointer_1\" href=\"#note_1\"><span class=\"footnote-number\">1</span></a></sup> :</p>",
           "tagType": "p"
         },
         {
-          "html": "<p><BlockContextualization resources=\"@temporal_data\" contextualizer=\"contextualizer1\" contextualization-index=2>Another reference with unnamed contextualizer</BlockContextualization></p>",
-          "tagType": "p"
+          "html": "<BlockContextualization resources=\"@temporal_data\" contextualizer=\"contextualizer_1\" contextualization-index=2>Another reference with unnamed contextualizer</BlockContextualization>",
+          "tagType": "BlockContextualization"
         },
         {
-          "html": "<p>And as says <InlineContextualization resources=\"@martin_change_2002\" contextualizer=\"contextualizer2\" contextualization-index=3></InlineContextualization></p>",
+          "html": "<p>And as says <InlineContextualization resources=\"@martin_change_2002\" contextualizer=\"contextualizer_2\" contextualization-index=3></InlineContextualization></p>",
           "tagType": "p"
         },
         {
@@ -173,11 +167,11 @@
           "tagType": "p"
         },
         {
-          "html": "<p>I&#39;m talking about a <InlineContextualization resources=\"@martin_change_2002\" contextualizer=\"contextualizer4\" contextualization-index=5>reference</InlineContextualization>.</p>",
+          "html": "<p>I&#39;m talking about a <InlineContextualization resources=\"@martin_change_2002\" contextualizer=\"contextualizer_4\" contextualization-index=5>reference</InlineContextualization>.</p>",
           "tagType": "p"
         },
         {
-          "html": "<p>Now let&#39;s say I want to link to this <InlineContextualization resources=\"@temporal_data\" contextualizer=\"contextualizer5\" contextualization-index=6>timeline</InlineContextualization> and continue my paragraph quietly.</p>",
+          "html": "<p>Now let&#39;s say I want to link to this <InlineContextualization resources=\"@temporal_data\" contextualizer=\"contextualizer_5\" contextualization-index=6>timeline</InlineContextualization> and continue my paragraph quietly.</p>",
           "tagType": "p"
         },
         {
@@ -220,7 +214,7 @@
         },
         {
           "title": "cool data",
-          "bibType": "jsonData",
+          "bibType": "tabularData",
           "citeKey": "temporal_data",
           "url": "cool_url"
         },
@@ -282,10 +276,12 @@
           "disposition": "superpose",
           "layer": [
             {
+              "dates": "@source1.data.dates",
               "labels": "@source1.data.labels",
               "title": "hello ça va"
             },
             {
+              "dates": "@source2.data.dates",
               "labels": "@source2.data.labels"
             }
           ],
@@ -295,15 +291,46 @@
           "outputmode": "all"
         },
         {
-          "title": "@res.title",
-          "citeKey": "@cool_timeline",
-          "outputmode": "all"
+          "dateformat": "%Y-%m-%d",
+          "disposition": true,
+          "layer": [
+            {
+              "dates": "@source1.data.dates",
+              "labels": "@source1.data.labels",
+              "title": "hello ça va"
+            },
+            {
+              "dates": "@source2.data.dates",
+              "labels": "@source2.data.labels"
+            }
+          ],
+          "title": "My cool timeline",
+          "citeKey": "@cool_timeline_1",
+          "type": "timeline",
+          "overloading": "@cool_timeline",
+          "outputmode": true
         },
         {
-          "title": "@res.title",
-          "citeKey": "@cool_timeline_1",
+          "startat": "2012-21-01",
+          "dateformat": "%Y-%m-%d",
+          "disposition": true,
+          "layer": [
+            {
+              "dates": "@source1.data.dates",
+              "labels": "@source1.data.labels",
+              "title": "hello ça va"
+            },
+            {
+              "dates": "@source2.data.dates",
+              "labels": "@source2.data.labels"
+            }
+          ],
+          "title": "My cool timeline",
+          "citeKey": "@cool_timeline_2",
+          "type": "timeline",
           "describedInline": true,
-          "outputmode": "all"
+          "overloading": "@cool_timeline",
+          "outputmode": true
         },
         {
           "dateformat": "%Y-%m-%d",
@@ -314,7 +341,7 @@
             "labels": "@source.data.labels"
           },
           "title": "My title",
-          "citeKey": "contextualizer1",
+          "citeKey": "contextualizer_1",
           "type": "timeline",
           "describedInline": true,
           "outputmode": "all"
@@ -322,14 +349,23 @@
         {
           "pages": "12-13",
           "title": "@res.title",
-          "citeKey": "contextualizer2",
+          "citeKey": "contextualizer_2",
+          "type": "citation",
           "describedInline": true,
           "outputmode": "all"
         },
         {
           "pages": "12-13",
           "title": "@res.title",
-          "citeKey": "contextualizer3",
+          "citeKey": "contextualizer_3",
+          "type": "citation",
+          "describedInline": true,
+          "outputmode": "all"
+        },
+        {
+          "title": "@res.title",
+          "citeKey": "contextualizer_4",
+          "type": "citation",
           "describedInline": true,
           "outputmode": "all"
         },
@@ -347,7 +383,7 @@
             }
           ],
           "title": "@res.title",
-          "citeKey": "contextualizer5",
+          "citeKey": "contextualizer_5",
           "type": "timeline",
           "describedInline": true,
           "caption": "This is a text with {stuf} but it should work",
@@ -361,18 +397,11 @@
           "footnoteNumber": 1
         },
         {
-          "content": "<sup class=\"note\"><span class=\"footnote-number\">2</span><a id=\"#note_2\" href=\"#notepointer_2\">I&#39;m referencing to <InlineContextualization resources=\"@martin_change_2002\" contextualizer=\"contextualizer3\" contextualization-index=4>Martin</InlineContextualization> when he says : &quot;hello&quot;</a></sup>",
+          "content": "<sup class=\"note\"><span class=\"footnote-number\">2</span><a id=\"#note_2\" href=\"#notepointer_2\">I&#39;m referencing to <InlineContextualization resources=\"@martin_change_2002\" contextualizer=\"contextualizer_3\" contextualization-index=4>Martin</InlineContextualization> when he says : &quot;hello&quot;</a></sup>",
           "footnoteNumber": 2
         }
       ],
       "contextualizations": [
-        {
-          "contextualizer": "@cool_timeline",
-          "resources": [
-            "temporal_data"
-          ],
-          "type": "block"
-        },
         {
           "contextualizer": "@cool_timeline_1",
           "resources": [
@@ -381,35 +410,42 @@
           "type": "block"
         },
         {
-          "contextualizer": "contextualizer1",
+          "contextualizer": "@cool_timeline_2",
           "resources": [
             "temporal_data"
           ],
           "type": "block"
         },
         {
-          "contextualizer": "contextualizer2",
+          "contextualizer": "contextualizer_1",
+          "resources": [
+            "temporal_data"
+          ],
+          "type": "block"
+        },
+        {
+          "contextualizer": "contextualizer_2",
           "resources": [
             "martin_change_2002"
           ],
           "type": "inline"
         },
         {
-          "contextualizer": "contextualizer3",
+          "contextualizer": "contextualizer_3",
           "resources": [
             "martin_change_2002"
           ],
           "type": "inline"
         },
         {
-          "contextualizer": "contextualizer4",
+          "contextualizer": "contextualizer_4",
           "resources": [
             "martin_change_2002"
           ],
           "type": "inline"
         },
         {
-          "contextualizer": "contextualizer5",
+          "contextualizer": "contextualizer_5",
           "resources": [
             "temporal_data"
           ],
@@ -614,7 +650,7 @@
         },
         {
           "title": "cool data",
-          "bibType": "jsonData",
+          "bibType": "tabularData",
           "citeKey": "temporal_data",
           "url": "cool_url"
         },
@@ -677,10 +713,12 @@
           "disposition": "superpose",
           "layer": [
             {
+              "dates": "@source1.data.dates",
               "labels": "@source1.data.labels",
               "title": "hello ça va"
             },
             {
+              "dates": "@source2.data.dates",
               "labels": "@source2.data.labels"
             }
           ],
@@ -897,7 +935,7 @@
         },
         {
           "title": "cool data",
-          "bibType": "jsonData",
+          "bibType": "tabularData",
           "citeKey": "temporal_data",
           "url": "cool_url"
         },
@@ -960,10 +998,12 @@
           "disposition": "superpose",
           "layer": [
             {
+              "dates": "@source1.data.dates",
               "labels": "@source1.data.labels",
               "title": "hello ça va"
             },
             {
+              "dates": "@source2.data.dates",
               "labels": "@source2.data.labels"
             }
           ],
@@ -1186,7 +1226,7 @@
         },
         {
           "title": "cool data",
-          "bibType": "jsonData",
+          "bibType": "tabularData",
           "citeKey": "temporal_data",
           "url": "cool_url"
         },
@@ -1247,10 +1287,12 @@
           "disposition": "superpose",
           "layer": [
             {
+              "dates": "@source1.data.dates",
               "labels": "@source1.data.labels",
               "title": "hello ça va"
             },
             {
+              "dates": "@source2.data.dates",
               "labels": "@source2.data.labels"
             }
           ],

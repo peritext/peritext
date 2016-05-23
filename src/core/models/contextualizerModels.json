@@ -34,6 +34,12 @@
             "required" : false
           },
           {
+            "key" : "overloading",
+            "description" : "The citeKey of the explicit contextualizer from which this contextualizer is inspired.",
+            "valueType" : "string",
+            "required" : false
+          },
+          {
             "key" : "caption",
             "description" : "The caption of the contextualization.",
             "valueType" : "string",
@@ -124,7 +130,7 @@
     },
     "imageplayer" : {
       "description" : "This contextualizer displays one or more image resources.",
-      "acceptedResourceTypes" : ["image"],
+      "acceptedResourceTypes" : ["image", "vectorsImage"],
       "properties" : [
       ],
       "categories" : []
@@ -221,7 +227,7 @@
           "key" : "dates",
           "valueType" : "accessor",
           "description" : "Describes which data field to use for positioning events/datapoints/periods beginings",
-          "required" : true
+          "required" : false
         },
         {
           "key" : "ends",
@@ -262,7 +268,7 @@
               "key" : "dates",
               "valueType" : "accessor",
               "description" : "Describes which data field to use for positioning events/datapoints/periods beginings",
-              "required" : true
+              "required" : false
             },
             {
               "key" : "ends",

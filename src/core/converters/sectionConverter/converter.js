@@ -14,7 +14,7 @@ import {getMetaValue} from './../../utils/sectionUtils';
 import {cleanNaiveTree} from './../../resolvers/cleanNaiveTree';
 import {resolveSectionAgainstModels} from './../../resolvers/resolveSectionAgainstModels';
 import {markdownToContentsList} from './../markdownConverter';
-import {resolveContextualizations} from './../../resolvers/resolveContextualizations';
+import {resolveContextualizersAndContextualizations} from './../../resolvers/resolveContextualizations';
 import {serializeBibTexObject} from './../../converters/bibTexConverter';
 
 
@@ -235,10 +235,10 @@ export function parseSection({tree, parameters, parent, models}, callback) {
         cb(err, {errors: newErrors, sections: newSections});
       });
     },
-    // (todo/ongoing): validate contextualization objects against section resources availability + contextualizations models
+    // resolve contextualizers statements with their models
     function({errors, sections}, cb) {
       asyncMap(sections, function(section, cback) {
-        resolveContextualizations({section, models}, cback);
+        resolveContextualizersAndContextualizations({section, models}, cback);
       }, function(err, results) {
         const newSections = results.map((result)=>{
           return result.section;
