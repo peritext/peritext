@@ -1,0 +1,56 @@
+@moduloinherits{partie_2_2,
+    	title = {Partie 2.2},
+	date = {2015},
+	parent = {partie_2}
+}
+
+@image{image_book,
+    	title = {The first book image},
+	description = {image of the first book}
+}
+
+@incollection{m85,
+    	title = {The theory of implementation in {N}ash equilibrium: a survey},
+	author = {Eric S. {Maskin}},
+	editor = {Leonid {Hurwicz}; David {Schmeidler}; Hugo {Sonnenschein}},
+	year = {1985}
+}
+
+@article{martin_change_2002,
+    	title = {Change the {Metaphor}: {The} {Archive} as an {Ecosystem}},
+	author = {Julia {Martin}; },
+	year = {2002},
+	month = {apr},
+	issn = {1080-2711},
+	doi = {http://dx.doi.org/10.3998/3336451.0007.301},
+	url = {http://hdl.handle.net/2027/spo.3336451.0007.301}
+}
+
+@tabularData{temporal_data,
+    	title = {cool data},
+	url = {cool_url}
+}
+
+@misc{jakubowicz_bridging,
+    	title = {Bridging the mire between e-research and e-publishing for multimedia digital scholarship in the humanities and social sciences: {An} {Australian} case study},
+	author = {Andrew {Jakubowicz}},
+	url = {http://www.webology.org/2007/v4n1/a38.html},
+	keywords = {Australia, Australian, Digital data chain, Humanities and social sciences, Interactivity, Multimedia, Open access repositories, Scholarly e-publishing, Semantic web, World Wide Web}
+}
+
+@book{ab94,
+    	title = {Infinite Dimensional Analysis},
+	author = {D. Aliprantis {Charalambos}; Kim C. {Border}},
+	year = {1994}
+}
+
+@contextualizer{cool_timeline,
+    	dateformat = {%Y-%m-%d},
+	disposition = {superpose},
+	layer = {dates=@res1.data.dates,labels=@res1.data.labels,title=hello ça va},
+	layer = {dates=@res2.data.dates,labels=@res2.data.labels},
+	title = {My cool timeline},
+	inheritedVerticallyFrom = {partie_2},
+	type = {timeline},
+	outputmode = {all}
+}

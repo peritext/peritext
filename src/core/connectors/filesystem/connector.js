@@ -119,7 +119,6 @@ export function createFromPath({path, type = 'file', stringContents = '', overwr
     exists(finalPath, function(isThere) {
       if ((isThere && overwrite === true) || !isThere) {
         if (type === 'file') {
-          console.log('final path : ', finalPath);
           writeFile(finalPath, stringContents, 'utf8', function(error) {
             callback(error);
           });

@@ -1,0 +1,60 @@
+@modulobook{mybook,
+    	title = {My awesome book},
+	author = {Robin {De Mourat}},
+	keywords = {val1a, val1b, val2,val3,val4, another random set of keywords},
+	date = {2016},
+	test = {test},
+	generalityLevel = {1}
+}
+
+@article{martin_change_2002,
+    	volume = {7},
+	title = {Change the {Metaphor}: {The} {Archive} as an {Ecosystem}},
+	author = {Julia {Martin}; },
+	year = {2002},
+	month = {apr},
+	issn = {1080-2711},
+	doi = {http://dx.doi.org/10.3998/3336451.0007.301},
+	url = {http://hdl.handle.net/2027/spo.3336451.0007.301}
+}
+
+@tabularData{temporal_data,
+    	title = {cool data},
+	url = {cool_url}
+}
+
+@misc{jakubowicz_bridging,
+    	title = {Bridging the mire between e-research and e-publishing for multimedia digital scholarship in the humanities and social sciences: {An} {Australian} case study},
+	author = {Andrew {Jakubowicz}},
+	url = {http://www.webology.org/2007/v4n1/a38.html},
+	keywords = {Australia, Australian, Digital data chain, Humanities and social sciences, Interactivity, Multimedia, Open access repositories, Scholarly e-publishing, Semantic web, World Wide Web}
+}
+
+@book{ab94,
+    	publisher = {Springer},
+	address = {Berlin},
+	title = {Infinite Dimensional Analysis},
+	author = {D. Aliprantis {Charalambos}; Kim C. {Border}},
+	year = {1994}
+}
+
+@contextualizer{cool_timeline,
+    	dateformat = {%Y-%m-%d},
+	disposition = {superpose},
+	layer = {dates=@res1.data.dates,labels=@res1.data.labels,title=hello ça va},
+	layer = {dates=@res2.data.dates,labels=@res2.data.labels},
+	title = {My cool timeline},
+	type = {timeline},
+	outputmode = {all}
+}
+
+@contextualizer{@cool_timeline_1,
+    	dateformat = {%Y-%m-%d},
+	disposition = {true},
+	layer = {dates=@res1.data.dates,labels=@res1.data.labels,title=hello ça va},
+	layer = {dates=@res2.data.dates,labels=@res2.data.labels},
+	title = {My cool timeline},
+	type = {timeline},
+	overloading = {@cool_timeline},
+	outputmode = {true}
+}
