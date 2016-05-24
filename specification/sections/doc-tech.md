@@ -46,6 +46,7 @@ Scalability and project evolution:
 Architecture :
 * redux
 * Immutable
+* https://www.npmjs.com/package/react-isomorphic-render
 
 * uniloc or react-router (routing)
 * axios (http requests)
@@ -54,6 +55,7 @@ Architecture :
 Parsers helpers :
 * marked
 * zotero-bib-parser and bib-parser for ... bib parsing
+* https://www.npmjs.com/package/bibtex-parse-js
 
 Outputs : 
 
@@ -83,6 +85,7 @@ Interface components :
 * PaCoMo
 * radium
 * d3.js
+* https://www.npmjs.com/package/redux-promise
 
 Tests :
 

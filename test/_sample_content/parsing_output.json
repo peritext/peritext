@@ -1,9 +1,9 @@
 {
   "errors": [
     {
-      "type": "error",
-      "preciseType": "metadataError",
-      "message": "no metadata specified for the folder empty_folder"
+      "type": "warning",
+      "preciseType": "metadataNotFound",
+      "message": "no metadata specified for the folder empty_folder so it was not taken into account"
     },
     {
       "type": "warning",
@@ -144,15 +144,15 @@
           "tagType": "p"
         },
         {
-          "html": "<BlockContextualization resources=\"@temporal_data\" contextualizer=\"@cool_timeline_1\" contextualization-index=0>A reference</BlockContextualization>",
+          "html": "<BlockContextualization resources=\"@temporal_data\" contextualizer=\"cool_timeline_1\" contextualization-index=0>A reference</BlockContextualization>",
           "tagType": "BlockContextualization"
         },
         {
-          "html": "<BlockContextualization resources=\"@temporal_data\" contextualizer=\"@cool_timeline_2\" contextualization-index=1>Another view on the timeline</BlockContextualization>",
+          "html": "<BlockContextualization resources=\"@temporal_data\" contextualizer=\"cool_timeline_2\" contextualization-index=1>Another view on the timeline</BlockContextualization>",
           "tagType": "BlockContextualization"
         },
         {
-          "html": "<p>I will talk about that<sup class=\"note_pointer\"><a id=\"#notepointer_1\" href=\"#note_1\"><span class=\"footnote-number\">1</span></a></sup> :</p>",
+          "html": "<p>I will talk about that<sup class=\"note_pointer\"><a id=\"#notepointer_mybook1\" href=\"#note_mybook1\"><span class=\"note-number\">*</span></a></sup> :</p>",
           "tagType": "p"
         },
         {
@@ -164,7 +164,7 @@
           "tagType": "p"
         },
         {
-          "html": "<p>And for the footnotes, I want to say that Martin said that<sup class=\"note_pointer\"><a id=\"#notepointer_2\" href=\"#note_2\"><span class=\"footnote-number\">2</span></a></sup></p>",
+          "html": "<p>And for the footnotes, I want to say that Martin said that<sup class=\"note_pointer\"><a id=\"#notepointer_mybook2\" href=\"#note_mybook2\"><span class=\"note-number\">*</span></a></sup></p>",
           "tagType": "p"
         },
         {
@@ -265,7 +265,9 @@
       "customizers": {
         "components": {},
         "styles": {
-          "my_style.css": "body{\n  color : black;\n}\n"
+          "my_style.css": "body{\n  color : black;\n}\n",
+          "page.css": "body{\n  color: red;\n}\n",
+          "screen.css": "body{\n  color : blue;\n}\n"
         },
         "templates": {
           "my_template.md": ""
@@ -306,9 +308,9 @@
             }
           ],
           "title": "My cool timeline",
-          "citeKey": "@cool_timeline_1",
+          "citeKey": "cool_timeline_1",
           "type": "timeline",
-          "overloading": "@cool_timeline",
+          "overloading": "cool_timeline",
           "outputmode": true
         },
         {
@@ -327,10 +329,10 @@
             }
           ],
           "title": "My cool timeline",
-          "citeKey": "@cool_timeline_2",
+          "citeKey": "cool_timeline_2",
           "type": "timeline",
           "describedInline": true,
-          "overloading": "@cool_timeline",
+          "overloading": "cool_timeline",
           "outputmode": true
         },
         {
@@ -392,65 +394,72 @@
         }
       ],
       "markdownContents": "# Welcome\n\n${toc}\n\n![A reference](@temporal_data){@cool_timeline}\n\n![Another view on the timeline](@temporal_data){@cool_timeline,\n    startat=\"2012-21-01\"\n}\n\n\nI will talk about that[^]{with a footnote here} :\n\n![Another reference with unnamed contextualizer](@temporal_data){\n    type=\"timeline\",\n    layer={layertype=events,data=@res.data.dates,labels=@res.data.labels},\n    title=\"My title\"\n}\n\n\nAnd as says [](@martin_change_2002){pages=\"12-13\"}\n\nAnd for the footnotes, I want to say that Martin said that[^]{I'm referencing to [Martin](@martin_change_2002){pages=\"12-13\"} when he says : \"hello\"}\n\nI'm talking about a [reference](@martin_change_2002).\n\nNow let's say I want to link to this [timeline](@temporal_data){\n    type=\"timeline\",\n    layer={dates=@res.data.dates,labels=@res.data.labels},\n    layer={dates=@res.data.dates,labels=@res.data.labels},\n    caption=\"This is a text with {stuf} but it should work\"\n} and continue my paragraph quietly.\n\nWelcome to my awesome book.\n\nThanks to all !\n\nMomanddad\nThe dog\nMy imaginary friend Serge\n\n\nI am just there, not linked to ``content.md``. I should be put at the end of content by alphabetical order.\n\n\n",
-      "footnotes": [
+      "notes": [
         {
-          "content": "<sup class=\"note\"><span class=\"footnote-number\">1</span><a id=\"#note_1\" href=\"#notepointer_1\">with a footnote here</a></sup>",
-          "footnoteNumber": 1
+          "content": "<sup class=\"note\"><span class=\"note-number\">*</span><a id=\"#note_mybook1\" href=\"#notepointer_mybook1\">with a footnote here</a></sup>",
+          "noteNumber": 1
         },
         {
-          "content": "<sup class=\"note\"><span class=\"footnote-number\">2</span><a id=\"#note_2\" href=\"#notepointer_2\">I&#39;m referencing to <InlineContextualization resources=\"@martin_change_2002\" contextualizer=\"contextualizer_3\" contextualization-index=4>Martin</InlineContextualization> when he says : &quot;hello&quot;</a></sup>",
-          "footnoteNumber": 2
+          "content": "<sup class=\"note\"><span class=\"note-number\">*</span><a id=\"#note_mybook2\" href=\"#notepointer_mybook2\">I&#39;m referencing to <InlineContextualization resources=\"@martin_change_2002\" contextualizer=\"contextualizer_3\" contextualization-index=4>Martin</InlineContextualization> when he says : &quot;hello&quot;</a></sup>",
+          "noteNumber": 2
         }
       ],
       "contextualizations": [
         {
-          "contextualizer": "@cool_timeline_1",
+          "contextualizer": "cool_timeline_1",
           "resources": [
             "temporal_data"
           ],
-          "type": "block"
+          "type": "block",
+          "contextualizerType": "timeline"
         },
         {
-          "contextualizer": "@cool_timeline_2",
+          "contextualizer": "cool_timeline_2",
           "resources": [
             "temporal_data"
           ],
-          "type": "block"
+          "type": "block",
+          "contextualizerType": "timeline"
         },
         {
           "contextualizer": "contextualizer_1",
           "resources": [
             "temporal_data"
           ],
-          "type": "block"
+          "type": "block",
+          "contextualizerType": "timeline"
         },
         {
           "contextualizer": "contextualizer_2",
           "resources": [
             "martin_change_2002"
           ],
-          "type": "inline"
+          "type": "inline",
+          "contextualizerType": "citation"
         },
         {
           "contextualizer": "contextualizer_3",
           "resources": [
             "martin_change_2002"
           ],
-          "type": "inline"
+          "type": "inline",
+          "contextualizerType": "citation"
         },
         {
           "contextualizer": "contextualizer_4",
           "resources": [
             "martin_change_2002"
           ],
-          "type": "inline"
+          "type": "inline",
+          "contextualizerType": "citation"
         },
         {
           "contextualizer": "contextualizer_5",
           "resources": [
             "temporal_data"
           ],
-          "type": "inline"
+          "type": "inline",
+          "contextualizerType": "timeline"
         }
       ]
     },
@@ -702,7 +711,9 @@
       "customizers": {
         "components": {},
         "styles": {
-          "my_style.css": "body{\n  color : black;\n}\n"
+          "my_style.css": "body{\n  color : black;\n}\n",
+          "page.css": "body{\n  color: red;\n}\n",
+          "screen.css": "body{\n  color : blue;\n}\n"
         },
         "templates": {
           "my_template.md": ""
@@ -731,7 +742,7 @@
         }
       ],
       "markdownContents": "# This is part one\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nAn inline resource :\n\n\n\n* a first list level\n    - second list level\n* return to first list level\n",
-      "footnotes": [],
+      "notes": [],
       "contextualizations": []
     },
     {
@@ -993,7 +1004,9 @@
       "customizers": {
         "components": {},
         "styles": {
-          "my_style.css": "body{\n  color : black;\n}\n"
+          "my_style.css": "body{\n  color : black;\n}\n",
+          "page.css": "body{\n  color: red;\n}\n",
+          "screen.css": "body{\n  color : blue;\n}\n"
         },
         "templates": {
           "my_template.md": ""
@@ -1023,7 +1036,7 @@
       ],
       "after": "partie_1",
       "markdownContents": "# This is part two\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\n",
-      "footnotes": [],
+      "notes": [],
       "contextualizations": []
     },
     {
@@ -1184,6 +1197,10 @@
         {
           "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam nesciunt molestias hic error dignissimos blanditiis, quo, voluptas necessitatibus neque, aliquid cupiditate commodi sed dolor consequatur ipsum fugiat esse placeat illo.</p>",
           "tagType": "p"
+        },
+        {
+          "html": "<p>I try a third footnote<sup class=\"note_pointer\"><a id=\"#notepointer_partie_2_21\" href=\"#note_partie_2_21\"><span class=\"note-number\">*</span></a></sup></p>",
+          "tagType": "p"
         }
       ],
       "resources": [
@@ -1289,7 +1306,9 @@
       "customizers": {
         "components": {},
         "styles": {
-          "my_style.css": "body{\n  color : black;\n}\n"
+          "my_style.css": "body{\n  color : black;\n}\n",
+          "page.css": "body{\n  color: red;\n}\n",
+          "screen.css": "body{\n  color : blue;\n}\n"
         },
         "templates": {
           "my_template.md": ""
@@ -1317,8 +1336,13 @@
           "outputmode": "all"
         }
       ],
-      "markdownContents": "# This is part two point two\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam nesciunt molestias hic error dignissimos blanditiis, quo, voluptas necessitatibus neque, aliquid cupiditate commodi sed dolor consequatur ipsum fugiat esse placeat illo.\n",
-      "footnotes": [],
+      "markdownContents": "# This is part two point two\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam nesciunt molestias hic error dignissimos blanditiis, quo, voluptas necessitatibus neque, aliquid cupiditate commodi sed dolor consequatur ipsum fugiat esse placeat illo.\n\nI try a third footnote[^]{third footnote}\n",
+      "notes": [
+        {
+          "content": "<sup class=\"note\"><span class=\"note-number\">*</span><a id=\"#note_partie_2_21\" href=\"#notepointer_partie_2_21\">third footnote</a></sup>",
+          "noteNumber": 1
+        }
+      ],
       "contextualizations": []
     }
   ]

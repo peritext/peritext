@@ -49,9 +49,9 @@ export function cleanNaiveTree({errors = [], validTree}, models, callback) {
   }
   if (metadata === undefined && naiveTree.name.charAt(0) !== '_') {
     errors.push({
-      type: 'error',
-      preciseType: 'metadataError',
-      message: 'no metadata specified for the folder ' + naiveTree.name
+      type: 'warning',
+      preciseType: 'metadataNotFound',
+      message: 'no metadata specified for the folder ' + naiveTree.name + ' so it was not taken into account'
     });
     const newErrors = (errors.length > 0) ? errors.reverse() : null;
     return callback(null, {errors: newErrors, validTree: undefined});

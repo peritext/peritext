@@ -1,5 +1,6 @@
 import {getMetaValue} from './../../utils/sectionUtils';
 import {getResourceModel, getContextualizerModel, resolvePropAgainstType} from './../../utils/modelUtils';
+import * as contextualizers from './../../contextualizers/';
 
 // I resolve a contextualizer assertion against its model and context, and record errors
 function resolveContextualizer(contextualizer, section, models) {
@@ -77,6 +78,16 @@ export function resolveContextualizersAndContextualizations({section, models}, c
     const contextualizer = section.contextualizers.find((cont) =>{
       return cont.citeKey === contextualization.contextualizer;
     });
+    if (!contextualizer) {
+      errors.push({
+        type: 'error',
+        preciseType: 'invalidContextualization',
+        sectionCiteKey: getMetaValue(section.metadata, 'general', 'citeKey'),
+        message: 'contextualizer ' + contextualization.contextualizer + ' was not found'
+      });
+    } else {
+      contextualization.contextualizerType = contextualizer.type;
+    }
     const acceptedResourceTypes = getContextualizerModel(contextualizer.type, models.contextualizerModels).acceptedResourceTypes;
     // resources compatibility and existence check
     contextualization.resources.some((resId) =>{
@@ -116,4 +127,37 @@ export function resolveContextualizersAndContextualizations({section, models}, c
     return ok;
   });
   cb(null, {errors, section});
+}
+
+// I 'reduce' contextualizations statements to produce a new rendering-specific section representation
+export function resolveContextualizationsImplementation(section, renderingMode) {
+  let contextualizer;
+  return section.contextualizations.reduce((inputSection, contextualization) => {
+    contextualizer = contextualizers[contextualization.contextualizerType];
+    switch (renderingMode) {
+    case 'static':
+      switch (contextualization.type) {
+      case 'inline':
+        return contextualizer.contextualizeInlineStatic(section, contextualizer);
+      case 'block':
+        return contextualizer.contextualizeBlockStatic(section, contextualizer);
+      default:
+        break;
+      }
+      break;
+    case 'dynamic':
+      switch (contextualization.type) {
+      case 'inline':
+        return contextualizer.contextualizeInlineDynamic(section, contextualizer);
+      case 'block':
+        return contextualizer.contextualizeBlockDynamic(section, contextualizer);
+      default:
+        break;
+      }
+      break;
+    default:
+      break;
+    }
+    return Object.assign({}, section);
+  }, section);
 }

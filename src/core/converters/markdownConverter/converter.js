@@ -1,10 +1,11 @@
 /*
- * This module resolves markdown contents + modulo-specific assertions (footnotes, contextualizations, contextualizers)
-* It returns a representation of a section's content as an object containing arrays of: paragraphs, footnotes, contextualizations, contextualizers
+ * This module resolves markdown contents + modulo-specific assertions (notes, contextualizations, contextualizers)
+* It returns a representation of a section's content as an object containing arrays of: paragraphs, notes, contextualizations, contextualizers
  */
 
 const marked = require('marked');
 import {parseBibContextualization, parseBibNestedValues} from './../bibTexConverter';
+import {getMetaValue} from './../../utils/sectionUtils';
 
 // basic marked parser
 marked.setOptions({
@@ -50,12 +51,12 @@ function eatParamsObject(str) {
   return undefined;
 }
 
-function eatFootnotes(inputHtml) {
+function eatnotes(inputHtml, sectionCitekey) {
   let outputHtml = inputHtml;
-  const footnotes = [];
-  let footnotesCount = 0;
+  const notes = [];
+  let notesCount = 0;
   let newEl;
-  let footnoteContent;
+  let noteContent;
   let index = 0;
   let displace = 0;
   let beginIndex;
@@ -79,20 +80,20 @@ function eatFootnotes(inputHtml) {
       index++;
     }
 
-    footnoteContent = outputHtml.substring(beginIndex, index - 1);
-    footnotesCount++;
-    footnotes.push({
-      content: '<sup class="note"><span class="footnote-number">' + footnotesCount + '</span><a id="#note_' + footnotesCount + '" href="#notepointer_' + footnotesCount + '">' + footnoteContent + '</a></sup>',
-      footnoteNumber: footnotesCount
+    noteContent = outputHtml.substring(beginIndex, index - 1);
+    notesCount++;
+    notes.push({
+      content: '<sup class="note"><span class="note-number">*</span><a id="#note_' + sectionCitekey + notesCount + '" href="#notepointer_' + sectionCitekey + notesCount + '">' + noteContent + '</a></sup>',
+      noteNumber: notesCount
     });
-    newEl = '<sup class="note_pointer"><a id="#notepointer_' + footnotesCount + '" href="#note_' + footnotesCount + '"><span class="footnote-number">' + footnotesCount + '</span></a></sup>';
+    newEl = '<sup class="note_pointer"><a id="#notepointer_' + sectionCitekey + notesCount + '" href="#note_' + sectionCitekey + notesCount + '"><span class="note-number">*</span></a></sup>';
     outputHtml = outputHtml.substr(0, beginIndex - 4) + newEl + outputHtml.substr(index);
 
 
     displace = index;
   }
 
-  return {footnotes, outputHtml};
+  return {notes, outputHtml};
 }
 
 function eatContextualizations(inputHtml) {
@@ -114,7 +115,7 @@ function eatContextualizations(inputHtml) {
     let overloading;
     // detect explicit call to a contextualizer ==> overload
     if (paramsObject && paramsObject.indexOf('@') === 1) {
-      contextualizerKey = paramsObject.match(/^\{(@[^,}]+)/)[1];
+      contextualizerKey = paramsObject.match(/^\{@([^,}]+)/)[1];
       overloading = contextualizerKey;
       let counter = 1;
       let newKey = contextualizerKey + '_' + counter;
@@ -369,12 +370,13 @@ function formatTemplateCalls(input, wrappers) {
   return outputHtml;
 }
 
-function eatHtml(html, parameters) {
+function eatHtml(html, parameters, metadata) {
+  const sectionCitekey = getMetaValue(metadata, 'general', 'citeKey');
   const {contextualizers, contextualizations, tempHtml} = eatContextualizations(html);
   const newHtml = formatTemplateCalls(tempHtml, parameters.templateWrappingCharacters);
-  const {footnotes, outputHtml} = eatFootnotes(newHtml);
+  const {notes, outputHtml} = eatnotes(newHtml, sectionCitekey);
   const elements = divideHtmlInBlocks(outputHtml);
-  return {contentBlocks: elements, contextualizers, footnotes, contextualizations};
+  return {contentBlocks: elements, contextualizers, notes, contextualizations};
 }
 
 export function markdownToContentsList(section, parameters, callback) {
@@ -383,8 +385,8 @@ export function markdownToContentsList(section, parameters, callback) {
   section.markdownContents = section.contents;
   section.contextualizers = section.contextualizers.map(parseBibNestedValues);
 
-  const {contentBlocks, contextualizers, footnotes, contextualizations} = eatHtml(marked(section.contents), parameters);
-  section.footnotes = footnotes;
+  const {contentBlocks, contextualizers, notes, contextualizations} = eatHtml(marked(section.contents), parameters, section.metadata);
+  section.notes = notes;
   section.contents = contentBlocks;
   section.contextualizers = section.contextualizers.concat(contextualizers);
   section.contextualizations = contextualizations;
