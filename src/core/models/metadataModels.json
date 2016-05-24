@@ -172,6 +172,7 @@
       "description" : "The style of bibliographic citations.",
       "valueType" : "string",
       "unique" : true,
+      "default": "apa6",
       "propagatesTo" : []
     },
     "citationPosition" : {
@@ -185,8 +186,12 @@
     "notesPosition" : {
       "description" : "Where to put notes in the document ?",
       "valueType" : "string",
-      "values" : ["footer", "aside", "sectionend", "documentend"],
-      "default" : "aside",
+      "values" : [
+        "inline",
+        "sectionend",
+        "documentend"
+      ],
+      "default" : "inline",
       "unique" : true,
       "propagatesTo" : []
     }

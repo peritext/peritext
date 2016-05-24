@@ -83,10 +83,10 @@ function eatnotes(inputHtml, sectionCitekey) {
     noteContent = outputHtml.substring(beginIndex, index - 1);
     notesCount++;
     notes.push({
-      content: '<sup class="note"><span class="note-number">*</span><a id="#note_' + sectionCitekey + notesCount + '" href="#notepointer_' + sectionCitekey + notesCount + '">' + noteContent + '</a></sup>',
+      content: '<sup class="note" name="note_' + sectionCitekey + notesCount + '" id="note_' + sectionCitekey + notesCount + '"><a href="#notepointer_' + sectionCitekey + notesCount + '"><span class="note-number">*</span></a>' + noteContent + '</sup>',
       noteNumber: notesCount
     });
-    newEl = '<sup class="note_pointer"><a id="#notepointer_' + sectionCitekey + notesCount + '" href="#note_' + sectionCitekey + notesCount + '"><span class="note-number">*</span></a></sup>';
+    newEl = '<sup class="note_pointer" name="notepointer_' + sectionCitekey + notesCount + '" id="notepointer_' + sectionCitekey + notesCount + '"><a href="#note_' + sectionCitekey + notesCount + '"><span class="note-number">*</span></a></sup>';
     outputHtml = outputHtml.substr(0, beginIndex - 4) + newEl + outputHtml.substr(index);
 
 

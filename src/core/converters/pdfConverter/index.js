@@ -1,4 +1,6 @@
-import {convert} from 'phantomjs-pdf';
+// import {convert} from 'phantomjs-pdf';
+import wkhtmltopdf from 'wkhtmltopdf';
+import {createWriteStream} from 'fs';
 import {resolve} from 'path';
 import {getMetaValue} from './../../utils/sectionUtils';
 import {resolveContextualizationsImplementation} from './../../resolvers/resolveContextualizations';
@@ -38,8 +40,19 @@ export function exportSection({section, sectionList, includeChildren = true, des
   }).join('\n');
 
   // todo: resolve notes according to doc params
-  const bodyNotes  = displaySections.map((sectio) => {
-    let newHtml;
+  const notesPosition = getMetaValue(sections[0].metadata, 'general', 'notesPosition');
+  console.log('note position :', notesPosition);
+  switch (notesPosition) {
+  case 'inline':
+    break;
+  case 'sectionend':
+    break;
+  case 'documentend':
+    break;
+  default:
+    break;
+  }
+  const bodyNotes = displaySections.map((sectio) => {
     return sectio.notes.reduce((html, note) => {
       return html + note.content;
     }, '');
@@ -58,7 +71,8 @@ export function exportSection({section, sectionList, includeChildren = true, des
   }
 
   // export html file to pdf with css print
-  const options = {
+
+  /*const options = {
     'html': bodyHtml + bodyNotes,
     'css': style,
     // "js" : ""
@@ -67,21 +81,47 @@ export function exportSection({section, sectionList, includeChildren = true, des
 
   convert(options, function(result) {
 
-    /* Using a buffer and callback */
     // result.toBuffer(function(returnedBuffer) {});
 
-    /* Using a readable stream */
     const stream = result.toStream();
 
-    /* Using the temp file path */
     // const tmpPath = result.getTmpPath();
 
 
-    /* Using the file writer and callback - temp */
     const destination = resolve(__dirname + destinationFolder + motherKey + '.pdf');
-    result.toFile(destination, function() {});
+    wkhtmltopdf(bodyHtml + bodyNotes)
+    .pipe(createWriteStream(destination));
+    // result.toFile(destination, function() {});
 
     // calling back a stream
     callback(null, stream);
-  });
+  });*/
+
+  const destination = resolve(__dirname + destinationFolder + motherKey + '.pdf');
+  const options = {
+    orientation: 'portrait',
+    // header
+    // footer
+    // headerHeight
+    // footerHeight
+    // marginBottom
+    // marginLeft
+    // marginRight
+    // marginTop
+    pageSize: 'A4',
+    outline: true,
+    disableInternalLinks: false,
+    disableExternalLinks: false,
+    // pageHeight
+    // pageWidth
+    // toc : true,
+    // tocHeaderText
+    // tocLevelIndentation
+    // tocTextSizeShrink
+    title : getMetaValue(sections[0].metadata, 'general', 'title')
+  }
+  console.log(bodyNotes);
+  wkhtmltopdf('<style>' + style + '</style>' + bodyHtml + bodyNotes, options)
+    .pipe(createWriteStream(destination));
+  callback();
 }

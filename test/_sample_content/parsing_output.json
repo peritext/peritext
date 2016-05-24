@@ -132,6 +132,21 @@
             "key": "date"
           },
           "htmlHead": "<meta name='dc.date' content='2016'>"
+        },
+        {
+          "domain": "general",
+          "key": "citationStyle",
+          "value": "apa6"
+        },
+        {
+          "domain": "general",
+          "key": "citationPosition",
+          "value": "inline"
+        },
+        {
+          "domain": "general",
+          "key": "notesPosition",
+          "value": "inline"
         }
       ],
       "contents": [
@@ -152,7 +167,7 @@
           "tagType": "BlockContextualization"
         },
         {
-          "html": "<p>I will talk about that<sup class=\"note_pointer\"><a id=\"#notepointer_mybook1\" href=\"#note_mybook1\"><span class=\"note-number\">*</span></a></sup> :</p>",
+          "html": "<p>I will talk about that<sup class=\"note_pointer\" name=\"notepointer_mybook1\" id=\"notepointer_mybook1\"><a href=\"#note_mybook1\"><span class=\"note-number\">*</span></a></sup> :</p>",
           "tagType": "p"
         },
         {
@@ -164,7 +179,7 @@
           "tagType": "p"
         },
         {
-          "html": "<p>And for the footnotes, I want to say that Martin said that<sup class=\"note_pointer\"><a id=\"#notepointer_mybook2\" href=\"#note_mybook2\"><span class=\"note-number\">*</span></a></sup></p>",
+          "html": "<p>And for the footnotes, I want to say that Martin said that<sup class=\"note_pointer\" name=\"notepointer_mybook2\" id=\"notepointer_mybook2\"><a href=\"#note_mybook2\"><span class=\"note-number\">*</span></a></sup></p>",
           "tagType": "p"
         },
         {
@@ -396,11 +411,11 @@
       "markdownContents": "# Welcome\n\n${toc}\n\n![A reference](@temporal_data){@cool_timeline}\n\n![Another view on the timeline](@temporal_data){@cool_timeline,\n    startat=\"2012-21-01\"\n}\n\n\nI will talk about that[^]{with a footnote here} :\n\n![Another reference with unnamed contextualizer](@temporal_data){\n    type=\"timeline\",\n    layer={layertype=events,data=@res.data.dates,labels=@res.data.labels},\n    title=\"My title\"\n}\n\n\nAnd as says [](@martin_change_2002){pages=\"12-13\"}\n\nAnd for the footnotes, I want to say that Martin said that[^]{I'm referencing to [Martin](@martin_change_2002){pages=\"12-13\"} when he says : \"hello\"}\n\nI'm talking about a [reference](@martin_change_2002).\n\nNow let's say I want to link to this [timeline](@temporal_data){\n    type=\"timeline\",\n    layer={dates=@res.data.dates,labels=@res.data.labels},\n    layer={dates=@res.data.dates,labels=@res.data.labels},\n    caption=\"This is a text with {stuf} but it should work\"\n} and continue my paragraph quietly.\n\nWelcome to my awesome book.\n\nThanks to all !\n\nMomanddad\nThe dog\nMy imaginary friend Serge\n\n\nI am just there, not linked to ``content.md``. I should be put at the end of content by alphabetical order.\n\n\n",
       "notes": [
         {
-          "content": "<sup class=\"note\"><span class=\"note-number\">*</span><a id=\"#note_mybook1\" href=\"#notepointer_mybook1\">with a footnote here</a></sup>",
+          "content": "<sup class=\"note\" name=\"note_mybook1\" id=\"note_mybook1\"><a href=\"#notepointer_mybook1\"><span class=\"note-number\">*</span></a>with a footnote here</sup>",
           "noteNumber": 1
         },
         {
-          "content": "<sup class=\"note\"><span class=\"note-number\">*</span><a id=\"#note_mybook2\" href=\"#notepointer_mybook2\">I&#39;m referencing to <InlineContextualization resources=\"@martin_change_2002\" contextualizer=\"contextualizer_3\" contextualization-index=4>Martin</InlineContextualization> when he says : &quot;hello&quot;</a></sup>",
+          "content": "<sup class=\"note\" name=\"note_mybook2\" id=\"note_mybook2\"><a href=\"#notepointer_mybook2\"><span class=\"note-number\">*</span></a>I&#39;m referencing to <InlineContextualization resources=\"@martin_change_2002\" contextualizer=\"contextualizer_3\" contextualization-index=4>Martin</InlineContextualization> when he says : &quot;hello&quot;</sup>",
           "noteNumber": 2
         }
       ],
@@ -612,6 +627,21 @@
             "key": "date"
           },
           "htmlHead": "<meta name='dc.date' content='2016'>"
+        },
+        {
+          "domain": "general",
+          "key": "citationStyle",
+          "value": "apa6"
+        },
+        {
+          "domain": "general",
+          "key": "citationPosition",
+          "value": "inline"
+        },
+        {
+          "domain": "general",
+          "key": "notesPosition",
+          "value": "inline"
         }
       ],
       "contents": [
@@ -889,6 +919,21 @@
             "key": "date"
           },
           "htmlHead": "<meta name='dc.date' content='2016'>"
+        },
+        {
+          "domain": "general",
+          "key": "citationStyle",
+          "value": "apa6"
+        },
+        {
+          "domain": "general",
+          "key": "citationPosition",
+          "value": "inline"
+        },
+        {
+          "domain": "general",
+          "key": "notesPosition",
+          "value": "inline"
         }
       ],
       "contents": [
@@ -1183,6 +1228,21 @@
             "key": "keywords"
           },
           "htmlHead": "<meta name='dc.subject' content='val1a, val1b, val2,val3,val4,another random set of keywords'>"
+        },
+        {
+          "domain": "general",
+          "key": "citationStyle",
+          "value": "apa6"
+        },
+        {
+          "domain": "general",
+          "key": "citationPosition",
+          "value": "inline"
+        },
+        {
+          "domain": "general",
+          "key": "notesPosition",
+          "value": "inline"
         }
       ],
       "contents": [
@@ -1199,7 +1259,7 @@
           "tagType": "p"
         },
         {
-          "html": "<p>I try a third footnote<sup class=\"note_pointer\"><a id=\"#notepointer_partie_2_21\" href=\"#note_partie_2_21\"><span class=\"note-number\">*</span></a></sup></p>",
+          "html": "<p>I try a third footnote<sup class=\"note_pointer\" name=\"notepointer_partie_2_21\" id=\"notepointer_partie_2_21\"><a href=\"#note_partie_2_21\"><span class=\"note-number\">*</span></a></sup></p>",
           "tagType": "p"
         }
       ],
@@ -1339,7 +1399,7 @@
       "markdownContents": "# This is part two point two\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam nesciunt molestias hic error dignissimos blanditiis, quo, voluptas necessitatibus neque, aliquid cupiditate commodi sed dolor consequatur ipsum fugiat esse placeat illo.\n\nI try a third footnote[^]{third footnote}\n",
       "notes": [
         {
-          "content": "<sup class=\"note\"><span class=\"note-number\">*</span><a id=\"#note_partie_2_21\" href=\"#notepointer_partie_2_21\">third footnote</a></sup>",
+          "content": "<sup class=\"note\" name=\"note_partie_2_21\" id=\"note_partie_2_21\"><a href=\"#notepointer_partie_2_21\"><span class=\"note-number\">*</span></a>third footnote</sup>",
           "noteNumber": 1
         }
       ],

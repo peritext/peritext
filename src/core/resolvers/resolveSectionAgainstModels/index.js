@@ -79,5 +79,18 @@ export function resolveSectionAgainstModels(section, models, callback) {
     return metadata;
   });
 
+  // defaults
+  for (const key in models.metadataModels.general) {
+    if (models.metadataModels.general[key].default) {
+      const present = getMetaValue(section.metadata, 'general', key);
+      if (!present) {
+        section.metadata.push({
+          domain: 'general',
+          key,
+          value: models.metadataModels.general[key].default
+        });
+      }
+    }
+  }
   return callback(null, {errors, section});
 }
