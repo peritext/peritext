@@ -1,10 +1,16 @@
+.modulo-contents-note-content{
+   display: prince-footnote;
+    counter-increment: footnote;
+}
+
+.modulo-contents-print-placeholder
+{
+  page-break-after : always;
+  page:placeholder;
+}
+
 @page {
-  size: A4;
-   @bottom {
-    content: counter(page);
-    background-color: #c0ffc0; /* a greenish background */
-  }
-  .note {
-    display : block;
-  }
+    @bottom {
+        content: counter(page)
+    }
 }
