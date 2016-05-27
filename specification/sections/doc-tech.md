@@ -62,9 +62,10 @@ Outputs :
 Pdf :
 * pdfkit : http://pdfkit.org/
 * phantomjs > pdf : http://www.feedhenry.com/server-side-pdf-generation-node-js/
+* **phantomjs-pdf** -> https://www.npmjs.com/package/phantomjs-pdf
 * **wkhtmltopdf** -> https://www.npmjs.com/package/wkhtmltopdf
 * example with heroku impl : https://github.com/gr2m/wkhtmltopdf-node-heorku
-* **phantomjs-pdf** -> https://www.npmjs.com/package/phantomjs-pdf
+* **hummusjs** for pdf post-production ops (page numbers, ...) --> https://github.com/galkahana/HummusJS
 
 epub :
 
@@ -388,3 +389,13 @@ React components hierarchy :
     }
 }
 ```
+
+# Webschema & metadata
+
+W3C spec : https://www.w3.org/wiki/WebSchemas/CitationPromotion
+Schema spec : http://schema.org/Thesis
+
+Recommandation : overload items with 3 domains of microcitation :
+* microdata
+* RDFa
+* JSON-LD
