@@ -39,6 +39,12 @@
           "required" : false
         },
         {
+          "key" : "schematype",
+          "valueType" : "string",
+          "description" : "The schema's type of the resource (for a fine-grained micro-indexation - see http://schema.org/)",
+          "required" : false
+        },
+        {
           "key" : "creators",
           "valueType" : "bibAuthorsArray",
           "description" : "The creators of the resource",
@@ -224,9 +230,9 @@
           "required" : true
         },
         {
-          "key" : "number",
+          "key" : "issue",
           "valueType" : "number",
-          "description" : "The tome number of the article's hosting resource",
+          "description" : "The issue number of the article's hosting resource",
           "required" : false
         },
         {
@@ -277,7 +283,7 @@
           "required" : false
         },
         {
-          "key" : "nb_pages",
+          "key" : "numberofpages",
           "valueType" : "string",
           "description" : "The number of pages",
           "required" : false
