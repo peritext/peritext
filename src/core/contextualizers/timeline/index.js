@@ -1,4 +1,3 @@
-import {addNote, mutateNote, addBlock, mutateBlock} from './../../resolvers/resolveContextualizations';
 
 export function contextualizeInlineStatic(section, contextualizer) {
   return section;
