@@ -17,12 +17,16 @@ I will talk about that[^]{with a footnote here} :
     title="My title"
 }
 
+I will first quote in a book where someone that says [it's not possible](@ab94).
 
-And as says [](@martin_change_2002){pages="12-13"}
 
-And for the footnotes, I want to say that Martin said that[^]{I'm referencing to [Martin](@martin_change_2002){pages="12-13"} when he says : "hello"}
+Then I should have an ibid here [^]{[](@ab94){page="12"}.}
 
-I'm talking about a [reference](@martin_change_2002).
+And as say a lot of people[^]{[](@martin_change_2002){pages="30-40"}}, publishing could be simpler.
+
+And for the footnotes, I want to say that Martin said that[^]{I'm referencing to [](@martin_change_2002){pages="12-13"} when he says : "hello"}
+
+Whe Martin says [there has to be some *change*](@martin_change_2002).
 
 Now let's say I want to link to this [timeline](@temporal_data){
     type="timeline",

@@ -6,6 +6,30 @@
       "message": "no metadata specified for the folder empty_folder so it was not taken into account"
     },
     {
+      "type": "error",
+      "preciseType": "invalidResource",
+      "sectionCiteKey": "partie_2_2",
+      "message": "property url is required in resource image_book(bibType: image) and not present"
+    },
+    {
+      "type": "error",
+      "preciseType": "invalidResource",
+      "sectionCiteKey": "partie_2_2",
+      "message": "property parent is required in resource m85(bibType: incollection) and not present"
+    },
+    {
+      "type": "error",
+      "preciseType": "invalidResource",
+      "sectionCiteKey": "partie_2_2",
+      "message": "property format is required in resource temporal_data(bibType: tabularData) and not present"
+    },
+    {
+      "type": "error",
+      "preciseType": "invalidResource",
+      "sectionCiteKey": "partie_2_2",
+      "message": "property format is required in resource temporal_data(bibType: tabularData) and not present"
+    },
+    {
       "type": "warning",
       "preciseType": "invalidMetadata",
       "sectionCiteKey": "partie_2_2",
@@ -98,6 +122,16 @@
           "htmlHead": "<meta name='twitter:title' content='My awesome book'>"
         },
         {
+          "domain": "scholar",
+          "key": "title",
+          "value": "My awesome book",
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "title"
+          },
+          "htmlHead": "<meta name='citation_title' content='My awesome book'>"
+        },
+        {
           "domain": "dublincore",
           "key": "creator",
           "value": [
@@ -109,6 +143,21 @@
             "key": "author"
           },
           "htmlHead": "<meta name='dc.creator' content='{De Mourat},Robin'>"
+        },
+        {
+          "domain": "scholar",
+          "key": "author",
+          "value": [
+            {
+              "firstName": "Robin",
+              "lastName": "De Mourat"
+            }
+          ],
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "author"
+          },
+          "htmlHead": "<meta name='citation_author' content='Robin De Mourat'>"
         },
         {
           "domain": "dublincore",
@@ -136,12 +185,7 @@
         {
           "domain": "general",
           "key": "citationStyle",
-          "value": "apa6"
-        },
-        {
-          "domain": "general",
-          "key": "citationPosition",
-          "value": "inline"
+          "value": "iso690fr"
         },
         {
           "domain": "general",
@@ -159,35 +203,43 @@
           "tagType": "p"
         },
         {
-          "html": "<BlockContextualization resources=\"@temporal_data\" contextualizer=\"cool_timeline_1\" contextualization-index=0>A reference</BlockContextualization>",
+          "html": "<BlockContextualization id=\"contextualization_1\" resources=\"@temporal_data\" contextualizer=\"cool_timeline_1\">A reference</BlockContextualization>",
           "tagType": "BlockContextualization"
         },
         {
-          "html": "<BlockContextualization resources=\"@temporal_data\" contextualizer=\"cool_timeline_2\" contextualization-index=1>Another view on the timeline</BlockContextualization>",
+          "html": "<BlockContextualization id=\"contextualization_2\" resources=\"@temporal_data\" contextualizer=\"cool_timeline_2\">Another view on the timeline</BlockContextualization>",
           "tagType": "BlockContextualization"
         },
         {
-          "html": "<p>I will talk about that<sup class=\"note_pointer\" name=\"notepointer_mybook1\" id=\"notepointer_mybook1\"><a href=\"#note_mybook1\"><span class=\"note-number\">*</span></a></sup> :</p>",
+          "html": "<p>I will talk about that[^]{with a footnote here} :</p>",
           "tagType": "p"
         },
         {
-          "html": "<BlockContextualization resources=\"@temporal_data\" contextualizer=\"contextualizer_1\" contextualization-index=2>Another reference with unnamed contextualizer</BlockContextualization>",
+          "html": "<BlockContextualization id=\"contextualization_4\" resources=\"@temporal_data\" contextualizer=\"contextualizer_3\">Another reference with unnamed contextualizer</BlockContextualization>",
           "tagType": "BlockContextualization"
         },
         {
-          "html": "<p>And as says <InlineContextualization resources=\"@martin_change_2002\" contextualizer=\"contextualizer_2\" contextualization-index=3></InlineContextualization></p>",
+          "html": "<p>I will first quote in a book where someone that says <InlineContextualization id=\"contextualization_5\" resources=\"@ab94\" contextualizer=\"contextualizer_5\">it&#39;s not possible</InlineContextualization>.</p>",
           "tagType": "p"
         },
         {
-          "html": "<p>And for the footnotes, I want to say that Martin said that<sup class=\"note_pointer\" name=\"notepointer_mybook2\" id=\"notepointer_mybook2\"><a href=\"#note_mybook2\"><span class=\"note-number\">*</span></a></sup></p>",
+          "html": "<p>Then I should have an ibid here [^]{<InlineContextualization id=\"contextualization_6\" resources=\"@ab94\" contextualizer=\"contextualizer_6\"></InlineContextualization>.}</p>",
           "tagType": "p"
         },
         {
-          "html": "<p>I&#39;m talking about a <InlineContextualization resources=\"@martin_change_2002\" contextualizer=\"contextualizer_4\" contextualization-index=5>reference</InlineContextualization>.</p>",
+          "html": "<p>And as say a lot of people[^]{<InlineContextualization id=\"contextualization_7\" resources=\"@martin_change_2002\" contextualizer=\"contextualizer_7\"></InlineContextualization>}, publishing could be simpler.</p>",
           "tagType": "p"
         },
         {
-          "html": "<p>Now let&#39;s say I want to link to this <InlineContextualization resources=\"@temporal_data\" contextualizer=\"contextualizer_5\" contextualization-index=6>timeline</InlineContextualization> and continue my paragraph quietly.</p>",
+          "html": "<p>And for the footnotes, I want to say that Martin said that[^]{I&#39;m referencing to <InlineContextualization id=\"contextualization_8\" resources=\"@martin_change_2002\" contextualizer=\"contextualizer_8\"></InlineContextualization> when he says : &quot;hello&quot;}</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Whe Martin says <InlineContextualization id=\"contextualization_9\" resources=\"@martin_change_2002\" contextualizer=\"contextualizer_9\">there has to be some <em>change</em></InlineContextualization>.</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Now let&#39;s say I want to link to this <InlineContextualization id=\"contextualization_10\" resources=\"@temporal_data\" contextualizer=\"contextualizer_10\">timeline</InlineContextualization> and continue my paragraph quietly.</p>",
           "tagType": "p"
         },
         {
@@ -209,7 +261,10 @@
       ],
       "resources": [
         {
+          "journal": "Journal of Electronic Publishing",
+          "issue": 3,
           "volume": 7,
+          "pages": "12-60",
           "title": "Change the {Metaphor}: {The} {Archive} as an {Ecosystem}",
           "author": [
             {
@@ -217,22 +272,23 @@
               "lastName": "Martin"
             },
             {
-              "lastName": ""
+              "firstName": "Nicolas",
+              "lastName": "Coleman"
             }
           ],
           "year": 2002,
-          "month": "apr",
+          "month": "april",
           "issn": "1080-2711",
           "bibType": "article",
           "citeKey": "martin_change_2002",
-          "doi": "http://dx.doi.org/10.3998/3336451.0007.301",
+          "doi": "10.3998/3336451.0007.301",
           "url": "http://hdl.handle.net/2027/spo.3336451.0007.301"
         },
         {
-          "title": "cool data",
+          "url": "cool_url",
           "bibType": "tabularData",
           "citeKey": "temporal_data",
-          "url": "cool_url"
+          "title": "cool data"
         },
         {
           "title": "Bridging the mire between e-research and e-publishing for multimedia digital scholarship in the humanities and social sciences: {An} {Australian} case study",
@@ -260,6 +316,7 @@
         },
         {
           "publisher": "Springer",
+          "edition": "second edition",
           "address": "Berlin",
           "title": "Infinite Dimensional Analysis",
           "author": [
@@ -281,7 +338,7 @@
         "components": {},
         "styles": {
           "my_style.css": "body{\n  color : black;\n}\n",
-          "page.css": "body{\n  color: red;\n}\n",
+          "page.css": "body{\n  font-family : \"Times New Roman\", \"Serif\";\n}\n",
           "screen.css": "body{\n  color : blue;\n}\n"
         },
         "templates": {
@@ -359,15 +416,30 @@
             "labels": "@res.data.labels"
           },
           "title": "My title",
-          "citeKey": "contextualizer_1",
+          "citeKey": "contextualizer_3",
           "type": "timeline",
           "describedInline": true,
           "outputmode": "all"
         },
         {
-          "pages": "12-13",
           "title": "@res.title",
-          "citeKey": "contextualizer_2",
+          "citeKey": "contextualizer_5",
+          "type": "citation",
+          "describedInline": true,
+          "outputmode": "all"
+        },
+        {
+          "page": "12",
+          "title": "@res.title",
+          "citeKey": "contextualizer_6",
+          "type": "citation",
+          "describedInline": true,
+          "outputmode": "all"
+        },
+        {
+          "pages": "30-40",
+          "title": "@res.title",
+          "citeKey": "contextualizer_7",
           "type": "citation",
           "describedInline": true,
           "outputmode": "all"
@@ -375,14 +447,14 @@
         {
           "pages": "12-13",
           "title": "@res.title",
-          "citeKey": "contextualizer_3",
+          "citeKey": "contextualizer_8",
           "type": "citation",
           "describedInline": true,
           "outputmode": "all"
         },
         {
           "title": "@res.title",
-          "citeKey": "contextualizer_4",
+          "citeKey": "contextualizer_9",
           "type": "citation",
           "describedInline": true,
           "outputmode": "all"
@@ -401,27 +473,19 @@
             }
           ],
           "title": "@res.title",
-          "citeKey": "contextualizer_5",
+          "citeKey": "contextualizer_10",
           "type": "timeline",
           "describedInline": true,
           "caption": "This is a text with {stuf} but it should work",
           "outputmode": "all"
         }
       ],
-      "markdownContents": "# Welcome\n\n${toc}\n\n![A reference](@temporal_data){@cool_timeline}\n\n![Another view on the timeline](@temporal_data){@cool_timeline,\n    startat=\"2012-21-01\"\n}\n\n\nI will talk about that[^]{with a footnote here} :\n\n![Another reference with unnamed contextualizer](@temporal_data){\n    type=\"timeline\",\n    layer={layertype=events,data=@res.data.dates,labels=@res.data.labels},\n    title=\"My title\"\n}\n\n\nAnd as says [](@martin_change_2002){pages=\"12-13\"}\n\nAnd for the footnotes, I want to say that Martin said that[^]{I'm referencing to [Martin](@martin_change_2002){pages=\"12-13\"} when he says : \"hello\"}\n\nI'm talking about a [reference](@martin_change_2002).\n\nNow let's say I want to link to this [timeline](@temporal_data){\n    type=\"timeline\",\n    layer={dates=@res.data.dates,labels=@res.data.labels},\n    layer={dates=@res.data.dates,labels=@res.data.labels},\n    caption=\"This is a text with {stuf} but it should work\"\n} and continue my paragraph quietly.\n\nWelcome to my awesome book.\n\nThanks to all !\n\nMomanddad\nThe dog\nMy imaginary friend Serge\n\n\nI am just there, not linked to ``content.md``. I should be put at the end of content by alphabetical order.\n\n\n",
-      "notes": [
-        {
-          "content": "<sup class=\"note\" name=\"note_mybook1\" id=\"note_mybook1\"><a href=\"#notepointer_mybook1\"><span class=\"note-number\">*</span></a>with a footnote here</sup>",
-          "noteNumber": 1
-        },
-        {
-          "content": "<sup class=\"note\" name=\"note_mybook2\" id=\"note_mybook2\"><a href=\"#notepointer_mybook2\"><span class=\"note-number\">*</span></a>I&#39;m referencing to <InlineContextualization resources=\"@martin_change_2002\" contextualizer=\"contextualizer_3\" contextualization-index=4>Martin</InlineContextualization> when he says : &quot;hello&quot;</sup>",
-          "noteNumber": 2
-        }
-      ],
+      "markdownContents": "# Welcome\n\n${toc}\n\n![A reference](@temporal_data){@cool_timeline}\n\n![Another view on the timeline](@temporal_data){@cool_timeline,\n    startat=\"2012-21-01\"\n}\n\n\nI will talk about that[^]{with a footnote here} :\n\n![Another reference with unnamed contextualizer](@temporal_data){\n    type=\"timeline\",\n    layer={layertype=events,data=@res.data.dates,labels=@res.data.labels},\n    title=\"My title\"\n}\n\nI will first quote in a book where someone that says [it's not possible](@ab94).\n\n\nThen I should have an ibid here [^]{[](@ab94){page=\"12\"}.}\n\nAnd as say a lot of people[^]{[](@martin_change_2002){pages=\"30-40\"}}, publishing could be simpler.\n\nAnd for the footnotes, I want to say that Martin said that[^]{I'm referencing to [](@martin_change_2002){pages=\"12-13\"} when he says : \"hello\"}\n\nWhe Martin says [there has to be some *change*](@martin_change_2002).\n\nNow let's say I want to link to this [timeline](@temporal_data){\n    type=\"timeline\",\n    layer={dates=@res.data.dates,labels=@res.data.labels},\n    layer={dates=@res.data.dates,labels=@res.data.labels},\n    caption=\"This is a text with {stuf} but it should work\"\n} and continue my paragraph quietly.\n\nWelcome to my awesome book.\n\nThanks to all !\n\nMomanddad\nThe dog\nMy imaginary friend Serge\n\n\nI am just there, not linked to ``content.md``. I should be put at the end of content by alphabetical order.\n\n\n",
+      "notes": [],
       "contextualizations": [
         {
           "contextualizer": "cool_timeline_1",
+          "citeKey": "contextualization_1",
           "resources": [
             "temporal_data"
           ],
@@ -430,46 +494,70 @@
         },
         {
           "contextualizer": "cool_timeline_2",
+          "citeKey": "contextualization_2",
           "resources": [
             "temporal_data"
           ],
           "type": "block",
           "contextualizerType": "timeline"
-        },
-        {
-          "contextualizer": "contextualizer_1",
-          "resources": [
-            "temporal_data"
-          ],
-          "type": "block",
-          "contextualizerType": "timeline"
-        },
-        {
-          "contextualizer": "contextualizer_2",
-          "resources": [
-            "martin_change_2002"
-          ],
-          "type": "inline",
-          "contextualizerType": "citation"
         },
         {
           "contextualizer": "contextualizer_3",
+          "citeKey": "contextualization_4",
           "resources": [
-            "martin_change_2002"
+            "temporal_data"
           ],
-          "type": "inline",
-          "contextualizerType": "citation"
+          "type": "block",
+          "contextualizerType": "timeline"
         },
         {
-          "contextualizer": "contextualizer_4",
-          "resources": [
-            "martin_change_2002"
-          ],
-          "type": "inline",
-          "contextualizerType": "citation"
-        },
-        {
+          "citeKey": "contextualization_5",
           "contextualizer": "contextualizer_5",
+          "resources": [
+            "ab94"
+          ],
+          "type": "inline",
+          "contextualizerType": "citation"
+        },
+        {
+          "citeKey": "contextualization_6",
+          "contextualizer": "contextualizer_6",
+          "resources": [
+            "ab94"
+          ],
+          "type": "inline",
+          "contextualizerType": "citation"
+        },
+        {
+          "citeKey": "contextualization_7",
+          "contextualizer": "contextualizer_7",
+          "resources": [
+            "martin_change_2002"
+          ],
+          "type": "inline",
+          "contextualizerType": "citation"
+        },
+        {
+          "citeKey": "contextualization_8",
+          "contextualizer": "contextualizer_8",
+          "resources": [
+            "martin_change_2002"
+          ],
+          "type": "inline",
+          "contextualizerType": "citation"
+        },
+        {
+          "citeKey": "contextualization_9",
+          "contextualizer": "contextualizer_9",
+          "resources": [
+            "martin_change_2002"
+          ],
+          "type": "inline",
+          "contextualizerType": "citation"
+        },
+        {
+          "citeKey": "contextualization_10",
+          "contextualizer": "contextualizer_10",
           "resources": [
             "temporal_data"
           ],
@@ -555,7 +643,7 @@
         {
           "domain": "general",
           "key": "generalityLevel",
-          "value": 1,
+          "value": 2,
           "inheritedVerticallyFrom": {
             "domain": "general",
             "key": "citeKey",
@@ -593,6 +681,16 @@
           "htmlHead": "<meta name='twitter:title' content='Partie 1'>"
         },
         {
+          "domain": "scholar",
+          "key": "title",
+          "value": "Partie 1",
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "title"
+          },
+          "htmlHead": "<meta name='citation_title' content='Partie 1'>"
+        },
+        {
           "domain": "dublincore",
           "key": "creator",
           "value": [
@@ -604,6 +702,21 @@
             "key": "author"
           },
           "htmlHead": "<meta name='dc.creator' content='{De Mourat},Robin'>"
+        },
+        {
+          "domain": "scholar",
+          "key": "author",
+          "value": [
+            {
+              "firstName": "Robin",
+              "lastName": "De Mourat"
+            }
+          ],
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "author"
+          },
+          "htmlHead": "<meta name='citation_author' content='Robin De Mourat'>"
         },
         {
           "domain": "dublincore",
@@ -631,12 +744,7 @@
         {
           "domain": "general",
           "key": "citationStyle",
-          "value": "apa6"
-        },
-        {
-          "domain": "general",
-          "key": "citationPosition",
-          "value": "inline"
+          "value": "iso690fr"
         },
         {
           "domain": "general",
@@ -664,12 +772,15 @@
       ],
       "resources": [
         {
+          "url": "https://www.youtube.com/watch?v=dX3k_QDnzHE&list=RDEMKE7uLtY3Y63qMHubgnxcew&index=14",
           "bibType": "video",
-          "citeKey": "my_interview",
-          "url": "https://www.youtube.com/watch?v=dX3k_QDnzHE&list=RDEMKE7uLtY3Y63qMHubgnxcew&index=14"
+          "citeKey": "my_interview"
         },
         {
+          "journal": "Journal of Electronic Publishing",
+          "issue": 3,
           "volume": 7,
+          "pages": "12-60",
           "title": "Change the {Metaphor}: {The} {Archive} as an {Ecosystem}",
           "author": [
             {
@@ -677,22 +788,23 @@
               "lastName": "Martin"
             },
             {
-              "lastName": ""
+              "firstName": "Nicolas",
+              "lastName": "Coleman"
             }
           ],
           "year": 2002,
-          "month": "apr",
+          "month": "april",
           "issn": "1080-2711",
           "bibType": "article",
           "citeKey": "martin_change_2002",
-          "doi": "http://dx.doi.org/10.3998/3336451.0007.301",
+          "doi": "10.3998/3336451.0007.301",
           "url": "http://hdl.handle.net/2027/spo.3336451.0007.301"
         },
         {
-          "title": "cool data",
+          "url": "cool_url",
           "bibType": "tabularData",
           "citeKey": "temporal_data",
-          "url": "cool_url"
+          "title": "cool data"
         },
         {
           "title": "Bridging the mire between e-research and e-publishing for multimedia digital scholarship in the humanities and social sciences: {An} {Australian} case study",
@@ -720,6 +832,7 @@
         },
         {
           "publisher": "Springer",
+          "edition": "second edition",
           "address": "Berlin",
           "title": "Infinite Dimensional Analysis",
           "author": [
@@ -742,7 +855,7 @@
         "components": {},
         "styles": {
           "my_style.css": "body{\n  color : black;\n}\n",
-          "page.css": "body{\n  color: red;\n}\n",
+          "page.css": "body{\n  font-family : \"Times New Roman\", \"Serif\";\n}\n",
           "screen.css": "body{\n  color : blue;\n}\n"
         },
         "templates": {
@@ -846,7 +959,7 @@
         {
           "domain": "general",
           "key": "generalityLevel",
-          "value": 1,
+          "value": 2,
           "inheritedVerticallyFrom": {
             "domain": "general",
             "key": "citeKey",
@@ -884,6 +997,16 @@
           "htmlHead": "<meta name='twitter:title' content='Partie 2'>"
         },
         {
+          "domain": "scholar",
+          "key": "title",
+          "value": "Partie 2",
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "title"
+          },
+          "htmlHead": "<meta name='citation_title' content='Partie 2'>"
+        },
+        {
           "domain": "dublincore",
           "key": "creator",
           "value": [
@@ -896,6 +1019,25 @@
             "key": "author"
           },
           "htmlHead": "<meta name='dc.creator' content='Westwood,Viviane and Lalane,Francis'>"
+        },
+        {
+          "domain": "scholar",
+          "key": "author",
+          "value": [
+            {
+              "firstName": "Viviane",
+              "lastName": "Westwood"
+            },
+            {
+              "firstName": "Francis",
+              "lastName": "Lalane"
+            }
+          ],
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "author"
+          },
+          "htmlHead": "<meta name='citation_author' content='Viviane Westwood, Francis Lalane'>"
         },
         {
           "domain": "dublincore",
@@ -923,12 +1065,7 @@
         {
           "domain": "general",
           "key": "citationStyle",
-          "value": "apa6"
-        },
-        {
-          "domain": "general",
-          "key": "citationPosition",
-          "value": "inline"
+          "value": "iso690fr"
         },
         {
           "domain": "general",
@@ -944,13 +1081,158 @@
         {
           "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
           "tagType": "p"
+        },
+        {
+          "html": "<p>Footnote[^]{This is another footnote}</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Footnote[^]{This is another footnote}</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Footnote[^]{Lorem ipsum dolor sit amet, consectetur adipisicing elit. At, id autem incidunt delectus ea. Architecto aliquam alias iure mollitia voluptate totam in repellendus, dignissimos. Quia necessitatibus ipsam, quis itaque nisi.}</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Footnote[^]{This is another footnote}</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Footnote[^]{This is another footnote}</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
+          "tagType": "p"
         }
       ],
       "resources": [
         {
+          "booktitle": "Social Goals and Social Organization",
+          "pages": "173-204",
           "publisher": "Cambridge University Press",
           "address": "Cambridge",
-          "pages": "173-204",
           "title": "The theory of implementation in {N}ash equilibrium: a survey",
           "author": [
             {
@@ -977,7 +1259,10 @@
           "citeKey": "m85"
         },
         {
+          "journal": "Journal of Electronic Publishing",
+          "issue": 3,
           "volume": 7,
+          "pages": "12-60",
           "title": "Change the {Metaphor}: {The} {Archive} as an {Ecosystem}",
           "author": [
             {
@@ -985,22 +1270,23 @@
               "lastName": "Martin"
             },
             {
-              "lastName": ""
+              "firstName": "Nicolas",
+              "lastName": "Coleman"
             }
           ],
           "year": 2002,
-          "month": "apr",
+          "month": "april",
           "issn": "1080-2711",
           "bibType": "article",
           "citeKey": "martin_change_2002",
-          "doi": "http://dx.doi.org/10.3998/3336451.0007.301",
+          "doi": "10.3998/3336451.0007.301",
           "url": "http://hdl.handle.net/2027/spo.3336451.0007.301"
         },
         {
-          "title": "cool data",
+          "url": "cool_url",
           "bibType": "tabularData",
           "citeKey": "temporal_data",
-          "url": "cool_url"
+          "title": "cool data"
         },
         {
           "title": "Bridging the mire between e-research and e-publishing for multimedia digital scholarship in the humanities and social sciences: {An} {Australian} case study",
@@ -1028,6 +1314,7 @@
         },
         {
           "publisher": "Springer",
+          "edition": "second edition",
           "address": "Berlin",
           "title": "Infinite Dimensional Analysis",
           "author": [
@@ -1050,7 +1337,7 @@
         "components": {},
         "styles": {
           "my_style.css": "body{\n  color : black;\n}\n",
-          "page.css": "body{\n  color: red;\n}\n",
+          "page.css": "body{\n  font-family : \"Times New Roman\", \"Serif\";\n}\n",
           "screen.css": "body{\n  color : blue;\n}\n"
         },
         "templates": {
@@ -1080,7 +1367,7 @@
         }
       ],
       "after": "partie_1",
-      "markdownContents": "# This is part two\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\n",
+      "markdownContents": "# This is part two\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nFootnote[^]{This is another footnote}\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nFootnote[^]{This is another footnote}\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nFootnote[^]{Lorem ipsum dolor sit amet, consectetur adipisicing elit. At, id autem incidunt delectus ea. Architecto aliquam alias iure mollitia voluptate totam in repellendus, dignissimos. Quia necessitatibus ipsam, quis itaque nisi.}\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nFootnote[^]{This is another footnote}\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\n\nFootnote[^]{This is another footnote}\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\n",
       "notes": [],
       "contextualizations": []
     },
@@ -1155,7 +1442,7 @@
         {
           "domain": "general",
           "key": "generalityLevel",
-          "value": 1,
+          "value": 4,
           "inheritedVerticallyFrom": {
             "domain": "general",
             "key": "citeKey",
@@ -1193,6 +1480,16 @@
           "htmlHead": "<meta name='twitter:title' content='Partie 2.2'>"
         },
         {
+          "domain": "scholar",
+          "key": "title",
+          "value": "Partie 2.2",
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "title"
+          },
+          "htmlHead": "<meta name='citation_title' content='Partie 2.2'>"
+        },
+        {
           "domain": "dublincore",
           "key": "date",
           "value": "2015",
@@ -1217,6 +1514,25 @@
           "htmlHead": "<meta name='dc.creator' content='Westwood,Viviane and Lalane,Francis'>"
         },
         {
+          "domain": "scholar",
+          "key": "author",
+          "value": [
+            {
+              "firstName": "Viviane",
+              "lastName": "Westwood"
+            },
+            {
+              "firstName": "Francis",
+              "lastName": "Lalane"
+            }
+          ],
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "author"
+          },
+          "htmlHead": "<meta name='citation_author' content='Viviane Westwood, Francis Lalane'>"
+        },
+        {
           "domain": "dublincore",
           "key": "subject",
           "value": [
@@ -1232,12 +1548,7 @@
         {
           "domain": "general",
           "key": "citationStyle",
-          "value": "apa6"
-        },
-        {
-          "domain": "general",
-          "key": "citationPosition",
-          "value": "inline"
+          "value": "iso690fr"
         },
         {
           "domain": "general",
@@ -1259,18 +1570,38 @@
           "tagType": "p"
         },
         {
-          "html": "<p>I try a third footnote<sup class=\"note_pointer\" name=\"notepointer_partie_2_21\" id=\"notepointer_partie_2_21\"><a href=\"#note_partie_2_21\"><span class=\"note-number\">*</span></a></sup></p>",
+          "html": "<p>I try a third footnote[^]{third footnote}</p>",
           "tagType": "p"
+        },
+        {
+          "html": "<h3 id=\"a-bit-of-bibliographic-trials\">A bit of bibliographic trials</h3>",
+          "tagType": "heading"
+        },
+        {
+          "html": "<BlockContextualization id=\"contextualization_2\" resources=\"@ab94\" contextualizer=\"contextualizer_1\"></BlockContextualization>",
+          "tagType": "BlockContextualization"
+        },
+        {
+          "html": "<BlockContextualization id=\"contextualization_4\" resources=\"@martin_change_2002\" contextualizer=\"contextualizer_3\"></BlockContextualization>",
+          "tagType": "BlockContextualization"
+        },
+        {
+          "html": "<BlockContextualization id=\"contextualization_6\" resources=\"@jakubowicz_bridging\" contextualizer=\"contextualizer_5\"></BlockContextualization>",
+          "tagType": "BlockContextualization"
         }
       ],
       "resources": [
         {
-          "title": "The first book image",
+          "description": "image of the first book",
           "bibType": "image",
           "citeKey": "image_book",
-          "description": "image of the first book"
+          "title": "The first book image"
         },
         {
+          "booktitle": "Social Goals and Social Organization",
+          "pages": "173-204",
+          "publisher": "Cambridge University Press",
+          "address": "Cambridge",
           "title": "The theory of implementation in {N}ash equilibrium: a survey",
           "author": [
             {
@@ -1297,6 +1628,10 @@
           "citeKey": "m85"
         },
         {
+          "journal": "Journal of Electronic Publishing",
+          "issue": 3,
+          "volume": 7,
+          "pages": "12-60",
           "title": "Change the {Metaphor}: {The} {Archive} as an {Ecosystem}",
           "author": [
             {
@@ -1304,22 +1639,23 @@
               "lastName": "Martin"
             },
             {
-              "lastName": ""
+              "firstName": "Nicolas",
+              "lastName": "Coleman"
             }
           ],
           "year": 2002,
-          "month": "apr",
+          "month": "april",
           "issn": "1080-2711",
           "bibType": "article",
           "citeKey": "martin_change_2002",
-          "doi": "http://dx.doi.org/10.3998/3336451.0007.301",
+          "doi": "10.3998/3336451.0007.301",
           "url": "http://hdl.handle.net/2027/spo.3336451.0007.301"
         },
         {
-          "title": "cool data",
+          "url": "cool_url",
           "bibType": "tabularData",
           "citeKey": "temporal_data",
-          "url": "cool_url"
+          "title": "cool data"
         },
         {
           "title": "Bridging the mire between e-research and e-publishing for multimedia digital scholarship in the humanities and social sciences: {An} {Australian} case study",
@@ -1346,6 +1682,9 @@
           ]
         },
         {
+          "publisher": "Springer",
+          "edition": "second edition",
+          "address": "Berlin",
           "title": "Infinite Dimensional Analysis",
           "author": [
             {
@@ -1367,7 +1706,7 @@
         "components": {},
         "styles": {
           "my_style.css": "body{\n  color : black;\n}\n",
-          "page.css": "body{\n  color: red;\n}\n",
+          "page.css": "body{\n  font-family : \"Times New Roman\", \"Serif\";\n}\n",
           "screen.css": "body{\n  color : blue;\n}\n"
         },
         "templates": {
@@ -1394,16 +1733,60 @@
           "citeKey": "cool_timeline",
           "type": "timeline",
           "outputmode": "all"
-        }
-      ],
-      "markdownContents": "# This is part two point two\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam nesciunt molestias hic error dignissimos blanditiis, quo, voluptas necessitatibus neque, aliquid cupiditate commodi sed dolor consequatur ipsum fugiat esse placeat illo.\n\nI try a third footnote[^]{third footnote}\n",
-      "notes": [
+        },
         {
-          "content": "<sup class=\"note\" name=\"note_partie_2_21\" id=\"note_partie_2_21\"><a href=\"#notepointer_partie_2_21\"><span class=\"note-number\">*</span></a>third footnote</sup>",
-          "noteNumber": 1
+          "title": "@res.title",
+          "citeKey": "contextualizer_1",
+          "type": "citation",
+          "describedInline": true,
+          "outputmode": "all"
+        },
+        {
+          "title": "@res.title",
+          "citeKey": "contextualizer_3",
+          "type": "citation",
+          "describedInline": true,
+          "outputmode": "all"
+        },
+        {
+          "title": "@res.title",
+          "citeKey": "contextualizer_5",
+          "type": "citation",
+          "describedInline": true,
+          "outputmode": "all"
         }
       ],
-      "contextualizations": []
+      "markdownContents": "# This is part two point two\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam nesciunt molestias hic error dignissimos blanditiis, quo, voluptas necessitatibus neque, aliquid cupiditate commodi sed dolor consequatur ipsum fugiat esse placeat illo.\n\nI try a third footnote[^]{third footnote}\n\n\n### A bit of bibliographic trials\n\n![](@ab94)\n\n![](@martin_change_2002)\n\n![](@jakubowicz_bridging)\n",
+      "notes": [],
+      "contextualizations": [
+        {
+          "contextualizer": "contextualizer_1",
+          "citeKey": "contextualization_2",
+          "resources": [
+            "ab94"
+          ],
+          "type": "block",
+          "contextualizerType": "citation"
+        },
+        {
+          "contextualizer": "contextualizer_3",
+          "citeKey": "contextualization_4",
+          "resources": [
+            "martin_change_2002"
+          ],
+          "type": "block",
+          "contextualizerType": "citation"
+        },
+        {
+          "contextualizer": "contextualizer_5",
+          "citeKey": "contextualization_6",
+          "resources": [
+            "jakubowicz_bridging"
+          ],
+          "type": "block",
+          "contextualizerType": "citation"
+        }
+      ]
     }
   ]
 }

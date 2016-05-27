@@ -38,6 +38,7 @@ describe('models:metadataModels', function(){
         let prop = metadataModels[i][j];
         if(prop['propagatesTo']){
           prop['propagatesTo'].forEach(function(to){
+            // console.log('looking at ', to, ' in ', i, j);
             to = to.split('_');
 
             let domain = (to.length > 1)?to.shift():'general';
