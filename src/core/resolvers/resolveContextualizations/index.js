@@ -132,15 +132,18 @@ export function resolveContextualizersAndContextualizations({section, models}, c
 // I 'reduce' contextualizations statements to produce a new rendering-specific section representation
 export function resolveContextualizationsImplementation(section, renderingMode) {
   let contextualizer;
-  return section.contextualizations.reduce((inputSection, contextualization) => {
+  // const id = getMetaValue(section.metadata, 'general', 'citeKey');
+  const sectio = section.contextualizations.reduce((inputSection, contextualization) => {
+    // console.log(id, 'contextualization : ', contextualization);
+    // console.log(id, 'temp section content: ', inputSection.contents);
     contextualizer = contextualizers[contextualization.contextualizerType];
     switch (renderingMode) {
     case 'static':
       switch (contextualization.type) {
       case 'inline':
-        return contextualizer.contextualizeInlineStatic(section, contextualizer);
+        return contextualizer.contextualizeInlineStatic(inputSection, contextualization);
       case 'block':
-        return contextualizer.contextualizeBlockStatic(section, contextualizer);
+        return contextualizer.contextualizeBlockStatic(inputSection, contextualization);
       default:
         break;
       }
@@ -148,9 +151,9 @@ export function resolveContextualizationsImplementation(section, renderingMode) 
     case 'dynamic':
       switch (contextualization.type) {
       case 'inline':
-        return contextualizer.contextualizeInlineDynamic(section, contextualizer);
+        return contextualizer.contextualizeInlineDynamic(inputSection, contextualization);
       case 'block':
-        return contextualizer.contextualizeBlockDynamic(section, contextualizer);
+        return contextualizer.contextualizeBlockDynamic(inputSection, contextualization);
       default:
         break;
       }
@@ -158,6 +161,8 @@ export function resolveContextualizationsImplementation(section, renderingMode) 
     default:
       break;
     }
-    return Object.assign({}, section);
-  }, section);
+    return Object.assign({}, inputSection);
+  }, Object.assign({}, section));
+  // console.log(id, 'final sectio contents: ', sectio.contents);
+  return sectio;
 }

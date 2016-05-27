@@ -6,7 +6,7 @@ export function resolveSectionAgainstModels(section, models, callback) {
   const errors = [];
   // validate resources
   section.resources = section.resources.map((resource) =>{
-    const model = getResourceModel(getMetaValue(section.metadata, 'general', 'bibType'), models.resourceModels);
+    const model = getResourceModel(resource.bibType, models.resourceModels);
     if (model) {
       // populate resource model with input resource data
       return model.properties.reduce((resolvedResource, propModel) => {

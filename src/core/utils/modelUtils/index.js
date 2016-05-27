@@ -48,7 +48,7 @@ export function getResourceModel(bibType, resourceModels) {
                     });
     properties = properties.concat(otherProps);
 
-    return Object.assign({}, model, {properties}, {defaultContextualizer});
+    return Object.assign({}, model, {properties: model.properties.concat(properties)}, {defaultContextualizer});
   }
   return undefined;
 }

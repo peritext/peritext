@@ -34,7 +34,7 @@ function inheritMetadataFromParent(section, sectionTypeModels, sections, parentM
   const parentLevel = getMetaValue(parentMetadata, 'general', 'generalityLevel');
   const ownLevel = getMetaValue(section.metadata, 'general', 'generalityLevel');
   if (parentLevel && ownLevel) {
-    section.metadata = setMetaValue(section.metadata, 'general', 'generalityValue', parentLevel + ownLevel);
+    section.metadata = setMetaValue(section.metadata, 'general', 'generalityLevel', parentLevel + ownLevel);
   }else if (parentLevel) {
     section.metadata.push({
       domain: 'general',
@@ -48,6 +48,7 @@ function inheritMetadataFromParent(section, sectionTypeModels, sections, parentM
       value: 1
     });
   }
+  // console.log(getMetaValue(section.metadata, 'general', 'generalityLevel'));
   return section;
 }
 
