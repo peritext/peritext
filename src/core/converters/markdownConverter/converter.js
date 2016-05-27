@@ -5,7 +5,7 @@
 
 const marked = require('marked');
 import {parseBibContextualization, parseBibNestedValues} from './../bibTexConverter';
-import {getMetaValue} from './../../utils/sectionUtils';
+// import {getMetaValue} from './../../utils/sectionUtils';
 
 // basic marked parser
 marked.setOptions({
@@ -51,12 +51,14 @@ function eatParamsObject(str) {
   return undefined;
 }
 
-function eatnotes(inputHtml, sectionCitekey) {
+
+export function eatNotes(inputHtml, sectionCitekey, baseNotesCount = 0, notesPosition = 'inline') {
   let outputHtml = inputHtml;
   const notes = [];
-  let notesCount = 0;
+  let notesCount = baseNotesCount;
   let newEl;
   let noteContent;
+  let noteHtml;
   let index = 0;
   let displace = 0;
   let beginIndex;
@@ -82,14 +84,17 @@ function eatnotes(inputHtml, sectionCitekey) {
 
     noteContent = outputHtml.substring(beginIndex, index - 1);
     notesCount++;
+    noteHtml = '<p class="modulo-contents-note-content" name="note-content-' + sectionCitekey + notesCount + '" id="note-content-' + sectionCitekey + notesCount + '"><a class="modulo-contents-note-link" href="#note-pointer-' + sectionCitekey + notesCount + '"><span class="modulo-contents-note-number">' + notesCount + '</span></a>' + noteContent + '</p>';
     notes.push({
-      content: '<sup class="note" name="note_' + sectionCitekey + notesCount + '" id="note_' + sectionCitekey + notesCount + '"><a href="#notepointer_' + sectionCitekey + notesCount + '"><span class="note-number">*</span></a>' + noteContent + '</sup>',
+      content: noteHtml,
       noteNumber: notesCount
     });
-    newEl = '<sup class="note_pointer" name="notepointer_' + sectionCitekey + notesCount + '" id="notepointer_' + sectionCitekey + notesCount + '"><a href="#note_' + sectionCitekey + notesCount + '"><span class="note-number">*</span></a></sup>';
+    if (notesPosition === 'inline') {
+      newEl = '<sup class="modulo-contents-note-content" name="note-content-' + sectionCitekey + notesCount + '" id="note-content-' + sectionCitekey + notesCount + '">' + noteContent + '</sup>';
+    } else {
+      newEl = '<sup class="modulo-contents-note-pointer" name="note-pointer-' + sectionCitekey + notesCount + '" id="note-pointer-' + sectionCitekey + notesCount + '"><a href="#note-content-' + sectionCitekey + notesCount + '"><span class="modulo-contents-note-number">' + notesCount + '</span></a></sup>';
+    }
     outputHtml = outputHtml.substr(0, beginIndex - 4) + newEl + outputHtml.substr(index);
-
-
     displace = index;
   }
 
@@ -162,12 +167,14 @@ function eatContextualizations(inputHtml) {
     formattedParams.resources = match[1].replace('@', '').split(',');
     contextualizers.push(formattedParams);
 
+    contextualizationCount ++;
     contextualizations.push({
       'contextualizer': contextualizerKey,
+      'citeKey': 'contextualization_' + contextualizationCount,
       resources: match[1].replace(/^@/, '').split(','),
       type: 'block'
     });
-    newEl = '<BlockContextualization resources="@' + match[1] + '" contextualizer="' + contextualizerKey + '" contextualization-index=' + (contextualizations.length - 1) + '>' + match[2] + '</BlockContextualization>';
+    newEl = '<BlockContextualization id="' + 'contextualization_' + contextualizationCount + '" resources="@' + match[1] + '" contextualizer="' + contextualizerKey + '">' + match[2] + '</BlockContextualization>';
     outputHtml = outputHtml.substr(0, match.index) + newEl + outputHtml.substr(match.index + match[0].length + (paramsObject ? paramsObject.length : 0));
   }
 
@@ -227,11 +234,12 @@ function eatContextualizations(inputHtml) {
     contextualizers.push(formattedParams);
 
     contextualizations.push({
+      'citeKey': 'contextualization_' + contextualizationCount,
       'contextualizer': contextualizerKey,
       resources: match[1].replace('@', '').split(','),
       type: 'inline'
     });
-    newEl = '<InlineContextualization resources="@' + match[1] + '" contextualizer="' + contextualizerKey + '" contextualization-index=' + (contextualizations.length - 1) + '>' + match[2] + '</InlineContextualization>';
+    newEl = '<InlineContextualization id="' + 'contextualization_' + contextualizationCount + '" resources="@' + match[1] + '" contextualizer="' + contextualizerKey + '">' + match[2] + '</InlineContextualization>';
     outputHtml = outputHtml.substr(0, match.index) + newEl + outputHtml.substr(match.index + match[0].length + (paramsObject ? paramsObject.length : 0));
   }
   return {contextualizers, contextualizations, tempHtml: outputHtml};
@@ -371,10 +379,11 @@ function formatTemplateCalls(input, wrappers) {
 }
 
 function eatHtml(html, parameters, metadata) {
-  const sectionCitekey = getMetaValue(metadata, 'general', 'citeKey');
+  // const sectionCitekey = getMetaValue(metadata, 'general', 'citeKey');
   const {contextualizers, contextualizations, tempHtml} = eatContextualizations(html);
   const newHtml = formatTemplateCalls(tempHtml, parameters.templateWrappingCharacters);
-  const {notes, outputHtml} = eatnotes(newHtml, sectionCitekey);
+  const {notes, outputHtml} = {notes: [], outputHtml: newHtml};
+  // const {notes, outputHtml} = eatNotes(newHtml, sectionCitekey);
   const elements = divideHtmlInBlocks(outputHtml);
   return {contentBlocks: elements, contextualizers, notes, contextualizations};
 }
@@ -390,6 +399,5 @@ export function markdownToContentsList(section, parameters, callback) {
   section.contents = contentBlocks;
   section.contextualizers = section.contextualizers.concat(contextualizers);
   section.contextualizations = contextualizations;
-
   callback(null, {errors, section});
 }

@@ -249,8 +249,10 @@ Maskin, Eric S.
 {Charalambos}, D. Aliprantis and Kim C. {Border}
 */
 export function parseBibAuthors(str) {
-  const authors = str.split(/;|and/);
-  return authors.map((inputAuthorStr) =>{
+  const authors = str.split(/;|and|et/);
+  return authors.filter((inputStr) =>{
+    return inputStr.trim().length > 0;
+  }).map((inputAuthorStr) =>{
     const lastNameMatch = inputAuthorStr.match(/{([^}]*)}/);
     let authorStr = '';
     let firstName;
@@ -269,7 +271,8 @@ export function parseBibAuthors(str) {
         firstName = vals.shift().trim();
         lastName = vals.join(' ').trim();
       } else {
-        lastName = authorStr.trim();
+        lastName = inputAuthorStr.trim();
+        firstName = '';
       }
     }
     return {firstName, lastName};
