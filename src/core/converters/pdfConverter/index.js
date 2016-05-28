@@ -16,7 +16,7 @@ import {resolve} from 'path';
 import {getMetaValue} from './../../utils/sectionUtils';
 import {eatNotes} from './../markdownConverter';
 import {resolveContextualizationsImplementation} from './../../resolvers/resolveContextualizations';
-
+import {metadataToSchema, setSectionMeta} from './../../utils/microDataUtils';
 const defaultStylesPath = './../../../config/defaultStyles/';
 
 function listChildren(sections, key) {
@@ -80,11 +80,13 @@ export function exportSection({section, sectionList, includeChildren = true, des
         if (notesPosition === 'documentend') {
           notesCount += notes.length;
         }
+        // console.log(getMetaValue(sectio.metadata, 'general', 'bibType'));
+
         return Object.assign({}, sectio, {outputHtml}, {notes});
       });
 
       // assemble html contents according to params
-      let outputHtml = notedSections.map((sectio) => {
+      let outputHtml = notedSections.map((sectio, index) => {
         let notes = '';
         if (notesPosition === 'sectionend') {
           notes = '<section class="modulo-contents-notes modulo-contents-section-end-notes">'
@@ -94,7 +96,10 @@ export function exportSection({section, sectionList, includeChildren = true, des
           }).join('\n')
           + '</section>';
         }
-        return '<section class="modulo-contents-section modulo-contents-section-level-' + getMetaValue(sectio.metadata, 'general', 'generalityLevel') + '" id="' + getMetaValue(sectio.metadata, 'general', 'citeKey') + '">\n'
+        return '<section '
+                + (index > 0 ? setSectionMeta(sectio) : '')
+                + ' class="modulo-contents-section modulo-contents-section-level-' + getMetaValue(sectio.metadata, 'general', 'generalityLevel') + '" id="' + getMetaValue(sectio.metadata, 'general', 'citeKey') + '">\n'
+                + (index > 0 ? metadataToSchema(sectio) : '')
                 + sectio.outputHtml
                 + notes
                 + '</section>\n';
@@ -125,16 +130,20 @@ export function exportSection({section, sectionList, includeChildren = true, des
         }
       }
 
-      let metaHead = '<meta name="generator" content="modulo"/>';
-      metaHead += sections[0].metadata
+      const metaHead = sections[0].metadata
                     .filter((meta) =>{
                       return meta.htmlHead;
                     })
                     .reduce((exp, meta) =>{
                       return exp + meta.htmlHead;
-                    }, metaHead);
-
-      cback(null, sections, '<!doctype:html><html><head>' + metaHead + '</head><body><style>' + style + '</style>' + outputHtml + '</body></html>');
+                    }, '') + '<meta name="generator" content="modulo"/>';
+      const html = '<!doctype:html><html>'
+          + '<head>' + metaHead + '<style>' + style + '</style>' + '</head>'
+          + '<body ' + setSectionMeta(sections[0]) + '>'
+          + metadataToSchema(sections[0])
+          + outputHtml + '</body>'
+          + '</html>';
+      cback(null, sections, html);
     }, function(sections, html, cback) {
 
       writeFile(resolve(__dirname + destinationFolder + motherKey + '.html'), html, 'utf-8', function(err) {

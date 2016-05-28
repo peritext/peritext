@@ -26,6 +26,9 @@ export function serializeHtmlMeta(metadata, template) {
     });
     value = persons.join(', ');
   }else value = metadata.value;
-  const output = template.replace('${key}', metadata.key).replace(/\${value:?([^}]*)?}/, value);
+  let output = template;
+  while (output.indexOf('${value') > -1) {
+    output = output.replace('${key}', metadata.key).replace(/\${value:?([^}]*)?}/, value);
+  }
   return output;
 }

@@ -26,7 +26,7 @@ function inheritMetadataFromParent(section, sectionTypeModels, sections, parentM
     const parentBibType = getMetaValue(parentMetadata, 'general', 'bibType');
     const parentModel = sectionTypeModels.acceptedTypes[parentBibType];
     if (parentModel) {
-      setMetaValue(section.metadata, 'general', 'bibType', parentModel.childrenType);
+      section.metadata = setMetaValue(section.metadata, 'general', 'bibType', parentModel.childrenType);
     }
   }
 
@@ -48,7 +48,6 @@ function inheritMetadataFromParent(section, sectionTypeModels, sections, parentM
       value: 1
     });
   }
-  // console.log(getMetaValue(section.metadata, 'general', 'generalityLevel'));
   return section;
 }
 

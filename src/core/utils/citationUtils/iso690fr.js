@@ -13,9 +13,9 @@ function formatCitationDetails(contextualizer) {
   let pageAddon = '';
 
   if (contextualizer.page) {
-    pageAddon = ', p. ' + formatter.formatSimpleProp(contextualizer, 'page', 'quotepage');
+    pageAddon = ', p. ' + '<span class="modulo-contents-citation-quote-pages">' + contextualizer.page + '</span>';
   } else if (contextualizer.pages) {
-    pageAddon = ', pp. ' + formatter.formatSimpleProp(contextualizer, 'pages', 'quotepage');
+    pageAddon = ', pp. ' + '<span class="modulo-contents-citation-quote-pages">' + contextualizer.pages + '</span>';
   }
 
   let additionnal = '';
@@ -83,9 +83,9 @@ export function formatBlockCitation(contextualizer, resource, ibid, opCit) {
         ref += authors + ', <i class="modulo-contents-citation-opcit">op.cit.</i>';
         break;
       } else {
-        let parent = formatter.formatParentJournal(resource, '${journal}, ${date}, vol. ${volume}, no ${issue}' );
+        let parent = formatter.formatParentJournal(resource, '${journal}, ${date}, vol. ${volume}, no ${issue}, ISSN : ${issn}' );
         if (resource.pages) {
-          parent += ', p. ' + formatter.formatSimpleProp(resource, 'pages', 'pages');
+          parent += ', p. ' + formatter.formatPages(resource);
         }
         ref += authors + '. ' + title + '. ' + parent;
       }
@@ -117,9 +117,9 @@ export function formatBlockCitation(contextualizer, resource, ibid, opCit) {
       if (resource.isbn) {
         ref += '. ISBN : ' + formatter.formatSimpleProp(resource, 'isbn', 'isbn');
       }
-      if (resource.issn) {
+      /*if (resource.issn) {
         ref += '. ISSN : ' + formatter.formatSimpleProp(resource, 'issn', 'issn');
-      }
+      }*/
       if (resource.doi) {
         ref += formatter.formatDoi(resource, '. DOI : ${doi}');
       }

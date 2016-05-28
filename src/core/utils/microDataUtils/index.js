@@ -1,3 +1,5 @@
+import {getMetaValue} from './../sectionUtils/'
+
 /*
  * Collection of utils for formatting scholarly citations in html/schema/microformat/RDFa
  * Schema reference could be even more covered
@@ -97,22 +99,57 @@ export function formatEntityProp(object, propName, propType, tagType = 'span') {
  * SPECIFIC FORMATTERS
  */
 
- export function formatLink(resource, text, inputSchemaType) {
+export function setSectionMeta(section) {
+  let output = ' itemscope itemType="http://schema.org/' + bibToSchema(getMetaValue(section.metadata, 'general', 'bibType'))
+              + '" vocab="http://schema.org/" ressource="#' + getMetaValue(section.metadata, 'general', 'citeKey') + '"'
+              + (section.parent ? 'itemprop="hasPart" property="hasPart" ' : '')
+  return output;
+}
+
+export function metadataToSchema(section) {
+  let output = '<div class="modulo-contents-schema-metadata-placeholder" style="visibility:hidden">';
+  let meta = section.metadata.filter((prop) =>{
+    return prop.domain === 'general';
+  }).reduce((obj, prop) =>{
+    obj[prop['key']] = prop['value'];
+    return obj;
+  }, {});
+
+  if (meta.title) {
+    output += formatSimpleProp(meta, 'title', 'name');
+  }
+
+  if (meta.date) {
+    output += formatDate(meta);
+  }
+
+  if (meta.author) {
+    meta.author.forEach((auth)=>{
+      output += formatAuthor(auth, '${firstName} ${lastName}');
+    })
+  }
+
+  // TODO : continue along with other metadata-to-schema conversions
+
+  return output + '</div>';
+}
+
+export function formatLink(resource, text, inputSchemaType) {
   const schemaType = inputSchemaType || resource.schematype || 'webpage';
   let output = '<a class="modulo-contents-hyperlink" itemscope itemprop="citation" itemtype="http://schema.org/'
               + schemaType
               + '"'
-              +' vocab="http://schema.org/" typeof="' + schemaType + '" resource="#' + resource.citeKey + '"'
+              +' typeof="' + schemaType + '" resource="#' + resource.citeKey + '"'
               + ' target="_blank"'
               + ' href="'
               + resource.url
               + '" >'
-              // + '<meta itemprop="title" property="title" value="' + resource.title + '"/>'
-              // + '<meta itemprop="url" property="url" value="' + resource.url + '"/>'
+              + '<span itemprop="name" property="name" value="' + resource.title + '"/>'
               + text
+              + '<span itemprop="url" property="url" value="' + resource.url + '"/></span>'
               + '</a>'
   return output;
- }
+}
 
 // wraps the citation of an element inside a schema "citation" html object
 export function wrapCitation(resource, tagType = 'span') {
@@ -120,8 +157,9 @@ export function wrapCitation(resource, tagType = 'span') {
   let before = '<' + tagType + '  class="modulo-contents-citation-wrapper" itemprop="citation" ';
   // microdata header
   before += 'itemscope itemtype="http://schema.org/' + schemaType + '"';
+  before += ' id="' + resource.citeKey + '"';
   // RDFa header
-  before += 'vocab="http://schema.org/" typeof="' + schemaType + '" resource="#' + resource.citeKey + '"';
+  before += ' typeof="' + schemaType + '" resource="#' + resource.citeKey + '"';
   before += '>';
   return {
     before,
@@ -210,11 +248,11 @@ export function formatUrl(resource, pattern) {
 
 // Handling nested description of parent journal
 // Example of output:
-// Sciences du Design, 2013, 3(2)
+// Sciences du Design, 2013, 3(2). ISSN : xxxx-xxxx
 // Example of corresponding pattern:
-// ${journal}, ${date}, ${volume}(${issue});
+// ${journal}, ${date}, ${volume}(${issue}). ISSN : ${issn};
 export function formatParentJournal(resource, pattern) {
-  const journalExpression = ['<span class="modulo-contents-citation-journal" itemprop="isPartOf" itemscope itemtype="http://schema.org/Periodical" vocab="http://schema.org/" typeof="Periodical">',
+  const journalExpression = ['<span class="modulo-contents-citation-journal" itemprop="isPartOf" itemscope itemtype="http://schema.org/Periodical" typeof="Periodical">',
                               '<span itemprop="name" property="name">',
                               '</span>',
                               '</span>'
@@ -242,12 +280,16 @@ export function formatParentJournal(resource, pattern) {
     expression = expression.replace('${issue}', issueExpression[0] + issueExpression[1] + resource.issue + issueExpression[2] + issueExpression[3] + volumeExpression[3]);
   } else expression = expression.replace('${issue}', volumeExpression[3]);
 
+  if (resource.issn) {
+    expression = expression.replace('${issn}', formatSimpleProp(resource, 'issn', 'issn'));
+  } else expression = expression.replace('${issn}', '');
+
   return expression;
 }
 
 // ${publisher} : ${address}
 export function formatPublisher(resource, pattern) {
-  const publisherExpression = ['<span class="modulo-contents-citation-publisher" itemprop="publisher" value="publisher" itemscope itemtype="http://schema.org/Organization" vocab="http://schema.org/" typeof="Organization">',
+  const publisherExpression = ['<span class="modulo-contents-citation-publisher" itemprop="publisher" value="publisher" itemscope itemtype="http://schema.org/Organization" typeof="Organization">',
                               '<span itemprop="name" property="name">',
                               '</span>',
                               '</span>'
@@ -255,7 +297,7 @@ export function formatPublisher(resource, pattern) {
   let expression = publisherExpression[0] + pattern.replace('${publisher}', publisherExpression[1] + resource.publisher + publisherExpression[2]) + publisherExpression[3];
 
   if (resource.address) {
-    expression = expression.replace('${address}', '<span itemprop="place" value="place">' + resource.address + '</span>');
+    expression = expression.replace('${address}', '<span itemprop="address" value="address">' + resource.address + '</span>');
   }
   return expression;
 }
