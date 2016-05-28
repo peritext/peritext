@@ -2,10 +2,10 @@
  * This module inputs a specific modulo section
  * and outputs a pdf file ready to display.
  * The converter used is PrinceXML non-commercial version.
- * After endless trials with free software converters such as wkhtmltopdf or phantomjs-pdf,
- * I could not find a way to create a sufficiently reliable and user-customizable pdf output (notably via css3 @paged-media props).
- * For instance, wkhtmltopdf (and webkit-based converters in general) does not support 'float:footnotes' which is mandatory for scholarly outputs
- * Therefore proprietary software PrinceXML, which works very very good, is used in its free version for now (logo added on the first page, no commercial use license)
+ * After endless trials with free software converters such as wkhtmltopdf, weasyprint or phantomjs-pdf,
+ * I could not find a way to produce a sufficiently reliable and user-customizable pdf output (notably via css3 @paged-media props).
+ * For instance, wkhtmltopdf (and webkit-based converters in general) does not support 'float:footnotes' feature which is mandatory for scholarly outputs like modulo's ones
+ * Therefore I chose proprietary software PrinceXML, which works very very well. It is used in its free version for now (logo added on the first page, no commercial use license)
  */
 
 import {waterfall} from 'async';
@@ -44,6 +44,10 @@ export function exportSection({section, sectionList, includeChildren = true, des
   waterfall([
     function(cback) {
       // TODO : resolve contextualizations dependencies (data fetching, images loading ?, ...) here
+      // 1. identify contextualizations that have dependencies (why start from contextualizations : to fetch only the actually used resources)
+      // 2. factorize them according to their common resources (goal : never fetch twice the same data)
+      // 3. fetch data to resolve dependencies (async map)
+      // 4. callback new data + user-oriented indications about fetching errors
       cback(null, sectios);
     }, function(sections, cback) {
       readFile(resolve(__dirname + defaultStylesPath + 'global.css'), function(err, contents) {

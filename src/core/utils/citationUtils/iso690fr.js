@@ -1,12 +1,13 @@
-import * as formatter from './utils.js';
-
 /*
- * iso690 norm formatter (lang: fr)
+ * iso690 bibliographic norm formatter (lang: fr)
  * Doc 1 : http://revues.refer.org/telechargement/fiche-bibliographie.pdf
  * Doc 2 : https://www.mpl.ird.fr/documentation/download/FormBibliog.pdf
- * TODO : Not finished (just documented properly books and journal articles - I have setup a default presentation for other bibTypes)
+ * TODO 1 : Not finished resourceType-to-citation mapping (documented properly only books and journal articles - setup a default presentation for others)
+ * TODO 2 : handle year numerotation - if several publications of the same author(s) are cited, they should be alphabetically numeroted in the order of bibliography
+ * (this require to handle the ${bibliography} template feature first, then update code accordingly)
  */
 
+import * as formatter from './../microDataUtils/';
 
 function formatCitationDetails(contextualizer) {
   let pageAddon = '';
