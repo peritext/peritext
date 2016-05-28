@@ -97,6 +97,23 @@ export function formatEntityProp(object, propName, propType, tagType = 'span') {
  * SPECIFIC FORMATTERS
  */
 
+ export function formatLink(resource, text, inputSchemaType) {
+  const schemaType = inputSchemaType || resource.schematype || 'webpage';
+  let output = '<a class="modulo-contents-hyperlink" itemscope itemprop="citation" itemtype="http://schema.org/'
+              + schemaType
+              + '"'
+              +' vocab="http://schema.org/" typeof="' + schemaType + '" resource="#' + resource.citeKey + '"'
+              + ' target="_blank"'
+              + ' href="'
+              + resource.url
+              + '" >'
+              // + '<meta itemprop="title" property="title" value="' + resource.title + '"/>'
+              // + '<meta itemprop="url" property="url" value="' + resource.url + '"/>'
+              + text
+              + '</a>'
+  return output;
+ }
+
 // wraps the citation of an element inside a schema "citation" html object
 export function wrapCitation(resource, tagType = 'span') {
   const schemaType = resource.schemaType || bibToSchema(resource.bibType);

@@ -29,8 +29,7 @@ function resolveContextualizer(contextualizer, section, models) {
   }
   // guess contextualizer type if needed
   if (!newContextualizer.type) {
-    // one resource
-    if (newContextualizer.resources.length === 1) {
+    if (newContextualizer.resources.length > 0) {
       const sourceKey = newContextualizer.resources[0];
       const source = section.resources.find((resource)=>{
         return resource.citeKey === sourceKey;
@@ -132,10 +131,7 @@ export function resolveContextualizersAndContextualizations({section, models}, c
 // I 'reduce' contextualizations statements to produce a new rendering-specific section representation
 export function resolveContextualizationsImplementation(section, renderingMode) {
   let contextualizer;
-  // const id = getMetaValue(section.metadata, 'general', 'citeKey');
   const sectio = section.contextualizations.reduce((inputSection, contextualization) => {
-    // console.log(id, 'contextualization : ', contextualization);
-    // console.log(id, 'temp section content: ', inputSection.contents);
     contextualizer = contextualizers[contextualization.contextualizerType];
     switch (renderingMode) {
     case 'static':

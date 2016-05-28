@@ -1,5 +1,5 @@
-
 export function contextualizeInlineStatic(section, contextualization) {
+  console.log('image inline');
   return section;
 }
 
