@@ -8,6 +8,15 @@ ${toc}
     startat="2012-21-01"
 }
 
+I am inline referencing to an [image](@image_test_1).
+
+Then I want to say that the image I just showed [image](@image_test_1) is awesome.
+
+And then I want to display a group of images :
+
+![](@image_test_1,@image_test_2)
+
+And then I want to point to an [online](@website_test) resource.
 
 I will talk about that[^]{with a footnote here} :
 

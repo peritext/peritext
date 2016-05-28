@@ -157,10 +157,16 @@
           "required" : false
         },
         {
-          "key" : "description",
+          "key" : "height",
           "valueType" : "string",
           "description" : "The original height of the image",
-          "required" : true
+          "required" : false
+        },
+        {
+          "key" : "alt",
+          "valueType" : "string",
+          "description" : "The text to display if image is not there",
+          "required" : false
         }
       ],
       "acceptedFileExtensions" : [".jpg", ".png", ".jpeg", ".gif", ".tiff", ".bmp", ".webp"]
