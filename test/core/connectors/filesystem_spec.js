@@ -3,10 +3,11 @@ import {waterfall} from 'async';
 import {resolve} from 'path';
 
 
-import {createFromPath, updateFromPath, deleteFromPath, readFromPath} from './../../../src/core/connectors/filesystem'
+import {createFromPath, updateFromPath, deleteFromPath, readFromPath, getAssetUri} from './../../../src/core/connectors/filesystem'
 
-import {sample_folder_path, crud_cobaye_path} from "./../../test_settings.json";
+import {sample_folder_path, sample_assets_path, crud_cobaye_path} from "./../../test_settings.json";
 const base_path = __dirname + '/../../' + sample_folder_path;
+const base_assets_path = __dirname + '/../../' + sample_assets_path;
 const crud_path = __dirname + '/../../' + crud_cobaye_path;
 
 
@@ -249,3 +250,16 @@ describe('filesystem:deleteFromPath', function(){
     });
   });
 });
+
+describe('filesystem:getAssetUri', function() {
+  let path = base_assets_path + '/';
+  it('should return the correct asset uri', function(done) {
+    let test = 'img.jpg';
+    let expected = resolve(path + test);
+    getAssetUri({path: path + test}, function(err, path){
+      expect(err).to.be.null;
+      expect(path).to.equal(expected);
+      done();
+    });
+  });
+})

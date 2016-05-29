@@ -179,3 +179,13 @@ export function deleteFromPath({path}, callback) {
     }
   });
 }
+
+// asset resolver
+// pretty useless for fs connector
+// but kept for architecture consistency
+// because it will be a more complex process for other connectors
+// WIP TODO QUESTION : should it check for resource availability ?
+export function getAssetUri({path}, callback) {
+  const finalPath = resolve((Array.isArray(path)) ? path.join('/') : path);
+  return callback(null, finalPath);
+}

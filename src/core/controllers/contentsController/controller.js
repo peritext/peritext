@@ -20,6 +20,10 @@ export function updateFromSource(connector, dataPath, models, parameters, callba
   });
 }
 
+/*
+ * I echo an expected/actual fstree difference with Create/Update/Delete operations
+ * on the content source through the appropriate connector middleware
+ */
 function applyDifference(difference, connector, callback) {
   let item;
   switch (difference.kind) {
@@ -95,10 +99,10 @@ function applyDifference(difference, connector, callback) {
 }
 
 /*
- * I update a data source from a moduloSectionArray, by diffing new fsTree with previous fsTree
- * compares new moduloSectionArray javascript state to old fsTree tree
- * then makes a diff list with deep-diff
- * then updates source tree (with C.U.D. operations) accordingly
+ * I update a data source from a moduloSectionArray, by "diffing" new fsTree with previous fsTree
+ * I compare new moduloSectionArray javascript state to old fsTree tree
+ * then make a diff list with deep-diff
+ * then monitor source tree updating (with C.U.D. operations) accordingly
  */
 export function updateToSource(connector, outputPath, sections, models, oldFsTree, callback) {
   serializeSectionList({sectionList: sections, models, basePath: outputPath}, function(err, newFsTree) {
