@@ -3,7 +3,6 @@
  */
 
 import {waterfall, map as asyncMap} from 'async';
-import {resolve} from 'path';
 
 import {concatTree} from './../../resolvers/concatTree';
 import {parseTreeResources} from './../../resolvers/parseTreeResources';
@@ -110,7 +109,7 @@ function concatSection({section, models}, callback) {
 function sectionListToFsTree(inputSectionList, basePath, callback) {
   const sectionList = inputSectionList.map((section)=>{
     const folderTitle = section.citeKey;
-    const relPath = resolve((section.root) ? basePath : basePath + '/' + folderTitle);
+    const relPath = (section.root) ? '/' : '/' + folderTitle;
     const children = [
       {
         type: 'file',

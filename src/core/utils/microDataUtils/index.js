@@ -240,7 +240,7 @@ export function formatImageFigure(resource, imageKey, captionContent, inputSchem
               + '"'
               + ' typeof="' + schemaType + '" resource="#' + resource.citeKey + '"'
               + '>'
-              + '<span itemprop="name" property="name" style="display:none">' + resource.title + '</span>'
+              + '<span itemprop="name" property="name" style="visibility:hidden">' + resource.title + '</span>'
               + '<figure itemprop="image" property="image" itemscope itemType="http://schema.org/ImageObject" typeof="ImageObject">'
               + '<a href="' + resource[imageKey] + '" itemprop="contentUrl" property="contenturl" value="' + resource[imageKey] + '"></a>'
               + '<img itemprop="image" value="image" src="' + resource[imageKey] + '" alt="' + resource.title + '" />'
