@@ -11,20 +11,37 @@
 .modulo-contents-inline-quoted::after{
   content : ' \00BB';
 }
-.modulo-contents-note-content{
-   display: prince-footnote;
+.modulo-contents-note-content
+{
+    display: prince-footnote;
+
     counter-increment: footnote;
 }
 
 .modulo-contents-print-placeholder
 {
-  page-break-after : always;
-  page:placeholder;
+    page-break-after: always;
+    page: placeholder;
 }
 
-@page {
-    @bottom {
-        content: counter(page)
+figure {
+  border : 1px solid black;
+  padding : 0.5cm;
+}
+
+img
+{
+    width: 9999em;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
+}
+
+@page
+{
+    @bottom
+    {
+        content: counter(page);
     }
 }
 
@@ -42,19 +59,20 @@ body{
 <p><TemplateCall type="toc" options=""/></p>
 <BlockContextualization id="contextualization_1" resources="@temporal_data" contextualizer="cool_timeline_1">A reference</BlockContextualization>
 <BlockContextualization id="contextualization_2" resources="@temporal_data" contextualizer="cool_timeline_2">Another view on the timeline</BlockContextualization>
-<p>I am inline referencing to an <InlineContextualization id="contextualization_7" resources="@image_test_1" contextualizer="contextualizer_7">image</InlineContextualization>.</p>
-<p>Then I want to say that the image I just showed <InlineContextualization id="contextualization_8" resources="@image_test_1" contextualizer="contextualizer_8">image</InlineContextualization> is awesome.</p>
+<p>I am inline referencing to an <InlineContextualization id="contextualization_9" resources="@image_test_1" contextualizer="contextualizer_9">image</InlineContextualization>.</p>
+<p>Then I want to say that the image I just showed <InlineContextualization id="contextualization_10" resources="@image_test_1" contextualizer="contextualizer_10">image</InlineContextualization> is awesome.</p>
 <p>And then I want to display a group of images :</p>
 <BlockContextualization id="contextualization_4" resources="@image_test_1,@image_test_2" contextualizer="contextualizer_3"></BlockContextualization>
-<p>And then I want to point to an online<sup class="modulo-contents-note-content" name="note-content-mybook1" id="note-content-mybook1"><a class="modulo-contents-hyperlink" itemscope itemprop="citation" itemtype="http://schema.org/webpage" typeof="webpage" resource="#website_test" target="_blank" href="https://medium.com/@sxywu/on-d3-react-and-a-little-bit-of-flux-88a226f328f3#.4z6m379fa" ><span itemprop="name" property="name" value="D3 and react tutorial"/>https://medium.com/@sxywu/on-d3-react-and-a-little-bit-of-flux-88a226f328f3#.4z6m379fa<span itemprop="url" property="url" value="https://medium.com/@sxywu/on-d3-react-and-a-little-bit-of-flux-88a226f328f3#.4z6m379fa"/></span></a></sup> resource.</p>
+<p>And then I want to point to an online<sup class="modulo-contents-note-content" name="note-content-mybook1" id="note-content-mybook1"><a class="modulo-contents-hyperlink" itemscope itemprop="citation" itemtype="http://schema.org/webpage" typeof="webpage" resource="#website_test" target="_blank" href="https://medium.com/@sxywu/on-d3-react-and-a-little-bit-of-flux-88a226f328f3#.4z6m379fa" ><span itemprop="name" property="name" value="D3 and react tutorial"/>https://medium.com/@sxywu/on-d3-react-and-a-little-bit-of-flux-88a226f328f3#.4z6m379fa<span itemprop="url" property="url" style="display:none"/>https://medium.com/@sxywu/on-d3-react-and-a-little-bit-of-flux-88a226f328f3#.4z6m379fa</span></a></sup> resource.</p>
+<div class="modulo-contents-figure" itemscope itemprop="citation" itemtype="http://schema.org/webpage" typeof="webpage" resource="#website_test"><span itemprop="name" property="name" style="display:none">D3 and react tutorial</span><figure itemprop="image" property="image" itemscope itemType="http://schema.org/ImageObject" typeof="ImageObject"><a href="undefined" itemprop="contentUrl" property="contenturl" value="undefined"></a><img itemprop="image" value="image" src="undefined" alt="D3 and react tutorial" /><figcaption itemprop="caption" value="caption"><span class="modulo-contents-figure-mark" id="figure-mark-1">Figure 1 – </span>online 2 – <a class="modulo-contents-hyperlink" itemprop="url" target="_blank" href="https://medium.com/@sxywu/on-d3-react-and-a-little-bit-of-flux-88a226f328f3#.4z6m379fa" >https://medium.com/@sxywu/on-d3-react-and-a-little-bit-of-flux-88a226f328f3#.4z6m379fa</a></figcaption></figure></div>
 <p>I will talk about that<sup class="modulo-contents-note-content" name="note-content-mybook2" id="note-content-mybook2">with a footnote here</sup> :</p>
-<BlockContextualization id="contextualization_6" resources="@temporal_data" contextualizer="contextualizer_5">Another reference with unnamed contextualizer</BlockContextualization>
-<p>I will first quote in a book where someone that says <q id="contextualization_10"  class="modulo-contents-inline-quoted">it&#39;s not possible</q> (<span  class="modulo-contents-citation-wrapper" itemprop="citation" itemscope itemtype="http://schema.org/Book" id="ab94" typeof="Book" resource="#ab94"><span class="modulo-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person"><span class="modulo-contents-citation-author-lastname" itemprop="familyName" property="familyName" >CHARALAMBOS</span></span> et <span class="modulo-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person"><span class="modulo-contents-citation-author-lastname" itemprop="familyName" property="familyName" >BORDER</span></span>, <time class="modulo-contents-citation-date" property="datePublished" itemprop="datePublished" datetime="1994">1994</time></span>).</p>
+<BlockContextualization id="contextualization_8" resources="@temporal_data" contextualizer="contextualizer_7">Another reference with unnamed contextualizer</BlockContextualization>
+<p>I will first quote in a book where someone that says <q id="contextualization_12"  class="modulo-contents-inline-quoted">it&#39;s not possible</q> (<span  class="modulo-contents-citation-wrapper" itemprop="citation" itemscope itemtype="http://schema.org/Book" id="ab94" typeof="Book" resource="#ab94"><span class="modulo-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person"><span class="modulo-contents-citation-author-lastname" itemprop="familyName" property="familyName" >CHARALAMBOS</span></span> et <span class="modulo-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person"><span class="modulo-contents-citation-author-lastname" itemprop="familyName" property="familyName" >BORDER</span></span>, <time class="modulo-contents-citation-date" property="datePublished" itemprop="datePublished" datetime="1994">1994</time></span>).</p>
 <p>Then I should have an ibid here <sup class="modulo-contents-note-content" name="note-content-mybook3" id="note-content-mybook3"><span  class="modulo-contents-citation-wrapper" itemprop="citation" itemscope itemtype="http://schema.org/Book" id="ab94" typeof="Book" resource="#ab94"><i class="modulo-contents-citation-ibid">ibid.</i>, p. <span class="modulo-contents-citation-quote-pages">12</span></span>.</sup></p>
 <p>And as say a lot of people<sup class="modulo-contents-note-content" name="note-content-mybook4" id="note-content-mybook4"><span  class="modulo-contents-citation-wrapper" itemprop="citation" itemscope itemtype="http://schema.org/ScholarlyArticle" id="martin_change_2002" typeof="ScholarlyArticle" resource="#martin_change_2002"><span class="modulo-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person"><span class="modulo-contents-citation-author-lastname" itemprop="familyName" property="familyName" >MARTIN</span></span> et <span class="modulo-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person"><span class="modulo-contents-citation-author-lastname" itemprop="familyName" property="familyName" >COLEMAN</span></span>, <time class="modulo-contents-citation-date" property="datePublished" itemprop="datePublished" datetime="2002">2002</time>, pp. <span class="modulo-contents-citation-quote-pages">30-40</span></span></sup>, publishing could be simpler.</p>
 <p>And for the footnotes, I want to say that Martin said that<sup class="modulo-contents-note-content" name="note-content-mybook5" id="note-content-mybook5">I&#39;m referencing to <span  class="modulo-contents-citation-wrapper" itemprop="citation" itemscope itemtype="http://schema.org/ScholarlyArticle" id="martin_change_2002" typeof="ScholarlyArticle" resource="#martin_change_2002"><span class="modulo-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person"><span class="modulo-contents-citation-author-lastname" itemprop="familyName" property="familyName" >MARTIN</span></span> et <span class="modulo-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person"><span class="modulo-contents-citation-author-lastname" itemprop="familyName" property="familyName" >COLEMAN</span></span>, <i class="modulo-contents-citation-opcit">op.cit.</i>, pp. <span class="modulo-contents-citation-quote-pages">12-13</span></span> when he says : &quot;hello&quot;</sup></p>
-<p>Whe Martin says <q id="contextualization_14"  class="modulo-contents-inline-quoted">there has to be some <em>change</em></q> (<span  class="modulo-contents-citation-wrapper" itemprop="citation" itemscope itemtype="http://schema.org/ScholarlyArticle" id="martin_change_2002" typeof="ScholarlyArticle" resource="#martin_change_2002"><span class="modulo-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person"><span class="modulo-contents-citation-author-lastname" itemprop="familyName" property="familyName" >MARTIN</span></span> et <span class="modulo-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person"><span class="modulo-contents-citation-author-lastname" itemprop="familyName" property="familyName" >COLEMAN</span></span>, <i class="modulo-contents-citation-opcit">op.cit.</i></span>).</p>
-<p>Now let&#39;s say I want to link to this <InlineContextualization id="contextualization_15" resources="@temporal_data" contextualizer="contextualizer_15">timeline</InlineContextualization> and continue my paragraph quietly.</p>
+<p>Whe Martin says <q id="contextualization_16"  class="modulo-contents-inline-quoted">there has to be some <em>change</em></q> (<span  class="modulo-contents-citation-wrapper" itemprop="citation" itemscope itemtype="http://schema.org/ScholarlyArticle" id="martin_change_2002" typeof="ScholarlyArticle" resource="#martin_change_2002"><span class="modulo-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person"><span class="modulo-contents-citation-author-lastname" itemprop="familyName" property="familyName" >MARTIN</span></span> et <span class="modulo-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person"><span class="modulo-contents-citation-author-lastname" itemprop="familyName" property="familyName" >COLEMAN</span></span>, <i class="modulo-contents-citation-opcit">op.cit.</i></span>).</p>
+<p>Now let&#39;s say I want to link to this <InlineContextualization id="contextualization_17" resources="@temporal_data" contextualizer="contextualizer_17">timeline</InlineContextualization> and continue my paragraph quietly.</p>
 <p>Welcome to my awesome book.</p>
 <p>Thanks to all !</p>
 <p>Momanddad
@@ -117,7 +135,7 @@ My imaginary friend Serge</p>
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>
 </section>
 
-<section  itemscope itemType="http://schema.org/CreativeWork" vocab="http://schema.org/" ressource="#partie_2_2"itemprop="hasPart" property="hasPart"  class="modulo-contents-section modulo-contents-section-level-4" id="partie_2_2">
+<section  itemscope itemType="http://schema.org/Chapter" vocab="http://schema.org/" ressource="#partie_2_2"itemprop="hasPart" property="hasPart"  class="modulo-contents-section modulo-contents-section-level-4" id="partie_2_2">
 <div class="modulo-contents-schema-metadata-placeholder" style="visibility:hidden"><span class="modulo-contents-citation-title" itemprop="name" property="name">Partie 2.2</span><time class="modulo-contents-citation-date" property="datePublished" itemprop="datePublished" datetime="2015">2015</time><span class="modulo-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person"><span class="modulo-contents-citation-author-firstname" itemprop="givenName" property="givenName" >Viviane</span> <span class="modulo-contents-citation-author-lastname" itemprop="familyName" property="familyName" >Westwood</span></span><span class="modulo-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person"><span class="modulo-contents-citation-author-firstname" itemprop="givenName" property="givenName" >Francis</span> <span class="modulo-contents-citation-author-lastname" itemprop="familyName" property="familyName" >Lalane</span></span></div><h1 id="this-is-part-two-point-two">This is part two point two</h1>
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam nesciunt molestias hic error dignissimos blanditiis, quo, voluptas necessitatibus neque, aliquid cupiditate commodi sed dolor consequatur ipsum fugiat esse placeat illo.</p>

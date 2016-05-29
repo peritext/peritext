@@ -147,7 +147,6 @@ export function exportSection({section, sectionList, includeChildren = true, des
     }, function(sections, html, cback) {
 
       writeFile(resolve(__dirname + destinationFolder + motherKey + '.html'), html, 'utf-8', function(err) {
-        console.log('written, out');
         cback(err, sections, html);
       });
     }

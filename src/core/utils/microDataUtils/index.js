@@ -134,6 +134,25 @@ export function metadataToSchema(section) {
   return output + '</div>';
 }
 
+export function formatImageFigure(resource, imageKey, captionContent, inputSchemaType) {
+  const schemaType = inputSchemaType || resource.schematype || 'webpage';
+  let output = '<div class="modulo-contents-figure" itemscope itemprop="citation" itemtype="http://schema.org/'
+              + schemaType
+              + '"'
+              + ' typeof="' + schemaType + '" resource="#' + resource.citeKey + '"'
+              + '>'
+              + '<span itemprop="name" property="name" style="display:none">' + resource.title + '</span>'
+              + '<figure itemprop="image" property="image" itemscope itemType="http://schema.org/ImageObject" typeof="ImageObject">'
+              + '<a href="' + resource[imageKey] + '" itemprop="contentUrl" property="contenturl" value="' + resource[imageKey] + '"></a>'
+              + '<img itemprop="image" value="image" src="' + resource[imageKey] + '" alt="' + resource.title + '" />'
+              + '<figcaption itemprop="caption" value="caption">'
+              + captionContent
+              + '</figcaption>'
+              + '</figure>'
+              + '</div>';
+  return output;
+}
+
 export function formatLink(resource, text, inputSchemaType) {
   const schemaType = inputSchemaType || resource.schematype || 'webpage';
   let output = '<a class="modulo-contents-hyperlink" itemscope itemprop="citation" itemtype="http://schema.org/'
@@ -146,7 +165,7 @@ export function formatLink(resource, text, inputSchemaType) {
               + '" >'
               + '<span itemprop="name" property="name" value="' + resource.title + '"/>'
               + text
-              + '<span itemprop="url" property="url" value="' + resource.url + '"/></span>'
+              + '<span itemprop="url" property="url" style="display:none"/>' + resource.url + '</span>'
               + '</a>'
   return output;
 }

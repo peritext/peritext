@@ -1,16 +1,33 @@
-.modulo-contents-note-content{
-   display: prince-footnote;
+.modulo-contents-note-content
+{
+    display: prince-footnote;
+
     counter-increment: footnote;
 }
 
 .modulo-contents-print-placeholder
 {
-  page-break-after : always;
-  page:placeholder;
+    page-break-after: always;
+    page: placeholder;
 }
 
-@page {
-    @bottom {
-        content: counter(page)
+figure {
+  border : 1px solid black;
+  padding : 0.5cm;
+}
+
+img
+{
+    width: 9999em;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
+}
+
+@page
+{
+    @bottom
+    {
+        content: counter(page);
     }
 }

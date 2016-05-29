@@ -18,6 +18,8 @@ And then I want to display a group of images :
 
 And then I want to point to an [online](@website_test) resource.
 
+![online 2](@website_test)
+
 I will talk about that[^]{with a footnote here} :
 
 ![Another reference with unnamed contextualizer](@temporal_data){

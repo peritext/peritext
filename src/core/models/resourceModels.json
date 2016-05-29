@@ -175,7 +175,14 @@
       "categories" : ["usableResource"],
       "defaultContextualizer" : "webpage",
 
-      "properties" : [],
+      "properties" : [
+        {
+          "key" : "posterurl",
+          "valueType" : "string",
+          "description" : "The poster address of the resource",
+          "required" : false
+        }
+      ],
       "acceptedFileExtensions" : []
     },
     "vectorsImage" : {
