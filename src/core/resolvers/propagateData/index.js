@@ -235,7 +235,9 @@ export function propagateData({errors, sections, models, parent}, callback) {
   let outputSections = [].concat(sections);
   // clean bibType
   outputSections = sections.map((section) =>{
-    const newBibType = getMetaValue(section.metadata, 'general', 'bibType').split('modulo')[1];
+    let newBibType = getMetaValue(section.metadata, 'general', 'bibType');
+    newBibType = newBibType ? newBibType.split('modulo') : [];
+    newBibType = newBibType.length > 1 ? newBibType[1] : newBibType[0];
     section.metadata = setMetaValue(section.metadata, 'general', 'bibType', newBibType);
     return section;
   });

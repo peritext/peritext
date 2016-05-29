@@ -4,22 +4,26 @@ import {writeFile} from 'fs';
 
 import {parseSection, serializeSectionList} from './../../../src/core/converters/sectionConverter';
 import {createFromPath, updateFromPath, deleteFromPath, readFromPath} from './../../../src/core/connectors/filesystem';
-import defaultParameters from './../../../src/config/defaultParameters'
-import * as models from './../../../src/core/models/'
+import defaultParameters from './../../../src/config/defaultParameters';
+import * as models from './../../../src/core/models/';
 
 import {sample_folder_path, crud_cobaye_path} from "./../../test_settings.json";
 const base_path = __dirname + '/../../' + sample_folder_path;
+
+const params = {
+  basePath: base_path
+}
 
 describe('sectionConverter:parser', function(){
   it('should parse sample content successfully', function(done){
     waterfall([
         function(callback){
-          readFromPath({path:base_path, depth : true, parseFiles : true}, function(err, results){
+          readFromPath({path: '', params, depth: true, parseFiles: true}, function(err, results){
             callback(err, results);
           });
         },
         function(tree, callback){
-          parseSection({tree, models, parameters : defaultParameters}, callback);
+          parseSection({tree, models, parameters: defaultParameters}, callback);
         }
       ],
       function(err, results){
@@ -33,12 +37,12 @@ describe('sectionConverter:parser', function(){
   it('should have attributed unique identifiers to all original objects', function(done){
     waterfall([
         function(callback){
-          readFromPath({path:base_path, depth : true, parseFiles : true}, function(err, results){
+          readFromPath({path:'', params, depth : true, parseFiles : true}, function(err, results){
             callback(err, results);
           });
         },
         function(tree, callback){
-          parseSection({tree, models, parameters : defaultParameters}, callback);
+          parseSection({tree, models, parameters: defaultParameters}, callback);
         }
       ],
       function(err, results){
@@ -79,7 +83,7 @@ describe('sectionConverter:serializer', function(){
     let parsedFsTree;
     waterfall([
         function(callback){
-          readFromPath({path:base_path, depth : true, parseFiles : true}, function(err, results){
+          readFromPath({path:'', params, depth : true, parseFiles : true}, function(err, results){
             parsedFsTree = results;
             callback(err, results);
           });

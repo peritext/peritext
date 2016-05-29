@@ -1,10 +1,8 @@
-import {getMetaValue} from './../sectionUtils/'
-
 /*
  * Collection of utils for formatting scholarly citations in html/schema/microformat/RDFa
  * Schema reference could be even more covered
  */
-
+import {getMetaValue} from './../sectionUtils/';
 
  // I transform 1, 2, 3 incrementation into a, b, c
 export function toLetters(num) {
@@ -99,92 +97,6 @@ export function formatEntityProp(object, propName, propType, tagType = 'span') {
  * SPECIFIC FORMATTERS
  */
 
-export function setSectionMeta(section) {
-  let output = ' itemscope itemType="http://schema.org/' + bibToSchema(getMetaValue(section.metadata, 'general', 'bibType'))
-              + '" vocab="http://schema.org/" ressource="#' + getMetaValue(section.metadata, 'general', 'citeKey') + '"'
-              + (section.parent ? 'itemprop="hasPart" property="hasPart" ' : '')
-  return output;
-}
-
-export function metadataToSchema(section) {
-  let output = '<div class="modulo-contents-schema-metadata-placeholder" style="visibility:hidden">';
-  let meta = section.metadata.filter((prop) =>{
-    return prop.domain === 'general';
-  }).reduce((obj, prop) =>{
-    obj[prop['key']] = prop['value'];
-    return obj;
-  }, {});
-
-  if (meta.title) {
-    output += formatSimpleProp(meta, 'title', 'name');
-  }
-
-  if (meta.date) {
-    output += formatDate(meta);
-  }
-
-  if (meta.author) {
-    meta.author.forEach((auth)=>{
-      output += formatAuthor(auth, '${firstName} ${lastName}');
-    })
-  }
-
-  // TODO : continue along with other metadata-to-schema conversions
-
-  return output + '</div>';
-}
-
-export function formatImageFigure(resource, imageKey, captionContent, inputSchemaType) {
-  const schemaType = inputSchemaType || resource.schematype || 'webpage';
-  let output = '<div class="modulo-contents-figure" itemscope itemprop="citation" itemtype="http://schema.org/'
-              + schemaType
-              + '"'
-              + ' typeof="' + schemaType + '" resource="#' + resource.citeKey + '"'
-              + '>'
-              + '<span itemprop="name" property="name" style="display:none">' + resource.title + '</span>'
-              + '<figure itemprop="image" property="image" itemscope itemType="http://schema.org/ImageObject" typeof="ImageObject">'
-              + '<a href="' + resource[imageKey] + '" itemprop="contentUrl" property="contenturl" value="' + resource[imageKey] + '"></a>'
-              + '<img itemprop="image" value="image" src="' + resource[imageKey] + '" alt="' + resource.title + '" />'
-              + '<figcaption itemprop="caption" value="caption">'
-              + captionContent
-              + '</figcaption>'
-              + '</figure>'
-              + '</div>';
-  return output;
-}
-
-export function formatLink(resource, text, inputSchemaType) {
-  const schemaType = inputSchemaType || resource.schematype || 'webpage';
-  let output = '<a class="modulo-contents-hyperlink" itemscope itemprop="citation" itemtype="http://schema.org/'
-              + schemaType
-              + '"'
-              +' typeof="' + schemaType + '" resource="#' + resource.citeKey + '"'
-              + ' target="_blank"'
-              + ' href="'
-              + resource.url
-              + '" >'
-              + '<span itemprop="name" property="name" value="' + resource.title + '"/>'
-              + text
-              + '<span itemprop="url" property="url" style="display:none"/>' + resource.url + '</span>'
-              + '</a>'
-  return output;
-}
-
-// wraps the citation of an element inside a schema "citation" html object
-export function wrapCitation(resource, tagType = 'span') {
-  const schemaType = resource.schemaType || bibToSchema(resource.bibType);
-  let before = '<' + tagType + '  class="modulo-contents-citation-wrapper" itemprop="citation" ';
-  // microdata header
-  before += 'itemscope itemtype="http://schema.org/' + schemaType + '"';
-  before += ' id="' + resource.citeKey + '"';
-  // RDFa header
-  before += ' typeof="' + schemaType + '" resource="#' + resource.citeKey + '"';
-  before += '>';
-  return {
-    before,
-    after: '</' + tagType + '>'
-  };
-}
 
 export function formatTitle(resource) {
   return '<cite class="modulo-contents-citation-title" property="name" itemprop="name">' + resource.title + '</cite>';
@@ -319,4 +231,92 @@ export function formatPublisher(resource, pattern) {
     expression = expression.replace('${address}', '<span itemprop="address" value="address">' + resource.address + '</span>');
   }
   return expression;
+}
+
+export function formatImageFigure(resource, imageKey, captionContent, inputSchemaType) {
+  const schemaType = inputSchemaType || resource.schematype || 'webpage';
+  return '<div class="modulo-contents-figure" itemscope itemprop="citation" itemtype="http://schema.org/'
+              + schemaType
+              + '"'
+              + ' typeof="' + schemaType + '" resource="#' + resource.citeKey + '"'
+              + '>'
+              + '<span itemprop="name" property="name" style="display:none">' + resource.title + '</span>'
+              + '<figure itemprop="image" property="image" itemscope itemType="http://schema.org/ImageObject" typeof="ImageObject">'
+              + '<a href="' + resource[imageKey] + '" itemprop="contentUrl" property="contenturl" value="' + resource[imageKey] + '"></a>'
+              + '<img itemprop="image" value="image" src="' + resource[imageKey] + '" alt="' + resource.title + '" />'
+              + '<figcaption itemprop="caption" value="caption">'
+              + captionContent
+              + '</figcaption>'
+              + '</figure>'
+              + '</div>';
+}
+
+export function formatLink(resource, text, inputSchemaType) {
+  const schemaType = inputSchemaType || resource.schematype || 'webpage';
+  return '<a class="modulo-contents-hyperlink" itemscope itemprop="citation" itemtype="http://schema.org/'
+              + schemaType
+              + '"'
+              + ' typeof="' + schemaType + '" resource="#' + resource.citeKey + '"'
+              + ' target="_blank"'
+              + ' href="'
+              + resource.url
+              + '" >'
+              + '<span itemprop="name" property="name" value="' + resource.title + '"/>'
+              + text
+              + '<span itemprop="url" property="url" style="display:none"/>' + resource.url + '</span>'
+              + '</a>';
+}
+
+/*
+ * SECTION-RELATED
+ */
+
+export function setSectionMeta(section) {
+  return ' itemscope itemType="http://schema.org/' + bibToSchema(getMetaValue(section.metadata, 'general', 'bibType'))
+              + '" vocab="http://schema.org/" ressource="#' + getMetaValue(section.metadata, 'general', 'citeKey') + '"'
+              + (section.parent ? 'itemprop="hasPart" property="hasPart" ' : '');
+}
+
+export function metadataToSchema(section) {
+  let output = '<div class="modulo-contents-schema-metadata-placeholder" style="visibility:hidden">';
+  const meta = section.metadata.filter((prop) =>{
+    return prop.domain === 'general';
+  }).reduce((obj, prop) =>{
+    obj[prop.key] = prop.value;
+    return obj;
+  }, {});
+
+  if (meta.title) {
+    output += formatSimpleProp(meta, 'title', 'name');
+  }
+
+  if (meta.date) {
+    output += formatDate(meta);
+  }
+
+  if (meta.author) {
+    meta.author.forEach((auth)=>{
+      output += formatAuthor(auth, '${firstName} ${lastName}');
+    });
+  }
+
+  // TODO : continue along with other metadata-to-schema conversions
+
+  return output + '</div>';
+}
+
+// wraps the citation of an element inside a schema "citation" html object
+export function wrapCitation(resource, tagType = 'span') {
+  const schemaType = resource.schemaType || bibToSchema(resource.bibType);
+  let before = '<' + tagType + '  class="modulo-contents-citation-wrapper" itemprop="citation" ';
+  // microdata header
+  before += 'itemscope itemtype="http://schema.org/' + schemaType + '"';
+  before += ' id="' + resource.citeKey + '"';
+  // RDFa header
+  before += ' typeof="' + schemaType + '" resource="#' + resource.citeKey + '"';
+  before += '>';
+  return {
+    before,
+    after: '</' + tagType + '>'
+  };
 }

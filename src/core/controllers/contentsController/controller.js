@@ -1,30 +1,24 @@
 import {waterfall, map as asyncMap} from 'async';
 import {parseSection, serializeSectionList} from './../../converters/sectionConverter';
 import {diff} from 'deep-diff';
-/*
- * I parse source through connector and returns a moduloSectionArray javascript representation
- */
-export function updateFromSource(connector, dataPath, models, parameters, callback) {
-  waterfall([
-    function(cb) {
-      connector.readFromPath({path: dataPath, depth: true, parseFiles: true}, function(err, results) {
-        cb(err, results);
-      });
-    },
-    function(tree, cb) {
-      parseSection({tree, models, parameters}, cb);
-    }
-  ],
-  function(err, results) {
-    callback(err, results);
-  });
+
+let connector;
+let connectorName;
+let tempConnectorName;
+
+function updateConnector(params) {
+  tempConnectorName = params.connector;
+  if (tempConnectorName !== connectorName) {
+    connectorName = tempConnectorName;
+    connector = require('./../../connectors/' + params.connector);
+  }
 }
 
 /*
  * I echo an expected/actual fstree difference with Create/Update/Delete operations
  * on the content source through the appropriate connector middleware
  */
-function applyDifference(difference, connector, callback) {
+function applyDifference(difference, params, connect, callback) {
   let item;
   switch (difference.kind) {
   // new element
@@ -33,7 +27,7 @@ function applyDifference(difference, connector, callback) {
     break;
   // delete element
   case 'D':
-    connector.deleteFromPath({path: difference.lhs.path}, callback);
+    connect.deleteFromPath({path: difference.lhs.path, params}, callback);
     break;
   // edit element
   case 'E':
@@ -50,13 +44,13 @@ function applyDifference(difference, connector, callback) {
       waterfall([
         // create root
         function(cb) {
-          connector.createFromPath({path: item.path, type: item.type, overwrite: true, stringContents: (item.stringContents || '')}, cb);
+          connect.createFromPath({path: item.path, params, type: item.type, overwrite: true, stringContents: (item.stringContents || '')}, cb);
         },
         // create children
         function(cb) {
           if (item.children) {
             asyncMap(item.children, function(child, cb2) {
-              connector.createFromPath({path: child.path, type: child.type, overwrite: true, stringContents: (child.stringContents || '')}, cb2);
+              connect.createFromPath({path: child.path, params, type: child.type, overwrite: true, stringContents: (child.stringContents || '')}, cb2);
             }, cb);
           } else cb();
         }
@@ -65,20 +59,20 @@ function applyDifference(difference, connector, callback) {
 
     case 'D':
       item = difference.item.lhs;
-      connector.deleteFromPath({path: item.path}, callback);
+      connect.deleteFromPath({path: item.path, params}, callback);
       break;
     case 'E':
       item = difference.item.rhs;
       waterfall([
         // create root
         function(cb) {
-          connector.updateFromPath({path: item.path, stringContents: (item.stringContents || '')}, cb);
+          connect.updateFromPath({path: item.path, params, stringContents: (item.stringContents || '')}, cb);
         },
         // create children
         function(cb) {
           if (item.children) {
             asyncMap(item.children, function(child, cb2) {
-              connector.updateFromPath({path: child.path, stringContents: (child.stringContents || '')}, cb2);
+              connect.updateFromPath({path: child.path, params, stringContents: (child.stringContents || '')}, cb2);
             }, cb);
           } else cb();
         }
@@ -86,16 +80,34 @@ function applyDifference(difference, connector, callback) {
       break;
     default:
       console.log('unhandled difference ', difference);
-      // callback();
       break;
     }
     break;
   default:
     console.log('unhandled difference ', difference);
-    // callback();
     break;
   }
   callback();
+}
+
+/*
+ * I parse source through connector and returns a moduloSectionArray javascript representation
+ */
+export function updateFromSource(params, models, parameters, callback) {
+  updateConnector(params);
+  waterfall([
+    function(cb) {
+      connector.readFromPath({params, path: [], depth: true, parseFiles: true}, function(err, results) {
+        cb(err, results);
+      });
+    },
+    function(tree, cb) {
+      parseSection({tree, models, parameters}, cb);
+    }
+  ],
+  function(err, results) {
+    callback(err, results);
+  });
 }
 
 /*
@@ -104,11 +116,12 @@ function applyDifference(difference, connector, callback) {
  * then make a diff list with deep-diff
  * then monitor source tree updating (with C.U.D. operations) accordingly
  */
-export function updateToSource(connector, outputPath, sections, models, oldFsTree, callback) {
-  serializeSectionList({sectionList: sections, models, basePath: outputPath}, function(err, newFsTree) {
+export function updateToSource(params, sections, models, oldFsTree, callback) {
+  updateConnector(params);
+  serializeSectionList({sectionList: sections, models, basePath: params.basePath}, function(err, newFsTree) {
     const differences = diff(oldFsTree, newFsTree);
     asyncMap(differences, function(difference, cb) {
-      applyDifference(difference, connector, cb);
+      applyDifference(difference, params, connector, cb);
     }, function(errors, res) {
       callback(errors, sections);
     });

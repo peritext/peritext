@@ -11,18 +11,33 @@ import {sample_output_path, sample_folder_path, crud_cobaye_path} from "./../../
 const base_path = __dirname + '/../../' + sample_folder_path;
 const base_output = __dirname + '/../../' + sample_output_path;
 
+const inputParams = {
+  basePath: base_path,
+  connector: 'filesystem'
+}
+
+const outputParams = {
+  basePath: base_output,
+  connector: 'filesystem'
+}
+
+let params;
+
+
 
 describe('contentController:updateFromSource', function(){
   it('should update unfaulted data from source without processing errors', function(done){
-    lib.updateFromSource(connector, base_path, models, defaultParameters, function(err, results){
+    lib.updateFromSource(inputParams, models, defaultParameters, function(err, results){
       expect(err).to.be.null;
       expect(results).to.be.defined;
       done();
-    })
+    });
   });
 });
 
+
 describe('contentController:updateToSource', function(){
+  params = outputParams;
   it('should update unfaulted data from one source to another without breaking', function(done){
     let inputFsTree, sections;
     waterfall([
@@ -30,7 +45,7 @@ describe('contentController:updateToSource', function(){
       function(cb){
         exists(base_output, function(isThere){
           if (isThere) {
-            connector.deleteFromPath({path: base_output}, cb);
+            connector.deleteFromPath({params}, cb);
           } else {
             cb();
           }
@@ -38,26 +53,27 @@ describe('contentController:updateToSource', function(){
       },
       //recreate test folder
       function(cb){
-        connector.createFromPath({path: base_output, type: 'directory', overwrite: true}, function(err, response){
+        connector.createFromPath({params, type: 'directory', overwrite: true}, function(err, response){
           cb();
         });
       },
       //make a fs representation of the test folder
       function(cb) {
-        connector.readFromPath({path: base_output, depth: true, parseFiles: true}, function(err, results) {
+        connector.readFromPath({params, depth: true, parseFiles: true}, function(err, results) {
           inputFsTree = results;
+          console.log(inputFsTree);
           cb();
         });
       },
       //fill the data to update
       function(cb) {
-        lib.updateFromSource(connector, base_path, models, defaultParameters, function(err, results){
+        lib.updateFromSource(inputParams, models, defaultParameters, function(err, results){
           sections = results.sections;
           cb();
         });
       },
       function(cb){
-        lib.updateToSource(connector, base_output, sections, models, inputFsTree, function(err, res){
+        lib.updateToSource(outputParams, sections, models, inputFsTree, function(err, res){
           cb(err, res);
         });
       }
@@ -69,3 +85,4 @@ describe('contentController:updateToSource', function(){
     });
   });
 });
+

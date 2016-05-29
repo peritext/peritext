@@ -24,7 +24,7 @@ export function contextualizeInlineStatic(section, contextualization) {
 
 export function contextualizeBlockStatic(section, contextualization) {
 
-  const figuresCount = (section.figuresCount) ? sectio.figuresCount++ : 1;
+  const figuresCount = (section.figuresCount) ? section.figuresCount++ : 1;
   const elRe = new RegExp('<BlockContextualization id="' + contextualization.citeKey + '"[^>]*>(.*)</BlockContextualization>');
   let match;
   const resource = section.resources.find((res) =>{

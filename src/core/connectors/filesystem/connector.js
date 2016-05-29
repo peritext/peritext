@@ -24,7 +24,7 @@ const analyseContents = function(filesList, absPath) {
 
 
 // recursive fs element parser
-const parseElement = function({path, element, parseFiles, depth, actualDepth, acceptedExtensions}, callback) {
+const parseElement = function({path = '', element, parseFiles, depth, actualDepth, acceptedExtensions}, callback) {
   // file to parse
   if (element.type === 'file' && parseFiles === true && acceptedExtensions.indexOf(element.extname) > -1) {
     try {
@@ -60,8 +60,9 @@ const parseElement = function({path, element, parseFiles, depth, actualDepth, ac
 };
 
 // cRud
-export function readFromPath({path = [], depth = 1, parseFiles = false, acceptedExtensions = ['.md', '.bib', '.css', '.jsx']}, callback) {
-  const finalPath = resolve((Array.isArray(path)) ? path.join('/') : path);
+export function readFromPath({path = [], params, depth = 1, parseFiles = false, acceptedExtensions = ['.md', '.bib', '.css', '.jsx']}, callback) {
+  const resolvedPath = (Array.isArray(path)) ? path.join('/') : path;
+  const finalPath = resolve(params.basePath) + '/' + resolvedPath;
   let element;
   const name = basename(finalPath);
 
@@ -91,8 +92,9 @@ export function readFromPath({path = [], depth = 1, parseFiles = false, accepted
 }
 
 // Crud
-export function createFromPath({path, type = 'file', stringContents = '', overwrite = false}, callback) {
-  const finalPath = resolve((Array.isArray(path)) ? path.join('/') : path);
+export function createFromPath({path = '', params, type = 'file', stringContents = '', overwrite = false}, callback) {
+  const resolvedPath = (Array.isArray(path)) ? path.join('/') : path;
+  const finalPath = resolve(params.basePath) + '/' + resolvedPath;
   const pathSteps = finalPath.split('/').filter((thatPath)=> {return thatPath.length > 0;});
   // first check-or-create path folders
   const activePath = '/';
@@ -137,8 +139,9 @@ export function createFromPath({path, type = 'file', stringContents = '', overwr
 }
 
 // crUd
-export function updateFromPath({path, stringContents = ''}, callback) {
-  const finalPath = resolve((Array.isArray(path)) ? path.join('/') : path);
+export function updateFromPath({path = '', params, stringContents = ''}, callback) {
+  const resolvedPath = (Array.isArray(path)) ? path.join('/') : path;
+  const finalPath = resolve(params.basePath + '/' + resolvedPath);
   exists(finalPath, function(isThere) {
     if (isThere) {
       const pathSteps = finalPath.split('/').filter((thatPath)=> {return thatPath.length > 0;});
@@ -146,7 +149,7 @@ export function updateFromPath({path, stringContents = ''}, callback) {
       const element = analyseElement(elementName, '/' + pathSteps.join('/'));
       if (element.type === 'directory') {
         callback(new Error('cannot update directories'));
-      }else if (element.type === 'file') {
+      } else if (element.type === 'file') {
         writeFile(finalPath, stringContents, function(err) {
           callback(err);
         });
@@ -158,8 +161,9 @@ export function updateFromPath({path, stringContents = ''}, callback) {
 }
 
 // cruD
-export function deleteFromPath({path}, callback) {
-  const finalPath = resolve((Array.isArray(path)) ? path.join('/') : path);
+export function deleteFromPath({path = '', params}, callback) {
+  const resolvedPath = (Array.isArray(path)) ? path.join('/') : path;
+  const finalPath = resolve(params.basePath) + '/' + resolvedPath;
   exists(finalPath, function(isThere) {
     if (isThere) {
       const pathSteps = finalPath.split('/').filter((thatPath) => {return thatPath.length > 0;});
@@ -185,7 +189,8 @@ export function deleteFromPath({path}, callback) {
 // but kept for architecture consistency
 // because it will be a more complex process for other connectors
 // WIP TODO QUESTION : should it check for resource availability ?
-export function getAssetUri({path}, callback) {
-  const finalPath = resolve((Array.isArray(path)) ? path.join('/') : path);
+export function getAssetUri({path, params}, callback) {
+  const resolvedPath = (Array.isArray(path)) ? path.join('/') : path;
+  const finalPath = resolve(params.basePath) + '/' + resolvedPath;
   return callback(null, finalPath);
 }

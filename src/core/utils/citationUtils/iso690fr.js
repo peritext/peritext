@@ -117,9 +117,6 @@ export function formatBlockCitation(contextualizer, resource, ibid, opCit) {
       if (resource.isbn) {
         ref += '. ISBN : ' + formatter.formatSimpleProp(resource, 'isbn', 'isbn');
       }
-      /*if (resource.issn) {
-        ref += '. ISSN : ' + formatter.formatSimpleProp(resource, 'issn', 'issn');
-      }*/
       if (resource.doi) {
         ref += formatter.formatDoi(resource, '. DOI : ${doi}');
       }
