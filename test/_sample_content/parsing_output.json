@@ -228,7 +228,7 @@
           "tagType": "p"
         },
         {
-          "html": "<BlockContextualization id=\"contextualization_4\" resources=\"@image_test_1,@image_test_2\" contextualizer=\"contextualizer_3\"></BlockContextualization>",
+          "html": "<BlockContextualization id=\"contextualization_4\" resources=\"@image_test_1,@image_test_2\" contextualizer=\"contextualizer_3\">A group of images</BlockContextualization>",
           "tagType": "BlockContextualization"
         },
         {
@@ -236,7 +236,7 @@
           "tagType": "p"
         },
         {
-          "html": "<BlockContextualization id=\"contextualization_6\" resources=\"@website_test\" contextualizer=\"contextualizer_5\">online 2</BlockContextualization>",
+          "html": "<BlockContextualization id=\"contextualization_6\" resources=\"@website_test\" contextualizer=\"contextualizer_5\">This is a block website contextualization, displaying a poster or the resource (typically a screenshot) if specified</BlockContextualization>",
           "tagType": "BlockContextualization"
         },
         {
@@ -248,27 +248,27 @@
           "tagType": "BlockContextualization"
         },
         {
-          "html": "<p>I will first quote in a book where someone that says <InlineContextualization id=\"contextualization_12\" resources=\"@ab94\" contextualizer=\"contextualizer_12\">it&#39;s not possible</InlineContextualization>.</p>",
+          "html": "<p>I will first quote in a book where someone that says <InlineContextualization id=\"contextualization_12\" resources=\"@ab94\" contextualizer=\"contextualizer_12\">it&#39;s not possible</InlineContextualization>.\nBut I would like to quote again my <InlineContextualization id=\"contextualization_13\" resources=\"@image_test_1,@image_test_2\" contextualizer=\"contextualizer_13\">group of images</InlineContextualization>.</p>",
           "tagType": "p"
         },
         {
-          "html": "<p>Then I should have an ibid here [^]{<InlineContextualization id=\"contextualization_13\" resources=\"@ab94\" contextualizer=\"contextualizer_13\"></InlineContextualization>.}</p>",
+          "html": "<p>Then I should have an ibid here [^]{<InlineContextualization id=\"contextualization_14\" resources=\"@ab94\" contextualizer=\"contextualizer_14\"></InlineContextualization>.}</p>",
           "tagType": "p"
         },
         {
-          "html": "<p>And as say a lot of people[^]{<InlineContextualization id=\"contextualization_14\" resources=\"@martin_change_2002\" contextualizer=\"contextualizer_14\"></InlineContextualization>}, publishing could be simpler.</p>",
+          "html": "<p>And as say a lot of people[^]{<InlineContextualization id=\"contextualization_15\" resources=\"@martin_change_2002\" contextualizer=\"contextualizer_15\"></InlineContextualization>}, publishing could be simpler.</p>",
           "tagType": "p"
         },
         {
-          "html": "<p>And for the footnotes, I want to say that Martin said that[^]{I&#39;m referencing to <InlineContextualization id=\"contextualization_15\" resources=\"@martin_change_2002\" contextualizer=\"contextualizer_15\"></InlineContextualization> when he says : &quot;hello&quot;}</p>",
+          "html": "<p>And for the footnotes, I want to say that Martin said that[^]{I&#39;m referencing to <InlineContextualization id=\"contextualization_16\" resources=\"@martin_change_2002\" contextualizer=\"contextualizer_16\"></InlineContextualization> when he says : &quot;hello&quot;}</p>",
           "tagType": "p"
         },
         {
-          "html": "<p>Whe Martin says <InlineContextualization id=\"contextualization_16\" resources=\"@martin_change_2002\" contextualizer=\"contextualizer_16\">there has to be some <em>change</em></InlineContextualization>.</p>",
+          "html": "<p>Whe Martin says <InlineContextualization id=\"contextualization_17\" resources=\"@martin_change_2002\" contextualizer=\"contextualizer_17\">there has to be some <em>change</em></InlineContextualization>.</p>",
           "tagType": "p"
         },
         {
-          "html": "<p>Now let&#39;s say I want to link to this <InlineContextualization id=\"contextualization_17\" resources=\"@temporal_data\" contextualizer=\"contextualizer_17\">timeline</InlineContextualization> and continue my paragraph quietly.</p>",
+          "html": "<p>Now let&#39;s say I want to link to this <InlineContextualization id=\"contextualization_18\" resources=\"@temporal_data\" contextualizer=\"contextualizer_18\">timeline</InlineContextualization> and continue my paragraph quietly.</p>",
           "tagType": "p"
         },
         {
@@ -344,7 +344,7 @@
           ]
         },
         {
-          "imageurl": "@assets/imagetest2.jpg",
+          "imageurl": "@assets/imagetest1.jpg",
           "url": "http://payload.cargocollective.com/1/0/9226/235006/PULSE_6.jpg",
           "bibType": "image",
           "citeKey": "image_test_1",
@@ -516,15 +516,14 @@
           "outputmode": "all"
         },
         {
-          "page": "12",
           "title": "@res.title",
           "citeKey": "contextualizer_13",
-          "type": "citation",
+          "type": "imageplayer",
           "describedInline": true,
           "outputmode": "all"
         },
         {
-          "pages": "30-40",
+          "page": "12",
           "title": "@res.title",
           "citeKey": "contextualizer_14",
           "type": "citation",
@@ -532,7 +531,7 @@
           "outputmode": "all"
         },
         {
-          "pages": "12-13",
+          "pages": "30-40",
           "title": "@res.title",
           "citeKey": "contextualizer_15",
           "type": "citation",
@@ -540,8 +539,16 @@
           "outputmode": "all"
         },
         {
+          "pages": "12-13",
           "title": "@res.title",
           "citeKey": "contextualizer_16",
+          "type": "citation",
+          "describedInline": true,
+          "outputmode": "all"
+        },
+        {
+          "title": "@res.title",
+          "citeKey": "contextualizer_17",
           "type": "citation",
           "describedInline": true,
           "outputmode": "all"
@@ -560,16 +567,17 @@
             }
           ],
           "title": "@res.title",
-          "citeKey": "contextualizer_17",
+          "citeKey": "contextualizer_18",
           "type": "timeline",
           "describedInline": true,
           "outputmode": "all"
         }
       ],
-      "markdownContents": "# Welcome\n\n${toc}\n\n![A reference](@temporal_data){@cool_timeline}\n\n![Another view on the timeline](@temporal_data){@cool_timeline,\n    startat=\"2012-21-01\"\n}\n\nI am inline referencing to an [image](@image_test_1).\n\nThen I want to say that the image I just showed [image](@image_test_1) is awesome.\n\nAnd then I want to display a group of images :\n\n![](@image_test_1,@image_test_2)\n\nAnd then I want to point to an [online](@website_test) resource.\n\n![online 2](@website_test)\n\nI will talk about that[^]{with a footnote here} :\n\n![Another reference with unnamed contextualizer](@temporal_data){\n    type=\"timeline\",\n    layer={layertype=events,data=@res.data.dates,labels=@res.data.labels},\n    title=\"My title\"\n}\n\nI will first quote in a book where someone that says [it's not possible](@ab94).\n\n\nThen I should have an ibid here [^]{[](@ab94){page=\"12\"}.}\n\nAnd as say a lot of people[^]{[](@martin_change_2002){pages=\"30-40\"}}, publishing could be simpler.\n\nAnd for the footnotes, I want to say that Martin said that[^]{I'm referencing to [](@martin_change_2002){pages=\"12-13\"} when he says : \"hello\"}\n\nWhe Martin says [there has to be some *change*](@martin_change_2002).\n\nNow let's say I want to link to this [timeline](@temporal_data){\n    type=\"timeline\",\n    layer={dates=@res.data.dates,labels=@res.data.labels},\n    layer={dates=@res.data.dates,labels=@res.data.labels},\n    caption=\"This is a text with {stuf} but it should work\"\n} and continue my paragraph quietly.\n\nWelcome to my awesome book.\n\nThanks to all !\n\nMomanddad\nThe dog\nMy imaginary friend Serge\n\n\nI am just there, not linked to ``content.md``. I should be put at the end of content by alphabetical order.\n\n\n",
+      "markdownContents": "# Welcome\n\n${toc}\n\n![A reference](@temporal_data){@cool_timeline}\n\n\n\n![Another view on the timeline](@temporal_data){@cool_timeline,\n    startat=\"2012-21-01\"\n}\n\nI am inline referencing to an [image](@image_test_1).\n\nThen I want to say that the image I just showed [image](@image_test_1) is awesome.\n\nAnd then I want to display a group of images :\n\n![A group of images](@image_test_1,@image_test_2)\n\nAnd then I want to point to an [online](@website_test) resource.\n\n![This is a block website contextualization, displaying a poster or the resource (typically a screenshot) if specified](@website_test)\n\nI will talk about that[^]{with a footnote here} :\n\n![Another reference with unnamed contextualizer](@temporal_data){\n    type=\"timeline\",\n    layer={layertype=events,data=@res.data.dates,labels=@res.data.labels},\n    title=\"My title\"\n}\n\nI will first quote in a book where someone that says [it's not possible](@ab94).\nBut I would like to quote again my [group of images](@image_test_1,@image_test_2).\n\nThen I should have an ibid here [^]{[](@ab94){page=\"12\"}.}\n\nAnd as say a lot of people[^]{[](@martin_change_2002){pages=\"30-40\"}}, publishing could be simpler.\n\nAnd for the footnotes, I want to say that Martin said that[^]{I'm referencing to [](@martin_change_2002){pages=\"12-13\"} when he says : \"hello\"}\n\nWhe Martin says [there has to be some *change*](@martin_change_2002).\n\nNow let's say I want to link to this [timeline](@temporal_data){\n    type=\"timeline\",\n    layer={dates=@res.data.dates,labels=@res.data.labels},\n    layer={dates=@res.data.dates,labels=@res.data.labels},\n    caption=\"This is a text with {stuf} but it should work\"\n} and continue my paragraph quietly.\n\nWelcome to my awesome book.\n\nThanks to all !\n\nMomanddad\nThe dog\nMy imaginary friend Serge\n\n\nI am just there, not linked to ``content.md``. I should be put at the end of content by alphabetical order.\n\n\n",
       "notes": [],
       "contextualizations": [
         {
+          "matchIndex": -38,
           "contextualizer": "cool_timeline_1",
           "citeKey": "contextualization_1",
           "resources": [
@@ -595,6 +603,20 @@
           "outputmode": true
         },
         {
+          "matchIndex": -7,
+          "citeKey": "contextualization_9",
+          "contextualizer": "contextualizer_9",
+          "resources": [
+            "image_test_1"
+          ],
+          "type": "inline",
+          "contextualizerType": "imageplayer",
+          "title": "@res.title",
+          "describedInline": true,
+          "outputmode": "all"
+        },
+        {
+          "matchIndex": 67,
           "contextualizer": "cool_timeline_2",
           "citeKey": "contextualization_2",
           "resources": [
@@ -622,6 +644,20 @@
           "outputmode": true
         },
         {
+          "matchIndex": 81,
+          "citeKey": "contextualization_10",
+          "contextualizer": "contextualizer_10",
+          "resources": [
+            "image_test_1"
+          ],
+          "type": "inline",
+          "contextualizerType": "imageplayer",
+          "title": "@res.title",
+          "describedInline": true,
+          "outputmode": "all"
+        },
+        {
+          "matchIndex": 362,
           "contextualizer": "contextualizer_3",
           "citeKey": "contextualization_4",
           "resources": [
@@ -635,6 +671,20 @@
           "outputmode": "all"
         },
         {
+          "matchIndex": 392,
+          "citeKey": "contextualization_11",
+          "contextualizer": "contextualizer_11",
+          "resources": [
+            "website_test"
+          ],
+          "type": "inline",
+          "contextualizerType": "webpage",
+          "title": "@res.title",
+          "describedInline": true,
+          "outputmode": "all"
+        },
+        {
+          "matchIndex": 516,
           "contextualizer": "contextualizer_5",
           "citeKey": "contextualization_6",
           "resources": [
@@ -647,6 +697,7 @@
           "outputmode": "all"
         },
         {
+          "matchIndex": 869,
           "contextualizer": "contextualizer_7",
           "citeKey": "contextualization_8",
           "resources": [
@@ -666,42 +717,7 @@
           "outputmode": "all"
         },
         {
-          "citeKey": "contextualization_9",
-          "contextualizer": "contextualizer_9",
-          "resources": [
-            "image_test_1"
-          ],
-          "type": "inline",
-          "contextualizerType": "imageplayer",
-          "title": "@res.title",
-          "describedInline": true,
-          "outputmode": "all"
-        },
-        {
-          "citeKey": "contextualization_10",
-          "contextualizer": "contextualizer_10",
-          "resources": [
-            "image_test_1"
-          ],
-          "type": "inline",
-          "contextualizerType": "imageplayer",
-          "title": "@res.title",
-          "describedInline": true,
-          "outputmode": "all"
-        },
-        {
-          "citeKey": "contextualization_11",
-          "contextualizer": "contextualizer_11",
-          "resources": [
-            "website_test"
-          ],
-          "type": "inline",
-          "contextualizerType": "webpage",
-          "title": "@res.title",
-          "describedInline": true,
-          "outputmode": "all"
-        },
-        {
+          "matchIndex": 1000,
           "citeKey": "contextualization_12",
           "contextualizer": "contextualizer_12",
           "resources": [
@@ -714,8 +730,23 @@
           "outputmode": "all"
         },
         {
+          "matchIndex": 1078,
           "citeKey": "contextualization_13",
           "contextualizer": "contextualizer_13",
+          "resources": [
+            "image_test_1",
+            "image_test_2"
+          ],
+          "type": "inline",
+          "contextualizerType": "imageplayer",
+          "title": "@res.title",
+          "describedInline": true,
+          "outputmode": "all"
+        },
+        {
+          "matchIndex": 1201,
+          "citeKey": "contextualization_14",
+          "contextualizer": "contextualizer_14",
           "resources": [
             "ab94"
           ],
@@ -727,8 +758,9 @@
           "outputmode": "all"
         },
         {
-          "citeKey": "contextualization_14",
-          "contextualizer": "contextualizer_14",
+          "matchIndex": 1286,
+          "citeKey": "contextualization_15",
+          "contextualizer": "contextualizer_15",
           "resources": [
             "martin_change_2002"
           ],
@@ -740,8 +772,9 @@
           "outputmode": "all"
         },
         {
-          "citeKey": "contextualization_15",
-          "contextualizer": "contextualizer_15",
+          "matchIndex": 1469,
+          "citeKey": "contextualization_16",
+          "contextualizer": "contextualizer_16",
           "resources": [
             "martin_change_2002"
           ],
@@ -753,8 +786,9 @@
           "outputmode": "all"
         },
         {
-          "citeKey": "contextualization_16",
-          "contextualizer": "contextualizer_16",
+          "matchIndex": 1561,
+          "citeKey": "contextualization_17",
+          "contextualizer": "contextualizer_17",
           "resources": [
             "martin_change_2002"
           ],
@@ -765,8 +799,9 @@
           "outputmode": "all"
         },
         {
-          "citeKey": "contextualization_17",
-          "contextualizer": "contextualizer_17",
+          "matchIndex": 1903,
+          "citeKey": "contextualization_18",
+          "contextualizer": "contextualizer_18",
           "resources": [
             "temporal_data"
           ],
@@ -1058,7 +1093,7 @@
           "inheritedVerticallyFrom": "mybook"
         },
         {
-          "imageurl": "@assets/imagetest2.jpg",
+          "imageurl": "@assets/imagetest1.jpg",
           "url": "http://payload.cargocollective.com/1/0/9226/235006/PULSE_6.jpg",
           "bibType": "image",
           "citeKey": "image_test_1",
@@ -1570,7 +1605,7 @@
           "inheritedVerticallyFrom": "mybook"
         },
         {
-          "imageurl": "@assets/imagetest2.jpg",
+          "imageurl": "@assets/imagetest1.jpg",
           "url": "http://payload.cargocollective.com/1/0/9226/235006/PULSE_6.jpg",
           "bibType": "image",
           "citeKey": "image_test_1",
@@ -1970,7 +2005,7 @@
           "inheritedVerticallyFrom": "partie_2"
         },
         {
-          "imageurl": "@assets/imagetest2.jpg",
+          "imageurl": "@assets/imagetest1.jpg",
           "url": "http://payload.cargocollective.com/1/0/9226/235006/PULSE_6.jpg",
           "bibType": "image",
           "citeKey": "image_test_1",
@@ -2075,6 +2110,7 @@
       "notes": [],
       "contextualizations": [
         {
+          "matchIndex": 577,
           "contextualizer": "contextualizer_1",
           "citeKey": "contextualization_2",
           "resources": [
@@ -2087,6 +2123,7 @@
           "outputmode": "all"
         },
         {
+          "matchIndex": 609,
           "contextualizer": "contextualizer_3",
           "citeKey": "contextualization_4",
           "resources": [
@@ -2099,6 +2136,7 @@
           "outputmode": "all"
         },
         {
+          "matchIndex": 655,
           "contextualizer": "contextualizer_5",
           "citeKey": "contextualization_6",
           "resources": [

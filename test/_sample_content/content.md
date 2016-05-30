@@ -4,6 +4,8 @@ ${toc}
 
 ![A reference](@temporal_data){@cool_timeline}
 
+
+
 ![Another view on the timeline](@temporal_data){@cool_timeline,
     startat="2012-21-01"
 }
@@ -14,11 +16,11 @@ Then I want to say that the image I just showed [image](@image_test_1) is awesom
 
 And then I want to display a group of images :
 
-![](@image_test_1,@image_test_2)
+![A group of images](@image_test_1,@image_test_2)
 
 And then I want to point to an [online](@website_test) resource.
 
-![online 2](@website_test)
+![This is a block website contextualization, displaying a poster or the resource (typically a screenshot) if specified](@website_test)
 
 I will talk about that[^]{with a footnote here} :
 
@@ -29,7 +31,7 @@ I will talk about that[^]{with a footnote here} :
 }
 
 I will first quote in a book where someone that says [it's not possible](@ab94).
-
+But I would like to quote again my [group of images](@image_test_1,@image_test_2).
 
 Then I should have an ibid here [^]{[](@ab94){page="12"}.}
 
