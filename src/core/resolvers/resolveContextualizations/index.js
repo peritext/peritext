@@ -164,5 +164,6 @@ export function resolveContextualizationsImplementation(section, renderingMode) 
     }
     return Object.assign({}, inputSection);
   }, Object.assign({}, section));
+
   return sectio;
 }

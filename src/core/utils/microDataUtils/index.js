@@ -233,22 +233,40 @@ export function formatPublisher(resource, pattern) {
   return expression;
 }
 
-export function formatImageFigure(resource, imageKey, captionContent, inputSchemaType) {
+export function formatImageFigure(resource, imageKey, captionContent = '', inputSchemaType, figureNumber) {
   const schemaType = inputSchemaType || resource.schematype || 'webpage';
   return '<div class="modulo-contents-figure" itemscope itemprop="citation" itemtype="http://schema.org/'
               + schemaType
               + '"'
               + ' typeof="' + schemaType + '" resource="#' + resource.citeKey + '"'
+              + (figureNumber ? 'id="modulo-contents-figure-' + figureNumber + '"' : '')
               + '>'
               + '<span itemprop="name" property="name" style="visibility:hidden">' + resource.title + '</span>'
               + '<figure itemprop="image" property="image" itemscope itemType="http://schema.org/ImageObject" typeof="ImageObject">'
               + '<a href="' + resource[imageKey] + '" itemprop="contentUrl" property="contenturl" value="' + resource[imageKey] + '"></a>'
               + '<img itemprop="image" value="image" src="' + resource[imageKey] + '" alt="' + resource.title + '" />'
-              + '<figcaption itemprop="caption" value="caption">'
+              + '<figcaption itemprop="caption" property="caption">'
               + captionContent
               + '</figcaption>'
               + '</figure>'
               + '</div>';
+}
+
+export function formatImagesGallery(resources, contextualization, comment, figureNumber) {
+  let output = '<div class="modulo-contents-figures-gallery" id="modulo-contents-figure-' + figureNumber + '">';
+  output += '<div class="modulo-contents-figures-wrapper">';
+  output = resources.reduce((newOutput, resource) =>{
+    const imageKey = resource.imageurl ? 'imageurl' : 'url';
+    return newOutput + formatImageFigure(resource, imageKey, resource.caption);
+  }, output);
+  output += '</div>';
+  if (comment !== undefined) {
+    output += '<p class="modulo-contents-figure-note" itemprop="comment" property="comment">';
+    output += comment;
+    output += '</p>';
+  }
+  output += '</div>';
+  return output;
 }
 
 export function formatLink(resource, text, inputSchemaType) {
