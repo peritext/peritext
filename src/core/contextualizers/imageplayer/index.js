@@ -1,6 +1,7 @@
 import {formatImagesGallery} from './../../utils/microDataUtils';
 
-export function contextualizeInlineStatic(section, contextualization) {
+export function contextualizeInlineStatic(inputSection, contextualization) {
+  const section = Object.assign({}, inputSection);
   // check if a figure with the same resources is already there
   let existant;
   let cindex = 0;
@@ -61,11 +62,10 @@ export function contextualizeInlineStatic(section, contextualization) {
   section.contextualizations = section.contextualizations.map((ocont) =>{
     if (ocont.citeKey === contextualization.citeKey) {
       ocont.figureNumber = figureNumber;
-      return cont;
+      return ocont;
     }
-    return cont;
+    return ocont;
   });
-
   return Object.assign({}, section, {figuresCount}, {contents: newContents});
 }
 
@@ -101,7 +101,6 @@ export function contextualizeBlockStatic(section, contextualization) {
     }
     return cont;
   });
-
   return Object.assign({}, section, {figuresCount}, {contents: newContents});
 }
 

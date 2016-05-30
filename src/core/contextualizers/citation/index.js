@@ -8,13 +8,14 @@ export function contextualizeInlineStatic(inputSection, contextualization) {
   let withQuotes;
   const citationStyle = getMetaValue(section.metadata, 'general', 'citationStyle');
   const formatter = require('./../../utils/citationUtils/' + citationStyle + '.js');
-  // find previous citation
+  // find this citation in citations list
   section.contextualizations.some((context, index) =>{
     if (context.citeKey === contextualization.citeKey) {
       cnIndex = index;
       return true;
     }
   });
+  // find previous citation
   for (let index = cnIndex - 1; index >= 0; index --) {
     if (section.contextualizations[index].contextualizerType === 'citation') {
       previous = section.contextualizations[index];
@@ -45,7 +46,6 @@ export function contextualizeInlineStatic(inputSection, contextualization) {
         if (section.contextualizations[index].contextualizerType === 'citation') {
           const otherPrevious = section.contextualizations[index];
           otherPrevious.resources.some((resK2) =>{
-
             // same res
             if (resK2 === resourceKey) {
               opCit = true;

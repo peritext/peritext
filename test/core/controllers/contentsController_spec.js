@@ -61,7 +61,6 @@ describe('contentController:updateToSource', function(){
       function(cb) {
         connector.readFromPath({params, depth: true, parseFiles: true}, function(err, results) {
           inputFsTree = results;
-          console.log(inputFsTree);
           cb();
         });
       },
