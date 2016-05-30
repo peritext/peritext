@@ -9,7 +9,7 @@
 
 import * as formatter from './../microDataUtils/';
 
-function formatCitationDetails(contextualization) {
+function formatCitationDetails(contextualization, resource) {
   let pageAddon = '';
 
   if (contextualization.page) {
@@ -20,8 +20,8 @@ function formatCitationDetails(contextualization) {
 
   let additionnal = '';
 
-  if (contextualization.caption) {
-    additionnal += '. ' + formatter.formatSimpleProp(contextualization, 'caption', 'comment', 'i');
+  if (resource.caption) {
+    additionnal += '. ' + formatter.formatSimpleProp(resource, 'caption', 'comment', 'i');
   }
 
   if (contextualization.note) {
@@ -129,7 +129,7 @@ export function formatBlockCitation(contextualization, resource, ibid, opCit) {
   /*
    * Contextualizer-related population
    */
-  const additionnal = formatCitationDetails(contextualization);
+  const additionnal = formatCitationDetails(contextualization, resource);
 
   const wrappers = formatter.wrapCitation(resource);
   return wrappers.before + ref + additionnal + wrappers.after;
@@ -169,7 +169,7 @@ export function formatInlineCitation(contextualization, resource, ibid, opCit) {
   /*
    * Contextualizer-related population
    */
-  const additionnal = formatCitationDetails(contextualization);
+  const additionnal = formatCitationDetails(contextualization, resource);
   const wrappers = formatter.wrapCitation(resource);
   return wrappers.before + ref + additionnal + wrappers.after;
 }

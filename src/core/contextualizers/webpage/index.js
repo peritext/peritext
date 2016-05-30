@@ -39,8 +39,8 @@ export function contextualizeBlockStatic(section, contextualization) {
       const caption = match[1]
                       + (contextualizer.comment ? '. '
                           + contextualizer.comment : '')
-                      + (contextualizer.caption ? '. '
-                          + contextualizer.caption : '');
+                      + (resource.caption ? '. '
+                          + resource.caption : '');
       const link = '<a class="modulo-contents-hyperlink" itemprop="url"'
                               + ' target="_blank"'
                               + ' href="'

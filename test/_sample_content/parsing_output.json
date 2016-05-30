@@ -563,7 +563,6 @@
           "citeKey": "contextualizer_17",
           "type": "timeline",
           "describedInline": true,
-          "caption": "This is a text with {stuf} but it should work",
           "outputmode": "all"
         }
       ],
@@ -579,8 +578,7 @@
           "type": "block",
           "contextualizerType": "timeline",
           "dateformat": "%Y-%m-%d",
-          "title": "My cool timeline",
-          "outputmode": true,
+          "disposition": true,
           "layer": [
             {
               "dates": "@res1.data.dates",
@@ -592,8 +590,9 @@
               "labels": "@res2.data.labels"
             }
           ],
-          "disposition": true,
-          "overloading": "cool_timeline"
+          "title": "My cool timeline",
+          "overloading": "cool_timeline",
+          "outputmode": true
         },
         {
           "contextualizer": "cool_timeline_2",
@@ -605,8 +604,7 @@
           "contextualizerType": "timeline",
           "startat": "2012-21-01",
           "dateformat": "%Y-%m-%d",
-          "title": "My cool timeline",
-          "outputmode": true,
+          "disposition": true,
           "layer": [
             {
               "dates": "@res1.data.dates",
@@ -618,9 +616,10 @@
               "labels": "@res2.data.labels"
             }
           ],
+          "title": "My cool timeline",
           "describedInline": true,
-          "disposition": true,
-          "overloading": "cool_timeline"
+          "overloading": "cool_timeline",
+          "outputmode": true
         },
         {
           "contextualizer": "contextualizer_3",
@@ -656,15 +655,15 @@
           "type": "block",
           "contextualizerType": "timeline",
           "dateformat": "%Y-%m-%d",
-          "title": "My title",
-          "outputmode": "all",
+          "disposition": "superpose",
           "layer": {
             "layertype": "events",
             "data": "@res.data.dates",
             "labels": "@res.data.labels"
           },
+          "title": "My title",
           "describedInline": true,
-          "disposition": "superpose"
+          "outputmode": "all"
         },
         {
           "citeKey": "contextualization_9",
@@ -773,10 +772,8 @@
           ],
           "type": "inline",
           "contextualizerType": "timeline",
-          "caption": "This is a text with {stuf} but it should work",
           "dateformat": "%Y-%m-%d",
-          "title": "@res.title",
-          "outputmode": "all",
+          "disposition": "superpose",
           "layer": [
             {
               "dates": "@res.data.dates",
@@ -787,8 +784,9 @@
               "labels": "@res.data.labels"
             }
           ],
+          "title": "@res.title",
           "describedInline": true,
-          "disposition": "superpose"
+          "outputmode": "all"
         }
       ]
     },
