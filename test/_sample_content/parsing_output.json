@@ -344,6 +344,7 @@
           ]
         },
         {
+          "imageurl": "@assets/imagetest2.jpg",
           "url": "http://payload.cargocollective.com/1/0/9226/235006/PULSE_6.jpg",
           "bibType": "image",
           "citeKey": "image_test_1",
@@ -351,6 +352,7 @@
           "schematype": "CreativeWork"
         },
         {
+          "imageurl": "@assets/imagetest2.jpg",
           "url": "http://payload.cargocollective.com/1/0/9226/235006/PULSE_5.jpg",
           "bibType": "image",
           "citeKey": "image_test_2",
@@ -358,6 +360,7 @@
           "schematype": "CreativeWork"
         },
         {
+          "posterurl": "@assets/screenshot.png",
           "url": "https://medium.com/@sxywu/on-d3-react-and-a-little-bit-of-flux-88a226f328f3#.4z6m379fa",
           "bibType": "online",
           "citeKey": "website_test",
@@ -574,7 +577,23 @@
             "temporal_data"
           ],
           "type": "block",
-          "contextualizerType": "timeline"
+          "contextualizerType": "timeline",
+          "dateformat": "%Y-%m-%d",
+          "title": "My cool timeline",
+          "outputmode": true,
+          "layer": [
+            {
+              "dates": "@res1.data.dates",
+              "labels": "@res1.data.labels",
+              "title": "hello ça va"
+            },
+            {
+              "dates": "@res2.data.dates",
+              "labels": "@res2.data.labels"
+            }
+          ],
+          "disposition": true,
+          "overloading": "cool_timeline"
         },
         {
           "contextualizer": "cool_timeline_2",
@@ -583,17 +602,38 @@
             "temporal_data"
           ],
           "type": "block",
-          "contextualizerType": "timeline"
+          "contextualizerType": "timeline",
+          "startat": "2012-21-01",
+          "dateformat": "%Y-%m-%d",
+          "title": "My cool timeline",
+          "outputmode": true,
+          "layer": [
+            {
+              "dates": "@res1.data.dates",
+              "labels": "@res1.data.labels",
+              "title": "hello ça va"
+            },
+            {
+              "dates": "@res2.data.dates",
+              "labels": "@res2.data.labels"
+            }
+          ],
+          "describedInline": true,
+          "disposition": true,
+          "overloading": "cool_timeline"
         },
         {
           "contextualizer": "contextualizer_3",
           "citeKey": "contextualization_4",
           "resources": [
             "image_test_1",
-            "@image_test_2"
+            "image_test_2"
           ],
           "type": "block",
-          "contextualizerType": "imageplayer"
+          "contextualizerType": "imageplayer",
+          "title": "@res.title",
+          "describedInline": true,
+          "outputmode": "all"
         },
         {
           "contextualizer": "contextualizer_5",
@@ -602,7 +642,10 @@
             "website_test"
           ],
           "type": "block",
-          "contextualizerType": "webpage"
+          "contextualizerType": "webpage",
+          "title": "@res.title",
+          "describedInline": true,
+          "outputmode": "all"
         },
         {
           "contextualizer": "contextualizer_7",
@@ -611,7 +654,17 @@
             "temporal_data"
           ],
           "type": "block",
-          "contextualizerType": "timeline"
+          "contextualizerType": "timeline",
+          "dateformat": "%Y-%m-%d",
+          "title": "My title",
+          "outputmode": "all",
+          "layer": {
+            "layertype": "events",
+            "data": "@res.data.dates",
+            "labels": "@res.data.labels"
+          },
+          "describedInline": true,
+          "disposition": "superpose"
         },
         {
           "citeKey": "contextualization_9",
@@ -620,7 +673,10 @@
             "image_test_1"
           ],
           "type": "inline",
-          "contextualizerType": "imageplayer"
+          "contextualizerType": "imageplayer",
+          "title": "@res.title",
+          "describedInline": true,
+          "outputmode": "all"
         },
         {
           "citeKey": "contextualization_10",
@@ -629,7 +685,10 @@
             "image_test_1"
           ],
           "type": "inline",
-          "contextualizerType": "imageplayer"
+          "contextualizerType": "imageplayer",
+          "title": "@res.title",
+          "describedInline": true,
+          "outputmode": "all"
         },
         {
           "citeKey": "contextualization_11",
@@ -638,7 +697,10 @@
             "website_test"
           ],
           "type": "inline",
-          "contextualizerType": "webpage"
+          "contextualizerType": "webpage",
+          "title": "@res.title",
+          "describedInline": true,
+          "outputmode": "all"
         },
         {
           "citeKey": "contextualization_12",
@@ -647,7 +709,10 @@
             "ab94"
           ],
           "type": "inline",
-          "contextualizerType": "citation"
+          "contextualizerType": "citation",
+          "title": "@res.title",
+          "describedInline": true,
+          "outputmode": "all"
         },
         {
           "citeKey": "contextualization_13",
@@ -656,7 +721,11 @@
             "ab94"
           ],
           "type": "inline",
-          "contextualizerType": "citation"
+          "contextualizerType": "citation",
+          "page": "12",
+          "title": "@res.title",
+          "describedInline": true,
+          "outputmode": "all"
         },
         {
           "citeKey": "contextualization_14",
@@ -665,7 +734,11 @@
             "martin_change_2002"
           ],
           "type": "inline",
-          "contextualizerType": "citation"
+          "contextualizerType": "citation",
+          "pages": "30-40",
+          "title": "@res.title",
+          "describedInline": true,
+          "outputmode": "all"
         },
         {
           "citeKey": "contextualization_15",
@@ -674,7 +747,11 @@
             "martin_change_2002"
           ],
           "type": "inline",
-          "contextualizerType": "citation"
+          "contextualizerType": "citation",
+          "pages": "12-13",
+          "title": "@res.title",
+          "describedInline": true,
+          "outputmode": "all"
         },
         {
           "citeKey": "contextualization_16",
@@ -683,7 +760,10 @@
             "martin_change_2002"
           ],
           "type": "inline",
-          "contextualizerType": "citation"
+          "contextualizerType": "citation",
+          "title": "@res.title",
+          "describedInline": true,
+          "outputmode": "all"
         },
         {
           "citeKey": "contextualization_17",
@@ -692,7 +772,23 @@
             "temporal_data"
           ],
           "type": "inline",
-          "contextualizerType": "timeline"
+          "contextualizerType": "timeline",
+          "caption": "This is a text with {stuf} but it should work",
+          "dateformat": "%Y-%m-%d",
+          "title": "@res.title",
+          "outputmode": "all",
+          "layer": [
+            {
+              "dates": "@res.data.dates",
+              "labels": "@res.data.labels"
+            },
+            {
+              "dates": "@res.data.dates",
+              "labels": "@res.data.labels"
+            }
+          ],
+          "describedInline": true,
+          "disposition": "superpose"
         }
       ]
     },
@@ -928,13 +1024,15 @@
           "bibType": "article",
           "citeKey": "martin_change_2002",
           "doi": "10.3998/3336451.0007.301",
-          "url": "http://hdl.handle.net/2027/spo.3336451.0007.301"
+          "url": "http://hdl.handle.net/2027/spo.3336451.0007.301",
+          "inheritedVerticallyFrom": "mybook"
         },
         {
           "url": "cool_url",
           "bibType": "tabularData",
           "citeKey": "temporal_data",
-          "title": "cool data"
+          "title": "cool data",
+          "inheritedVerticallyFrom": "mybook"
         },
         {
           "title": "Bridging the mire between e-research and e-publishing for multimedia digital scholarship in the humanities and social sciences: {An} {Australian} case study",
@@ -958,27 +1056,34 @@
             "Scholarly e-publishing",
             "Semantic web",
             "World Wide Web"
-          ]
+          ],
+          "inheritedVerticallyFrom": "mybook"
         },
         {
+          "imageurl": "@assets/imagetest2.jpg",
           "url": "http://payload.cargocollective.com/1/0/9226/235006/PULSE_6.jpg",
           "bibType": "image",
           "citeKey": "image_test_1",
           "title": "installation: pulse",
-          "schematype": "CreativeWork"
+          "schematype": "CreativeWork",
+          "inheritedVerticallyFrom": "mybook"
         },
         {
+          "imageurl": "@assets/imagetest2.jpg",
           "url": "http://payload.cargocollective.com/1/0/9226/235006/PULSE_5.jpg",
           "bibType": "image",
           "citeKey": "image_test_2",
           "title": "installation: pulse",
-          "schematype": "CreativeWork"
+          "schematype": "CreativeWork",
+          "inheritedVerticallyFrom": "mybook"
         },
         {
+          "posterurl": "@assets/screenshot.png",
           "url": "https://medium.com/@sxywu/on-d3-react-and-a-little-bit-of-flux-88a226f328f3#.4z6m379fa",
           "bibType": "online",
           "citeKey": "website_test",
-          "title": "D3 and react tutorial"
+          "title": "D3 and react tutorial",
+          "inheritedVerticallyFrom": "mybook"
         },
         {
           "publisher": "Springer",
@@ -997,7 +1102,8 @@
           ],
           "year": 1994,
           "bibType": "book",
-          "citeKey": "ab94"
+          "citeKey": "ab94",
+          "inheritedVerticallyFrom": "mybook"
         }
       ],
       "parent": "mybook",
@@ -1430,13 +1536,15 @@
           "bibType": "article",
           "citeKey": "martin_change_2002",
           "doi": "10.3998/3336451.0007.301",
-          "url": "http://hdl.handle.net/2027/spo.3336451.0007.301"
+          "url": "http://hdl.handle.net/2027/spo.3336451.0007.301",
+          "inheritedVerticallyFrom": "mybook"
         },
         {
           "url": "cool_url",
           "bibType": "tabularData",
           "citeKey": "temporal_data",
-          "title": "cool data"
+          "title": "cool data",
+          "inheritedVerticallyFrom": "mybook"
         },
         {
           "title": "Bridging the mire between e-research and e-publishing for multimedia digital scholarship in the humanities and social sciences: {An} {Australian} case study",
@@ -1460,27 +1568,34 @@
             "Scholarly e-publishing",
             "Semantic web",
             "World Wide Web"
-          ]
+          ],
+          "inheritedVerticallyFrom": "mybook"
         },
         {
+          "imageurl": "@assets/imagetest2.jpg",
           "url": "http://payload.cargocollective.com/1/0/9226/235006/PULSE_6.jpg",
           "bibType": "image",
           "citeKey": "image_test_1",
           "title": "installation: pulse",
-          "schematype": "CreativeWork"
+          "schematype": "CreativeWork",
+          "inheritedVerticallyFrom": "mybook"
         },
         {
+          "imageurl": "@assets/imagetest2.jpg",
           "url": "http://payload.cargocollective.com/1/0/9226/235006/PULSE_5.jpg",
           "bibType": "image",
           "citeKey": "image_test_2",
           "title": "installation: pulse",
-          "schematype": "CreativeWork"
+          "schematype": "CreativeWork",
+          "inheritedVerticallyFrom": "mybook"
         },
         {
+          "posterurl": "@assets/screenshot.png",
           "url": "https://medium.com/@sxywu/on-d3-react-and-a-little-bit-of-flux-88a226f328f3#.4z6m379fa",
           "bibType": "online",
           "citeKey": "website_test",
-          "title": "D3 and react tutorial"
+          "title": "D3 and react tutorial",
+          "inheritedVerticallyFrom": "mybook"
         },
         {
           "publisher": "Springer",
@@ -1499,7 +1614,8 @@
           ],
           "year": 1994,
           "bibType": "book",
-          "citeKey": "ab94"
+          "citeKey": "ab94",
+          "inheritedVerticallyFrom": "mybook"
         }
       ],
       "parent": "mybook",
@@ -1795,7 +1911,8 @@
           ],
           "year": 1985,
           "bibType": "incollection",
-          "citeKey": "m85"
+          "citeKey": "m85",
+          "inheritedVerticallyFrom": "partie_2"
         },
         {
           "journal": "Journal of Electronic Publishing",
@@ -1819,13 +1936,15 @@
           "bibType": "article",
           "citeKey": "martin_change_2002",
           "doi": "10.3998/3336451.0007.301",
-          "url": "http://hdl.handle.net/2027/spo.3336451.0007.301"
+          "url": "http://hdl.handle.net/2027/spo.3336451.0007.301",
+          "inheritedVerticallyFrom": "partie_2"
         },
         {
           "url": "cool_url",
           "bibType": "tabularData",
           "citeKey": "temporal_data",
-          "title": "cool data"
+          "title": "cool data",
+          "inheritedVerticallyFrom": "partie_2"
         },
         {
           "title": "Bridging the mire between e-research and e-publishing for multimedia digital scholarship in the humanities and social sciences: {An} {Australian} case study",
@@ -1849,27 +1968,34 @@
             "Scholarly e-publishing",
             "Semantic web",
             "World Wide Web"
-          ]
+          ],
+          "inheritedVerticallyFrom": "partie_2"
         },
         {
+          "imageurl": "@assets/imagetest2.jpg",
           "url": "http://payload.cargocollective.com/1/0/9226/235006/PULSE_6.jpg",
           "bibType": "image",
           "citeKey": "image_test_1",
           "title": "installation: pulse",
-          "schematype": "CreativeWork"
+          "schematype": "CreativeWork",
+          "inheritedVerticallyFrom": "partie_2"
         },
         {
+          "imageurl": "@assets/imagetest2.jpg",
           "url": "http://payload.cargocollective.com/1/0/9226/235006/PULSE_5.jpg",
           "bibType": "image",
           "citeKey": "image_test_2",
           "title": "installation: pulse",
-          "schematype": "CreativeWork"
+          "schematype": "CreativeWork",
+          "inheritedVerticallyFrom": "partie_2"
         },
         {
+          "posterurl": "@assets/screenshot.png",
           "url": "https://medium.com/@sxywu/on-d3-react-and-a-little-bit-of-flux-88a226f328f3#.4z6m379fa",
           "bibType": "online",
           "citeKey": "website_test",
-          "title": "D3 and react tutorial"
+          "title": "D3 and react tutorial",
+          "inheritedVerticallyFrom": "partie_2"
         },
         {
           "publisher": "Springer",
@@ -1888,7 +2014,8 @@
           ],
           "year": 1994,
           "bibType": "book",
-          "citeKey": "ab94"
+          "citeKey": "ab94",
+          "inheritedVerticallyFrom": "partie_2"
         }
       ],
       "parent": "partie_2",
@@ -1956,7 +2083,10 @@
             "ab94"
           ],
           "type": "block",
-          "contextualizerType": "citation"
+          "contextualizerType": "citation",
+          "title": "@res.title",
+          "describedInline": true,
+          "outputmode": "all"
         },
         {
           "contextualizer": "contextualizer_3",
@@ -1965,7 +2095,10 @@
             "martin_change_2002"
           ],
           "type": "block",
-          "contextualizerType": "citation"
+          "contextualizerType": "citation",
+          "title": "@res.title",
+          "describedInline": true,
+          "outputmode": "all"
         },
         {
           "contextualizer": "contextualizer_5",
@@ -1974,7 +2107,10 @@
             "jakubowicz_bridging"
           ],
           "type": "block",
-          "contextualizerType": "citation"
+          "contextualizerType": "citation",
+          "title": "@res.title",
+          "describedInline": true,
+          "outputmode": "all"
         }
       ]
     }

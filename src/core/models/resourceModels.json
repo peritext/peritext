@@ -61,6 +61,12 @@
           "valueType" : "yyyymmddDate",
           "description" : "The date in which the resource was published",
           "required" : false
+        },
+        {
+          "key" : "inheritedVerticallyFrom",
+          "valueType" : "string",
+          "description" : "The citekey of the section from which this resource is inherited.",
+          "required" : false
         }
       ]
     },
@@ -160,6 +166,12 @@
           "key" : "height",
           "valueType" : "string",
           "description" : "The original height of the image",
+          "required" : false
+        },
+        {
+          "key" : "imageurl",
+          "valueType" : "string",
+          "description" : "The actual url to use for displaying the image.",
           "required" : false
         },
         {
