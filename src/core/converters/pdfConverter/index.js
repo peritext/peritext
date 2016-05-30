@@ -58,8 +58,12 @@ export function exportSection({section, sectionList, includeChildren = true, des
       });
     }, function(sections, cback) {
       // resolve contextualizations by adding blocks, footnotes, or mutating html contents
-      const displaySections = sections.map((sectio) =>{
-        return resolveContextualizationsImplementation(sectio, 'static');
+      let figuresCount = 0;
+      const displaySections = sections.map((sectio, index) =>{
+        sectio.figuresCount = figuresCount;
+        const newSection = resolveContextualizationsImplementation(sectio, 'static');
+        figuresCount = newSection.figuresCount;
+        return newSection;
       });
 
       let newHtml;
@@ -73,7 +77,6 @@ export function exportSection({section, sectionList, includeChildren = true, des
         if (notesPosition === 'documentend') {
           notesCount += notes.length;
         }
-        // console.log(getMetaValue(sectio.metadata, 'general', 'bibType'));
 
         return Object.assign({}, sectio, {outputHtml}, {notes});
       });
@@ -154,7 +157,7 @@ export function exportSection({section, sectionList, includeChildren = true, des
       callback();
     }, function(error) {
       console.log('Prince ERROR: ', error);
-      callback();
+      // callback();
     });
   });
 }

@@ -24,18 +24,74 @@
     page: placeholder;
 }
 
-figure {
-  border : 1px solid lightgrey;
-  padding : 0.5cm;
-}
-
 img
 {
     width: 9999em;
     max-width: 100%;
     height: auto;
     max-height: 100%;
-    border : 1px solid lightgrey;
+
+    border: 1px solid lightgrey;
+}
+
+figure,
+.modulo-contents-figures-gallery
+{
+    padding: .5cm;
+
+    border: 1px solid lightgrey;
+
+    page-break-inside: avoid;
+}
+
+.modulo-contents-figures-wrapper
+{
+    width : 100%;
+    display: -webkit-box;
+    display:    -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display:         flex;
+    flex-direction: row;
+
+    width: 100%;
+
+    -webkit-box-orient: horizontal;
+       -moz-box-orient: horizontal;
+            box-orient: horizontal;
+    -webkit-box-pack: center;
+       -moz-box-pack: center;
+            box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+       -moz-box-align: center;
+            box-align: center;
+    align-items: center;
+}
+
+.modulo-contents-figures-wrapper figure
+{
+    display: flex;
+
+    box-sizing: content-box;
+    padding: 0 0 .5cm 0;
+    padding: 10px;
+
+    text-align: center;
+
+    border: none;
+
+    -webkit-box-flex: 1;
+       -moz-box-flex: 1;
+            box-flex: 1;
+    -webkit-flex: 1 1 auto;
+            flex: 1 1 auto;
+    align-items: center;
+}
+
+.modulo-contents-figures-wrapper img
+{
+    width : auto;
 }
 
 @page
@@ -60,20 +116,24 @@ body{
 <p><TemplateCall type="toc" options=""/></p>
 <BlockContextualization id="contextualization_1" resources="@temporal_data" contextualizer="cool_timeline_1">A reference</BlockContextualization>
 <BlockContextualization id="contextualization_2" resources="@temporal_data" contextualizer="cool_timeline_2">Another view on the timeline</BlockContextualization>
-<p>I am inline referencing to an <InlineContextualization id="contextualization_9" resources="@image_test_1" contextualizer="contextualizer_9">image</InlineContextualization>.</p>
-<p>Then I want to say that the image I just showed <InlineContextualization id="contextualization_10" resources="@image_test_1" contextualizer="contextualizer_10">image</InlineContextualization> is awesome.</p>
+<p>I am inline referencing to an image (<a class="modulo-contents-figure-pointer" href="#modulo-contents-figure-1">figure 1</a>).</p>
+<div class="modulo-contents-figures-gallery" id="modulo-contents-figure-1"><div class="modulo-contents-figures-wrapper"><div class="modulo-contents-figure" itemscope itemprop="citation" itemtype="http://schema.org/CreativeWork" typeof="CreativeWork" resource="#image_test_1"><span itemprop="name" property="name" style="visibility:hidden">installation: pulse</span><figure itemprop="image" property="image" itemscope itemType="http://schema.org/ImageObject" typeof="ImageObject"><a href="/home/rawbin/Projets/_1projets_en_cours/modulo/modulo/test/_sample_assets/imagetest1.jpg" itemprop="contentUrl" property="contenturl" value="/home/rawbin/Projets/_1projets_en_cours/modulo/modulo/test/_sample_assets/imagetest1.jpg"></a><img itemprop="image" value="image" src="/home/rawbin/Projets/_1projets_en_cours/modulo/modulo/test/_sample_assets/imagetest1.jpg" alt="installation: pulse" /><figcaption itemprop="caption" property="caption"></figcaption></figure></div></div><p class="modulo-contents-figure-note" itemprop="comment" property="comment"><span class="modulo-contents-figure-mark" id="figure-mark-1">Figure 1 – </span><span class="modulo-contents-figure-note"> installation: pulse</span></p></div>
+<p>Then I want to say that the image I just showed image (<a class="modulo-contents-figure-pointer" href="#modulo-contents-figure-2">figure 2</a>) is awesome.</p>
+<div class="modulo-contents-figures-gallery" id="modulo-contents-figure-2"><div class="modulo-contents-figures-wrapper"><div class="modulo-contents-figure" itemscope itemprop="citation" itemtype="http://schema.org/CreativeWork" typeof="CreativeWork" resource="#image_test_1"><span itemprop="name" property="name" style="visibility:hidden">installation: pulse</span><figure itemprop="image" property="image" itemscope itemType="http://schema.org/ImageObject" typeof="ImageObject"><a href="/home/rawbin/Projets/_1projets_en_cours/modulo/modulo/test/_sample_assets/imagetest1.jpg" itemprop="contentUrl" property="contenturl" value="/home/rawbin/Projets/_1projets_en_cours/modulo/modulo/test/_sample_assets/imagetest1.jpg"></a><img itemprop="image" value="image" src="/home/rawbin/Projets/_1projets_en_cours/modulo/modulo/test/_sample_assets/imagetest1.jpg" alt="installation: pulse" /><figcaption itemprop="caption" property="caption"></figcaption></figure></div></div><p class="modulo-contents-figure-note" itemprop="comment" property="comment"><span class="modulo-contents-figure-mark" id="figure-mark-2">Figure 2 – </span><span class="modulo-contents-figure-note"> installation: pulse</span></p></div>
 <p>And then I want to display a group of images :</p>
-<BlockContextualization id="contextualization_4" resources="@image_test_1,@image_test_2" contextualizer="contextualizer_3"></BlockContextualization>
+<div class="modulo-contents-figures-gallery" id="modulo-contents-figure-3"><div class="modulo-contents-figures-wrapper"><div class="modulo-contents-figure" itemscope itemprop="citation" itemtype="http://schema.org/CreativeWork" typeof="CreativeWork" resource="#image_test_1"><span itemprop="name" property="name" style="visibility:hidden">installation: pulse</span><figure itemprop="image" property="image" itemscope itemType="http://schema.org/ImageObject" typeof="ImageObject"><a href="/home/rawbin/Projets/_1projets_en_cours/modulo/modulo/test/_sample_assets/imagetest1.jpg" itemprop="contentUrl" property="contenturl" value="/home/rawbin/Projets/_1projets_en_cours/modulo/modulo/test/_sample_assets/imagetest1.jpg"></a><img itemprop="image" value="image" src="/home/rawbin/Projets/_1projets_en_cours/modulo/modulo/test/_sample_assets/imagetest1.jpg" alt="installation: pulse" /><figcaption itemprop="caption" property="caption"></figcaption></figure></div><div class="modulo-contents-figure" itemscope itemprop="citation" itemtype="http://schema.org/CreativeWork" typeof="CreativeWork" resource="#image_test_2"><span itemprop="name" property="name" style="visibility:hidden">installation: pulse</span><figure itemprop="image" property="image" itemscope itemType="http://schema.org/ImageObject" typeof="ImageObject"><a href="/home/rawbin/Projets/_1projets_en_cours/modulo/modulo/test/_sample_assets/imagetest2.jpg" itemprop="contentUrl" property="contenturl" value="/home/rawbin/Projets/_1projets_en_cours/modulo/modulo/test/_sample_assets/imagetest2.jpg"></a><img itemprop="image" value="image" src="/home/rawbin/Projets/_1projets_en_cours/modulo/modulo/test/_sample_assets/imagetest2.jpg" alt="installation: pulse" /><figcaption itemprop="caption" property="caption"></figcaption></figure></div></div><p class="modulo-contents-figure-note" itemprop="comment" property="comment"><span class="modulo-contents-figure-mark" id="figure-mark-3">Figure 3 – </span><span class="modulo-contents-figure-note"> A group of images</span></p></div>
 <p>And then I want to point to an online<sup class="modulo-contents-note-content" name="note-content-mybook1" id="note-content-mybook1"><a class="modulo-contents-hyperlink" itemscope itemprop="citation" itemtype="http://schema.org/webpage" typeof="webpage" resource="#website_test" target="_blank" href="https://medium.com/@sxywu/on-d3-react-and-a-little-bit-of-flux-88a226f328f3#.4z6m379fa" ><span itemprop="name" property="name" value="D3 and react tutorial"/>https://medium.com/@sxywu/on-d3-react-and-a-little-bit-of-flux-88a226f328f3#.4z6m379fa<span itemprop="url" property="url" style="display:none"/>https://medium.com/@sxywu/on-d3-react-and-a-little-bit-of-flux-88a226f328f3#.4z6m379fa</span></a></sup> resource.</p>
-<div class="modulo-contents-figure" itemscope itemprop="citation" itemtype="http://schema.org/webpage" typeof="webpage" resource="#website_test"><span itemprop="name" property="name" style="visibility:hidden">D3 and react tutorial</span><figure itemprop="image" property="image" itemscope itemType="http://schema.org/ImageObject" typeof="ImageObject"><a href="/home/rawbin/Projets/_1projets_en_cours/modulo/modulo/test/_sample_assets/screenshot.png" itemprop="contentUrl" property="contenturl" value="/home/rawbin/Projets/_1projets_en_cours/modulo/modulo/test/_sample_assets/screenshot.png"></a><img itemprop="image" value="image" src="/home/rawbin/Projets/_1projets_en_cours/modulo/modulo/test/_sample_assets/screenshot.png" alt="D3 and react tutorial" /><figcaption itemprop="caption" value="caption"><span class="modulo-contents-figure-mark" id="figure-mark-1">Figure 1 – </span>online 2 – <a class="modulo-contents-hyperlink" itemprop="url" target="_blank" href="https://medium.com/@sxywu/on-d3-react-and-a-little-bit-of-flux-88a226f328f3#.4z6m379fa" >https://medium.com/@sxywu/on-d3-react-and-a-little-bit-of-flux-88a226f328f3#.4z6m379fa</a></figcaption></figure></div>
+<div class="modulo-contents-figure" itemscope itemprop="citation" itemtype="http://schema.org/webpage" typeof="webpage" resource="#website_test"id="modulo-contents-figure-4"><span itemprop="name" property="name" style="visibility:hidden">D3 and react tutorial</span><figure itemprop="image" property="image" itemscope itemType="http://schema.org/ImageObject" typeof="ImageObject"><a href="/home/rawbin/Projets/_1projets_en_cours/modulo/modulo/test/_sample_assets/screenshot.png" itemprop="contentUrl" property="contenturl" value="/home/rawbin/Projets/_1projets_en_cours/modulo/modulo/test/_sample_assets/screenshot.png"></a><img itemprop="image" value="image" src="/home/rawbin/Projets/_1projets_en_cours/modulo/modulo/test/_sample_assets/screenshot.png" alt="D3 and react tutorial" /><figcaption itemprop="caption" property="caption"><span class="modulo-contents-figure-mark" id="figure-mark-4">Figure 4 – </span>This is a block website contextualization, displaying a poster or the resource (typically a screenshot) if specified – <a class="modulo-contents-hyperlink" itemprop="url" target="_blank" href="https://medium.com/@sxywu/on-d3-react-and-a-little-bit-of-flux-88a226f328f3#.4z6m379fa" >https://medium.com/@sxywu/on-d3-react-and-a-little-bit-of-flux-88a226f328f3#.4z6m379fa</a></figcaption></figure></div>
 <p>I will talk about that<sup class="modulo-contents-note-content" name="note-content-mybook2" id="note-content-mybook2">with a footnote here</sup> :</p>
 <BlockContextualization id="contextualization_8" resources="@temporal_data" contextualizer="contextualizer_7">Another reference with unnamed contextualizer</BlockContextualization>
-<p>I will first quote in a book where someone that says <q id="contextualization_12"  class="modulo-contents-inline-quoted">it&#39;s not possible</q> (<span  class="modulo-contents-citation-wrapper" itemprop="citation" itemscope itemtype="http://schema.org/Book" id="ab94" typeof="Book" resource="#ab94"><span class="modulo-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person"><span class="modulo-contents-citation-author-lastname" itemprop="familyName" property="familyName" >CHARALAMBOS</span></span> et <span class="modulo-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person"><span class="modulo-contents-citation-author-lastname" itemprop="familyName" property="familyName" >BORDER</span></span>, <time class="modulo-contents-citation-date" property="datePublished" itemprop="datePublished" datetime="1994">1994</time></span>).</p>
-<p>Then I should have an ibid here <sup class="modulo-contents-note-content" name="note-content-mybook3" id="note-content-mybook3"><span  class="modulo-contents-citation-wrapper" itemprop="citation" itemscope itemtype="http://schema.org/Book" id="ab94" typeof="Book" resource="#ab94"><i class="modulo-contents-citation-ibid">ibid.</i>, p. <span class="modulo-contents-citation-quote-pages">12</span></span>.</sup></p>
+<p>I will first quote in a book where someone that says <q id="contextualization_12"  class="modulo-contents-inline-quoted">it&#39;s not possible</q> (<span  class="modulo-contents-citation-wrapper" itemprop="citation" itemscope itemtype="http://schema.org/Book" id="ab94" typeof="Book" resource="#ab94"><span class="modulo-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person"><span class="modulo-contents-citation-author-lastname" itemprop="familyName" property="familyName" >CHARALAMBOS</span></span> et <span class="modulo-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person"><span class="modulo-contents-citation-author-lastname" itemprop="familyName" property="familyName" >BORDER</span></span>, <time class="modulo-contents-citation-date" property="datePublished" itemprop="datePublished" datetime="1994">1994</time></span>).
+But I would like to quote again my group of images (<a class="modulo-contents-figure-pointer" href="#modulo-contents-figure-5">figure 5</a>).</p>
+<div class="modulo-contents-figures-gallery" id="modulo-contents-figure-5"><div class="modulo-contents-figures-wrapper"><div class="modulo-contents-figure" itemscope itemprop="citation" itemtype="http://schema.org/CreativeWork" typeof="CreativeWork" resource="#image_test_1"><span itemprop="name" property="name" style="visibility:hidden">installation: pulse</span><figure itemprop="image" property="image" itemscope itemType="http://schema.org/ImageObject" typeof="ImageObject"><a href="/home/rawbin/Projets/_1projets_en_cours/modulo/modulo/test/_sample_assets/imagetest1.jpg" itemprop="contentUrl" property="contenturl" value="/home/rawbin/Projets/_1projets_en_cours/modulo/modulo/test/_sample_assets/imagetest1.jpg"></a><img itemprop="image" value="image" src="/home/rawbin/Projets/_1projets_en_cours/modulo/modulo/test/_sample_assets/imagetest1.jpg" alt="installation: pulse" /><figcaption itemprop="caption" property="caption"></figcaption></figure></div><div class="modulo-contents-figure" itemscope itemprop="citation" itemtype="http://schema.org/CreativeWork" typeof="CreativeWork" resource="#image_test_2"><span itemprop="name" property="name" style="visibility:hidden">installation: pulse</span><figure itemprop="image" property="image" itemscope itemType="http://schema.org/ImageObject" typeof="ImageObject"><a href="/home/rawbin/Projets/_1projets_en_cours/modulo/modulo/test/_sample_assets/imagetest2.jpg" itemprop="contentUrl" property="contenturl" value="/home/rawbin/Projets/_1projets_en_cours/modulo/modulo/test/_sample_assets/imagetest2.jpg"></a><img itemprop="image" value="image" src="/home/rawbin/Projets/_1projets_en_cours/modulo/modulo/test/_sample_assets/imagetest2.jpg" alt="installation: pulse" /><figcaption itemprop="caption" property="caption"></figcaption></figure></div></div><p class="modulo-contents-figure-note" itemprop="comment" property="comment"><span class="modulo-contents-figure-mark" id="figure-mark-5">Figure 5 – </span><span class="modulo-contents-figure-note"> installation: pulse</span></p></div>
+<p>Then I should have an ibid here <sup class="modulo-contents-note-content" name="note-content-mybook3" id="note-content-mybook3"><span  class="modulo-contents-citation-wrapper" itemprop="citation" itemscope itemtype="http://schema.org/Book" id="ab94" typeof="Book" resource="#ab94"><span class="modulo-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person"><span class="modulo-contents-citation-author-lastname" itemprop="familyName" property="familyName" >CHARALAMBOS</span></span> et <span class="modulo-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person"><span class="modulo-contents-citation-author-lastname" itemprop="familyName" property="familyName" >BORDER</span></span>, <time class="modulo-contents-citation-date" property="datePublished" itemprop="datePublished" datetime="1994">1994</time>, p. <span class="modulo-contents-citation-quote-pages">12</span></span>.</sup></p>
 <p>And as say a lot of people<sup class="modulo-contents-note-content" name="note-content-mybook4" id="note-content-mybook4"><span  class="modulo-contents-citation-wrapper" itemprop="citation" itemscope itemtype="http://schema.org/ScholarlyArticle" id="martin_change_2002" typeof="ScholarlyArticle" resource="#martin_change_2002"><span class="modulo-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person"><span class="modulo-contents-citation-author-lastname" itemprop="familyName" property="familyName" >MARTIN</span></span> et <span class="modulo-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person"><span class="modulo-contents-citation-author-lastname" itemprop="familyName" property="familyName" >COLEMAN</span></span>, <time class="modulo-contents-citation-date" property="datePublished" itemprop="datePublished" datetime="2002">2002</time>, pp. <span class="modulo-contents-citation-quote-pages">30-40</span></span></sup>, publishing could be simpler.</p>
-<p>And for the footnotes, I want to say that Martin said that<sup class="modulo-contents-note-content" name="note-content-mybook5" id="note-content-mybook5">I&#39;m referencing to <span  class="modulo-contents-citation-wrapper" itemprop="citation" itemscope itemtype="http://schema.org/ScholarlyArticle" id="martin_change_2002" typeof="ScholarlyArticle" resource="#martin_change_2002"><span class="modulo-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person"><span class="modulo-contents-citation-author-lastname" itemprop="familyName" property="familyName" >MARTIN</span></span> et <span class="modulo-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person"><span class="modulo-contents-citation-author-lastname" itemprop="familyName" property="familyName" >COLEMAN</span></span>, <i class="modulo-contents-citation-opcit">op.cit.</i>, pp. <span class="modulo-contents-citation-quote-pages">12-13</span></span> when he says : &quot;hello&quot;</sup></p>
-<p>Whe Martin says <q id="contextualization_16"  class="modulo-contents-inline-quoted">there has to be some <em>change</em></q> (<span  class="modulo-contents-citation-wrapper" itemprop="citation" itemscope itemtype="http://schema.org/ScholarlyArticle" id="martin_change_2002" typeof="ScholarlyArticle" resource="#martin_change_2002"><span class="modulo-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person"><span class="modulo-contents-citation-author-lastname" itemprop="familyName" property="familyName" >MARTIN</span></span> et <span class="modulo-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person"><span class="modulo-contents-citation-author-lastname" itemprop="familyName" property="familyName" >COLEMAN</span></span>, <i class="modulo-contents-citation-opcit">op.cit.</i></span>).</p>
-<p>Now let&#39;s say I want to link to this <InlineContextualization id="contextualization_17" resources="@temporal_data" contextualizer="contextualizer_17">timeline</InlineContextualization> and continue my paragraph quietly.</p>
+<p>And for the footnotes, I want to say that Martin said that<sup class="modulo-contents-note-content" name="note-content-mybook5" id="note-content-mybook5">I&#39;m referencing to <span  class="modulo-contents-citation-wrapper" itemprop="citation" itemscope itemtype="http://schema.org/ScholarlyArticle" id="martin_change_2002" typeof="ScholarlyArticle" resource="#martin_change_2002"><span class="modulo-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person"><span class="modulo-contents-citation-author-lastname" itemprop="familyName" property="familyName" >MARTIN</span></span> et <span class="modulo-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person"><span class="modulo-contents-citation-author-lastname" itemprop="familyName" property="familyName" >COLEMAN</span></span>, <time class="modulo-contents-citation-date" property="datePublished" itemprop="datePublished" datetime="2002">2002</time>, pp. <span class="modulo-contents-citation-quote-pages">12-13</span></span> when he says : &quot;hello&quot;</sup></p>
+<p>Whe Martin says <q id="contextualization_17"  class="modulo-contents-inline-quoted">there has to be some <em>change</em></q> (<span  class="modulo-contents-citation-wrapper" itemprop="citation" itemscope itemtype="http://schema.org/ScholarlyArticle" id="martin_change_2002" typeof="ScholarlyArticle" resource="#martin_change_2002"><span class="modulo-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person"><span class="modulo-contents-citation-author-lastname" itemprop="familyName" property="familyName" >MARTIN</span></span> et <span class="modulo-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person"><span class="modulo-contents-citation-author-lastname" itemprop="familyName" property="familyName" >COLEMAN</span></span>, <time class="modulo-contents-citation-date" property="datePublished" itemprop="datePublished" datetime="2002">2002</time></span>).</p>
+<p>Now let&#39;s say I want to link to this <InlineContextualization id="contextualization_18" resources="@temporal_data" contextualizer="contextualizer_18">timeline</InlineContextualization> and continue my paragraph quietly.</p>
 <p>Welcome to my awesome book.</p>
 <p>Thanks to all !</p>
 <p>Momanddad
