@@ -23,7 +23,7 @@ export function contextualizeInlineStatic(section, contextualization) {
 }
 
 export function contextualizeBlockStatic(section, contextualization) {
-  const figuresCount = (section.figuresCount) ? section.figuresCount++ : 1;
+  const figuresCount = section.figuresCount + 1;
   const elRe = new RegExp('<BlockContextualization id="' + contextualization.citeKey + '"[^>]*>(.*)</BlockContextualization>');
   let match;
   const resource = section.resources.find((res) =>{
@@ -49,7 +49,7 @@ export function contextualizeBlockStatic(section, contextualization) {
                               + resource.url
                               + '</a>';
       const captionContent = figureMark + caption + ' – ' + link;
-      const figureHtml = formatImageFigure(resource, 'posterurl', captionContent);
+      const figureHtml = formatImageFigure(resource, 'posterurl', captionContent, undefined, figuresCount);
       const outputHtml = block.html.substr(0, match.index) + figureHtml + block.html.substr(match.index + match[0].length);
       return {
         html: outputHtml,
@@ -57,6 +57,15 @@ export function contextualizeBlockStatic(section, contextualization) {
       };
     }
     return block;
+  });
+
+  // add figure number
+  section.contextualizations = section.contextualizations.map((cont) =>{
+    if (cont.citeKey === contextualization.citeKey) {
+      cont.figureNumber = figuresCount;
+      return cont;
+    }
+    return cont;
   });
 
   return Object.assign({}, section, {figuresCount}, {contents: newContents});
