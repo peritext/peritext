@@ -82,7 +82,6 @@ function inheritResourcesFromParent(section, sections, parentResources, parentKe
   const inherited = parentResources.filter((presource) =>{
     return !hasResource(section.resources, presource);
   });
-
   section.resources = section.resources.concat(inherited.map((meta) =>{
     return Object.assign({}, meta, {inheritedVerticallyFrom: parentKey});
   }));

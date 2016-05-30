@@ -20,9 +20,7 @@ export function contextualizeInlineStatic(inputSection, contextualization) {
       previous = section.contextualizations[index];
     }
   }
-  const contextualizer = section.contextualizers.find((ctzer) =>{
-    return ctzer.citeKey === contextualization.contextualizer;
-  });
+
   let ibid;
   let opCit;
   // handle each resource separately (if several citations together)
@@ -59,7 +57,7 @@ export function contextualizeInlineStatic(inputSection, contextualization) {
     }
     // todo : generate COiNS here
     // apply appropriate html citation formatter
-    return formatter.formatInlineCitation(contextualizer, res, ibid, opCit);
+    return formatter.formatInlineCitation(contextualization, res, ibid, opCit);
   }).join(', ');
 
   // interpolate html
@@ -108,9 +106,6 @@ export function contextualizeBlockStatic(inputSection, contextualization) {
       previous = section.contextualizations[index];
     }
   }
-  const contextualizer = section.contextualizers.find((ctzer) =>{
-    return ctzer.citeKey === contextualization.contextualizer;
-  });
   let ibid;
   let opCit;
   // handle each resource separately (if several citations together)
@@ -147,7 +142,7 @@ export function contextualizeBlockStatic(inputSection, contextualization) {
     }
     // todo : generate COiNS here
     // apply appropriate html citation formatter
-    return formatter.formatBlockCitation(contextualizer, res, ibid, opCit);
+    return formatter.formatBlockCitation(contextualization, res, ibid, opCit);
   }).join(', ');
 
   // interpolate html

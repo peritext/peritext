@@ -124,6 +124,11 @@ export function resolveContextualizersAndContextualizations({section, models}, c
       return ok;
     });
     return ok;
+  }).map((cont) =>{
+    const contextualizer = section.contextualizers.find((con) =>{
+      return con.citeKey === cont.contextualizer;
+    });
+    return Object.assign({}, cont, contextualizer, {type: cont.type, citeKey: cont.citeKey});
   });
   cb(null, {errors, section});
 }
@@ -159,6 +164,5 @@ export function resolveContextualizationsImplementation(section, renderingMode) 
     }
     return Object.assign({}, inputSection);
   }, Object.assign({}, section));
-  // console.log(id, 'final sectio contents: ', sectio.contents);
   return sectio;
 }

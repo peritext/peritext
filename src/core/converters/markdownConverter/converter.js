@@ -164,14 +164,18 @@ function eatContextualizations(inputHtml) {
       formattedParams.overloading = overloading;
     }
     formattedParams.citeKey = contextualizerKey;
-    formattedParams.resources = match[1].replace('@', '').split(',');
+    formattedParams.resources = match[1].split(',').map((res) =>{
+      return res.replace(/^@/, '');
+    });
     contextualizers.push(formattedParams);
 
     contextualizationCount ++;
     contextualizations.push({
       'contextualizer': contextualizerKey,
       'citeKey': 'contextualization_' + contextualizationCount,
-      resources: match[1].replace(/^@/, '').split(','),
+      resources: match[1].split(',').map((res) =>{
+        return res.replace(/^@/, '');
+      }),
       type: 'block'
     });
     newEl = '<BlockContextualization id="' + 'contextualization_' + contextualizationCount + '" resources="@' + match[1] + '" contextualizer="' + contextualizerKey + '">' + match[2] + '</BlockContextualization>';
@@ -230,13 +234,17 @@ function eatContextualizations(inputHtml) {
     }
 
     formattedParams.citeKey = contextualizerKey;
-    formattedParams.resources = match[1].replace('@', '').split(',');
+    formattedParams.resources = match[1].split(',').map((res) =>{
+      return res.replace(/^@/, '');
+    });
     contextualizers.push(formattedParams);
 
     contextualizations.push({
       'citeKey': 'contextualization_' + contextualizationCount,
       'contextualizer': contextualizerKey,
-      resources: match[1].replace('@', '').split(','),
+      resources: match[1].split(',').map((res) =>{
+        return res.replace(/^@/, '');
+      }),
       type: 'inline'
     });
     newEl = '<InlineContextualization id="' + 'contextualization_' + contextualizationCount + '" resources="@' + match[1] + '" contextualizer="' + contextualizerKey + '">' + match[2] + '</InlineContextualization>';

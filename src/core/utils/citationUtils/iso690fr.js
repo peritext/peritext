@@ -9,30 +9,30 @@
 
 import * as formatter from './../microDataUtils/';
 
-function formatCitationDetails(contextualizer) {
+function formatCitationDetails(contextualization) {
   let pageAddon = '';
 
-  if (contextualizer.page) {
-    pageAddon = ', p. ' + '<span class="modulo-contents-citation-quote-pages">' + contextualizer.page + '</span>';
-  } else if (contextualizer.pages) {
-    pageAddon = ', pp. ' + '<span class="modulo-contents-citation-quote-pages">' + contextualizer.pages + '</span>';
+  if (contextualization.page) {
+    pageAddon = ', p. ' + '<span class="modulo-contents-citation-quote-pages">' + contextualization.page + '</span>';
+  } else if (contextualization.pages) {
+    pageAddon = ', pp. ' + '<span class="modulo-contents-citation-quote-pages">' + contextualization.pages + '</span>';
   }
 
   let additionnal = '';
 
-  if (contextualizer.caption) {
-    additionnal += '. ' + formatter.formatSimpleProp(contextualizer, 'caption', 'comment', 'i');
+  if (contextualization.caption) {
+    additionnal += '. ' + formatter.formatSimpleProp(contextualization, 'caption', 'comment', 'i');
   }
 
-  if (contextualizer.note) {
-    additionnal += '. ' + formatter.formatSimpleProp(contextualizer, 'note', 'comment', 'i');
+  if (contextualization.note) {
+    additionnal += '. ' + formatter.formatSimpleProp(contextualization, 'note', 'comment', 'i');
   }
 
-  if (contextualizer.translation) {
-    additionnal += '. <span class="modulo-contents-citation-translation">Traduction : <q>' + contextualizer.translation + '</q></span>';
+  if (contextualization.translation) {
+    additionnal += '. <span class="modulo-contents-citation-translation">Traduction : <q>' + contextualization.translation + '</q></span>';
   }
-  if (contextualizer.original) {
-    additionnal += '. <span class="modulo-contents-citation-original">Citation originale : <q>' + contextualizer.original + '</q></span>';
+  if (contextualization.original) {
+    additionnal += '. <span class="modulo-contents-citation-original">Citation originale : <q>' + contextualization.original + '</q></span>';
   }
   return pageAddon + additionnal;
 }
@@ -42,7 +42,7 @@ function formatCitationDetails(contextualizer) {
  * Long citation (bibliography style)
  */
 
-export function formatBlockCitation(contextualizer, resource, ibid, opCit) {
+export function formatBlockCitation(contextualization, resource, ibid, opCit) {
   /*
    * Resource-related population
    */
@@ -129,7 +129,7 @@ export function formatBlockCitation(contextualizer, resource, ibid, opCit) {
   /*
    * Contextualizer-related population
    */
-  const additionnal = formatCitationDetails(contextualizer);
+  const additionnal = formatCitationDetails(contextualization);
 
   const wrappers = formatter.wrapCitation(resource);
   return wrappers.before + ref + additionnal + wrappers.after;
@@ -140,7 +140,7 @@ export function formatBlockCitation(contextualizer, resource, ibid, opCit) {
  * Short citation
  */
 
-export function formatInlineCitation(contextualizer, resource, ibid, opCit) {
+export function formatInlineCitation(contextualization, resource, ibid, opCit) {
   /*
    * Resource-related population
    */
@@ -169,7 +169,7 @@ export function formatInlineCitation(contextualizer, resource, ibid, opCit) {
   /*
    * Contextualizer-related population
    */
-  const additionnal = formatCitationDetails(contextualizer);
+  const additionnal = formatCitationDetails(contextualization);
   const wrappers = formatter.wrapCitation(resource);
   return wrappers.before + ref + additionnal + wrappers.after;
 }

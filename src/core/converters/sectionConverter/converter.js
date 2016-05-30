@@ -109,7 +109,7 @@ function concatSection({section, models}, callback) {
 function sectionListToFsTree(inputSectionList, basePath, callback) {
   const sectionList = inputSectionList.map((section)=>{
     const folderTitle = section.citeKey;
-    const relPath = (section.root) ? '/' : '/' + folderTitle;
+    const relPath = (section.root) ? '' : '/' + folderTitle;
     const children = [
       {
         type: 'file',
@@ -135,7 +135,6 @@ function sectionListToFsTree(inputSectionList, basePath, callback) {
       root: section.root,
       children
     };
-
     return folder;
   });
 
