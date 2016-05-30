@@ -11,18 +11,74 @@
     page: placeholder;
 }
 
-figure {
-  border : 1px solid lightgrey;
-  padding : 0.5cm;
-}
-
 img
 {
     width: 9999em;
     max-width: 100%;
     height: auto;
     max-height: 100%;
-    border : 1px solid lightgrey;
+
+    border: 1px solid lightgrey;
+}
+
+figure,
+.modulo-contents-figures-gallery
+{
+    padding: .5cm;
+
+    border: 1px solid lightgrey;
+
+    page-break-inside: avoid;
+}
+
+.modulo-contents-figures-wrapper
+{
+    width : 100%;
+    display: -webkit-box;
+    display:    -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display:         flex;
+    flex-direction: row;
+
+    width: 100%;
+
+    -webkit-box-orient: horizontal;
+       -moz-box-orient: horizontal;
+            box-orient: horizontal;
+    -webkit-box-pack: center;
+       -moz-box-pack: center;
+            box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+       -moz-box-align: center;
+            box-align: center;
+    align-items: center;
+}
+
+.modulo-contents-figures-wrapper figure
+{
+    display: flex;
+
+    box-sizing: content-box;
+    padding: 0 0 .5cm 0;
+    padding: 10px;
+
+    text-align: center;
+
+    border: none;
+
+    -webkit-box-flex: 1;
+       -moz-box-flex: 1;
+            box-flex: 1;
+    -webkit-flex: 1 1 auto;
+            flex: 1 1 auto;
+    align-items: center;
+}
+
+.modulo-contents-figures-wrapper img
+{
+    width : auto;
 }
 
 @page
