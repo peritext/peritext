@@ -110,9 +110,12 @@ function eatContextualizations(inputHtml) {
   let contextualizationCount = 0;
   let contextualizerKey;
   const contextualizers = [];
-  const contextualizations = [];
+  let contextualizations = [];
   let paramsObject;
   let newEl;
+
+  // this var is used to compute the order of contextualizations at end of contextualizations interpolations
+  let matchDisplace = 0;
 
   // parse block contextualizations
   while ((match = BlockContextualizationRE.exec(outputHtml)) !== null) {
@@ -170,7 +173,13 @@ function eatContextualizations(inputHtml) {
     contextualizers.push(formattedParams);
 
     contextualizationCount ++;
+
+    newEl = '<BlockContextualization id="' + 'contextualization_' + contextualizationCount + '" resources="@' + match[1] + '" contextualizer="' + contextualizerKey + '">' + match[2] + '</BlockContextualization>';
+    // add to match displace (resultLength - originalLength)
+    matchDisplace += (newEl.length - (match[0].length + (paramsObject ? paramsObject.length : 0)));
+    outputHtml = outputHtml.substr(0, match.index) + newEl + outputHtml.substr(match.index + match[0].length + (paramsObject ? paramsObject.length : 0));
     contextualizations.push({
+      'matchIndex': match.index - matchDisplace,
       'contextualizer': contextualizerKey,
       'citeKey': 'contextualization_' + contextualizationCount,
       resources: match[1].split(',').map((res) =>{
@@ -178,8 +187,6 @@ function eatContextualizations(inputHtml) {
       }),
       type: 'block'
     });
-    newEl = '<BlockContextualization id="' + 'contextualization_' + contextualizationCount + '" resources="@' + match[1] + '" contextualizer="' + contextualizerKey + '">' + match[2] + '</BlockContextualization>';
-    outputHtml = outputHtml.substr(0, match.index) + newEl + outputHtml.substr(match.index + match[0].length + (paramsObject ? paramsObject.length : 0));
   }
 
   // parse inline contextualizations
@@ -239,7 +246,12 @@ function eatContextualizations(inputHtml) {
     });
     contextualizers.push(formattedParams);
 
+    newEl = '<InlineContextualization id="' + 'contextualization_' + contextualizationCount + '" resources="@' + match[1] + '" contextualizer="' + contextualizerKey + '">' + match[2] + '</InlineContextualization>';
+    outputHtml = outputHtml.substr(0, match.index) + newEl + outputHtml.substr(match.index + match[0].length + (paramsObject ? paramsObject.length : 0));
+    // matchDisplace += resultLength - originalLength
+    matchDisplace += (newEl.length - (match[0].length + (paramsObject ? paramsObject.length : 0)));
     contextualizations.push({
+      'matchIndex': match.index - matchDisplace,
       'citeKey': 'contextualization_' + contextualizationCount,
       'contextualizer': contextualizerKey,
       resources: match[1].split(',').map((res) =>{
@@ -247,9 +259,14 @@ function eatContextualizations(inputHtml) {
       }),
       type: 'inline'
     });
-    newEl = '<InlineContextualization id="' + 'contextualization_' + contextualizationCount + '" resources="@' + match[1] + '" contextualizer="' + contextualizerKey + '">' + match[2] + '</InlineContextualization>';
-    outputHtml = outputHtml.substr(0, match.index) + newEl + outputHtml.substr(match.index + match[0].length + (paramsObject ? paramsObject.length : 0));
   }
+  // order contextualizations by order of apparition (previously ordered by block->inline)
+  contextualizations = contextualizations.sort((aCont, bCont) =>{
+    if (aCont.matchIndex > bCont.matchIndex) {
+      return 1;
+    }
+    return -1;
+  });
   return {contextualizers, contextualizations, tempHtml: outputHtml};
 }
 
