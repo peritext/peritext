@@ -1,4 +1,4 @@
-<!doctype:html><html><head><title>My awesome book</title><meta name="author" content="Robin De Mourat"><meta name="keywords" content="val1a, val1b, val2,val3,val4,another random set of keywords"><meta name="date" content="2016"><meta name="dc.title" content="My awesome book"><meta property="og:title" content="My awesome book"><meta name="twitter:title" content="My awesome book"><meta name="citation_title" content="My awesome book"><meta name="dc.creator" content="{De Mourat},Robin"><meta name="citation_author" content="Robin De Mourat"><meta name="dc.subject" content="val1a, val1b, val2,val3,val4,another random set of keywords"><meta name="dc.date" content="2016"><meta name="generator" content="modulo"/><style>q
+<!doctype:html><html><head><title>My awesome thesis</title><meta name="author" content="Robin De Mourat"><meta name="keywords" content="val1a, val1b, val2,val3,val4,another random set of keywords"><meta name="date" content="2016"><meta name="dc.title" content="My awesome thesis"><meta property="og:title" content="My awesome thesis"><meta name="twitter:title" content="My awesome thesis"><meta name="citation_title" content="My awesome thesis"><meta name="dc.creator" content="{De Mourat},Robin"><meta name="citation_author" content="Robin De Mourat"><meta name="dc.subject" content="val1a, val1b, val2,val3,val4,another random set of keywords"><meta name="dc.date" content="2016"><meta name="generator" content="modulo"/><style>q
 {
   /*quotes : '\00AB\2003' '\2003\00BB' '\2039 ' ' \203A';*/
   quotes : '«' ' »' '\2039 ' ' \203A';
@@ -255,7 +255,27 @@ h1,h2,h3,h4,h5,h6
   font-family: 'Cabin', 'callunaregular';
   font-weight : 700;
 }
-</style></head><body  itemscope itemType="http://schema.org/Book" vocab="http://schema.org/" ressource="#mybook"><div class="modulo-contents-schema-metadata-placeholder" style="visibility:hidden"><span class="modulo-contents-citation-title" itemprop="name" property="name">My awesome book</span><time class="modulo-contents-citation-date" property="datePublished" itemprop="datePublished" datetime="2016">2016</time><span class="modulo-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person"><span class="modulo-contents-citation-author-firstname" itemprop="givenName" property="givenName" >Robin</span> <span class="modulo-contents-citation-author-lastname" itemprop="familyName" property="familyName" >De Mourat</span></span></div><section  class="modulo-contents-section modulo-contents-section-level-1" id="mybook">
+
+
+#modulo-contents-cover
+{
+  page-break-after: always;
+}
+
+@page#modulo-contents-cover
+{
+  margin : 0;
+}
+
+#modulo-contents-cover #modulo-contents-cover-image-container
+{
+  background-image: url("/home/rawbin/Projets/_1projets_en_cours/modulo/modulo/test/_sample_assets/ueb_cover.jpg");
+   background-size:     cover;                      /* <------ */
+  background-repeat:   no-repeat;
+  background-position: center center;
+  height : 16cm;
+}
+</style></head><body  itemscope itemType="http://schema.org/Thesis" vocab="http://schema.org/" ressource="#mybook"><div class="modulo-contents-schema-metadata-placeholder" style="visibility:hidden"><span class="modulo-contents-citation-title" itemprop="name" property="name">My awesome thesis</span><time class="modulo-contents-citation-date" property="datePublished" itemprop="datePublished" datetime="2016">2016</time><span class="modulo-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person"><span class="modulo-contents-citation-author-firstname" itemprop="givenName" property="givenName" >Robin</span> <span class="modulo-contents-citation-author-lastname" itemprop="familyName" property="familyName" >De Mourat</span></span></div><section id="modulo-contents-cover"><div id="modulo-contents-cover-image-container"></div><div class="modulo-contents-cover-title"><h1>My awesome thesis</h1></div></section><section  class="modulo-contents-section modulo-contents-section-level-1" id="mybook">
 <h1 id="welcome">Welcome</h1>
 <p><TemplateCall type="toc" options=""/></p>
 <BlockContextualization id="contextualization_1" resources="@temporal_data" contextualizer="cool_timeline_1">A reference</BlockContextualization>
@@ -342,7 +362,7 @@ My imaginary friend Serge</p>
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>
 </section>
 
-<section  itemscope itemType="http://schema.org/Chapter" vocab="http://schema.org/" ressource="#partie_2_2"itemprop="hasPart" property="hasPart"  class="modulo-contents-section modulo-contents-section-level-4" id="partie_2_2">
+<section  itemscope itemType="http://schema.org/CreativeWork" vocab="http://schema.org/" ressource="#partie_2_2"itemprop="hasPart" property="hasPart"  class="modulo-contents-section modulo-contents-section-level-4" id="partie_2_2">
 <div class="modulo-contents-schema-metadata-placeholder" style="visibility:hidden"><span class="modulo-contents-citation-title" itemprop="name" property="name">Partie 2.2</span><time class="modulo-contents-citation-date" property="datePublished" itemprop="datePublished" datetime="2015">2015</time><span class="modulo-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person"><span class="modulo-contents-citation-author-firstname" itemprop="givenName" property="givenName" >Viviane</span> <span class="modulo-contents-citation-author-lastname" itemprop="familyName" property="familyName" >Westwood</span></span><span class="modulo-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person"><span class="modulo-contents-citation-author-firstname" itemprop="givenName" property="givenName" >Francis</span> <span class="modulo-contents-citation-author-lastname" itemprop="familyName" property="familyName" >Lalane</span></span></div><h1 id="this-is-part-two-point-two">This is part two point two</h1>
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam nesciunt molestias hic error dignissimos blanditiis, quo, voluptas necessitatibus neque, aliquid cupiditate commodi sed dolor consequatur ipsum fugiat esse placeat illo.</p>

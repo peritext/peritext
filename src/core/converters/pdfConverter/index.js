@@ -133,6 +133,22 @@ export function exportSection({section, sectionList, includeChildren = true, des
                     .reduce((exp, meta) =>{
                       return exp + meta.htmlHead;
                     }, '') + '<meta name="generator" content="modulo"/>';
+
+      const needsCover = ['book', 'booklet', 'collection', 'mastersthesis', 'phdthesis', 'proceedings', 'techreport', 'unpublished'];
+      const type = getMetaValue(sections[0].metadata, 'general', 'bibType');
+      const hasCover = needsCover.find((typ) =>{
+        return typ === type;
+      });
+      if (hasCover) {
+        const coverImage = getMetaValue(sections[0].metadata, 'general', 'coverimage');
+        const coverHtml = '<section id="modulo-contents-cover">'
+                            + '<div id="modulo-contents-cover-image-container"></div>'
+                            + '<div class="modulo-contents-cover-title">'
+                            + '<h1>' + getMetaValue(sections[0].metadata, 'general', 'title') + '</h1>'
+                            + '</div>'
+                        + '</section>';
+        outputHtml = coverHtml + outputHtml;
+      }
       const html = '<!doctype:html><html>'
           + '<head>' + metaHead + '<style>' + style + '</style>' + '</head>'
           + '<body ' + setSectionMeta(sections[0]) + '>'

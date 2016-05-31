@@ -10,3 +10,23 @@ h1,h2,h3,h4,h5,h6
   font-family: 'Cabin', 'callunaregular';
   font-weight : 700;
 }
+
+
+#modulo-contents-cover
+{
+  page-break-after: always;
+}
+
+@page#modulo-contents-cover
+{
+  margin : 0;
+}
+
+#modulo-contents-cover #modulo-contents-cover-image-container
+{
+  background-image: url("@assets/ueb_cover.jpg");
+   background-size:     cover;                      /* <------ */
+  background-repeat:   no-repeat;
+  background-position: center center;
+  height : 16cm;
+}

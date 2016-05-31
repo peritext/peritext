@@ -47,7 +47,7 @@
         {
           "domain": "general",
           "key": "bibType",
-          "value": "book"
+          "value": "phdthesis"
         },
         {
           "domain": "general",
@@ -57,8 +57,8 @@
         {
           "domain": "general",
           "key": "title",
-          "value": "My awesome book",
-          "htmlHead": "<title>My awesome book</title>"
+          "value": "My awesome thesis",
+          "htmlHead": "<title>My awesome thesis</title>"
         },
         {
           "domain": "general",
@@ -93,48 +93,53 @@
         },
         {
           "domain": "general",
+          "key": "coverimage",
+          "value": "@assets/ueb_cover.jpg"
+        },
+        {
+          "domain": "general",
           "key": "generalityLevel",
           "value": 1
         },
         {
           "domain": "dublincore",
           "key": "title",
-          "value": "My awesome book",
+          "value": "My awesome thesis",
           "inheritedHorizontallyFrom": {
             "domain": "general",
             "key": "title"
           },
-          "htmlHead": "<meta name=\"dc.title\" content=\"My awesome book\">"
+          "htmlHead": "<meta name=\"dc.title\" content=\"My awesome thesis\">"
         },
         {
           "domain": "opengraph",
           "key": "title",
-          "value": "My awesome book",
+          "value": "My awesome thesis",
           "inheritedHorizontallyFrom": {
             "domain": "general",
             "key": "title"
           },
-          "htmlHead": "<meta property=\"og:title\" content=\"My awesome book\">"
+          "htmlHead": "<meta property=\"og:title\" content=\"My awesome thesis\">"
         },
         {
           "domain": "twitter",
           "key": "title",
-          "value": "My awesome book",
+          "value": "My awesome thesis",
           "inheritedHorizontallyFrom": {
             "domain": "general",
             "key": "title"
           },
-          "htmlHead": "<meta name=\"twitter:title\" content=\"My awesome book\">"
+          "htmlHead": "<meta name=\"twitter:title\" content=\"My awesome thesis\">"
         },
         {
           "domain": "scholar",
           "key": "title",
-          "value": "My awesome book",
+          "value": "My awesome thesis",
           "inheritedHorizontallyFrom": {
             "domain": "general",
             "key": "title"
           },
-          "htmlHead": "<meta name=\"citation_title\" content=\"My awesome book\">"
+          "htmlHead": "<meta name=\"citation_title\" content=\"My awesome thesis\">"
         },
         {
           "domain": "dublincore",
@@ -406,7 +411,7 @@
         "components": {},
         "styles": {
           "my_style.css": "body{\n  color : black;\n}\n\n@font-face {\n    font-family: 'callunaregular';\n    src: url('@assets/Calluna-Regular-webfont.eot');\n    src: url('@assets/Calluna-Regular-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/Calluna-Regular-webfont.woff2') format('woff2'),\n         url('@assets/Calluna-Regular-webfont.woff') format('woff'),\n         url('@assets/Calluna-Regular-webfont.ttf') format('truetype'),\n         url('@assets/Calluna-Regular-webfont.svg#callunaregular') format('svg');\n    font-weight: normal;\n    font-style: normal;\n}\n\n@font-face {\n    font-family: 'cabinbold_italic';\n    src: url('@assets/cabin-bolditalic-webfont.eot');\n    src: url('@assets/cabin-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-bolditalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-bolditalic-webfont.woff') format('woff'),\n         url('@assets/cabin-bolditalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-bolditalic-webfont.svg#cabinbold_italic') format('svg');\n    font-weight: 700;\n    font-style: italic;\n\n}\n\n\n@font-face {\n    font-family: 'cabinbold';\n    src: url('@assets/cabin-bold-webfont.eot');\n    src: url('@assets/cabin-bold-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-bold-webfont.woff2') format('woff2'),\n         url('@assets/cabin-bold-webfont.woff') format('woff'),\n         url('@assets/cabin-bold-webfont.ttf') format('truetype'),\n         url('@assets/cabin-bold-webfont.svg#cabinbold') format('svg');\n    font-weight: 700;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinsemibold_italic';\n    src: url('@assets/cabin-semibolditalic-webfont.eot');\n    src: url('@assets/cabin-semibolditalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-semibolditalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-semibolditalic-webfont.woff') format('woff'),\n         url('@assets/cabin-semibolditalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-semibolditalic-webfont.svg#cabinsemibold_italic') format('svg');\n    font-weight: 600;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinsemibold';\n    src: url('@assets/cabin-semibold-webfont.eot');\n    src: url('@assets/cabin-semibold-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-semibold-webfont.woff2') format('woff2'),\n         url('@assets/cabin-semibold-webfont.woff') format('woff'),\n         url('@assets/cabin-semibold-webfont.ttf') format('truetype'),\n         url('@assets/cabin-semibold-webfont.svg#cabinsemibold') format('svg');\n    font-weight: 600;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinmedium_italic';\n    src: url('@assets/cabin-mediumitalic-webfont.eot');\n    src: url('@assets/cabin-mediumitalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-mediumitalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-mediumitalic-webfont.woff') format('woff'),\n         url('@assets/cabin-mediumitalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-mediumitalic-webfont.svg#cabinmedium_italic') format('svg');\n    font-weight: 500;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinmedium';\n    src: url('@assets/cabin-medium-webfont.eot');\n    src: url('@assets/cabin-medium-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-medium-webfont.woff2') format('woff2'),\n         url('@assets/cabin-medium-webfont.woff') format('woff'),\n         url('@assets/cabin-medium-webfont.ttf') format('truetype'),\n         url('@assets/cabin-medium-webfont.svg#cabinmedium') format('svg');\n    font-weight: 500;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'Cabin';\n    src: url('@assets/cabin-italic-webfont.eot');\n    src: url('@assets/cabin-italic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-italic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-italic-webfont.woff') format('woff'),\n         url('@assets/cabin-italic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-italic-webfont.svg#cabinitalic') format('svg');\n    font-weight: 400;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'Cabin';\n    src: url('@assets/cabin-regular-webfont.eot');\n    src: url('@assets/cabin-regular-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-regular-webfont.woff2') format('woff2'),\n         url('@assets/cabin-regular-webfont.woff') format('woff'),\n         url('@assets/cabin-regular-webfont.ttf') format('truetype'),\n         url('@assets/cabin-regular-webfont.svg#cabinregular') format('svg');\n    font-weight: 400;\n    font-style: normal;\n\n}\n",
-          "page.css": "body\n{\n  font-family: 'callunaregular';\n  font-size : 12px;\n}\n\n\nh1,h2,h3,h4,h5,h6\n{\n  font-family: 'Cabin', 'callunaregular';\n  font-weight : 700;\n}\n",
+          "page.css": "body\n{\n  font-family: 'callunaregular';\n  font-size : 12px;\n}\n\n\nh1,h2,h3,h4,h5,h6\n{\n  font-family: 'Cabin', 'callunaregular';\n  font-weight : 700;\n}\n\n\n#modulo-contents-cover\n{\n  page-break-after: always;\n}\n\n@page#modulo-contents-cover\n{\n  margin : 0;\n}\n\n#modulo-contents-cover #modulo-contents-cover-image-container\n{\n  background-image: url(\"@assets/ueb_cover.jpg\");\n   background-size:     cover;                      /* <------ */\n  background-repeat:   no-repeat;\n  background-position: center center;\n  height : 16cm;\n}\n",
           "screen.css": "body{\n  color : blue;\n}\n"
         },
         "templates": {
@@ -846,7 +851,7 @@
         {
           "domain": "general",
           "key": "bibType",
-          "value": "inbook"
+          "value": "incollection"
         },
         {
           "domain": "general",
@@ -909,6 +914,16 @@
           "domain": "general",
           "key": "test",
           "value": "test",
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "mybook"
+          }
+        },
+        {
+          "domain": "general",
+          "key": "coverimage",
+          "value": "@assets/ueb_cover.jpg",
           "inheritedVerticallyFrom": {
             "domain": "general",
             "key": "citeKey",
@@ -1160,7 +1175,7 @@
         "components": {},
         "styles": {
           "my_style.css": "body{\n  color : black;\n}\n\n@font-face {\n    font-family: 'callunaregular';\n    src: url('@assets/Calluna-Regular-webfont.eot');\n    src: url('@assets/Calluna-Regular-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/Calluna-Regular-webfont.woff2') format('woff2'),\n         url('@assets/Calluna-Regular-webfont.woff') format('woff'),\n         url('@assets/Calluna-Regular-webfont.ttf') format('truetype'),\n         url('@assets/Calluna-Regular-webfont.svg#callunaregular') format('svg');\n    font-weight: normal;\n    font-style: normal;\n}\n\n@font-face {\n    font-family: 'cabinbold_italic';\n    src: url('@assets/cabin-bolditalic-webfont.eot');\n    src: url('@assets/cabin-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-bolditalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-bolditalic-webfont.woff') format('woff'),\n         url('@assets/cabin-bolditalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-bolditalic-webfont.svg#cabinbold_italic') format('svg');\n    font-weight: 700;\n    font-style: italic;\n\n}\n\n\n@font-face {\n    font-family: 'cabinbold';\n    src: url('@assets/cabin-bold-webfont.eot');\n    src: url('@assets/cabin-bold-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-bold-webfont.woff2') format('woff2'),\n         url('@assets/cabin-bold-webfont.woff') format('woff'),\n         url('@assets/cabin-bold-webfont.ttf') format('truetype'),\n         url('@assets/cabin-bold-webfont.svg#cabinbold') format('svg');\n    font-weight: 700;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinsemibold_italic';\n    src: url('@assets/cabin-semibolditalic-webfont.eot');\n    src: url('@assets/cabin-semibolditalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-semibolditalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-semibolditalic-webfont.woff') format('woff'),\n         url('@assets/cabin-semibolditalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-semibolditalic-webfont.svg#cabinsemibold_italic') format('svg');\n    font-weight: 600;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinsemibold';\n    src: url('@assets/cabin-semibold-webfont.eot');\n    src: url('@assets/cabin-semibold-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-semibold-webfont.woff2') format('woff2'),\n         url('@assets/cabin-semibold-webfont.woff') format('woff'),\n         url('@assets/cabin-semibold-webfont.ttf') format('truetype'),\n         url('@assets/cabin-semibold-webfont.svg#cabinsemibold') format('svg');\n    font-weight: 600;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinmedium_italic';\n    src: url('@assets/cabin-mediumitalic-webfont.eot');\n    src: url('@assets/cabin-mediumitalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-mediumitalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-mediumitalic-webfont.woff') format('woff'),\n         url('@assets/cabin-mediumitalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-mediumitalic-webfont.svg#cabinmedium_italic') format('svg');\n    font-weight: 500;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinmedium';\n    src: url('@assets/cabin-medium-webfont.eot');\n    src: url('@assets/cabin-medium-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-medium-webfont.woff2') format('woff2'),\n         url('@assets/cabin-medium-webfont.woff') format('woff'),\n         url('@assets/cabin-medium-webfont.ttf') format('truetype'),\n         url('@assets/cabin-medium-webfont.svg#cabinmedium') format('svg');\n    font-weight: 500;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'Cabin';\n    src: url('@assets/cabin-italic-webfont.eot');\n    src: url('@assets/cabin-italic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-italic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-italic-webfont.woff') format('woff'),\n         url('@assets/cabin-italic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-italic-webfont.svg#cabinitalic') format('svg');\n    font-weight: 400;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'Cabin';\n    src: url('@assets/cabin-regular-webfont.eot');\n    src: url('@assets/cabin-regular-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-regular-webfont.woff2') format('woff2'),\n         url('@assets/cabin-regular-webfont.woff') format('woff'),\n         url('@assets/cabin-regular-webfont.ttf') format('truetype'),\n         url('@assets/cabin-regular-webfont.svg#cabinregular') format('svg');\n    font-weight: 400;\n    font-style: normal;\n\n}\n",
-          "page.css": "body\n{\n  font-family: 'callunaregular';\n  font-size : 12px;\n}\n\n\nh1,h2,h3,h4,h5,h6\n{\n  font-family: 'Cabin', 'callunaregular';\n  font-weight : 700;\n}\n",
+          "page.css": "body\n{\n  font-family: 'callunaregular';\n  font-size : 12px;\n}\n\n\nh1,h2,h3,h4,h5,h6\n{\n  font-family: 'Cabin', 'callunaregular';\n  font-weight : 700;\n}\n\n\n#modulo-contents-cover\n{\n  page-break-after: always;\n}\n\n@page#modulo-contents-cover\n{\n  margin : 0;\n}\n\n#modulo-contents-cover #modulo-contents-cover-image-container\n{\n  background-image: url(\"@assets/ueb_cover.jpg\");\n   background-size:     cover;                      /* <------ */\n  background-repeat:   no-repeat;\n  background-position: center center;\n  height : 16cm;\n}\n",
           "screen.css": "body{\n  color : blue;\n}\n"
         },
         "templates": {
@@ -1198,7 +1213,7 @@
         {
           "domain": "general",
           "key": "bibType",
-          "value": "inbook"
+          "value": "incollection"
         },
         {
           "domain": "general",
@@ -1255,6 +1270,16 @@
           "domain": "general",
           "key": "test",
           "value": "test",
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "mybook"
+          }
+        },
+        {
+          "domain": "general",
+          "key": "coverimage",
+          "value": "@assets/ueb_cover.jpg",
           "inheritedVerticallyFrom": {
             "domain": "general",
             "key": "citeKey",
@@ -1672,7 +1697,7 @@
         "components": {},
         "styles": {
           "my_style.css": "body{\n  color : black;\n}\n\n@font-face {\n    font-family: 'callunaregular';\n    src: url('@assets/Calluna-Regular-webfont.eot');\n    src: url('@assets/Calluna-Regular-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/Calluna-Regular-webfont.woff2') format('woff2'),\n         url('@assets/Calluna-Regular-webfont.woff') format('woff'),\n         url('@assets/Calluna-Regular-webfont.ttf') format('truetype'),\n         url('@assets/Calluna-Regular-webfont.svg#callunaregular') format('svg');\n    font-weight: normal;\n    font-style: normal;\n}\n\n@font-face {\n    font-family: 'cabinbold_italic';\n    src: url('@assets/cabin-bolditalic-webfont.eot');\n    src: url('@assets/cabin-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-bolditalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-bolditalic-webfont.woff') format('woff'),\n         url('@assets/cabin-bolditalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-bolditalic-webfont.svg#cabinbold_italic') format('svg');\n    font-weight: 700;\n    font-style: italic;\n\n}\n\n\n@font-face {\n    font-family: 'cabinbold';\n    src: url('@assets/cabin-bold-webfont.eot');\n    src: url('@assets/cabin-bold-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-bold-webfont.woff2') format('woff2'),\n         url('@assets/cabin-bold-webfont.woff') format('woff'),\n         url('@assets/cabin-bold-webfont.ttf') format('truetype'),\n         url('@assets/cabin-bold-webfont.svg#cabinbold') format('svg');\n    font-weight: 700;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinsemibold_italic';\n    src: url('@assets/cabin-semibolditalic-webfont.eot');\n    src: url('@assets/cabin-semibolditalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-semibolditalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-semibolditalic-webfont.woff') format('woff'),\n         url('@assets/cabin-semibolditalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-semibolditalic-webfont.svg#cabinsemibold_italic') format('svg');\n    font-weight: 600;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinsemibold';\n    src: url('@assets/cabin-semibold-webfont.eot');\n    src: url('@assets/cabin-semibold-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-semibold-webfont.woff2') format('woff2'),\n         url('@assets/cabin-semibold-webfont.woff') format('woff'),\n         url('@assets/cabin-semibold-webfont.ttf') format('truetype'),\n         url('@assets/cabin-semibold-webfont.svg#cabinsemibold') format('svg');\n    font-weight: 600;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinmedium_italic';\n    src: url('@assets/cabin-mediumitalic-webfont.eot');\n    src: url('@assets/cabin-mediumitalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-mediumitalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-mediumitalic-webfont.woff') format('woff'),\n         url('@assets/cabin-mediumitalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-mediumitalic-webfont.svg#cabinmedium_italic') format('svg');\n    font-weight: 500;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinmedium';\n    src: url('@assets/cabin-medium-webfont.eot');\n    src: url('@assets/cabin-medium-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-medium-webfont.woff2') format('woff2'),\n         url('@assets/cabin-medium-webfont.woff') format('woff'),\n         url('@assets/cabin-medium-webfont.ttf') format('truetype'),\n         url('@assets/cabin-medium-webfont.svg#cabinmedium') format('svg');\n    font-weight: 500;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'Cabin';\n    src: url('@assets/cabin-italic-webfont.eot');\n    src: url('@assets/cabin-italic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-italic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-italic-webfont.woff') format('woff'),\n         url('@assets/cabin-italic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-italic-webfont.svg#cabinitalic') format('svg');\n    font-weight: 400;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'Cabin';\n    src: url('@assets/cabin-regular-webfont.eot');\n    src: url('@assets/cabin-regular-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-regular-webfont.woff2') format('woff2'),\n         url('@assets/cabin-regular-webfont.woff') format('woff'),\n         url('@assets/cabin-regular-webfont.ttf') format('truetype'),\n         url('@assets/cabin-regular-webfont.svg#cabinregular') format('svg');\n    font-weight: 400;\n    font-style: normal;\n\n}\n",
-          "page.css": "body\n{\n  font-family: 'callunaregular';\n  font-size : 12px;\n}\n\n\nh1,h2,h3,h4,h5,h6\n{\n  font-family: 'Cabin', 'callunaregular';\n  font-weight : 700;\n}\n",
+          "page.css": "body\n{\n  font-family: 'callunaregular';\n  font-size : 12px;\n}\n\n\nh1,h2,h3,h4,h5,h6\n{\n  font-family: 'Cabin', 'callunaregular';\n  font-weight : 700;\n}\n\n\n#modulo-contents-cover\n{\n  page-break-after: always;\n}\n\n@page#modulo-contents-cover\n{\n  margin : 0;\n}\n\n#modulo-contents-cover #modulo-contents-cover-image-container\n{\n  background-image: url(\"@assets/ueb_cover.jpg\");\n   background-size:     cover;                      /* <------ */\n  background-repeat:   no-repeat;\n  background-position: center center;\n  height : 16cm;\n}\n",
           "screen.css": "body{\n  color : blue;\n}\n"
         },
         "templates": {
@@ -1711,7 +1736,7 @@
         {
           "domain": "general",
           "key": "bibType",
-          "value": "inbook"
+          "value": "inherits"
         },
         {
           "domain": "general",
@@ -1768,6 +1793,16 @@
           "domain": "general",
           "key": "test",
           "value": "test",
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "partie_2"
+          }
+        },
+        {
+          "domain": "general",
+          "key": "coverimage",
+          "value": "@assets/ueb_cover.jpg",
           "inheritedVerticallyFrom": {
             "domain": "general",
             "key": "citeKey",
@@ -2072,7 +2107,7 @@
         "components": {},
         "styles": {
           "my_style.css": "body{\n  color : black;\n}\n\n@font-face {\n    font-family: 'callunaregular';\n    src: url('@assets/Calluna-Regular-webfont.eot');\n    src: url('@assets/Calluna-Regular-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/Calluna-Regular-webfont.woff2') format('woff2'),\n         url('@assets/Calluna-Regular-webfont.woff') format('woff'),\n         url('@assets/Calluna-Regular-webfont.ttf') format('truetype'),\n         url('@assets/Calluna-Regular-webfont.svg#callunaregular') format('svg');\n    font-weight: normal;\n    font-style: normal;\n}\n\n@font-face {\n    font-family: 'cabinbold_italic';\n    src: url('@assets/cabin-bolditalic-webfont.eot');\n    src: url('@assets/cabin-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-bolditalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-bolditalic-webfont.woff') format('woff'),\n         url('@assets/cabin-bolditalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-bolditalic-webfont.svg#cabinbold_italic') format('svg');\n    font-weight: 700;\n    font-style: italic;\n\n}\n\n\n@font-face {\n    font-family: 'cabinbold';\n    src: url('@assets/cabin-bold-webfont.eot');\n    src: url('@assets/cabin-bold-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-bold-webfont.woff2') format('woff2'),\n         url('@assets/cabin-bold-webfont.woff') format('woff'),\n         url('@assets/cabin-bold-webfont.ttf') format('truetype'),\n         url('@assets/cabin-bold-webfont.svg#cabinbold') format('svg');\n    font-weight: 700;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinsemibold_italic';\n    src: url('@assets/cabin-semibolditalic-webfont.eot');\n    src: url('@assets/cabin-semibolditalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-semibolditalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-semibolditalic-webfont.woff') format('woff'),\n         url('@assets/cabin-semibolditalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-semibolditalic-webfont.svg#cabinsemibold_italic') format('svg');\n    font-weight: 600;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinsemibold';\n    src: url('@assets/cabin-semibold-webfont.eot');\n    src: url('@assets/cabin-semibold-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-semibold-webfont.woff2') format('woff2'),\n         url('@assets/cabin-semibold-webfont.woff') format('woff'),\n         url('@assets/cabin-semibold-webfont.ttf') format('truetype'),\n         url('@assets/cabin-semibold-webfont.svg#cabinsemibold') format('svg');\n    font-weight: 600;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinmedium_italic';\n    src: url('@assets/cabin-mediumitalic-webfont.eot');\n    src: url('@assets/cabin-mediumitalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-mediumitalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-mediumitalic-webfont.woff') format('woff'),\n         url('@assets/cabin-mediumitalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-mediumitalic-webfont.svg#cabinmedium_italic') format('svg');\n    font-weight: 500;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinmedium';\n    src: url('@assets/cabin-medium-webfont.eot');\n    src: url('@assets/cabin-medium-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-medium-webfont.woff2') format('woff2'),\n         url('@assets/cabin-medium-webfont.woff') format('woff'),\n         url('@assets/cabin-medium-webfont.ttf') format('truetype'),\n         url('@assets/cabin-medium-webfont.svg#cabinmedium') format('svg');\n    font-weight: 500;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'Cabin';\n    src: url('@assets/cabin-italic-webfont.eot');\n    src: url('@assets/cabin-italic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-italic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-italic-webfont.woff') format('woff'),\n         url('@assets/cabin-italic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-italic-webfont.svg#cabinitalic') format('svg');\n    font-weight: 400;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'Cabin';\n    src: url('@assets/cabin-regular-webfont.eot');\n    src: url('@assets/cabin-regular-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-regular-webfont.woff2') format('woff2'),\n         url('@assets/cabin-regular-webfont.woff') format('woff'),\n         url('@assets/cabin-regular-webfont.ttf') format('truetype'),\n         url('@assets/cabin-regular-webfont.svg#cabinregular') format('svg');\n    font-weight: 400;\n    font-style: normal;\n\n}\n",
-          "page.css": "body\n{\n  font-family: 'callunaregular';\n  font-size : 12px;\n}\n\n\nh1,h2,h3,h4,h5,h6\n{\n  font-family: 'Cabin', 'callunaregular';\n  font-weight : 700;\n}\n",
+          "page.css": "body\n{\n  font-family: 'callunaregular';\n  font-size : 12px;\n}\n\n\nh1,h2,h3,h4,h5,h6\n{\n  font-family: 'Cabin', 'callunaregular';\n  font-weight : 700;\n}\n\n\n#modulo-contents-cover\n{\n  page-break-after: always;\n}\n\n@page#modulo-contents-cover\n{\n  margin : 0;\n}\n\n#modulo-contents-cover #modulo-contents-cover-image-container\n{\n  background-image: url(\"@assets/ueb_cover.jpg\");\n   background-size:     cover;                      /* <------ */\n  background-repeat:   no-repeat;\n  background-position: center center;\n  height : 16cm;\n}\n",
           "screen.css": "body{\n  color : blue;\n}\n"
         },
         "templates": {
