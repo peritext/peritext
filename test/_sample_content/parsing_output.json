@@ -220,7 +220,23 @@
           "tagType": "p"
         },
         {
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, fugit, id. Unde nulla incidunt sapiente reiciendis atque similique totam, facere earum dolores. Soluta earum, autem! Fugit, iure, repellat. Nesciunt, inventore.</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi necessitatibus aliquam nisi odio et perferendis reiciendis porro, fugit repellat similique consequuntur dolor perspiciatis? Laborum doloribus ducimus alias sequi sapiente! Voluptate.</p>",
+          "tagType": "p"
+        },
+        {
           "html": "<p>Then I want to say that the image I just showed <InlineContextualization id=\"contextualization_10\" resources=\"@image_test_1\" contextualizer=\"contextualizer_10\">image</InlineContextualization> is awesome.</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio nemo eius autem, saepe dolore nam iste ex inventore, minus neque mollitia molestias facere asperiores vel voluptas beatae esse perspiciatis cupiditate.</p>",
+          "tagType": "p"
+        },
+        {
+          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore commodi maxime laborum cupiditate nam consequuntur in. Laudantium autem, accusantium! Iure, autem quas quis, odit fugit dolor voluptatum esse quisquam asperiores.</p>",
           "tagType": "p"
         },
         {
@@ -389,8 +405,8 @@
       "customizers": {
         "components": {},
         "styles": {
-          "my_style.css": "body{\n  color : black;\n}\n",
-          "page.css": "body{\n  font-family : \"Times New Roman\", \"Serif\";\n}\n",
+          "my_style.css": "body{\n  color : black;\n}\n\n@font-face {\n    font-family: 'callunaregular';\n    src: url('@assets/Calluna-Regular-webfont.eot');\n    src: url('@assets/Calluna-Regular-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/Calluna-Regular-webfont.woff2') format('woff2'),\n         url('@assets/Calluna-Regular-webfont.woff') format('woff'),\n         url('@assets/Calluna-Regular-webfont.ttf') format('truetype'),\n         url('@assets/Calluna-Regular-webfont.svg#callunaregular') format('svg');\n    font-weight: normal;\n    font-style: normal;\n}\n\n@font-face {\n    font-family: 'cabinbold_italic';\n    src: url('@assets/cabin-bolditalic-webfont.eot');\n    src: url('@assets/cabin-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-bolditalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-bolditalic-webfont.woff') format('woff'),\n         url('@assets/cabin-bolditalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-bolditalic-webfont.svg#cabinbold_italic') format('svg');\n    font-weight: 700;\n    font-style: italic;\n\n}\n\n\n@font-face {\n    font-family: 'cabinbold';\n    src: url('@assets/cabin-bold-webfont.eot');\n    src: url('@assets/cabin-bold-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-bold-webfont.woff2') format('woff2'),\n         url('@assets/cabin-bold-webfont.woff') format('woff'),\n         url('@assets/cabin-bold-webfont.ttf') format('truetype'),\n         url('@assets/cabin-bold-webfont.svg#cabinbold') format('svg');\n    font-weight: 700;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinsemibold_italic';\n    src: url('@assets/cabin-semibolditalic-webfont.eot');\n    src: url('@assets/cabin-semibolditalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-semibolditalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-semibolditalic-webfont.woff') format('woff'),\n         url('@assets/cabin-semibolditalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-semibolditalic-webfont.svg#cabinsemibold_italic') format('svg');\n    font-weight: 600;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinsemibold';\n    src: url('@assets/cabin-semibold-webfont.eot');\n    src: url('@assets/cabin-semibold-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-semibold-webfont.woff2') format('woff2'),\n         url('@assets/cabin-semibold-webfont.woff') format('woff'),\n         url('@assets/cabin-semibold-webfont.ttf') format('truetype'),\n         url('@assets/cabin-semibold-webfont.svg#cabinsemibold') format('svg');\n    font-weight: 600;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinmedium_italic';\n    src: url('@assets/cabin-mediumitalic-webfont.eot');\n    src: url('@assets/cabin-mediumitalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-mediumitalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-mediumitalic-webfont.woff') format('woff'),\n         url('@assets/cabin-mediumitalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-mediumitalic-webfont.svg#cabinmedium_italic') format('svg');\n    font-weight: 500;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinmedium';\n    src: url('@assets/cabin-medium-webfont.eot');\n    src: url('@assets/cabin-medium-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-medium-webfont.woff2') format('woff2'),\n         url('@assets/cabin-medium-webfont.woff') format('woff'),\n         url('@assets/cabin-medium-webfont.ttf') format('truetype'),\n         url('@assets/cabin-medium-webfont.svg#cabinmedium') format('svg');\n    font-weight: 500;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'Cabin';\n    src: url('@assets/cabin-italic-webfont.eot');\n    src: url('@assets/cabin-italic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-italic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-italic-webfont.woff') format('woff'),\n         url('@assets/cabin-italic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-italic-webfont.svg#cabinitalic') format('svg');\n    font-weight: 400;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'Cabin';\n    src: url('@assets/cabin-regular-webfont.eot');\n    src: url('@assets/cabin-regular-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-regular-webfont.woff2') format('woff2'),\n         url('@assets/cabin-regular-webfont.woff') format('woff'),\n         url('@assets/cabin-regular-webfont.ttf') format('truetype'),\n         url('@assets/cabin-regular-webfont.svg#cabinregular') format('svg');\n    font-weight: 400;\n    font-style: normal;\n\n}\n",
+          "page.css": "body\n{\n  font-family: 'callunaregular';\n  font-size : 12px;\n}\n\n\nh1,h2,h3,h4,h5,h6\n{\n  font-family: 'Cabin', 'callunaregular';\n  font-weight : 700;\n}\n",
           "screen.css": "body{\n  color : blue;\n}\n"
         },
         "templates": {
@@ -573,7 +589,7 @@
           "outputmode": "all"
         }
       ],
-      "markdownContents": "# Welcome\n\n${toc}\n\n![A reference](@temporal_data){@cool_timeline}\n\n\n\n![Another view on the timeline](@temporal_data){@cool_timeline,\n    startat=\"2012-21-01\"\n}\n\nI am inline referencing to an [image](@image_test_1).\n\nThen I want to say that the image I just showed [image](@image_test_1) is awesome.\n\nAnd then I want to display a group of images :\n\n![A group of images](@image_test_1,@image_test_2)\n\nAnd then I want to point to an [online](@website_test) resource.\n\n![This is a block website contextualization, displaying a poster or the resource (typically a screenshot) if specified](@website_test)\n\nI will talk about that[^]{with a footnote here} :\n\n![Another reference with unnamed contextualizer](@temporal_data){\n    type=\"timeline\",\n    layer={layertype=events,data=@res.data.dates,labels=@res.data.labels},\n    title=\"My title\"\n}\n\nI will first quote in a book where someone that says [it's not possible](@ab94).\nBut I would like to quote again my [group of images](@image_test_1,@image_test_2).\n\nThen I should have an ibid here [^]{[](@ab94){page=\"12\"}.}\n\nAnd as say a lot of people[^]{[](@martin_change_2002){pages=\"30-40\"}}, publishing could be simpler.\n\nAnd for the footnotes, I want to say that Martin said that[^]{I'm referencing to [](@martin_change_2002){pages=\"12-13\"} when he says : \"hello\"}\n\nWhe Martin says [there has to be some *change*](@martin_change_2002).\n\nNow let's say I want to link to this [timeline](@temporal_data){\n    type=\"timeline\",\n    layer={dates=@res.data.dates,labels=@res.data.labels},\n    layer={dates=@res.data.dates,labels=@res.data.labels},\n    caption=\"This is a text with {stuf} but it should work\"\n} and continue my paragraph quietly.\n\nWelcome to my awesome book.\n\nThanks to all !\n\nMomanddad\nThe dog\nMy imaginary friend Serge\n\n\nI am just there, not linked to ``content.md``. I should be put at the end of content by alphabetical order.\n\n\n",
+      "markdownContents": "# Welcome\n\n${toc}\n\n![A reference](@temporal_data){@cool_timeline}\n\n\n\n![Another view on the timeline](@temporal_data){@cool_timeline,\n    startat=\"2012-21-01\"\n}\n\nI am inline referencing to an [image](@image_test_1).\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, fugit, id. Unde nulla incidunt sapiente reiciendis atque similique totam, facere earum dolores. Soluta earum, autem! Fugit, iure, repellat. Nesciunt, inventore.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi necessitatibus aliquam nisi odio et perferendis reiciendis porro, fugit repellat similique consequuntur dolor perspiciatis? Laborum doloribus ducimus alias sequi sapiente! Voluptate.\n\nThen I want to say that the image I just showed [image](@image_test_1) is awesome.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Optio nemo eius autem, saepe dolore nam iste ex inventore, minus neque mollitia molestias facere asperiores vel voluptas beatae esse perspiciatis cupiditate.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore commodi maxime laborum cupiditate nam consequuntur in. Laudantium autem, accusantium! Iure, autem quas quis, odit fugit dolor voluptatum esse quisquam asperiores.\n\nAnd then I want to display a group of images :\n\n![A group of images](@image_test_1,@image_test_2)\n\nAnd then I want to point to an [online](@website_test) resource.\n\n![This is a block website contextualization, displaying a poster or the resource (typically a screenshot) if specified](@website_test)\n\nI will talk about that[^]{with a footnote here} :\n\n![Another reference with unnamed contextualizer](@temporal_data){\n    type=\"timeline\",\n    layer={layertype=events,data=@res.data.dates,labels=@res.data.labels},\n    title=\"My title\"\n}\n\nI will first quote in a book where someone that says [it's not possible](@ab94).\nBut I would like to quote again my [group of images](@image_test_1,@image_test_2).\n\nThen I should have an ibid here [^]{[](@ab94){page=\"12\"}.}\n\nAnd as say a lot of people[^]{[](@martin_change_2002){pages=\"30-40\"}}, publishing could be simpler.\n\nAnd for the footnotes, I want to say that Martin said that[^]{I'm referencing to [](@martin_change_2002){pages=\"12-13\"} when he says : \"hello\"}\n\nWhe Martin says [there has to be some *change*](@martin_change_2002).\n\nNow let's say I want to link to this [timeline](@temporal_data){\n    type=\"timeline\",\n    layer={dates=@res.data.dates,labels=@res.data.labels},\n    layer={dates=@res.data.dates,labels=@res.data.labels},\n    caption=\"This is a text with {stuf} but it should work\"\n} and continue my paragraph quietly.\n\nWelcome to my awesome book.\n\nThanks to all !\n\nMomanddad\nThe dog\nMy imaginary friend Serge\n\n\nI am just there, not linked to ``content.md``. I should be put at the end of content by alphabetical order.\n\n\n",
       "notes": [],
       "contextualizations": [
         {
@@ -644,7 +660,7 @@
           "outputmode": true
         },
         {
-          "matchIndex": 81,
+          "matchIndex": 572,
           "citeKey": "contextualization_10",
           "contextualizer": "contextualizer_10",
           "resources": [
@@ -657,7 +673,7 @@
           "outputmode": "all"
         },
         {
-          "matchIndex": 362,
+          "matchIndex": 1311,
           "contextualizer": "contextualizer_3",
           "citeKey": "contextualization_4",
           "resources": [
@@ -671,7 +687,7 @@
           "outputmode": "all"
         },
         {
-          "matchIndex": 392,
+          "matchIndex": 1341,
           "citeKey": "contextualization_11",
           "contextualizer": "contextualizer_11",
           "resources": [
@@ -684,7 +700,7 @@
           "outputmode": "all"
         },
         {
-          "matchIndex": 516,
+          "matchIndex": 1465,
           "contextualizer": "contextualizer_5",
           "citeKey": "contextualization_6",
           "resources": [
@@ -697,7 +713,7 @@
           "outputmode": "all"
         },
         {
-          "matchIndex": 869,
+          "matchIndex": 1818,
           "contextualizer": "contextualizer_7",
           "citeKey": "contextualization_8",
           "resources": [
@@ -717,7 +733,7 @@
           "outputmode": "all"
         },
         {
-          "matchIndex": 1000,
+          "matchIndex": 1949,
           "citeKey": "contextualization_12",
           "contextualizer": "contextualizer_12",
           "resources": [
@@ -730,7 +746,7 @@
           "outputmode": "all"
         },
         {
-          "matchIndex": 1078,
+          "matchIndex": 2027,
           "citeKey": "contextualization_13",
           "contextualizer": "contextualizer_13",
           "resources": [
@@ -744,7 +760,7 @@
           "outputmode": "all"
         },
         {
-          "matchIndex": 1201,
+          "matchIndex": 2150,
           "citeKey": "contextualization_14",
           "contextualizer": "contextualizer_14",
           "resources": [
@@ -758,7 +774,7 @@
           "outputmode": "all"
         },
         {
-          "matchIndex": 1286,
+          "matchIndex": 2235,
           "citeKey": "contextualization_15",
           "contextualizer": "contextualizer_15",
           "resources": [
@@ -772,7 +788,7 @@
           "outputmode": "all"
         },
         {
-          "matchIndex": 1469,
+          "matchIndex": 2418,
           "citeKey": "contextualization_16",
           "contextualizer": "contextualizer_16",
           "resources": [
@@ -786,7 +802,7 @@
           "outputmode": "all"
         },
         {
-          "matchIndex": 1561,
+          "matchIndex": 2510,
           "citeKey": "contextualization_17",
           "contextualizer": "contextualizer_17",
           "resources": [
@@ -799,7 +815,7 @@
           "outputmode": "all"
         },
         {
-          "matchIndex": 1903,
+          "matchIndex": 2852,
           "citeKey": "contextualization_18",
           "contextualizer": "contextualizer_18",
           "resources": [
@@ -1143,8 +1159,8 @@
       "customizers": {
         "components": {},
         "styles": {
-          "my_style.css": "body{\n  color : black;\n}\n",
-          "page.css": "body{\n  font-family : \"Times New Roman\", \"Serif\";\n}\n",
+          "my_style.css": "body{\n  color : black;\n}\n\n@font-face {\n    font-family: 'callunaregular';\n    src: url('@assets/Calluna-Regular-webfont.eot');\n    src: url('@assets/Calluna-Regular-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/Calluna-Regular-webfont.woff2') format('woff2'),\n         url('@assets/Calluna-Regular-webfont.woff') format('woff'),\n         url('@assets/Calluna-Regular-webfont.ttf') format('truetype'),\n         url('@assets/Calluna-Regular-webfont.svg#callunaregular') format('svg');\n    font-weight: normal;\n    font-style: normal;\n}\n\n@font-face {\n    font-family: 'cabinbold_italic';\n    src: url('@assets/cabin-bolditalic-webfont.eot');\n    src: url('@assets/cabin-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-bolditalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-bolditalic-webfont.woff') format('woff'),\n         url('@assets/cabin-bolditalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-bolditalic-webfont.svg#cabinbold_italic') format('svg');\n    font-weight: 700;\n    font-style: italic;\n\n}\n\n\n@font-face {\n    font-family: 'cabinbold';\n    src: url('@assets/cabin-bold-webfont.eot');\n    src: url('@assets/cabin-bold-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-bold-webfont.woff2') format('woff2'),\n         url('@assets/cabin-bold-webfont.woff') format('woff'),\n         url('@assets/cabin-bold-webfont.ttf') format('truetype'),\n         url('@assets/cabin-bold-webfont.svg#cabinbold') format('svg');\n    font-weight: 700;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinsemibold_italic';\n    src: url('@assets/cabin-semibolditalic-webfont.eot');\n    src: url('@assets/cabin-semibolditalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-semibolditalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-semibolditalic-webfont.woff') format('woff'),\n         url('@assets/cabin-semibolditalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-semibolditalic-webfont.svg#cabinsemibold_italic') format('svg');\n    font-weight: 600;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinsemibold';\n    src: url('@assets/cabin-semibold-webfont.eot');\n    src: url('@assets/cabin-semibold-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-semibold-webfont.woff2') format('woff2'),\n         url('@assets/cabin-semibold-webfont.woff') format('woff'),\n         url('@assets/cabin-semibold-webfont.ttf') format('truetype'),\n         url('@assets/cabin-semibold-webfont.svg#cabinsemibold') format('svg');\n    font-weight: 600;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinmedium_italic';\n    src: url('@assets/cabin-mediumitalic-webfont.eot');\n    src: url('@assets/cabin-mediumitalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-mediumitalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-mediumitalic-webfont.woff') format('woff'),\n         url('@assets/cabin-mediumitalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-mediumitalic-webfont.svg#cabinmedium_italic') format('svg');\n    font-weight: 500;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinmedium';\n    src: url('@assets/cabin-medium-webfont.eot');\n    src: url('@assets/cabin-medium-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-medium-webfont.woff2') format('woff2'),\n         url('@assets/cabin-medium-webfont.woff') format('woff'),\n         url('@assets/cabin-medium-webfont.ttf') format('truetype'),\n         url('@assets/cabin-medium-webfont.svg#cabinmedium') format('svg');\n    font-weight: 500;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'Cabin';\n    src: url('@assets/cabin-italic-webfont.eot');\n    src: url('@assets/cabin-italic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-italic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-italic-webfont.woff') format('woff'),\n         url('@assets/cabin-italic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-italic-webfont.svg#cabinitalic') format('svg');\n    font-weight: 400;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'Cabin';\n    src: url('@assets/cabin-regular-webfont.eot');\n    src: url('@assets/cabin-regular-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-regular-webfont.woff2') format('woff2'),\n         url('@assets/cabin-regular-webfont.woff') format('woff'),\n         url('@assets/cabin-regular-webfont.ttf') format('truetype'),\n         url('@assets/cabin-regular-webfont.svg#cabinregular') format('svg');\n    font-weight: 400;\n    font-style: normal;\n\n}\n",
+          "page.css": "body\n{\n  font-family: 'callunaregular';\n  font-size : 12px;\n}\n\n\nh1,h2,h3,h4,h5,h6\n{\n  font-family: 'Cabin', 'callunaregular';\n  font-weight : 700;\n}\n",
           "screen.css": "body{\n  color : blue;\n}\n"
         },
         "templates": {
@@ -1655,8 +1671,8 @@
       "customizers": {
         "components": {},
         "styles": {
-          "my_style.css": "body{\n  color : black;\n}\n",
-          "page.css": "body{\n  font-family : \"Times New Roman\", \"Serif\";\n}\n",
+          "my_style.css": "body{\n  color : black;\n}\n\n@font-face {\n    font-family: 'callunaregular';\n    src: url('@assets/Calluna-Regular-webfont.eot');\n    src: url('@assets/Calluna-Regular-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/Calluna-Regular-webfont.woff2') format('woff2'),\n         url('@assets/Calluna-Regular-webfont.woff') format('woff'),\n         url('@assets/Calluna-Regular-webfont.ttf') format('truetype'),\n         url('@assets/Calluna-Regular-webfont.svg#callunaregular') format('svg');\n    font-weight: normal;\n    font-style: normal;\n}\n\n@font-face {\n    font-family: 'cabinbold_italic';\n    src: url('@assets/cabin-bolditalic-webfont.eot');\n    src: url('@assets/cabin-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-bolditalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-bolditalic-webfont.woff') format('woff'),\n         url('@assets/cabin-bolditalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-bolditalic-webfont.svg#cabinbold_italic') format('svg');\n    font-weight: 700;\n    font-style: italic;\n\n}\n\n\n@font-face {\n    font-family: 'cabinbold';\n    src: url('@assets/cabin-bold-webfont.eot');\n    src: url('@assets/cabin-bold-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-bold-webfont.woff2') format('woff2'),\n         url('@assets/cabin-bold-webfont.woff') format('woff'),\n         url('@assets/cabin-bold-webfont.ttf') format('truetype'),\n         url('@assets/cabin-bold-webfont.svg#cabinbold') format('svg');\n    font-weight: 700;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinsemibold_italic';\n    src: url('@assets/cabin-semibolditalic-webfont.eot');\n    src: url('@assets/cabin-semibolditalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-semibolditalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-semibolditalic-webfont.woff') format('woff'),\n         url('@assets/cabin-semibolditalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-semibolditalic-webfont.svg#cabinsemibold_italic') format('svg');\n    font-weight: 600;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinsemibold';\n    src: url('@assets/cabin-semibold-webfont.eot');\n    src: url('@assets/cabin-semibold-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-semibold-webfont.woff2') format('woff2'),\n         url('@assets/cabin-semibold-webfont.woff') format('woff'),\n         url('@assets/cabin-semibold-webfont.ttf') format('truetype'),\n         url('@assets/cabin-semibold-webfont.svg#cabinsemibold') format('svg');\n    font-weight: 600;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinmedium_italic';\n    src: url('@assets/cabin-mediumitalic-webfont.eot');\n    src: url('@assets/cabin-mediumitalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-mediumitalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-mediumitalic-webfont.woff') format('woff'),\n         url('@assets/cabin-mediumitalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-mediumitalic-webfont.svg#cabinmedium_italic') format('svg');\n    font-weight: 500;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinmedium';\n    src: url('@assets/cabin-medium-webfont.eot');\n    src: url('@assets/cabin-medium-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-medium-webfont.woff2') format('woff2'),\n         url('@assets/cabin-medium-webfont.woff') format('woff'),\n         url('@assets/cabin-medium-webfont.ttf') format('truetype'),\n         url('@assets/cabin-medium-webfont.svg#cabinmedium') format('svg');\n    font-weight: 500;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'Cabin';\n    src: url('@assets/cabin-italic-webfont.eot');\n    src: url('@assets/cabin-italic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-italic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-italic-webfont.woff') format('woff'),\n         url('@assets/cabin-italic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-italic-webfont.svg#cabinitalic') format('svg');\n    font-weight: 400;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'Cabin';\n    src: url('@assets/cabin-regular-webfont.eot');\n    src: url('@assets/cabin-regular-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-regular-webfont.woff2') format('woff2'),\n         url('@assets/cabin-regular-webfont.woff') format('woff'),\n         url('@assets/cabin-regular-webfont.ttf') format('truetype'),\n         url('@assets/cabin-regular-webfont.svg#cabinregular') format('svg');\n    font-weight: 400;\n    font-style: normal;\n\n}\n",
+          "page.css": "body\n{\n  font-family: 'callunaregular';\n  font-size : 12px;\n}\n\n\nh1,h2,h3,h4,h5,h6\n{\n  font-family: 'Cabin', 'callunaregular';\n  font-weight : 700;\n}\n",
           "screen.css": "body{\n  color : blue;\n}\n"
         },
         "templates": {
@@ -2055,8 +2071,8 @@
       "customizers": {
         "components": {},
         "styles": {
-          "my_style.css": "body{\n  color : black;\n}\n",
-          "page.css": "body{\n  font-family : \"Times New Roman\", \"Serif\";\n}\n",
+          "my_style.css": "body{\n  color : black;\n}\n\n@font-face {\n    font-family: 'callunaregular';\n    src: url('@assets/Calluna-Regular-webfont.eot');\n    src: url('@assets/Calluna-Regular-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/Calluna-Regular-webfont.woff2') format('woff2'),\n         url('@assets/Calluna-Regular-webfont.woff') format('woff'),\n         url('@assets/Calluna-Regular-webfont.ttf') format('truetype'),\n         url('@assets/Calluna-Regular-webfont.svg#callunaregular') format('svg');\n    font-weight: normal;\n    font-style: normal;\n}\n\n@font-face {\n    font-family: 'cabinbold_italic';\n    src: url('@assets/cabin-bolditalic-webfont.eot');\n    src: url('@assets/cabin-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-bolditalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-bolditalic-webfont.woff') format('woff'),\n         url('@assets/cabin-bolditalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-bolditalic-webfont.svg#cabinbold_italic') format('svg');\n    font-weight: 700;\n    font-style: italic;\n\n}\n\n\n@font-face {\n    font-family: 'cabinbold';\n    src: url('@assets/cabin-bold-webfont.eot');\n    src: url('@assets/cabin-bold-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-bold-webfont.woff2') format('woff2'),\n         url('@assets/cabin-bold-webfont.woff') format('woff'),\n         url('@assets/cabin-bold-webfont.ttf') format('truetype'),\n         url('@assets/cabin-bold-webfont.svg#cabinbold') format('svg');\n    font-weight: 700;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinsemibold_italic';\n    src: url('@assets/cabin-semibolditalic-webfont.eot');\n    src: url('@assets/cabin-semibolditalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-semibolditalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-semibolditalic-webfont.woff') format('woff'),\n         url('@assets/cabin-semibolditalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-semibolditalic-webfont.svg#cabinsemibold_italic') format('svg');\n    font-weight: 600;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinsemibold';\n    src: url('@assets/cabin-semibold-webfont.eot');\n    src: url('@assets/cabin-semibold-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-semibold-webfont.woff2') format('woff2'),\n         url('@assets/cabin-semibold-webfont.woff') format('woff'),\n         url('@assets/cabin-semibold-webfont.ttf') format('truetype'),\n         url('@assets/cabin-semibold-webfont.svg#cabinsemibold') format('svg');\n    font-weight: 600;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinmedium_italic';\n    src: url('@assets/cabin-mediumitalic-webfont.eot');\n    src: url('@assets/cabin-mediumitalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-mediumitalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-mediumitalic-webfont.woff') format('woff'),\n         url('@assets/cabin-mediumitalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-mediumitalic-webfont.svg#cabinmedium_italic') format('svg');\n    font-weight: 500;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinmedium';\n    src: url('@assets/cabin-medium-webfont.eot');\n    src: url('@assets/cabin-medium-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-medium-webfont.woff2') format('woff2'),\n         url('@assets/cabin-medium-webfont.woff') format('woff'),\n         url('@assets/cabin-medium-webfont.ttf') format('truetype'),\n         url('@assets/cabin-medium-webfont.svg#cabinmedium') format('svg');\n    font-weight: 500;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'Cabin';\n    src: url('@assets/cabin-italic-webfont.eot');\n    src: url('@assets/cabin-italic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-italic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-italic-webfont.woff') format('woff'),\n         url('@assets/cabin-italic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-italic-webfont.svg#cabinitalic') format('svg');\n    font-weight: 400;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'Cabin';\n    src: url('@assets/cabin-regular-webfont.eot');\n    src: url('@assets/cabin-regular-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-regular-webfont.woff2') format('woff2'),\n         url('@assets/cabin-regular-webfont.woff') format('woff'),\n         url('@assets/cabin-regular-webfont.ttf') format('truetype'),\n         url('@assets/cabin-regular-webfont.svg#cabinregular') format('svg');\n    font-weight: 400;\n    font-style: normal;\n\n}\n",
+          "page.css": "body\n{\n  font-family: 'callunaregular';\n  font-size : 12px;\n}\n\n\nh1,h2,h3,h4,h5,h6\n{\n  font-family: 'Cabin', 'callunaregular';\n  font-weight : 700;\n}\n",
           "screen.css": "body{\n  color : blue;\n}\n"
         },
         "templates": {

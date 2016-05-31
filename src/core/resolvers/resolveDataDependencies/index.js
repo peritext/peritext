@@ -4,10 +4,59 @@ export default function resolveDataDependencies(inputSections, assetsController,
   let res;
   let match;
   const resRe = /@res([\d]+)?.(.*)/g;
+  const assetsRe = /@assets\/([^']+)/g;
   asyncMap(inputSections, function(section, allSectionsCallback) {
     waterfall([
-      function(resourcesCallback) {
-        asyncMap(section.resources, function(resource, singleResourceCallback) {
+      // styles resolution
+      function(stylesResolutionCallback) {
+        let match;
+        if (section.customizers && section.customizers.styles) {
+          const styles = [];
+          for (const prop in section.customizers.styles) {
+            if (section.customizers.styles[prop]) {
+              styles.push({key: prop, value: section.customizers.styles[prop]});
+            }
+          }
+          // map each style customizer
+          asyncMap(styles, function(styleCouple, singleStyleCallback) {
+            let style = styleCouple.value;
+            // get all expressions
+            const matches = [];
+            do {
+              match = assetsRe.exec(style);
+              if (match) {
+                matches.push(match);
+              }
+            } while (match);
+            // some assets interpolations to do
+            if (matches.length) {
+              // reverse array to begin with last matches and not mess around with indexes
+              matches.reverse();
+              asyncMap(matches, function(thisMatch, matchCallback){
+                assetsController.getAssetUri(thisMatch[1], assetsParams, function(err4, uri) {
+                  style = style.substr(0, thisMatch.index) + uri + style.substr(thisMatch.index + thisMatch[0].length);
+                  matchCallback(err4, thisMatch);
+                });
+              }, function(matchErrors, matches) {
+                styleCouple.value = style;
+                singleStyleCallback(matchErrors, styleCouple);
+              });
+            // no interpolations to do
+            } else {
+              styleCouple.value = style;
+              singleStyleCallback(null, styleCouple);
+            }
+          }, function(stylesErrors, styleCouples) {
+            styleCouples.forEach((styleCouple) =>{
+              section.customizers.styles[styleCouple.key] = styleCouple.value;
+            });
+            stylesResolutionCallback(stylesErrors, section);
+          });
+        } else stylesResolutionCallback(null, section);
+      },
+      // resolve resources
+      function(sectio, resourcesCallback) {
+        asyncMap(sectio.resources, function(resource, singleResourceCallback) {
           const props = [];
           // format props as array for performing an async map
           for (const prop in resource) {
@@ -32,8 +81,8 @@ export default function resolveDataDependencies(inputSections, assetsController,
             singleResourceCallback(singleResourceError, newResource);
           });
         }, function(resourcesErrors, resources) {
-          section.resources = resources;
-          resourcesCallback(resourcesErrors, section);
+          sectio.resources = resources;
+          resourcesCallback(resourcesErrors, sectio);
         });
       },
       function(sectio, contextualizationsCallback) {
@@ -74,7 +123,7 @@ export default function resolveDataDependencies(inputSections, assetsController,
                       // find resource key
                       res = contextualization.resources[rank];
                       // find resource data
-                      res = section.resources.find((oRes) =>{
+                      res = sectio.resources.find((oRes) =>{
                         return oRes.citeKey === res;
                       });
                       const resProp = match[match.length - 1];
@@ -112,7 +161,7 @@ export default function resolveDataDependencies(inputSections, assetsController,
                   // find resource key
                   res = contextualization.resources[rank];
                   // find resource data
-                  res = section.resources.find((oRes) =>{
+                  res = sectio.resources.find((oRes) =>{
                     return oRes.citeKey === res;
                   });
                   const resProp = match[match.length - 1];
