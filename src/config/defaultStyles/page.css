@@ -88,3 +88,8 @@ figure,
         content: counter(page);
     }
 }
+
+
+#toc a::after {
+    content: leader(".") target-counter(attr(href), page);
+}

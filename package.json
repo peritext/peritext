@@ -1,7 +1,7 @@
 {
-  "name": "modulo-separated-modules",
+  "name": "modulo-core",
   "version": "0.0.1",
-  "description": "Dev space for modulo modules",
+  "description": "Dev space for modulo application",
   "main": "index.js",
   "scripts": {
     "start": "babel-node index.js",
@@ -9,8 +9,13 @@
     "test:watch": "npm run test -- --watch",
     "lint": "eslint src",
     "lint:fix": "eslint --config .eslintrc --fix src",
-    "lint:watch": "node_modules/eslint-watch/bin/esw --watch --config .eslintrc src"
+    "lint:watch": "node_modules/eslint-watch/bin/esw --watch --config .eslintrc src",
+    "validate": "npm ls"
   },
+  "pre-commit": [
+    "lint",
+    "test"
+  ],
   "keywords": [
     "markdown",
     "publishing",
@@ -18,7 +23,7 @@
     "multimodal publishing"
   ],
   "author": "Robin de Mourat",
-  "license": "ISC",
+  "license": "GPL-3.0+",
   "babel": {
     "presets": [
       "es2015"
@@ -39,6 +44,7 @@
     "eslint-plugin-react": "^5.1.1",
     "eslint-watch": "^2.1.10",
     "mocha": "^2.4.5",
+    "precommit-hook": "^3.0.0",
     "react-addons-test-utils": "^15.1.0",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.1"
@@ -51,6 +57,7 @@
     "immutable": "^3.7.6",
     "marked": "^0.3.5",
     "prince": "^1.2.0",
+    "radium": "^0.17.1",
     "raw-loader": "^0.5.1",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",

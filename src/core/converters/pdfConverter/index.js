@@ -134,6 +134,8 @@ export function exportSection({section, sectionList, includeChildren = true, des
                       return exp + meta.htmlHead;
                     }, '') + '<meta name="generator" content="modulo"/>';
 
+
+      // cover handling - to externalize
       const needsCover = ['book', 'booklet', 'collection', 'mastersthesis', 'phdthesis', 'proceedings', 'techreport', 'unpublished'];
       const type = getMetaValue(sections[0].metadata, 'general', 'bibType');
       const hasCover = needsCover.find((typ) =>{
@@ -147,8 +149,19 @@ export function exportSection({section, sectionList, includeChildren = true, des
                             + '<h1>' + getMetaValue(sections[0].metadata, 'general', 'title') + '</h1>'
                             + '</div>'
                         + '</section>';
-        outputHtml = coverHtml + outputHtml;
+        // toc handling - to externalize
+        const tocHtml = '<section id="toc">'
+                  + '<h2>Table of contents</h2>'
+                  + sections.reduce((extHtml, section) =>{
+                    const id = getMetaValue(section.metadata, 'general', 'citeKey');
+                    const title = getMetaValue(section.metadata, 'general', 'title');
+                    return extHtml + '<div><a href="#' + id + '">' + title + '</a></div>'
+                  }, '')
+                  + '</section>';
+        outputHtml = coverHtml + tocHtml + outputHtml;
       }
+
+
       const html = '<!doctype:html><html>'
           + '<head>' + metaHead + '<style>' + style + '</style>' + '</head>'
           + '<body ' + setSectionMeta(sections[0]) + '>'
