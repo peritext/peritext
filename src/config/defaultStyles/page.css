@@ -93,3 +93,8 @@ figure,
 #toc a::after {
     content: leader(".") target-counter(attr(href), page);
 }
+
+#toc
+{
+    page-break-after: always;
+}

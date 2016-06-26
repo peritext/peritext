@@ -1,13 +1,26 @@
+
+body
+{
+            font-feature-settings: 'onum','ss01','ss03','liga','kern';
+       -moz-font-feature-settings: 'onum','liga','ss01','ss03';
+        -ms-font-feature-settings: 'onum','ss01','ss03','liga','kern';
+    -webkit-font-feature-settings: 'onum','ss01','ss03','liga','kern';
+         -o-font-feature-settings: 'onum','ss01','ss03','liga','kern';
+    text-rendering: optimizeLegibility;
+}
+
 q
 {
-  /*quotes : '\00AB\2003' '\2003\00BB' '\2039 ' ' \203A';*/
-  quotes : '«' ' »' '\2039 ' ' \203A';
+    /*quotes : '\00AB\2003' '\2003\00BB' '\2039 ' ' \203A';*/
+    quotes: '«' ' »' '\2039 ' ' \203A';
 }
 
-.modulo-contents-inline-quoted::before{
-  content : '\00AB ';
+.modulo-contents-inline-quoted::before
+{
+    content: '\00AB ';
 }
 
-.modulo-contents-inline-quoted::after{
-  content : ' \00BB';
+.modulo-contents-inline-quoted::after
+{
+    content: ' \00BB';
 }
