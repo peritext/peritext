@@ -1,15 +1,28 @@
-<!doctype:html><html><head><title>My awesome thesis</title><meta name="author" content="Robin De Mourat"><meta name="keywords" content="val1a, val1b, val2,val3,val4,another random set of keywords"><meta name="date" content="2016"><meta name="dc.title" content="My awesome thesis"><meta property="og:title" content="My awesome thesis"><meta name="twitter:title" content="My awesome thesis"><meta name="citation_title" content="My awesome thesis"><meta name="dc.creator" content="{De Mourat},Robin"><meta name="citation_author" content="Robin De Mourat"><meta name="dc.subject" content="val1a, val1b, val2,val3,val4,another random set of keywords"><meta name="dc.date" content="2016"><meta name="generator" content="modulo"/><style>q
+<!doctype:html><html><head><title>My awesome thesis</title><meta name="author" content="Robin De Mourat"><meta name="keywords" content="val1a, val1b, val2,val3,val4,another random set of keywords"><meta name="date" content="2016"><meta name="dc.title" content="My awesome thesis"><meta property="og:title" content="My awesome thesis"><meta name="twitter:title" content="My awesome thesis"><meta name="citation_title" content="My awesome thesis"><meta name="dc.creator" content="{De Mourat},Robin"><meta name="citation_author" content="Robin De Mourat"><meta name="dc.subject" content="val1a, val1b, val2,val3,val4,another random set of keywords"><meta name="dc.date" content="2016"><meta name="generator" content="modulo"/><style>
+body
 {
-  /*quotes : '\00AB\2003' '\2003\00BB' '\2039 ' ' \203A';*/
-  quotes : '«' ' »' '\2039 ' ' \203A';
+            font-feature-settings: 'onum','ss01','ss03','liga','kern';
+       -moz-font-feature-settings: 'onum','liga','ss01','ss03';
+        -ms-font-feature-settings: 'onum','ss01','ss03','liga','kern';
+    -webkit-font-feature-settings: 'onum','ss01','ss03','liga','kern';
+         -o-font-feature-settings: 'onum','ss01','ss03','liga','kern';
+    text-rendering: optimizeLegibility;
 }
 
-.modulo-contents-inline-quoted::before{
-  content : '\00AB ';
+q
+{
+    /*quotes : '\00AB\2003' '\2003\00BB' '\2039 ' ' \203A';*/
+    quotes: '«' ' »' '\2039 ' ' \203A';
 }
 
-.modulo-contents-inline-quoted::after{
-  content : ' \00BB';
+.modulo-contents-inline-quoted::before
+{
+    content: '\00AB ';
+}
+
+.modulo-contents-inline-quoted::after
+{
+    content: ' \00BB';
 }
 .modulo-contents-note-content
 {
@@ -100,6 +113,16 @@ figure,
     {
         content: counter(page);
     }
+}
+
+
+#toc a::after {
+    content: leader(".") target-counter(attr(href), page);
+}
+
+#toc
+{
+    page-break-after: always;
 }
 
 
@@ -275,7 +298,7 @@ h1,h2,h3,h4,h5,h6
   background-position: center center;
   height : 16cm;
 }
-</style></head><body  itemscope itemType="http://schema.org/Thesis" vocab="http://schema.org/" ressource="#mybook"><div class="modulo-contents-schema-metadata-placeholder" style="visibility:hidden"><span class="modulo-contents-citation-title" itemprop="name" property="name">My awesome thesis</span><time class="modulo-contents-citation-date" property="datePublished" itemprop="datePublished" datetime="2016">2016</time><span class="modulo-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person"><span class="modulo-contents-citation-author-firstname" itemprop="givenName" property="givenName" >Robin</span> <span class="modulo-contents-citation-author-lastname" itemprop="familyName" property="familyName" >De Mourat</span></span></div><section id="modulo-contents-cover"><div id="modulo-contents-cover-image-container"></div><div class="modulo-contents-cover-title"><h1>My awesome thesis</h1></div></section><section  class="modulo-contents-section modulo-contents-section-level-1" id="mybook">
+</style></head><body  itemscope itemType="http://schema.org/Thesis" vocab="http://schema.org/" ressource="#mybook"><div class="modulo-contents-schema-metadata-placeholder" style="visibility:hidden"><span class="modulo-contents-citation-title" itemprop="name" property="name">My awesome thesis</span><time class="modulo-contents-citation-date" property="datePublished" itemprop="datePublished" datetime="2016">2016</time><span class="modulo-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person"><span class="modulo-contents-citation-author-firstname" itemprop="givenName" property="givenName" >Robin</span> <span class="modulo-contents-citation-author-lastname" itemprop="familyName" property="familyName" >De Mourat</span></span></div><section id="modulo-contents-cover"><div id="modulo-contents-cover-image-container"></div><div class="modulo-contents-cover-title"><h1>My awesome thesis</h1></div></section><section id="toc"><h2>Table of contents</h2><div style="padding-left:0.5cm">My awesome thesis<a href="#mybook"></a></div><div style="padding-left:1cm">Partie 1<a href="#partie_1"></a></div><div style="padding-left:1cm">Partie 2<a href="#partie_2"></a></div><div style="padding-left:2cm">Partie 2.2<a href="#partie_2_2"></a></div></section><section  class="modulo-contents-section modulo-contents-section-level-1" id="mybook">
 <h1 id="welcome">Welcome</h1>
 <p><TemplateCall type="toc" options=""/></p>
 <BlockContextualization id="contextualization_1" resources="@temporal_data" contextualizer="cool_timeline_1">A reference</BlockContextualization>
