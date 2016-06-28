@@ -342,21 +342,24 @@ Grounding on [first interface](http://modesofexistence.org/anomalies) and rapid 
 React components hierarchy :
 
 ```
+- content wrapper
+    - menu toggle
+    
+    - content container (scrllable)
+        + content container
+            + (loop) content blocks
+        + sidenotes container
+            + (loop) sidenotes
+        + comments markers container
+            + (loop) comments markers
 - navbar
-    - logo and title
-    - search block
     - table of contents
-    - views related links
-- main column
-    - content container
-        - (loop) content blocks
-    - sidenotes container
-        - (loop) sidenotes
-    - footer
+    - views related links fixed bottom
+        - search block
 - aside column
-    - header
-    - body
-    - footer
+    - fixed header
+    - body (scrollable)
+    - fixed footer
 ```
 
 ## Application state
