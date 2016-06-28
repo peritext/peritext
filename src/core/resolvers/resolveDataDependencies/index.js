@@ -5,11 +5,10 @@ export default function resolveDataDependencies(inputSections, assetsController,
   let match;
   const resRe = /@res([\d]+)?.(.*)/g;
   const assetsRe = /@assets\/([^']+)/g;
-  asyncMap(inputSections, function(section, allSectionsCallback) {
+  asyncMap(inputSections, (section, allSectionsCallback)=> {
     waterfall([
       // styles resolution
-      function(stylesResolutionCallback) {
-        let match;
+      (stylesResolutionCallback)=> {
         if (section.customizers && section.customizers.styles) {
           const styles = [];
           for (const prop in section.customizers.styles) {
@@ -18,7 +17,7 @@ export default function resolveDataDependencies(inputSections, assetsController,
             }
           }
           // map each style customizer
-          asyncMap(styles, function(styleCouple, singleStyleCallback) {
+          asyncMap(styles, (styleCouple, singleStyleCallback)=> {
             let style = styleCouple.value;
             // get all expressions
             const matches = [];
@@ -32,12 +31,12 @@ export default function resolveDataDependencies(inputSections, assetsController,
             if (matches.length) {
               // reverse array to begin with last matches and not mess around with indexes
               matches.reverse();
-              asyncMap(matches, function(thisMatch, matchCallback){
-                assetsController.getAssetUri(thisMatch[1], assetsParams, function(err4, uri) {
+              asyncMap(matches, (thisMatch, matchCallback)=> {
+                assetsController.getAssetUri(thisMatch[1], assetsParams, (err4, uri)=> {
                   style = style.substr(0, thisMatch.index) + uri + style.substr(thisMatch.index + thisMatch[0].length);
                   matchCallback(err4, thisMatch);
                 });
-              }, function(matchErrors, matches) {
+              }, (matchErrors, theseMatches)=> {
                 styleCouple.value = style;
                 singleStyleCallback(matchErrors, styleCouple);
               });
@@ -46,7 +45,7 @@ export default function resolveDataDependencies(inputSections, assetsController,
               styleCouple.value = style;
               singleStyleCallback(null, styleCouple);
             }
-          }, function(stylesErrors, styleCouples) {
+          }, (stylesErrors, styleCouples)=> {
             styleCouples.forEach((styleCouple) =>{
               section.customizers.styles[styleCouple.key] = styleCouple.value;
             });
@@ -54,9 +53,25 @@ export default function resolveDataDependencies(inputSections, assetsController,
           });
         } else stylesResolutionCallback(null, section);
       },
+      // resolve metadata
+      (sectio, metadataCallback)=> {
+        asyncMap(sectio.metadata, (metadata, singleMetadataCallback)=> {
+          if (typeof metadata.value === 'string' && metadata.value.indexOf('@assets/') === 0) {
+            assetsController.getAssetUri(metadata.value.split('@assets/')[1], assetsParams, (err4, uri)=> {
+              metadata.value = uri;
+              singleMetadataCallback(err4, metadata);
+            });
+          } else {
+            singleMetadataCallback(null, metadata);
+          }
+        }, (metadataErrors, newMetadata)=>{
+          sectio.metadata = newMetadata;
+          metadataCallback(metadataErrors, sectio);
+        });
+      },
       // resolve resources
-      function(sectio, resourcesCallback) {
-        asyncMap(sectio.resources, function(resource, singleResourceCallback) {
+      (sectio, resourcesCallback)=> {
+        asyncMap(sectio.resources, (resource, singleResourceCallback)=> {
           const props = [];
           // format props as array for performing an async map
           for (const prop in resource) {
@@ -64,29 +79,29 @@ export default function resolveDataDependencies(inputSections, assetsController,
               props.push({key: prop, value: resource[prop]});
             }
           }
-          asyncMap(props, function(prop, resourcePropCallback) {
+          asyncMap(props, (prop, resourcePropCallback)=> {
             if (typeof prop.value === 'string' && prop.value.indexOf('@assets/') === 0) {
-              assetsController.getAssetUri(prop.value.split('@assets/')[1], assetsParams, function(err4, uri) {
+              assetsController.getAssetUri(prop.value.split('@assets/')[1], assetsParams, (err4, uri)=> {
                 prop.value = uri;
                 resourcePropCallback(err4, prop);
               });
             } else {
               resourcePropCallback(null, prop);
             }
-          }, function(singleResourceError, newProps) {
+          }, (singleResourceError, newProps)=> {
             const newResource = newProps.reduce((obj, prop) =>{
               obj[prop.key] = prop.value;
               return obj;
             }, {});
             singleResourceCallback(singleResourceError, newResource);
           });
-        }, function(resourcesErrors, resources) {
+        }, (resourcesErrors, resources)=> {
           sectio.resources = resources;
           resourcesCallback(resourcesErrors, sectio);
         });
       },
-      function(sectio, contextualizationsCallback) {
-        asyncMap(sectio.contextualizations, function(contextualization, contextualizationCallback) {
+      (sectio, contextualizationsCallback)=> {
+        asyncMap(sectio.contextualizations, (contextualization, contextualizationCallback)=> {
           res = undefined;
           const props = [];
           // format props as array for performing an async map
@@ -95,16 +110,16 @@ export default function resolveDataDependencies(inputSections, assetsController,
               props.push({key: prop, value: contextualization[prop]});
             }
           }
-          /*
+          /**
            * First level props
            */
           // resolve async. props
-          asyncMap(props, function(prop, contextualizationPropCallback) {
+          asyncMap(props, (prop, contextualizationPropCallback)=> {
             const val = prop.value;
             // if prop is itself an array, need for another nested async resolution
             if (Array.isArray(val) && prop.key !== 'resources') {
               // loop through propArray members
-              asyncMap(val, function(prop2, propArrayMembersCallback) {
+              asyncMap(val, (prop2, propArrayMembersCallback)=> {
                 // prepare for asyncMap for propArray member
                 const nestedProps = [];
                 for (const nestedProp in prop2) {
@@ -113,7 +128,7 @@ export default function resolveDataDependencies(inputSections, assetsController,
                   }
                 }
                 // Second level props (contextualization.arrayProp[array member].prop)
-                asyncMap(nestedProps, function(nestedProp, nestedPropCallback) {
+                asyncMap(nestedProps, (nestedProp, nestedPropCallback)=> {
                   // resolve nested props here
                   const val3 = nestedProp.value;
                   if (('' + val3).indexOf('@res') === 0) {
@@ -134,14 +149,14 @@ export default function resolveDataDependencies(inputSections, assetsController,
                     }
                     nestedPropCallback(null, nestedProp);
                   } else if (('' + val3).indexOf('@assets/') === 0) {
-                    assetsController.getAssetUri(val3.split('@assets/')[1], assetsParams, function(err4, uri) {
+                    assetsController.getAssetUri(val3.split('@assets/')[1], assetsParams, (err4, uri)=> {
                       nestedProp.value = uri;
                       nestedPropCallback(err4, nestedProp);
                     });
                   } else {
                     nestedPropCallback(null, nestedProp);
                   }
-                }, function(err3, propsOut2) {
+                }, (err3, propsOut2)=> {
                   const newProp2 = propsOut2.reduce((newCont, newContProp) =>{
                     newCont[newContProp.key] = newContProp.value;
                     return newCont;
@@ -149,7 +164,7 @@ export default function resolveDataDependencies(inputSections, assetsController,
                   propArrayMembersCallback(err3, newProp2);
                 });
               // resolve arrayed prop
-              }, function(err2, arrayMembers) {
+              }, (err2, arrayMembers)=> {
                 prop.value = arrayMembers;
                 contextualizationPropCallback(null, prop);
               });
@@ -172,7 +187,7 @@ export default function resolveDataDependencies(inputSections, assetsController,
                 }
                 contextualizationPropCallback(null, prop);
               } else if (('' + val).indexOf('@assets/') === 0) {
-                assetsController.getAssetsUri(val.split('@assets/')[1], assetsParams, function(err3, uri) {
+                assetsController.getAssetsUri(val.split('@assets/')[1], assetsParams, (err3, uri)=> {
                   prop.value = uri;
                   contextualizationPropCallback(err3, prop);
                 });
@@ -182,24 +197,24 @@ export default function resolveDataDependencies(inputSections, assetsController,
             } else {
               contextualizationPropCallback(null, prop);
             }
-          }, function(err1, propsOut1) {
+          }, (err1, propsOut1)=> {
             const newContextualization = propsOut1.reduce((newCont, propOut) =>{
               newCont[propOut.key] = propOut.value;
               return newCont;
             }, {});
             contextualizationCallback(err1, newContextualization);
           });
-        }, function(contextualizationsError, contextualizations) {
+        }, (contextualizationsError, contextualizations)=> {
           sectio.contextualizations = contextualizations;
           contextualizationsCallback(contextualizationsError, sectio);
         });
       }
     // waterfall callback - all sections
-    ], function(errs, sectios) {
+    ], (errs, sectios)=> {
       allSectionsCallback(errs, sectios);
     });
   // step callback
-  }, function(err, sections) {
+  }, (err, sections)=> {
     callback(err, sections);
   });
 }
