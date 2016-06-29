@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl">
+  <title data-ice="title">API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/robindemourat/modulo" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/HyperLink.jsx~HyperLink.html">HyperLink</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/ImageFigure.jsx~ImageFigure.html">ImageFigure</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/ImageGallery.jsx~ImageGallery.html">ImageGallery</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/WebsitePoster.jsx~WebsitePoster.html">WebsitePoster</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="modulo-make-a-multimodal-academic-publication-from-simple-text-files-">Modulo - <em>make a multimodal academic publication from simple text files</em></h1>
+<p><img src="https://raw.githubusercontent.com/robindemourat/modulo/master/specification/assets/modulo-project.png" alt="Modulo project in one image"></p>
+<p>Modulo is an application aimed at facilitating the making of media-rich, data-driven and multimodal academic publication projects.</p>
+<p>To do so, it turns flatfile contents coming from web platforms into several formats of academic publishing : webtext, pdf document, REST Api, ...</p>
+<p>Contents are written in plain text files (in <code>markdown</code> and <code>bibtex</code> syntaxes), and hosted mainly in external flatfile-structured data sources (ftp server, local files, google drive, amazon s3, ...).</p>
+<p>Modulo is designed to be a &quot;reader&quot; in the first place, though its structure allows for connecting it to a content-edition application later on.</p>
+<h1 id="caution-work-in-progress">Caution : Work In Progress</h1>
+<p>Modulo is being rewritten at the moment as a source-agnostic, annotation-ready, and editor-ready, <a href="https://medium.com/@mjackson/universal-javascript-4761051b7ae9">universal javascript application</a>.</p>
+<p>See an implementation of the first, front-end only, version of Modulo there : <a href="http://modesofexistence.org/anomalies/">http://modesofexistence.org/anomalies/</a> (source there : <a href="https://github.com/robindemourat/clues-anomaly-understanding">https://github.com/robindemourat/clues-anomaly-understanding</a> )</p>
+<p>If you&apos;re curious about what&apos;s going on, <a href="https://github.com/robindemourat/modulo/tree/master/specification">check here the in-progress modulo v2 working documents about markdown specification, contents structures and technical choices</a>.</p>
+<h1 id="presentation">Presentation</h1>
+<p>Modulo is aimed at being an interface and rendering engine to multimodal academic publishing projects - built with flexibility, extensibility and lightness as core values.</p>
+<p>Project&apos;s goal is to simplify and democratize the possibility of setting up a scholarly textual document accompanied with various interactive/multimodal figures (whether they be embedded from web services, or interactive figures presenting data such as timelines, graphs, interviews, ...).</p>
+<p>To do so, the tool reads as input some simple text files (and possibly annotation attached to them through tierce sources such as Disqus), and produces as output a browsable, printable, indexing-friendly document.</p>
+<h1 id="design-goals">Design goals</h1>
+<p>Contextualization-related goals :</p>
+<ol>
+<li><strong>feature all the richness of the web while respecting academic needs</strong> : first of all, Modulo&apos;s main goal is to allow users to take the maximum advantage of the web as input (in terms of data sources, media, ...) and as output (as printable webpage, API-served data, embedded widget, mobile-friendly app, ...) - while encouraging writers to document and design the use of all of this richness according to academic rigorousness standards</li>
+<li><strong>resource(s)+contextualizer=contextualization model</strong> : one of the core intellectual endeavours at the origin of Modulo is a reflection about the future of the &quot;editorial figure&quot; notion in digital publishing environments. In order to reflect on this issue through practice, Modulo proposes to reframe &quot;figures&quot; as the <em>contextualization</em> of one or several given <em>resources</em>  through a set of parameters called a <em>contextualizer</em>. The same contextualizer can be used for displaying several resources (comparing different data sources, for instance), and one resource can be contextualized in a diversity of ways. Following this model and giving an example, a timeline visualization inserted inside the core content would be described as the <em>contextualization</em> at one point of the text of a temporal data <em>resource</em> through a <em>contextualizer</em> describing which column to use as date, which to use as events descriptions and how to display them.</li>
+<li><strong>standard syntaxes extension</strong> : Modulo writing syntax tries to ground on existing standard specifications (e.g. : <code>bibtex</code>, <code>markdown</code>) and to extend them for the sake of the specific needs of multimodal academic publication projects. <strong>Bibtex is used for <em>all</em> resources, and contextualizers descriptions</strong>, including convential bibliographical records AND images, links, data sources, etc. descriptions. <strong>Markdown is used to write all the linear aspects of the stories displayed inside a document - that is: textual contents and contextualizations assertions.</strong></li>
+</ol>
+<p>Flexibility-related goals :</p>
+<ol>
+<li><strong>source agnostic - openess as choice and modularity</strong> : Modulo is designed with freedom as one of its main core values : it should be possible to &quot;plugin&quot; the app into a various array of data sources (Google Drive, Dropbox, Github, Amazon S3, ftp server, local data, ...) with the same results in terms of outputs. Distinct storage origins can be specified for main contents, assets (images, videos, data ...) and annotations (e.g. : Disqus)</li>
+<li><strong>non-captive data - openess as autonomy of content</strong> : it should be possible to read and write the contents written with/for Modulo independently from Modulo - nothing of the data should be lost if a user chooses to cease to use the tool</li>
+<li><strong>modulo users&apos; permissions are source users&apos; permissions</strong> : <em>Modulo should take no responsability at all in permissions and just be a pure interface to the sources&apos; own permission settings and authentication process.</em> Modulo should do nothing but to allow the display or edit contents according to source&apos;s own permission settings. If a section&apos;s source is publicly readable, it should be publicly readable in its modulo version. If a section&apos;s source is modifiable by Marc, it should be (in future versions of the tool including an editor) modifiable by Marc in Modulo&apos;s editor after logging in through source&apos; authentication protocol.</li>
+</ol>
+<p>Fluidity-related goals :</p>
+<ol>
+<li><strong>built for indexation</strong> : Modulo should render all of its contents (even the &quot;interactive&quot; ones) to indexing agents and javascript-less browsers. It should cover as metadata domains as possible, and be as precise as possible regarding metadata. It should use <code>schema</code> micro-formatting specification for semantically describing html contents when possible.</li>
+<li><strong>built for fetching, exporting and embedding</strong> : a modulo document should be highly exploitable and sharable from other places of the web : it should be possible to embed/comment/quote all kinds and scales of its contents, and it should be possible access all kinds and scales of these contents through a public API</li>
+<li><strong>built for multiple supports</strong> : everything written in a Modulo document should be by default viewable both on a screen and on a page of paper (even &quot;interactive&quot; figures should have a meaningfull static visual state).</li>
+</ol>
+<p>Experience-related goals :</p>
+<ol>
+<li><strong>outside web should be always accessible but at least 2 clicks away</strong> : Modulo cares about readers&apos; attention, and for that matters, all external links and resources should be displayed inside document&apos;s interface in the first place</li>
+<li><strong>linearity-driven</strong> : modulo&apos;s interface goal is to take advantage of the hypertextuality and knowledge-linking capabilities of digital content while always focusing on not getting the reader (and maybe later, the writer) lost. This is seeked by emphasizing strongly a linear, hierarchical mental model of the document accessible at all times</li>
+<li><strong>built for reuse, citation, and quoting</strong> : it should be extremely easy to precisely quote a part of a Modulo document, and to retrieve document&apos;s own metadata and document&apos;s cited sources from any bibliography management software (like Zotero)</li>
+</ol>
+<h2 id="-previous-version-existing-features">(Previous version) existing features</h2>
+<ul>
+<li>index auto-building and navigation system</li>
+<li>complex interactions with interactive elements, through scroll and click</li>
+<li>diversely extended markdown language</li>
+<li>fully responsive academic document design (desktop/tablet/mobile/print)</li>
+</ul>
+<p>Current available figure modules (embedded contents) :</p>
+<ul>
+<li>google spreadsheet table</li>
+<li>vimeo</li>
+<li>youtube</li>
+<li>tableau</li>
+<li>twitter</li>
+<li>pdf embed</li>
+<li>slideshare</li>
+<li>image gallery</li>
+<li>iframe embed</li>
+</ul>
+<p>Available figure modules for specific data :</p>
+<ul>
+<li>transcripted interview</li>
+<li>multi-dimensional timeline</li>
+<li>sankey diagram</li>
+<li>network graph</li>
+</ul>
+</div>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.7)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
