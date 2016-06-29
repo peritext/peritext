@@ -191,6 +191,48 @@
       "default" : "inline",
       "unique" : true,
       "propagatesTo" : []
+    },
+    "dissertationinstitution" : {
+      "description" : "The dissertation institution name (university name, for a Thesis)",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"citation_dissertation_institution\" content=\"${value}\">",
+      "propagatesTo" : []
+    },
+    "dissertationcomment" : {
+      "description" : "Additionnal information to the dissertation institution",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "propagatesTo" : []
+    },
+    "dissertationlab" : {
+      "description" : "The laboratory/research group that has hosted the dissertation preparation",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "propagatesTo" : []
+    },
+    "dissertationdoctoralschool" : {
+      "description" : "The doctoral school that has hosted the dissertation preparation",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "propagatesTo" : []
+    },
+    "dissertationdiscipline" : {
+      "description" : "The university discipline in which the dissertation is submitted",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "propagatesTo" : []
+    },
+    "dissertationjury" : {
+      "description" : "The member(s) of the jury evaluating the dissertation",
+      "valueType" : "bibAuthorsArray",
+      "unique" : false,
+      "headTemplate" : "",
+      "propagatesTo" : []
     }
   },
   "scholar" : {
@@ -311,13 +353,6 @@
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "<meta name=\"citation_lastpage\" content=\"${value}\">",
-      "propagatesTo" : []
-    },
-    "dissertationinstitution" : {
-      "description" : "The dissertation institution name (university name, for a Thesis)",
-      "valueType" : "string",
-      "unique" : true,
-      "headTemplate" : "<meta name=\"citation_dissertation_institution\" content=\"${value}\">",
       "propagatesTo" : []
     },
     "technicalreportinstitution" : {
