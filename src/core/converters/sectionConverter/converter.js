@@ -1,4 +1,4 @@
-/*
+/**
  * This module converts an fsTree flatfile abstraction to a documentTree modulo document abstraction
  */
 

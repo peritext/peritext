@@ -1,4 +1,4 @@
-/*
+/**
  * This module analyses special markdown insertions (includes and resources)
  * Takes a modulo-markdown string + syntax params as input
  * Parses inline resources expressions

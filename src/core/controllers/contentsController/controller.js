@@ -14,7 +14,7 @@ function updateConnector(params) {
   }
 }
 
-/*
+/**
  * I echo an expected/actual fstree difference with Create/Update/Delete operations
  * on the content source through the appropriate connector middleware
  */
@@ -90,7 +90,7 @@ function applyDifference(difference, params, connect, callback) {
   callback();
 }
 
-/*
+/**
  * I parse source through connector and returns a moduloSectionArray javascript representation
  */
 export function updateFromSource(params, models, parameters, callback) {
@@ -110,7 +110,7 @@ export function updateFromSource(params, models, parameters, callback) {
   });
 }
 
-/*
+/**
  * I update a data source from a moduloSectionArray, by "diffing" new fsTree with previous fsTree
  * I compare new moduloSectionArray javascript state to old fsTree tree
  * then make a diff list with deep-diff

@@ -269,7 +269,7 @@ export function parseBibAuthors(str) {
       }
       if (match[2]) {
         information = match[2];
-        information = information.trim().substr(1);
+        information = information.trim();
       }
     }
     const lastNameMatch = workingStr.match(/{([^}]*)}/);
@@ -291,7 +291,8 @@ export function parseBibAuthors(str) {
         firstName = '';
       }
     }
-    return {firstName, lastName, role, information};
+    const citeKey = (role + '-' + firstName + lastName).toLowerCase().replace(' ', '-');
+    return {firstName, lastName, role, information, citeKey};
   });
 }
 

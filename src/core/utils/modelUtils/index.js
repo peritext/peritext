@@ -1,4 +1,4 @@
-/*
+/**
  * Dedicated to everything that deals with models (composing, translating values, ...)
  */
 

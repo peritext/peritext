@@ -1,4 +1,4 @@
-/*
+/**
  * This module handles modification on a section object according to contextualization needs
  */
 

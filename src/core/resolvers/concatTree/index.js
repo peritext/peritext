@@ -1,7 +1,10 @@
 import {parseMarkdown as extractIncludes} from './../../converters/markdownIncludesParser';
 import {map as asyncMap, waterfall} from 'async';
 
-/*
+let resolveFileIncludes;
+
+
+/**
  * I extract md includes and inline resources descriptions from a file object
  * @child : a fsElement ({type, name, path, extname})
  * @params : local parsing params - for instance templates and includes syntax
@@ -21,8 +24,7 @@ const populateElementWithIncludes = function(child, params, callback) {
 };
 
 
-let resolveFileIncludes;
-/*
+/**
  * I produce a nested structure of the included files in a given file
  * @ex : the include expression object
  * @file : the file to populate
@@ -50,7 +52,7 @@ const include = (ex, file, mdFilesWithIncludes)=>{
   }
 };
 
-/*
+/**
  * I monitor the nested including structure population process of a file
  */
 resolveFileIncludes = function(file, mdFilesWithIncludes) {
@@ -67,7 +69,7 @@ resolveFileIncludes = function(file, mdFilesWithIncludes) {
 };
 
 
-/*
+/**
  * I turn non nested file object into include-based nested file objects
  * @mdFilesWithIncludes : non nested file objects
  */
@@ -79,7 +81,7 @@ const nestIncludes = function({resourcesStr, mdFilesWithIncludes, params}, cb) {
   cb(null, {resourcesStr, mdFilesWithIncludes});
 };
 
-/*
+/**
  * I consume the nested property 'include' by populating its string contents with includes contents,
  * resolved recursively
  * @file : the file
@@ -104,7 +106,7 @@ const buildFinalMdContent = function(file) {
   return content;
 };
 
-/*
+/**
  * I turn an array of nested file objects into one single string
  * @mdFilesWithIncludes : non nested file objects
  */
@@ -133,7 +135,7 @@ const concatCustomizers = function(newTree) {
       });
 };
 
-/*
+/**
  * MAIN
  * I turn a fsTree into a dumTree, that is a tree which presents
  * .bib resources and .md files contents concatenated by folder (according to inner 'include' statements and then automatically)

@@ -1,4 +1,4 @@
-/*
+/**
  * Dedicated to validate section data
  */
 

@@ -1,4 +1,4 @@
-/*
+/**
  * iso690 bibliographic norm formatter (lang: fr)
  * Doc 1 : http://revues.refer.org/telechargement/fiche-bibliographie.pdf
  * Doc 2 : https://www.mpl.ird.fr/documentation/download/FormBibliog.pdf
@@ -38,12 +38,12 @@ function formatCitationDetails(contextualization, resource) {
 }
 
 
- /*
+ /**
  * Long citation (bibliography style)
  */
 
 export function formatBlockCitation(contextualization, resource, ibid, opCit) {
-  /*
+  /**
    * Resource-related population
    */
 
@@ -126,7 +126,7 @@ export function formatBlockCitation(contextualization, resource, ibid, opCit) {
     }
   }
 
-  /*
+  /**
    * Contextualizer-related population
    */
   const additionnal = formatCitationDetails(contextualization, resource);
@@ -136,12 +136,12 @@ export function formatBlockCitation(contextualization, resource, ibid, opCit) {
 }
 
 
-/*
+/**
  * Short citation
  */
 
 export function formatInlineCitation(contextualization, resource, ibid, opCit) {
-  /*
+  /**
    * Resource-related population
    */
 
@@ -166,7 +166,7 @@ export function formatInlineCitation(contextualization, resource, ibid, opCit) {
     }
   }
 
-  /*
+  /**
    * Contextualizer-related population
    */
   const additionnal = formatCitationDetails(contextualization, resource);

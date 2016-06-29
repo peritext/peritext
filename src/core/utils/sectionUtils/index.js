@@ -1,4 +1,4 @@
-/*
+/**
  * section metadata & resources utils : access, filter, deletion, ...
  */
 
