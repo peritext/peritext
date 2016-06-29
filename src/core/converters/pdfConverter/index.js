@@ -1,4 +1,4 @@
-/*
+/**
  * This module inputs a specific modulo section, including then possibly its children sections
  * and outputs a pdf file ready to display.
  * The converter used is PrinceXML non-commercial version.
@@ -12,11 +12,19 @@ import {waterfall} from 'async';
 const Prince = require('prince');
 import {readFile, writeFile} from 'fs';
 import {resolve} from 'path';
+import React from 'react';
+import ReactDOMServer from 'react-dom/server';
 
 import {getMetaValue} from './../../utils/sectionUtils';
+import {sectionTypeModels} from './../../models';
 import {eatNotes} from './../markdownConverter';
 import {resolveContextualizationsImplementation} from './../../resolvers/resolveContextualizations';
 import {metadataToSchema, setSectionMeta} from './../../utils/microDataUtils';
+import {
+  CoverPage,
+  StaticTableOfContents
+} from './../../components';
+
 const defaultStylesPath = './../../../config/defaultStyles/';
 
 function listChildren(sections, key) {
@@ -42,6 +50,7 @@ export function exportSection({section, sectionList, includeChildren = true, des
     sectios = sectios.concat(listChildren(sectionList, motherKey));
   }
   waterfall([
+    // load global css rules
     function(cback) {
       readFile(resolve(__dirname + defaultStylesPath + 'global.css'), function(err, contents) {
         if (!err) {
@@ -49,6 +58,7 @@ export function exportSection({section, sectionList, includeChildren = true, des
         }
         cback(null, sectios);
       });
+    // rule paged-related css rules
     }, function(sections, cback) {
       readFile(resolve(__dirname + defaultStylesPath + 'page.css'), function(err, contents) {
         if (!err) {
@@ -73,7 +83,9 @@ export function exportSection({section, sectionList, includeChildren = true, des
           newHtml = html + block.html + '\n';
           return newHtml;
         }, '');
+
         const {outputHtml, notes} = eatNotes(assembled, getMetaValue(sectio.metadata, 'general', 'citeKey'), notesCount, notesPosition);
+
         if (notesPosition === 'documentend') {
           notesCount += notes.length;
         }
@@ -83,7 +95,9 @@ export function exportSection({section, sectionList, includeChildren = true, des
 
       // assemble html contents according to params
       let outputHtml = notedSections.map((sectio, index) => {
+
         let notes = '';
+
         if (notesPosition === 'sectionend') {
           notes = '<section class="modulo-contents-notes modulo-contents-section-end-notes">'
           + '<h4 class="notes-title">Notes</h4>'
@@ -92,6 +106,7 @@ export function exportSection({section, sectionList, includeChildren = true, des
           }).join('\n')
           + '</section>';
         }
+
         return '<section '
                 + (index > 0 ? setSectionMeta(sectio) : '')
                 + ' class="modulo-contents-section modulo-contents-section-level-' + getMetaValue(sectio.metadata, 'general', 'generalityLevel') + '" id="' + getMetaValue(sectio.metadata, 'general', 'citeKey') + '">\n'
@@ -134,33 +149,24 @@ export function exportSection({section, sectionList, includeChildren = true, des
                       return exp + meta.htmlHead;
                     }, '') + '<meta name="generator" content="modulo"/>';
 
-
-      // cover handling - to externalize
-      const needsCover = ['book', 'booklet', 'collection', 'mastersthesis', 'phdthesis', 'proceedings', 'techreport', 'unpublished'];
-      const type = getMetaValue(sections[0].metadata, 'general', 'bibType');
-      const hasCover = needsCover.find((typ) =>{
-        return typ === type;
-      });
-      if (hasCover) {
-        const coverImage = getMetaValue(sections[0].metadata, 'general', 'coverimage');
-        const coverHtml = '<section id="modulo-contents-cover">'
-                            + '<div id="modulo-contents-cover-image-container"></div>'
-                            + '<div class="modulo-contents-cover-title">'
-                            + '<h1>' + getMetaValue(sections[0].metadata, 'general', 'title') + '</h1>'
-                            + '</div>'
-                        + '</section>';
+      // cover handling
+      const sectionType = getMetaValue(sections[0].metadata, 'general', 'bibType');
+      if (sectionTypeModels.acceptedTypes[sectionType].needsCover) {
+        const coverHtml = ReactDOMServer.renderToStaticMarkup(<CoverPage metadata={sections[0].metadata} />);
         // toc handling - to externalize
-        const tocHtml = '<section id="toc">'
-                  + '<h2>Table of contents</h2>'
-                  + sections.reduce((extHtml, section) =>{
-                    const id = getMetaValue(section.metadata, 'general', 'citeKey');
-                    const title = getMetaValue(section.metadata, 'general', 'title');
-                    return extHtml + '<div><a href="#' + id + '">' + title + '</a></div>'
-                  }, '')
-                  + '</section>';
+        const tocData = sections.filter((sectio, index) =>{
+          return index > 0;
+        }).map((thisSection) => {
+          return {
+            id: getMetaValue(thisSection.metadata, 'general', 'citeKey'),
+            title: getMetaValue(thisSection.metadata, 'general', 'title'),
+            level: getMetaValue(thisSection.metadata, 'general', 'generalityLevel')
+          };
+        });
+        const tocHtml = ReactDOMServer.renderToStaticMarkup(<StaticTableOfContents elements={tocData} level={getMetaValue(sections[0].metadata, 'general', 'generalityLevel')} />);
+
         outputHtml = coverHtml + tocHtml + outputHtml;
       }
-
 
       const html = '<!doctype:html><html>'
           + '<head>' + metaHead + '<style>' + style + '</style>' + '</head>'
