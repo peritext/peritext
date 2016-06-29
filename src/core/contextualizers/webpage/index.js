@@ -1,5 +1,6 @@
-import {formatLink, formatImageFigure} from './../../utils/microDataUtils';
-
+import React from 'react';
+import ReactDOMServer from 'react-dom/server';
+import {HyperLink, WebsitePoster} from './../../components';
 
 export function contextualizeInlineStatic(section, contextualization) {
   const elRe = new RegExp('<InlineContextualization id="' + contextualization.citeKey + '"[^>]*>(.*)</InlineContextualization>');
@@ -10,7 +11,8 @@ export function contextualizeInlineStatic(section, contextualization) {
   const newContents = section.contents.map((block) =>{
     match = block.html.match(elRe);
     if (match) {
-      const outputHtml = block.html.substr(0, match.index) + match[1] + '[^]{' + formatLink(resource, resource.url) + '}' + block.html.substr(match.index + match[0].length);
+      const hyperLink = ReactDOMServer.renderToStaticMarkup(<HyperLink resource={resource} text={resource.url} />);
+      const outputHtml = block.html.substr(0, match.index) + match[1] + '[^]{' + hyperLink + '}' + block.html.substr(match.index + match[0].length);
       return {
         html: outputHtml,
         tagType: block.tagType
@@ -35,21 +37,13 @@ export function contextualizeBlockStatic(section, contextualization) {
   const newContents = section.contents.map((block) =>{
     match = block.html.match(elRe);
     if (match) {
-      const figureMark = '<span class="modulo-contents-figure-mark" id="figure-mark-' + figuresCount + '">Figure ' + figuresCount + ' – </span>';
       const caption = match[1]
                       + (contextualizer.comment ? '. '
                           + contextualizer.comment : '')
                       + (resource.caption ? '. '
                           + resource.caption : '');
-      const link = '<a class="modulo-contents-hyperlink" itemprop="url"'
-                              + ' target="_blank"'
-                              + ' href="'
-                              + resource.url
-                              + '" >'
-                              + resource.url
-                              + '</a>';
-      const captionContent = figureMark + caption + ' – ' + link;
-      const figureHtml = formatImageFigure(resource, 'posterurl', captionContent, undefined, figuresCount);
+      // const link = ReactDOMServer.renderToStaticMarkup(<HyperLink text={resource.url} resource={resource}/>);
+      const figureHtml = ReactDOMServer.renderToStaticMarkup(<WebsitePoster resource={resource} imageKey="posterurl" captionContent={caption} figureNumber={figuresCount}/>);
       const outputHtml = block.html.substr(0, match.index) + figureHtml + block.html.substr(match.index + match[0].length);
       return {
         html: outputHtml,

@@ -1,4 +1,7 @@
-import {formatImagesGallery} from './../../utils/microDataUtils';
+import React from 'react';
+import ReactDOMServer from 'react-dom/server';
+import {ImageGallery} from './../../components';
+
 
 export function contextualizeInlineStatic(inputSection, contextualization) {
   const section = Object.assign({}, inputSection);
@@ -50,8 +53,8 @@ export function contextualizeInlineStatic(inputSection, contextualization) {
     return block;
   });
   if (existant === undefined) {
-    const comment = '<span class="modulo-contents-figure-mark" id="figure-mark-' + figureNumber + '">Figure ' + figureNumber + ' – </span><span class="modulo-contents-figure-note"> ' + (contextualization.title ? contextualization.title : resources[0].title) + '</span>';
-    const gallery = formatImagesGallery(resources, contextualization, comment, figureNumber);
+    const caption = (contextualization.title ? contextualization.title : resources[0].title);
+    const gallery = ReactDOMServer.renderToStaticMarkup(<ImageGallery resources={resources} captionContent={caption} figureNumber={figureNumber}/>);
     newContents = [...newContents.slice(0, firstMentionIndex + 1), {
       html: gallery,
       tagType: 'div'
@@ -83,8 +86,9 @@ export function contextualizeBlockStatic(section, contextualization) {
   const newContents = section.contents.map((block, index) =>{
     match = block.html.match(elRe);
     if (match) {
-      const comment = '<span class="modulo-contents-figure-mark" id="figure-mark-' + figuresCount + '">Figure ' + figuresCount + ' – </span><span class="modulo-contents-figure-note"> ' + (match[1] || contextualization.title || resources[0].title) + '</span>';
-      const gallery = formatImagesGallery(resources, contextualization, comment, figuresCount);
+      const caption = (match[1] || contextualization.title || resources[0].title);
+      const gallery = ReactDOMServer.renderToStaticMarkup(<ImageGallery resources={resources} captionContent={caption} figureNumber={figuresCount}/>);
+      // const gallery = formatImagesGallery(resources, contextualization, comment, figuresCount);
       return {
         html: gallery,
         tagType: 'div'
