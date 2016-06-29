@@ -1,8 +1,8 @@
-/*
+/**
  * This module parses and serializes bibTex objects
  */
 
-/*
+/**
  * homemade bibTeX syntax parser (performance could perhaps be improved I guess)
  * it needs a second pass to parse {} in values and analyze them against a model - that should be done elsewhere, as this converter just deals with syntax-to-object conversion
  */
@@ -65,7 +65,7 @@ class bibTexParser {
       };
       return true;
 
-    /*
+    /**
      * ``key = value`` structure
      * value is always wrapped inside character couples that vary depending on bibtex implementation (" { ')
      * possibility of nested wrapping (eg {Name {{S}urname}})
@@ -231,7 +231,7 @@ export function parseBibTexStr(str, callback) {
   return callback(new Error('must input a string'), undefined);
 }
 
-/*
+/**
 Accepted inputs for authors and persons (to add in doc/spec):
 {Martin}, Julia; Coleman
 {Jakubowicz}, Andrew
@@ -250,32 +250,48 @@ Maskin, Eric S.
 */
 export function parseBibAuthors(str) {
   const authors = str.split(/;|and|et/);
+  const additionalInfo = /\(([^)]*)?\)?\(?([^)]*)?\)?/;
+  let match;
   return authors.filter((inputStr) =>{
     return inputStr.trim().length > 0;
   }).map((inputAuthorStr) =>{
-    const lastNameMatch = inputAuthorStr.match(/{([^}]*)}/);
+    let workingStr = inputAuthorStr;
     let authorStr = '';
     let firstName;
     let lastName;
+    let role = 'author';
+    let information;
+    match = inputAuthorStr.match(additionalInfo);
+    if (match) {
+      workingStr = workingStr.replace(match[0], '');
+      if (match[1]) {
+        role = match[1].trim();
+      }
+      if (match[2]) {
+        information = match[2];
+        information = information.trim().substr(1);
+      }
+    }
+    const lastNameMatch = workingStr.match(/{([^}]*)}/);
     if (lastNameMatch) {
       lastName = lastNameMatch[1].trim();
-      authorStr = [inputAuthorStr.substr(0, lastNameMatch.index), inputAuthorStr.substr(lastNameMatch.index + lastNameMatch[0].length)].join('');
+      authorStr = [workingStr.substr(0, lastNameMatch.index), workingStr.substr(lastNameMatch.index + lastNameMatch[0].length)].join('');
       firstName = authorStr.replace(',', '').trim();
     } else {
-      let vals = inputAuthorStr.split(',');
+      let vals = workingStr.split(',');
       if (vals.length > 1) {
         firstName = vals[1].trim();
         lastName = vals[0].trim();
-      } else if (inputAuthorStr.trim().indexOf(' ') > -1) {
-        vals = inputAuthorStr.trim().split(' ');
+      } else if (workingStr.trim().indexOf(' ') > -1) {
+        vals = workingStr.trim().split(' ');
         firstName = vals.shift().trim();
         lastName = vals.join(' ').trim();
       } else {
-        lastName = inputAuthorStr.trim();
+        lastName = workingStr.trim();
         firstName = '';
       }
     }
-    return {firstName, lastName};
+    return {firstName, lastName, role, information};
   });
 }
 
