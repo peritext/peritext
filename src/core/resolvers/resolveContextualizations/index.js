@@ -134,7 +134,7 @@ export function resolveContextualizersAndContextualizations({section, models}, c
 }
 
 // I 'reduce' contextualizations statements to produce a new rendering-specific section representation
-export function resolveContextualizationsImplementation(section, renderingMode) {
+export function resolveContextualizationsImplementation(section, renderingMode, renderingParams) {
   let contextualizer;
   const sectio = section.contextualizations.reduce((inputSection, contextualization) => {
     contextualizer = contextualizers[contextualization.contextualizerType];
@@ -142,9 +142,9 @@ export function resolveContextualizationsImplementation(section, renderingMode) 
     case 'static':
       switch (contextualization.type) {
       case 'inline':
-        return contextualizer.contextualizeInlineStatic(inputSection, contextualization);
+        return contextualizer.contextualizeInlineStatic(inputSection, contextualization, renderingParams);
       case 'block':
-        return contextualizer.contextualizeBlockStatic(inputSection, contextualization);
+        return contextualizer.contextualizeBlockStatic(inputSection, contextualization, renderingParams);
       default:
         break;
       }
@@ -152,9 +152,9 @@ export function resolveContextualizationsImplementation(section, renderingMode) 
     case 'dynamic':
       switch (contextualization.type) {
       case 'inline':
-        return contextualizer.contextualizeInlineDynamic(inputSection, contextualization);
+        return contextualizer.contextualizeInlineDynamic(inputSection, contextualization, renderingParams);
       case 'block':
-        return contextualizer.contextualizeBlockDynamic(inputSection, contextualization);
+        return contextualizer.contextualizeBlockDynamic(inputSection, contextualization, renderingParams);
       default:
         break;
       }

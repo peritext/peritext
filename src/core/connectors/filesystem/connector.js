@@ -60,7 +60,7 @@ const parseElement = function({path = '', element, parseFiles, depth, actualDept
 };
 
 // cRud
-export function readFromPath({path = [], params, depth = 1, parseFiles = false, acceptedExtensions = ['.md', '.bib', '.css', '.jsx']}, callback) {
+export function readFromPath({path = [], params, depth = 1, parseFiles = false, acceptedExtensions = ['.md', '.bib', '.css', '.js']}, callback) {
   const resolvedPath = (Array.isArray(path)) ? path.join('/') : path;
   const finalPath = resolve(params.basePath) + '/' + resolvedPath;
   let element;

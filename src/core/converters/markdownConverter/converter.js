@@ -3,11 +3,13 @@
 * It returns a representation of a section's content as an object containing arrays of: paragraphs, notes, contextualizations, contextualizers
  */
 import marked from 'marked';
-import React from 'react';
+// import React from 'react';
 import {parseBibContextualization, parseBibNestedValues} from './../bibTexConverter';
-/*import {
+/*
+import {
   Note
-} from './../../components'; */
+} from './../../components';
+*/
 // import {getMetaValue} from './../../utils/sectionUtils';
 
 // basic marked parser
@@ -61,7 +63,6 @@ export function eatNotes(inputHtml, sectionCitekey, baseNotesCount = 0, notesPos
   let notesCount = baseNotesCount;
   let newEl;
   let noteContent;
-  let noteHtml;
   let index = 0;
   let displace = 0;
   let beginIndex;
