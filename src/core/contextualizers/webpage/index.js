@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import {HyperLink, WebsitePoster} from './../../components';
+import {StructuredHyperLink, StaticWebsitePoster} from './../../components';
 
-export function contextualizeInlineStatic(section, contextualization) {
+export function contextualizeInlineStatic(section, contextualization, renderingParams) {
   const elRe = new RegExp('<InlineContextualization id="' + contextualization.citeKey + '"[^>]*>(.*)</InlineContextualization>');
   let match;
   const resource = section.resources.find((res) =>{
@@ -11,7 +11,7 @@ export function contextualizeInlineStatic(section, contextualization) {
   const newContents = section.contents.map((block) =>{
     match = block.html.match(elRe);
     if (match) {
-      const hyperLink = ReactDOMServer.renderToStaticMarkup(<HyperLink resource={resource} text={resource.url} />);
+      const hyperLink = ReactDOMServer.renderToStaticMarkup(<StructuredHyperLink resource={resource} text={resource.url} />);
       const outputHtml = block.html.substr(0, match.index) + match[1] + '[^]{' + hyperLink + '}' + block.html.substr(match.index + match[0].length);
       return {
         html: outputHtml,
@@ -24,7 +24,7 @@ export function contextualizeInlineStatic(section, contextualization) {
   return Object.assign({}, section, {contents: newContents});
 }
 
-export function contextualizeBlockStatic(section, contextualization) {
+export function contextualizeBlockStatic(section, contextualization, renderingParams) {
   const figuresCount = section.figuresCount + 1;
   const elRe = new RegExp('<BlockContextualization id="' + contextualization.citeKey + '"[^>]*>(.*)</BlockContextualization>');
   let match;
@@ -42,8 +42,8 @@ export function contextualizeBlockStatic(section, contextualization) {
                           + contextualizer.comment : '')
                       + (resource.caption ? '. '
                           + resource.caption : '');
-      // const link = ReactDOMServer.renderToStaticMarkup(<HyperLink text={resource.url} resource={resource}/>);
-      const figureHtml = ReactDOMServer.renderToStaticMarkup(<WebsitePoster resource={resource} imageKey="posterurl" captionContent={caption} figureNumber={figuresCount}/>);
+      // const link = ReactDOMServer.renderToStaticMarkup(<StructuredHyperLink text={resource.url} resource={resource}/>);
+      const figureHtml = ReactDOMServer.renderToStaticMarkup(<StaticWebsitePoster resource={resource} imageKey="posterurl" captionContent={caption} figureNumber={figuresCount}/>);
       const outputHtml = block.html.substr(0, match.index) + figureHtml + block.html.substr(match.index + match[0].length);
       return {
         html: outputHtml,
@@ -65,10 +65,10 @@ export function contextualizeBlockStatic(section, contextualization) {
   return Object.assign({}, section, {figuresCount}, {contents: newContents});
 }
 
-export function contextualizeInlineDynamic(section, contextualization) {
+export function contextualizeInlineDynamic(section, contextualization, renderingParams) {
   return section;
 }
 
-export function contextualizeBlockDynamic(section, contextualization) {
+export function contextualizeBlockDynamic(section, contextualization, renderingParams) {
   return section;
 }

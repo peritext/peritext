@@ -137,6 +137,27 @@
           "description" : "The original text of a bibliographic citation",
           "valueType" : "string",
           "required" : false
+        },
+        {
+            "key" : "year",
+            "description" : "The year of citation (for internal bibliography-related use)",
+            "valueType" : "string",
+            "default" : "@res.year",
+            "required" : false
+        },
+        {
+            "key" : "date",
+            "description" : "The date of citation (for internal bibliography-related use)",
+            "valueType" : "string",
+            "default" : "@res.date",
+            "required" : false
+        },
+        {
+            "key" : "author",
+            "description" : "The author of citation (for internal bibliography-related use)",
+            "valueType" : "string",
+            "default" : "@res.author",
+            "required" : false
         }
       ],
       "categories" : ["bibliographicContextualizer"]

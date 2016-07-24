@@ -1,16 +1,16 @@
 
-export function contextualizeInlineStatic(section, contextualization) {
+export function contextualizeInlineStatic(section, contextualization, renderingParams) {
   return Object.assign({}, section);
 }
 
-export function contextualizeBlockStatic(section, contextualization) {
+export function contextualizeBlockStatic(section, contextualization, renderingParams) {
   return Object.assign({}, section);
 }
 
-export function contextualizeInlineDynamic(section, contextualization) {
+export function contextualizeInlineDynamic(section, contextualization, renderingParams) {
   return Object.assign({}, section);
 }
 
-export function contextualizeBlockDynamic(section, contextualization) {
+export function contextualizeBlockDynamic(section, contextualization, renderingParams) {
   return Object.assign({}, section);
 }

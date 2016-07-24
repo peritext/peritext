@@ -1,0 +1,45 @@
+{
+  "notesPosition" : {
+    "description" : "Where to put notes in the document ?",
+    "valueType" : "string",
+    "values" : [
+      "footnotes",
+      "sectionend",
+      "documentend"
+    ],
+    "default" : "inline"
+  },
+  "citationStyle" : {
+    "description" : "The style of bibliographic citations.",
+    "valueType" : "string",
+    "default": "iso690fr"
+  },
+  "citationFilters" : {
+    "description" : "How to filter citations for the bibliography.",
+    "valueType" : "string",
+    "default": "quoted"
+  },
+  "bibliographyPosition" : {
+    "description": "Where to put the bibliography",
+    "valueType": "string",
+    "default": "end",
+    "values": ["begining", "end"]
+  },
+  "bibliographyGeneralityLevel" : {
+    "description": "At what hierarchical level to put bibliography",
+    "valueType": "number",
+    "default": 0
+  },
+  "tocPosition" : {
+    "description": "Where to put the table of contents",
+    "valueType": "string",
+    "default": "end",
+    "values": ["begining", "end", "none"]
+  },
+  "lexiconPosition" : {
+    "description": "Where to put the bibliography",
+    "valueType": "string",
+    "default": "end",
+    "values": ["begining", "end", "none"]
+  }
+}

@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import {ImageGallery} from './../../components';
+import {StaticImageGallery} from './../../components';
 
 
-export function contextualizeInlineStatic(inputSection, contextualization) {
+export function contextualizeInlineStatic(inputSection, contextualization, renderingParams) {
   const section = Object.assign({}, inputSection);
   // check if a figure with the same resources is already there
   let existant;
@@ -54,7 +54,7 @@ export function contextualizeInlineStatic(inputSection, contextualization) {
   });
   if (existant === undefined) {
     const caption = (contextualization.title ? contextualization.title : resources[0].title);
-    const gallery = ReactDOMServer.renderToStaticMarkup(<ImageGallery resources={resources} captionContent={caption} figureNumber={figureNumber}/>);
+    const gallery = ReactDOMServer.renderToStaticMarkup(<StaticImageGallery resources={resources} captionContent={caption} figureNumber={figureNumber}/>);
     newContents = [...newContents.slice(0, firstMentionIndex + 1), {
       html: gallery,
       tagType: 'div'
@@ -72,7 +72,7 @@ export function contextualizeInlineStatic(inputSection, contextualization) {
   return Object.assign({}, section, {figuresCount}, {contents: newContents});
 }
 
-export function contextualizeBlockStatic(section, contextualization) {
+export function contextualizeBlockStatic(section, contextualization, renderingParams) {
   const figuresCount = section.figuresCount + 1;
   const elRe = new RegExp('<BlockContextualization id="' + contextualization.citeKey + '"[^>]*>(.*)</BlockContextualization>');
   const resources = contextualization.resources.reduce((list, resKey) =>{
@@ -87,7 +87,7 @@ export function contextualizeBlockStatic(section, contextualization) {
     match = block.html.match(elRe);
     if (match) {
       const caption = (match[1] || contextualization.title || resources[0].title);
-      const gallery = ReactDOMServer.renderToStaticMarkup(<ImageGallery resources={resources} captionContent={caption} figureNumber={figuresCount}/>);
+      const gallery = ReactDOMServer.renderToStaticMarkup(<StaticImageGallery resources={resources} captionContent={caption} figureNumber={figuresCount}/>);
       // const gallery = formatImagesGallery(resources, contextualization, comment, figuresCount);
       return {
         html: gallery,
@@ -108,10 +108,10 @@ export function contextualizeBlockStatic(section, contextualization) {
   return Object.assign({}, section, {figuresCount}, {contents: newContents});
 }
 
-export function contextualizeInlineDynamic(section, contextualization) {
+export function contextualizeInlineDynamic(section, contextualization, renderingParams) {
   return section;
 }
 
-export function contextualizeBlockDynamic(section, contextualization) {
+export function contextualizeBlockDynamic(section, contextualization, renderingParams) {
   return section;
 }

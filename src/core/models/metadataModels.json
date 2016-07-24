@@ -173,25 +173,6 @@
       "headTemplate" : "<meta http-equiv=\"content-language\" content=\"${value}\">",
       "propagatesTo" : ["dublincore_language", "scholar_language"]
     },
-    "citationStyle" : {
-      "description" : "The style of bibliographic citations.",
-      "valueType" : "string",
-      "unique" : true,
-      "default": "iso690fr",
-      "propagatesTo" : []
-    },
-    "notesPosition" : {
-      "description" : "Where to put notes in the document ?",
-      "valueType" : "string",
-      "values" : [
-        "inline",
-        "sectionend",
-        "documentend"
-      ],
-      "default" : "inline",
-      "unique" : true,
-      "propagatesTo" : []
-    },
     "dissertationinstitution" : {
       "description" : "The dissertation institution name (university name, for a Thesis)",
       "valueType" : "string",

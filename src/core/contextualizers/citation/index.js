@@ -1,13 +1,15 @@
-import {getMetaValue} from './../../utils/sectionUtils/';
+import React from 'react';
+import ReactDOMServer from 'react-dom/server';
 
-export function contextualizeInlineStatic(inputSection, contextualization) {
+export function contextualizeInlineStatic(inputSection, inputContextualization, renderingParams) {
   const section = Object.assign({}, inputSection);
+  const contextualization = Object.assign({}, inputContextualization);
   let res;
   let cnIndex;
   let previous;
   let withQuotes;
-  const citationStyle = getMetaValue(section.metadata, 'general', 'citationStyle');
-  const formatter = require('./../../utils/citationUtils/' + citationStyle + '.js');
+  const formatter = require('./../../utils/citationUtils/' + renderingParams.citationStyle + '.js');
+  const InlineCitation = formatter.InlineCitation;
   // find this citation in citations list
   section.contextualizations.some((context, index) =>{
     if (context.citeKey === contextualization.citeKey) {
@@ -15,10 +17,11 @@ export function contextualizeInlineStatic(inputSection, contextualization) {
       return true;
     }
   });
-  // find previous citation
+  // find previous citation and attribute a year number
   for (let index = cnIndex - 1; index >= 0; index --) {
     if (section.contextualizations[index].contextualizerType === 'citation') {
       previous = section.contextualizations[index];
+      break;
     }
   }
 
@@ -57,7 +60,7 @@ export function contextualizeInlineStatic(inputSection, contextualization) {
     }
     // todo : generate COiNS here
     // apply appropriate html citation formatter
-    return formatter.formatInlineCitation(contextualization, res, ibid, opCit);
+    return ReactDOMServer.renderToStaticMarkup(<InlineCitation resource={res} contextualization={contextualization} ibid={ibid} opCit={opCit}/>);
   }).join(', ');
 
   // interpolate html
@@ -84,16 +87,17 @@ export function contextualizeInlineStatic(inputSection, contextualization) {
     }
     return block;
   });
-  return Object.assign({}, inputSection, {contents: newContents});
+  return Object.assign({}, section, {contents: newContents});
 }
 
-export function contextualizeBlockStatic(inputSection, contextualization) {
+export function contextualizeBlockStatic(inputSection, inputContextualization, renderingParams) {
   const section = Object.assign({}, inputSection);
+  const contextualization = Object.assign({}, inputContextualization);
   let res;
   let cnIndex;
   let previous;
-  const citationStyle = getMetaValue(section.metadata, 'general', 'citationStyle');
-  const formatter = require('./../../utils/citationUtils/' + citationStyle + '.js');
+  const formatter = require('./../../utils/citationUtils/' + renderingParams.citationStyle + '.js');
+  const BlockCitation = formatter.BlockCitation;
   // find previous citation
   section.contextualizations.some((context, index) =>{
     if (context.citeKey === contextualization.citeKey) {
@@ -104,6 +108,7 @@ export function contextualizeBlockStatic(inputSection, contextualization) {
   for (let index = cnIndex - 1; index >= 0; index --) {
     if (section.contextualizations[index].contextualizerType === 'citation') {
       previous = section.contextualizations[index];
+      break;
     }
   }
   let ibid;
@@ -142,7 +147,8 @@ export function contextualizeBlockStatic(inputSection, contextualization) {
     }
     // todo : generate COiNS here
     // apply appropriate html citation formatter
-    return formatter.formatBlockCitation(contextualization, res, ibid, opCit);
+    return ReactDOMServer.renderToStaticMarkup(<BlockCitation resource={res} contextualization={contextualization} ibid={ibid} opCit={opCit}/>);
+    // return formatter.formatBlockCitation(contextualization, res, ibid, opCit);
   }).join(', ');
 
   // interpolate html
@@ -161,13 +167,13 @@ export function contextualizeBlockStatic(inputSection, contextualization) {
     }
     return block;
   });
-  return Object.assign({}, inputSection, {contents: newContents});
+  return Object.assign({}, section, {contents: newContents});
 }
 
-export function contextualizeInlineDynamic(section, contextualization) {
+export function contextualizeInlineDynamic(section, contextualization, renderingParams) {
   return section;
 }
 
-export function contextualizeBlockDynamic(section, contextualization) {
+export function contextualizeBlockDynamic(section, contextualization, renderingParams) {
   return section;
 }
