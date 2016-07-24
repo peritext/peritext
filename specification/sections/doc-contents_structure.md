@@ -65,3 +65,6 @@ Example of data structure from contentRoot:
 |   +--content.md
 ```
 
+## [WIP] rendering parameters
+
+Rendering parameters are formulated at runtime for now (for instance, where to put notes and table of contents). It should be chosen later whether to implement them as special content (e.g. with a ``_settings`` folder) or not.

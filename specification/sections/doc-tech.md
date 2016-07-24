@@ -56,6 +56,7 @@ Parsers helpers :
 * marked
 * zotero-bib-parser and bib-parser for ... bib parsing
 * https://www.npmjs.com/package/bibtex-parse-js
+* citeproc-js : https://github.com/juris-m/citeproc-js - transforms json citations to html through csl files : "+" > compatibility | "-" > does not allow to structure data or to customize rendering
 
 Outputs : 
 
@@ -67,8 +68,11 @@ Pdf :
 * example with heroku impl : https://github.com/gr2m/wkhtmltopdf-node-heorku
 * **hummusjs** for pdf post-production ops (page numbers, ...) --> https://github.com/galkahana/HummusJS
 
+Chose to use Prince for now, because even if it is not free it's the best.
+
 epub :
 
+* best so far after investigation : https://www.npmjs.com/package/epub-gen
 * --> https://www.npmjs.com/package/epub
 * https://github.com/fabi1cazenave/node-html2epub
 
