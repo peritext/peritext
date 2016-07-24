@@ -2,9 +2,12 @@
  * This module resolves markdown contents + modulo-specific assertions (notes, contextualizations, contextualizers)
 * It returns a representation of a section's content as an object containing arrays of: paragraphs, notes, contextualizations, contextualizers
  */
-
-const marked = require('marked');
+import marked from 'marked';
+import React from 'react';
 import {parseBibContextualization, parseBibNestedValues} from './../bibTexConverter';
+/*import {
+  Note
+} from './../../components'; */
 // import {getMetaValue} from './../../utils/sectionUtils';
 
 // basic marked parser
@@ -84,9 +87,13 @@ export function eatNotes(inputHtml, sectionCitekey, baseNotesCount = 0, notesPos
 
     noteContent = outputHtml.substring(beginIndex, index - 1);
     notesCount++;
-    noteHtml = '<p class="modulo-contents-note-content" name="note-content-' + sectionCitekey + notesCount + '" id="note-content-' + sectionCitekey + notesCount + '"><a class="modulo-contents-note-link" href="#note-pointer-' + sectionCitekey + notesCount + '"><span class="modulo-contents-note-number">' + notesCount + '</span></a>' + noteContent + '</p>';
+    // noteHtml = <Note sectionCitekey={sectionCitekey} notesCount={notesCount} noteContent={noteContent} />
+    // noteHtml = '<p class="modulo-contents-note-content" name="note-content-' + sectionCitekey + notesCount + '" id="note-content-' + sectionCitekey + notesCount + '"><a class="modulo-contents-note-link" href="#note-pointer-' + sectionCitekey + notesCount + '"><span class="modulo-contents-note-number">' + notesCount + '</span></a>' + noteContent + '</p>';
     notes.push({
-      content: noteHtml,
+      // content: noteHtml,
+      noteContent,
+      sectionCitekey,
+      notesCount,
       noteNumber: notesCount
     });
     if (notesPosition === 'inline') {

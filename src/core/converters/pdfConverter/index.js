@@ -21,6 +21,7 @@ import {eatNotes} from './../markdownConverter';
 import {resolveContextualizationsImplementation} from './../../resolvers/resolveContextualizations';
 import {metadataToSchema, setSectionMeta} from './../../utils/microDataUtils';
 import {
+  StaticDocument,
   CoverPage,
   StaticTableOfContents
 } from './../../components';
@@ -76,6 +77,25 @@ export function exportSection({section, sectionList, includeChildren = true, des
         return newSection;
       });
 
+      // build css code
+      const cssCustomizers = sections[0].customizers && sections[0].customizers.styles;
+      if (cssCustomizers) {
+        for (const name in cssCustomizers) {
+          if (name !== 'screen.css') {
+            style += '\n\n' + cssCustomizers[name];
+          }
+        }
+      }
+
+      if (notesPosition === 'inline') {
+        style += `.modulo-contents-note-content
+                {
+                    display: prince-footnote;
+                    counter-increment: footnote;
+                }`;
+      }
+
+      // todo : handle reference building
       let newHtml;
       let notesCount = 0;
       const notedSections = displaySections.map((sectio) =>{
@@ -94,6 +114,7 @@ export function exportSection({section, sectionList, includeChildren = true, des
       });
 
       // assemble html contents according to params
+      // todo : reactify all that
       let outputHtml = notedSections.map((sectio, index) => {
 
         let notes = '';
@@ -121,7 +142,7 @@ export function exportSection({section, sectionList, includeChildren = true, des
       }, []);
 
       if (notesPosition === 'documentend') {
-        const notes = '<section class="modulo-contents-notes modulo-contents-end-notes">'
+        const notes = '<section class="modulo-contents-notes modulo-contents-document-end-notes">'
           + '<h4 class="notes-title">Notes</h4>'
           + notesList.map((not, num)=>{
             return not.content;
@@ -130,17 +151,7 @@ export function exportSection({section, sectionList, includeChildren = true, des
         outputHtml = outputHtml + notes;
       }
 
-      // build css code
-      const cssCustomizers = sections[0].customizers && sections[0].customizers.styles;
-
-      if (cssCustomizers) {
-        for (const name in cssCustomizers) {
-          if (name !== 'screen.css') {
-            style += '\n\n' + cssCustomizers[name];
-          }
-        }
-      }
-
+      // build meta
       const metaHead = sections[0].metadata
                     .filter((meta) =>{
                       return meta.htmlHead;
@@ -164,25 +175,30 @@ export function exportSection({section, sectionList, includeChildren = true, des
           };
         });
         const tocHtml = ReactDOMServer.renderToStaticMarkup(<StaticTableOfContents elements={tocData} level={getMetaValue(sections[0].metadata, 'general', 'generalityLevel')} />);
-
         outputHtml = coverHtml + tocHtml + outputHtml;
       }
 
       const html = '<!doctype:html><html>'
-          + '<head>' + metaHead + '<style>' + style + '</style>' + '</head>'
-          + '<body ' + setSectionMeta(sections[0]) + '>'
-          + metadataToSchema(sections[0])
-          + outputHtml + '</body>'
+          + '<head>' + metaHead
+          + '<style>' + style + '</style>'
+          + '</head>'
+          + '<body>'
+          + ReactDOMServer.renderToStaticMarkup(<StaticDocument sections={notedSections} />)
+          + '</body>'
           + '</html>';
+      // const html = '<!doctype:html><html>'
+      //     + '<head>' + metaHead + '<style>' + style + '</style>' + '</head>'
+      //     + '<body ' + setSectionMeta(sections[0]) + '>'
+      //     + metadataToSchema(sections[0])
+      //     + outputHtml + '</body>'
+      //     + '</html>';
       cback(null, sections, html);
     }, function(sections, html, cback) {
-
       writeFile(resolve(__dirname + destinationFolder + motherKey + '.html'), html, 'utf-8', function(err) {
         cback(err, sections, html);
       });
     }
   ], function(err, sections, html) {
-
     Prince()
     .inputs(resolve(__dirname + destinationFolder + motherKey + '.html'))
     .output(resolve(__dirname + destinationFolder + motherKey + '.pdf'))
@@ -192,7 +208,6 @@ export function exportSection({section, sectionList, includeChildren = true, des
       callback();
     }, function(error) {
       console.log('Prince ERROR: ', error);
-      // callback();
     });
   });
 }

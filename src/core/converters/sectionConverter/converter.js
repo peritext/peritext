@@ -4,17 +4,17 @@
 
 import {waterfall, map as asyncMap} from 'async';
 
-import {concatTree} from './../../resolvers/concatTree';
-import {parseTreeResources} from './../../resolvers/parseTreeResources';
-import {organizeTree} from './../../resolvers/organizeTree';
-import {propagateData} from './../../resolvers/propagateData';
+import {concatTree} from './concatTree';
+import {parseTreeResources} from './parseTreeResources';
+import {organizeTree} from './organizeTree';
+import {propagateData} from './propagateData';
+import {cleanNaiveTree} from './cleanNaiveTree';
 import {validateResources} from './../../validators/sectionValidator';
 import {getResourceModel, serializePropAgainstType} from './../../utils/modelUtils';
 import {getMetaValue} from './../../utils/sectionUtils';
-import {cleanNaiveTree} from './../../resolvers/cleanNaiveTree';
 import {resolveSectionAgainstModels} from './../../resolvers/resolveSectionAgainstModels';
-import {markdownToContentsList} from './../markdownConverter';
 import {resolveContextualizersAndContextualizations} from './../../resolvers/resolveContextualizations';
+import {markdownToContentsList} from './../markdownConverter';
 import {serializeBibTexObject} from './../../converters/bibTexConverter';
 
 
