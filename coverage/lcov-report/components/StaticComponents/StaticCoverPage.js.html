@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for components/StaticComponents/StaticCoverPage.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">components/StaticComponents</a> StaticCoverPage.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">92.31% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>12/13</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">80% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>4/5</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>3/3</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">91.67% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>11/12</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">78x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, {PropTypes} from 'react';
+import StructuredPerson from './../StructuredDataComponents/StructuredPerson.js';
+import Radium from 'radium';
+&nbsp;
+// let styles = {};
+&nbsp;
+/**
+ * dumb component for cover page of a static publication of document
+ */
+@Radium
+export default class StaticCoverPage extends <span class="branch-1 cbranch-no" title="branch not covered" >React.Component {</span>
+&nbsp;
+  /**
+   * propTypes
+   * @property {array} metadata a section metadata to parse in order to fill cover template
+   */
+  static propTypes = {
+    metadata: PropTypes.array
+  };
+&nbsp;
+  static defaultProps = {
+  };
+&nbsp;
+  getGeneralProp(list, key) {
+    const obj = list.find((meta) =&gt; {
+      return meta.domain === 'general' &amp;&amp; meta.key === key;
+    });
+    if (obj) {
+      return obj.value;
+    }
+<span class="cstat-no" title="statement not covered" >    return undefined;</span>
+  }
+&nbsp;
+  /**
+   * render
+   * @return {ReactElement} markup
+   */
+  render() {
+    return (
+      &lt;section
+        id="modulo-contents-cover"
+        className="modulo-contents-cover"
+      &gt;
+        &lt;div
+          style={{backgroundImage: 'url(' + this.getGeneralProp(this.props.metadata, 'coverimage') + ')'}}
+          id="modulo-contents-cover-image-container"
+        &gt;&lt;/div&gt;
+        &lt;div
+          className="modulo-contents-cover-texts-container"
+        &gt;
+          &lt;section className="modulo-contents-cover-part-top-left"&gt;
+            &lt;h3 className="modulo-contents-cover-dissertationinstitution"&gt;
+              Thèse / {this.getGeneralProp(this.props.metadata, 'dissertationinstitution')}
+            &lt;/h3&gt;
+            &lt;p&gt;
+              Pour obtenir le grade de DOCTEUR
+            &lt;/p&gt;
+            &lt;h4 className="modulo-contents-cover-dissertationcomment"&gt;
+              {this.getGeneralProp(this.props.metadata, 'dissertationcomment')}
+            &lt;/h4&gt;
+&nbsp;
+            &lt;p className="modulo-contents-cover-dissertationdoctoralschool"&gt;
+              École doctorale {this.getGeneralProp(this.props.metadata, 'dissertationdoctoralschool')}
+            &lt;/p&gt;
+&nbsp;
+            &lt;p className="modulo-contents-cover-dissertationdiscipline"&gt;
+              Mention : &lt;span&gt;{this.getGeneralProp(this.props.metadata, 'dissertationdiscipline')}&lt;/span&gt;
+            &lt;/p&gt;
+          &lt;/section&gt;
+&nbsp;
+          &lt;section className="modulo-contents-cover-part-top-right"&gt;
+            &lt;p&gt;
+              présentée par
+            &lt;/p&gt;
+            &lt;h1 className="modulo-contents-authors"&gt;
+              {this.getGeneralProp(this.props.metadata, 'author').map((person) =&gt;{
+                return &lt;StructuredPerson key={person.citeKey} resource={person}/&gt;;
+              })}
+            &lt;/h1&gt;
+            &lt;p className="modulo-contents-cover-dissertationlab"&gt;
+              {this.getGeneralProp(this.props.metadata, 'dissertationlab')}
+            &lt;/p&gt;
+          &lt;/section&gt;
+&nbsp;
+          &lt;section className="modulo-contents-cover-part-bottom-left"&gt;
+            &lt;h1&gt;
+              {this.getGeneralProp(this.props.metadata, 'title')}
+            &lt;/h1&gt;
+          &lt;/section&gt;
+&nbsp;
+          &lt;section className="modulo-contents-cover-part-bottom-right"&gt;
+            &lt;p className="modulo-contents-cover-date"&gt;
+              Thèse soutenue le {this.getGeneralProp(this.props.metadata, 'date')}
+            &lt;/p&gt;
+            &lt;p&gt;
+              devant le jury composé de :
+            &lt;/p&gt;
+            {
+              this.getGeneralProp(this.props.metadata, 'dissertationjury').map((person) =&gt;{
+                return (
+                    &lt;p key={person.citeKey} className="modulo-contents-cover-jury-member"&gt;
+                      &lt;StructuredPerson resource={person} pattern="${firstName} ${lastName:capitals} &lt;br/&gt;${information} / ${role}"/&gt;
+                    &lt;/p&gt;
+                  );
+              })
+            }
+          &lt;/section&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;
+    );
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jul 24 2016 16:20:22 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

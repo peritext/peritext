@@ -1,0 +1,674 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for converters/sectionConverter/concatTree.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">converters/sectionConverter</a> concatTree.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">98.96% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>95/96</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>19/19</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>32/32</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">98.85% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>86/87</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">35x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">35x</span>
+<span class="cline-any cline-yes">35x</span>
+<span class="cline-any cline-yes">35x</span>
+<span class="cline-any cline-yes">35x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">35x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">35x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-yes">25x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">35x</span>
+<span class="cline-any cline-yes">35x</span>
+<span class="cline-any cline-yes">35x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">35x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">145x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-yes">25x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">145x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50x</span>
+<span class="cline-any cline-yes">50x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">145x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">145x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-yes">35x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">35x</span>
+<span class="cline-any cline-yes">35x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">35x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">35x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {parseMarkdown as extractIncludes} from './../../converters/markdownIncludesParser';
+import {map as asyncMap, waterfall} from 'async';
+&nbsp;
+let resolveFileIncludes;
+&nbsp;
+&nbsp;
+/**
+ * I extract md includes and inline resources descriptions from a file object
+ * @child : a fsElement ({type, name, path, extname})
+ * @params : local parsing params - for instance templates and includes syntax
+ */
+const populateElementWithIncludes = function(child, params, callback) {
+  extractIncludes(child.stringContents,
+    {
+      includeWrappingChars: params.templateWrappingCharacters,
+      resWrappingChars: params.inlineResourceDescriptionWrappingCharacters
+    }, function(err, {extracted, cleanStr}) {
+      if (!err) {
+        child.extracted = extracted;
+        child.stringContents = cleanStr;
+      }
+      callback(err, child);
+    });
+};
+&nbsp;
+&nbsp;
+/**
+ * I produce a nested structure of the included files in a given file
+ * @ex : the include expression object
+ * @file : the file to populate
+ */
+const include = (ex, file, mdFilesWithIncludes)=&gt;{
+  let fileIndex;
+  const fileToInclude = mdFilesWithIncludes
+      .find((otherFile, index)=&gt;{
+        if (otherFile.name === ex.statement) {
+          fileIndex = index;
+          return true;
+        }
+      });
+  if (fileToInclude !== undefined) {
+    const fileHasIncludes = fileToInclude
+                              .extracted
+                                .filter((rawExtracted)=&gt;{
+                                  return rawExtracted.type === 'includeStatement';
+                                }).length &gt; 0;
+    if (fileHasIncludes) {
+      resolveFileIncludes(fileToInclude, mdFilesWithIncludes);
+    }
+    file.includes.push(fileToInclude);
+    mdFilesWithIncludes.splice(fileIndex, 1);
+  }
+};
+&nbsp;
+/**
+ * I monitor the nested including structure population process of a file
+ */
+resolveFileIncludes = function(file, mdFilesWithIncludes) {
+  file.includes = [];
+  file.includeStatements = [];
+  for (let index = file.extracted.length - 1; index &gt;= 0; index--) {
+    const ex = file.extracted[index];
+    if (ex.type === 'includeStatement') {
+      include(ex, file, mdFilesWithIncludes);
+      file.extracted.splice(index, 1);
+      file.includeStatements.push(ex);
+    }
+  }
+};
+&nbsp;
+&nbsp;
+/**
+ * I turn non nested file object into include-based nested file objects
+ * @mdFilesWithIncludes : non nested file objects
+ */
+const nestIncludes = function({resourcesStr, mdFilesWithIncludes, params}, cb) {
+&nbsp;
+  mdFilesWithIncludes.forEach(function(mdfile) {
+    resolveFileIncludes(mdfile, mdFilesWithIncludes);
+  });
+  cb(null, {resourcesStr, mdFilesWithIncludes});
+};
+&nbsp;
+/**
+ * I consume the nested property 'include' by populating its string contents with includes contents,
+ * resolved recursively
+ * @file : the file
+ */
+const buildFinalMdContent = function(file) {
+  let content = file.stringContents;
+  const hasIncludes = file.includes &amp;&amp; file.includes.length &amp;&amp; file.includes.length &gt; 0;
+  if (hasIncludes) {
+    file.includeStatements
+      .filter((ex)=&gt;{
+        return ex.type === 'includeStatement';
+      })
+      .forEach((ex)=&gt;{
+        const targetIncluded = file.includes.find((file2)=&gt;{
+          return file2.name === ex.statement;
+        });
+        const contentToInclude = buildFinalMdContent(targetIncluded);
+        content = [content.substr(0, ex.index), contentToInclude, content.substr(ex.index)].join('');
+      });
+  }
+&nbsp;
+  return content;
+};
+&nbsp;
+/**
+ * I turn an array of nested file objects into one single string
+ * @mdFilesWithIncludes : non nested file objects
+ */
+const resolveNestedIncludes = function({resourcesStr, mdFilesWithIncludes, params}, cb) {
+  const contentStr = mdFilesWithIncludes
+                      .reduce((str, file) =&gt; {
+                        return str + buildFinalMdContent(file);
+                      }, '');
+  cb(null, {contentStr, resourcesStr, params});
+};
+&nbsp;
+const concatCustomizers = function(newTree) {
+  return newTree.children
+      .filter((child) =&gt; {
+        return child.type === 'directory' &amp;&amp; child.name.charAt(0) === '_';
+      })
+      .map((child) =&gt; {
+        const contents = {};
+        child.children.forEach((subChild) =&gt;{
+          contents[subChild.name] = subChild.stringContents;
+        });
+        return {
+          type: child.name.substr(1),
+          contents
+        };
+      });
+};
+&nbsp;
+/**
+ * MAIN
+ * I turn a fsTree into a dumTree, that is a tree which presents
+ * .bib resources and .md files contents concatenated by folder (according to inner 'include' statements and then automatically)
+ */
+export function concatTree(tree, params, callback) {
+  const newTree = Object.assign({}, tree);
+  // concat .bib res files
+  const resources = newTree.children
+                    .filter((child) =&gt; {
+                      return child.type === 'file' &amp;&amp; child.extname === '.bib';
+                    })
+                    .reduce((str, child) =&gt; {
+                      if (child.stringContents !== undefined) {
+                        return str + '\n' + child.stringContents;
+                      }
+<span class="cstat-no" title="statement not covered" >                      return str;</span>
+                    }, '');
+&nbsp;
+  const mdContents = newTree.children
+                    .filter((child) =&gt; {
+                      return child.type === 'file' &amp;&amp; child.extname === '.md';
+                    });
+  const childrenDirs = newTree.children
+                    .filter((child) =&gt; {
+                      return child.type === 'directory' &amp;&amp; child.name.charAt(0) !== '_';
+                    });
+  const childrenCustomizers = concatCustomizers(newTree);
+  waterfall([
+    // extract md files elements includes statements
+    function(cb) {
+      asyncMap(mdContents, function(child, cback) {
+        populateElementWithIncludes(child, params, cback);
+      }, function(err, mdFilesWithIncludes) {
+        // concat extracted bibtex resources
+        const resourcesStr = mdFilesWithIncludes
+                      .reduce((str, mdFile) =&gt; {
+                        let newStr = str;
+                        mdFile.extracted
+                          .filter((ex)=&gt;{
+                            return ex.type === 'resourceStatement';
+                          }).forEach((ex)=&gt;{
+                            newStr += ex.statement;
+                          });
+                        return newStr;
+                      }, resources);
+        cb(null, {resourcesStr, mdFilesWithIncludes, params});
+      });
+    },
+    nestIncludes,
+    resolveNestedIncludes
+  ], function(err, {resourcesStr, contentStr}) {
+    newTree.resourcesStr = resourcesStr;
+    newTree.contentStr = contentStr;
+    if (childrenCustomizers.length &gt; 0) {
+      newTree.customizers = childrenCustomizers;
+    }
+    // recursively repeat dat stuf with children dirs
+    asyncMap(childrenDirs, function(dir, cback) {
+      concatTree(dir, params, cback);
+    }, function(error, populatedDirs) {
+      newTree.children = populatedDirs;
+      callback(error, newTree);
+    });
+  });
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jul 24 2016 16:20:22 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>
