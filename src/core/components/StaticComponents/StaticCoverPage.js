@@ -1,13 +1,14 @@
 import React, {PropTypes} from 'react';
-import Person from './Person.jsx';
+import StructuredPerson from './../StructuredDataComponents/StructuredPerson.js';
 import Radium from 'radium';
-let styles = {};
+
+// let styles = {};
 
 /**
  * dumb component for cover page of a static publication of document
  */
 @Radium
-export default class CoverPage extends React.Component {
+export default class StaticCoverPage extends React.Component {
 
   /**
    * propTypes
@@ -21,12 +22,13 @@ export default class CoverPage extends React.Component {
   };
 
   getGeneralProp(list, key) {
-    let obj = list.find((meta) => {
+    const obj = list.find((meta) => {
       return meta.domain === 'general' && meta.key === key;
     });
     if (obj) {
       return obj.value;
-    } else return undefined;
+    }
+    return undefined;
   }
 
   /**
@@ -72,7 +74,7 @@ export default class CoverPage extends React.Component {
             </p>
             <h1 className="modulo-contents-authors">
               {this.getGeneralProp(this.props.metadata, 'author').map((person) =>{
-                return <Person key={person.citeKey} person={person}/>;
+                return <StructuredPerson key={person.citeKey} resource={person}/>;
               })}
             </h1>
             <p className="modulo-contents-cover-dissertationlab">
@@ -97,9 +99,9 @@ export default class CoverPage extends React.Component {
               this.getGeneralProp(this.props.metadata, 'dissertationjury').map((person) =>{
                 return (
                     <p key={person.citeKey} className="modulo-contents-cover-jury-member">
-                      <Person person={person} pattern="${firstName} ${lastName:capitals} <br/>${information} / ${role}"/>
+                      <StructuredPerson resource={person} pattern="${firstName} ${lastName:capitals} <br/>${information} / ${role}"/>
                     </p>
-                  )
+                  );
               })
             }
           </section>

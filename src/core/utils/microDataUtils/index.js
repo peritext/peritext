@@ -12,7 +12,6 @@ export function toLetters(num) {
   return pow ? toLetters(pow) + out : out;
 }
 
-
 // I give the schema type of an object based on its bibType
 export function bibToSchema(bib) {
   switch (bib) {
@@ -25,6 +24,8 @@ export function bibToSchema(bib) {
   case 'conference':
     return 'Chapter';
   case 'incollection':
+    return 'Chapter';
+  case 'inherits':
     return 'Chapter';
   case 'inbook':
     return 'Chapter';
@@ -268,20 +269,4 @@ export function metadataToSchema(section) {
   // TODO : continue along with other metadata-to-schema conversions
 
   return output + '</div>';
-}
-
-// wraps the citation of an element inside a schema "citation" html object
-export function wrapCitation(resource, tagType = 'span') {
-  const schemaType = resource.schemaType || bibToSchema(resource.bibType);
-  let before = '<' + tagType + '  class="modulo-contents-citation-wrapper" itemprop="citation" ';
-  // microdata header
-  before += 'itemscope itemtype="http://schema.org/' + schemaType + '"';
-  before += ' id="' + resource.citeKey + '"';
-  // RDFa header
-  before += ' typeof="' + schemaType + '" resource="#' + resource.citeKey + '"';
-  before += '>';
-  return {
-    before,
-    after: '</' + tagType + '>'
-  };
 }

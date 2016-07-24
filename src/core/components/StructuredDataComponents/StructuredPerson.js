@@ -1,27 +1,31 @@
 import React, {PropTypes} from 'react';
 import HtmlToReact from 'html-to-react';
+
 import Radium from 'radium';
-let styles = {};
+
+// let styles = {};
 
 /**
  * dumb component for rendering the structured representation of a person
  */
 @Radium
-export default class Person extends React.Component {
+export default class StructuredPerson extends React.Component {
 
   /**
    * propTypes
-   * @property {object} person the person object which may contain the following props : "lastName", "firstName", "role", and "information"
+   * @property {object} resource the person object which may contain the following props : "lastName", "firstName", "role", and "information"
    * @property {string} pattern the pattern to apply for formatting the person name to html, eg : " ${lastName:capitals}, ${firstName:initials}"
+   * @property {string} property the microformat property to apply to the structured element
    */
   static propTypes = {
-    person: PropTypes.object,
-    pattern: PropTypes.string
+    resource: PropTypes.object,
+    pattern: PropTypes.string,
+    property: PropTypes.string
   };
 
   static defaultProps = {
     pattern: '${firstName} ${lastName}',
-    role: 'author'
+    property: 'author'
   };
 
   htmlToReactParser = new HtmlToReact.Parser(React);
@@ -68,7 +72,7 @@ export default class Person extends React.Component {
    * @return {ReactElement} markup
    */
   updateHtml() {
-    let vals = this.transformValues(this.props.person, this.props.pattern);
+    const vals = this.transformValues(this.props.resource, this.props.pattern);
     vals.firstName = '<span class="modulo-contents-person-firstname" itemProp="givenName" property="givenName" >' + vals.firstName + '</span>';
     vals.lastName = '<span class="modulo-contents-person-lastname" itemProp="familyName" property="familyName" >' + vals.lastName + '</span>';
     vals.role = '<span class="modulo-contents-person-role" >' + vals.role + '</span>';
@@ -79,6 +83,7 @@ export default class Person extends React.Component {
                     .replace(/(\${role})/, vals.role)
                     .replace(/(\${information})/, vals.information);
     htmlStr = '<span>' + htmlStr + '</span>';
+
     return this.htmlToReactParser.parse(htmlStr);
   }
 
@@ -90,12 +95,12 @@ export default class Person extends React.Component {
     return (
       <span
         className="modulo-contents-person"
-        itemProp="{this.props.role}"
+        itemProp={this.props.property}
         itemScope
         itemType="http://schema.org/Person"
-        property="{this.props.role}"
+        property={this.props.property}
         typeof="Person"
-        resource={this.props.person.citeKey}
+        resource={this.props.resource.citeKey}
       >
         {this.updateHtml()}
       </span>

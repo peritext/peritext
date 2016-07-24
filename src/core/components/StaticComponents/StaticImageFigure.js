@@ -1,12 +1,13 @@
 import React, {PropTypes} from 'react';
 import Radium from 'radium';
-let styles = {};
+
+// let styles = {};
 
 /**
  * dumb component for displaying a simple structured image figure
  */
 @Radium
-export default class ImageFigure extends React.Component {
+export default class StaticImageFigure extends React.Component {
 
   /**
    * propTypes
@@ -34,9 +35,6 @@ export default class ImageFigure extends React.Component {
    * @return {ReactElement} markup
    */
   render() {
-    const invisibleStyle = {
-      display: 'none'
-    }
     return (
               <figure
                 className="modulo-contents-image-figure"

@@ -143,7 +143,6 @@ export function serializePropAgainstType(prop, valueType, model) {
 
 // I turn a string value into another (possibly complex) value, thanks to its model's type
 export function resolvePropAgainstType(prop, valueType, model) {
-  let val;
   if (prop === undefined) {
     // looking for a default value if no value specified
     if (model.default) {
@@ -175,13 +174,16 @@ export function resolvePropAgainstType(prop, valueType, model) {
     });
 
   case 'string':
+    /*
     if (model.values) {
       // nominal set of possible values
       val = model.values.some((mval)=>{
         return mval === prop;
       });
+      console.log('val : ', val);
       return val;
     }
+    */
     return prop;
 
   case 'stringArray':

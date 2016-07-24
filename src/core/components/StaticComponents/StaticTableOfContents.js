@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 import Radium from 'radium';
-let styles = {};
+
+// let styles = {};
 
 /**
  * dumb component for rendering a static table of contents
@@ -34,7 +35,7 @@ export default class StaticTableOfContents extends React.Component {
         <h2>{this.props.title}</h2>
         <section className="modulo-contents-toc-contents">
           {this.props.elements.map((element) =>{
-            return <StaticTableOfContentsElement id={element.id} key={element.id} title={element.title} level={element.level} levelDisplacement={this.props.level}/>
+            return <StaticTableOfContentsElement id={element.id} key={element.id} title={element.title} level={element.level} levelDisplacement={this.props.level}/>;
           })}
         </section>
       </section>
@@ -57,7 +58,7 @@ class StaticTableOfContentsElement extends React.Component {
 
   static defaultProps = {
     level: 0,
-    paddingDisplacement: .5,
+    paddingDisplacement: 0.5,
     levelDisplacement: 0
   };
 

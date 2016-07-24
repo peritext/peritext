@@ -1,14 +1,15 @@
 import React, {PropTypes} from 'react';
-import ImageFigure from './ImageFigure.jsx'
-import HyperLink from './HyperLink.jsx'
+import StaticImageFigure from './StaticImageFigure.js';
+// import HyperLink from './HyperLink.js';
 import Radium from 'radium';
-let styles = {};
+
+// let styles = {};
 
 /**
  * dumb static-oriented component for displaying an image gallery
  */
 @Radium
-export default class ImageGallery extends React.Component {
+export default class StaticImageGallery extends React.Component {
   /**
    * propTypes
    * @property {string} schematype html schema type of the element
@@ -33,9 +34,6 @@ export default class ImageGallery extends React.Component {
    * @return {ReactElement} markup
    */
   render() {
-    const invisibleStyle = {
-      display: 'none'
-    }
     return (
             <figure
               role="group"
@@ -49,12 +47,12 @@ export default class ImageGallery extends React.Component {
             >
               <div className="modulo-contents-figures-wrapper">
                 {this.props.resources.map((resource)=>{
-                  return <ImageFigure resource={resource} key={resource.citeKey} />;
+                  return <StaticImageFigure resource={resource} key={resource.citeKey} />;
                 })}
               </div>
               <figcaption
-                itemProp="caption"
-                property="caption"
+                itemProp="description"
+                property="description"
               >
                 Figure {this.props.figureNumber} – {this.props.captionContent}
               </figcaption>

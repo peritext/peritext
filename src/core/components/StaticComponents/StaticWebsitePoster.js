@@ -1,14 +1,15 @@
 import React, {PropTypes} from 'react';
-import ImageFigure from './ImageFigure.jsx';
-import HyperLink from './HyperLink.jsx'
+import StaticImageFigure from './StaticImageFigure.js';
+import StructuredHyperLink from './../StructuredDataComponents/StructuredHyperLink.js';
 import Radium from 'radium';
-let styles = {};
+
+// let styles = {};
 
 /**
  * dumb static-oriented component for displaying a webpage poster image
  */
 @Radium
-export default class WebsitePoster extends React.Component {
+export default class StructuredWebsitePoster extends React.Component {
 
   /**
    * propTypes
@@ -25,8 +26,8 @@ export default class WebsitePoster extends React.Component {
   };
 
   static defaultProps = {
-      schematype: 'website',
-      captionContent: ''
+    schematype: 'website',
+    captionContent: ''
   };
 
   /**
@@ -55,12 +56,12 @@ export default class WebsitePoster extends React.Component {
               >
                 {this.props.resource.title}
               </span>
-              <ImageFigure {...this.props} />
+              <StaticImageFigure {...this.props} />
               <figcaption
                 itemProp="caption"
                 property="caption"
               >
-                Figure {this.props.figureNumber} – {this.props.captionContent} – <HyperLink text={this.props.resource.url} resource={this.props.resource}/>
+                Figure {this.props.figureNumber} – {this.props.captionContent} – <StructuredHyperLink text={this.props.resource.url} resource={this.props.resource}/>
               </figcaption>
             </figure>
           );
