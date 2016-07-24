@@ -40,7 +40,6 @@ describe('filesystem:readFromPath', function(){
 
   it('should return a single element if asking a single file', function(done){
     path = ['content.md'];
-    console.log('read from path : ', path);
     readFromPath({path, params}, function(err, element){
       expect(err).to.be.null;
       expect(element).to.be.an('object');

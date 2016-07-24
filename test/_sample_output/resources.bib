@@ -1,13 +1,18 @@
 @modulophdthesis{mybook,
-    	title = {My awesome thesis},
+    	title = {My awesome thesis with an awesome incredibly long and complicated title},
 	author = {Robin {De Mourat}},
+	dissertationjury = {Nicolas {Thély}},
+	dissertationinstitution = {Université Rennes 2},
+	dissertationlab = {Préparée dans l'équipe d'accueil Arts : Pratiques et poétiques},
+	dissertationdoctoralschool = {Arts Lettres Langues},
+	dissertationdiscipline = {Esthétique},
+	dissertationcomment = {Sous le sceau de l’Université européenne de Bretagne},
 	keywords = {val1a, val1b, val2,val3,val4, another random set of keywords},
-	date = {2016},
+	date = {12 Décembre 2016},
 	test = {test},
 	coverimage = {@assets/ueb_cover.jpg},
-	generalityLevel = {1},
-	citationStyle = {iso690fr},
-	notesPosition = {inline}
+	notesPosition = {sectionend},
+	generalityLevel = {1}
 }
 
 @article{martin_change_2002,
@@ -77,11 +82,11 @@
 
 @contextualizer{cool_timeline_1,
     	dateformat = {%Y-%m-%d},
-	disposition = {true},
+	disposition = {superpose},
 	layer = {dates=@res1.data.dates,labels=@res1.data.labels,title=hello ça va},
 	layer = {dates=@res2.data.dates,labels=@res2.data.labels},
 	title = {My cool timeline},
 	type = {timeline},
 	overloading = {cool_timeline},
-	outputmode = {true}
+	outputmode = {all}
 }

@@ -1,7 +1,7 @@
 import {expect} from 'chai';
 import {waterfall} from 'async';
 const cobaye = require('./../../_sample_content/parsing_output.json')
-import {exportSection} from './../../../src/core/converters/pdfConverter';
+import {exportSection} from './../../../src/core/exporters/pdfExporter';
 
 import resolveDataDependencies from './../../../src/core/resolvers/resolveDataDependencies';
 
@@ -14,8 +14,9 @@ const assetsParams = {
   basePath: base_assets_path
 };
 
+global.navigator = {userAgent: 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2454.85 Safari/537.36'};
 
-describe('pdfConverter:exportsection', function(){
+describe('pdfExporter:exportsection', function(){
   it('should convert to pdf', function(done){
     const inputSections = cobaye.sections;
     waterfall([
@@ -24,7 +25,6 @@ describe('pdfConverter:exportsection', function(){
       }
     ], function(err, sections){
       exportSection({section: sections[0], sectionList: sections}, function(err, res) {
-        console.log('done');
         done();
       });
     });

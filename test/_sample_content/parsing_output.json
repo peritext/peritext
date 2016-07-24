@@ -39,6 +39,12 @@
       "preciseType": "invalidMetadata",
       "sectionCiteKey": "partie_2_2",
       "message": "general metadata property test is invalid in section Partie 2.2 and therefore was not taken into account"
+    },
+    {
+      "type": "warning",
+      "preciseType": "invalidMetadata",
+      "sectionCiteKey": "partie_2_2",
+      "message": "general metadata property notesPosition is invalid in section Partie 2.2 and therefore was not taken into account"
     }
   ],
   "sections": [
@@ -57,8 +63,8 @@
         {
           "domain": "general",
           "key": "title",
-          "value": "My awesome thesis",
-          "htmlHead": "<title>My awesome thesis</title>"
+          "value": "My awesome thesis with an awesome incredibly long and complicated title",
+          "htmlHead": "<title>My awesome thesis with an awesome incredibly long and complicated title</title>"
         },
         {
           "domain": "general",
@@ -66,10 +72,51 @@
           "value": [
             {
               "firstName": "Robin",
-              "lastName": "De Mourat"
+              "lastName": "De Mourat",
+              "role": "author",
+              "citeKey": "author-robinde-mourat"
             }
           ],
           "htmlHead": "<meta name=\"author\" content=\"Robin De Mourat\">"
+        },
+        {
+          "domain": "general",
+          "key": "dissertationjury",
+          "value": [
+            {
+              "firstName": "Nicolas",
+              "lastName": "Thély",
+              "role": "directeur de thèse",
+              "information": "Professeur, Université Rennes 2",
+              "citeKey": "directeur-de thèse-nicolasthély"
+            }
+          ]
+        },
+        {
+          "domain": "general",
+          "key": "dissertationinstitution",
+          "value": "Université Rennes 2",
+          "htmlHead": "<meta name=\"citation_dissertation_institution\" content=\"Université Rennes 2\">"
+        },
+        {
+          "domain": "general",
+          "key": "dissertationlab",
+          "value": "Préparée dans l'équipe d'accueil Arts : Pratiques et poétiques"
+        },
+        {
+          "domain": "general",
+          "key": "dissertationdoctoralschool",
+          "value": "Arts Lettres Langues"
+        },
+        {
+          "domain": "general",
+          "key": "dissertationdiscipline",
+          "value": "Esthétique"
+        },
+        {
+          "domain": "general",
+          "key": "dissertationcomment",
+          "value": "Sous le sceau de l’Université européenne de Bretagne"
         },
         {
           "domain": "general",
@@ -83,8 +130,8 @@
         {
           "domain": "general",
           "key": "date",
-          "value": "2016",
-          "htmlHead": "<meta name=\"date\" content=\"2016\">"
+          "value": "12 Décembre 2016",
+          "htmlHead": "<meta name=\"date\" content=\"12 Décembre 2016\">"
         },
         {
           "domain": "general",
@@ -98,48 +145,53 @@
         },
         {
           "domain": "general",
+          "key": "notesPosition",
+          "value": "sectionend"
+        },
+        {
+          "domain": "general",
           "key": "generalityLevel",
           "value": 1
         },
         {
           "domain": "dublincore",
           "key": "title",
-          "value": "My awesome thesis",
+          "value": "My awesome thesis with an awesome incredibly long and complicated title",
           "inheritedHorizontallyFrom": {
             "domain": "general",
             "key": "title"
           },
-          "htmlHead": "<meta name=\"dc.title\" content=\"My awesome thesis\">"
+          "htmlHead": "<meta name=\"dc.title\" content=\"My awesome thesis with an awesome incredibly long and complicated title\">"
         },
         {
           "domain": "opengraph",
           "key": "title",
-          "value": "My awesome thesis",
+          "value": "My awesome thesis with an awesome incredibly long and complicated title",
           "inheritedHorizontallyFrom": {
             "domain": "general",
             "key": "title"
           },
-          "htmlHead": "<meta property=\"og:title\" content=\"My awesome thesis\">"
+          "htmlHead": "<meta property=\"og:title\" content=\"My awesome thesis with an awesome incredibly long and complicated title\">"
         },
         {
           "domain": "twitter",
           "key": "title",
-          "value": "My awesome thesis",
+          "value": "My awesome thesis with an awesome incredibly long and complicated title",
           "inheritedHorizontallyFrom": {
             "domain": "general",
             "key": "title"
           },
-          "htmlHead": "<meta name=\"twitter:title\" content=\"My awesome thesis\">"
+          "htmlHead": "<meta name=\"twitter:title\" content=\"My awesome thesis with an awesome incredibly long and complicated title\">"
         },
         {
           "domain": "scholar",
           "key": "title",
-          "value": "My awesome thesis",
+          "value": "My awesome thesis with an awesome incredibly long and complicated title",
           "inheritedHorizontallyFrom": {
             "domain": "general",
             "key": "title"
           },
-          "htmlHead": "<meta name=\"citation_title\" content=\"My awesome thesis\">"
+          "htmlHead": "<meta name=\"citation_title\" content=\"My awesome thesis with an awesome incredibly long and complicated title\">"
         },
         {
           "domain": "dublincore",
@@ -160,7 +212,9 @@
           "value": [
             {
               "firstName": "Robin",
-              "lastName": "De Mourat"
+              "lastName": "De Mourat",
+              "role": "author",
+              "citeKey": "author-robinde-mourat"
             }
           ],
           "inheritedHorizontallyFrom": {
@@ -185,22 +239,12 @@
         {
           "domain": "dublincore",
           "key": "date",
-          "value": "2016",
+          "value": "12 Décembre 2016",
           "inheritedHorizontallyFrom": {
             "domain": "general",
             "key": "date"
           },
-          "htmlHead": "<meta name=\"dc.date\" content=\"2016\">"
-        },
-        {
-          "domain": "general",
-          "key": "citationStyle",
-          "value": "iso690fr"
-        },
-        {
-          "domain": "general",
-          "key": "notesPosition",
-          "value": "inline"
+          "htmlHead": "<meta name=\"dc.date\" content=\"12 Décembre 2016\">"
         }
       ],
       "contents": [
@@ -319,11 +363,15 @@
           "author": [
             {
               "firstName": "Julia",
-              "lastName": "Martin"
+              "lastName": "Martin",
+              "role": "author",
+              "citeKey": "author-juliamartin"
             },
             {
               "firstName": "Nicolas",
-              "lastName": "Coleman"
+              "lastName": "Coleman",
+              "role": "author",
+              "citeKey": "author-nicolascoleman"
             }
           ],
           "year": 2002,
@@ -345,7 +393,9 @@
           "author": [
             {
               "firstName": "Andrew",
-              "lastName": "Jakubowicz"
+              "lastName": "Jakubowicz",
+              "role": "author",
+              "citeKey": "author-andrewjakubowicz"
             }
           ],
           "bibType": "misc",
@@ -395,11 +445,15 @@
           "author": [
             {
               "firstName": "D. Aliprantis",
-              "lastName": "Charalambos"
+              "lastName": "Charalambos",
+              "role": "author",
+              "citeKey": "author-d.-aliprantischaralambos"
             },
             {
               "firstName": "Kim C.",
-              "lastName": "Border"
+              "lastName": "Border",
+              "role": "author",
+              "citeKey": "author-kim-c.border"
             }
           ],
           "year": 1994,
@@ -411,7 +465,7 @@
         "components": {},
         "styles": {
           "my_style.css": "body{\n  color : black;\n}\n\n@font-face {\n    font-family: 'callunaregular';\n    src: url('@assets/Calluna-Regular-webfont.eot');\n    src: url('@assets/Calluna-Regular-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/Calluna-Regular-webfont.woff2') format('woff2'),\n         url('@assets/Calluna-Regular-webfont.woff') format('woff'),\n         url('@assets/Calluna-Regular-webfont.ttf') format('truetype'),\n         url('@assets/Calluna-Regular-webfont.svg#callunaregular') format('svg');\n    font-weight: normal;\n    font-style: normal;\n}\n\n@font-face {\n    font-family: 'cabinbold_italic';\n    src: url('@assets/cabin-bolditalic-webfont.eot');\n    src: url('@assets/cabin-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-bolditalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-bolditalic-webfont.woff') format('woff'),\n         url('@assets/cabin-bolditalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-bolditalic-webfont.svg#cabinbold_italic') format('svg');\n    font-weight: 700;\n    font-style: italic;\n\n}\n\n\n@font-face {\n    font-family: 'cabinbold';\n    src: url('@assets/cabin-bold-webfont.eot');\n    src: url('@assets/cabin-bold-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-bold-webfont.woff2') format('woff2'),\n         url('@assets/cabin-bold-webfont.woff') format('woff'),\n         url('@assets/cabin-bold-webfont.ttf') format('truetype'),\n         url('@assets/cabin-bold-webfont.svg#cabinbold') format('svg');\n    font-weight: 700;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinsemibold_italic';\n    src: url('@assets/cabin-semibolditalic-webfont.eot');\n    src: url('@assets/cabin-semibolditalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-semibolditalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-semibolditalic-webfont.woff') format('woff'),\n         url('@assets/cabin-semibolditalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-semibolditalic-webfont.svg#cabinsemibold_italic') format('svg');\n    font-weight: 600;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinsemibold';\n    src: url('@assets/cabin-semibold-webfont.eot');\n    src: url('@assets/cabin-semibold-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-semibold-webfont.woff2') format('woff2'),\n         url('@assets/cabin-semibold-webfont.woff') format('woff'),\n         url('@assets/cabin-semibold-webfont.ttf') format('truetype'),\n         url('@assets/cabin-semibold-webfont.svg#cabinsemibold') format('svg');\n    font-weight: 600;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinmedium_italic';\n    src: url('@assets/cabin-mediumitalic-webfont.eot');\n    src: url('@assets/cabin-mediumitalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-mediumitalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-mediumitalic-webfont.woff') format('woff'),\n         url('@assets/cabin-mediumitalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-mediumitalic-webfont.svg#cabinmedium_italic') format('svg');\n    font-weight: 500;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinmedium';\n    src: url('@assets/cabin-medium-webfont.eot');\n    src: url('@assets/cabin-medium-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-medium-webfont.woff2') format('woff2'),\n         url('@assets/cabin-medium-webfont.woff') format('woff'),\n         url('@assets/cabin-medium-webfont.ttf') format('truetype'),\n         url('@assets/cabin-medium-webfont.svg#cabinmedium') format('svg');\n    font-weight: 500;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'Cabin';\n    src: url('@assets/cabin-italic-webfont.eot');\n    src: url('@assets/cabin-italic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-italic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-italic-webfont.woff') format('woff'),\n         url('@assets/cabin-italic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-italic-webfont.svg#cabinitalic') format('svg');\n    font-weight: 400;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'Cabin';\n    src: url('@assets/cabin-regular-webfont.eot');\n    src: url('@assets/cabin-regular-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-regular-webfont.woff2') format('woff2'),\n         url('@assets/cabin-regular-webfont.woff') format('woff'),\n         url('@assets/cabin-regular-webfont.ttf') format('truetype'),\n         url('@assets/cabin-regular-webfont.svg#cabinregular') format('svg');\n    font-weight: 400;\n    font-style: normal;\n\n}\n",
-          "page.css": "body\n{\n  font-family: 'callunaregular';\n  font-size : 12px;\n}\n\n\nh1,h2,h3,h4,h5,h6\n{\n  font-family: 'Cabin', 'callunaregular';\n  font-weight : 700;\n}\n\n\n#modulo-contents-cover\n{\n  page-break-after: always;\n}\n\n@page#modulo-contents-cover\n{\n  margin : 0;\n}\n\n#modulo-contents-cover #modulo-contents-cover-image-container\n{\n  background-image: url(\"@assets/ueb_cover.jpg\");\n   background-size:     cover;                      /* <------ */\n  background-repeat:   no-repeat;\n  background-position: center center;\n  height : 16cm;\n}\n",
+          "page.css": "body\n{\n  font-family: 'callunaregular';\n  font-size : 12px;\n}\n\n\nh1,h2,h3,h4,h5,h6\n{\n  font-family: 'Cabin', 'callunaregular';\n  font-weight : 700;\n}\n\n@page:first\n{\n  margin : 0;\n  page-break-after: always;\n  @bottom\n  {\n      content: none;\n  }\n}\n\n.modulo-contents-cover\n{\n  page-break-after: always;\n  margin : 0;\n  font-family: Arial;\n}\n\n@page.modulo-contents-cover\n{\n  margin : 0;\n  font-family: Arial;\n}\n\n.modulo-contents-cover #modulo-contents-cover-image-container\n{\n  background-size:     cover;\n  background-repeat:   no-repeat;\n  background-position: center center;\n  /*height : 16cm;*/\n  height : 18.3cm;\n  /*width : 100%;*/\n}\n\n.modulo-contents-cover-part-top-left,\n.modulo-contents-cover-part-top-right,\n.modulo-contents-cover-part-bottom-left,\n.modulo-contents-cover-part-bottom-right\n{\n  position: fixed;\n  width : 50%;\n}\n\n.modulo-contents-cover-part-top-left,\n.modulo-contents-cover-part-bottom-left\n{\n  left : .5cm;\n  text-align : right;\n  padding-right : 1.5cm;\n  width : 45%;\n}\n\n.modulo-contents-cover-part-top-right,\n.modulo-contents-cover-part-bottom-right\n{\n  left : 1cm;\n  padding-left : 50%;\n  padding-right : 1cm;\n}\n\n.modulo-contents-cover-part-top-left,\n.modulo-contents-cover-part-top-right\n{\n  bottom : 31.6%;\n  color : white;\n  padding-bottom : .8cm;\n}\n\n.modulo-contents-cover-part-bottom-left,\n.modulo-contents-cover-part-bottom-right\n{\n  top : 68%;\n}\n\n.modulo-contents-cover-part-top-left h3,\n.modulo-contents-cover-part-top-left h4,\n.modulo-contents-cover-part-top-left p,\n.modulo-contents-cover-part-top-right h3,\n.modulo-contents-cover-part-top-right h4,\n.modulo-contents-cover-part-top-right p\n{\n  margin-top : 0;\n  margin-bottom : 0;\n  font-size : 12px;\n}\n\n.modulo-contents-cover-part-top-right h1\n{\n  margin : 0;\n  padding : 0;\n}\n\n.modulo-contents-cover-part-bottom-left h1{\n  margin : 0;\n}\n\n.modulo-contents-cover-date\n{\n  font-weight : 800;\n}\n\n.modulo-contents-cover-jury-member .modulo-contents-person-firstname,\n.modulo-contents-cover-jury-member .modulo-contents-person-lastname\n{\n  font-weight : 800;\n}\n",
           "screen.css": "body{\n  color : rgb(51, 51, 51);\n  background: rgb(247, 247, 247);\n}\n"
         },
         "templates": {
@@ -440,7 +494,7 @@
         },
         {
           "dateformat": "%Y-%m-%d",
-          "disposition": true,
+          "disposition": "superpose",
           "layer": [
             {
               "dates": "@res1.data.dates",
@@ -456,12 +510,12 @@
           "citeKey": "cool_timeline_1",
           "type": "timeline",
           "overloading": "cool_timeline",
-          "outputmode": true
+          "outputmode": "all"
         },
         {
           "startat": "2012-21-01",
           "dateformat": "%Y-%m-%d",
-          "disposition": true,
+          "disposition": "superpose",
           "layer": [
             {
               "dates": "@res1.data.dates",
@@ -478,7 +532,7 @@
           "type": "timeline",
           "describedInline": true,
           "overloading": "cool_timeline",
-          "outputmode": true
+          "outputmode": "all"
         },
         {
           "title": "@res.title",
@@ -530,6 +584,9 @@
           "outputmode": "all"
         },
         {
+          "year": "@res.year",
+          "date": "@res.date",
+          "author": "@res.author",
           "title": "@res.title",
           "citeKey": "contextualizer_12",
           "type": "citation",
@@ -545,6 +602,9 @@
         },
         {
           "page": "12",
+          "year": "@res.year",
+          "date": "@res.date",
+          "author": "@res.author",
           "title": "@res.title",
           "citeKey": "contextualizer_14",
           "type": "citation",
@@ -553,6 +613,9 @@
         },
         {
           "pages": "30-40",
+          "year": "@res.year",
+          "date": "@res.date",
+          "author": "@res.author",
           "title": "@res.title",
           "citeKey": "contextualizer_15",
           "type": "citation",
@@ -561,6 +624,9 @@
         },
         {
           "pages": "12-13",
+          "year": "@res.year",
+          "date": "@res.date",
+          "author": "@res.author",
           "title": "@res.title",
           "citeKey": "contextualizer_16",
           "type": "citation",
@@ -568,6 +634,9 @@
           "outputmode": "all"
         },
         {
+          "year": "@res.year",
+          "date": "@res.date",
+          "author": "@res.author",
           "title": "@res.title",
           "citeKey": "contextualizer_17",
           "type": "citation",
@@ -607,7 +676,7 @@
           "type": "block",
           "contextualizerType": "timeline",
           "dateformat": "%Y-%m-%d",
-          "disposition": true,
+          "disposition": "superpose",
           "layer": [
             {
               "dates": "@res1.data.dates",
@@ -621,7 +690,7 @@
           ],
           "title": "My cool timeline",
           "overloading": "cool_timeline",
-          "outputmode": true
+          "outputmode": "all"
         },
         {
           "matchIndex": -7,
@@ -647,7 +716,7 @@
           "contextualizerType": "timeline",
           "startat": "2012-21-01",
           "dateformat": "%Y-%m-%d",
-          "disposition": true,
+          "disposition": "superpose",
           "layer": [
             {
               "dates": "@res1.data.dates",
@@ -662,7 +731,7 @@
           "title": "My cool timeline",
           "describedInline": true,
           "overloading": "cool_timeline",
-          "outputmode": true
+          "outputmode": "all"
         },
         {
           "matchIndex": 572,
@@ -746,6 +815,9 @@
           ],
           "type": "inline",
           "contextualizerType": "citation",
+          "year": "@res.year",
+          "date": "@res.date",
+          "author": "@res.author",
           "title": "@res.title",
           "describedInline": true,
           "outputmode": "all"
@@ -774,6 +846,9 @@
           "type": "inline",
           "contextualizerType": "citation",
           "page": "12",
+          "year": "@res.year",
+          "date": "@res.date",
+          "author": "@res.author",
           "title": "@res.title",
           "describedInline": true,
           "outputmode": "all"
@@ -788,6 +863,9 @@
           "type": "inline",
           "contextualizerType": "citation",
           "pages": "30-40",
+          "year": "@res.year",
+          "date": "@res.date",
+          "author": "@res.author",
           "title": "@res.title",
           "describedInline": true,
           "outputmode": "all"
@@ -802,6 +880,9 @@
           "type": "inline",
           "contextualizerType": "citation",
           "pages": "12-13",
+          "year": "@res.year",
+          "date": "@res.date",
+          "author": "@res.author",
           "title": "@res.title",
           "describedInline": true,
           "outputmode": "all"
@@ -815,6 +896,9 @@
           ],
           "type": "inline",
           "contextualizerType": "citation",
+          "year": "@res.year",
+          "date": "@res.date",
+          "author": "@res.author",
           "title": "@res.title",
           "describedInline": true,
           "outputmode": "all"
@@ -875,7 +959,9 @@
           "value": [
             {
               "firstName": "Robin",
-              "lastName": "De Mourat"
+              "lastName": "De Mourat",
+              "role": "author",
+              "citeKey": "author-robinde-mourat"
             }
           ],
           "inheritedVerticallyFrom": {
@@ -884,6 +970,75 @@
             "value": "mybook"
           },
           "htmlHead": "<meta name=\"author\" content=\"Robin De Mourat\">"
+        },
+        {
+          "domain": "general",
+          "key": "dissertationjury",
+          "value": [
+            {
+              "firstName": "Nicolas",
+              "lastName": "Thély",
+              "role": "directeur de thèse",
+              "information": "Professeur, Université Rennes 2",
+              "citeKey": "directeur-de thèse-nicolasthély"
+            }
+          ],
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "mybook"
+          }
+        },
+        {
+          "domain": "general",
+          "key": "dissertationinstitution",
+          "value": "Université Rennes 2",
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "mybook"
+          },
+          "htmlHead": "<meta name=\"citation_dissertation_institution\" content=\"Université Rennes 2\">"
+        },
+        {
+          "domain": "general",
+          "key": "dissertationlab",
+          "value": "Préparée dans l'équipe d'accueil Arts : Pratiques et poétiques",
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "mybook"
+          }
+        },
+        {
+          "domain": "general",
+          "key": "dissertationdoctoralschool",
+          "value": "Arts Lettres Langues",
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "mybook"
+          }
+        },
+        {
+          "domain": "general",
+          "key": "dissertationdiscipline",
+          "value": "Esthétique",
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "mybook"
+          }
+        },
+        {
+          "domain": "general",
+          "key": "dissertationcomment",
+          "value": "Sous le sceau de l’Université européenne de Bretagne",
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "mybook"
+          }
         },
         {
           "domain": "general",
@@ -902,13 +1057,13 @@
         {
           "domain": "general",
           "key": "date",
-          "value": "2016",
+          "value": "12 Décembre 2016",
           "inheritedVerticallyFrom": {
             "domain": "general",
             "key": "citeKey",
             "value": "mybook"
           },
-          "htmlHead": "<meta name=\"date\" content=\"2016\">"
+          "htmlHead": "<meta name=\"date\" content=\"12 Décembre 2016\">"
         },
         {
           "domain": "general",
@@ -924,6 +1079,16 @@
           "domain": "general",
           "key": "coverimage",
           "value": "@assets/ueb_cover.jpg",
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "mybook"
+          }
+        },
+        {
+          "domain": "general",
+          "key": "notesPosition",
+          "value": "sectionend",
           "inheritedVerticallyFrom": {
             "domain": "general",
             "key": "citeKey",
@@ -999,7 +1164,9 @@
           "value": [
             {
               "firstName": "Robin",
-              "lastName": "De Mourat"
+              "lastName": "De Mourat",
+              "role": "author",
+              "citeKey": "author-robinde-mourat"
             }
           ],
           "inheritedHorizontallyFrom": {
@@ -1024,22 +1191,12 @@
         {
           "domain": "dublincore",
           "key": "date",
-          "value": "2016",
+          "value": "12 Décembre 2016",
           "inheritedHorizontallyFrom": {
             "domain": "general",
             "key": "date"
           },
-          "htmlHead": "<meta name=\"dc.date\" content=\"2016\">"
-        },
-        {
-          "domain": "general",
-          "key": "citationStyle",
-          "value": "iso690fr"
-        },
-        {
-          "domain": "general",
-          "key": "notesPosition",
-          "value": "inline"
+          "htmlHead": "<meta name=\"dc.date\" content=\"12 Décembre 2016\">"
         }
       ],
       "contents": [
@@ -1075,11 +1232,15 @@
           "author": [
             {
               "firstName": "Julia",
-              "lastName": "Martin"
+              "lastName": "Martin",
+              "role": "author",
+              "citeKey": "author-juliamartin"
             },
             {
               "firstName": "Nicolas",
-              "lastName": "Coleman"
+              "lastName": "Coleman",
+              "role": "author",
+              "citeKey": "author-nicolascoleman"
             }
           ],
           "year": 2002,
@@ -1103,7 +1264,9 @@
           "author": [
             {
               "firstName": "Andrew",
-              "lastName": "Jakubowicz"
+              "lastName": "Jakubowicz",
+              "role": "author",
+              "citeKey": "author-andrewjakubowicz"
             }
           ],
           "bibType": "misc",
@@ -1157,11 +1320,15 @@
           "author": [
             {
               "firstName": "D. Aliprantis",
-              "lastName": "Charalambos"
+              "lastName": "Charalambos",
+              "role": "author",
+              "citeKey": "author-d.-aliprantischaralambos"
             },
             {
               "firstName": "Kim C.",
-              "lastName": "Border"
+              "lastName": "Border",
+              "role": "author",
+              "citeKey": "author-kim-c.border"
             }
           ],
           "year": 1994,
@@ -1175,7 +1342,7 @@
         "components": {},
         "styles": {
           "my_style.css": "body{\n  color : black;\n}\n\n@font-face {\n    font-family: 'callunaregular';\n    src: url('@assets/Calluna-Regular-webfont.eot');\n    src: url('@assets/Calluna-Regular-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/Calluna-Regular-webfont.woff2') format('woff2'),\n         url('@assets/Calluna-Regular-webfont.woff') format('woff'),\n         url('@assets/Calluna-Regular-webfont.ttf') format('truetype'),\n         url('@assets/Calluna-Regular-webfont.svg#callunaregular') format('svg');\n    font-weight: normal;\n    font-style: normal;\n}\n\n@font-face {\n    font-family: 'cabinbold_italic';\n    src: url('@assets/cabin-bolditalic-webfont.eot');\n    src: url('@assets/cabin-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-bolditalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-bolditalic-webfont.woff') format('woff'),\n         url('@assets/cabin-bolditalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-bolditalic-webfont.svg#cabinbold_italic') format('svg');\n    font-weight: 700;\n    font-style: italic;\n\n}\n\n\n@font-face {\n    font-family: 'cabinbold';\n    src: url('@assets/cabin-bold-webfont.eot');\n    src: url('@assets/cabin-bold-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-bold-webfont.woff2') format('woff2'),\n         url('@assets/cabin-bold-webfont.woff') format('woff'),\n         url('@assets/cabin-bold-webfont.ttf') format('truetype'),\n         url('@assets/cabin-bold-webfont.svg#cabinbold') format('svg');\n    font-weight: 700;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinsemibold_italic';\n    src: url('@assets/cabin-semibolditalic-webfont.eot');\n    src: url('@assets/cabin-semibolditalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-semibolditalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-semibolditalic-webfont.woff') format('woff'),\n         url('@assets/cabin-semibolditalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-semibolditalic-webfont.svg#cabinsemibold_italic') format('svg');\n    font-weight: 600;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinsemibold';\n    src: url('@assets/cabin-semibold-webfont.eot');\n    src: url('@assets/cabin-semibold-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-semibold-webfont.woff2') format('woff2'),\n         url('@assets/cabin-semibold-webfont.woff') format('woff'),\n         url('@assets/cabin-semibold-webfont.ttf') format('truetype'),\n         url('@assets/cabin-semibold-webfont.svg#cabinsemibold') format('svg');\n    font-weight: 600;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinmedium_italic';\n    src: url('@assets/cabin-mediumitalic-webfont.eot');\n    src: url('@assets/cabin-mediumitalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-mediumitalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-mediumitalic-webfont.woff') format('woff'),\n         url('@assets/cabin-mediumitalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-mediumitalic-webfont.svg#cabinmedium_italic') format('svg');\n    font-weight: 500;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinmedium';\n    src: url('@assets/cabin-medium-webfont.eot');\n    src: url('@assets/cabin-medium-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-medium-webfont.woff2') format('woff2'),\n         url('@assets/cabin-medium-webfont.woff') format('woff'),\n         url('@assets/cabin-medium-webfont.ttf') format('truetype'),\n         url('@assets/cabin-medium-webfont.svg#cabinmedium') format('svg');\n    font-weight: 500;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'Cabin';\n    src: url('@assets/cabin-italic-webfont.eot');\n    src: url('@assets/cabin-italic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-italic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-italic-webfont.woff') format('woff'),\n         url('@assets/cabin-italic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-italic-webfont.svg#cabinitalic') format('svg');\n    font-weight: 400;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'Cabin';\n    src: url('@assets/cabin-regular-webfont.eot');\n    src: url('@assets/cabin-regular-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-regular-webfont.woff2') format('woff2'),\n         url('@assets/cabin-regular-webfont.woff') format('woff'),\n         url('@assets/cabin-regular-webfont.ttf') format('truetype'),\n         url('@assets/cabin-regular-webfont.svg#cabinregular') format('svg');\n    font-weight: 400;\n    font-style: normal;\n\n}\n",
-          "page.css": "body\n{\n  font-family: 'callunaregular';\n  font-size : 12px;\n}\n\n\nh1,h2,h3,h4,h5,h6\n{\n  font-family: 'Cabin', 'callunaregular';\n  font-weight : 700;\n}\n\n\n#modulo-contents-cover\n{\n  page-break-after: always;\n}\n\n@page#modulo-contents-cover\n{\n  margin : 0;\n}\n\n#modulo-contents-cover #modulo-contents-cover-image-container\n{\n  background-image: url(\"@assets/ueb_cover.jpg\");\n   background-size:     cover;                      /* <------ */\n  background-repeat:   no-repeat;\n  background-position: center center;\n  height : 16cm;\n}\n",
+          "page.css": "body\n{\n  font-family: 'callunaregular';\n  font-size : 12px;\n}\n\n\nh1,h2,h3,h4,h5,h6\n{\n  font-family: 'Cabin', 'callunaregular';\n  font-weight : 700;\n}\n\n@page:first\n{\n  margin : 0;\n  page-break-after: always;\n  @bottom\n  {\n      content: none;\n  }\n}\n\n.modulo-contents-cover\n{\n  page-break-after: always;\n  margin : 0;\n  font-family: Arial;\n}\n\n@page.modulo-contents-cover\n{\n  margin : 0;\n  font-family: Arial;\n}\n\n.modulo-contents-cover #modulo-contents-cover-image-container\n{\n  background-size:     cover;\n  background-repeat:   no-repeat;\n  background-position: center center;\n  /*height : 16cm;*/\n  height : 18.3cm;\n  /*width : 100%;*/\n}\n\n.modulo-contents-cover-part-top-left,\n.modulo-contents-cover-part-top-right,\n.modulo-contents-cover-part-bottom-left,\n.modulo-contents-cover-part-bottom-right\n{\n  position: fixed;\n  width : 50%;\n}\n\n.modulo-contents-cover-part-top-left,\n.modulo-contents-cover-part-bottom-left\n{\n  left : .5cm;\n  text-align : right;\n  padding-right : 1.5cm;\n  width : 45%;\n}\n\n.modulo-contents-cover-part-top-right,\n.modulo-contents-cover-part-bottom-right\n{\n  left : 1cm;\n  padding-left : 50%;\n  padding-right : 1cm;\n}\n\n.modulo-contents-cover-part-top-left,\n.modulo-contents-cover-part-top-right\n{\n  bottom : 31.6%;\n  color : white;\n  padding-bottom : .8cm;\n}\n\n.modulo-contents-cover-part-bottom-left,\n.modulo-contents-cover-part-bottom-right\n{\n  top : 68%;\n}\n\n.modulo-contents-cover-part-top-left h3,\n.modulo-contents-cover-part-top-left h4,\n.modulo-contents-cover-part-top-left p,\n.modulo-contents-cover-part-top-right h3,\n.modulo-contents-cover-part-top-right h4,\n.modulo-contents-cover-part-top-right p\n{\n  margin-top : 0;\n  margin-bottom : 0;\n  font-size : 12px;\n}\n\n.modulo-contents-cover-part-top-right h1\n{\n  margin : 0;\n  padding : 0;\n}\n\n.modulo-contents-cover-part-bottom-left h1{\n  margin : 0;\n}\n\n.modulo-contents-cover-date\n{\n  font-weight : 800;\n}\n\n.modulo-contents-cover-jury-member .modulo-contents-person-firstname,\n.modulo-contents-cover-jury-member .modulo-contents-person-lastname\n{\n  font-weight : 800;\n}\n",
           "screen.css": "body{\n  color : rgb(51, 51, 51);\n  background: rgb(247, 247, 247);\n}\n"
         },
         "templates": {
@@ -1232,14 +1399,87 @@
           "value": [
             {
               "firstName": "Viviane",
-              "lastName": "Westwood"
+              "lastName": "Westwood",
+              "role": "author",
+              "citeKey": "author-vivianewestwood"
             },
             {
               "firstName": "Francis",
-              "lastName": "Lalane"
+              "lastName": "Lalane",
+              "role": "author",
+              "citeKey": "author-francislalane"
             }
           ],
           "htmlHead": "<meta name=\"author\" content=\"Viviane Westwood, Francis Lalane\">"
+        },
+        {
+          "domain": "general",
+          "key": "dissertationjury",
+          "value": [
+            {
+              "firstName": "Nicolas",
+              "lastName": "Thély",
+              "role": "directeur de thèse",
+              "information": "Professeur, Université Rennes 2",
+              "citeKey": "directeur-de thèse-nicolasthély"
+            }
+          ],
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "mybook"
+          }
+        },
+        {
+          "domain": "general",
+          "key": "dissertationinstitution",
+          "value": "Université Rennes 2",
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "mybook"
+          },
+          "htmlHead": "<meta name=\"citation_dissertation_institution\" content=\"Université Rennes 2\">"
+        },
+        {
+          "domain": "general",
+          "key": "dissertationlab",
+          "value": "Préparée dans l'équipe d'accueil Arts : Pratiques et poétiques",
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "mybook"
+          }
+        },
+        {
+          "domain": "general",
+          "key": "dissertationdoctoralschool",
+          "value": "Arts Lettres Langues",
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "mybook"
+          }
+        },
+        {
+          "domain": "general",
+          "key": "dissertationdiscipline",
+          "value": "Esthétique",
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "mybook"
+          }
+        },
+        {
+          "domain": "general",
+          "key": "dissertationcomment",
+          "value": "Sous le sceau de l’Université européenne de Bretagne",
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "mybook"
+          }
         },
         {
           "domain": "general",
@@ -1258,13 +1498,13 @@
         {
           "domain": "general",
           "key": "date",
-          "value": "2016",
+          "value": "12 Décembre 2016",
           "inheritedVerticallyFrom": {
             "domain": "general",
             "key": "citeKey",
             "value": "mybook"
           },
-          "htmlHead": "<meta name=\"date\" content=\"2016\">"
+          "htmlHead": "<meta name=\"date\" content=\"12 Décembre 2016\">"
         },
         {
           "domain": "general",
@@ -1280,6 +1520,16 @@
           "domain": "general",
           "key": "coverimage",
           "value": "@assets/ueb_cover.jpg",
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "mybook"
+          }
+        },
+        {
+          "domain": "general",
+          "key": "notesPosition",
+          "value": "sectionend",
           "inheritedVerticallyFrom": {
             "domain": "general",
             "key": "citeKey",
@@ -1356,11 +1606,15 @@
           "value": [
             {
               "firstName": "Viviane",
-              "lastName": "Westwood"
+              "lastName": "Westwood",
+              "role": "author",
+              "citeKey": "author-vivianewestwood"
             },
             {
               "firstName": "Francis",
-              "lastName": "Lalane"
+              "lastName": "Lalane",
+              "role": "author",
+              "citeKey": "author-francislalane"
             }
           ],
           "inheritedHorizontallyFrom": {
@@ -1385,22 +1639,12 @@
         {
           "domain": "dublincore",
           "key": "date",
-          "value": "2016",
+          "value": "12 Décembre 2016",
           "inheritedHorizontallyFrom": {
             "domain": "general",
             "key": "date"
           },
-          "htmlHead": "<meta name=\"dc.date\" content=\"2016\">"
-        },
-        {
-          "domain": "general",
-          "key": "citationStyle",
-          "value": "iso690fr"
-        },
-        {
-          "domain": "general",
-          "key": "notesPosition",
-          "value": "inline"
+          "htmlHead": "<meta name=\"dc.date\" content=\"12 Décembre 2016\">"
         }
       ],
       "contents": [
@@ -1567,21 +1811,29 @@
           "author": [
             {
               "firstName": "Eric S.",
-              "lastName": "Maskin"
+              "lastName": "Maskin",
+              "role": "author",
+              "citeKey": "author-eric-s.maskin"
             }
           ],
           "editor": [
             {
               "firstName": "Leonid",
-              "lastName": "Hurwicz"
+              "lastName": "Hurwicz",
+              "role": "author",
+              "citeKey": "author-leonidhurwicz"
             },
             {
               "firstName": "David",
-              "lastName": "Schmeidler"
+              "lastName": "Schmeidler",
+              "role": "author",
+              "citeKey": "author-davidschmeidler"
             },
             {
               "firstName": "Hugo",
-              "lastName": "Sonnenschein"
+              "lastName": "Sonnenschein",
+              "role": "author",
+              "citeKey": "author-hugosonnenschein"
             }
           ],
           "year": 1985,
@@ -1597,11 +1849,15 @@
           "author": [
             {
               "firstName": "Julia",
-              "lastName": "Martin"
+              "lastName": "Martin",
+              "role": "author",
+              "citeKey": "author-juliamartin"
             },
             {
               "firstName": "Nicolas",
-              "lastName": "Coleman"
+              "lastName": "Coleman",
+              "role": "author",
+              "citeKey": "author-nicolascoleman"
             }
           ],
           "year": 2002,
@@ -1625,7 +1881,9 @@
           "author": [
             {
               "firstName": "Andrew",
-              "lastName": "Jakubowicz"
+              "lastName": "Jakubowicz",
+              "role": "author",
+              "citeKey": "author-andrewjakubowicz"
             }
           ],
           "bibType": "misc",
@@ -1679,11 +1937,15 @@
           "author": [
             {
               "firstName": "D. Aliprantis",
-              "lastName": "Charalambos"
+              "lastName": "Charalambos",
+              "role": "author",
+              "citeKey": "author-d.-aliprantischaralambos"
             },
             {
               "firstName": "Kim C.",
-              "lastName": "Border"
+              "lastName": "Border",
+              "role": "author",
+              "citeKey": "author-kim-c.border"
             }
           ],
           "year": 1994,
@@ -1697,7 +1959,7 @@
         "components": {},
         "styles": {
           "my_style.css": "body{\n  color : black;\n}\n\n@font-face {\n    font-family: 'callunaregular';\n    src: url('@assets/Calluna-Regular-webfont.eot');\n    src: url('@assets/Calluna-Regular-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/Calluna-Regular-webfont.woff2') format('woff2'),\n         url('@assets/Calluna-Regular-webfont.woff') format('woff'),\n         url('@assets/Calluna-Regular-webfont.ttf') format('truetype'),\n         url('@assets/Calluna-Regular-webfont.svg#callunaregular') format('svg');\n    font-weight: normal;\n    font-style: normal;\n}\n\n@font-face {\n    font-family: 'cabinbold_italic';\n    src: url('@assets/cabin-bolditalic-webfont.eot');\n    src: url('@assets/cabin-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-bolditalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-bolditalic-webfont.woff') format('woff'),\n         url('@assets/cabin-bolditalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-bolditalic-webfont.svg#cabinbold_italic') format('svg');\n    font-weight: 700;\n    font-style: italic;\n\n}\n\n\n@font-face {\n    font-family: 'cabinbold';\n    src: url('@assets/cabin-bold-webfont.eot');\n    src: url('@assets/cabin-bold-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-bold-webfont.woff2') format('woff2'),\n         url('@assets/cabin-bold-webfont.woff') format('woff'),\n         url('@assets/cabin-bold-webfont.ttf') format('truetype'),\n         url('@assets/cabin-bold-webfont.svg#cabinbold') format('svg');\n    font-weight: 700;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinsemibold_italic';\n    src: url('@assets/cabin-semibolditalic-webfont.eot');\n    src: url('@assets/cabin-semibolditalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-semibolditalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-semibolditalic-webfont.woff') format('woff'),\n         url('@assets/cabin-semibolditalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-semibolditalic-webfont.svg#cabinsemibold_italic') format('svg');\n    font-weight: 600;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinsemibold';\n    src: url('@assets/cabin-semibold-webfont.eot');\n    src: url('@assets/cabin-semibold-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-semibold-webfont.woff2') format('woff2'),\n         url('@assets/cabin-semibold-webfont.woff') format('woff'),\n         url('@assets/cabin-semibold-webfont.ttf') format('truetype'),\n         url('@assets/cabin-semibold-webfont.svg#cabinsemibold') format('svg');\n    font-weight: 600;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinmedium_italic';\n    src: url('@assets/cabin-mediumitalic-webfont.eot');\n    src: url('@assets/cabin-mediumitalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-mediumitalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-mediumitalic-webfont.woff') format('woff'),\n         url('@assets/cabin-mediumitalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-mediumitalic-webfont.svg#cabinmedium_italic') format('svg');\n    font-weight: 500;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinmedium';\n    src: url('@assets/cabin-medium-webfont.eot');\n    src: url('@assets/cabin-medium-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-medium-webfont.woff2') format('woff2'),\n         url('@assets/cabin-medium-webfont.woff') format('woff'),\n         url('@assets/cabin-medium-webfont.ttf') format('truetype'),\n         url('@assets/cabin-medium-webfont.svg#cabinmedium') format('svg');\n    font-weight: 500;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'Cabin';\n    src: url('@assets/cabin-italic-webfont.eot');\n    src: url('@assets/cabin-italic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-italic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-italic-webfont.woff') format('woff'),\n         url('@assets/cabin-italic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-italic-webfont.svg#cabinitalic') format('svg');\n    font-weight: 400;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'Cabin';\n    src: url('@assets/cabin-regular-webfont.eot');\n    src: url('@assets/cabin-regular-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-regular-webfont.woff2') format('woff2'),\n         url('@assets/cabin-regular-webfont.woff') format('woff'),\n         url('@assets/cabin-regular-webfont.ttf') format('truetype'),\n         url('@assets/cabin-regular-webfont.svg#cabinregular') format('svg');\n    font-weight: 400;\n    font-style: normal;\n\n}\n",
-          "page.css": "body\n{\n  font-family: 'callunaregular';\n  font-size : 12px;\n}\n\n\nh1,h2,h3,h4,h5,h6\n{\n  font-family: 'Cabin', 'callunaregular';\n  font-weight : 700;\n}\n\n\n#modulo-contents-cover\n{\n  page-break-after: always;\n}\n\n@page#modulo-contents-cover\n{\n  margin : 0;\n}\n\n#modulo-contents-cover #modulo-contents-cover-image-container\n{\n  background-image: url(\"@assets/ueb_cover.jpg\");\n   background-size:     cover;                      /* <------ */\n  background-repeat:   no-repeat;\n  background-position: center center;\n  height : 16cm;\n}\n",
+          "page.css": "body\n{\n  font-family: 'callunaregular';\n  font-size : 12px;\n}\n\n\nh1,h2,h3,h4,h5,h6\n{\n  font-family: 'Cabin', 'callunaregular';\n  font-weight : 700;\n}\n\n@page:first\n{\n  margin : 0;\n  page-break-after: always;\n  @bottom\n  {\n      content: none;\n  }\n}\n\n.modulo-contents-cover\n{\n  page-break-after: always;\n  margin : 0;\n  font-family: Arial;\n}\n\n@page.modulo-contents-cover\n{\n  margin : 0;\n  font-family: Arial;\n}\n\n.modulo-contents-cover #modulo-contents-cover-image-container\n{\n  background-size:     cover;\n  background-repeat:   no-repeat;\n  background-position: center center;\n  /*height : 16cm;*/\n  height : 18.3cm;\n  /*width : 100%;*/\n}\n\n.modulo-contents-cover-part-top-left,\n.modulo-contents-cover-part-top-right,\n.modulo-contents-cover-part-bottom-left,\n.modulo-contents-cover-part-bottom-right\n{\n  position: fixed;\n  width : 50%;\n}\n\n.modulo-contents-cover-part-top-left,\n.modulo-contents-cover-part-bottom-left\n{\n  left : .5cm;\n  text-align : right;\n  padding-right : 1.5cm;\n  width : 45%;\n}\n\n.modulo-contents-cover-part-top-right,\n.modulo-contents-cover-part-bottom-right\n{\n  left : 1cm;\n  padding-left : 50%;\n  padding-right : 1cm;\n}\n\n.modulo-contents-cover-part-top-left,\n.modulo-contents-cover-part-top-right\n{\n  bottom : 31.6%;\n  color : white;\n  padding-bottom : .8cm;\n}\n\n.modulo-contents-cover-part-bottom-left,\n.modulo-contents-cover-part-bottom-right\n{\n  top : 68%;\n}\n\n.modulo-contents-cover-part-top-left h3,\n.modulo-contents-cover-part-top-left h4,\n.modulo-contents-cover-part-top-left p,\n.modulo-contents-cover-part-top-right h3,\n.modulo-contents-cover-part-top-right h4,\n.modulo-contents-cover-part-top-right p\n{\n  margin-top : 0;\n  margin-bottom : 0;\n  font-size : 12px;\n}\n\n.modulo-contents-cover-part-top-right h1\n{\n  margin : 0;\n  padding : 0;\n}\n\n.modulo-contents-cover-part-bottom-left h1{\n  margin : 0;\n}\n\n.modulo-contents-cover-date\n{\n  font-weight : 800;\n}\n\n.modulo-contents-cover-jury-member .modulo-contents-person-firstname,\n.modulo-contents-cover-jury-member .modulo-contents-person-lastname\n{\n  font-weight : 800;\n}\n",
           "screen.css": "body{\n  color : rgb(51, 51, 51);\n  background: rgb(247, 247, 247);\n}\n"
         },
         "templates": {
@@ -1761,11 +2023,15 @@
           "value": [
             {
               "firstName": "Viviane",
-              "lastName": "Westwood"
+              "lastName": "Westwood",
+              "role": "author",
+              "citeKey": "author-vivianewestwood"
             },
             {
               "firstName": "Francis",
-              "lastName": "Lalane"
+              "lastName": "Lalane",
+              "role": "author",
+              "citeKey": "author-francislalane"
             }
           ],
           "inheritedVerticallyFrom": {
@@ -1774,6 +2040,75 @@
             "value": "partie_2"
           },
           "htmlHead": "<meta name=\"author\" content=\"Viviane Westwood, Francis Lalane\">"
+        },
+        {
+          "domain": "general",
+          "key": "dissertationjury",
+          "value": [
+            {
+              "firstName": "Nicolas",
+              "lastName": "Thély",
+              "role": "directeur de thèse",
+              "information": "Professeur, Université Rennes 2",
+              "citeKey": "directeur-de thèse-nicolasthély"
+            }
+          ],
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "partie_2"
+          }
+        },
+        {
+          "domain": "general",
+          "key": "dissertationinstitution",
+          "value": "Université Rennes 2",
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "partie_2"
+          },
+          "htmlHead": "<meta name=\"citation_dissertation_institution\" content=\"Université Rennes 2\">"
+        },
+        {
+          "domain": "general",
+          "key": "dissertationlab",
+          "value": "Préparée dans l'équipe d'accueil Arts : Pratiques et poétiques",
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "partie_2"
+          }
+        },
+        {
+          "domain": "general",
+          "key": "dissertationdoctoralschool",
+          "value": "Arts Lettres Langues",
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "partie_2"
+          }
+        },
+        {
+          "domain": "general",
+          "key": "dissertationdiscipline",
+          "value": "Esthétique",
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "partie_2"
+          }
+        },
+        {
+          "domain": "general",
+          "key": "dissertationcomment",
+          "value": "Sous le sceau de l’Université européenne de Bretagne",
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "partie_2"
+          }
         },
         {
           "domain": "general",
@@ -1803,6 +2138,16 @@
           "domain": "general",
           "key": "coverimage",
           "value": "@assets/ueb_cover.jpg",
+          "inheritedVerticallyFrom": {
+            "domain": "general",
+            "key": "citeKey",
+            "value": "partie_2"
+          }
+        },
+        {
+          "domain": "general",
+          "key": "notesPosition",
+          "value": "sectionend",
           "inheritedVerticallyFrom": {
             "domain": "general",
             "key": "citeKey",
@@ -1889,11 +2234,15 @@
           "value": [
             {
               "firstName": "Viviane",
-              "lastName": "Westwood"
+              "lastName": "Westwood",
+              "role": "author",
+              "citeKey": "author-vivianewestwood"
             },
             {
               "firstName": "Francis",
-              "lastName": "Lalane"
+              "lastName": "Lalane",
+              "role": "author",
+              "citeKey": "author-francislalane"
             }
           ],
           "inheritedHorizontallyFrom": {
@@ -1914,16 +2263,6 @@
             "key": "keywords"
           },
           "htmlHead": "<meta name=\"dc.subject\" content=\"val1a, val1b, val2,val3,val4,another random set of keywords\">"
-        },
-        {
-          "domain": "general",
-          "key": "citationStyle",
-          "value": "iso690fr"
-        },
-        {
-          "domain": "general",
-          "key": "notesPosition",
-          "value": "inline"
         }
       ],
       "contents": [
@@ -1976,21 +2315,29 @@
           "author": [
             {
               "firstName": "Eric S.",
-              "lastName": "Maskin"
+              "lastName": "Maskin",
+              "role": "author",
+              "citeKey": "author-eric-s.maskin"
             }
           ],
           "editor": [
             {
               "firstName": "Leonid",
-              "lastName": "Hurwicz"
+              "lastName": "Hurwicz",
+              "role": "author",
+              "citeKey": "author-leonidhurwicz"
             },
             {
               "firstName": "David",
-              "lastName": "Schmeidler"
+              "lastName": "Schmeidler",
+              "role": "author",
+              "citeKey": "author-davidschmeidler"
             },
             {
               "firstName": "Hugo",
-              "lastName": "Sonnenschein"
+              "lastName": "Sonnenschein",
+              "role": "author",
+              "citeKey": "author-hugosonnenschein"
             }
           ],
           "year": 1985,
@@ -2007,11 +2354,15 @@
           "author": [
             {
               "firstName": "Julia",
-              "lastName": "Martin"
+              "lastName": "Martin",
+              "role": "author",
+              "citeKey": "author-juliamartin"
             },
             {
               "firstName": "Nicolas",
-              "lastName": "Coleman"
+              "lastName": "Coleman",
+              "role": "author",
+              "citeKey": "author-nicolascoleman"
             }
           ],
           "year": 2002,
@@ -2035,7 +2386,9 @@
           "author": [
             {
               "firstName": "Andrew",
-              "lastName": "Jakubowicz"
+              "lastName": "Jakubowicz",
+              "role": "author",
+              "citeKey": "author-andrewjakubowicz"
             }
           ],
           "bibType": "misc",
@@ -2089,11 +2442,15 @@
           "author": [
             {
               "firstName": "D. Aliprantis",
-              "lastName": "Charalambos"
+              "lastName": "Charalambos",
+              "role": "author",
+              "citeKey": "author-d.-aliprantischaralambos"
             },
             {
               "firstName": "Kim C.",
-              "lastName": "Border"
+              "lastName": "Border",
+              "role": "author",
+              "citeKey": "author-kim-c.border"
             }
           ],
           "year": 1994,
@@ -2107,7 +2464,7 @@
         "components": {},
         "styles": {
           "my_style.css": "body{\n  color : black;\n}\n\n@font-face {\n    font-family: 'callunaregular';\n    src: url('@assets/Calluna-Regular-webfont.eot');\n    src: url('@assets/Calluna-Regular-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/Calluna-Regular-webfont.woff2') format('woff2'),\n         url('@assets/Calluna-Regular-webfont.woff') format('woff'),\n         url('@assets/Calluna-Regular-webfont.ttf') format('truetype'),\n         url('@assets/Calluna-Regular-webfont.svg#callunaregular') format('svg');\n    font-weight: normal;\n    font-style: normal;\n}\n\n@font-face {\n    font-family: 'cabinbold_italic';\n    src: url('@assets/cabin-bolditalic-webfont.eot');\n    src: url('@assets/cabin-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-bolditalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-bolditalic-webfont.woff') format('woff'),\n         url('@assets/cabin-bolditalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-bolditalic-webfont.svg#cabinbold_italic') format('svg');\n    font-weight: 700;\n    font-style: italic;\n\n}\n\n\n@font-face {\n    font-family: 'cabinbold';\n    src: url('@assets/cabin-bold-webfont.eot');\n    src: url('@assets/cabin-bold-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-bold-webfont.woff2') format('woff2'),\n         url('@assets/cabin-bold-webfont.woff') format('woff'),\n         url('@assets/cabin-bold-webfont.ttf') format('truetype'),\n         url('@assets/cabin-bold-webfont.svg#cabinbold') format('svg');\n    font-weight: 700;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinsemibold_italic';\n    src: url('@assets/cabin-semibolditalic-webfont.eot');\n    src: url('@assets/cabin-semibolditalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-semibolditalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-semibolditalic-webfont.woff') format('woff'),\n         url('@assets/cabin-semibolditalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-semibolditalic-webfont.svg#cabinsemibold_italic') format('svg');\n    font-weight: 600;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinsemibold';\n    src: url('@assets/cabin-semibold-webfont.eot');\n    src: url('@assets/cabin-semibold-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-semibold-webfont.woff2') format('woff2'),\n         url('@assets/cabin-semibold-webfont.woff') format('woff'),\n         url('@assets/cabin-semibold-webfont.ttf') format('truetype'),\n         url('@assets/cabin-semibold-webfont.svg#cabinsemibold') format('svg');\n    font-weight: 600;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinmedium_italic';\n    src: url('@assets/cabin-mediumitalic-webfont.eot');\n    src: url('@assets/cabin-mediumitalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-mediumitalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-mediumitalic-webfont.woff') format('woff'),\n         url('@assets/cabin-mediumitalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-mediumitalic-webfont.svg#cabinmedium_italic') format('svg');\n    font-weight: 500;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinmedium';\n    src: url('@assets/cabin-medium-webfont.eot');\n    src: url('@assets/cabin-medium-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-medium-webfont.woff2') format('woff2'),\n         url('@assets/cabin-medium-webfont.woff') format('woff'),\n         url('@assets/cabin-medium-webfont.ttf') format('truetype'),\n         url('@assets/cabin-medium-webfont.svg#cabinmedium') format('svg');\n    font-weight: 500;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'Cabin';\n    src: url('@assets/cabin-italic-webfont.eot');\n    src: url('@assets/cabin-italic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-italic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-italic-webfont.woff') format('woff'),\n         url('@assets/cabin-italic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-italic-webfont.svg#cabinitalic') format('svg');\n    font-weight: 400;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'Cabin';\n    src: url('@assets/cabin-regular-webfont.eot');\n    src: url('@assets/cabin-regular-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-regular-webfont.woff2') format('woff2'),\n         url('@assets/cabin-regular-webfont.woff') format('woff'),\n         url('@assets/cabin-regular-webfont.ttf') format('truetype'),\n         url('@assets/cabin-regular-webfont.svg#cabinregular') format('svg');\n    font-weight: 400;\n    font-style: normal;\n\n}\n",
-          "page.css": "body\n{\n  font-family: 'callunaregular';\n  font-size : 12px;\n}\n\n\nh1,h2,h3,h4,h5,h6\n{\n  font-family: 'Cabin', 'callunaregular';\n  font-weight : 700;\n}\n\n\n#modulo-contents-cover\n{\n  page-break-after: always;\n}\n\n@page#modulo-contents-cover\n{\n  margin : 0;\n}\n\n#modulo-contents-cover #modulo-contents-cover-image-container\n{\n  background-image: url(\"@assets/ueb_cover.jpg\");\n   background-size:     cover;                      /* <------ */\n  background-repeat:   no-repeat;\n  background-position: center center;\n  height : 16cm;\n}\n",
+          "page.css": "body\n{\n  font-family: 'callunaregular';\n  font-size : 12px;\n}\n\n\nh1,h2,h3,h4,h5,h6\n{\n  font-family: 'Cabin', 'callunaregular';\n  font-weight : 700;\n}\n\n@page:first\n{\n  margin : 0;\n  page-break-after: always;\n  @bottom\n  {\n      content: none;\n  }\n}\n\n.modulo-contents-cover\n{\n  page-break-after: always;\n  margin : 0;\n  font-family: Arial;\n}\n\n@page.modulo-contents-cover\n{\n  margin : 0;\n  font-family: Arial;\n}\n\n.modulo-contents-cover #modulo-contents-cover-image-container\n{\n  background-size:     cover;\n  background-repeat:   no-repeat;\n  background-position: center center;\n  /*height : 16cm;*/\n  height : 18.3cm;\n  /*width : 100%;*/\n}\n\n.modulo-contents-cover-part-top-left,\n.modulo-contents-cover-part-top-right,\n.modulo-contents-cover-part-bottom-left,\n.modulo-contents-cover-part-bottom-right\n{\n  position: fixed;\n  width : 50%;\n}\n\n.modulo-contents-cover-part-top-left,\n.modulo-contents-cover-part-bottom-left\n{\n  left : .5cm;\n  text-align : right;\n  padding-right : 1.5cm;\n  width : 45%;\n}\n\n.modulo-contents-cover-part-top-right,\n.modulo-contents-cover-part-bottom-right\n{\n  left : 1cm;\n  padding-left : 50%;\n  padding-right : 1cm;\n}\n\n.modulo-contents-cover-part-top-left,\n.modulo-contents-cover-part-top-right\n{\n  bottom : 31.6%;\n  color : white;\n  padding-bottom : .8cm;\n}\n\n.modulo-contents-cover-part-bottom-left,\n.modulo-contents-cover-part-bottom-right\n{\n  top : 68%;\n}\n\n.modulo-contents-cover-part-top-left h3,\n.modulo-contents-cover-part-top-left h4,\n.modulo-contents-cover-part-top-left p,\n.modulo-contents-cover-part-top-right h3,\n.modulo-contents-cover-part-top-right h4,\n.modulo-contents-cover-part-top-right p\n{\n  margin-top : 0;\n  margin-bottom : 0;\n  font-size : 12px;\n}\n\n.modulo-contents-cover-part-top-right h1\n{\n  margin : 0;\n  padding : 0;\n}\n\n.modulo-contents-cover-part-bottom-left h1{\n  margin : 0;\n}\n\n.modulo-contents-cover-date\n{\n  font-weight : 800;\n}\n\n.modulo-contents-cover-jury-member .modulo-contents-person-firstname,\n.modulo-contents-cover-jury-member .modulo-contents-person-lastname\n{\n  font-weight : 800;\n}\n",
           "screen.css": "body{\n  color : rgb(51, 51, 51);\n  background: rgb(247, 247, 247);\n}\n"
         },
         "templates": {
@@ -2136,6 +2493,9 @@
           "outputmode": "all"
         },
         {
+          "year": "@res.year",
+          "date": "@res.date",
+          "author": "@res.author",
           "title": "@res.title",
           "citeKey": "contextualizer_1",
           "type": "citation",
@@ -2143,6 +2503,9 @@
           "outputmode": "all"
         },
         {
+          "year": "@res.year",
+          "date": "@res.date",
+          "author": "@res.author",
           "title": "@res.title",
           "citeKey": "contextualizer_3",
           "type": "citation",
@@ -2150,6 +2513,9 @@
           "outputmode": "all"
         },
         {
+          "year": "@res.year",
+          "date": "@res.date",
+          "author": "@res.author",
           "title": "@res.title",
           "citeKey": "contextualizer_5",
           "type": "citation",
@@ -2169,6 +2535,9 @@
           ],
           "type": "block",
           "contextualizerType": "citation",
+          "year": "@res.year",
+          "date": "@res.date",
+          "author": "@res.author",
           "title": "@res.title",
           "describedInline": true,
           "outputmode": "all"
@@ -2182,6 +2551,9 @@
           ],
           "type": "block",
           "contextualizerType": "citation",
+          "year": "@res.year",
+          "date": "@res.date",
+          "author": "@res.author",
           "title": "@res.title",
           "describedInline": true,
           "outputmode": "all"
@@ -2195,6 +2567,9 @@
           ],
           "type": "block",
           "contextualizerType": "citation",
+          "year": "@res.year",
+          "date": "@res.date",
+          "author": "@res.author",
           "title": "@res.title",
           "describedInline": true,
           "outputmode": "all"

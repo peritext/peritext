@@ -11,22 +11,108 @@ h1,h2,h3,h4,h5,h6
   font-weight : 700;
 }
 
-
-#modulo-contents-cover
+@page:first
 {
+  margin : 0;
   page-break-after: always;
+  @bottom
+  {
+      content: none;
+  }
 }
 
-@page#modulo-contents-cover
+.modulo-contents-cover
 {
+  page-break-after: always;
+  margin : 0;
+  font-family: Arial;
+}
+
+@page.modulo-contents-cover
+{
+  margin : 0;
+  font-family: Arial;
+}
+
+.modulo-contents-cover #modulo-contents-cover-image-container
+{
+  background-size:     cover;
+  background-repeat:   no-repeat;
+  background-position: center center;
+  /*height : 16cm;*/
+  height : 18.3cm;
+  /*width : 100%;*/
+}
+
+.modulo-contents-cover-part-top-left,
+.modulo-contents-cover-part-top-right,
+.modulo-contents-cover-part-bottom-left,
+.modulo-contents-cover-part-bottom-right
+{
+  position: fixed;
+  width : 50%;
+}
+
+.modulo-contents-cover-part-top-left,
+.modulo-contents-cover-part-bottom-left
+{
+  left : .5cm;
+  text-align : right;
+  padding-right : 1.5cm;
+  width : 45%;
+}
+
+.modulo-contents-cover-part-top-right,
+.modulo-contents-cover-part-bottom-right
+{
+  left : 1cm;
+  padding-left : 50%;
+  padding-right : 1cm;
+}
+
+.modulo-contents-cover-part-top-left,
+.modulo-contents-cover-part-top-right
+{
+  bottom : 31.6%;
+  color : white;
+  padding-bottom : .8cm;
+}
+
+.modulo-contents-cover-part-bottom-left,
+.modulo-contents-cover-part-bottom-right
+{
+  top : 68%;
+}
+
+.modulo-contents-cover-part-top-left h3,
+.modulo-contents-cover-part-top-left h4,
+.modulo-contents-cover-part-top-left p,
+.modulo-contents-cover-part-top-right h3,
+.modulo-contents-cover-part-top-right h4,
+.modulo-contents-cover-part-top-right p
+{
+  margin-top : 0;
+  margin-bottom : 0;
+  font-size : 12px;
+}
+
+.modulo-contents-cover-part-top-right h1
+{
+  margin : 0;
+  padding : 0;
+}
+
+.modulo-contents-cover-part-bottom-left h1{
   margin : 0;
 }
 
-#modulo-contents-cover #modulo-contents-cover-image-container
+.modulo-contents-cover-date
 {
-  background-image: url("@assets/ueb_cover.jpg");
-   background-size:     cover;                      /* <------ */
-  background-repeat:   no-repeat;
-  background-position: center center;
-  height : 16cm;
+  font-weight : 800;
+}
+
+.modulo-contents-cover-jury-member .modulo-contents-person-firstname,
+.modulo-contents-cover-jury-member .modulo-contents-person-lastname
+{
+  font-weight : 800;
 }
