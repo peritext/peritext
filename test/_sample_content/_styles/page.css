@@ -21,20 +21,20 @@ h1,h2,h3,h4,h5,h6
   }
 }
 
-.modulo-contents-cover
+.peritext-contents-cover
 {
   page-break-after: always;
   margin : 0;
   font-family: Arial;
 }
 
-@page.modulo-contents-cover
+@page.peritext-contents-cover
 {
   margin : 0;
   font-family: Arial;
 }
 
-.modulo-contents-cover #modulo-contents-cover-image-container
+.peritext-contents-cover #peritext-contents-cover-image-container
 {
   background-size:     cover;
   background-repeat:   no-repeat;
@@ -44,17 +44,17 @@ h1,h2,h3,h4,h5,h6
   /*width : 100%;*/
 }
 
-.modulo-contents-cover-part-top-left,
-.modulo-contents-cover-part-top-right,
-.modulo-contents-cover-part-bottom-left,
-.modulo-contents-cover-part-bottom-right
+.peritext-contents-cover-part-top-left,
+.peritext-contents-cover-part-top-right,
+.peritext-contents-cover-part-bottom-left,
+.peritext-contents-cover-part-bottom-right
 {
   position: fixed;
   width : 50%;
 }
 
-.modulo-contents-cover-part-top-left,
-.modulo-contents-cover-part-bottom-left
+.peritext-contents-cover-part-top-left,
+.peritext-contents-cover-part-bottom-left
 {
   left : .5cm;
   text-align : right;
@@ -62,57 +62,57 @@ h1,h2,h3,h4,h5,h6
   width : 45%;
 }
 
-.modulo-contents-cover-part-top-right,
-.modulo-contents-cover-part-bottom-right
+.peritext-contents-cover-part-top-right,
+.peritext-contents-cover-part-bottom-right
 {
   left : 1cm;
   padding-left : 50%;
   padding-right : 1cm;
 }
 
-.modulo-contents-cover-part-top-left,
-.modulo-contents-cover-part-top-right
+.peritext-contents-cover-part-top-left,
+.peritext-contents-cover-part-top-right
 {
   bottom : 31.6%;
   color : white;
   padding-bottom : .8cm;
 }
 
-.modulo-contents-cover-part-bottom-left,
-.modulo-contents-cover-part-bottom-right
+.peritext-contents-cover-part-bottom-left,
+.peritext-contents-cover-part-bottom-right
 {
   top : 68%;
 }
 
-.modulo-contents-cover-part-top-left h3,
-.modulo-contents-cover-part-top-left h4,
-.modulo-contents-cover-part-top-left p,
-.modulo-contents-cover-part-top-right h3,
-.modulo-contents-cover-part-top-right h4,
-.modulo-contents-cover-part-top-right p
+.peritext-contents-cover-part-top-left h3,
+.peritext-contents-cover-part-top-left h4,
+.peritext-contents-cover-part-top-left p,
+.peritext-contents-cover-part-top-right h3,
+.peritext-contents-cover-part-top-right h4,
+.peritext-contents-cover-part-top-right p
 {
   margin-top : 0;
   margin-bottom : 0;
   font-size : 12px;
 }
 
-.modulo-contents-cover-part-top-right h1
+.peritext-contents-cover-part-top-right h1
 {
   margin : 0;
   padding : 0;
 }
 
-.modulo-contents-cover-part-bottom-left h1{
+.peritext-contents-cover-part-bottom-left h1{
   margin : 0;
 }
 
-.modulo-contents-cover-date
+.peritext-contents-cover-date
 {
   font-weight : 800;
 }
 
-.modulo-contents-cover-jury-member .modulo-contents-person-firstname,
-.modulo-contents-cover-jury-member .modulo-contents-person-lastname
+.peritext-contents-cover-jury-member .peritext-contents-person-firstname,
+.peritext-contents-cover-jury-member .peritext-contents-person-lastname
 {
   font-weight : 800;
 }

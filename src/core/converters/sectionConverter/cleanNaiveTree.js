@@ -20,7 +20,7 @@ export function cleanNaiveTree({errors = [], validTree}, models, callback) {
         return false;
       }
       for (const type in models.sectionTypeModels.acceptedTypes) {
-        if (res.bibType === 'modulo' + type) {
+        if (res.bibType === 'peritext' + type) {
           metadata = res;
           return false;
         }

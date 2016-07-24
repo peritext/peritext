@@ -33,7 +33,7 @@ export default class StaticTableOfContents extends React.Component {
         id="toc"
       >
         <h2>{this.props.title}</h2>
-        <section className="modulo-contents-toc-contents">
+        <section className="peritext-contents-toc-contents">
           {this.props.elements.map((element) =>{
             return <StaticTableOfContentsElement id={element.id} key={element.id} title={element.title} level={element.level} levelDisplacement={this.props.level}/>;
           })}
@@ -70,7 +70,7 @@ class StaticTableOfContentsElement extends React.Component {
   render() {
     return (
       <section
-        className="modulo-contents-toc-element"
+        className="peritext-contents-toc-element"
         style={{paddingLeft: (this.props.level - this.props.levelDisplacement - 1) * this.props.paddingDisplacement + 'cm'}}
       >
         <a

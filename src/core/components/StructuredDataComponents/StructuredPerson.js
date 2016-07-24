@@ -73,10 +73,10 @@ export default class StructuredPerson extends React.Component {
    */
   updateHtml() {
     const vals = this.transformValues(this.props.resource, this.props.pattern);
-    vals.firstName = '<span class="modulo-contents-person-firstname" itemProp="givenName" property="givenName" >' + vals.firstName + '</span>';
-    vals.lastName = '<span class="modulo-contents-person-lastname" itemProp="familyName" property="familyName" >' + vals.lastName + '</span>';
-    vals.role = '<span class="modulo-contents-person-role" >' + vals.role + '</span>';
-    vals.information = vals.information ? '<span class="modulo-contents-person-information" >' + vals.information + '</span>' : '';
+    vals.firstName = '<span class="peritext-contents-person-firstname" itemProp="givenName" property="givenName" >' + vals.firstName + '</span>';
+    vals.lastName = '<span class="peritext-contents-person-lastname" itemProp="familyName" property="familyName" >' + vals.lastName + '</span>';
+    vals.role = '<span class="peritext-contents-person-role" >' + vals.role + '</span>';
+    vals.information = vals.information ? '<span class="peritext-contents-person-information" >' + vals.information + '</span>' : '';
     let htmlStr = this.props.pattern
                     .replace(/(\${firstName(:[^}]*)?})/, vals.firstName)
                     .replace(/(\${lastName(:[^}]*)?})/, vals.lastName)
@@ -94,7 +94,7 @@ export default class StructuredPerson extends React.Component {
   render() {
     return (
       <span
-        className="modulo-contents-person"
+        className="peritext-contents-person"
         itemProp={this.props.property}
         itemScope
         itemType="http://schema.org/Person"

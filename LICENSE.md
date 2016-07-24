@@ -4,7 +4,7 @@ License and copyright information
 License
 --------
 
-Modulo is licensed under the terms of the GNU General Public License,
+Peritext is licensed under the terms of the GNU General Public License,
 version 2 or later. Derivative works and later versions of the code must be
 free software licensed under the same or a compatible license.
 
@@ -15,7 +15,7 @@ below.
 Copyright owners
 --------
 
-Modulo contributors hold the copyright to this work.
+Peritext contributors hold the copyright to this work.
 
 # GNU GENERAL PUBLIC LICENSE
 

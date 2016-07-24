@@ -65,7 +65,7 @@ Check out [this resource](@my_resource_cite_key)
 
 ```
 
-*Note : in regular markdown these two notations would be dedicated to coding respectively hyperlinks and images. However, as one of the principles of Modulo is to keep external web two clicks away and to force writers to rigorously describe all external resources they are using (including links and images), there is no conflict between regular markdown's notation and modulo markdown's notation : images or links are not supposed to be specifiable directly in the linear markdown contents, so their notation can be used for something else, inline and block contextualizations.*
+*Note : in regular markdown these two notations would be dedicated to coding respectively hyperlinks and images. However, as one of the principles of Peritext is to keep external web two clicks away and to force writers to rigorously describe all external resources they are using (including links and images), there is no conflict between regular markdown's notation and peritext markdown's notation : images or links are not supposed to be specifiable directly in the linear markdown contents, so their notation can be used for something else, inline and block contextualizations.*
 
 Default contextualization params are automatically provided to specify a way to display a resource in the document (as an aside-caller, as a footnote caller, as a html-replacement caller (for bib references), ... ).
 
@@ -114,7 +114,7 @@ Look at this [vis](@vis_data){my_timeline}
 
 ### Nested bibTeX objects expressions
 
-When dealing with contextualizers such as datavis-related contextualizations, contextualization params can become complex. Therefore, Modulo extends the principle of nesting in bibTex in order to allow for complex parameters.
+When dealing with contextualizers such as datavis-related contextualizations, contextualization params can become complex. Therefore, Peritext extends the principle of nesting in bibTex in order to allow for complex parameters.
 
 ```
 This bibtex contextualization description :
@@ -201,7 +201,7 @@ The ``@resource`` assertion is handled with the related resource at the moment o
     </tr>
 </table>
 
-# Recension of parameters used in the former Modulo syntax
+# Recension of parameters used in the former Peritext syntax
 
 ## For all
 

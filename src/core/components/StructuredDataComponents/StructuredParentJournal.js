@@ -39,7 +39,7 @@ export default class StructuredParentJournal extends React.Component {
     if (object[objectKey]) {
       return '<'
       + tagType
-      + ' class="modulo-contents-citation-' + objectKey
+      + ' class="peritext-contents-citation-' + objectKey
       + '" itemProp="'
       + propName
       + '" property="'
@@ -60,17 +60,17 @@ export default class StructuredParentJournal extends React.Component {
    * @return {ReactElement} markup
    */
   updateHtml(resource, pattern) {
-    const journalExpression = ['<span class="modulo-contents-citation-journal" itemProp="isPartOf" itemScope itemType="http://schema.org/Periodical" typeof="Periodical">',
+    const journalExpression = ['<span class="peritext-contents-citation-journal" itemProp="isPartOf" itemScope itemType="http://schema.org/Periodical" typeof="Periodical">',
                                 '<span itemProp="name" property="name">',
                                 '</span>',
                                 '</span>'
                                 ];
-    const volumeExpression = ['<span class="modulo-contents-citation-volume" itemScope itemProp="hasPart" itemType="http://schema.org/PublicationVolume" typeof="PublicationVolume">',
+    const volumeExpression = ['<span class="peritext-contents-citation-volume" itemScope itemProp="hasPart" itemType="http://schema.org/PublicationVolume" typeof="PublicationVolume">',
                                 '<span itemProp="volumeNumber" property="volumeNumber">',
                                 '</span>',
                                 '</span>'
                                 ];
-    const issueExpression = ['<span class="modulo-contents-citation-issue" itemScope itemProp="hasPart" itemType="http://schema.org/PublicationIssue" typeof="PublicationIssue">',
+    const issueExpression = ['<span class="peritext-contents-citation-issue" itemScope itemProp="hasPart" itemType="http://schema.org/PublicationIssue" typeof="PublicationIssue">',
                                 '<span itemProp="issueNumber" property="issueNumber">',
                                 '</span>',
                                 '</span>'
@@ -103,7 +103,7 @@ export default class StructuredParentJournal extends React.Component {
     /*
     return (
       <span
-        className="modulo-contents-journal"
+        className="peritext-contents-journal"
         itemProp="{this.props.property}"
         property="{this.props.property}"
         itemScope

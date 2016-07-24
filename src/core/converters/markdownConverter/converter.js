@@ -1,5 +1,5 @@
 /**
- * This module resolves markdown contents + modulo-specific assertions (notes, contextualizations, contextualizers)
+ * This module resolves markdown contents + peritext-specific assertions (notes, contextualizations, contextualizers)
 * It returns a representation of a section's content as an object containing arrays of: paragraphs, notes, contextualizations, contextualizers
  */
 import marked from 'marked';
@@ -89,7 +89,7 @@ export function eatNotes(inputHtml, sectionCitekey, baseNotesCount = 0, notesPos
     noteContent = outputHtml.substring(beginIndex, index - 1);
     notesCount++;
     // noteHtml = <Note sectionCitekey={sectionCitekey} notesCount={notesCount} noteContent={noteContent} />
-    // noteHtml = '<p class="modulo-contents-note-content" name="note-content-' + sectionCitekey + notesCount + '" id="note-content-' + sectionCitekey + notesCount + '"><a class="modulo-contents-note-link" href="#note-pointer-' + sectionCitekey + notesCount + '"><span class="modulo-contents-note-number">' + notesCount + '</span></a>' + noteContent + '</p>';
+    // noteHtml = '<p class="peritext-contents-note-content" name="note-content-' + sectionCitekey + notesCount + '" id="note-content-' + sectionCitekey + notesCount + '"><a class="peritext-contents-note-link" href="#note-pointer-' + sectionCitekey + notesCount + '"><span class="peritext-contents-note-number">' + notesCount + '</span></a>' + noteContent + '</p>';
     notes.push({
       // content: noteHtml,
       noteContent,
@@ -98,9 +98,9 @@ export function eatNotes(inputHtml, sectionCitekey, baseNotesCount = 0, notesPos
       noteNumber: notesCount
     });
     if (notesPosition === 'inline') {
-      newEl = '<sup class="modulo-contents-note-content" name="note-content-' + sectionCitekey + notesCount + '" id="note-content-' + sectionCitekey + notesCount + '">' + noteContent + '</sup>';
+      newEl = '<sup class="peritext-contents-note-content" name="note-content-' + sectionCitekey + notesCount + '" id="note-content-' + sectionCitekey + notesCount + '">' + noteContent + '</sup>';
     } else {
-      newEl = '<sup class="modulo-contents-note-pointer" name="note-pointer-' + sectionCitekey + notesCount + '" id="note-pointer-' + sectionCitekey + notesCount + '"><a href="#note-content-' + sectionCitekey + notesCount + '"><span class="modulo-contents-note-number">' + notesCount + '</span></a></sup>';
+      newEl = '<sup class="peritext-contents-note-pointer" name="note-pointer-' + sectionCitekey + notesCount + '" id="note-pointer-' + sectionCitekey + notesCount + '"><a href="#note-content-' + sectionCitekey + notesCount + '"><span class="peritext-contents-note-number">' + notesCount + '</span></a></sup>';
     }
     outputHtml = outputHtml.substr(0, beginIndex - 4) + newEl + outputHtml.substr(index);
     displace = index;

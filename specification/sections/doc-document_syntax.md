@@ -1,33 +1,33 @@
-Modulo documentation | markdown document syntax (modulo-flavoured markdown) | WIP
+Peritext documentation | markdown document syntax (peritext-flavoured markdown) | WIP
 =================
 
 
 # Grounded on Markdown
 
-Modulo tends to be as simple and standard-compliant as possible by following the markdown standard specification.
+Peritext tends to be as simple and standard-compliant as possible by following the markdown standard specification.
 
 The following describes how markdown is extended to fit rigorous and media-rich scholarly composition practices.
 
 # Resources-Contextualizer-Contextualization model
 
-[See the Modulo Resource-Contextualizer-Contextualization (RCC) model doc](https://github.com/robindemourat/modulo/tree/master/specification/sections/doc-rcc_model.md)
+[See the Peritext Resource-Contextualizer-Contextualization (RCC) model doc](https://github.com/robindemourat/peritext/tree/master/specification/sections/doc-rcc_model.md)
 
 
 ## Note on media-related and URL resources : outside web should always be 2 clicks away
 
-**It should be impossible to reference an image, a video, or even an external link in a Modulo document without having it referenced (and documented) as a resource.**
+**It should be impossible to reference an image, a video, or even an external link in a Peritext document without having it referenced (and documented) as a resource.**
 
-The only way to point to these kinds of contents in modulo is to use resources descriptions as "middlewares".
+The only way to point to these kinds of contents in peritext is to use resources descriptions as "middlewares".
 
 # Smart contextualization of quotes
 
-Another principle of Modulo is to infer as much *implicit semanticity* as it can from the input markdown content.
+Another principle of Peritext is to infer as much *implicit semanticity* as it can from the input markdown content.
 
-Concerning Academic publishing, one of the most important practices of scholarly composition is the quotation and citation practice. In this sense, Modulo should be smart about quotes and blockquotes directly followed by bibliographic resources contextualizations.
+Concerning Academic publishing, one of the most important practices of scholarly composition is the quotation and citation practice. In this sense, Peritext should be smart about quotes and blockquotes directly followed by bibliographic resources contextualizations.
 
 Examples :
 
-This modulo assertion :
+This peritext assertion :
 
 ```
 When Martin writes ["it should not be done"](@martin_change_2002){pages="12-13"}
@@ -40,7 +40,7 @@ Should translate to :
 When Martin writes <q>it should not be done</q><cite>(Martin, 2012, pp. 12-13)</cite>
 ```
 
-This modulo assertion :
+This peritext assertion :
 
 ```
 > digital must be unpacked
@@ -59,9 +59,9 @@ digital must be unpacked
 
 # Template-rendered metadata calls
 
-Modulo should be able to render metadata-based properties and generated contents into the document.
+Peritext should be able to render metadata-based properties and generated contents into the document.
 
-This modulo assertion :
+This peritext assertion :
 ```
 ${abstract}
 ```

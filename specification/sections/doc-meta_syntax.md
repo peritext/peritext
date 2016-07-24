@@ -1,4 +1,4 @@
-Modulo documentation | metadata files syntax | WIP
+Peritext documentation | metadata files syntax | WIP
 =================
 
 
@@ -18,7 +18,7 @@ Metadata entries can deal with two types of information :
 
 ## Metadata vertical and lateral propagation
 
-Metadata propagates in a Modulo document in two ways :
+Metadata propagates in a Peritext document in two ways :
 * vertically (i.e. hierarchically) : from root to children, to the possible children of these children, and so on
 * laterally : from one metadata domain to another (e.g. from dublincore metadata to twitter metadata)
 
@@ -67,9 +67,9 @@ And of a periodical's article :
 }
 ```
 
-## Modulo metadata BibTeX
+## Peritext metadata BibTeX
 
-Modulo uses the BibTeX syntax to describe its documents.
+Peritext uses the BibTeX syntax to describe its documents.
 It uses a loosely and "tolerant" definition of BibTeX, accepting zotero-flavoured BibTeX, and adding its own specificities to the format :
 
 ```
@@ -91,18 +91,18 @@ Tolerant bibtext also accepts these notations :
 
 The first part of a BibTeX object (eg ``@incollection``) describes the type of the section being written. 
 
-Concerning modulo metadata, a modulo section metadata will always be recognized by the fact it is preceded by ``modulo`` :
+Concerning peritext metadata, a peritext section metadata will always be recognized by the fact it is preceded by ``peritext`` :
 
 ```
-@incollection{mycollection} //resource, not modulo metadata
-@moduloincollection{mycollection} //metadata, because it begins with "modulo"
+@incollection{mycollection} //resource, not peritext metadata
+@peritextincollection{mycollection} //metadata, because it begins with "peritext"
 ```
 
-The second just after the opening bracket (eg ``incollection``) would describe a ``cite_key`` in regular BibTeX : **in Modulo the citeKey is central, and should be also used as the slug of this section, usable to reference it in other content sections or for other purposes** - slug is an internal metadata. **All citeKeys should be unique along a whole document**.
+The second just after the opening bracket (eg ``incollection``) would describe a ``cite_key`` in regular BibTeX : **in Peritext the citeKey is central, and should be also used as the slug of this section, usable to reference it in other content sections or for other purposes** - slug is an internal metadata. **All citeKeys should be unique along a whole document**.
 
-Then follows a collection of key+value pairs, that Modulo respects but also extends for its own purposes.
+Then follows a collection of key+value pairs, that Peritext respects but also extends for its own purposes.
 
-Modulo follows and extends BibTex syntax to other types following a systematic syntax featuring three different information pieces :
+Peritext follows and extends BibTex syntax to other types following a systematic syntax featuring three different information pieces :
 
 *  the domain of the meta property (example: "general", "dublincore", "twitter", ...)
 * the key of the property to specify (example: "title")
@@ -139,32 +139,32 @@ There is a specific domain for metadata which deals with the organization of the
 
 Each bibtex starts with the specification of a type of item.
 
-In Modulo only the root metadata should mandatorily comply to established BibTeX types, so that it should be either :
+In Peritext only the root metadata should mandatorily comply to established BibTeX types, so that it should be either :
 * ``@book``
 * ``@proceedings``
 * ...
 
 ```
-@modulobook
+@peritextbook
 ```
 
 By default, subparts should be typed as ``section`` and their type should be derived from parent (if parent is ``@book``, children section will be ``@bookchapter``, and so on ...).
 
 However it should be possible to not use the ``section`` feature (allowing to build, for instance, a collection of several ``@book`` with Dicto).
 
-* a metadata property is recognized by the fact that its type begins by ``@modulo_``
-* the word after ``@modulo_`` belongs to traditional bibTeX typology
+* a metadata property is recognized by the fact that its type begins by ``@peritext_``
+* the word after ``@peritext_`` belongs to traditional bibTeX typology
 
 
 There is a special type used for inheritance : 
-* ``@modulo_section`` - when using this one, section type is guessed from an inheritance system
+* ``@peritext_section`` - when using this one, section type is guessed from an inheritance system
 
 There are several types that are proposed that don't belong to ``BibTex`` standard typology :
 * ``inherits`` : occurs when a section is specified as the child of an item which should not have citation child (for instance : an article)
 * ``collection`` : typically : a books collection, a journal issue, etc ...
 
 
-The model of accepted types should contain therefore the type of possible children ``@modulosection`` and the default type to apply when root is a ``@modulosection``
+The model of accepted types should contain therefore the type of possible children ``@peritextsection`` and the default type to apply when root is a ``@peritextsection``
 
 ### The case of authors
 
@@ -221,7 +221,7 @@ This demonstrate that when we deal with a text organization everything can not b
 But sequentiality does not suffice to assert that 'Introduction' is less general than 'Part 1' (information that could graphically be coded as a larger left-gutter distance). We therefore need a **generality** parameter for structuring information.
 To finish with, we have nevertheless **inclusion or belonging** informations, that are distinct from the previous : Chapter 1 *belongs* to the Part 1, and is affected by it in a number of ways - for instance, it would share the same keywords, maybe the same author(s), or the same typographic setting, etc.
 
-Therefore, there are four types of organizational information that can be given to a Modulo's section :
+Therefore, there are four types of organizational information that can be given to a Peritext's section :
 * **identification information** : *this section will be identified by this expression*
 * **sequentiality information** : *this section follows that other section*
 * **generality information** : *this section is of that importance regarding its parent section* (think of html titles h1, h2, h3, ...)
@@ -235,7 +235,7 @@ Here is a list of organization metadata properties derived from this typology :
 E.g : 
 ```bibtex
 
-@modulosection{chapter2,
+@peritextsection{chapter2,
   title : "Chapter 2",
   after : "chapter1",
   parent : "part1"
@@ -245,7 +245,7 @@ E.g :
 
 
 *Personal note about that :*
-*This variety is provided in order to allow for a maximum flexibility in terms of organization of editorial content. Most text's digital representation paradigms stand between two extreme designs : considering a text as an unordered and linear sequence of characters, or considering it as a tree structure composed of parts, subparts, sub-subparts, etc. (e.g. : xml and other sgml-derivated formats). A third, more recent family abolishes completely the linearity or hierarchization of contents and deals with a set of small content elements handled as a flat graph structure in which 'paths' are specified to build on-the-fly linear experiences (e.g. Scalar). It seems to me a bit hard and too bold for intuitively building stories. With this part of Modulo's design I just want to "remediate", in a humble and analogy-minded manner, all the possibilities of print documents structures - and then take advantage of the potential of the digital in terms of reuse and navigation inside generated contents.*
+*This variety is provided in order to allow for a maximum flexibility in terms of organization of editorial content. Most text's digital representation paradigms stand between two extreme designs : considering a text as an unordered and linear sequence of characters, or considering it as a tree structure composed of parts, subparts, sub-subparts, etc. (e.g. : xml and other sgml-derivated formats). A third, more recent family abolishes completely the linearity or hierarchization of contents and deals with a set of small content elements handled as a flat graph structure in which 'paths' are specified to build on-the-fly linear experiences (e.g. Scalar). It seems to me a bit hard and too bold for intuitively building stories. With this part of Peritext's design I just want to "remediate", in a humble and analogy-minded manner, all the possibilities of print documents structures - and then take advantage of the potential of the digital in terms of reuse and navigation inside generated contents.*
 
 
 #### WIP points & open questions
@@ -313,7 +313,7 @@ Which gives us for a property description :
 
 ## Properties lateral propagation
 
-Modulo is supposed to be smart and **disseminate similar metadata accross metadata domains** if not specified otherwise. For example, the "title" property should automatically spread to "dublincore:title", "og:title", "twitter:title" ... if not specified otherwise later on in the metadata file.
+Peritext is supposed to be smart and **disseminate similar metadata accross metadata domains** if not specified otherwise. For example, the "title" property should automatically spread to "dublincore:title", "og:title", "twitter:title" ... if not specified otherwise later on in the metadata file.
 
 See source's ``src/core/models/metadataModel.json`` to see the WIP lateral propagation system.
 

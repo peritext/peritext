@@ -28,11 +28,11 @@ export default class StaticEndNotes extends React.Component {
   render() {
     return (
       <section
-        className={'modulo-contents-notes modulo-contents-notes-' + this.props.classSuffix}
+        className={'peritext-contents-notes peritext-contents-notes-' + this.props.classSuffix}
       >
-        {this.props.notes.length > 0 ? <h4 className="modulo-contents-notes-title">Notes</h4> : ''}
+        {this.props.notes.length > 0 ? <h4 className="peritext-contents-notes-title">Notes</h4> : ''}
 
-        <div className="modulo-contents-notes-container">
+        <div className="peritext-contents-notes-container">
           {this.props.notes.map((note, noteIndex)=> {
             return <StaticNote key={noteIndex} sectionCitekey={note.sectionCitekey} notesCount={note.notesCount} noteContent={note.noteContent} />;
           })}

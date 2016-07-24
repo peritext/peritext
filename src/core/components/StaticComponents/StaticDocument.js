@@ -93,7 +93,7 @@ export default class StaticDocument extends React.Component {
           }
 
           <section
-            className="modulo-contents-section-contents"
+            className="peritext-contents-section-contents"
             dangerouslySetInnerHTML={{
               __html: this.props.sections[0].outputHtml
             }}

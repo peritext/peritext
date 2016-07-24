@@ -7,19 +7,19 @@
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
-  
-  
+
+
   <script src="script/manual.js"></script>
 </head>
 <body class="layout-container" data-ice="rootContainer">
 
 <header>
   <a href="./">Home</a>
-  
+
   <a href="identifiers.html">Reference</a>
   <a href="source.html">Source</a>
-  
-  <a data-ice="repoURL" href="https://github.com/robindemourat/modulo" class="repo-url-github">Repository</a>
+
+  <a data-ice="repoURL" href="https://github.com/robindemourat/peritext" class="repo-url-github">Repository</a>
   <div class="search-box">
   <span>
     <img src="./image/search.png">
@@ -31,7 +31,7 @@
 
 <nav class="navigation" data-ice="nav"><div>
   <ul>
-    
+
   <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/HyperLink.jsx~HyperLink.html">HyperLink</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/ImageFigure.jsx~ImageFigure.html">ImageFigure</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/ImageGallery.jsx~ImageGallery.html">ImageGallery</a></span></span></li>
@@ -83,13 +83,13 @@ export default class WebsitePoster extends React.Component {
     return (
             &lt;figure
               role=&quot;group&quot;
-              className=&quot;modulo-contents-website-poster modulo-contents-figure&quot;
+              className=&quot;peritext-contents-website-poster peritext-contents-figure&quot;
               itemScope
               itemProp=&quot;citation&quot;
               itemType={&apos;http://schema.org/&apos; + this.props.schematype}
               typeof={this.props.schematype}
               resource={&apos;#&apos; + this.props.resource.citeKey}
-              id={this.props.figureNumber ? &apos;modulo-contents-figure-&apos; + this.props.figureNumber : undefined }
+              id={this.props.figureNumber ? &apos;peritext-contents-figure-&apos; + this.props.figureNumber : undefined }
             &gt;
               &lt;span
                 itemProp=&quot;name&quot;

@@ -1,7 +1,7 @@
-Modulo documentation | The resource-contextualizer-contextualization | WIP
+Peritext documentation | The resource-contextualizer-contextualization | WIP
 ====
 
-![Modulo resource model in one image](https://raw.githubusercontent.com/robindemourat/modulo/master/specification/assets/modulo-context.png)
+![Peritext resource model in one image](https://raw.githubusercontent.com/robindemourat/peritext/master/specification/assets/peritext-context.png)
 
 
 The RCC model is a way to reason about digital scholarly argumentation through an homogen and still flexible document model.
@@ -36,7 +36,7 @@ A resource definition specifies immutable and meta-level information about it, s
 
 The syntax used to describe resources is derivated from ``bibTeX`` syntax, the way of describing bibliographical references in ``LaTeX`` environments.
 
-Therefore, **modulo resource definition syntax is not a brand new syntax but an extension of the bibText syntax to the description of data sources, images, entities, etc. and so on.**
+Therefore, **peritext resource definition syntax is not a brand new syntax but an extension of the bibText syntax to the description of data sources, images, entities, etc. and so on.**
 
 Example of several resources inside a ``.bib`` file :
 
@@ -97,7 +97,7 @@ In both cases they are composed of the three following parts :
 * resource identificator inside () - **required**
 * resource contextualizer (short or long version - see below) inside {} - **optional**
 
-In modulo default interface behaviour, primary figures are triggered through scroll, and secondary figures through click (as a <a> hyperlink).
+In peritext default interface behaviour, primary figures are triggered through scroll, and secondary figures through click (as a <a> hyperlink).
 
 Syntax of an inline resource contextualization  :
 
@@ -228,7 +228,7 @@ Here the original timeline contextualizer ends at 2012-30-01, but is *overloaded
 
 On-the-fly contextualizers are un-named contextualizers that just attach some extra info to the default contextualization params.
 
-On-the-fly have **no explicit citeKey** even if they are given one by Modulo engine. All the default params are applied if not specified otherwise.
+On-the-fly have **no explicit citeKey** even if they are given one by Peritext engine. All the default params are applied if not specified otherwise.
 
 Example of an on-the-fly contextualizer, specified inline in ``content.md`` just after the contextualization assertion : 
 
@@ -357,7 +357,7 @@ When dealing with tabular data (for visualization contextualizers for instance),
 
 #### Accessors in string fields
 
-If ``@res`` is used inside a string field, it will be interpreted as an accessor and resolved. If Modulo fails to resolve the assertion, it will leave it as is.
+If ``@res`` is used inside a string field, it will be interpreted as an accessor and resolved. If Peritext fails to resolve the assertion, it will leave it as is.
 
 ## Contextualizers' types' description
 

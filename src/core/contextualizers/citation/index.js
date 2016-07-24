@@ -76,7 +76,7 @@ export function contextualizeInlineStatic(inputSection, inputContextualization, 
       if (block.tagType === 'blockquote') {
         outputHtml = block.html.trim().substr(0, block.html.length - '</blockquote>'.length) + '<footer>' + expression + '</footer></blockquote>';
       } else {
-        const newExpression = (withQuotes ? '<q id="' + contextualization.citeKey + '"  class="modulo-contents-inline-quoted">' + match[1] + '</q> (' : '') + expression;
+        const newExpression = (withQuotes ? '<q id="' + contextualization.citeKey + '"  class="peritext-contents-inline-quoted">' + match[1] + '</q> (' : '') + expression;
         outputHtml = block.html.substr(0, match.index) + newExpression + (withQuotes ? ')' : '') + block.html.substr(match.index + match[0].length);
       }
       const output = {

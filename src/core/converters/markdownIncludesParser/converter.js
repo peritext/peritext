@@ -1,6 +1,6 @@
 /**
  * This module analyses special markdown insertions (includes and resources)
- * Takes a modulo-markdown string + syntax params as input
+ * Takes a peritext-markdown string + syntax params as input
  * Parses inline resources expressions
  * Parses ``include`` statements
  * Returns cleaned string, plus a list of include statements and resources to parse

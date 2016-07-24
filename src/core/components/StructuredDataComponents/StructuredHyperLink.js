@@ -37,7 +37,7 @@ export default class StructuredHyperLink extends React.Component {
       display: 'none'
     };
     return (
-            <a className="modulo-contents-hyperlink"
+            <a className="peritext-contents-hyperlink"
                 itemScope
                 itemProp={this.props.property}
                 itemType={'http://schema.org/' + this.props.schematype}

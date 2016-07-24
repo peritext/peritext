@@ -37,7 +37,7 @@ export default class StaticSection extends React.Component {
     const citeKey = getMetaValue(this.props.section.metadata, 'general', 'citeKey');
     return (
       <section
-        className={'modulo-contents-section modulo-contents-section-level-' + getMetaValue(this.props.section.metadata, 'general', 'generalityLevel')}
+        className={'peritext-contents-section peritext-contents-section-level-' + getMetaValue(this.props.section.metadata, 'general', 'generalityLevel')}
         id={getMetaValue(this.props.section.metadata, 'general', 'citeKey')}
         itemScope
         itemType={'http://schema.org/' + bibType}
@@ -48,7 +48,7 @@ export default class StaticSection extends React.Component {
       >
         <StructuredMetadataPlaceholder section={this.props.section} />
         <section
-          className="modulo-contents-section-contents"
+          className="peritext-contents-section-contents"
           dangerouslySetInnerHTML={{
             __html: this.props.section.outputHtml
           }}

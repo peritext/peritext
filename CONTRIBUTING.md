@@ -13,6 +13,6 @@ Unit tests are written in a ``test`` folder which is a mirror of the ``src`` fol
 
 # Committing
 
-Be sure to use commitizen (``git cz`` instead of ``git commit``) while contributing to Modulo, in order to document your commits properly.
+Be sure to use commitizen (``git cz`` instead of ``git commit``) while contributing to Peritext, in order to document your commits properly.
 
-Modulo uses precommit to test and lint your code before allowing a commit to happen on the code: let's keep the project clean !
+Peritext uses precommit to test and lint your code before allowing a commit to happen on the code: let's keep the project clean !

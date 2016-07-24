@@ -53,7 +53,7 @@ export default class StructuredPublisher extends React.Component {
   render() {
     return (
       <span
-        className="modulo-contents-publisher"
+        className="peritext-contents-publisher"
         itemProp={this.props.property}
         property={this.props.property}
         itemScope

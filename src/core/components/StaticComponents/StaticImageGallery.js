@@ -37,15 +37,15 @@ export default class StaticImageGallery extends React.Component {
     return (
             <figure
               role="group"
-              className="modulo-contents-figures-gallery modulo-contents-figure"
+              className="peritext-contents-figures-gallery peritext-contents-figure"
               itemScope
               itemProp="citation"
               itemType={'http://schema.org/' + this.props.schematype}
               typeof={this.props.schematype}
-              resource={this.props.figureNumber ? 'modulo-contents-figure-' + this.props.figureNumber : undefined }
-              id={this.props.figureNumber ? 'modulo-contents-figure-' + this.props.figureNumber : undefined }
+              resource={this.props.figureNumber ? 'peritext-contents-figure-' + this.props.figureNumber : undefined }
+              id={this.props.figureNumber ? 'peritext-contents-figure-' + this.props.figureNumber : undefined }
             >
-              <div className="modulo-contents-figures-wrapper">
+              <div className="peritext-contents-figures-wrapper">
                 {this.props.resources.map((resource)=>{
                   return <StaticImageFigure resource={resource} key={resource.citeKey} />;
                 })}

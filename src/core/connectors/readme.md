@@ -1,4 +1,4 @@
-Connectors are an interface between a Modulo engine and its data sources. They consistently expose an low-level API allowing them to become content, assets or annotations data sources.
+Connectors are an interface between a Peritext engine and its data sources. They consistently expose an low-level API allowing them to become content, assets or annotations data sources.
 
 Flat-file data connectors (for contents and assets data sources) should handle the following operations :
 * create a file or folder

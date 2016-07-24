@@ -1,2 +1,2 @@
-Controllers handle the link between Modulo's logic and connectors' low-level logic.
+Controllers handle the link between Peritext's logic and connectors' low-level logic.
 

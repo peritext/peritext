@@ -57,7 +57,7 @@ export function formatSimpleProp(object, objectKey, propName, tagType = 'span', 
   if (object[objectKey]) {
     return '<'
     + tagType
-    + ' class="modulo-contents-citation-' + objectKey
+    + ' class="peritext-contents-citation-' + objectKey
     + '" itemprop="'
     + propName
     + '" property="'
@@ -78,7 +78,7 @@ export function formatSimpleProp(object, objectKey, propName, tagType = 'span', 
 export function formatEntityProp(object, propName, propType, tagType = 'span') {
   return [('<'
     + tagType
-    + ' class="modulo-contents-citation-' + propName
+    + ' class="peritext-contents-citation-' + propName
     + '" itemscope itemprop="'
     + propName
     + '" property="'
@@ -99,7 +99,7 @@ export function formatEntityProp(object, propName, propType, tagType = 'span') {
  */
 
 export function formatTitle(resource) {
-  return '<cite class="modulo-contents-citation-title" property="name" itemprop="name">' + resource.title + '</cite>';
+  return '<cite class="peritext-contents-citation-title" property="name" itemprop="name">' + resource.title + '</cite>';
 }
 
 export function formatDate(resource, mod) {
@@ -120,12 +120,12 @@ export function formatDate(resource, mod) {
       }
     }
   }
-  return val.length ? '<time class="modulo-contents-citation-date" property="datePublished" itemprop="datePublished" datetime="' + val + '">' + val + '</time>' : '';
+  return val.length ? '<time class="peritext-contents-citation-date" property="datePublished" itemprop="datePublished" datetime="' + val + '">' + val + '</time>' : '';
 }
 
 export function formatPages(resource) {
   const pages = resource.pages.split(/[-–]/);
-  return 'p.<span class="modulo-contents-citation-pages" itemprop="pageStart" property="pageStart">' + pages[0] + '</span>-<span itemprop="pageEnd" property="pageEnd">' + pages[1] + '</span>';
+  return 'p.<span class="peritext-contents-citation-pages" itemprop="pageStart" property="pageStart">' + pages[0] + '</span>-<span itemprop="pageEnd" property="pageEnd">' + pages[1] + '</span>';
 }
 
 
@@ -161,20 +161,20 @@ export function formatAuthor(author, pattern) {
       vals.lastName = vals.lastName.toUpperCase();
     }
   }
-  const wrappers = ['<span class="modulo-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person">',
+  const wrappers = ['<span class="peritext-contents-citation-author" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author"  typeof="Person">',
                     '</span>'];
-  vals.firstName = '<span class="modulo-contents-citation-author-firstname" itemprop="givenName" property="givenName" >' + vals.firstName + '</span>';
-  vals.lastName = '<span class="modulo-contents-citation-author-lastname" itemprop="familyName" property="familyName" >' + vals.lastName + '</span>';
+  vals.firstName = '<span class="peritext-contents-citation-author-firstname" itemprop="givenName" property="givenName" >' + vals.firstName + '</span>';
+  vals.lastName = '<span class="peritext-contents-citation-author-lastname" itemprop="familyName" property="familyName" >' + vals.lastName + '</span>';
   // todo: process pattern
   return wrappers[0] + pattern.replace(/(\${firstName(:[^}]*)?})/, vals.firstName).replace(/(\${lastName(:[^}]*)?})/, vals.lastName) + wrappers[1];
 }
 
 export function formatDoi(resource, pattern) {
-  return pattern.replace('${doi}', '<a class="modulo-contents-citation-doi" itemprop="sameAs" property="sameAs" href="http://dx.doi.org/' + resource.doi + '">' + resource.doi + '</a>');
+  return pattern.replace('${doi}', '<a class="peritext-contents-citation-doi" itemprop="sameAs" property="sameAs" href="http://dx.doi.org/' + resource.doi + '">' + resource.doi + '</a>');
 }
 
 export function formatUrl(resource, pattern) {
-  return pattern.replace('${url}', '<a class="modulo-contents-citation-url" itemprop="url" property="url" href="' + resource.url + '">' + resource.url + '</a>');
+  return pattern.replace('${url}', '<a class="peritext-contents-citation-url" itemprop="url" property="url" href="' + resource.url + '">' + resource.url + '</a>');
 }
 
 // Handling nested description of parent journal
@@ -183,17 +183,17 @@ export function formatUrl(resource, pattern) {
 // Example of corresponding pattern:
 // ${journal}, ${date}, ${volume}(${issue}). ISSN : ${issn};
 export function formatParentJournal(resource, pattern) {
-  const journalExpression = ['<span class="modulo-contents-citation-journal" itemprop="isPartOf" itemscope itemtype="http://schema.org/Periodical" typeof="Periodical">',
+  const journalExpression = ['<span class="peritext-contents-citation-journal" itemprop="isPartOf" itemscope itemtype="http://schema.org/Periodical" typeof="Periodical">',
                               '<span itemprop="name" property="name">',
                               '</span>',
                               '</span>'
                               ];
-  const volumeExpression = ['<span class="modulo-contents-citation-volume" itemscope itemprop="hasPart" itemtype="http://schema.org/PublicationVolume" typeof="PublicationVolume">',
+  const volumeExpression = ['<span class="peritext-contents-citation-volume" itemscope itemprop="hasPart" itemtype="http://schema.org/PublicationVolume" typeof="PublicationVolume">',
                               '<span itemprop="volumeNumber" property="volumeNumber">',
                               '</span>',
                               '</span>'
                               ];
-  const issueExpression = ['<span class="modulo-contents-citation-issue" itemscope itemprop="hasPart" itemtype="http://schema.org/PublicationIssue" typeof="PublicationIssue">',
+  const issueExpression = ['<span class="peritext-contents-citation-issue" itemscope itemprop="hasPart" itemtype="http://schema.org/PublicationIssue" typeof="PublicationIssue">',
                               '<span itemprop="issueNumber" property="issueNumber">',
                               '</span>',
                               '</span>'
@@ -220,7 +220,7 @@ export function formatParentJournal(resource, pattern) {
 
 // ${publisher} : ${address}
 export function formatPublisher(resource, pattern) {
-  const publisherExpression = ['<span class="modulo-contents-citation-publisher" itemprop="publisher" value="publisher" itemscope itemtype="http://schema.org/Organization" typeof="Organization">',
+  const publisherExpression = ['<span class="peritext-contents-citation-publisher" itemprop="publisher" value="publisher" itemscope itemtype="http://schema.org/Organization" typeof="Organization">',
                               '<span itemprop="name" property="name">',
                               '</span>',
                               '</span>'
@@ -244,7 +244,7 @@ export function setSectionMeta(section) {
 }
 
 export function metadataToSchema(section) {
-  let output = '<div class="modulo-contents-schema-metadata-placeholder" style="visibility:hidden">';
+  let output = '<div class="peritext-contents-schema-metadata-placeholder" style="visibility:hidden">';
   const meta = section.metadata.filter((prop) =>{
     return prop.domain === 'general';
   }).reduce((obj, prop) =>{

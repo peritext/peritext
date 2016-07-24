@@ -15,12 +15,12 @@ q
     quotes: '«' ' »' '\2039 ' ' \203A';
 }
 
-.modulo-contents-inline-quoted::before
+.peritext-contents-inline-quoted::before
 {
     content: '\00AB ';
 }
 
-.modulo-contents-inline-quoted::after
+.peritext-contents-inline-quoted::after
 {
     content: ' \00BB';
 }

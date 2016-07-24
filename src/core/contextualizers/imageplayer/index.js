@@ -41,7 +41,7 @@ export function contextualizeInlineStatic(inputSection, contextualization, rende
   let newContents = section.contents.map((block, index) =>{
     match = block.html.match(elRe);
     if (match) {
-      const outputHtml = block.html.substr(0, match.index) + match[1] + ' (<a class="modulo-contents-figure-pointer" href="#modulo-contents-figure-' + figureNumber + '">figure ' + figureNumber + '</a>)' + block.html.substr(match.index + match[0].length);
+      const outputHtml = block.html.substr(0, match.index) + match[1] + ' (<a class="peritext-contents-figure-pointer" href="#peritext-contents-figure-' + figureNumber + '">figure ' + figureNumber + '</a>)' + block.html.substr(match.index + match[0].length);
       if (firstMentionIndex === undefined) {
         firstMentionIndex = index;
       }

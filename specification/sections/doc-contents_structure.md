@@ -1,10 +1,10 @@
-Modulo documentation | contents structure | WIP
+Peritext documentation | contents structure | WIP
 =================
 
 
-Modulo presents a two-level file structure in which the root corresponds to the entire document (book/thesis/monograph) and subfolders correspond each to one section (chapter, article, ...).
+Peritext presents a two-level file structure in which the root corresponds to the entire document (book/thesis/monograph) and subfolders correspond each to one section (chapter, article, ...).
 
-**During the flatfile-to-modulo transformation process**, all sections (root and subsections) are gathered in one flat array of sections. Each section contains informations about its relations to other sections (child or parent section, preceding section, ...).
+**During the flatfile-to-peritext transformation process**, all sections (root and subsections) are gathered in one flat array of sections. Each section contains informations about its relations to other sections (child or parent section, preceding section, ...).
 
 # Types of folders
 
@@ -32,14 +32,14 @@ Content folders must contain to types of files :
 **Each content folder must include a ``content.md`` main file which be used as the entrance to markdown contents of this folder.** 
 
 **Each content folder can include additionnal ``.md`` files** are used to display content :
-* the modulo transformation algorithm first looks for ``include`` statements in order to include files in one another, starting with the ones inside ``content.md``
+* the peritext transformation algorithm first looks for ``include`` statements in order to include files in one another, starting with the ones inside ``content.md``
 * then, once all ``include`` are resolved, it includes automatically at the end of content the remaining contents, using filename's alphabetical order for ordering
 
 **Each content folder can include one or several ``.bib`` files, which are concatenated in filename's alphabetical order** and then processed.
 
 BibTeX objects describe two categories of objects :
-* **modulo sections metadata** : each BibTeX object of which filename begins with ``modulo`` (e.g. : ``modulobook``) is a description of the curent section-folder metadata (e.g. : author, title, keywords, ...)
-* **modulo resources description** : bibliographical records, static or dynamic data source description, entity description.
+* **peritext sections metadata** : each BibTeX object of which filename begins with ``peritext`` (e.g. : ``peritextbook``) is a description of the curent section-folder metadata (e.g. : author, title, keywords, ...)
+* **peritext resources description** : bibliographical records, static or dynamic data source description, entity description.
 
 ## Contents ordering and sections hierarchization
 

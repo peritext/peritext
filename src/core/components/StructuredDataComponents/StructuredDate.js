@@ -43,7 +43,7 @@ export default class StructuredDate extends React.Component {
     const finalValue = this.setFinalValue(this.props.value, this.props.modificator);
     return (
       <time
-        className="modulo-contents-date"
+        className="peritext-contents-date"
         property={this.props.property}
         itemProp={this.props.property}
         dateTime={finalValue}

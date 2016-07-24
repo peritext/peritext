@@ -1,26 +1,26 @@
 window.esdocSearchIndex = [
   [
-    "modulo-core/components/hyperlink.jsx~hyperlink",
+    "peritext-core/components/hyperlink.jsx~hyperlink",
     "class/components/HyperLink.jsx~HyperLink.html",
-    "<span>HyperLink</span> <span class=\"search-result-import-path\">modulo-core/components/HyperLink.jsx</span>",
+    "<span>HyperLink</span> <span class=\"search-result-import-path\">peritext-core/components/HyperLink.jsx</span>",
     "class"
   ],
   [
-    "modulo-core/components/imagefigure.jsx~imagefigure",
+    "peritext-core/components/imagefigure.jsx~imagefigure",
     "class/components/ImageFigure.jsx~ImageFigure.html",
-    "<span>ImageFigure</span> <span class=\"search-result-import-path\">modulo-core/components/ImageFigure.jsx</span>",
+    "<span>ImageFigure</span> <span class=\"search-result-import-path\">peritext-core/components/ImageFigure.jsx</span>",
     "class"
   ],
   [
-    "modulo-core/components/imagegallery.jsx~imagegallery",
+    "peritext-core/components/imagegallery.jsx~imagegallery",
     "class/components/ImageGallery.jsx~ImageGallery.html",
-    "<span>ImageGallery</span> <span class=\"search-result-import-path\">modulo-core/components/ImageGallery.jsx</span>",
+    "<span>ImageGallery</span> <span class=\"search-result-import-path\">peritext-core/components/ImageGallery.jsx</span>",
     "class"
   ],
   [
-    "modulo-core/components/websiteposter.jsx~websiteposter",
+    "peritext-core/components/websiteposter.jsx~websiteposter",
     "class/components/WebsitePoster.jsx~WebsitePoster.html",
-    "<span>WebsitePoster</span> <span class=\"search-result-import-path\">modulo-core/components/WebsitePoster.jsx</span>",
+    "<span>WebsitePoster</span> <span class=\"search-result-import-path\">peritext-core/components/WebsitePoster.jsx</span>",
     "class"
   ],
   [

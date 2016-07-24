@@ -1,4 +1,4 @@
-Modulo documentation | technical reflections | WIP
+Peritext documentation | technical reflections | WIP
 =================
 
 
@@ -6,7 +6,7 @@ Modulo documentation | technical reflections | WIP
 
 Modularity of the data parsing model and data access:
 
-* modulo is purposed to be source-agnostic, and not indispensable for source reviewing (data should be easily readable without using modulo)
+* peritext is purposed to be source-agnostic, and not indispensable for source reviewing (data should be easily readable without using peritext)
 * data access, data management and data processing should be separated
 * data models (for metadata, markdown, referencing) should be encoded in separate data files (.csv, .json) from the code
 * external resources transactions (zotero, google spreadsheet ...) should be clearly separated from the core of the engine
@@ -39,7 +39,7 @@ Scalability and project evolution:
 
 # Global architecture : flux/redux architecture
 
-![Modulo architecture](https://raw.githubusercontent.com/robindemourat/modulo/master/specification/assets/modulo-architecture.png)
+![Peritext architecture](https://raw.githubusercontent.com/robindemourat/peritext/master/specification/assets/peritext-architecture.png)
 
 # Technological stack survey
 
@@ -119,12 +119,12 @@ There are three different data source supporting different needs.
 **Assets source (eg=Amazon s3)** represents all assets being used in resources and figures. They are typically images, videos, data files, and so on ...
 
 **Annotation source (default=Disqus)** is used to allow for comments on specific entities of the document (paragraphs / figures / citations / ...). For the future two things must be kept in mind :
-* in the future of the project, read/write and git-based version of modulo, comments should be able to be targeted both at a specific entity and a specific record of the publication
+* in the future of the project, read/write and git-based version of peritext, comments should be able to be targeted both at a specific entity and a specific record of the publication
 * ideally, it could be great to add a layer on top of discussion system (through inline syntax ?) in order to support more precise contributions : support the editorial process (change suggestions, ...), opinion giving, fact-checking, linking to another entity of the publication, ...
 
-# Modulo document model
+# Peritext document model
 
-Modulo is made of sections. Each section is a linear "part" of the document to display, figuring either a chapter, a section, or even a paragraph if the writer wants to go to this level of granularity.
+Peritext is made of sections. Each section is a linear "part" of the document to display, figuring either a chapter, a section, or even a paragraph if the writer wants to go to this level of granularity.
 
 Each section is made of several types of data :
 * *metadata* : title, author, abstract, ...
@@ -138,7 +138,7 @@ Each section inherits by default some data (like metadata) from the root section
 
 However, some elements of the contents will be repeatedly called in the document within several times : images, bibliographical references, data sources visualized in different ways.
 
-That's why we should separate "resources" and "resources contextualization" through "contextualizers" in modulo's conceptual model.
+That's why we should separate "resources" and "resources contextualization" through "contextualizers" in peritext's conceptual model.
 
 "Resources" are of several types :
 * **bibliographical records** : books, documents, ...
@@ -234,7 +234,7 @@ It will take as input a String representing the metadata of a folder, and its ty
 
 # Outputs
 
-From a moduloSectionsList, outputs allow to render the document or a section of the document in a certain way (pdf, epub, react app, ...).
+From a peritextSectionsList, outputs allow to render the document or a section of the document in a certain way (pdf, epub, react app, ...).
 
 This is where document customizers (e.g. : css styles) are resolved, citation style is applied, and contextualizations are resolved to add content in the body (html code, footnotes, plain svg, dynamic React components calls, ...).
 

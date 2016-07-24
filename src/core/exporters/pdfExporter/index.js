@@ -1,5 +1,5 @@
 /**
- * This module inputs a specific modulo section, including possibly its children sections
+ * This module inputs a specific peritext section, including possibly its children sections
  * and outputs a pdf file ready to display.
  * The converter used is PrinceXML non-commercial version.
  * After endless trials with free software converters such as wkhtmltopdf, weasyprint or phantomjs-pdf,

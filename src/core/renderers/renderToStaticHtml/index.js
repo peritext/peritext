@@ -85,7 +85,7 @@ export default function renderSection({
       }
 
       if (renderingParams.notesPosition === 'footnotes') {
-        style += `.modulo-contents-note-content
+        style += `.peritext-contents-note-content
                 {
                     display: prince-footnote;
                     counter-increment: footnote;
@@ -117,7 +117,7 @@ export default function renderSection({
                     })
                     .reduce((exp, meta) =>{
                       return exp + meta.htmlHead;
-                    }, '') + '<meta name="generator" content="modulo"/>';
+                    }, '') + '<meta name="generator" content="peritext"/>';
 
       // cover handling
       const sectionType = getMetaValue(sections[0].metadata, 'general', 'bibType');

@@ -1,5 +1,5 @@
 /**
- * This module converts an fsTree flatfile abstraction to a documentTree modulo document abstraction
+ * This module converts an fsTree flatfile abstraction to a documentTree peritext document abstraction
  */
 
 import {waterfall, map as asyncMap} from 'async';
@@ -30,7 +30,7 @@ function concatSection({section, models}, callback) {
     } else obj[key] = thatMetadata.value;
     return obj;
   }, {});
-  metadata.bibType = 'modulo' + metadata.bibType;
+  metadata.bibType = 'peritext' + metadata.bibType;
   let root;
   if (section.parent) {
     metadata.parent = section.parent;
