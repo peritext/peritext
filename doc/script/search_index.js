@@ -54,6 +54,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "peritext/components/staticcomponents/statictableoffigures.js~statictableoffigures",
+    "class/components/StaticComponents/StaticTableOfFigures.js~StaticTableOfFigures.html",
+    "<span>StaticTableOfFigures</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticTableOfFigures.js</span>",
+    "class"
+  ],
+  [
     "peritext/components/structureddatacomponents/structuredcite.js~structuredcite",
     "class/components/StructuredDataComponents/StructuredCite.js~StructuredCite.html",
     "<span>StructuredCite</span> <span class=\"search-result-import-path\">peritext/components/StructuredDataComponents/StructuredCite.js</span>",
@@ -555,6 +561,18 @@ window.esdocSearchIndex = [
     "components/staticcomponents/statictableofcontents.js~statictableofcontents#render",
     "class/components/StaticComponents/StaticTableOfContents.js~StaticTableOfContents.html#instance-method-render",
     "components/StaticComponents/StaticTableOfContents.js~StaticTableOfContents#render",
+    "method"
+  ],
+  [
+    "components/staticcomponents/statictableoffigures.js",
+    "file/components/StaticComponents/StaticTableOfFigures.js.html",
+    "components/StaticComponents/StaticTableOfFigures.js",
+    "file"
+  ],
+  [
+    "components/staticcomponents/statictableoffigures.js~statictableoffigures#render",
+    "class/components/StaticComponents/StaticTableOfFigures.js~StaticTableOfFigures.html#instance-method-render",
+    "components/StaticComponents/StaticTableOfFigures.js~StaticTableOfFigures#render",
     "method"
   ],
   [

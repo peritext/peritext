@@ -9,10 +9,8 @@ import {
   StaticFrontCover,
   StaticSection,
   StaticTableOfContents,
-  StructuredDate,
-  StructuredMetadataPlaceholder,
-  StructuredPerson,
-  StructuredSpan,
+  StaticTableOfFigures,
+  StructuredMetadataPlaceholder
 } from './../index.js';
 
 // let styles = {};
@@ -50,6 +48,18 @@ export default class StaticDocument extends React.Component {
         level: getMetaValue(thisSection.metadata, 'general', 'generalityLevel')
       };
     });
+
+    const figuresTableData = this.props.sections.reduce((figures, section)=> {
+      const figuresL = section.contextualizations.filter((cont)=> {
+        return cont.figureNumber !== undefined;
+      }).map((cont)=> {
+        return {
+          id: 'peritext-contents-figure-' + cont.figureNumber,
+          number: cont.figureNumber
+        };
+      });
+      return figures.concat(figuresL);
+    }, []);
     return (
         <section
           itemScope
@@ -69,6 +79,12 @@ export default class StaticDocument extends React.Component {
           {
             this.props.renderingParams.tocPosition === 'begining' ?
             <StaticTableOfContents elements={tocData} level={getMetaValue(this.props.sections[0].metadata, 'general', 'generalityLevel')} />
+            : ''
+          }
+
+          {
+            this.props.renderingParams.figuresTablePosition === 'begining' ?
+            <StaticTableOfFigures elements={figuresTableData} />
             : ''
           }
 
@@ -102,6 +118,12 @@ export default class StaticDocument extends React.Component {
                 }, [])
               }
             /> : ''
+          }
+
+          {
+            this.props.renderingParams.figuresTablePosition === 'end' ?
+            <StaticTableOfFigures elements={figuresTableData} />
+            : ''
           }
 
           {

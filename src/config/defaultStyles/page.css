@@ -29,7 +29,6 @@ img
 
 .peritext-contents-figures-wrapper
 {
-    width : 100%;
     display: -webkit-box;
     display:    -moz-box;
     display: -ms-flexbox;
@@ -37,6 +36,7 @@ img
     display:         flex;
     flex-direction: row;
 
+    width: 100%;
     width: 100%;
 
     -webkit-box-orient: horizontal;
@@ -74,7 +74,7 @@ img
 
 .peritext-contents-figures-wrapper img
 {
-    width : auto;
+    width: auto;
 }
 
 @page
@@ -85,12 +85,24 @@ img
     }
 }
 
-
-#toc a::after {
-    content: leader(".") target-counter(attr(href), page);
+#toc,
+#table-of-figures
+{
+    page-break-before: always;
+    page-break-after: always;
 }
 
-#toc
+#table-of-contents a::after
+{
+    content: leader('.') target-counter(attr(href), page);
+}
+
+#table-of-figures a::after
+{
+    content: leader('.') target-counter(attr(href), page);
+}
+
+#table-of-figures
 {
     page-break-after: always;
 }

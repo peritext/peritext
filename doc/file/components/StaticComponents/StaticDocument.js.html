@@ -41,6 +41,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/StaticComponents/StaticNote.js~StaticNote.html">StaticNote</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/StaticComponents/StaticSection.js~StaticSection.html">StaticSection</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/StaticComponents/StaticTableOfContents.js~StaticTableOfContents.html">StaticTableOfContents</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/StaticComponents/StaticTableOfFigures.js~StaticTableOfFigures.html">StaticTableOfFigures</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/StaticComponents/StaticWebsitePoster.js~StructuredWebsitePoster.html">StructuredWebsitePoster</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">StructuredDataComponents</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/StructuredDataComponents/StructuredCite.js~StructuredCite.html">StructuredCite</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/StructuredDataComponents/StructuredDate.js~StructuredDate.html">StructuredDate</a></span></span></li>
@@ -66,10 +67,8 @@ import {
   StaticFrontCover,
   StaticSection,
   StaticTableOfContents,
-  StructuredDate,
-  StructuredMetadataPlaceholder,
-  StructuredPerson,
-  StructuredSpan,
+  StaticTableOfFigures,
+  StructuredMetadataPlaceholder
 } from &apos;./../index.js&apos;;
 
 // let styles = {};
@@ -107,6 +106,18 @@ export default class StaticDocument extends React.Component {
         level: getMetaValue(thisSection.metadata, &apos;general&apos;, &apos;generalityLevel&apos;)
       };
     });
+
+    const figuresTableData = this.props.sections.reduce((figures, section)=&gt; {
+      const figuresL = section.contextualizations.filter((cont)=&gt; {
+        return cont.figureNumber !== undefined;
+      }).map((cont)=&gt; {
+        return {
+          id: &apos;peritext-contents-figure-&apos; + cont.figureNumber,
+          number: cont.figureNumber
+        };
+      });
+      return figures.concat(figuresL);
+    }, []);
     return (
         &lt;section
           itemScope
@@ -126,6 +137,12 @@ export default class StaticDocument extends React.Component {
           {
             this.props.renderingParams.tocPosition === &apos;begining&apos; ?
             &lt;StaticTableOfContents elements={tocData} level={getMetaValue(this.props.sections[0].metadata, &apos;general&apos;, &apos;generalityLevel&apos;)} /&gt;
+            : &apos;&apos;
+          }
+
+          {
+            this.props.renderingParams.figuresTablePosition === &apos;begining&apos; ?
+            &lt;StaticTableOfFigures elements={figuresTableData} /&gt;
             : &apos;&apos;
           }
 
@@ -159,6 +176,12 @@ export default class StaticDocument extends React.Component {
                 }, [])
               }
             /&gt; : &apos;&apos;
+          }
+
+          {
+            this.props.renderingParams.figuresTablePosition === &apos;end&apos; ?
+            &lt;StaticTableOfFigures elements={figuresTableData} /&gt;
+            : &apos;&apos;
           }
 
           {

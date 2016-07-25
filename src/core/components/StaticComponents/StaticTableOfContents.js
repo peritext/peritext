@@ -1,13 +1,22 @@
 import React, {PropTypes} from 'react';
 import Radium from 'radium';
+import { intlShape, defineMessages } from 'react-intl';
 
 // let styles = {};
+
+const translate = defineMessages({
+  tableofcontents: {
+    id: 'table_of_contents',
+    description: 'Table of contents title',
+    defaultMessage: 'Table of contents',
+  }
+});
 
 /**
  * dumb component for rendering a static table of contents
  */
 @Radium
-export default class StaticTableOfContents extends React.Component {
+class StaticTableOfContents extends React.Component {
 
   /**
    * propTypes
@@ -28,12 +37,13 @@ export default class StaticTableOfContents extends React.Component {
    * @return {ReactElement} markup
    */
   render() {
+    const { formatMessage } = this.context.intl;
     return (
       <section
-        id="toc"
+        id="table-of-contents"
       >
-        <h2>{this.props.title}</h2>
-        <section className="peritext-contents-toc-contents">
+        <h2>{ formatMessage(translate.tableofcontents, {}) }</h2>
+        <section className="peritext-contents-table-of-contents-contents">
           {this.props.elements.map((element) =>{
             return <StaticTableOfContentsElement id={element.id} key={element.id} title={element.title} level={element.level} levelDisplacement={this.props.level}/>;
           })}
@@ -42,6 +52,10 @@ export default class StaticTableOfContents extends React.Component {
     );
   }
 }
+StaticTableOfContents.contextTypes = { intl: intlShape };
+
+export default StaticTableOfContents;
+
 
 class StaticTableOfContentsElement extends React.Component {
 
@@ -70,7 +84,7 @@ class StaticTableOfContentsElement extends React.Component {
   render() {
     return (
       <section
-        className="peritext-contents-toc-element"
+        className="peritext-contents-table-of-contents-element"
         style={{paddingLeft: (this.props.level - this.props.levelDisplacement - 1) * this.props.paddingDisplacement + 'cm'}}
       >
         <a

@@ -7,6 +7,7 @@ export { default as StaticImageGallery } from './StaticComponents/StaticImageGal
 export { default as StaticNote } from './StaticComponents/StaticNote.js';
 export { default as StaticSection } from './StaticComponents/StaticSection.js';
 export { default as StaticTableOfContents } from './StaticComponents/StaticTableOfContents.js';
+export { default as StaticTableOfFigures } from './StaticComponents/StaticTableOfFigures.js';
 export { default as StaticWebsitePoster } from './StaticComponents/StaticWebsitePoster.js';
 
 export { default as StructuredCite } from './StructuredDataComponents/StructuredCite.js';

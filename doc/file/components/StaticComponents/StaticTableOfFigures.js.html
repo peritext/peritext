@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../">
-  <title data-ice="title">components/index.js | API Document</title>
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">components/StaticComponents/StaticTableOfFigures.js | API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -55,27 +55,77 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">components/index.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">export { default as StaticFrontCover } from &apos;./StaticComponents/StaticFrontCover.js&apos;;
-export { default as StaticBackCover } from &apos;./StaticComponents/StaticBackCover.js&apos;;
-export { default as StaticDocument } from &apos;./StaticComponents/StaticDocument.js&apos;;
-export { default as StaticEndNotes } from &apos;./StaticComponents/StaticEndNotes.js&apos;;
-export { default as StaticImageFigure } from &apos;./StaticComponents/StaticImageFigure.js&apos;;
-export { default as StaticImageGallery } from &apos;./StaticComponents/StaticImageGallery.js&apos;;
-export { default as StaticNote } from &apos;./StaticComponents/StaticNote.js&apos;;
-export { default as StaticSection } from &apos;./StaticComponents/StaticSection.js&apos;;
-export { default as StaticTableOfContents } from &apos;./StaticComponents/StaticTableOfContents.js&apos;;
-export { default as StaticTableOfFigures } from &apos;./StaticComponents/StaticTableOfFigures.js&apos;;
-export { default as StaticWebsitePoster } from &apos;./StaticComponents/StaticWebsitePoster.js&apos;;
+<div class="content" data-ice="content"><h1 data-ice="title">components/StaticComponents/StaticTableOfFigures.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React, {PropTypes} from &apos;react&apos;;
+import Radium from &apos;radium&apos;;
+import { intlShape, defineMessages } from &apos;react-intl&apos;;
 
-export { default as StructuredCite } from &apos;./StructuredDataComponents/StructuredCite.js&apos;;
-export { default as StructuredDate } from &apos;./StructuredDataComponents/StructuredDate.js&apos;;
-export { default as StructuredHyperLink } from &apos;./StructuredDataComponents/StructuredHyperLink.js&apos;;
-export { default as StructuredMetadataPlaceholder } from &apos;./StructuredDataComponents/StructuredMetadataPlaceholder.js&apos;;
-export { default as StructuredParentJournal } from &apos;./StructuredDataComponents/StructuredParentJournal.js&apos;;
-export { default as StructuredPerson } from &apos;./StructuredDataComponents/StructuredPerson.js&apos;;
-export { default as StructuredPublisher } from &apos;./StructuredDataComponents/StructuredPublisher.js&apos;;
-export { default as StructuredSpan } from &apos;./StructuredDataComponents/StructuredSpan.js&apos;;
+// let styles = {};
+
+const translate = defineMessages({
+  tableoffigures: {
+    id: &apos;table_of_figures&apos;,
+    description: &apos;Table of figures title&apos;,
+    defaultMessage: &apos;Table of figures&apos;,
+  },
+  figurename: {
+    id: &apos;figure&apos;,
+    description: &apos;Name of a figure&apos;,
+    defaultMessage: &apos;Figure&apos;,
+  }
+});
+
+
+/**
+ * dumb component for rendering a static table of figures
+ */
+@Radium
+class StaticTableOfFigures extends React.Component {
+
+  /**
+   * propTypes
+   */
+  static propTypes = {
+    elements: PropTypes.array,
+    level: PropTypes.number
+  };
+
+  static defaultProps = {
+  };
+
+
+  /**
+   * render
+   * @return {ReactElement} markup
+   */
+  render() {
+    const { formatMessage } = this.context.intl;
+    return (
+      &lt;section
+        id=&quot;table-of-figures&quot;
+      &gt;
+        &lt;h2&gt;{ formatMessage(translate.tableoffigures, {}) }&lt;/h2&gt;
+        &lt;section className=&quot;peritext-contents-table-of-figures-contents&quot;&gt;
+          {this.props.elements.map((element, index) =&gt;{
+            return (&lt;section
+                      className=&quot;peritext-contents-table-of-figures-element&quot;
+                      key={element.id + index}&gt;
+                      &lt;a
+                        href={&apos;#&apos; + element.id}
+                      &gt;
+                        { formatMessage(translate.figurename, {}) } {element.number}
+                      &lt;/a&gt;
+                    &lt;/section&gt;);
+          })}
+        &lt;/section&gt;
+      &lt;/section&gt;
+    );
+  }
+}
+
+StaticTableOfFigures.contextTypes = { intl: intlShape };
+
+export default StaticTableOfFigures;
 </code></pre>
 
 </div>

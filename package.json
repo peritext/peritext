@@ -22,11 +22,12 @@
     "validate": "npm ls",
     "doc": "esdoc -c esdoc.json",
     "coverage": "nyc npm test && nyc check-coverage --lines 50 --functions 50 --branches 50",
-    "autocommitadd": "git add doc src/temp",
+    "autocommitadd": "git add doc src/temp translations/locales",
     "manage:translations": "babel-node ./translationRunner.js"
   },
   "pre-commit": [
     "lint",
+    "manage:translations",
     "coverage",
     "doc",
     "autocommitadd"
