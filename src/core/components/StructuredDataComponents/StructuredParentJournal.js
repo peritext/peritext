@@ -1,6 +1,5 @@
 import React, {PropTypes} from 'react';
-import ReactDOMServer from 'react-dom/server';
-import HtmlToReact from 'html-to-react';
+import reactStringReplace from 'react-string-replace';
 import {
   StructuredDate
   // , StructuredSpan
@@ -11,7 +10,7 @@ import Radium from 'radium';
 // let styles = {};
 
 /**
- * dumb component for rendering the structured representation of publisher information
+ * dumb component for rendering the structured representation of parent journal information
  */
 @Radium
 export default class StructuredParentJournal extends React.Component {
@@ -33,65 +32,32 @@ export default class StructuredParentJournal extends React.Component {
     property: 'isPartOf'
   };
 
-  htmlToReactParser = new HtmlToReact.Parser(React);
-
-  formatSimpleProp(object, objectKey, propName, tagType = 'span', subTag = '') {
-    if (object[objectKey]) {
-      return '<'
-      + tagType
-      + ' class="peritext-contents-citation-' + objectKey
-      + '" itemProp="'
-      + propName
-      + '" property="'
-      + propName
-      + '">'
-      + (subTag.length ? '<' + subTag + '>' : '')
-      + object[objectKey]
-      + (subTag.length ? '<' + subTag + '/>' : '')
-      + '</'
-      + tagType
-      + '>';
-    }
-    return '';
-  }
-
   /**
    * updateHtml : transform pattern+resource props into a react element
    * @return {ReactElement} markup
    */
   updateHtml(resource, pattern) {
-    const journalExpression = ['<span class="peritext-contents-citation-journal" itemProp="isPartOf" itemScope itemType="http://schema.org/Periodical" typeof="Periodical">',
-                                '<span itemProp="name" property="name">',
-                                '</span>',
-                                '</span>'
-                                ];
-    const volumeExpression = ['<span class="peritext-contents-citation-volume" itemScope itemProp="hasPart" itemType="http://schema.org/PublicationVolume" typeof="PublicationVolume">',
-                                '<span itemProp="volumeNumber" property="volumeNumber">',
-                                '</span>',
-                                '</span>'
-                                ];
-    const issueExpression = ['<span class="peritext-contents-citation-issue" itemScope itemProp="hasPart" itemType="http://schema.org/PublicationIssue" typeof="PublicationIssue">',
-                                '<span itemProp="issueNumber" property="issueNumber">',
-                                '</span>',
-                                '</span>'
-                                ];
+    let replacedText;
+    replacedText = reactStringReplace(pattern, /(\${journal})/g, (match, index)=> (
+      <span key={match + index} className="peritext-contents-citation-journal">{resource.journal}</span>
+    ));
 
-    let expression = journalExpression[0] + pattern.replace('${journal}', journalExpression[1] + resource.journal + journalExpression[2]) + journalExpression[3];
+    replacedText = reactStringReplace(replacedText, /(\${date})/g, (match, index)=> (
+      <span key={match + index} className="peritext-contents-citation-date">{resource.date || resource.year}</span>
+    ));
 
-    expression = expression.replace('${date}', ReactDOMServer.renderToStaticMarkup(<StructuredDate value={resource.date}/>));
+    replacedText = reactStringReplace(replacedText, /(\${volume})/g, (match, index)=> (
+      <span key={match + index} className="peritext-contents-citation-volume">{resource.volume}</span>
+    ));
 
-    if (resource.volume) {
-      expression = expression.replace('${volume}', volumeExpression[0] + volumeExpression[1] + resource.volume + volumeExpression[2]);
-    } else expression = expression.replace('${volume}', '');
+    replacedText = reactStringReplace(replacedText, /(\${issue})/g, (match, index)=> (
+      <span key={match + index} className="peritext-contents-citation-issue">{resource.issue}</span>
+    ));
 
-    if (resource.issue) {
-      expression = expression.replace('${issue}', issueExpression[0] + issueExpression[1] + resource.issue + issueExpression[2] + issueExpression[3] + volumeExpression[3]);
-    } else expression = expression.replace('${issue}', volumeExpression[3]);
-
-    if (resource.issn) {
-      expression = expression.replace('${issn}', this.formatSimpleProp(resource, 'issn', 'issn'));
-    } else expression = expression.replace('${issn}', '');
-    return this.htmlToReactParser.parse(expression);
+    replacedText = reactStringReplace(replacedText, /(\${issn})/g, (match, index)=> (
+      <span key={match + index} className="peritext-contents-citation-issn">{resource.issn}</span>
+    ));
+    return replacedText;
   }
 
   /**
@@ -99,21 +65,50 @@ export default class StructuredParentJournal extends React.Component {
    * @return {ReactElement} markup
    */
   render() {
-    return this.updateHtml(this.props.resource, this.props.pattern);
-    /*
+    // return this.updateHtml(this.props.resource, this.props.pattern);
+
     return (
       <span
         className="peritext-contents-journal"
-        itemProp="{this.props.property}"
-        property="{this.props.property}"
+        itemProp={this.props.property}
+        property={this.props.property}
         itemScope
         itemType="http://schema.org/Periodical"
         typeof="Periodical"
-        resource={this.props.resource.journal}
+        resource={this.props.resource.issn + this.props.resource.journal}
       >
+        <span style={{display: 'none'}} itemProp="name" property="name">{this.props.resource.journal}</span>
+        <span
+          itemProp="hasPart"
+          property="hasPart"
+          itemScope
+          itemType="http://schema.org/PublicationVolume"
+          typeof="PublicationVolume"
+          resource={this.props.resource.issn + this.props.resource.journal + '-volume' + this.props.resource.volume}
+          style={{display: 'none'}}
+        >
+          <span itemProp="volumeNumber" property="volumeNumber">{this.props.resource.volume}</span>
+          <span
+            itemProp="hasPart"
+            property="hasPart"
+            itemScope
+            itemType="http://schema.org/PublicationIssue"
+            typeof="PublicationIssue"
+            resource={this.props.resource.issn + this.props.resource.journal + '-volume' + this.props.resource.volume + '-issue' + this.props.resource.issue}
+          >
+            <span itemProp="issueNumber" property="issueNumber">{this.props.resource.issue}</span>
+            <StructuredDate value={this.props.resource.date || this.props.resource.year}/>
+          </span>
+        </span>
+        <span
+          itemProp="issn"
+          style={{display: 'none'}}
+          property="issn">
+            {this.props.resource.issn}
+        </span>
+
         {this.updateHtml(this.props.resource, this.props.pattern)}
       </span>
     );
-    */
   }
 }

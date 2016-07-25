@@ -30,7 +30,7 @@ export default class StructuredMetadataPlaceholder extends React.Component {
    */
   render() {
     return (
-      <section
+      <div
         className="peritext-contents-schema-metadata-placeholder"
         style={{visibility: 'hidden'}}
       >
@@ -57,7 +57,7 @@ export default class StructuredMetadataPlaceholder extends React.Component {
             return '';
           }
         })}
-      </section>
+      </div>
     );
   }
 }

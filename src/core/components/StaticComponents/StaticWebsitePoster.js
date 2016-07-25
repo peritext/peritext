@@ -58,8 +58,8 @@ export default class StructuredWebsitePoster extends React.Component {
               </span>
               <StaticImageFigure {...this.props} />
               <figcaption
-                itemProp="caption"
-                property="caption"
+                itemProp="description"
+                property="description"
               >
                 Figure {this.props.figureNumber} – {this.props.captionContent} – <StructuredHyperLink text={this.props.resource.url} resource={this.props.resource}/>
               </figcaption>

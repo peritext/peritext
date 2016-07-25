@@ -24,7 +24,7 @@ export default class StructuredHyperLink extends React.Component {
   };
 
   static defaultProps = {
-    schematype: 'webpage',
+    schematype: 'website',
     property: 'citation'
   };
 

@@ -99,7 +99,7 @@ export default class StaticCoverPage extends React.Component {
               this.getGeneralProp(this.props.metadata, 'dissertationjury').map((person) =>{
                 return (
                     <p key={person.citeKey} className="peritext-contents-cover-jury-member">
-                      <StructuredPerson resource={person} pattern="${firstName} ${lastName:capitals} <br/>${information} / ${role}"/>
+                      <StructuredPerson resource={person} pattern="${firstName} ${lastName:capitals} ${information} / ${role}"/>
                     </p>
                   );
               })

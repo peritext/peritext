@@ -46,8 +46,8 @@ export default class StaticImageFigure extends React.Component {
               >
                 <a
                   href={this.props.resource[this.props.imageKey]}
-                  itemProp="contentUrl"
-                  property="contenturl"
+                  itemProp="url"
+                  property="url"
                   value={this.props.resource[this.props.imageKey]}
                 >
                 </a>

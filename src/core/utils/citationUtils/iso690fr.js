@@ -13,9 +13,9 @@ import {
   StructuredDate,
   StructuredParentJournal,
   StructuredSpan,
+  StructuredPublisher,
   StructuredCite
 } from './../../components/';
-// import * as formatter from './../microDataUtils/';
 import Radium from 'radium';
 
 function renderAdditionnal(obj) {
@@ -72,14 +72,17 @@ export class BlockCitation extends BlockCitationModel {
   renderAuthors() {
     const pattern = '${lastName:capitals}, ${firstName}';
     if (this.props.resource.author.length <= 2) {
-      return this.props.resource.author.map((author, index) => {
-        return (
-          <span key={author.citeKey} className="peritext-contents-citation-authors">
-            <StructuredPerson resource={author} pattern={pattern} property="author" />
-            {(index < this.props.resource.author.length - 1) ? ' et ' : ''}
-          </span>
-        );
-      });
+
+      return (<span className="peritext-contents-citation-authors">
+          {this.props.resource.author.map((author, index) => {
+            return (
+                <span key={author.citeKey}>
+                  <StructuredPerson resource={author} pattern={pattern} property="author" />
+                  {(index < this.props.resource.author.length - 1) ? ' et ' : ''}
+                </span>
+              );
+          })}
+      </span>);
     }
     return (
         <span className="peritext-contents-citation-authors">
@@ -130,11 +133,11 @@ export class BlockCitation extends BlockCitationModel {
           <span>. </span>
           <StructuredCite value={this.props.resource.title} />
           {this.props.resource.edition ? '. ' : ''}
-          {this.props.resource.edition ? <StructuredSpan htmlClass="peritext-contents-citation-edition" property="edition" value={this.props.resource.edition} /> : ''}
+          {this.props.resource.edition ? <StructuredSpan htmlClass="peritext-contents-citation-edition" property="bookEdition" value={this.props.resource.edition} /> : ''}
           {this.props.resource.publisher ? '. ' : ''}
-          {this.props.resource.publisher ? <StructuredSpan htmlClass="peritext-contents-citation-publisher" property="publisher" value={this.props.resource.publisher} /> : ''}
+          {this.props.resource.publisher ? <StructuredPublisher resource={this.props.resource} /> : ''}
           {this.props.resource.year || this.props.resource.date ? ', ' : ''}
-          {this.props.resource.year || this.props.resource.date ? <StructuredSpan htmlClass="peritext-contents-citation-edition" property="edition" value={(this.props.resource.year || this.props.resource.date)} /> : ''}
+          {this.props.resource.year || this.props.resource.date ? <StructuredSpan htmlClass="peritext-contents-citation-edition" property="datePublished" value={(this.props.resource.year || this.props.resource.date)} /> : ''}
         </span>
       );
     }
@@ -148,7 +151,7 @@ export class BlockCitation extends BlockCitationModel {
           {this.props.resource.isbn ? <StructuredSpan htmlClass="peritext-contents-citation-isbn" property="isbn" value={this.props.resource.isbn} /> : ''}
           {this.props.resource.doi ? '. DOI : ' : ''}
           {this.props.resource.doi ?
-            <a className="peritext-contents-citation-doi" target="blank" itemProp="doi" property="doi" href={this.props.resource.doi}>
+            <a className="peritext-contents-citation-doi" target="blank" itemProp="sameAs" property="sameAs" href={this.props.resource.doi}>
               {this.props.resource.doi}
             </a> : ''}
           {this.props.resource.doi ? '. Accessible en ligne : ' : ''}
@@ -172,9 +175,7 @@ export class BlockCitation extends BlockCitationModel {
           >
             ibid.
           </i> : ''}
-        {
-          this.renderCompleteReference()
-        }
+        {this.renderCompleteReference()}
         {this.renderReferenceDecoration()}
         <span>.</span>
       </span>

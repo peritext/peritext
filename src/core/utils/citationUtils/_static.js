@@ -40,13 +40,15 @@ export class BlockCitationModel extends React.Component {
    * @return {ReactElement} markup
    */
   render() {
-    return (<p
+    return (
+      <p
       id={this.props.contextualization.citeKey}
       className="peritext-contents-block-citation"
       itemProp="citation"
       property="citation"
       itemScope
       itemType={'http://schema.org/' + this.getSchemaType()}
+      typeof={this.getSchemaType()}
     >
       {this.renderReference()}
       {this.renderAdditionnal(this.props)}
@@ -94,6 +96,7 @@ export class InlineCitationModel extends React.Component {
       property="citation"
       itemScope
       itemType={'http://schema.org/' + this.getSchemaType()}
+      typeof={this.getSchemaType()}
     >
       {this.renderReference()}
       {this.renderAdditionnal(this.props)}

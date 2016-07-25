@@ -137,7 +137,7 @@ export default function renderSection({
                       <body>
                         ${renderedContents}
                        </body>
-                    </html>`;
+                    </html>`.replace(/itemscope=""/g, 'itemscope');
       cback(null, html);
     }
   ], rendererCallback);

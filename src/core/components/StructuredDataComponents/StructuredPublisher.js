@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-import HtmlToReact from 'html-to-react';
+import reactStringReplace from 'react-string-replace';
 import Radium from 'radium';
 
 // let styles = {};
@@ -27,23 +27,21 @@ export default class StructuredPublisher extends React.Component {
     property: 'publisher'
   };
 
-  htmlToReactParser = new HtmlToReact.Parser(React);
-
   /**
    * updateHtml : transform pattern+resource props into a react element
    * @return {ReactElement} markup
    */
   updateHtml(resource, pattern) {
-    const publisherExpression = ['<span itemProp="name" property="name">',
-                                  '</span>'];
 
-    let expression = pattern.replace('${publisher}', publisherExpression[0] + resource.publisher + publisherExpression[1]);
+    let replacedText = reactStringReplace(pattern, /(\${publisher})/g, (match, index)=> (
+      <span key={match + index} itemProp="name" property="name" className="peritext-contents-citation-publisher">{resource.publisher}</span>
+    ));
 
-    if (resource.address) {
-      expression = expression.replace('${address}', '<span itemProp="address" value="address">' + resource.address + '</span>');
-    }
+    replacedText = reactStringReplace(replacedText, /(\${address})/g, (match, index)=> (
+      <span key={match + index} itemProp="address" value="address" className="peritext-contents-citation-address">{resource.address}</span>
+    ));
 
-    return this.htmlToReactParser.parse('<span>' + expression + '</span>');
+    return replacedText;
   }
 
   /**
