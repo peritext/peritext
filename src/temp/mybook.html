@@ -2,7 +2,32 @@
                     <!doctype:html>
                     <html>
                       <head>
-                        <title>My awesome thesis with an awesome incredibly long and complicated title</title><meta name="author" content="Robin De Mourat"><meta name="citation_dissertation_institution" content="Université Rennes 2"><meta name="keywords" content="val1a, val1b, val2,val3,val4,another random set of keywords"><meta name="date" content="12 Décembre 2016"><meta http-equiv="content-language" content="en"><meta name="dc.title" content="My awesome thesis with an awesome incredibly long and complicated title"><meta property="og:title" content="My awesome thesis with an awesome incredibly long and complicated title"><meta name="twitter:title" content="My awesome thesis with an awesome incredibly long and complicated title"><meta name="citation_title" content="My awesome thesis with an awesome incredibly long and complicated title"><meta name="dc.creator" content="{De Mourat},Robin"><meta name="citation_author" content="Robin De Mourat"><meta name="dc.subject" content="val1a, val1b, val2,val3,val4,another random set of keywords"><meta name="dc.date" content="12 Décembre 2016"><meta name="dc.language" content="en"><meta name="citation_language" content="en"><meta name="generator" content="peritext"/>
+                        <title>My awesome thesis with an awesome incredibly long and complicated title</title><meta name="author" content="Robin De Mourat"><meta name="citation_dissertation_institution" content="Université Rennes 2"><meta name="keywords" content="val1a, val1b, val2,val3,val4,another random set of keywords"><meta name="date" content="12 Décembre 2016"><meta http-equiv="content-language" content="en"><meta name="description" content="This is a thesis about some subject. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum."><meta name="dc.title" content="My awesome thesis with an awesome incredibly long and complicated title"><meta property="og:title" content="My awesome thesis with an awesome incredibly long and complicated title"><meta name="twitter:title" content="My awesome thesis with an awesome incredibly long and complicated title"><meta name="citation_title" content="My awesome thesis with an awesome incredibly long and complicated title"><meta name="dc.creator" content="{De Mourat},Robin"><meta name="citation_author" content="Robin De Mourat"><meta name="dc.subject" content="val1a, val1b, val2,val3,val4,another random set of keywords"><meta name="dc.date" content="12 Décembre 2016"><meta name="dc.language" content="en"><meta name="citation_language" content="en"><meta name="dc.description" content="This is a thesis about some subject. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum."><meta property="og:description" content="This is a thesis about some subject. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum."><meta name="twitter:description" content="This is a thesis about some subject. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum."><meta name="citation_abstract" content="This is a thesis about some subject. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum."><meta name="generator" content="peritext"/>
                         <style>
                           
 body
@@ -291,20 +316,41 @@ h1,h2,h3,h4,h5,h6
   }
 }
 
-.peritext-contents-cover
+.peritext-contents-front-cover
 {
   page-break-after: always;
   margin : 0;
   font-family: Arial;
 }
 
-@page.peritext-contents-cover
+@page.peritext-contents-front-cover
 {
   margin : 0;
   font-family: Arial;
 }
 
-.peritext-contents-cover #peritext-contents-cover-image-container
+.peritext-contents-front-cover
+{
+  page-break-after: always;
+  margin : 0;
+  font-family: Arial;
+}
+
+.peritext-contents-back-cover
+{
+  page-break-before: always;
+  margin: 0;
+  padding: 0;
+  font-size : 2em;
+  background: yellow;
+  position: absolute;
+  left : 0;
+  top : 0;
+  width : 100%;
+  height : 100%;
+}
+
+.peritext-contents-front-cover #peritext-contents-front-cover-image-container
 {
   background-size:     cover;
   background-repeat:   no-repeat;
@@ -314,17 +360,17 @@ h1,h2,h3,h4,h5,h6
   /*width : 100%;*/
 }
 
-.peritext-contents-cover-part-top-left,
-.peritext-contents-cover-part-top-right,
-.peritext-contents-cover-part-bottom-left,
-.peritext-contents-cover-part-bottom-right
+.peritext-contents-front-cover-part-top-left,
+.peritext-contents-front-cover-part-top-right,
+.peritext-contents-front-cover-part-bottom-left,
+.peritext-contents-front-cover-part-bottom-right
 {
   position: fixed;
   width : 50%;
 }
 
-.peritext-contents-cover-part-top-left,
-.peritext-contents-cover-part-bottom-left
+.peritext-contents-front-cover-part-top-left,
+.peritext-contents-front-cover-part-bottom-left
 {
   left : .5cm;
   text-align : right;
@@ -332,57 +378,57 @@ h1,h2,h3,h4,h5,h6
   width : 45%;
 }
 
-.peritext-contents-cover-part-top-right,
-.peritext-contents-cover-part-bottom-right
+.peritext-contents-front-cover-part-top-right,
+.peritext-contents-front-cover-part-bottom-right
 {
   left : 1cm;
   padding-left : 50%;
   padding-right : 1cm;
 }
 
-.peritext-contents-cover-part-top-left,
-.peritext-contents-cover-part-top-right
+.peritext-contents-front-cover-part-top-left,
+.peritext-contents-front-cover-part-top-right
 {
   bottom : 31.6%;
   color : white;
   padding-bottom : .8cm;
 }
 
-.peritext-contents-cover-part-bottom-left,
-.peritext-contents-cover-part-bottom-right
+.peritext-contents-front-cover-part-bottom-left,
+.peritext-contents-front-cover-part-bottom-right
 {
   top : 68%;
 }
 
-.peritext-contents-cover-part-top-left h3,
-.peritext-contents-cover-part-top-left h4,
-.peritext-contents-cover-part-top-left p,
-.peritext-contents-cover-part-top-right h3,
-.peritext-contents-cover-part-top-right h4,
-.peritext-contents-cover-part-top-right p
+.peritext-contents-front-cover-part-top-left h3,
+.peritext-contents-front-cover-part-top-left h4,
+.peritext-contents-front-cover-part-top-left p,
+.peritext-contents-front-cover-part-top-right h3,
+.peritext-contents-front-cover-part-top-right h4,
+.peritext-contents-front-cover-part-top-right p
 {
   margin-top : 0;
   margin-bottom : 0;
   font-size : 12px;
 }
 
-.peritext-contents-cover-part-top-right h1
+.peritext-contents-front-cover-part-top-right h1
 {
   margin : 0;
   padding : 0;
 }
 
-.peritext-contents-cover-part-bottom-left h1{
+.peritext-contents-front-cover-part-bottom-left h1{
   margin : 0;
 }
 
-.peritext-contents-cover-date
+.peritext-contents-front-cover-date
 {
   font-weight : 800;
 }
 
-.peritext-contents-cover-jury-member .peritext-contents-person-firstname,
-.peritext-contents-cover-jury-member .peritext-contents-person-lastname
+.peritext-contents-front-cover-jury-member .peritext-contents-person-firstname,
+.peritext-contents-front-cover-jury-member .peritext-contents-person-lastname
 {
   font-weight : 800;
 }
@@ -390,7 +436,7 @@ h1,h2,h3,h4,h5,h6
                         </style>
                       </head>
                       <body>
-                        <section itemscope itemtype="http://schema.org/Thesis" typeof="Thesis" vocab="http://schema.org/" resource="#mybook"><span property="name" itemprop="name">My awesome thesis with an awesome incredibly long and complicated title</span><span><span class="peritext-contents-person" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author" typeof="Person" resource="author-robinde-mourat"><span class="peritext-contents-person-firstname" itemprop="givenName" property="givenName">Robin</span> <span class="peritext-contents-person-lastname" itemprop="familyName" property="familyName">De Mourat</span></span></span><time class="peritext-contents-date" property="datePublished" itemprop="datePublished" datetime="12 Décembre 2016">12 Décembre 2016</time><section id="peritext-contents-cover" class="peritext-contents-cover"><div style="background-image:url(/home/rawbin/Projets/_1projets_en_cours/peritext/peritext/test/_sample_assets/ueb_cover.jpg);" id="peritext-contents-cover-image-container"></div><div class="peritext-contents-cover-texts-container"><section class="peritext-contents-cover-part-top-left"><h3 class="peritext-contents-cover-dissertationinstitution">Thèse / Université Rennes 2</h3><p>Pour obtenir le grade de DOCTEUR</p><h4 class="peritext-contents-cover-dissertationcomment">Sous le sceau de l’Université européenne de Bretagne</h4><p class="peritext-contents-cover-dissertationdoctoralschool">École doctorale Arts Lettres Langues</p><p class="peritext-contents-cover-dissertationdiscipline">Mention : <span>Esthétique</span></p></section><section class="peritext-contents-cover-part-top-right"><p>présentée par</p><h1 class="peritext-contents-authors"><span class="peritext-contents-person" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author" typeof="Person" resource="author-robinde-mourat"><span class="peritext-contents-person-firstname" itemprop="givenName" property="givenName">Robin</span> <span class="peritext-contents-person-lastname" itemprop="familyName" property="familyName">De Mourat</span></span></h1><p class="peritext-contents-cover-dissertationlab">Préparée dans l&#x27;équipe d&#x27;accueil Arts : Pratiques et poétiques</p></section><section class="peritext-contents-cover-part-bottom-left"><h1>My awesome thesis with an awesome incredibly long and complicated title</h1></section><section class="peritext-contents-cover-part-bottom-right"><p class="peritext-contents-cover-date">Thèse soutenue le 12 Décembre 2016</p><p>devant le jury composé de :</p><p class="peritext-contents-cover-jury-member"><span class="peritext-contents-person" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author" typeof="Person" resource="directeur-de thèse-nicolasthély"><span class="peritext-contents-person-firstname" itemprop="givenName" property="givenName">Nicolas</span> <span class="peritext-contents-person-lastname" itemprop="familyName" property="familyName">THÉLY</span> <span class="peritext-contents-person-information">Professeur, Université Rennes 2</span> / <span class="peritext-contents-person-role">directeur de thèse</span></span></p></section></div></section><section class="peritext-contents-section-contents"><h1 id="welcome">Welcome</h1>
+                        <section itemscope itemtype="http://schema.org/Thesis" typeof="Thesis" vocab="http://schema.org/" resource="#mybook"><div class="peritext-contents-schema-metadata-placeholder" style="visibility:hidden;"><span property="name" itemprop="name">My awesome thesis with an awesome incredibly long and complicated title</span><span><span class="peritext-contents-person" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author" typeof="Person" resource="author-robinde-mourat"><span class="peritext-contents-person-firstname" itemprop="givenName" property="givenName">Robin</span> <span class="peritext-contents-person-lastname" itemprop="familyName" property="familyName">De Mourat</span></span></span><time class="peritext-contents-date" property="datePublished" itemprop="datePublished" datetime="12 Décembre 2016">12 Décembre 2016</time></div><section id="peritext-contents-front-cover" class="peritext-contents-front-cover"><div style="background-image:url(/home/rawbin/Projets/_1projets_en_cours/peritext/peritext/test/_sample_assets/ueb_cover.jpg);" id="peritext-contents-front-cover-image-container"></div><div class="peritext-contents-front-cover-texts-container"><section class="peritext-contents-front-cover-part-top-left"><h3 class="peritext-contents-front-cover-dissertationinstitution">Thèse / Université Rennes 2</h3><p>Pour obtenir le grade de DOCTEUR</p><h4 class="peritext-contents-front-cover-dissertationcomment">Sous le sceau de l’Université européenne de Bretagne</h4><p class="peritext-contents-front-cover-dissertationdoctoralschool">École doctorale Arts Lettres Langues</p><p class="peritext-contents-front-cover-dissertationdiscipline">Mention : <span>Esthétique</span></p></section><section class="peritext-contents-front-cover-part-top-right"><p>présentée par</p><h1 class="peritext-contents-authors"><span class="peritext-contents-person" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author" typeof="Person" resource="author-robinde-mourat"><span class="peritext-contents-person-firstname" itemprop="givenName" property="givenName">Robin</span> <span class="peritext-contents-person-lastname" itemprop="familyName" property="familyName">De Mourat</span></span></h1><p class="peritext-contents-front-cover-dissertationlab">Préparée dans l&#x27;équipe d&#x27;accueil Arts : Pratiques et poétiques</p></section><section class="peritext-contents-front-cover-part-bottom-left"><h1>My awesome thesis with an awesome incredibly long and complicated title</h1></section><section class="peritext-contents-front-cover-part-bottom-right"><p class="peritext-contents-front-cover-date">Thèse soutenue le 12 Décembre 2016</p><p>devant le jury composé de :</p><p class="peritext-contents-front-cover-jury-member"><span class="peritext-contents-person" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author" typeof="Person" resource="directeur-de thèse-nicolasthély"><span class="peritext-contents-person-firstname" itemprop="givenName" property="givenName">Nicolas</span> <span class="peritext-contents-person-lastname" itemprop="familyName" property="familyName">THÉLY</span> <span class="peritext-contents-person-information">Professeur, Université Rennes 2</span> / <span class="peritext-contents-person-role">directeur de thèse</span></span></p></section></div></section><section class="peritext-contents-section-contents"><h1 id="welcome">Welcome</h1>
 <p><TemplateCall type="toc" options=""/></p>
 <BlockContextualization id="contextualization_1" resources="@temporal_data" contextualizer="cool_timeline_1">A reference</BlockContextualization>
 <BlockContextualization id="contextualization_2" resources="@temporal_data" contextualizer="cool_timeline_2">Another view on the timeline</BlockContextualization>
@@ -476,6 +522,11 @@ My imaginary friend Serge</p>
 <p><p id="contextualization_2" class="peritext-contents-block-citation" itemprop="citation" property="citation" itemscope itemtype="http://schema.org/Book" typeof="Book"><span class="peritext-contents-citation-reference"><span class="peritext-contents-citation-complete-reference"><span class="peritext-contents-citation-authors"><span><span class="peritext-contents-person" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author" typeof="Person" resource="author-d.-aliprantischaralambos"><span class="peritext-contents-person-lastname" itemprop="familyName" property="familyName">CHARALAMBOS</span>, <span class="peritext-contents-person-firstname" itemprop="givenName" property="givenName">D. Aliprantis</span></span> et </span><span><span class="peritext-contents-person" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author" typeof="Person" resource="author-kim-c.border"><span class="peritext-contents-person-lastname" itemprop="familyName" property="familyName">BORDER</span>, <span class="peritext-contents-person-firstname" itemprop="givenName" property="givenName">Kim C.</span></span></span></span><span>. </span><cite class="peritext-contents-cite" property="name" itemprop="name">Infinite Dimensional Analysis</cite>. <span property="bookEdition" itemprop="bookEdition" class="peritext-contents-citation-edition">second edition</span>. <span class="peritext-contents-publisher" itemprop="publisher" property="publisher" itemscope itemtype="http://schema.org/Organization" typeof="Organization" resource="Springer"><span itemprop="name" property="name" class="peritext-contents-citation-publisher">Springer</span> : <span itemprop="address" value="address" class="peritext-contents-citation-address">Berlin</span></span>, <span property="datePublished" itemprop="datePublished" class="peritext-contents-citation-edition">1994</span></span><span>.</span></span><span class="peritext-contents-citation-details"></span></p></p>
 <p><p id="contextualization_4" class="peritext-contents-block-citation" itemprop="citation" property="citation" itemscope itemtype="http://schema.org/ScholarlyArticle" typeof="ScholarlyArticle"><span class="peritext-contents-citation-reference"><span class="peritext-contents-citation-complete-reference"><span class="peritext-contents-citation-authors"><span><span class="peritext-contents-person" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author" typeof="Person" resource="author-juliamartin"><span class="peritext-contents-person-lastname" itemprop="familyName" property="familyName">MARTIN</span>, <span class="peritext-contents-person-firstname" itemprop="givenName" property="givenName">Julia</span></span> et </span><span><span class="peritext-contents-person" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author" typeof="Person" resource="author-nicolascoleman"><span class="peritext-contents-person-lastname" itemprop="familyName" property="familyName">COLEMAN</span>, <span class="peritext-contents-person-firstname" itemprop="givenName" property="givenName">Nicolas</span></span></span></span><span>. </span><cite class="peritext-contents-cite" property="name" itemprop="name">Change the {Metaphor}: {The} {Archive} as an {Ecosystem}</cite><span>. </span><span class="peritext-contents-journal" itemprop="isPartOf" property="isPartOf" itemscope itemtype="http://schema.org/Periodical" typeof="Periodical" resource="1080-2711Journal of Electronic Publishing"><span style="display:none;" itemprop="name" property="name">Journal of Electronic Publishing</span><span itemprop="hasPart" property="hasPart" itemscope itemtype="http://schema.org/PublicationVolume" typeof="PublicationVolume" resource="1080-2711Journal of Electronic Publishing-volume7" style="display:none;"><span itemprop="volumeNumber" property="volumeNumber">7</span><span itemprop="hasPart" property="hasPart" itemscope itemtype="http://schema.org/PublicationIssue" typeof="PublicationIssue" resource="1080-2711Journal of Electronic Publishing-volume7-issue3"><span itemprop="issueNumber" property="issueNumber">3</span><time class="peritext-contents-date" property="datePublished" itemprop="datePublished" datetime="2002">2002</time></span></span><span itemprop="issn" style="display:none;" property="issn">1080-2711</span><span class="peritext-contents-citation-journal">Journal of Electronic Publishing</span>, <span class="peritext-contents-citation-date">2002</span>, vol. <span class="peritext-contents-citation-volume">7</span>, n° <span class="peritext-contents-citation-issue">3</span>, ISSN : <span class="peritext-contents-citation-issn">1080-2711</span></span>, pp. <span property="pageStart" itemprop="pageStart" class="peritext-contents-citation-pages">12</span>-<span property="pageEnd" itemprop="pageEnd" class="peritext-contents-citation-pages">60</span></span><span class="peritext-contents-citation-reference-decoration">. DOI : <a class="peritext-contents-citation-doi" target="blank" itemprop="sameAs" property="sameAs" href="10.3998/3336451.0007.301">10.3998/3336451.0007.301</a>. Accessible en ligne : <a class="peritext-contents-citation-url" target="blank" itemprop="url" property="url" href="http://hdl.handle.net/2027/spo.3336451.0007.301">http://hdl.handle.net/2027/spo.3336451.0007.301</a></span><span>.</span></span><span class="peritext-contents-citation-details"></span></p></p>
 <p><p id="contextualization_6" class="peritext-contents-block-citation" itemprop="citation" property="citation" itemscope itemtype="http://schema.org/CreativeWork" typeof="CreativeWork"><span class="peritext-contents-citation-reference"><span class="peritext-contents-citation-complete-reference"><span class="peritext-contents-citation-authors"><span><span class="peritext-contents-person" itemprop="author" itemscope itemtype="http://schema.org/Person" property="author" typeof="Person" resource="author-andrewjakubowicz"><span class="peritext-contents-person-lastname" itemprop="familyName" property="familyName">JAKUBOWICZ</span>, <span class="peritext-contents-person-firstname" itemprop="givenName" property="givenName">Andrew</span></span></span></span><span>. </span><cite class="peritext-contents-cite" property="name" itemprop="name">Bridging the mire between e-research and e-publishing for multimedia digital scholarship in the humanities and social sciences: {An} {Australian} case study</cite></span><span class="peritext-contents-citation-reference-decoration"></span><span>.</span></span><span class="peritext-contents-citation-details"></span></p></p>
-</section></section><section class="peritext-contents-notes peritext-contents-notes-document-end"><h4 class="peritext-contents-notes-title">Notes</h4><div class="peritext-contents-notes-container"><p class="peritext-contents-note-content" name="note-content-undefined1" id="note-content-undefined1"><a href="#note-content-undefined1" class="peritext-contents-note-number"><span>1</span></a><span class="peritext-contents-note-text"><a class="peritext-contents-hyperlink" itemprop="citation" itemtype="http://schema.org/website" typeof="website" resource="#website_test"><span itemprop="name" property="name" value="D3 and react tutorial" style="display:none;">D3 and react tutorial</span><span property="name" value="https://medium.com/@sxywu/on-d3-react-and-a-little-bit-of-flux-88a226f328f3#.4z6m379fa" style="display:none;">https://medium.com/@sxywu/on-d3-react-and-a-little-bit-of-flux-88a226f328f3#.4z6m379fa</span><span>https://medium.com/@sxywu/on-d3-react-and-a-little-bit-of-flux-88a226f328f3#.4z6m379fa</span></a></span></p><p class="peritext-contents-note-content" name="note-content-undefined2" id="note-content-undefined2"><a href="#note-content-undefined2" class="peritext-contents-note-number"><span>2</span></a><span class="peritext-contents-note-text">with a footnote here</span></p><p class="peritext-contents-note-content" name="note-content-undefined3" id="note-content-undefined3"><a href="#note-content-undefined3" class="peritext-contents-note-number"><span>3</span></a><span class="peritext-contents-note-text"><span id="contextualization_14" class="peritext-contents-inline-citation" itemprop="citation" property="citation" itemtype="http://schema.org/Book" typeof="Book"><span class="peritext-contents-citation-reference"><i class="peritext-contents-citation-ibid">ibid.</i></span><span class="peritext-contents-citation-details">, <span class="peritext-contents-citation-quote-pages">p. 12</span></span></span>.</span></p><p class="peritext-contents-note-content" name="note-content-undefined4" id="note-content-undefined4"><a href="#note-content-undefined4" class="peritext-contents-note-number"><span>4</span></a><span class="peritext-contents-note-text">I&#x27;m referencing to <span id="contextualization_16" class="peritext-contents-inline-citation" itemprop="citation" property="citation" itemtype="http://schema.org/ScholarlyArticle" typeof="ScholarlyArticle"><span class="peritext-contents-citation-reference"><i class="peritext-contents-citation-ibid">ibid.</i></span><span class="peritext-contents-citation-details">, <span class="peritext-contents-citation-quote-pages">pp. 12-13</span></span></span> when he says : &quot;hello&quot;</span></p><p class="peritext-contents-note-content" name="note-content-undefined5" id="note-content-undefined5"><a href="#note-content-undefined5" class="peritext-contents-note-number"><span>5</span></a><span class="peritext-contents-note-text">This is another footnote</span></p><p class="peritext-contents-note-content" name="note-content-undefined6" id="note-content-undefined6"><a href="#note-content-undefined6" class="peritext-contents-note-number"><span>6</span></a><span class="peritext-contents-note-text">This is another footnote</span></p><p class="peritext-contents-note-content" name="note-content-undefined7" id="note-content-undefined7"><a href="#note-content-undefined7" class="peritext-contents-note-number"><span>7</span></a><span class="peritext-contents-note-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. At, id autem incidunt delectus ea. Architecto aliquam alias iure mollitia voluptate totam in repellendus, dignissimos. Quia necessitatibus ipsam, quis itaque nisi.</span></p><p class="peritext-contents-note-content" name="note-content-undefined8" id="note-content-undefined8"><a href="#note-content-undefined8" class="peritext-contents-note-number"><span>8</span></a><span class="peritext-contents-note-text">This is another footnote</span></p><p class="peritext-contents-note-content" name="note-content-undefined9" id="note-content-undefined9"><a href="#note-content-undefined9" class="peritext-contents-note-number"><span>9</span></a><span class="peritext-contents-note-text">This is another footnote</span></p><p class="peritext-contents-note-content" name="note-content-undefined10" id="note-content-undefined10"><a href="#note-content-undefined10" class="peritext-contents-note-number"><span>10</span></a><span class="peritext-contents-note-text">third footnote</span></p></div></section><section id="toc"><h2>Table of contents</h2><section class="peritext-contents-toc-contents"><section class="peritext-contents-toc-element" style="padding-left:0cm;"><a href="#partie_1">Partie 1</a></section><section class="peritext-contents-toc-element" style="padding-left:0cm;"><a href="#partie_2">Partie 2</a></section><section class="peritext-contents-toc-element" style="padding-left:1cm;"><a href="#partie_2_2">Partie 2.2</a></section></section></section></section>
+</section></section><section class="peritext-contents-notes peritext-contents-notes-document-end"><h4 class="peritext-contents-notes-title">Notes</h4><div class="peritext-contents-notes-container"><p class="peritext-contents-note-content" name="note-content-undefined1" id="note-content-undefined1"><a href="#note-content-undefined1" class="peritext-contents-note-number"><span>1</span></a><span class="peritext-contents-note-text"><a class="peritext-contents-hyperlink" itemprop="citation" itemtype="http://schema.org/website" typeof="website" resource="#website_test"><span itemprop="name" property="name" value="D3 and react tutorial" style="display:none;">D3 and react tutorial</span><span property="name" value="https://medium.com/@sxywu/on-d3-react-and-a-little-bit-of-flux-88a226f328f3#.4z6m379fa" style="display:none;">https://medium.com/@sxywu/on-d3-react-and-a-little-bit-of-flux-88a226f328f3#.4z6m379fa</span><span>https://medium.com/@sxywu/on-d3-react-and-a-little-bit-of-flux-88a226f328f3#.4z6m379fa</span></a></span></p><p class="peritext-contents-note-content" name="note-content-undefined2" id="note-content-undefined2"><a href="#note-content-undefined2" class="peritext-contents-note-number"><span>2</span></a><span class="peritext-contents-note-text">with a footnote here</span></p><p class="peritext-contents-note-content" name="note-content-undefined3" id="note-content-undefined3"><a href="#note-content-undefined3" class="peritext-contents-note-number"><span>3</span></a><span class="peritext-contents-note-text"><span id="contextualization_14" class="peritext-contents-inline-citation" itemprop="citation" property="citation" itemtype="http://schema.org/Book" typeof="Book"><span class="peritext-contents-citation-reference"><i class="peritext-contents-citation-ibid">ibid.</i></span><span class="peritext-contents-citation-details">, <span class="peritext-contents-citation-quote-pages">p. 12</span></span></span>.</span></p><p class="peritext-contents-note-content" name="note-content-undefined4" id="note-content-undefined4"><a href="#note-content-undefined4" class="peritext-contents-note-number"><span>4</span></a><span class="peritext-contents-note-text">I&#x27;m referencing to <span id="contextualization_16" class="peritext-contents-inline-citation" itemprop="citation" property="citation" itemtype="http://schema.org/ScholarlyArticle" typeof="ScholarlyArticle"><span class="peritext-contents-citation-reference"><i class="peritext-contents-citation-ibid">ibid.</i></span><span class="peritext-contents-citation-details">, <span class="peritext-contents-citation-quote-pages">pp. 12-13</span></span></span> when he says : &quot;hello&quot;</span></p><p class="peritext-contents-note-content" name="note-content-undefined5" id="note-content-undefined5"><a href="#note-content-undefined5" class="peritext-contents-note-number"><span>5</span></a><span class="peritext-contents-note-text">This is another footnote</span></p><p class="peritext-contents-note-content" name="note-content-undefined6" id="note-content-undefined6"><a href="#note-content-undefined6" class="peritext-contents-note-number"><span>6</span></a><span class="peritext-contents-note-text">This is another footnote</span></p><p class="peritext-contents-note-content" name="note-content-undefined7" id="note-content-undefined7"><a href="#note-content-undefined7" class="peritext-contents-note-number"><span>7</span></a><span class="peritext-contents-note-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. At, id autem incidunt delectus ea. Architecto aliquam alias iure mollitia voluptate totam in repellendus, dignissimos. Quia necessitatibus ipsam, quis itaque nisi.</span></p><p class="peritext-contents-note-content" name="note-content-undefined8" id="note-content-undefined8"><a href="#note-content-undefined8" class="peritext-contents-note-number"><span>8</span></a><span class="peritext-contents-note-text">This is another footnote</span></p><p class="peritext-contents-note-content" name="note-content-undefined9" id="note-content-undefined9"><a href="#note-content-undefined9" class="peritext-contents-note-number"><span>9</span></a><span class="peritext-contents-note-text">This is another footnote</span></p><p class="peritext-contents-note-content" name="note-content-undefined10" id="note-content-undefined10"><a href="#note-content-undefined10" class="peritext-contents-note-number"><span>10</span></a><span class="peritext-contents-note-text">third footnote</span></p></div></section><section id="toc"><h2>Table of contents</h2><section class="peritext-contents-toc-contents"><section class="peritext-contents-toc-element" style="padding-left:0cm;"><a href="#partie_1">Partie 1</a></section><section class="peritext-contents-toc-element" style="padding-left:0cm;"><a href="#partie_2">Partie 2</a></section><section class="peritext-contents-toc-element" style="padding-left:1cm;"><a href="#partie_2_2">Partie 2.2</a></section></section></section><section id="peritext-contents-back-cover" class="peritext-contents-back-cover"><h2>My awesome thesis with an awesome incredibly long and complicated title</h2><p>This is a thesis about some subject. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></section></section>
                        </body>
                     </html>

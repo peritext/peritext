@@ -8,7 +8,7 @@ import Radium from 'radium';
  * dumb component for cover page of a static publication of document
  */
 @Radium
-export default class StaticCoverPage extends React.Component {
+export default class StaticFrontCover extends React.Component {
 
   /**
    * propTypes
@@ -38,37 +38,37 @@ export default class StaticCoverPage extends React.Component {
   render() {
     return (
       <section
-        id="peritext-contents-cover"
-        className="peritext-contents-cover"
+        id="peritext-contents-front-cover"
+        className="peritext-contents-front-cover"
       >
         <div
           style={{backgroundImage: 'url(' + this.getGeneralProp(this.props.metadata, 'coverimage') + ')'}}
-          id="peritext-contents-cover-image-container"
+          id="peritext-contents-front-cover-image-container"
         ></div>
         <div
-          className="peritext-contents-cover-texts-container"
+          className="peritext-contents-front-cover-texts-container"
         >
-          <section className="peritext-contents-cover-part-top-left">
-            <h3 className="peritext-contents-cover-dissertationinstitution">
+          <section className="peritext-contents-front-cover-part-top-left">
+            <h3 className="peritext-contents-front-cover-dissertationinstitution">
               Thèse / {this.getGeneralProp(this.props.metadata, 'dissertationinstitution')}
             </h3>
             <p>
               Pour obtenir le grade de DOCTEUR
             </p>
-            <h4 className="peritext-contents-cover-dissertationcomment">
+            <h4 className="peritext-contents-front-cover-dissertationcomment">
               {this.getGeneralProp(this.props.metadata, 'dissertationcomment')}
             </h4>
 
-            <p className="peritext-contents-cover-dissertationdoctoralschool">
+            <p className="peritext-contents-front-cover-dissertationdoctoralschool">
               École doctorale {this.getGeneralProp(this.props.metadata, 'dissertationdoctoralschool')}
             </p>
 
-            <p className="peritext-contents-cover-dissertationdiscipline">
+            <p className="peritext-contents-front-cover-dissertationdiscipline">
               Mention : <span>{this.getGeneralProp(this.props.metadata, 'dissertationdiscipline')}</span>
             </p>
           </section>
 
-          <section className="peritext-contents-cover-part-top-right">
+          <section className="peritext-contents-front-cover-part-top-right">
             <p>
               présentée par
             </p>
@@ -77,19 +77,19 @@ export default class StaticCoverPage extends React.Component {
                 return <StructuredPerson key={person.citeKey} resource={person}/>;
               })}
             </h1>
-            <p className="peritext-contents-cover-dissertationlab">
+            <p className="peritext-contents-front-cover-dissertationlab">
               {this.getGeneralProp(this.props.metadata, 'dissertationlab')}
             </p>
           </section>
 
-          <section className="peritext-contents-cover-part-bottom-left">
+          <section className="peritext-contents-front-cover-part-bottom-left">
             <h1>
               {this.getGeneralProp(this.props.metadata, 'title')}
             </h1>
           </section>
 
-          <section className="peritext-contents-cover-part-bottom-right">
-            <p className="peritext-contents-cover-date">
+          <section className="peritext-contents-front-cover-part-bottom-right">
+            <p className="peritext-contents-front-cover-date">
               Thèse soutenue le {this.getGeneralProp(this.props.metadata, 'date')}
             </p>
             <p>
@@ -98,7 +98,7 @@ export default class StaticCoverPage extends React.Component {
             {
               this.getGeneralProp(this.props.metadata, 'dissertationjury').map((person) =>{
                 return (
-                    <p key={person.citeKey} className="peritext-contents-cover-jury-member">
+                    <p key={person.citeKey} className="peritext-contents-front-cover-jury-member">
                       <StructuredPerson resource={person} pattern="${firstName} ${lastName:capitals} ${information} / ${role}"/>
                     </p>
                   );

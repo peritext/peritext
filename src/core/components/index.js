@@ -1,4 +1,5 @@
-export { default as StaticCoverPage } from './StaticComponents/StaticCoverPage.js';
+export { default as StaticFrontCover } from './StaticComponents/StaticFrontCover.js';
+export { default as StaticBackCover } from './StaticComponents/StaticBackCover.js';
 export { default as StaticDocument } from './StaticComponents/StaticDocument.js';
 export { default as StaticEndNotes } from './StaticComponents/StaticEndNotes.js';
 export { default as StaticImageFigure } from './StaticComponents/StaticImageFigure.js';

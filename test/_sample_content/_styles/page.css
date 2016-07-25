@@ -21,20 +21,41 @@ h1,h2,h3,h4,h5,h6
   }
 }
 
-.peritext-contents-cover
+.peritext-contents-front-cover
 {
   page-break-after: always;
   margin : 0;
   font-family: Arial;
 }
 
-@page.peritext-contents-cover
+@page.peritext-contents-front-cover
 {
   margin : 0;
   font-family: Arial;
 }
 
-.peritext-contents-cover #peritext-contents-cover-image-container
+.peritext-contents-front-cover
+{
+  page-break-after: always;
+  margin : 0;
+  font-family: Arial;
+}
+
+.peritext-contents-back-cover
+{
+  page-break-before: always;
+  margin: 0;
+  padding: 0;
+  font-size : 2em;
+  background: yellow;
+  position: absolute;
+  left : 0;
+  top : 0;
+  width : 100%;
+  height : 100%;
+}
+
+.peritext-contents-front-cover #peritext-contents-front-cover-image-container
 {
   background-size:     cover;
   background-repeat:   no-repeat;
@@ -44,17 +65,17 @@ h1,h2,h3,h4,h5,h6
   /*width : 100%;*/
 }
 
-.peritext-contents-cover-part-top-left,
-.peritext-contents-cover-part-top-right,
-.peritext-contents-cover-part-bottom-left,
-.peritext-contents-cover-part-bottom-right
+.peritext-contents-front-cover-part-top-left,
+.peritext-contents-front-cover-part-top-right,
+.peritext-contents-front-cover-part-bottom-left,
+.peritext-contents-front-cover-part-bottom-right
 {
   position: fixed;
   width : 50%;
 }
 
-.peritext-contents-cover-part-top-left,
-.peritext-contents-cover-part-bottom-left
+.peritext-contents-front-cover-part-top-left,
+.peritext-contents-front-cover-part-bottom-left
 {
   left : .5cm;
   text-align : right;
@@ -62,57 +83,57 @@ h1,h2,h3,h4,h5,h6
   width : 45%;
 }
 
-.peritext-contents-cover-part-top-right,
-.peritext-contents-cover-part-bottom-right
+.peritext-contents-front-cover-part-top-right,
+.peritext-contents-front-cover-part-bottom-right
 {
   left : 1cm;
   padding-left : 50%;
   padding-right : 1cm;
 }
 
-.peritext-contents-cover-part-top-left,
-.peritext-contents-cover-part-top-right
+.peritext-contents-front-cover-part-top-left,
+.peritext-contents-front-cover-part-top-right
 {
   bottom : 31.6%;
   color : white;
   padding-bottom : .8cm;
 }
 
-.peritext-contents-cover-part-bottom-left,
-.peritext-contents-cover-part-bottom-right
+.peritext-contents-front-cover-part-bottom-left,
+.peritext-contents-front-cover-part-bottom-right
 {
   top : 68%;
 }
 
-.peritext-contents-cover-part-top-left h3,
-.peritext-contents-cover-part-top-left h4,
-.peritext-contents-cover-part-top-left p,
-.peritext-contents-cover-part-top-right h3,
-.peritext-contents-cover-part-top-right h4,
-.peritext-contents-cover-part-top-right p
+.peritext-contents-front-cover-part-top-left h3,
+.peritext-contents-front-cover-part-top-left h4,
+.peritext-contents-front-cover-part-top-left p,
+.peritext-contents-front-cover-part-top-right h3,
+.peritext-contents-front-cover-part-top-right h4,
+.peritext-contents-front-cover-part-top-right p
 {
   margin-top : 0;
   margin-bottom : 0;
   font-size : 12px;
 }
 
-.peritext-contents-cover-part-top-right h1
+.peritext-contents-front-cover-part-top-right h1
 {
   margin : 0;
   padding : 0;
 }
 
-.peritext-contents-cover-part-bottom-left h1{
+.peritext-contents-front-cover-part-bottom-left h1{
   margin : 0;
 }
 
-.peritext-contents-cover-date
+.peritext-contents-front-cover-date
 {
   font-weight : 800;
 }
 
-.peritext-contents-cover-jury-member .peritext-contents-person-firstname,
-.peritext-contents-cover-jury-member .peritext-contents-person-lastname
+.peritext-contents-front-cover-jury-member .peritext-contents-person-firstname,
+.peritext-contents-front-cover-jury-member .peritext-contents-person-lastname
 {
   font-weight : 800;
 }

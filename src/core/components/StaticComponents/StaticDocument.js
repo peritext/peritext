@@ -4,13 +4,15 @@ import Radium from 'radium';
 import {getMetaValue} from './../../utils/sectionUtils';
 import {bibToSchema} from './../../utils/microDataUtils';
 import {
-  StructuredSpan,
-  StructuredDate,
-  StructuredPerson,
-  StaticSection,
+  StaticBackCover,
   StaticEndNotes,
-  StaticCoverPage,
-  StaticTableOfContents
+  StaticFrontCover,
+  StaticSection,
+  StaticTableOfContents,
+  StructuredDate,
+  StructuredMetadataPlaceholder,
+  StructuredPerson,
+  StructuredSpan,
 } from './../index.js';
 
 // let styles = {};
@@ -56,33 +58,11 @@ export default class StaticDocument extends React.Component {
           vocab="http://schema.org/"
           resource={'#' + citeKey}
         >
-          {this.props.sections[0].metadata.filter((prop) =>{
-            return prop.domain === 'general';
-          }).map((meta) =>{
-            switch (meta.key) {
-            case 'title':
-              return <StructuredSpan key={meta.key} property="name" value={meta.value} />;
-            case 'date':
-              return <StructuredDate key={meta.key} property="datePublished" value={meta.value} />;
-            case 'author':
-              return (
-                <span key={meta.key}>
-                  {
-                    meta.value.map((author)=> {
-                      return <StructuredPerson resource={author} key={author.citeKey} />;
-                    })
-                  }
-                </span>
-              );
-            // TODO : continue along with other metadata-to-schema conversions
-            default:
-              return '';
-            }
-          })}
+          <StructuredMetadataPlaceholder section={this.props.sections[0]} />
 
           {
             this.props.renderingParams.hasCover ?
-            <StaticCoverPage metadata={this.props.sections[0].metadata} />
+            <StaticFrontCover metadata={this.props.sections[0].metadata} />
             : ''
           }
 
@@ -127,6 +107,12 @@ export default class StaticDocument extends React.Component {
           {
             this.props.renderingParams.tocPosition === 'end' ?
             <StaticTableOfContents elements={tocData} level={getMetaValue(this.props.sections[0].metadata, 'general', 'generalityLevel')} />
+            : ''
+          }
+
+          {
+            this.props.renderingParams.hasCover ?
+            <StaticBackCover metadata={this.props.sections[0].metadata} />
             : ''
           }
         </section>

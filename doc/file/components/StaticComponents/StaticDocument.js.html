@@ -32,9 +32,10 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">StaticComponents</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/StaticComponents/StaticCoverPage.js~StaticCoverPage.html">StaticCoverPage</a></span></span></li>
+  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">StaticComponents</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/StaticComponents/StaticBackCover.js~StaticBackCover.html">StaticBackCover</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/StaticComponents/StaticDocument.js~StaticDocument.html">StaticDocument</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/StaticComponents/StaticEndNotes.js~StaticEndNotes.html">StaticEndNotes</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/StaticComponents/StaticFrontCover.js~StaticFrontCover.html">StaticFrontCover</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/StaticComponents/StaticImageFigure.js~StaticImageFigure.html">StaticImageFigure</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/StaticComponents/StaticImageGallery.js~StaticImageGallery.html">StaticImageGallery</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/StaticComponents/StaticNote.js~StaticNote.html">StaticNote</a></span></span></li>
@@ -60,13 +61,15 @@ import Radium from &apos;radium&apos;;
 import {getMetaValue} from &apos;./../../utils/sectionUtils&apos;;
 import {bibToSchema} from &apos;./../../utils/microDataUtils&apos;;
 import {
-  StructuredSpan,
-  StructuredDate,
-  StructuredPerson,
-  StaticSection,
+  StaticBackCover,
   StaticEndNotes,
-  StaticCoverPage,
-  StaticTableOfContents
+  StaticFrontCover,
+  StaticSection,
+  StaticTableOfContents,
+  StructuredDate,
+  StructuredMetadataPlaceholder,
+  StructuredPerson,
+  StructuredSpan,
 } from &apos;./../index.js&apos;;
 
 // let styles = {};
@@ -112,33 +115,11 @@ export default class StaticDocument extends React.Component {
           vocab=&quot;http://schema.org/&quot;
           resource={&apos;#&apos; + citeKey}
         &gt;
-          {this.props.sections[0].metadata.filter((prop) =&gt;{
-            return prop.domain === &apos;general&apos;;
-          }).map((meta) =&gt;{
-            switch (meta.key) {
-            case &apos;title&apos;:
-              return &lt;StructuredSpan key={meta.key} property=&quot;name&quot; value={meta.value} /&gt;;
-            case &apos;date&apos;:
-              return &lt;StructuredDate key={meta.key} property=&quot;datePublished&quot; value={meta.value} /&gt;;
-            case &apos;author&apos;:
-              return (
-                &lt;span key={meta.key}&gt;
-                  {
-                    meta.value.map((author)=&gt; {
-                      return &lt;StructuredPerson resource={author} key={author.citeKey} /&gt;;
-                    })
-                  }
-                &lt;/span&gt;
-              );
-            // TODO : continue along with other metadata-to-schema conversions
-            default:
-              return &apos;&apos;;
-            }
-          })}
+          &lt;StructuredMetadataPlaceholder section={this.props.sections[0]} /&gt;
 
           {
             this.props.renderingParams.hasCover ?
-            &lt;StaticCoverPage metadata={this.props.sections[0].metadata} /&gt;
+            &lt;StaticFrontCover metadata={this.props.sections[0].metadata} /&gt;
             : &apos;&apos;
           }
 
@@ -183,6 +164,12 @@ export default class StaticDocument extends React.Component {
           {
             this.props.renderingParams.tocPosition === &apos;end&apos; ?
             &lt;StaticTableOfContents elements={tocData} level={getMetaValue(this.props.sections[0].metadata, &apos;general&apos;, &apos;generalityLevel&apos;)} /&gt;
+            : &apos;&apos;
+          }
+
+          {
+            this.props.renderingParams.hasCover ?
+            &lt;StaticBackCover metadata={this.props.sections[0].metadata} /&gt;
             : &apos;&apos;
           }
         &lt;/section&gt;

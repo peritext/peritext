@@ -18,7 +18,7 @@ export default class StructuredMetadataPlaceholder extends React.Component {
    * propTypes
    */
   static propTypes = {
-    section: PropTypes.object,
+    section: PropTypes.object
   };
 
   static defaultProps = {

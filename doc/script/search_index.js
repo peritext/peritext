@@ -1,8 +1,8 @@
 window.esdocSearchIndex = [
   [
-    "peritext/components/staticcomponents/staticcoverpage.js~staticcoverpage",
-    "class/components/StaticComponents/StaticCoverPage.js~StaticCoverPage.html",
-    "<span>StaticCoverPage</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticCoverPage.js</span>",
+    "peritext/components/staticcomponents/staticbackcover.js~staticbackcover",
+    "class/components/StaticComponents/StaticBackCover.js~StaticBackCover.html",
+    "<span>StaticBackCover</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticBackCover.js</span>",
     "class"
   ],
   [
@@ -15,6 +15,12 @@ window.esdocSearchIndex = [
     "peritext/components/staticcomponents/staticendnotes.js~staticendnotes",
     "class/components/StaticComponents/StaticEndNotes.js~StaticEndNotes.html",
     "<span>StaticEndNotes</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticEndNotes.js</span>",
+    "class"
+  ],
+  [
+    "peritext/components/staticcomponents/staticfrontcover.js~staticfrontcover",
+    "class/components/StaticComponents/StaticFrontCover.js~StaticFrontCover.html",
+    "<span>StaticFrontCover</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticFrontCover.js</span>",
     "class"
   ],
   [
@@ -432,21 +438,21 @@ window.esdocSearchIndex = [
     "external"
   ],
   [
-    "components/staticcomponents/staticcoverpage.js",
-    "file/components/StaticComponents/StaticCoverPage.js.html",
-    "components/StaticComponents/StaticCoverPage.js",
+    "components/staticcomponents/staticbackcover.js",
+    "file/components/StaticComponents/StaticBackCover.js.html",
+    "components/StaticComponents/StaticBackCover.js",
     "file"
   ],
   [
-    "components/staticcomponents/staticcoverpage.js~staticcoverpage#getgeneralprop",
-    "class/components/StaticComponents/StaticCoverPage.js~StaticCoverPage.html#instance-method-getGeneralProp",
-    "components/StaticComponents/StaticCoverPage.js~StaticCoverPage#getGeneralProp",
+    "components/staticcomponents/staticbackcover.js~staticbackcover#getgeneralprop",
+    "class/components/StaticComponents/StaticBackCover.js~StaticBackCover.html#instance-method-getGeneralProp",
+    "components/StaticComponents/StaticBackCover.js~StaticBackCover#getGeneralProp",
     "method"
   ],
   [
-    "components/staticcomponents/staticcoverpage.js~staticcoverpage#render",
-    "class/components/StaticComponents/StaticCoverPage.js~StaticCoverPage.html#instance-method-render",
-    "components/StaticComponents/StaticCoverPage.js~StaticCoverPage#render",
+    "components/staticcomponents/staticbackcover.js~staticbackcover#render",
+    "class/components/StaticComponents/StaticBackCover.js~StaticBackCover.html#instance-method-render",
+    "components/StaticComponents/StaticBackCover.js~StaticBackCover#render",
     "method"
   ],
   [
@@ -471,6 +477,24 @@ window.esdocSearchIndex = [
     "components/staticcomponents/staticendnotes.js~staticendnotes#render",
     "class/components/StaticComponents/StaticEndNotes.js~StaticEndNotes.html#instance-method-render",
     "components/StaticComponents/StaticEndNotes.js~StaticEndNotes#render",
+    "method"
+  ],
+  [
+    "components/staticcomponents/staticfrontcover.js",
+    "file/components/StaticComponents/StaticFrontCover.js.html",
+    "components/StaticComponents/StaticFrontCover.js",
+    "file"
+  ],
+  [
+    "components/staticcomponents/staticfrontcover.js~staticfrontcover#getgeneralprop",
+    "class/components/StaticComponents/StaticFrontCover.js~StaticFrontCover.html#instance-method-getGeneralProp",
+    "components/StaticComponents/StaticFrontCover.js~StaticFrontCover#getGeneralProp",
+    "method"
+  ],
+  [
+    "components/staticcomponents/staticfrontcover.js~staticfrontcover#render",
+    "class/components/StaticComponents/StaticFrontCover.js~StaticFrontCover.html#instance-method-render",
+    "components/StaticComponents/StaticFrontCover.js~StaticFrontCover#render",
     "method"
   ],
   [

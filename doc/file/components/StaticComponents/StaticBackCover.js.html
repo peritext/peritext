@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">components/StructuredDataComponents/StructuredPerson.js | API Document</title>
+  <title data-ice="title">components/StaticComponents/StaticBackCover.js | API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -54,107 +54,37 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">components/StructuredDataComponents/StructuredPerson.js</h1>
+<div class="content" data-ice="content"><h1 data-ice="title">components/StaticComponents/StaticBackCover.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React, {PropTypes} from &apos;react&apos;;
-import reactStringReplace from &apos;react-string-replace&apos;;
-
 import Radium from &apos;radium&apos;;
 
 // let styles = {};
 
 /**
- * dumb component for rendering the structured representation of a person
+ * dumb component for back cover page of a static publication of document
  */
 @Radium
-export default class StructuredPerson extends React.Component {
+export default class StaticBackCover extends React.Component {
 
   /**
    * propTypes
-   * @property {object} resource the person object which may contain the following props : &quot;lastName&quot;, &quot;firstName&quot;, &quot;role&quot;, and &quot;information&quot;
-   * @property {string} pattern the pattern to apply for formatting the person name to html, eg : &quot; ${lastName:capitals}, ${firstName:initials}&quot;
-   * @property {string} property the microformat property to apply to the structured element
+   * @property {array} metadata a section metadata to parse in order to fill cover template
    */
   static propTypes = {
-    resource: PropTypes.object,
-    pattern: PropTypes.string,
-    property: PropTypes.string
+    metadata: PropTypes.array
   };
 
   static defaultProps = {
-    pattern: &apos;${firstName} ${lastName}&apos;,
-    property: &apos;author&apos;
   };
 
-  /**
-   * transformValues modifies firstName and lastName according to pattern indications
-   * @return {Object}
-   */
-  transformValues(author, pattern) {
-    const vals = Object.assign({}, author);
-    // catch format transformers
-    const transformFirstNameMatch = pattern.match(/(\${firstName(:[^}]*)?})/);
-    const transformLastNameMatch = pattern.match(/(\${lastName(:[^}]*)?})/);
-    // if transformers - transform
-    if (transformFirstNameMatch) {
-      if (transformFirstNameMatch[2] === &apos;:initials&apos;) {
-        // processing composed names (e.g. Gian-Marco Patalucci)
-        let initials = vals.firstName.split(&apos;-&apos;).map((term)=&gt;{
-          if (term.length &gt; 0) {
-            return term.toUpperCase().substr(0, 1) + &apos;.&apos;;
-          }
-          return term;
-        }).join(&apos;-&apos;);
-        // processing multiple names (e.g. Donald Ronald Romuald Ronaldo Reagan)
-        initials = vals.firstName.split(&apos; &apos;).map((term)=&gt;{
-          if (term.length &gt; 0) {
-            return term.toUpperCase().substr(0, 1) + &apos;.&apos;;
-          }
-          return term;
-        }).join(&apos; &apos;);
-        vals.firstName = initials;
-      }
+  getGeneralProp(list, key) {
+    const obj = list.find((meta) =&gt; {
+      return meta.domain === &apos;general&apos; &amp;&amp; meta.key === key;
+    });
+    if (obj) {
+      return obj.value;
     }
-    if (transformLastNameMatch) {
-      if (transformLastNameMatch[2] === &apos;:capitals&apos;) {
-        vals.lastName = vals.lastName.toUpperCase();
-      }
-    }
-    return vals;
-  }
-
-  /**
-   * updateHtml : transform pattern+person props into a react element
-   * @return {ReactElement} markup
-   */
-  updateHtml() {
-    const vals = this.transformValues(this.props.resource, this.props.pattern);
-
-    const firstNameExp = this.props.pattern.match(/(\${firstName(:[^}]*)?})/);
-    const lastNameExp = this.props.pattern.match(/(\${lastName(:[^}]*)?})/);
-    let replacedText = this.props.pattern;
-    if (firstNameExp) {
-      replacedText = reactStringReplace(replacedText, new RegExp(&apos;(\\&apos; + firstNameExp[0] + &apos;)&apos;, &apos;g&apos;), (match, index)=&gt; (
-        &lt;span key={match + index} className=&quot;peritext-contents-person-firstname&quot; itemProp=&quot;givenName&quot; property=&quot;givenName&quot; &gt;{vals.firstName}&lt;/span&gt;
-      ));
-    }
-
-    if (lastNameExp) {
-      replacedText = reactStringReplace(replacedText, new RegExp(&apos;(\\&apos; + lastNameExp[0] + &apos;)&apos;, &apos;g&apos;), (match, index)=&gt; (
-        &lt;span key={match + index} className=&quot;peritext-contents-person-lastname&quot; itemProp=&quot;familyName&quot; property=&quot;familyName&quot; &gt;{vals.lastName}&lt;/span&gt;
-      ));
-    }
-
-    replacedText = reactStringReplace(replacedText, /(\${role})/g, (match, index)=&gt; (
-      &lt;span key={match + index} className=&quot;peritext-contents-person-role&quot; &gt;{vals.role}&lt;/span&gt;
-    ));
-
-    if (vals.information) {
-      replacedText = reactStringReplace(replacedText, /(\${information})/g, (match, index)=&gt; (
-        &lt;span key={match + index} className=&quot;peritext-contents-person-information&quot; &gt;{vals.information}&lt;/span&gt;
-      ));
-    }
-
-    return replacedText;
+    return undefined;
   }
 
   /**
@@ -163,17 +93,15 @@ export default class StructuredPerson extends React.Component {
    */
   render() {
     return (
-      &lt;span
-        className=&quot;peritext-contents-person&quot;
-        itemProp={this.props.property}
-        itemScope
-        itemType=&quot;http://schema.org/Person&quot;
-        property={this.props.property}
-        typeof=&quot;Person&quot;
-        resource={this.props.resource.citeKey}
+      &lt;section
+        id=&quot;peritext-contents-back-cover&quot;
+        className=&quot;peritext-contents-back-cover&quot;
       &gt;
-        {this.updateHtml()}
-      &lt;/span&gt;
+        &lt;h2&gt;{this.getGeneralProp(this.props.metadata, &apos;title&apos;)}&lt;/h2&gt;
+        &lt;p&gt;
+          {this.getGeneralProp(this.props.metadata, &apos;abstract&apos;)}
+        &lt;/p&gt;
+      &lt;/section&gt;
     );
   }
 }
