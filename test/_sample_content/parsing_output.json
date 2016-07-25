@@ -39,12 +39,6 @@
       "preciseType": "invalidMetadata",
       "sectionCiteKey": "partie_2_2",
       "message": "general metadata property test is invalid in section Partie 2.2 and therefore was not taken into account"
-    },
-    {
-      "type": "warning",
-      "preciseType": "invalidMetadata",
-      "sectionCiteKey": "partie_2_2",
-      "message": "general metadata property notesPosition is invalid in section Partie 2.2 and therefore was not taken into account"
     }
   ],
   "sections": [
@@ -145,8 +139,9 @@
         },
         {
           "domain": "general",
-          "key": "notesPosition",
-          "value": "sectionend"
+          "key": "language",
+          "value": "en",
+          "htmlHead": "<meta http-equiv=\"content-language\" content=\"en\">"
         },
         {
           "domain": "general",
@@ -245,6 +240,26 @@
             "key": "date"
           },
           "htmlHead": "<meta name=\"dc.date\" content=\"12 Décembre 2016\">"
+        },
+        {
+          "domain": "dublincore",
+          "key": "language",
+          "value": "en",
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "language"
+          },
+          "htmlHead": "<meta name=\"dc.language\" content=\"en\">"
+        },
+        {
+          "domain": "scholar",
+          "key": "language",
+          "value": "en",
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "language"
+          },
+          "htmlHead": "<meta name=\"citation_language\" content=\"en\">"
         }
       ],
       "contents": [
@@ -1087,13 +1102,14 @@
         },
         {
           "domain": "general",
-          "key": "notesPosition",
-          "value": "sectionend",
+          "key": "language",
+          "value": "en",
           "inheritedVerticallyFrom": {
             "domain": "general",
             "key": "citeKey",
             "value": "mybook"
-          }
+          },
+          "htmlHead": "<meta http-equiv=\"content-language\" content=\"en\">"
         },
         {
           "domain": "general",
@@ -1197,6 +1213,26 @@
             "key": "date"
           },
           "htmlHead": "<meta name=\"dc.date\" content=\"12 Décembre 2016\">"
+        },
+        {
+          "domain": "dublincore",
+          "key": "language",
+          "value": "en",
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "language"
+          },
+          "htmlHead": "<meta name=\"dc.language\" content=\"en\">"
+        },
+        {
+          "domain": "scholar",
+          "key": "language",
+          "value": "en",
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "language"
+          },
+          "htmlHead": "<meta name=\"citation_language\" content=\"en\">"
         }
       ],
       "contents": [
@@ -1528,13 +1564,14 @@
         },
         {
           "domain": "general",
-          "key": "notesPosition",
-          "value": "sectionend",
+          "key": "language",
+          "value": "en",
           "inheritedVerticallyFrom": {
             "domain": "general",
             "key": "citeKey",
             "value": "mybook"
-          }
+          },
+          "htmlHead": "<meta http-equiv=\"content-language\" content=\"en\">"
         },
         {
           "domain": "general",
@@ -1645,6 +1682,26 @@
             "key": "date"
           },
           "htmlHead": "<meta name=\"dc.date\" content=\"12 Décembre 2016\">"
+        },
+        {
+          "domain": "dublincore",
+          "key": "language",
+          "value": "en",
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "language"
+          },
+          "htmlHead": "<meta name=\"dc.language\" content=\"en\">"
+        },
+        {
+          "domain": "scholar",
+          "key": "language",
+          "value": "en",
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "language"
+          },
+          "htmlHead": "<meta name=\"citation_language\" content=\"en\">"
         }
       ],
       "contents": [
@@ -2146,13 +2203,14 @@
         },
         {
           "domain": "general",
-          "key": "notesPosition",
-          "value": "sectionend",
+          "key": "language",
+          "value": "en",
           "inheritedVerticallyFrom": {
             "domain": "general",
             "key": "citeKey",
             "value": "partie_2"
-          }
+          },
+          "htmlHead": "<meta http-equiv=\"content-language\" content=\"en\">"
         },
         {
           "domain": "general",
@@ -2263,6 +2321,26 @@
             "key": "keywords"
           },
           "htmlHead": "<meta name=\"dc.subject\" content=\"val1a, val1b, val2,val3,val4,another random set of keywords\">"
+        },
+        {
+          "domain": "dublincore",
+          "key": "language",
+          "value": "en",
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "language"
+          },
+          "htmlHead": "<meta name=\"dc.language\" content=\"en\">"
+        },
+        {
+          "domain": "scholar",
+          "key": "language",
+          "value": "en",
+          "inheritedHorizontallyFrom": {
+            "domain": "general",
+            "key": "language"
+          },
+          "htmlHead": "<meta name=\"citation_language\" content=\"en\">"
         }
       ],
       "contents": [
