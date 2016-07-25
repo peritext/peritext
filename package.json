@@ -1,8 +1,8 @@
 {
-  "name": "modulo-core",
+  "name": "peritext",
   "version": "0.0.1",
-  "description": "Modulo is a multimodal publishing interface",
-  "repository": "https://github.com/robindemourat/modulo",
+  "description": "Peritext is a multimodal publishing interface",
+  "repository": "https://github.com/robindemourat/peritext",
   "author": "Robin de Mourat",
   "license": "GPL-3.0+",
   "keywords": [
@@ -21,12 +21,11 @@
     "lint:watch": "node_modules/eslint-watch/bin/esw --watch --config .eslintrc src",
     "validate": "npm ls",
     "doc": "esdoc -c esdoc.json",
-    "coverage": "nyc report npm run test && nyc check-coverage --lines 50 --functions 50 --branches 50",
-    "autocommitadd": "git add doc coverage src/temp"
+    "coverage": "nyc npm test && nyc check-coverage --lines 50 --functions 50 --branches 50",
+    "autocommitadd": "git add doc src/temp"
   },
   "pre-commit": [
     "lint",
-    "test",
     "coverage",
     "doc",
     "autocommitadd"

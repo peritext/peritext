@@ -1,104 +1,104 @@
 window.esdocSearchIndex = [
   [
-    "modulo-core/components/staticcomponents/staticcoverpage.js~staticcoverpage",
+    "peritext/components/staticcomponents/staticcoverpage.js~staticcoverpage",
     "class/components/StaticComponents/StaticCoverPage.js~StaticCoverPage.html",
-    "<span>StaticCoverPage</span> <span class=\"search-result-import-path\">modulo-core/components/StaticComponents/StaticCoverPage.js</span>",
+    "<span>StaticCoverPage</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticCoverPage.js</span>",
     "class"
   ],
   [
-    "modulo-core/components/staticcomponents/staticdocument.js~staticdocument",
+    "peritext/components/staticcomponents/staticdocument.js~staticdocument",
     "class/components/StaticComponents/StaticDocument.js~StaticDocument.html",
-    "<span>StaticDocument</span> <span class=\"search-result-import-path\">modulo-core/components/StaticComponents/StaticDocument.js</span>",
+    "<span>StaticDocument</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticDocument.js</span>",
     "class"
   ],
   [
-    "modulo-core/components/staticcomponents/staticendnotes.js~staticendnotes",
+    "peritext/components/staticcomponents/staticendnotes.js~staticendnotes",
     "class/components/StaticComponents/StaticEndNotes.js~StaticEndNotes.html",
-    "<span>StaticEndNotes</span> <span class=\"search-result-import-path\">modulo-core/components/StaticComponents/StaticEndNotes.js</span>",
+    "<span>StaticEndNotes</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticEndNotes.js</span>",
     "class"
   ],
   [
-    "modulo-core/components/staticcomponents/staticimagefigure.js~staticimagefigure",
+    "peritext/components/staticcomponents/staticimagefigure.js~staticimagefigure",
     "class/components/StaticComponents/StaticImageFigure.js~StaticImageFigure.html",
-    "<span>StaticImageFigure</span> <span class=\"search-result-import-path\">modulo-core/components/StaticComponents/StaticImageFigure.js</span>",
+    "<span>StaticImageFigure</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticImageFigure.js</span>",
     "class"
   ],
   [
-    "modulo-core/components/staticcomponents/staticimagegallery.js~staticimagegallery",
+    "peritext/components/staticcomponents/staticimagegallery.js~staticimagegallery",
     "class/components/StaticComponents/StaticImageGallery.js~StaticImageGallery.html",
-    "<span>StaticImageGallery</span> <span class=\"search-result-import-path\">modulo-core/components/StaticComponents/StaticImageGallery.js</span>",
+    "<span>StaticImageGallery</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticImageGallery.js</span>",
     "class"
   ],
   [
-    "modulo-core/components/staticcomponents/staticnote.js~staticnote",
+    "peritext/components/staticcomponents/staticnote.js~staticnote",
     "class/components/StaticComponents/StaticNote.js~StaticNote.html",
-    "<span>StaticNote</span> <span class=\"search-result-import-path\">modulo-core/components/StaticComponents/StaticNote.js</span>",
+    "<span>StaticNote</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticNote.js</span>",
     "class"
   ],
   [
-    "modulo-core/components/staticcomponents/staticsection.js~staticsection",
+    "peritext/components/staticcomponents/staticsection.js~staticsection",
     "class/components/StaticComponents/StaticSection.js~StaticSection.html",
-    "<span>StaticSection</span> <span class=\"search-result-import-path\">modulo-core/components/StaticComponents/StaticSection.js</span>",
+    "<span>StaticSection</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticSection.js</span>",
     "class"
   ],
   [
-    "modulo-core/components/staticcomponents/statictableofcontents.js~statictableofcontents",
+    "peritext/components/staticcomponents/statictableofcontents.js~statictableofcontents",
     "class/components/StaticComponents/StaticTableOfContents.js~StaticTableOfContents.html",
-    "<span>StaticTableOfContents</span> <span class=\"search-result-import-path\">modulo-core/components/StaticComponents/StaticTableOfContents.js</span>",
+    "<span>StaticTableOfContents</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticTableOfContents.js</span>",
     "class"
   ],
   [
-    "modulo-core/components/structureddatacomponents/structuredcite.js~structuredcite",
+    "peritext/components/structureddatacomponents/structuredcite.js~structuredcite",
     "class/components/StructuredDataComponents/StructuredCite.js~StructuredCite.html",
-    "<span>StructuredCite</span> <span class=\"search-result-import-path\">modulo-core/components/StructuredDataComponents/StructuredCite.js</span>",
+    "<span>StructuredCite</span> <span class=\"search-result-import-path\">peritext/components/StructuredDataComponents/StructuredCite.js</span>",
     "class"
   ],
   [
-    "modulo-core/components/structureddatacomponents/structureddate.js~structureddate",
+    "peritext/components/structureddatacomponents/structureddate.js~structureddate",
     "class/components/StructuredDataComponents/StructuredDate.js~StructuredDate.html",
-    "<span>StructuredDate</span> <span class=\"search-result-import-path\">modulo-core/components/StructuredDataComponents/StructuredDate.js</span>",
+    "<span>StructuredDate</span> <span class=\"search-result-import-path\">peritext/components/StructuredDataComponents/StructuredDate.js</span>",
     "class"
   ],
   [
-    "modulo-core/components/structureddatacomponents/structuredhyperlink.js~structuredhyperlink",
+    "peritext/components/structureddatacomponents/structuredhyperlink.js~structuredhyperlink",
     "class/components/StructuredDataComponents/StructuredHyperLink.js~StructuredHyperLink.html",
-    "<span>StructuredHyperLink</span> <span class=\"search-result-import-path\">modulo-core/components/StructuredDataComponents/StructuredHyperLink.js</span>",
+    "<span>StructuredHyperLink</span> <span class=\"search-result-import-path\">peritext/components/StructuredDataComponents/StructuredHyperLink.js</span>",
     "class"
   ],
   [
-    "modulo-core/components/structureddatacomponents/structuredmetadataplaceholder.js~structuredmetadataplaceholder",
+    "peritext/components/structureddatacomponents/structuredmetadataplaceholder.js~structuredmetadataplaceholder",
     "class/components/StructuredDataComponents/StructuredMetadataPlaceholder.js~StructuredMetadataPlaceholder.html",
-    "<span>StructuredMetadataPlaceholder</span> <span class=\"search-result-import-path\">modulo-core/components/StructuredDataComponents/StructuredMetadataPlaceholder.js</span>",
+    "<span>StructuredMetadataPlaceholder</span> <span class=\"search-result-import-path\">peritext/components/StructuredDataComponents/StructuredMetadataPlaceholder.js</span>",
     "class"
   ],
   [
-    "modulo-core/components/structureddatacomponents/structuredparentjournal.js~structuredparentjournal",
+    "peritext/components/structureddatacomponents/structuredparentjournal.js~structuredparentjournal",
     "class/components/StructuredDataComponents/StructuredParentJournal.js~StructuredParentJournal.html",
-    "<span>StructuredParentJournal</span> <span class=\"search-result-import-path\">modulo-core/components/StructuredDataComponents/StructuredParentJournal.js</span>",
+    "<span>StructuredParentJournal</span> <span class=\"search-result-import-path\">peritext/components/StructuredDataComponents/StructuredParentJournal.js</span>",
     "class"
   ],
   [
-    "modulo-core/components/structureddatacomponents/structuredperson.js~structuredperson",
+    "peritext/components/structureddatacomponents/structuredperson.js~structuredperson",
     "class/components/StructuredDataComponents/StructuredPerson.js~StructuredPerson.html",
-    "<span>StructuredPerson</span> <span class=\"search-result-import-path\">modulo-core/components/StructuredDataComponents/StructuredPerson.js</span>",
+    "<span>StructuredPerson</span> <span class=\"search-result-import-path\">peritext/components/StructuredDataComponents/StructuredPerson.js</span>",
     "class"
   ],
   [
-    "modulo-core/components/structureddatacomponents/structuredpublisher.js~structuredpublisher",
+    "peritext/components/structureddatacomponents/structuredpublisher.js~structuredpublisher",
     "class/components/StructuredDataComponents/StructuredPublisher.js~StructuredPublisher.html",
-    "<span>StructuredPublisher</span> <span class=\"search-result-import-path\">modulo-core/components/StructuredDataComponents/StructuredPublisher.js</span>",
+    "<span>StructuredPublisher</span> <span class=\"search-result-import-path\">peritext/components/StructuredDataComponents/StructuredPublisher.js</span>",
     "class"
   ],
   [
-    "modulo-core/components/structureddatacomponents/structuredspan.js~structuredspan",
+    "peritext/components/structureddatacomponents/structuredspan.js~structuredspan",
     "class/components/StructuredDataComponents/StructuredSpan.js~StructuredSpan.html",
-    "<span>StructuredSpan</span> <span class=\"search-result-import-path\">modulo-core/components/StructuredDataComponents/StructuredSpan.js</span>",
+    "<span>StructuredSpan</span> <span class=\"search-result-import-path\">peritext/components/StructuredDataComponents/StructuredSpan.js</span>",
     "class"
   ],
   [
-    "modulo-core/components/staticcomponents/staticwebsiteposter.js~structuredwebsiteposter",
+    "peritext/components/staticcomponents/staticwebsiteposter.js~structuredwebsiteposter",
     "class/components/StaticComponents/StaticWebsitePoster.js~StructuredWebsitePoster.html",
-    "<span>StructuredWebsitePoster</span> <span class=\"search-result-import-path\">modulo-core/components/StaticComponents/StaticWebsitePoster.js</span>",
+    "<span>StructuredWebsitePoster</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticWebsitePoster.js</span>",
     "class"
   ],
   [
