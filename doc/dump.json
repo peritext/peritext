@@ -153,10 +153,31 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React, {PropTypes} from 'react';\nimport Radium from 'radium';\nimport {StaticNote} from './../index.js';\n\n// let styles = {};\n\n/**\n * dumb component for rendering the structured representation of a static section\n */\n@Radium\nexport default class StaticEndNotes extends React.Component {\n\n  /**\n   * propTypes\n   */\n  static propTypes = {\n    notes: PropTypes.array,\n    classSuffix: PropTypes.string\n  };\n\n  static defaultProps = {\n  };\n\n  /**\n   * render\n   * @return {ReactElement} markup\n   */\n  render() {\n    return (\n      <section\n        className={'peritext-contents-notes peritext-contents-notes-' + this.props.classSuffix}\n      >\n        {this.props.notes.length > 0 ? <h4 className=\"peritext-contents-notes-title\">Notes</h4> : ''}\n\n        <div className=\"peritext-contents-notes-container\">\n          {this.props.notes.map((note, noteIndex)=> {\n            return <StaticNote key={noteIndex} sectionCitekey={note.sectionCitekey} notesCount={note.notesCount} noteContent={note.noteContent} />;\n          })}\n        </div>\n      </section>\n    );\n  }\n}\n"
+    "content": "import React, {PropTypes} from 'react';\nimport Radium from 'radium';\nimport {StaticNote} from './../index.js';\nimport { intlShape, defineMessages } from 'react-intl';\n\n// let styles = {};\n\nconst translate = defineMessages({\n  endnotes: {\n    id: 'end_notes',\n    description: 'Title of the endnotes',\n    defaultMessage: 'Notes',\n  }\n});\n\n\n/**\n * dumb component for rendering the structured representation of a static section\n */\n@Radium\nclass StaticEndNotes extends React.Component {\n\n  /**\n   * propTypes\n   */\n  static propTypes = {\n    notes: PropTypes.array,\n    classSuffix: PropTypes.string\n  };\n\n  static defaultProps = {\n  };\n\n  /**\n   * render\n   * @return {ReactElement} markup\n   */\n  render() {\n    const { formatMessage } = this.context.intl;\n    return (\n      <section\n        className={'peritext-contents-notes peritext-contents-notes-' + this.props.classSuffix}\n      >\n        {this.props.notes.length > 0 ? <h4 className=\"peritext-contents-notes-title\">\n         { formatMessage(translate.endnotes, {}) }\n        </h4> : ''}\n\n        <div className=\"peritext-contents-notes-container\">\n          {this.props.notes.map((note, noteIndex)=> {\n            return <StaticNote key={noteIndex} sectionCitekey={note.sectionCitekey} notesCount={note.notesCount} noteContent={note.noteContent} />;\n          })}\n        </div>\n      </section>\n    );\n  }\n}\n\nStaticEndNotes.contextTypes = { intl: intlShape };\n\nexport default StaticEndNotes;\n"
   },
   {
     "__docId__": 8,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "translate",
+    "memberof": "components/StaticComponents/StaticEndNotes.js",
+    "longname": "components/StaticComponents/StaticEndNotes.js~translate",
+    "access": null,
+    "export": false,
+    "importPath": "peritext/components/StaticComponents/StaticEndNotes.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 9,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -167,16 +188,15 @@
     "export": true,
     "importPath": "peritext/components/StaticComponents/StaticEndNotes.js",
     "importStyle": "StaticEndNotes",
-    "description": null,
-    "lineNumber": 11,
-    "undocument": true,
+    "description": "dumb component for rendering the structured representation of a static section",
+    "lineNumber": 21,
     "interface": false,
     "extends": [
       "react~React.Component"
     ]
   },
   {
-    "__docId__": 9,
+    "__docId__": 10,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -185,7 +205,7 @@
     "longname": "components/StaticComponents/StaticEndNotes.js~StaticEndNotes#render",
     "access": null,
     "description": "render",
-    "lineNumber": 28,
+    "lineNumber": 38,
     "params": [],
     "return": {
       "nullable": null,
@@ -198,7 +218,7 @@
     "generator": false
   },
   {
-    "__docId__": 10,
+    "__docId__": 11,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -211,7 +231,7 @@
     "content": "import React, {PropTypes} from 'react';\nimport Radium from 'radium';\n\n// let styles = {};\n\n/**\n * dumb component for displaying a simple structured image figure\n */\n@Radium\nexport default class StaticImageFigure extends React.Component {\n\n  /**\n   * propTypes\n   * @property {string} schematype html schema type of the element\n   * @property {object} resource the resource to be parsed\n   * @property {string} captionContent what to display as caption\n   * @property {number} figureNumber in static mode, the number of the figure\n   */\n  static propTypes = {\n    schematype: PropTypes.string,\n    resource: PropTypes.object,\n    imageKey: PropTypes.string,\n    captionContent: PropTypes.string,\n    figureNumber: PropTypes.number\n  };\n\n  static defaultProps = {\n    schematype: 'ImageObject',\n    captionContent: '',\n    imageKey: 'imageurl'\n  };\n\n  /**\n   * render\n   * @return {ReactElement} markup\n   */\n  render() {\n    return (\n              <figure\n                className=\"peritext-contents-image-figure\"\n                itemProp=\"image\"\n                value=\"image\"\n                itemScope\n                itemType=\"http://schema.org/ImageObject\"\n                typeof=\"ImageObject\"\n              >\n                <a\n                  href={this.props.resource[this.props.imageKey]}\n                  itemProp=\"url\"\n                  property=\"url\"\n                  value={this.props.resource[this.props.imageKey]}\n                >\n                </a>\n                <img\n                  itemProp=\"contentUrl\"\n                  value=\"contentUrl\"\n                  src={this.props.resource[this.props.imageKey]}\n                  alt={this.props.resource.title}\n                />\n              </figure>\n          );\n  }\n}\n"
   },
   {
-    "__docId__": 11,
+    "__docId__": 12,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -231,7 +251,7 @@
     ]
   },
   {
-    "__docId__": 12,
+    "__docId__": 13,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -253,7 +273,7 @@
     "generator": false
   },
   {
-    "__docId__": 13,
+    "__docId__": 14,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -266,7 +286,7 @@
     "content": "import React, {PropTypes} from 'react';\nimport StaticImageFigure from './StaticImageFigure.js';\n// import HyperLink from './HyperLink.js';\nimport Radium from 'radium';\n\n// let styles = {};\n\n/**\n * dumb static-oriented component for displaying an image gallery\n */\n@Radium\nexport default class StaticImageGallery extends React.Component {\n  /**\n   * propTypes\n   * @property {string} schematype html schema type of the element\n   * @property {array} resources array of resources used\n   * @property {string} captionContent what to display as caption\n   * @property {number} figureNumber in static mode, the number of the figure\n   */\n  static propTypes = {\n    schematype: PropTypes.string,\n    resources: PropTypes.array,\n    captionContent: PropTypes.string,\n    figureNumber: PropTypes.number\n  };\n\n  static defaultProps = {\n    schematype: 'ImageGallery',\n    comment: ''\n  };\n\n  /**\n   * render\n   * @return {ReactElement} markup\n   */\n  render() {\n    return (\n            <figure\n              role=\"group\"\n              className=\"peritext-contents-figures-gallery peritext-contents-figure\"\n              itemScope\n              itemProp=\"citation\"\n              itemType={'http://schema.org/' + this.props.schematype}\n              typeof={this.props.schematype}\n              resource={this.props.figureNumber ? 'peritext-contents-figure-' + this.props.figureNumber : undefined }\n              id={this.props.figureNumber ? 'peritext-contents-figure-' + this.props.figureNumber : undefined }\n            >\n              <div className=\"peritext-contents-figures-wrapper\">\n                {this.props.resources.map((resource)=>{\n                  return <StaticImageFigure resource={resource} key={resource.citeKey} />;\n                })}\n              </div>\n              <figcaption\n                itemProp=\"description\"\n                property=\"description\"\n              >\n                Figure {this.props.figureNumber} – {this.props.captionContent}\n              </figcaption>\n            </figure>\n          );\n  }\n}\n"
   },
   {
-    "__docId__": 14,
+    "__docId__": 15,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -286,7 +306,7 @@
     ]
   },
   {
-    "__docId__": 15,
+    "__docId__": 16,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -308,7 +328,7 @@
     "generator": false
   },
   {
-    "__docId__": 16,
+    "__docId__": 17,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -321,7 +341,7 @@
     "content": "import React, {PropTypes} from 'react';\nimport HtmlToReact from 'html-to-react';\n\nimport Radium from 'radium';\n\n// let styles = {};\n\n/**\n * dumb component for rendering the structured representation of a static section\n */\n@Radium\nexport default class StaticNote extends React.Component {\n\n  /**\n   * propTypes\n   */\n  static propTypes = {\n    sectionCiteKey: PropTypes.string,\n    notesCount: PropTypes.number,\n    noteContent: PropTypes.string\n  };\n\n  static defaultProps = {\n  };\n\n  htmlToReactParser = new HtmlToReact.Parser(React);\n\n  /**\n   * render\n   * @return {ReactElement} markup\n   */\n  render() {\n    const content = this.htmlToReactParser.parse('<span class=\"peritext-contents-note-text\">' + this.props.noteContent + '</span>');\n    return (\n      <p\n        className=\"peritext-contents-note-content\"\n        name={'note-content-' + this.props.sectionCiteKey + this.props.notesCount}\n        id={'note-content-' + this.props.sectionCiteKey + this.props.notesCount}\n      >\n        <a\n          href={'#note-content-' + this.props.sectionCiteKey + this.props.notesCount}\n          className=\"peritext-contents-note-number\"\n        >\n          <span>{this.props.notesCount}</span>\n        </a>\n        {content}\n      </p>\n    );\n  }\n}\n"
   },
   {
-    "__docId__": 17,
+    "__docId__": 18,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -341,7 +361,7 @@
     ]
   },
   {
-    "__docId__": 18,
+    "__docId__": 19,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -363,7 +383,7 @@
     "generator": false
   },
   {
-    "__docId__": 19,
+    "__docId__": 20,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -376,7 +396,7 @@
     "content": "import React, {PropTypes} from 'react';\nimport Radium from 'radium';\nimport {getMetaValue} from './../../utils/sectionUtils';\nimport {bibToSchema} from './../../utils/microDataUtils';\n\nimport {\n  StructuredMetadataPlaceholder,\n  StaticEndNotes\n} from './../index.js';\n\n\n// let styles = {};\n\n/**\n * dumb component for rendering the structured representation of a static section\n */\n@Radium\nexport default class StaticSection extends React.Component {\n\n  /**\n   * propTypes\n   */\n  static propTypes = {\n    section: PropTypes.object,\n    renderingParams: PropTypes.object\n  };\n\n  static defaultProps = {\n  };\n\n  /**\n   * render\n   * @return {ReactElement} markup\n   */\n  render() {\n    const bibType = bibToSchema(getMetaValue(this.props.section.metadata, 'general', 'bibType'));\n    const citeKey = getMetaValue(this.props.section.metadata, 'general', 'citeKey');\n    return (\n      <section\n        className={'peritext-contents-section peritext-contents-section-level-' + getMetaValue(this.props.section.metadata, 'general', 'generalityLevel')}\n        id={getMetaValue(this.props.section.metadata, 'general', 'citeKey')}\n        itemScope\n        itemType={'http://schema.org/' + bibType}\n        typeof={bibType}\n        resource={'#' + citeKey}\n        itemProp=\"hasPart\"\n        property=\"hasPart\"\n      >\n        <StructuredMetadataPlaceholder section={this.props.section} />\n        <section\n          className=\"peritext-contents-section-contents\"\n          dangerouslySetInnerHTML={{\n            __html: this.props.section.outputHtml\n          }}\n        ></section>\n        {this.props.renderingParams.notesPosition === 'sectionend' ?\n          <StaticEndNotes\n            classSuffix=\"section-end\"\n            notes={this.props.section.notes}\n          /> : ''\n        }\n      </section>\n    );\n  }\n}\n"
   },
   {
-    "__docId__": 20,
+    "__docId__": 21,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -396,7 +416,7 @@
     ]
   },
   {
-    "__docId__": 21,
+    "__docId__": 22,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -418,7 +438,7 @@
     "generator": false
   },
   {
-    "__docId__": 22,
+    "__docId__": 23,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -431,7 +451,7 @@
     "content": "import React, {PropTypes} from 'react';\nimport Radium from 'radium';\n\n// let styles = {};\n\n/**\n * dumb component for rendering a static table of contents\n */\n@Radium\nexport default class StaticTableOfContents extends React.Component {\n\n  /**\n   * propTypes\n   */\n  static propTypes = {\n    title: PropTypes.string,\n    elements: PropTypes.array,\n    level: PropTypes.number\n  };\n\n  static defaultProps = {\n    title: 'Table of contents'\n  };\n\n\n  /**\n   * render\n   * @return {ReactElement} markup\n   */\n  render() {\n    return (\n      <section\n        id=\"toc\"\n      >\n        <h2>{this.props.title}</h2>\n        <section className=\"peritext-contents-toc-contents\">\n          {this.props.elements.map((element) =>{\n            return <StaticTableOfContentsElement id={element.id} key={element.id} title={element.title} level={element.level} levelDisplacement={this.props.level}/>;\n          })}\n        </section>\n      </section>\n    );\n  }\n}\n\nclass StaticTableOfContentsElement extends React.Component {\n\n  /**\n   * propTypes\n   */\n  static propTypes = {\n    title: PropTypes.string,\n    level: PropTypes.number,\n    id: PropTypes.string,\n    paddingDisplacement: PropTypes.number,\n    levelDisplacement: PropTypes.number\n  };\n\n  static defaultProps = {\n    level: 0,\n    paddingDisplacement: 0.5,\n    levelDisplacement: 0\n  };\n\n\n  /**\n   * render\n   * @return {ReactElement} markup\n   */\n  render() {\n    return (\n      <section\n        className=\"peritext-contents-toc-element\"\n        style={{paddingLeft: (this.props.level - this.props.levelDisplacement - 1) * this.props.paddingDisplacement + 'cm'}}\n      >\n        <a\n          href={'#' + this.props.id}\n        >\n          {this.props.title}\n        </a>\n      </section>\n    );\n  }\n}\n"
   },
   {
-    "__docId__": 23,
+    "__docId__": 24,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -451,7 +471,7 @@
     ]
   },
   {
-    "__docId__": 24,
+    "__docId__": 25,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -473,7 +493,7 @@
     "generator": false
   },
   {
-    "__docId__": 25,
+    "__docId__": 26,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -493,7 +513,7 @@
     ]
   },
   {
-    "__docId__": 26,
+    "__docId__": 27,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -515,7 +535,7 @@
     "generator": false
   },
   {
-    "__docId__": 27,
+    "__docId__": 28,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -528,7 +548,7 @@
     "content": "import React, {PropTypes} from 'react';\nimport StaticImageFigure from './StaticImageFigure.js';\nimport StructuredHyperLink from './../StructuredDataComponents/StructuredHyperLink.js';\nimport Radium from 'radium';\n\n// let styles = {};\n\n/**\n * dumb static-oriented component for displaying a webpage poster image\n */\n@Radium\nexport default class StructuredWebsitePoster extends React.Component {\n\n  /**\n   * propTypes\n   * @property {string} schematype html schema type of the element\n   * @property {object} resource the resource to be parsed\n   * @property {string} captionContent what to display as caption\n   * @property {number} figureNumber in static mode, the number of the figure\n   */\n  static propTypes = {\n    schematype: PropTypes.string,\n    resource: PropTypes.object.isRequired,\n    captionContent: PropTypes.string,\n    figureNumber: PropTypes.number\n  };\n\n  static defaultProps = {\n    schematype: 'website',\n    captionContent: ''\n  };\n\n  /**\n   * render\n   * @return {ReactElement} markup\n   */\n  render() {\n    const invisibleStyle = {\n      display: 'none'\n    };\n    return (\n            <figure\n              role=\"group\"\n              className=\"peritext-contents-website-poster peritext-contents-figure\"\n              itemScope\n              itemProp=\"citation\"\n              itemType={'http://schema.org/' + this.props.schematype}\n              typeof={this.props.schematype}\n              resource={'#' + this.props.resource.citeKey}\n              id={this.props.figureNumber ? 'peritext-contents-figure-' + this.props.figureNumber : undefined }\n            >\n              <span\n                itemProp=\"name\"\n                property=\"name\"\n                style={invisibleStyle}\n              >\n                {this.props.resource.title}\n              </span>\n              <StaticImageFigure {...this.props} />\n              <figcaption\n                itemProp=\"description\"\n                property=\"description\"\n              >\n                Figure {this.props.figureNumber} – {this.props.captionContent} – <StructuredHyperLink text={this.props.resource.url} resource={this.props.resource}/>\n              </figcaption>\n            </figure>\n          );\n  }\n}\n"
   },
   {
-    "__docId__": 28,
+    "__docId__": 29,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -548,7 +568,7 @@
     ]
   },
   {
-    "__docId__": 29,
+    "__docId__": 30,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -570,7 +590,7 @@
     "generator": false
   },
   {
-    "__docId__": 30,
+    "__docId__": 31,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -583,7 +603,7 @@
     "content": "import React, {PropTypes} from 'react';\nimport Radium from 'radium';\n\n// let styles = {};\n\n/**\n * dumb component for rendering the structured representation of a cite element\n */\n@Radium\nexport default class StructuredCite extends React.Component {\n\n  /**\n   * propTypes\n   */\n  static propTypes = {\n    value: PropTypes.string,\n    property: PropTypes.string\n  };\n\n  static defaultProps = {\n    property: 'name'\n  };\n\n  /**\n   * render\n   * @return {ReactElement} markup\n   */\n  render() {\n    return (\n      <cite\n        className=\"peritext-contents-cite\"\n        property={this.props.property}\n        itemProp={this.props.property}\n      >\n        {this.props.value}\n      </cite>\n    );\n  }\n}\n"
   },
   {
-    "__docId__": 31,
+    "__docId__": 32,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -603,7 +623,7 @@
     ]
   },
   {
-    "__docId__": 32,
+    "__docId__": 33,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -625,7 +645,7 @@
     "generator": false
   },
   {
-    "__docId__": 33,
+    "__docId__": 34,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -638,7 +658,7 @@
     "content": "import React, {PropTypes} from 'react';\nimport Radium from 'radium';\n\n// let styles = {};\n\n/**\n * dumb component for rendering the structured representation of a date\n */\n@Radium\nexport default class StructuredDate extends React.Component {\n\n  /**\n   * propTypes\n   */\n  static propTypes = {\n    value: PropTypes.oneOfType([\n      PropTypes.number,\n      PropTypes.string\n    ]),\n    property: PropTypes.string,\n    modificator: PropTypes.string\n  };\n\n  static defaultProps = {\n    property: 'datePublished'\n  };\n\n  setFinalValue(value, modificator) {\n    if (typeof value === 'string' && modificator === 'year') {\n      const match = value.match(/([\\d]{2,4})/);\n      if (match) {\n        return match[1];\n      }\n    }\n    return value;\n  }\n\n  /**\n   * render\n   * @return {ReactElement} markup\n   */\n  render() {\n    const finalValue = this.setFinalValue(this.props.value, this.props.modificator);\n    return (\n      <time\n        className=\"peritext-contents-date\"\n        property={this.props.property}\n        itemProp={this.props.property}\n        dateTime={finalValue}\n      >\n        {finalValue}\n      </time>\n    );\n  }\n}\n"
   },
   {
-    "__docId__": 34,
+    "__docId__": 35,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -658,7 +678,7 @@
     ]
   },
   {
-    "__docId__": 35,
+    "__docId__": 36,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -691,7 +711,7 @@
     "generator": false
   },
   {
-    "__docId__": 36,
+    "__docId__": 37,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -713,7 +733,7 @@
     "generator": false
   },
   {
-    "__docId__": 37,
+    "__docId__": 38,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -726,7 +746,7 @@
     "content": "import React, {PropTypes} from 'react';\nimport Radium from 'radium';\n\n// let styles = {};\n\n/**\n * dumb component for displaying a structured simple hyperlink <a>\n */\n@Radium\nexport default class StructuredHyperLink extends React.Component {\n\n  /**\n   * propTypes\n   * @property {string} schematype html schema type of the element\n   * @property {string} text the text to display inside the hyperlink\n   * @property {object} resource the resource to be parsed\n   * @property {object} property the microformat property of the hyperlink\n   */\n  static propTypes = {\n    text: PropTypes.string,\n    schematype: PropTypes.string,\n    resource: PropTypes.object,\n    property: PropTypes.string\n  };\n\n  static defaultProps = {\n    schematype: 'website',\n    property: 'citation'\n  };\n\n  /**\n   * render\n   * @return {ReactElement} markup\n   */\n  render() {\n    const invisibleStyle = {\n      display: 'none'\n    };\n    return (\n            <a className=\"peritext-contents-hyperlink\"\n                itemScope\n                itemProp={this.props.property}\n                itemType={'http://schema.org/' + this.props.schematype}\n                typeof={this.props.schematype}\n                resource={'#' + this.props.resource.citeKey}\n            >\n              <span\n                itemProp=\"name\"\n                property=\"name\"\n                value={this.props.resource.title}\n                style={invisibleStyle}\n              >\n                {this.props.resource.title}\n              </span>\n              <span\n                itemrop=\"name\"\n                property=\"name\"\n                value={this.props.resource.url}\n                style={invisibleStyle}\n              >\n                {this.props.resource.url}\n              </span>\n              <span>\n                {this.props.text}\n              </span>\n            </a>\n          );\n  }\n}\n"
   },
   {
-    "__docId__": 38,
+    "__docId__": 39,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -746,7 +766,7 @@
     ]
   },
   {
-    "__docId__": 39,
+    "__docId__": 40,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -768,7 +788,7 @@
     "generator": false
   },
   {
-    "__docId__": 40,
+    "__docId__": 41,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -781,7 +801,7 @@
     "content": "import React, {PropTypes} from 'react';\nimport Radium from 'radium';\nimport {\n  StructuredDate,\n  StructuredSpan,\n  StructuredPerson\n} from './../index.js';\n\n// let styles = {};\n\n/**\n * dumb component for rendering the structured representation of a section\n */\n@Radium\nexport default class StructuredMetadataPlaceholder extends React.Component {\n\n  /**\n   * propTypes\n   */\n  static propTypes = {\n    section: PropTypes.object,\n  };\n\n  static defaultProps = {\n  };\n\n  /**\n   * render\n   * @return {ReactElement} markup\n   */\n  render() {\n    return (\n      <div\n        className=\"peritext-contents-schema-metadata-placeholder\"\n        style={{visibility: 'hidden'}}\n      >\n        {this.props.section.metadata.filter((prop) =>{\n          return prop.domain === 'general';\n        }).map((meta) =>{\n          switch (meta.key) {\n          case 'title':\n            return <StructuredSpan key={meta.key} property=\"name\" value={meta.value} />;\n          case 'date':\n            return <StructuredDate key={meta.key} property=\"datePublished\" value={meta.value} />;\n          case 'author':\n            return (\n              <span key={meta.key}>\n                {\n                  meta.value.map((author)=> {\n                    return <StructuredPerson resource={author} key={author.citeKey} />;\n                  })\n                }\n              </span>\n            );\n          // TODO : continue along with other metadata-to-schema conversions\n          default:\n            return '';\n          }\n        })}\n      </div>\n    );\n  }\n}\n"
   },
   {
-    "__docId__": 41,
+    "__docId__": 42,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -801,7 +821,7 @@
     ]
   },
   {
-    "__docId__": 42,
+    "__docId__": 43,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -823,7 +843,7 @@
     "generator": false
   },
   {
-    "__docId__": 43,
+    "__docId__": 44,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -836,7 +856,7 @@
     "content": "import React, {PropTypes} from 'react';\nimport reactStringReplace from 'react-string-replace';\nimport {\n  StructuredDate\n  // , StructuredSpan\n} from './../index.js';\n\nimport Radium from 'radium';\n\n// let styles = {};\n\n/**\n * dumb component for rendering the structured representation of parent journal information\n */\n@Radium\nexport default class StructuredParentJournal extends React.Component {\n\n  /**\n   * propTypes\n   * @property {object} resource the resource parsed for structuring data\n   * @property {string} pattern the pattern to apply for formatting thresource\n   * @property {string} property the microformat property to apply to the structured element\n   */\n  static propTypes = {\n    resource: PropTypes.object,\n    pattern: PropTypes.string,\n    property: PropTypes.string\n  };\n\n  static defaultProps = {\n    pattern: '${journal}, ${date}, ${volume}(${issue}). ISSN : ${issn}',\n    property: 'isPartOf'\n  };\n\n  /**\n   * updateHtml : transform pattern+resource props into a react element\n   * @return {ReactElement} markup\n   */\n  updateHtml(resource, pattern) {\n    let replacedText;\n    replacedText = reactStringReplace(pattern, /(\\${journal})/g, (match, index)=> (\n      <span key={match + index} className=\"peritext-contents-citation-journal\">{resource.journal}</span>\n    ));\n\n    replacedText = reactStringReplace(replacedText, /(\\${date})/g, (match, index)=> (\n      <span key={match + index} className=\"peritext-contents-citation-date\">{resource.date || resource.year}</span>\n    ));\n\n    replacedText = reactStringReplace(replacedText, /(\\${volume})/g, (match, index)=> (\n      <span key={match + index} className=\"peritext-contents-citation-volume\">{resource.volume}</span>\n    ));\n\n    replacedText = reactStringReplace(replacedText, /(\\${issue})/g, (match, index)=> (\n      <span key={match + index} className=\"peritext-contents-citation-issue\">{resource.issue}</span>\n    ));\n\n    replacedText = reactStringReplace(replacedText, /(\\${issn})/g, (match, index)=> (\n      <span key={match + index} className=\"peritext-contents-citation-issn\">{resource.issn}</span>\n    ));\n    return replacedText;\n  }\n\n  /**\n   * render\n   * @return {ReactElement} markup\n   */\n  render() {\n    // return this.updateHtml(this.props.resource, this.props.pattern);\n\n    return (\n      <span\n        className=\"peritext-contents-journal\"\n        itemProp={this.props.property}\n        property={this.props.property}\n        itemScope\n        itemType=\"http://schema.org/Periodical\"\n        typeof=\"Periodical\"\n        resource={this.props.resource.issn + this.props.resource.journal}\n      >\n        <span style={{display: 'none'}} itemProp=\"name\" property=\"name\">{this.props.resource.journal}</span>\n        <span\n          itemProp=\"hasPart\"\n          property=\"hasPart\"\n          itemScope\n          itemType=\"http://schema.org/PublicationVolume\"\n          typeof=\"PublicationVolume\"\n          resource={this.props.resource.issn + this.props.resource.journal + '-volume' + this.props.resource.volume}\n          style={{display: 'none'}}\n        >\n          <span itemProp=\"volumeNumber\" property=\"volumeNumber\">{this.props.resource.volume}</span>\n          <span\n            itemProp=\"hasPart\"\n            property=\"hasPart\"\n            itemScope\n            itemType=\"http://schema.org/PublicationIssue\"\n            typeof=\"PublicationIssue\"\n            resource={this.props.resource.issn + this.props.resource.journal + '-volume' + this.props.resource.volume + '-issue' + this.props.resource.issue}\n          >\n            <span itemProp=\"issueNumber\" property=\"issueNumber\">{this.props.resource.issue}</span>\n            <StructuredDate value={this.props.resource.date || this.props.resource.year}/>\n          </span>\n        </span>\n        <span\n          itemProp=\"issn\"\n          style={{display: 'none'}}\n          property=\"issn\">\n            {this.props.resource.issn}\n        </span>\n\n        {this.updateHtml(this.props.resource, this.props.pattern)}\n      </span>\n    );\n  }\n}\n"
   },
   {
-    "__docId__": 44,
+    "__docId__": 45,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -856,7 +876,7 @@
     ]
   },
   {
-    "__docId__": 45,
+    "__docId__": 46,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -891,7 +911,7 @@
     "generator": false
   },
   {
-    "__docId__": 46,
+    "__docId__": 47,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -913,7 +933,7 @@
     "generator": false
   },
   {
-    "__docId__": 47,
+    "__docId__": 48,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -926,7 +946,7 @@
     "content": "import React, {PropTypes} from 'react';\nimport reactStringReplace from 'react-string-replace';\n\nimport Radium from 'radium';\n\n// let styles = {};\n\n/**\n * dumb component for rendering the structured representation of a person\n */\n@Radium\nexport default class StructuredPerson extends React.Component {\n\n  /**\n   * propTypes\n   * @property {object} resource the person object which may contain the following props : \"lastName\", \"firstName\", \"role\", and \"information\"\n   * @property {string} pattern the pattern to apply for formatting the person name to html, eg : \" ${lastName:capitals}, ${firstName:initials}\"\n   * @property {string} property the microformat property to apply to the structured element\n   */\n  static propTypes = {\n    resource: PropTypes.object,\n    pattern: PropTypes.string,\n    property: PropTypes.string\n  };\n\n  static defaultProps = {\n    pattern: '${firstName} ${lastName}',\n    property: 'author'\n  };\n\n  /**\n   * transformValues modifies firstName and lastName according to pattern indications\n   * @return {Object}\n   */\n  transformValues(author, pattern) {\n    const vals = Object.assign({}, author);\n    // catch format transformers\n    const transformFirstNameMatch = pattern.match(/(\\${firstName(:[^}]*)?})/);\n    const transformLastNameMatch = pattern.match(/(\\${lastName(:[^}]*)?})/);\n    // if transformers - transform\n    if (transformFirstNameMatch) {\n      if (transformFirstNameMatch[2] === ':initials') {\n        // processing composed names (e.g. Gian-Marco Patalucci)\n        let initials = vals.firstName.split('-').map((term)=>{\n          if (term.length > 0) {\n            return term.toUpperCase().substr(0, 1) + '.';\n          }\n          return term;\n        }).join('-');\n        // processing multiple names (e.g. Donald Ronald Romuald Ronaldo Reagan)\n        initials = vals.firstName.split(' ').map((term)=>{\n          if (term.length > 0) {\n            return term.toUpperCase().substr(0, 1) + '.';\n          }\n          return term;\n        }).join(' ');\n        vals.firstName = initials;\n      }\n    }\n    if (transformLastNameMatch) {\n      if (transformLastNameMatch[2] === ':capitals') {\n        vals.lastName = vals.lastName.toUpperCase();\n      }\n    }\n    return vals;\n  }\n\n  /**\n   * updateHtml : transform pattern+person props into a react element\n   * @return {ReactElement} markup\n   */\n  updateHtml() {\n    const vals = this.transformValues(this.props.resource, this.props.pattern);\n\n    const firstNameExp = this.props.pattern.match(/(\\${firstName(:[^}]*)?})/);\n    const lastNameExp = this.props.pattern.match(/(\\${lastName(:[^}]*)?})/);\n    let replacedText = this.props.pattern;\n    if (firstNameExp) {\n      replacedText = reactStringReplace(replacedText, new RegExp('(\\\\' + firstNameExp[0] + ')', 'g'), (match, index)=> (\n        <span key={match + index} className=\"peritext-contents-person-firstname\" itemProp=\"givenName\" property=\"givenName\" >{vals.firstName}</span>\n      ));\n    }\n\n    if (lastNameExp) {\n      replacedText = reactStringReplace(replacedText, new RegExp('(\\\\' + lastNameExp[0] + ')', 'g'), (match, index)=> (\n        <span key={match + index} className=\"peritext-contents-person-lastname\" itemProp=\"familyName\" property=\"familyName\" >{vals.lastName}</span>\n      ));\n    }\n\n    replacedText = reactStringReplace(replacedText, /(\\${role})/g, (match, index)=> (\n      <span key={match + index} className=\"peritext-contents-person-role\" >{vals.role}</span>\n    ));\n\n    if (vals.information) {\n      replacedText = reactStringReplace(replacedText, /(\\${information})/g, (match, index)=> (\n        <span key={match + index} className=\"peritext-contents-person-information\" >{vals.information}</span>\n      ));\n    }\n\n    return replacedText;\n  }\n\n  /**\n   * render\n   * @return {ReactElement} markup\n   */\n  render() {\n    return (\n      <span\n        className=\"peritext-contents-person\"\n        itemProp={this.props.property}\n        itemScope\n        itemType=\"http://schema.org/Person\"\n        property={this.props.property}\n        typeof=\"Person\"\n        resource={this.props.resource.citeKey}\n      >\n        {this.updateHtml()}\n      </span>\n    );\n  }\n}\n"
   },
   {
-    "__docId__": 48,
+    "__docId__": 49,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -946,7 +966,7 @@
     ]
   },
   {
-    "__docId__": 49,
+    "__docId__": 50,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -981,7 +1001,7 @@
     "generator": false
   },
   {
-    "__docId__": 50,
+    "__docId__": 51,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -1003,7 +1023,7 @@
     "generator": false
   },
   {
-    "__docId__": 51,
+    "__docId__": 52,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -1025,7 +1045,7 @@
     "generator": false
   },
   {
-    "__docId__": 52,
+    "__docId__": 53,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1038,7 +1058,7 @@
     "content": "import React, {PropTypes} from 'react';\nimport reactStringReplace from 'react-string-replace';\nimport Radium from 'radium';\n\n// let styles = {};\n\n/**\n * dumb component for rendering the structured representation of publisher information\n */\n@Radium\nexport default class StructuredPublisher extends React.Component {\n\n  /**\n   * propTypes\n   * @property {object} resource the resource parsed for structuring data\n   * @property {string} pattern the pattern to apply for formatting thresource\n   * @property {string} property the microformat property to apply to the structured element\n   */\n  static propTypes = {\n    resource: PropTypes.object,\n    pattern: PropTypes.string,\n    property: PropTypes.string\n  };\n\n  static defaultProps = {\n    pattern: '${publisher} : ${address}',\n    property: 'publisher'\n  };\n\n  /**\n   * updateHtml : transform pattern+resource props into a react element\n   * @return {ReactElement} markup\n   */\n  updateHtml(resource, pattern) {\n\n    let replacedText = reactStringReplace(pattern, /(\\${publisher})/g, (match, index)=> (\n      <span key={match + index} itemProp=\"name\" property=\"name\" className=\"peritext-contents-citation-publisher\">{resource.publisher}</span>\n    ));\n\n    replacedText = reactStringReplace(replacedText, /(\\${address})/g, (match, index)=> (\n      <span key={match + index} itemProp=\"address\" value=\"address\" className=\"peritext-contents-citation-address\">{resource.address}</span>\n    ));\n\n    return replacedText;\n  }\n\n  /**\n   * render\n   * @return {ReactElement} markup\n   */\n  render() {\n    return (\n      <span\n        className=\"peritext-contents-publisher\"\n        itemProp={this.props.property}\n        property={this.props.property}\n        itemScope\n        itemType=\"http://schema.org/Organization\"\n        typeof=\"Organization\"\n        resource={this.props.resource.publisher}\n      >\n        {this.updateHtml(this.props.resource, this.props.pattern)}\n      </span>\n    );\n  }\n}\n"
   },
   {
-    "__docId__": 53,
+    "__docId__": 54,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -1058,7 +1078,7 @@
     ]
   },
   {
-    "__docId__": 54,
+    "__docId__": 55,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -1093,7 +1113,7 @@
     "generator": false
   },
   {
-    "__docId__": 55,
+    "__docId__": 56,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -1115,7 +1135,7 @@
     "generator": false
   },
   {
-    "__docId__": 56,
+    "__docId__": 57,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1128,7 +1148,7 @@
     "content": "import React, {PropTypes} from 'react';\nimport Radium from 'radium';\n\n// let styles = {};\n\n/**\n * dumb generic component for rendering the structured representation of a property\n */\n@Radium\nexport default class StructuredSpan extends React.Component {\n\n  /**\n   * propTypes\n   */\n  static propTypes = {\n    value: PropTypes.oneOfType([\n      PropTypes.string,\n      PropTypes.number\n    ]),\n    property: PropTypes.string,\n    htmlClass: PropTypes.string\n  };\n\n  static defaultProps = {\n    property: 'name'\n  };\n\n  /**\n   * render\n   * @return {ReactElement} markup\n   */\n  render() {\n    return (\n      <span\n        property={this.props.property}\n        itemProp={this.props.property}\n        className={this.props.htmlClass}\n      >\n        {this.props.value}\n      </span>\n    );\n  }\n}\n"
   },
   {
-    "__docId__": 57,
+    "__docId__": 58,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -1148,7 +1168,7 @@
     ]
   },
   {
-    "__docId__": 58,
+    "__docId__": 59,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -1170,7 +1190,7 @@
     "generator": false
   },
   {
-    "__docId__": 59,
+    "__docId__": 60,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1183,7 +1203,7 @@
     "content": "export { default as StaticCoverPage } from './StaticComponents/StaticCoverPage.js';\nexport { default as StaticDocument } from './StaticComponents/StaticDocument.js';\nexport { default as StaticEndNotes } from './StaticComponents/StaticEndNotes.js';\nexport { default as StaticImageFigure } from './StaticComponents/StaticImageFigure.js';\nexport { default as StaticImageGallery } from './StaticComponents/StaticImageGallery.js';\nexport { default as StaticNote } from './StaticComponents/StaticNote.js';\nexport { default as StaticSection } from './StaticComponents/StaticSection.js';\nexport { default as StaticTableOfContents } from './StaticComponents/StaticTableOfContents.js';\nexport { default as StaticWebsitePoster } from './StaticComponents/StaticWebsitePoster.js';\n\nexport { default as StructuredCite } from './StructuredDataComponents/StructuredCite.js';\nexport { default as StructuredDate } from './StructuredDataComponents/StructuredDate.js';\nexport { default as StructuredHyperLink } from './StructuredDataComponents/StructuredHyperLink.js';\nexport { default as StructuredMetadataPlaceholder } from './StructuredDataComponents/StructuredMetadataPlaceholder.js';\nexport { default as StructuredParentJournal } from './StructuredDataComponents/StructuredParentJournal.js';\nexport { default as StructuredPerson } from './StructuredDataComponents/StructuredPerson.js';\nexport { default as StructuredPublisher } from './StructuredDataComponents/StructuredPublisher.js';\nexport { default as StructuredSpan } from './StructuredDataComponents/StructuredSpan.js';\n"
   },
   {
-    "__docId__": 61,
+    "__docId__": 62,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1196,7 +1216,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 62,
+    "__docId__": 63,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1209,7 +1229,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 63,
+    "__docId__": 64,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1222,7 +1242,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 64,
+    "__docId__": 65,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1235,7 +1255,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 65,
+    "__docId__": 66,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1248,7 +1268,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 66,
+    "__docId__": 67,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1261,7 +1281,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 67,
+    "__docId__": 68,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1274,7 +1294,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 68,
+    "__docId__": 69,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1287,7 +1307,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 69,
+    "__docId__": 70,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1300,7 +1320,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 70,
+    "__docId__": 71,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1313,7 +1333,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 71,
+    "__docId__": 72,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1326,7 +1346,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 72,
+    "__docId__": 73,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1339,7 +1359,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 73,
+    "__docId__": 74,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1352,7 +1372,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 74,
+    "__docId__": 75,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1365,7 +1385,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 75,
+    "__docId__": 76,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1378,7 +1398,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 76,
+    "__docId__": 77,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1391,7 +1411,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 77,
+    "__docId__": 78,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1404,7 +1424,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 78,
+    "__docId__": 79,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1417,7 +1437,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 79,
+    "__docId__": 80,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1430,7 +1450,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 80,
+    "__docId__": 81,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1443,7 +1463,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 81,
+    "__docId__": 82,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1456,7 +1476,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 82,
+    "__docId__": 83,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1469,7 +1489,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 83,
+    "__docId__": 84,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1482,7 +1502,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 84,
+    "__docId__": 85,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1495,7 +1515,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 85,
+    "__docId__": 86,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1508,7 +1528,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 86,
+    "__docId__": 87,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1521,7 +1541,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 87,
+    "__docId__": 88,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1534,7 +1554,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 88,
+    "__docId__": 89,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1547,7 +1567,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 89,
+    "__docId__": 90,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1560,7 +1580,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 90,
+    "__docId__": 91,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1573,7 +1593,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 91,
+    "__docId__": 92,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1586,7 +1606,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 92,
+    "__docId__": 93,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1599,7 +1619,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 93,
+    "__docId__": 94,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1612,7 +1632,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 94,
+    "__docId__": 95,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1625,7 +1645,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 95,
+    "__docId__": 96,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1638,7 +1658,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 96,
+    "__docId__": 97,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1651,7 +1671,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 97,
+    "__docId__": 98,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1664,7 +1684,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 98,
+    "__docId__": 99,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1677,7 +1697,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 99,
+    "__docId__": 100,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1690,7 +1710,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 100,
+    "__docId__": 101,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1703,7 +1723,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 101,
+    "__docId__": 102,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1716,7 +1736,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 102,
+    "__docId__": 103,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1729,7 +1749,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 103,
+    "__docId__": 104,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1742,7 +1762,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 104,
+    "__docId__": 105,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1755,7 +1775,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 105,
+    "__docId__": 106,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1768,7 +1788,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 106,
+    "__docId__": 107,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1781,7 +1801,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 107,
+    "__docId__": 108,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1794,7 +1814,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 109,
+    "__docId__": 110,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1807,7 +1827,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 110,
+    "__docId__": 111,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1820,7 +1840,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 111,
+    "__docId__": 112,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1833,7 +1853,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 112,
+    "__docId__": 113,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1846,7 +1866,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 113,
+    "__docId__": 114,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1859,7 +1879,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 114,
+    "__docId__": 115,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1872,7 +1892,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 115,
+    "__docId__": 116,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1885,7 +1905,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 116,
+    "__docId__": 117,
     "kind": "external",
     "static": true,
     "variation": null,

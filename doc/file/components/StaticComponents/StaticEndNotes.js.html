@@ -57,14 +57,24 @@
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React, {PropTypes} from &apos;react&apos;;
 import Radium from &apos;radium&apos;;
 import {StaticNote} from &apos;./../index.js&apos;;
+import { intlShape, defineMessages } from &apos;react-intl&apos;;
 
 // let styles = {};
+
+const translate = defineMessages({
+  endnotes: {
+    id: &apos;end_notes&apos;,
+    description: &apos;Title of the endnotes&apos;,
+    defaultMessage: &apos;Notes&apos;,
+  }
+});
+
 
 /**
  * dumb component for rendering the structured representation of a static section
  */
 @Radium
-export default class StaticEndNotes extends React.Component {
+class StaticEndNotes extends React.Component {
 
   /**
    * propTypes
@@ -82,11 +92,14 @@ export default class StaticEndNotes extends React.Component {
    * @return {ReactElement} markup
    */
   render() {
+    const { formatMessage } = this.context.intl;
     return (
       &lt;section
         className={&apos;peritext-contents-notes peritext-contents-notes-&apos; + this.props.classSuffix}
       &gt;
-        {this.props.notes.length &gt; 0 ? &lt;h4 className=&quot;peritext-contents-notes-title&quot;&gt;Notes&lt;/h4&gt; : &apos;&apos;}
+        {this.props.notes.length &gt; 0 ? &lt;h4 className=&quot;peritext-contents-notes-title&quot;&gt;
+         { formatMessage(translate.endnotes, {}) }
+        &lt;/h4&gt; : &apos;&apos;}
 
         &lt;div className=&quot;peritext-contents-notes-container&quot;&gt;
           {this.props.notes.map((note, noteIndex)=&gt; {
@@ -97,6 +110,10 @@ export default class StaticEndNotes extends React.Component {
     );
   }
 }
+
+StaticEndNotes.contextTypes = { intl: intlShape };
+
+export default StaticEndNotes;
 </code></pre>
 
 </div>
