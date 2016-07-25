@@ -45,6 +45,9 @@ Then I should have an ibid here [^]{[](@ab94){page="12"}.}
 
 And as say a lot of people[^]{[](@martin_change_2002){pages="30-40"}}, publishing could be simpler.
 
+
+I'm now going to quote a book from the same authors in the same year, but different - it should add a b but let's see what's in the footnote[^]{[](@martin_change_2002b){pages="32-36"}}.
+
 And for the footnotes, I want to say that Martin said that[^]{I'm referencing to [](@martin_change_2002){pages="12-13"} when he says : "hello"}
 
 Whe Martin says [there has to be some *change*](@martin_change_2002).

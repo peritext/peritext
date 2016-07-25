@@ -7,28 +7,37 @@
       "sectionend",
       "documentend"
     ],
-    "default" : "documentend"
+    "default" : "footnotes"
   },
   "citationStyle" : {
     "description" : "The style of bibliographic citations.",
     "valueType" : "string",
     "default": "iso690fr"
   },
-  "citationFilters" : {
-    "description" : "How to filter citations for the bibliography.",
-    "valueType" : "string",
-    "default": "quoted"
+  "referenceFilters" : {
+    "description" : "How to filter citations for the bibliography ?",
+    "valueType" : "string"
   },
-  "bibliographyPosition" : {
-    "description": "Where to put the bibliography",
+  "referencesPosition" : {
+    "description": "Where to put the bibliograph.y.ies ?",
     "valueType": "string",
     "default": "end",
     "values": ["begining", "end"]
   },
-  "bibliographyGeneralityLevel" : {
-    "description": "At what hierarchical level to put bibliography",
+  "referencesGeneralityLevel" : {
+    "description": "At what hierarchical level to render bibliograph.y.ies ? (default 0)",
     "valueType": "number",
     "default": 0
+  },
+  "referencesOrder" : {
+    "description": "How to order references ?",
+    "valueType": "string",
+    "default": "alphabetical",
+    "values" : [
+      "alphabetical",
+      "year",
+      "type"
+    ]
   },
   "tocPosition" : {
     "description": "Where to put the table of contents",

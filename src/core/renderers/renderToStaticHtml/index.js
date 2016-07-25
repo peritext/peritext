@@ -8,7 +8,7 @@ import {IntlProvider} from 'react-intl';
 import {getMetaValue} from './../../utils/sectionUtils';
 import {sectionTypeModels, renderingParamsModels} from './../../models';
 import {eatNotes} from './../../converters/markdownConverter';
-import {resolveContextualizationsImplementation} from './../../resolvers/resolveContextualizations';
+import {resolveContextualizationsImplementation, resolveContextualizationsRelations} from './../../resolvers/resolveContextualizations';
 import {
   StaticDocument
 } from './../../components';
@@ -69,9 +69,11 @@ export default function renderSection({
       });
     // build html code
     }, function(sections, cback) {
+      // order contextualizations (ibid/opCit, ...)
+      const orderedSections = resolveContextualizationsRelations(sections, renderingParams);
       // resolve contextualizations by adding blocks, footnotes, or mutating html contents
       let figuresCount = 0;
-      const displaySections = sections.map((sectio, index) =>{
+      const displaySections = orderedSections.map((sectio, index) =>{
         sectio.figuresCount = figuresCount;
         const newSection = resolveContextualizationsImplementation(sectio, 'static', renderingParams);
         figuresCount = newSection.figuresCount;
@@ -89,7 +91,6 @@ export default function renderSection({
       }
 
       if (renderingParams.notesPosition === 'footnotes') {
-        console.log('adding footnotes');
         style += `.peritext-contents-note-content
                 {
                     display: prince-footnote;

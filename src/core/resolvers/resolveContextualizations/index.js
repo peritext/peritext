@@ -2,6 +2,14 @@ import {getMetaValue} from './../../utils/sectionUtils';
 import {getResourceModel, getContextualizerModel, resolvePropAgainstType} from './../../utils/modelUtils';
 import * as contextualizers from './../../contextualizers/';
 
+ // I transform 1, 2, 3 incrementation into a, b, c
+export function numbersToLetters(num) {
+  const mod = num % 26;
+  let pow = num / 26 | 0;
+  const out = mod ? String.fromCharCode(64 + mod) : (--pow, 'Z');
+  return pow ? numberToLetters(pow) + out : out.toLowerCase();
+}
+
 // I resolve a contextualizer assertion against its model and context, and record errors
 function resolveContextualizer(contextualizer, section, models) {
   const err = [];
@@ -131,6 +139,58 @@ export function resolveContextualizersAndContextualizations({section, models}, c
     return Object.assign({}, cont, contextualizer, {type: cont.type, citeKey: cont.citeKey});
   });
   cb(null, {errors, section});
+}
+
+export function resolveContextualizationsRelations(sections, renderingParams) {
+  let opCitIndex;
+  let sameResPrint;
+  return sections.reduce((inputSections, sectio, index)=> {
+    sectio.contextualizations = sectio.contextualizations.reduce((conts, contextualization, contIndex) => {
+      contextualization.resPrint = contextualization.resources.join('-');
+      // opcit section
+      sameResPrint = conts.find((cont2, cont2Index)=> {
+        if (cont2.resPrint === contextualization.resPrint) {
+          opCitIndex = cont2Index;
+          return true;
+        }
+      });
+
+      if (sameResPrint !== undefined) {
+        contextualization.sectionOpCit = true;
+      }
+      // todo opcit document
+
+      // ibid section
+      if (opCitIndex && opCitIndex === contIndex - 1) {
+        contextualization.sectionIbid = true;
+      }
+      // todo ibid document
+
+      if (contextualization.contextualizerType === 'citation') {
+        // same authors but different work in year - section scale
+        contextualization.authorsPrint = contextualization.author.reduce((str, author)=> {
+          return str + '-' + author.lastName + '-' + author.firstName;
+        }, '');
+
+        conts.find((cont2)=> {
+          if (cont2.authorsPrint === contextualization.authorsPrint && cont2.resPrint !== contextualization.resPrint && (cont2.year === contextualization.year || cont2.date === contextualization.date)) {
+            cont2.sameAuthorInYear = cont2.sameAuthorInYear !== undefined ? cont2.sameAuthorInYear ++ : 1;
+            contextualization.sameAuthorInYear = cont2.sameAuthorInYear + 1;
+            contextualization.yearSuffix = numbersToLetters(contextualization.sameAuthorInYear);
+            cont2.yearSuffix = numbersToLetters(cont2.sameAuthorInYear);
+            return true;
+          }
+        });
+
+        // todo same authors in year but different work - document scale
+      }
+
+      opCitIndex = undefined;
+      return conts.concat(contextualization);
+    }, []);
+
+    return inputSections.concat(sectio);
+  }, []);
 }
 
 // I 'reduce' contextualizations statements to produce a new rendering-specific section representation
