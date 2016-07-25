@@ -57,7 +57,7 @@ function eatParamsObject(str) {
 }
 
 
-export function eatNotes(inputHtml, sectionCitekey, baseNotesCount = 0, notesPosition = 'inline') {
+export function eatNotes(inputHtml, sectionCitekey, baseNotesCount = 0, notesPosition = 'footnotes') {
   let outputHtml = inputHtml;
   const notes = [];
   let notesCount = baseNotesCount;
@@ -97,7 +97,7 @@ export function eatNotes(inputHtml, sectionCitekey, baseNotesCount = 0, notesPos
       notesCount,
       noteNumber: notesCount
     });
-    if (notesPosition === 'inline') {
+    if (notesPosition === 'footnotes') {
       newEl = '<sup class="peritext-contents-note-content" name="note-content-' + sectionCitekey + notesCount + '" id="note-content-' + sectionCitekey + notesCount + '">' + noteContent + '</sup>';
     } else {
       newEl = '<sup class="peritext-contents-note-pointer" name="note-pointer-' + sectionCitekey + notesCount + '" id="note-pointer-' + sectionCitekey + notesCount + '"><a href="#note-content-' + sectionCitekey + notesCount + '"><span class="peritext-contents-note-number">' + notesCount + '</span></a></sup>';

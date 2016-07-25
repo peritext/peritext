@@ -1,14 +1,24 @@
 import React, {PropTypes} from 'react';
 import Radium from 'radium';
 import {StaticNote} from './../index.js';
+import { intlShape, defineMessages } from 'react-intl';
 
 // let styles = {};
+
+const translate = defineMessages({
+  endnotes: {
+    id: 'end_notes',
+    description: 'Title of the endnotes',
+    defaultMessage: 'Notes',
+  }
+});
+
 
 /**
  * dumb component for rendering the structured representation of a static section
  */
 @Radium
-export default class StaticEndNotes extends React.Component {
+class StaticEndNotes extends React.Component {
 
   /**
    * propTypes
@@ -26,11 +36,14 @@ export default class StaticEndNotes extends React.Component {
    * @return {ReactElement} markup
    */
   render() {
+    const { formatMessage } = this.context.intl;
     return (
       <section
         className={'peritext-contents-notes peritext-contents-notes-' + this.props.classSuffix}
       >
-        {this.props.notes.length > 0 ? <h4 className="peritext-contents-notes-title">Notes</h4> : ''}
+        {this.props.notes.length > 0 ? <h4 className="peritext-contents-notes-title">
+         { formatMessage(translate.endnotes, {}) }
+        </h4> : ''}
 
         <div className="peritext-contents-notes-container">
           {this.props.notes.map((note, noteIndex)=> {
@@ -41,3 +54,7 @@ export default class StaticEndNotes extends React.Component {
     );
   }
 }
+
+StaticEndNotes.contextTypes = { intl: intlShape };
+
+export default StaticEndNotes;

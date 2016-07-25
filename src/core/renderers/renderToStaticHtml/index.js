@@ -3,6 +3,7 @@ import {readFile} from 'fs';
 import {resolve} from 'path';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
+import {IntlProvider} from 'react-intl';
 
 import {getMetaValue} from './../../utils/sectionUtils';
 import {sectionTypeModels, renderingParamsModels} from './../../models';
@@ -34,12 +35,14 @@ export default function renderSection({
   includeChildren = true
 }, rendererCallback) {
 
+  // populate rendering params with defaults if needed
   for (const param in renderingParamsModels) {
     if (renderingParams[param] === undefined) {
       renderingParams[param] = renderingParamsModels[param].default;
     }
   }
 
+  // always work with a list of sections, even if just one
   let sectios = [section];
   let style = '';
   const motherKey = getMetaValue(section.metadata, 'general', 'citeKey');
@@ -48,7 +51,7 @@ export default function renderSection({
     sectios = sectios.concat(listChildren(sectionList, motherKey));
   }
   waterfall([
-    // load global css rules
+    // load default css rules
     function(cback) {
       readFile(resolve(__dirname + defaultStylesPath + 'global.css'), function(err, contents) {
         if (!err) {
@@ -56,7 +59,7 @@ export default function renderSection({
         }
         cback(null, sectios);
       });
-    // rule paged-related css rules
+    // load default paged-related css rules
     }, function(sections, cback) {
       readFile(resolve(__dirname + defaultStylesPath + 'page.css'), function(err, contents) {
         if (!err) {
@@ -64,6 +67,7 @@ export default function renderSection({
         }
         cback(null, sections);
       });
+    // build html code
     }, function(sections, cback) {
       // resolve contextualizations by adding blocks, footnotes, or mutating html contents
       let figuresCount = 0;
@@ -85,6 +89,7 @@ export default function renderSection({
       }
 
       if (renderingParams.notesPosition === 'footnotes') {
+        console.log('adding footnotes');
         style += `.peritext-contents-note-content
                 {
                     display: prince-footnote;
@@ -124,7 +129,14 @@ export default function renderSection({
       if (sectionTypeModels.acceptedTypes[sectionType].needsCover) {
         renderingParams.hasCover = true;
       }
-      const renderedContents = ReactDOMServer.renderToStaticMarkup(<StaticDocument sections={notedSections} renderingParams={renderingParams} />);
+
+      const lang = getMetaValue(sections[0].metadata, 'general', 'language') || 'en';
+      const messages = require('./../../../../translations/locales/' + lang + '.json');
+      const renderedContents = ReactDOMServer.renderToStaticMarkup(
+        <IntlProvider locale={lang} messages={messages}>
+          <StaticDocument sections={notedSections} renderingParams={renderingParams} />
+        </IntlProvider>
+      );
       const html = `
                     <!doctype:html>
                     <html>
