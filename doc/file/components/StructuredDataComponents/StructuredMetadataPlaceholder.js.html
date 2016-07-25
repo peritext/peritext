@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../">
-  <title data-ice="title">components/index.js | API Document</title>
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">components/StructuredDataComponents/StructuredMetadataPlaceholder.js | API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -53,25 +53,70 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">components/index.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">export { default as StaticCoverPage } from &apos;./StaticComponents/StaticCoverPage.js&apos;;
-export { default as StaticDocument } from &apos;./StaticComponents/StaticDocument.js&apos;;
-export { default as StaticEndNotes } from &apos;./StaticComponents/StaticEndNotes.js&apos;;
-export { default as StaticImageFigure } from &apos;./StaticComponents/StaticImageFigure.js&apos;;
-export { default as StaticImageGallery } from &apos;./StaticComponents/StaticImageGallery.js&apos;;
-export { default as StaticNote } from &apos;./StaticComponents/StaticNote.js&apos;;
-export { default as StaticSection } from &apos;./StaticComponents/StaticSection.js&apos;;
-export { default as StaticTableOfContents } from &apos;./StaticComponents/StaticTableOfContents.js&apos;;
-export { default as StaticWebsitePoster } from &apos;./StaticComponents/StaticWebsitePoster.js&apos;;
+<div class="content" data-ice="content"><h1 data-ice="title">components/StructuredDataComponents/StructuredMetadataPlaceholder.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React, {PropTypes} from &apos;react&apos;;
+import Radium from &apos;radium&apos;;
+import {
+  StructuredDate,
+  StructuredSpan,
+  StructuredPerson
+} from &apos;./../index.js&apos;;
 
-export { default as StructuredCite } from &apos;./StructuredDataComponents/StructuredCite.js&apos;;
-export { default as StructuredDate } from &apos;./StructuredDataComponents/StructuredDate.js&apos;;
-export { default as StructuredHyperLink } from &apos;./StructuredDataComponents/StructuredHyperLink.js&apos;;
-export { default as StructuredMetadataPlaceholder } from &apos;./StructuredDataComponents/StructuredMetadataPlaceholder.js&apos;;
-export { default as StructuredParentJournal } from &apos;./StructuredDataComponents/StructuredParentJournal.js&apos;;
-export { default as StructuredPerson } from &apos;./StructuredDataComponents/StructuredPerson.js&apos;;
-export { default as StructuredPublisher } from &apos;./StructuredDataComponents/StructuredPublisher.js&apos;;
-export { default as StructuredSpan } from &apos;./StructuredDataComponents/StructuredSpan.js&apos;;
+// let styles = {};
+
+/**
+ * dumb component for rendering the structured representation of a section
+ */
+@Radium
+export default class StructuredMetadataPlaceholder extends React.Component {
+
+  /**
+   * propTypes
+   */
+  static propTypes = {
+    section: PropTypes.object,
+  };
+
+  static defaultProps = {
+  };
+
+  /**
+   * render
+   * @return {ReactElement} markup
+   */
+  render() {
+    return (
+      &lt;div
+        className=&quot;peritext-contents-schema-metadata-placeholder&quot;
+        style={{visibility: &apos;hidden&apos;}}
+      &gt;
+        {this.props.section.metadata.filter((prop) =&gt;{
+          return prop.domain === &apos;general&apos;;
+        }).map((meta) =&gt;{
+          switch (meta.key) {
+          case &apos;title&apos;:
+            return &lt;StructuredSpan key={meta.key} property=&quot;name&quot; value={meta.value} /&gt;;
+          case &apos;date&apos;:
+            return &lt;StructuredDate key={meta.key} property=&quot;datePublished&quot; value={meta.value} /&gt;;
+          case &apos;author&apos;:
+            return (
+              &lt;span key={meta.key}&gt;
+                {
+                  meta.value.map((author)=&gt; {
+                    return &lt;StructuredPerson resource={author} key={author.citeKey} /&gt;;
+                  })
+                }
+              &lt;/span&gt;
+            );
+          // TODO : continue along with other metadata-to-schema conversions
+          default:
+            return &apos;&apos;;
+          }
+        })}
+      &lt;/div&gt;
+    );
+  }
+}
 </code></pre>
 
 </div>

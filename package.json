@@ -21,12 +21,15 @@
     "lint:watch": "node_modules/eslint-watch/bin/esw --watch --config .eslintrc src",
     "validate": "npm ls",
     "doc": "esdoc -c esdoc.json",
-    "coverage": "nyc report npm run test && nyc check-coverage --lines 50 --functions 50 --branches 50"
+    "coverage": "nyc report npm run test && nyc check-coverage --lines 50 --functions 50 --branches 50",
+    "autocommitadd": "git add doc coverage src/temp test/crud_cobaye"
   },
   "pre-commit": [
     "lint",
     "test",
-    "coverage"
+    "coverage",
+    "doc",
+    "autocommitadd"
   ],
   "babel": {
     "presets": [

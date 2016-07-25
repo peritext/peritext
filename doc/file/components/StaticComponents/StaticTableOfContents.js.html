@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../">
-  <title data-ice="title">components/index.js | API Document</title>
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">components/StaticComponents/StaticTableOfContents.js | API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -53,25 +53,91 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">components/index.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">export { default as StaticCoverPage } from &apos;./StaticComponents/StaticCoverPage.js&apos;;
-export { default as StaticDocument } from &apos;./StaticComponents/StaticDocument.js&apos;;
-export { default as StaticEndNotes } from &apos;./StaticComponents/StaticEndNotes.js&apos;;
-export { default as StaticImageFigure } from &apos;./StaticComponents/StaticImageFigure.js&apos;;
-export { default as StaticImageGallery } from &apos;./StaticComponents/StaticImageGallery.js&apos;;
-export { default as StaticNote } from &apos;./StaticComponents/StaticNote.js&apos;;
-export { default as StaticSection } from &apos;./StaticComponents/StaticSection.js&apos;;
-export { default as StaticTableOfContents } from &apos;./StaticComponents/StaticTableOfContents.js&apos;;
-export { default as StaticWebsitePoster } from &apos;./StaticComponents/StaticWebsitePoster.js&apos;;
+<div class="content" data-ice="content"><h1 data-ice="title">components/StaticComponents/StaticTableOfContents.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React, {PropTypes} from &apos;react&apos;;
+import Radium from &apos;radium&apos;;
 
-export { default as StructuredCite } from &apos;./StructuredDataComponents/StructuredCite.js&apos;;
-export { default as StructuredDate } from &apos;./StructuredDataComponents/StructuredDate.js&apos;;
-export { default as StructuredHyperLink } from &apos;./StructuredDataComponents/StructuredHyperLink.js&apos;;
-export { default as StructuredMetadataPlaceholder } from &apos;./StructuredDataComponents/StructuredMetadataPlaceholder.js&apos;;
-export { default as StructuredParentJournal } from &apos;./StructuredDataComponents/StructuredParentJournal.js&apos;;
-export { default as StructuredPerson } from &apos;./StructuredDataComponents/StructuredPerson.js&apos;;
-export { default as StructuredPublisher } from &apos;./StructuredDataComponents/StructuredPublisher.js&apos;;
-export { default as StructuredSpan } from &apos;./StructuredDataComponents/StructuredSpan.js&apos;;
+// let styles = {};
+
+/**
+ * dumb component for rendering a static table of contents
+ */
+@Radium
+export default class StaticTableOfContents extends React.Component {
+
+  /**
+   * propTypes
+   */
+  static propTypes = {
+    title: PropTypes.string,
+    elements: PropTypes.array,
+    level: PropTypes.number
+  };
+
+  static defaultProps = {
+    title: &apos;Table of contents&apos;
+  };
+
+
+  /**
+   * render
+   * @return {ReactElement} markup
+   */
+  render() {
+    return (
+      &lt;section
+        id=&quot;toc&quot;
+      &gt;
+        &lt;h2&gt;{this.props.title}&lt;/h2&gt;
+        &lt;section className=&quot;peritext-contents-toc-contents&quot;&gt;
+          {this.props.elements.map((element) =&gt;{
+            return &lt;StaticTableOfContentsElement id={element.id} key={element.id} title={element.title} level={element.level} levelDisplacement={this.props.level}/&gt;;
+          })}
+        &lt;/section&gt;
+      &lt;/section&gt;
+    );
+  }
+}
+
+class StaticTableOfContentsElement extends React.Component {
+
+  /**
+   * propTypes
+   */
+  static propTypes = {
+    title: PropTypes.string,
+    level: PropTypes.number,
+    id: PropTypes.string,
+    paddingDisplacement: PropTypes.number,
+    levelDisplacement: PropTypes.number
+  };
+
+  static defaultProps = {
+    level: 0,
+    paddingDisplacement: 0.5,
+    levelDisplacement: 0
+  };
+
+
+  /**
+   * render
+   * @return {ReactElement} markup
+   */
+  render() {
+    return (
+      &lt;section
+        className=&quot;peritext-contents-toc-element&quot;
+        style={{paddingLeft: (this.props.level - this.props.levelDisplacement - 1) * this.props.paddingDisplacement + &apos;cm&apos;}}
+      &gt;
+        &lt;a
+          href={&apos;#&apos; + this.props.id}
+        &gt;
+          {this.props.title}
+        &lt;/a&gt;
+      &lt;/section&gt;
+    );
+  }
+}
 </code></pre>
 
 </div>

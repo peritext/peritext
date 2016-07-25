@@ -1,26 +1,104 @@
 window.esdocSearchIndex = [
   [
-    "peritext-core/components/hyperlink.jsx~hyperlink",
-    "class/components/HyperLink.jsx~HyperLink.html",
-    "<span>HyperLink</span> <span class=\"search-result-import-path\">peritext-core/components/HyperLink.jsx</span>",
+    "modulo-core/components/staticcomponents/staticcoverpage.js~staticcoverpage",
+    "class/components/StaticComponents/StaticCoverPage.js~StaticCoverPage.html",
+    "<span>StaticCoverPage</span> <span class=\"search-result-import-path\">modulo-core/components/StaticComponents/StaticCoverPage.js</span>",
     "class"
   ],
   [
-    "peritext-core/components/imagefigure.jsx~imagefigure",
-    "class/components/ImageFigure.jsx~ImageFigure.html",
-    "<span>ImageFigure</span> <span class=\"search-result-import-path\">peritext-core/components/ImageFigure.jsx</span>",
+    "modulo-core/components/staticcomponents/staticdocument.js~staticdocument",
+    "class/components/StaticComponents/StaticDocument.js~StaticDocument.html",
+    "<span>StaticDocument</span> <span class=\"search-result-import-path\">modulo-core/components/StaticComponents/StaticDocument.js</span>",
     "class"
   ],
   [
-    "peritext-core/components/imagegallery.jsx~imagegallery",
-    "class/components/ImageGallery.jsx~ImageGallery.html",
-    "<span>ImageGallery</span> <span class=\"search-result-import-path\">peritext-core/components/ImageGallery.jsx</span>",
+    "modulo-core/components/staticcomponents/staticendnotes.js~staticendnotes",
+    "class/components/StaticComponents/StaticEndNotes.js~StaticEndNotes.html",
+    "<span>StaticEndNotes</span> <span class=\"search-result-import-path\">modulo-core/components/StaticComponents/StaticEndNotes.js</span>",
     "class"
   ],
   [
-    "peritext-core/components/websiteposter.jsx~websiteposter",
-    "class/components/WebsitePoster.jsx~WebsitePoster.html",
-    "<span>WebsitePoster</span> <span class=\"search-result-import-path\">peritext-core/components/WebsitePoster.jsx</span>",
+    "modulo-core/components/staticcomponents/staticimagefigure.js~staticimagefigure",
+    "class/components/StaticComponents/StaticImageFigure.js~StaticImageFigure.html",
+    "<span>StaticImageFigure</span> <span class=\"search-result-import-path\">modulo-core/components/StaticComponents/StaticImageFigure.js</span>",
+    "class"
+  ],
+  [
+    "modulo-core/components/staticcomponents/staticimagegallery.js~staticimagegallery",
+    "class/components/StaticComponents/StaticImageGallery.js~StaticImageGallery.html",
+    "<span>StaticImageGallery</span> <span class=\"search-result-import-path\">modulo-core/components/StaticComponents/StaticImageGallery.js</span>",
+    "class"
+  ],
+  [
+    "modulo-core/components/staticcomponents/staticnote.js~staticnote",
+    "class/components/StaticComponents/StaticNote.js~StaticNote.html",
+    "<span>StaticNote</span> <span class=\"search-result-import-path\">modulo-core/components/StaticComponents/StaticNote.js</span>",
+    "class"
+  ],
+  [
+    "modulo-core/components/staticcomponents/staticsection.js~staticsection",
+    "class/components/StaticComponents/StaticSection.js~StaticSection.html",
+    "<span>StaticSection</span> <span class=\"search-result-import-path\">modulo-core/components/StaticComponents/StaticSection.js</span>",
+    "class"
+  ],
+  [
+    "modulo-core/components/staticcomponents/statictableofcontents.js~statictableofcontents",
+    "class/components/StaticComponents/StaticTableOfContents.js~StaticTableOfContents.html",
+    "<span>StaticTableOfContents</span> <span class=\"search-result-import-path\">modulo-core/components/StaticComponents/StaticTableOfContents.js</span>",
+    "class"
+  ],
+  [
+    "modulo-core/components/structureddatacomponents/structuredcite.js~structuredcite",
+    "class/components/StructuredDataComponents/StructuredCite.js~StructuredCite.html",
+    "<span>StructuredCite</span> <span class=\"search-result-import-path\">modulo-core/components/StructuredDataComponents/StructuredCite.js</span>",
+    "class"
+  ],
+  [
+    "modulo-core/components/structureddatacomponents/structureddate.js~structureddate",
+    "class/components/StructuredDataComponents/StructuredDate.js~StructuredDate.html",
+    "<span>StructuredDate</span> <span class=\"search-result-import-path\">modulo-core/components/StructuredDataComponents/StructuredDate.js</span>",
+    "class"
+  ],
+  [
+    "modulo-core/components/structureddatacomponents/structuredhyperlink.js~structuredhyperlink",
+    "class/components/StructuredDataComponents/StructuredHyperLink.js~StructuredHyperLink.html",
+    "<span>StructuredHyperLink</span> <span class=\"search-result-import-path\">modulo-core/components/StructuredDataComponents/StructuredHyperLink.js</span>",
+    "class"
+  ],
+  [
+    "modulo-core/components/structureddatacomponents/structuredmetadataplaceholder.js~structuredmetadataplaceholder",
+    "class/components/StructuredDataComponents/StructuredMetadataPlaceholder.js~StructuredMetadataPlaceholder.html",
+    "<span>StructuredMetadataPlaceholder</span> <span class=\"search-result-import-path\">modulo-core/components/StructuredDataComponents/StructuredMetadataPlaceholder.js</span>",
+    "class"
+  ],
+  [
+    "modulo-core/components/structureddatacomponents/structuredparentjournal.js~structuredparentjournal",
+    "class/components/StructuredDataComponents/StructuredParentJournal.js~StructuredParentJournal.html",
+    "<span>StructuredParentJournal</span> <span class=\"search-result-import-path\">modulo-core/components/StructuredDataComponents/StructuredParentJournal.js</span>",
+    "class"
+  ],
+  [
+    "modulo-core/components/structureddatacomponents/structuredperson.js~structuredperson",
+    "class/components/StructuredDataComponents/StructuredPerson.js~StructuredPerson.html",
+    "<span>StructuredPerson</span> <span class=\"search-result-import-path\">modulo-core/components/StructuredDataComponents/StructuredPerson.js</span>",
+    "class"
+  ],
+  [
+    "modulo-core/components/structureddatacomponents/structuredpublisher.js~structuredpublisher",
+    "class/components/StructuredDataComponents/StructuredPublisher.js~StructuredPublisher.html",
+    "<span>StructuredPublisher</span> <span class=\"search-result-import-path\">modulo-core/components/StructuredDataComponents/StructuredPublisher.js</span>",
+    "class"
+  ],
+  [
+    "modulo-core/components/structureddatacomponents/structuredspan.js~structuredspan",
+    "class/components/StructuredDataComponents/StructuredSpan.js~StructuredSpan.html",
+    "<span>StructuredSpan</span> <span class=\"search-result-import-path\">modulo-core/components/StructuredDataComponents/StructuredSpan.js</span>",
+    "class"
+  ],
+  [
+    "modulo-core/components/staticcomponents/staticwebsiteposter.js~structuredwebsiteposter",
+    "class/components/StaticComponents/StaticWebsitePoster.js~StructuredWebsitePoster.html",
+    "<span>StructuredWebsitePoster</span> <span class=\"search-result-import-path\">modulo-core/components/StaticComponents/StaticWebsitePoster.js</span>",
     "class"
   ],
   [
@@ -354,51 +432,243 @@ window.esdocSearchIndex = [
     "external"
   ],
   [
-    "components/hyperlink.jsx",
-    "file/components/HyperLink.jsx.html",
-    "components/HyperLink.jsx",
+    "components/staticcomponents/staticcoverpage.js",
+    "file/components/StaticComponents/StaticCoverPage.js.html",
+    "components/StaticComponents/StaticCoverPage.js",
     "file"
   ],
   [
-    "components/hyperlink.jsx~hyperlink#render",
-    "class/components/HyperLink.jsx~HyperLink.html#instance-method-render",
-    "components/HyperLink.jsx~HyperLink#render",
+    "components/staticcomponents/staticcoverpage.js~staticcoverpage#getgeneralprop",
+    "class/components/StaticComponents/StaticCoverPage.js~StaticCoverPage.html#instance-method-getGeneralProp",
+    "components/StaticComponents/StaticCoverPage.js~StaticCoverPage#getGeneralProp",
     "method"
   ],
   [
-    "components/imagefigure.jsx",
-    "file/components/ImageFigure.jsx.html",
-    "components/ImageFigure.jsx",
-    "file"
-  ],
-  [
-    "components/imagefigure.jsx~imagefigure#render",
-    "class/components/ImageFigure.jsx~ImageFigure.html#instance-method-render",
-    "components/ImageFigure.jsx~ImageFigure#render",
+    "components/staticcomponents/staticcoverpage.js~staticcoverpage#render",
+    "class/components/StaticComponents/StaticCoverPage.js~StaticCoverPage.html#instance-method-render",
+    "components/StaticComponents/StaticCoverPage.js~StaticCoverPage#render",
     "method"
   ],
   [
-    "components/imagegallery.jsx",
-    "file/components/ImageGallery.jsx.html",
-    "components/ImageGallery.jsx",
+    "components/staticcomponents/staticdocument.js",
+    "file/components/StaticComponents/StaticDocument.js.html",
+    "components/StaticComponents/StaticDocument.js",
     "file"
   ],
   [
-    "components/imagegallery.jsx~imagegallery#render",
-    "class/components/ImageGallery.jsx~ImageGallery.html#instance-method-render",
-    "components/ImageGallery.jsx~ImageGallery#render",
+    "components/staticcomponents/staticdocument.js~staticdocument#render",
+    "class/components/StaticComponents/StaticDocument.js~StaticDocument.html#instance-method-render",
+    "components/StaticComponents/StaticDocument.js~StaticDocument#render",
     "method"
   ],
   [
-    "components/websiteposter.jsx",
-    "file/components/WebsitePoster.jsx.html",
-    "components/WebsitePoster.jsx",
+    "components/staticcomponents/staticendnotes.js",
+    "file/components/StaticComponents/StaticEndNotes.js.html",
+    "components/StaticComponents/StaticEndNotes.js",
     "file"
   ],
   [
-    "components/websiteposter.jsx~websiteposter#render",
-    "class/components/WebsitePoster.jsx~WebsitePoster.html#instance-method-render",
-    "components/WebsitePoster.jsx~WebsitePoster#render",
+    "components/staticcomponents/staticendnotes.js~staticendnotes#render",
+    "class/components/StaticComponents/StaticEndNotes.js~StaticEndNotes.html#instance-method-render",
+    "components/StaticComponents/StaticEndNotes.js~StaticEndNotes#render",
+    "method"
+  ],
+  [
+    "components/staticcomponents/staticimagefigure.js",
+    "file/components/StaticComponents/StaticImageFigure.js.html",
+    "components/StaticComponents/StaticImageFigure.js",
+    "file"
+  ],
+  [
+    "components/staticcomponents/staticimagefigure.js~staticimagefigure#render",
+    "class/components/StaticComponents/StaticImageFigure.js~StaticImageFigure.html#instance-method-render",
+    "components/StaticComponents/StaticImageFigure.js~StaticImageFigure#render",
+    "method"
+  ],
+  [
+    "components/staticcomponents/staticimagegallery.js",
+    "file/components/StaticComponents/StaticImageGallery.js.html",
+    "components/StaticComponents/StaticImageGallery.js",
+    "file"
+  ],
+  [
+    "components/staticcomponents/staticimagegallery.js~staticimagegallery#render",
+    "class/components/StaticComponents/StaticImageGallery.js~StaticImageGallery.html#instance-method-render",
+    "components/StaticComponents/StaticImageGallery.js~StaticImageGallery#render",
+    "method"
+  ],
+  [
+    "components/staticcomponents/staticnote.js",
+    "file/components/StaticComponents/StaticNote.js.html",
+    "components/StaticComponents/StaticNote.js",
+    "file"
+  ],
+  [
+    "components/staticcomponents/staticnote.js~staticnote#render",
+    "class/components/StaticComponents/StaticNote.js~StaticNote.html#instance-method-render",
+    "components/StaticComponents/StaticNote.js~StaticNote#render",
+    "method"
+  ],
+  [
+    "components/staticcomponents/staticsection.js",
+    "file/components/StaticComponents/StaticSection.js.html",
+    "components/StaticComponents/StaticSection.js",
+    "file"
+  ],
+  [
+    "components/staticcomponents/staticsection.js~staticsection#render",
+    "class/components/StaticComponents/StaticSection.js~StaticSection.html#instance-method-render",
+    "components/StaticComponents/StaticSection.js~StaticSection#render",
+    "method"
+  ],
+  [
+    "components/staticcomponents/statictableofcontents.js",
+    "file/components/StaticComponents/StaticTableOfContents.js.html",
+    "components/StaticComponents/StaticTableOfContents.js",
+    "file"
+  ],
+  [
+    "components/staticcomponents/statictableofcontents.js~statictableofcontents#render",
+    "class/components/StaticComponents/StaticTableOfContents.js~StaticTableOfContents.html#instance-method-render",
+    "components/StaticComponents/StaticTableOfContents.js~StaticTableOfContents#render",
+    "method"
+  ],
+  [
+    "components/staticcomponents/staticwebsiteposter.js",
+    "file/components/StaticComponents/StaticWebsitePoster.js.html",
+    "components/StaticComponents/StaticWebsitePoster.js",
+    "file"
+  ],
+  [
+    "components/staticcomponents/staticwebsiteposter.js~structuredwebsiteposter#render",
+    "class/components/StaticComponents/StaticWebsitePoster.js~StructuredWebsitePoster.html#instance-method-render",
+    "components/StaticComponents/StaticWebsitePoster.js~StructuredWebsitePoster#render",
+    "method"
+  ],
+  [
+    "components/structureddatacomponents/structuredcite.js",
+    "file/components/StructuredDataComponents/StructuredCite.js.html",
+    "components/StructuredDataComponents/StructuredCite.js",
+    "file"
+  ],
+  [
+    "components/structureddatacomponents/structuredcite.js~structuredcite#render",
+    "class/components/StructuredDataComponents/StructuredCite.js~StructuredCite.html#instance-method-render",
+    "components/StructuredDataComponents/StructuredCite.js~StructuredCite#render",
+    "method"
+  ],
+  [
+    "components/structureddatacomponents/structureddate.js",
+    "file/components/StructuredDataComponents/StructuredDate.js.html",
+    "components/StructuredDataComponents/StructuredDate.js",
+    "file"
+  ],
+  [
+    "components/structureddatacomponents/structureddate.js~structureddate#render",
+    "class/components/StructuredDataComponents/StructuredDate.js~StructuredDate.html#instance-method-render",
+    "components/StructuredDataComponents/StructuredDate.js~StructuredDate#render",
+    "method"
+  ],
+  [
+    "components/structureddatacomponents/structureddate.js~structureddate#setfinalvalue",
+    "class/components/StructuredDataComponents/StructuredDate.js~StructuredDate.html#instance-method-setFinalValue",
+    "components/StructuredDataComponents/StructuredDate.js~StructuredDate#setFinalValue",
+    "method"
+  ],
+  [
+    "components/structureddatacomponents/structuredhyperlink.js",
+    "file/components/StructuredDataComponents/StructuredHyperLink.js.html",
+    "components/StructuredDataComponents/StructuredHyperLink.js",
+    "file"
+  ],
+  [
+    "components/structureddatacomponents/structuredhyperlink.js~structuredhyperlink#render",
+    "class/components/StructuredDataComponents/StructuredHyperLink.js~StructuredHyperLink.html#instance-method-render",
+    "components/StructuredDataComponents/StructuredHyperLink.js~StructuredHyperLink#render",
+    "method"
+  ],
+  [
+    "components/structureddatacomponents/structuredmetadataplaceholder.js",
+    "file/components/StructuredDataComponents/StructuredMetadataPlaceholder.js.html",
+    "components/StructuredDataComponents/StructuredMetadataPlaceholder.js",
+    "file"
+  ],
+  [
+    "components/structureddatacomponents/structuredmetadataplaceholder.js~structuredmetadataplaceholder#render",
+    "class/components/StructuredDataComponents/StructuredMetadataPlaceholder.js~StructuredMetadataPlaceholder.html#instance-method-render",
+    "components/StructuredDataComponents/StructuredMetadataPlaceholder.js~StructuredMetadataPlaceholder#render",
+    "method"
+  ],
+  [
+    "components/structureddatacomponents/structuredparentjournal.js",
+    "file/components/StructuredDataComponents/StructuredParentJournal.js.html",
+    "components/StructuredDataComponents/StructuredParentJournal.js",
+    "file"
+  ],
+  [
+    "components/structureddatacomponents/structuredparentjournal.js~structuredparentjournal#render",
+    "class/components/StructuredDataComponents/StructuredParentJournal.js~StructuredParentJournal.html#instance-method-render",
+    "components/StructuredDataComponents/StructuredParentJournal.js~StructuredParentJournal#render",
+    "method"
+  ],
+  [
+    "components/structureddatacomponents/structuredparentjournal.js~structuredparentjournal#updatehtml",
+    "class/components/StructuredDataComponents/StructuredParentJournal.js~StructuredParentJournal.html#instance-method-updateHtml",
+    "components/StructuredDataComponents/StructuredParentJournal.js~StructuredParentJournal#updateHtml",
+    "method"
+  ],
+  [
+    "components/structureddatacomponents/structuredperson.js",
+    "file/components/StructuredDataComponents/StructuredPerson.js.html",
+    "components/StructuredDataComponents/StructuredPerson.js",
+    "file"
+  ],
+  [
+    "components/structureddatacomponents/structuredperson.js~structuredperson#render",
+    "class/components/StructuredDataComponents/StructuredPerson.js~StructuredPerson.html#instance-method-render",
+    "components/StructuredDataComponents/StructuredPerson.js~StructuredPerson#render",
+    "method"
+  ],
+  [
+    "components/structureddatacomponents/structuredperson.js~structuredperson#transformvalues",
+    "class/components/StructuredDataComponents/StructuredPerson.js~StructuredPerson.html#instance-method-transformValues",
+    "components/StructuredDataComponents/StructuredPerson.js~StructuredPerson#transformValues",
+    "method"
+  ],
+  [
+    "components/structureddatacomponents/structuredperson.js~structuredperson#updatehtml",
+    "class/components/StructuredDataComponents/StructuredPerson.js~StructuredPerson.html#instance-method-updateHtml",
+    "components/StructuredDataComponents/StructuredPerson.js~StructuredPerson#updateHtml",
+    "method"
+  ],
+  [
+    "components/structureddatacomponents/structuredpublisher.js",
+    "file/components/StructuredDataComponents/StructuredPublisher.js.html",
+    "components/StructuredDataComponents/StructuredPublisher.js",
+    "file"
+  ],
+  [
+    "components/structureddatacomponents/structuredpublisher.js~structuredpublisher#render",
+    "class/components/StructuredDataComponents/StructuredPublisher.js~StructuredPublisher.html#instance-method-render",
+    "components/StructuredDataComponents/StructuredPublisher.js~StructuredPublisher#render",
+    "method"
+  ],
+  [
+    "components/structureddatacomponents/structuredpublisher.js~structuredpublisher#updatehtml",
+    "class/components/StructuredDataComponents/StructuredPublisher.js~StructuredPublisher.html#instance-method-updateHtml",
+    "components/StructuredDataComponents/StructuredPublisher.js~StructuredPublisher#updateHtml",
+    "method"
+  ],
+  [
+    "components/structureddatacomponents/structuredspan.js",
+    "file/components/StructuredDataComponents/StructuredSpan.js.html",
+    "components/StructuredDataComponents/StructuredSpan.js",
+    "file"
+  ],
+  [
+    "components/structureddatacomponents/structuredspan.js~structuredspan#render",
+    "class/components/StructuredDataComponents/StructuredSpan.js~StructuredSpan.html#instance-method-render",
+    "components/StructuredDataComponents/StructuredSpan.js~StructuredSpan#render",
     "method"
   ],
   [

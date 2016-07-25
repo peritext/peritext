@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../">
-  <title data-ice="title">components/index.js | API Document</title>
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">components/StructuredDataComponents/StructuredParentJournal.js | API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -53,25 +53,121 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">components/index.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">export { default as StaticCoverPage } from &apos;./StaticComponents/StaticCoverPage.js&apos;;
-export { default as StaticDocument } from &apos;./StaticComponents/StaticDocument.js&apos;;
-export { default as StaticEndNotes } from &apos;./StaticComponents/StaticEndNotes.js&apos;;
-export { default as StaticImageFigure } from &apos;./StaticComponents/StaticImageFigure.js&apos;;
-export { default as StaticImageGallery } from &apos;./StaticComponents/StaticImageGallery.js&apos;;
-export { default as StaticNote } from &apos;./StaticComponents/StaticNote.js&apos;;
-export { default as StaticSection } from &apos;./StaticComponents/StaticSection.js&apos;;
-export { default as StaticTableOfContents } from &apos;./StaticComponents/StaticTableOfContents.js&apos;;
-export { default as StaticWebsitePoster } from &apos;./StaticComponents/StaticWebsitePoster.js&apos;;
+<div class="content" data-ice="content"><h1 data-ice="title">components/StructuredDataComponents/StructuredParentJournal.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React, {PropTypes} from &apos;react&apos;;
+import reactStringReplace from &apos;react-string-replace&apos;;
+import {
+  StructuredDate
+  // , StructuredSpan
+} from &apos;./../index.js&apos;;
 
-export { default as StructuredCite } from &apos;./StructuredDataComponents/StructuredCite.js&apos;;
-export { default as StructuredDate } from &apos;./StructuredDataComponents/StructuredDate.js&apos;;
-export { default as StructuredHyperLink } from &apos;./StructuredDataComponents/StructuredHyperLink.js&apos;;
-export { default as StructuredMetadataPlaceholder } from &apos;./StructuredDataComponents/StructuredMetadataPlaceholder.js&apos;;
-export { default as StructuredParentJournal } from &apos;./StructuredDataComponents/StructuredParentJournal.js&apos;;
-export { default as StructuredPerson } from &apos;./StructuredDataComponents/StructuredPerson.js&apos;;
-export { default as StructuredPublisher } from &apos;./StructuredDataComponents/StructuredPublisher.js&apos;;
-export { default as StructuredSpan } from &apos;./StructuredDataComponents/StructuredSpan.js&apos;;
+import Radium from &apos;radium&apos;;
+
+// let styles = {};
+
+/**
+ * dumb component for rendering the structured representation of parent journal information
+ */
+@Radium
+export default class StructuredParentJournal extends React.Component {
+
+  /**
+   * propTypes
+   * @property {object} resource the resource parsed for structuring data
+   * @property {string} pattern the pattern to apply for formatting thresource
+   * @property {string} property the microformat property to apply to the structured element
+   */
+  static propTypes = {
+    resource: PropTypes.object,
+    pattern: PropTypes.string,
+    property: PropTypes.string
+  };
+
+  static defaultProps = {
+    pattern: &apos;${journal}, ${date}, ${volume}(${issue}). ISSN : ${issn}&apos;,
+    property: &apos;isPartOf&apos;
+  };
+
+  /**
+   * updateHtml : transform pattern+resource props into a react element
+   * @return {ReactElement} markup
+   */
+  updateHtml(resource, pattern) {
+    let replacedText;
+    replacedText = reactStringReplace(pattern, /(\${journal})/g, (match, index)=&gt; (
+      &lt;span key={match + index} className=&quot;peritext-contents-citation-journal&quot;&gt;{resource.journal}&lt;/span&gt;
+    ));
+
+    replacedText = reactStringReplace(replacedText, /(\${date})/g, (match, index)=&gt; (
+      &lt;span key={match + index} className=&quot;peritext-contents-citation-date&quot;&gt;{resource.date || resource.year}&lt;/span&gt;
+    ));
+
+    replacedText = reactStringReplace(replacedText, /(\${volume})/g, (match, index)=&gt; (
+      &lt;span key={match + index} className=&quot;peritext-contents-citation-volume&quot;&gt;{resource.volume}&lt;/span&gt;
+    ));
+
+    replacedText = reactStringReplace(replacedText, /(\${issue})/g, (match, index)=&gt; (
+      &lt;span key={match + index} className=&quot;peritext-contents-citation-issue&quot;&gt;{resource.issue}&lt;/span&gt;
+    ));
+
+    replacedText = reactStringReplace(replacedText, /(\${issn})/g, (match, index)=&gt; (
+      &lt;span key={match + index} className=&quot;peritext-contents-citation-issn&quot;&gt;{resource.issn}&lt;/span&gt;
+    ));
+    return replacedText;
+  }
+
+  /**
+   * render
+   * @return {ReactElement} markup
+   */
+  render() {
+    // return this.updateHtml(this.props.resource, this.props.pattern);
+
+    return (
+      &lt;span
+        className=&quot;peritext-contents-journal&quot;
+        itemProp={this.props.property}
+        property={this.props.property}
+        itemScope
+        itemType=&quot;http://schema.org/Periodical&quot;
+        typeof=&quot;Periodical&quot;
+        resource={this.props.resource.issn + this.props.resource.journal}
+      &gt;
+        &lt;span style={{display: &apos;none&apos;}} itemProp=&quot;name&quot; property=&quot;name&quot;&gt;{this.props.resource.journal}&lt;/span&gt;
+        &lt;span
+          itemProp=&quot;hasPart&quot;
+          property=&quot;hasPart&quot;
+          itemScope
+          itemType=&quot;http://schema.org/PublicationVolume&quot;
+          typeof=&quot;PublicationVolume&quot;
+          resource={this.props.resource.issn + this.props.resource.journal + &apos;-volume&apos; + this.props.resource.volume}
+          style={{display: &apos;none&apos;}}
+        &gt;
+          &lt;span itemProp=&quot;volumeNumber&quot; property=&quot;volumeNumber&quot;&gt;{this.props.resource.volume}&lt;/span&gt;
+          &lt;span
+            itemProp=&quot;hasPart&quot;
+            property=&quot;hasPart&quot;
+            itemScope
+            itemType=&quot;http://schema.org/PublicationIssue&quot;
+            typeof=&quot;PublicationIssue&quot;
+            resource={this.props.resource.issn + this.props.resource.journal + &apos;-volume&apos; + this.props.resource.volume + &apos;-issue&apos; + this.props.resource.issue}
+          &gt;
+            &lt;span itemProp=&quot;issueNumber&quot; property=&quot;issueNumber&quot;&gt;{this.props.resource.issue}&lt;/span&gt;
+            &lt;StructuredDate value={this.props.resource.date || this.props.resource.year}/&gt;
+          &lt;/span&gt;
+        &lt;/span&gt;
+        &lt;span
+          itemProp=&quot;issn&quot;
+          style={{display: &apos;none&apos;}}
+          property=&quot;issn&quot;&gt;
+            {this.props.resource.issn}
+        &lt;/span&gt;
+
+        {this.updateHtml(this.props.resource, this.props.pattern)}
+      &lt;/span&gt;
+    );
+  }
+}
 </code></pre>
 
 </div>

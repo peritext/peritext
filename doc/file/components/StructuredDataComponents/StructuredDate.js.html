@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../">
-  <title data-ice="title">components/index.js | API Document</title>
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">components/StructuredDataComponents/StructuredDate.js | API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -53,25 +53,62 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">components/index.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">export { default as StaticCoverPage } from &apos;./StaticComponents/StaticCoverPage.js&apos;;
-export { default as StaticDocument } from &apos;./StaticComponents/StaticDocument.js&apos;;
-export { default as StaticEndNotes } from &apos;./StaticComponents/StaticEndNotes.js&apos;;
-export { default as StaticImageFigure } from &apos;./StaticComponents/StaticImageFigure.js&apos;;
-export { default as StaticImageGallery } from &apos;./StaticComponents/StaticImageGallery.js&apos;;
-export { default as StaticNote } from &apos;./StaticComponents/StaticNote.js&apos;;
-export { default as StaticSection } from &apos;./StaticComponents/StaticSection.js&apos;;
-export { default as StaticTableOfContents } from &apos;./StaticComponents/StaticTableOfContents.js&apos;;
-export { default as StaticWebsitePoster } from &apos;./StaticComponents/StaticWebsitePoster.js&apos;;
+<div class="content" data-ice="content"><h1 data-ice="title">components/StructuredDataComponents/StructuredDate.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React, {PropTypes} from &apos;react&apos;;
+import Radium from &apos;radium&apos;;
 
-export { default as StructuredCite } from &apos;./StructuredDataComponents/StructuredCite.js&apos;;
-export { default as StructuredDate } from &apos;./StructuredDataComponents/StructuredDate.js&apos;;
-export { default as StructuredHyperLink } from &apos;./StructuredDataComponents/StructuredHyperLink.js&apos;;
-export { default as StructuredMetadataPlaceholder } from &apos;./StructuredDataComponents/StructuredMetadataPlaceholder.js&apos;;
-export { default as StructuredParentJournal } from &apos;./StructuredDataComponents/StructuredParentJournal.js&apos;;
-export { default as StructuredPerson } from &apos;./StructuredDataComponents/StructuredPerson.js&apos;;
-export { default as StructuredPublisher } from &apos;./StructuredDataComponents/StructuredPublisher.js&apos;;
-export { default as StructuredSpan } from &apos;./StructuredDataComponents/StructuredSpan.js&apos;;
+// let styles = {};
+
+/**
+ * dumb component for rendering the structured representation of a date
+ */
+@Radium
+export default class StructuredDate extends React.Component {
+
+  /**
+   * propTypes
+   */
+  static propTypes = {
+    value: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string
+    ]),
+    property: PropTypes.string,
+    modificator: PropTypes.string
+  };
+
+  static defaultProps = {
+    property: &apos;datePublished&apos;
+  };
+
+  setFinalValue(value, modificator) {
+    if (typeof value === &apos;string&apos; &amp;&amp; modificator === &apos;year&apos;) {
+      const match = value.match(/([\d]{2,4})/);
+      if (match) {
+        return match[1];
+      }
+    }
+    return value;
+  }
+
+  /**
+   * render
+   * @return {ReactElement} markup
+   */
+  render() {
+    const finalValue = this.setFinalValue(this.props.value, this.props.modificator);
+    return (
+      &lt;time
+        className=&quot;peritext-contents-date&quot;
+        property={this.props.property}
+        itemProp={this.props.property}
+        dateTime={finalValue}
+      &gt;
+        {finalValue}
+      &lt;/time&gt;
+    );
+  }
+}
 </code></pre>
 
 </div>

@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../">
-  <title data-ice="title">components/index.js | API Document</title>
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">components/StaticComponents/StaticCoverPage.js | API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -53,25 +53,119 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">components/index.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">export { default as StaticCoverPage } from &apos;./StaticComponents/StaticCoverPage.js&apos;;
-export { default as StaticDocument } from &apos;./StaticComponents/StaticDocument.js&apos;;
-export { default as StaticEndNotes } from &apos;./StaticComponents/StaticEndNotes.js&apos;;
-export { default as StaticImageFigure } from &apos;./StaticComponents/StaticImageFigure.js&apos;;
-export { default as StaticImageGallery } from &apos;./StaticComponents/StaticImageGallery.js&apos;;
-export { default as StaticNote } from &apos;./StaticComponents/StaticNote.js&apos;;
-export { default as StaticSection } from &apos;./StaticComponents/StaticSection.js&apos;;
-export { default as StaticTableOfContents } from &apos;./StaticComponents/StaticTableOfContents.js&apos;;
-export { default as StaticWebsitePoster } from &apos;./StaticComponents/StaticWebsitePoster.js&apos;;
+<div class="content" data-ice="content"><h1 data-ice="title">components/StaticComponents/StaticCoverPage.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React, {PropTypes} from &apos;react&apos;;
+import StructuredPerson from &apos;./../StructuredDataComponents/StructuredPerson.js&apos;;
+import Radium from &apos;radium&apos;;
 
-export { default as StructuredCite } from &apos;./StructuredDataComponents/StructuredCite.js&apos;;
-export { default as StructuredDate } from &apos;./StructuredDataComponents/StructuredDate.js&apos;;
-export { default as StructuredHyperLink } from &apos;./StructuredDataComponents/StructuredHyperLink.js&apos;;
-export { default as StructuredMetadataPlaceholder } from &apos;./StructuredDataComponents/StructuredMetadataPlaceholder.js&apos;;
-export { default as StructuredParentJournal } from &apos;./StructuredDataComponents/StructuredParentJournal.js&apos;;
-export { default as StructuredPerson } from &apos;./StructuredDataComponents/StructuredPerson.js&apos;;
-export { default as StructuredPublisher } from &apos;./StructuredDataComponents/StructuredPublisher.js&apos;;
-export { default as StructuredSpan } from &apos;./StructuredDataComponents/StructuredSpan.js&apos;;
+// let styles = {};
+
+/**
+ * dumb component for cover page of a static publication of document
+ */
+@Radium
+export default class StaticCoverPage extends React.Component {
+
+  /**
+   * propTypes
+   * @property {array} metadata a section metadata to parse in order to fill cover template
+   */
+  static propTypes = {
+    metadata: PropTypes.array
+  };
+
+  static defaultProps = {
+  };
+
+  getGeneralProp(list, key) {
+    const obj = list.find((meta) =&gt; {
+      return meta.domain === &apos;general&apos; &amp;&amp; meta.key === key;
+    });
+    if (obj) {
+      return obj.value;
+    }
+    return undefined;
+  }
+
+  /**
+   * render
+   * @return {ReactElement} markup
+   */
+  render() {
+    return (
+      &lt;section
+        id=&quot;peritext-contents-cover&quot;
+        className=&quot;peritext-contents-cover&quot;
+      &gt;
+        &lt;div
+          style={{backgroundImage: &apos;url(&apos; + this.getGeneralProp(this.props.metadata, &apos;coverimage&apos;) + &apos;)&apos;}}
+          id=&quot;peritext-contents-cover-image-container&quot;
+        &gt;&lt;/div&gt;
+        &lt;div
+          className=&quot;peritext-contents-cover-texts-container&quot;
+        &gt;
+          &lt;section className=&quot;peritext-contents-cover-part-top-left&quot;&gt;
+            &lt;h3 className=&quot;peritext-contents-cover-dissertationinstitution&quot;&gt;
+              Th&#xE8;se / {this.getGeneralProp(this.props.metadata, &apos;dissertationinstitution&apos;)}
+            &lt;/h3&gt;
+            &lt;p&gt;
+              Pour obtenir le grade de DOCTEUR
+            &lt;/p&gt;
+            &lt;h4 className=&quot;peritext-contents-cover-dissertationcomment&quot;&gt;
+              {this.getGeneralProp(this.props.metadata, &apos;dissertationcomment&apos;)}
+            &lt;/h4&gt;
+
+            &lt;p className=&quot;peritext-contents-cover-dissertationdoctoralschool&quot;&gt;
+              &#xC9;cole doctorale {this.getGeneralProp(this.props.metadata, &apos;dissertationdoctoralschool&apos;)}
+            &lt;/p&gt;
+
+            &lt;p className=&quot;peritext-contents-cover-dissertationdiscipline&quot;&gt;
+              Mention : &lt;span&gt;{this.getGeneralProp(this.props.metadata, &apos;dissertationdiscipline&apos;)}&lt;/span&gt;
+            &lt;/p&gt;
+          &lt;/section&gt;
+
+          &lt;section className=&quot;peritext-contents-cover-part-top-right&quot;&gt;
+            &lt;p&gt;
+              pr&#xE9;sent&#xE9;e par
+            &lt;/p&gt;
+            &lt;h1 className=&quot;peritext-contents-authors&quot;&gt;
+              {this.getGeneralProp(this.props.metadata, &apos;author&apos;).map((person) =&gt;{
+                return &lt;StructuredPerson key={person.citeKey} resource={person}/&gt;;
+              })}
+            &lt;/h1&gt;
+            &lt;p className=&quot;peritext-contents-cover-dissertationlab&quot;&gt;
+              {this.getGeneralProp(this.props.metadata, &apos;dissertationlab&apos;)}
+            &lt;/p&gt;
+          &lt;/section&gt;
+
+          &lt;section className=&quot;peritext-contents-cover-part-bottom-left&quot;&gt;
+            &lt;h1&gt;
+              {this.getGeneralProp(this.props.metadata, &apos;title&apos;)}
+            &lt;/h1&gt;
+          &lt;/section&gt;
+
+          &lt;section className=&quot;peritext-contents-cover-part-bottom-right&quot;&gt;
+            &lt;p className=&quot;peritext-contents-cover-date&quot;&gt;
+              Th&#xE8;se soutenue le {this.getGeneralProp(this.props.metadata, &apos;date&apos;)}
+            &lt;/p&gt;
+            &lt;p&gt;
+              devant le jury compos&#xE9; de :
+            &lt;/p&gt;
+            {
+              this.getGeneralProp(this.props.metadata, &apos;dissertationjury&apos;).map((person) =&gt;{
+                return (
+                    &lt;p key={person.citeKey} className=&quot;peritext-contents-cover-jury-member&quot;&gt;
+                      &lt;StructuredPerson resource={person} pattern=&quot;${firstName} ${lastName:capitals} ${information} / ${role}&quot;/&gt;
+                    &lt;/p&gt;
+                  );
+              })
+            }
+          &lt;/section&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;
+    );
+  }
+}
 </code></pre>
 
 </div>
