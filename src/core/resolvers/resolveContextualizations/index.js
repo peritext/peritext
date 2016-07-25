@@ -7,7 +7,7 @@ export function numbersToLetters(num) {
   const mod = num % 26;
   let pow = num / 26 | 0;
   const out = mod ? String.fromCharCode(64 + mod) : (--pow, 'Z');
-  return pow ? numberToLetters(pow) + out : out.toLowerCase();
+  return pow ? numbersToLetters(pow) + out : out.toLowerCase();
 }
 
 // I resolve a contextualizer assertion against its model and context, and record errors
@@ -169,7 +169,7 @@ export function resolveContextualizationsRelations(sections, renderingParams) {
       if (contextualization.contextualizerType === 'citation') {
         // same authors but different work in year - section scale
         contextualization.authorsPrint = contextualization.author.reduce((str, author)=> {
-          return str + '-' + author.lastName + '-' + author.firstName;
+          return str + author.lastName + '-' + author.firstName;
         }, '');
 
         conts.find((cont2)=> {

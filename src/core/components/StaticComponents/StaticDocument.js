@@ -8,6 +8,7 @@ import {
   StaticEndNotes,
   StaticFrontCover,
   StaticSection,
+  StaticReferencesList,
   StaticTableOfContents,
   StaticTableOfFigures,
   StructuredMetadataPlaceholder
@@ -60,6 +61,7 @@ export default class StaticDocument extends React.Component {
       });
       return figures.concat(figuresL);
     }, []);
+
     return (
         <section
           itemScope
@@ -118,6 +120,12 @@ export default class StaticDocument extends React.Component {
                 }, [])
               }
             /> : ''
+          }
+
+          {
+            this.props.renderingParams.referenceScope === 'document' ?
+            <StaticReferencesList references={this.props.sections[0].references} renderingParams={this.props.renderingParams} />
+            : ''
           }
 
           {

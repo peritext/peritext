@@ -16,25 +16,22 @@
   },
   "referenceFilters" : {
     "description" : "How to filter citations for the bibliography ?",
-    "valueType" : "string"
+    "valueType" : "string",
+    "default": "has-title"
   },
-  "referencesPosition" : {
-    "description": "Where to put the bibliograph.y.ies ?",
+  "referenceScope" : {
+    "description": "At what hierarchical level to render bibliograph.y.ies ?",
     "valueType": "string",
-    "default": "end",
-    "values": ["begining", "end"]
+    "default": "document",
+    "values": ["section", "document"]
   },
-  "referencesGeneralityLevel" : {
-    "description": "At what hierarchical level to render bibliograph.y.ies ? (default 0)",
-    "valueType": "number",
-    "default": 0
-  },
-  "referencesOrder" : {
+  "referenceSortBy" : {
     "description": "How to order references ?",
     "valueType": "string",
-    "default": "alphabetical",
+    "default": "authors",
     "values" : [
-      "alphabetical",
+      "title",
+      "authors",
       "year",
       "type"
     ]
@@ -42,13 +39,13 @@
   "tocPosition" : {
     "description": "Where to put the table of contents",
     "valueType": "string",
-    "default": "end",
+    "default": "begining",
     "values": ["begining", "end", "none"]
   },
   "figuresTablePosition" : {
     "description": "Where to put the table of figures",
     "valueType": "string",
-    "default": "end",
+    "default": "begining",
     "values": ["begining", "end", "none"]
   },
   "lexiconPosition" : {

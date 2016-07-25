@@ -28,8 +28,7 @@ class StaticTableOfFigures extends React.Component {
    * propTypes
    */
   static propTypes = {
-    elements: PropTypes.array,
-    level: PropTypes.number
+    elements: PropTypes.array
   };
 
   static defaultProps = {

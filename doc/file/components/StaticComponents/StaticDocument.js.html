@@ -39,6 +39,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/StaticComponents/StaticImageFigure.js~StaticImageFigure.html">StaticImageFigure</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/StaticComponents/StaticImageGallery.js~StaticImageGallery.html">StaticImageGallery</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/StaticComponents/StaticNote.js~StaticNote.html">StaticNote</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/StaticComponents/StaticReferencesList.js~StaticReferencesList.html">StaticReferencesList</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/StaticComponents/StaticSection.js~StaticSection.html">StaticSection</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/StaticComponents/StaticTableOfContents.js~StaticTableOfContents.html">StaticTableOfContents</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/StaticComponents/StaticTableOfFigures.js~StaticTableOfFigures.html">StaticTableOfFigures</a></span></span></li>
@@ -66,6 +67,7 @@ import {
   StaticEndNotes,
   StaticFrontCover,
   StaticSection,
+  StaticReferencesList,
   StaticTableOfContents,
   StaticTableOfFigures,
   StructuredMetadataPlaceholder
@@ -118,6 +120,7 @@ export default class StaticDocument extends React.Component {
       });
       return figures.concat(figuresL);
     }, []);
+
     return (
         &lt;section
           itemScope
@@ -176,6 +179,12 @@ export default class StaticDocument extends React.Component {
                 }, [])
               }
             /&gt; : &apos;&apos;
+          }
+
+          {
+            this.props.renderingParams.referenceScope === &apos;document&apos; ?
+            &lt;StaticReferencesList references={this.props.sections[0].references} renderingParams={this.props.renderingParams} /&gt;
+            : &apos;&apos;
           }
 
           {

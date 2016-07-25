@@ -42,6 +42,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "peritext/components/staticcomponents/staticreferenceslist.js~staticreferenceslist",
+    "class/components/StaticComponents/StaticReferencesList.js~StaticReferencesList.html",
+    "<span>StaticReferencesList</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticReferencesList.js</span>",
+    "class"
+  ],
+  [
     "peritext/components/staticcomponents/staticsection.js~staticsection",
     "class/components/StaticComponents/StaticSection.js~StaticSection.html",
     "<span>StaticSection</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticSection.js</span>",
@@ -537,6 +543,18 @@ window.esdocSearchIndex = [
     "components/staticcomponents/staticnote.js~staticnote#render",
     "class/components/StaticComponents/StaticNote.js~StaticNote.html#instance-method-render",
     "components/StaticComponents/StaticNote.js~StaticNote#render",
+    "method"
+  ],
+  [
+    "components/staticcomponents/staticreferenceslist.js",
+    "file/components/StaticComponents/StaticReferencesList.js.html",
+    "components/StaticComponents/StaticReferencesList.js",
+    "file"
+  ],
+  [
+    "components/staticcomponents/staticreferenceslist.js~staticreferenceslist#render",
+    "class/components/StaticComponents/StaticReferencesList.js~StaticReferencesList.html#instance-method-render",
+    "components/StaticComponents/StaticReferencesList.js~StaticReferencesList#render",
     "method"
   ],
   [

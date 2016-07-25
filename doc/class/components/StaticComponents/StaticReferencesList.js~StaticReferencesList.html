@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">components/StaticComponents/StaticWebsitePoster.js | API Document</title>
+  <title data-ice="title">StaticReferencesList | API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -56,78 +56,144 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">components/StaticComponents/StaticWebsitePoster.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React, {PropTypes} from &apos;react&apos;;
-import StaticImageFigure from &apos;./StaticImageFigure.js&apos;;
-import StructuredHyperLink from &apos;./../StructuredDataComponents/StructuredHyperLink.js&apos;;
-import Radium from &apos;radium&apos;;
+<div class="content" data-ice="content"><div class="header-notice">
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import StaticReferencesList from &apos;<span><a href="file/components/StaticComponents/StaticReferencesList.js.html#lineNumber19">peritext/components/StaticComponents/StaticReferencesList.js</a></span>&apos;</code></pre></div>
+  <span data-ice="access">public</span>
+  <span data-ice="kind">class</span>
+  
+  
+  
+  <span data-ice="source">| <span><a href="file/components/StaticComponents/StaticReferencesList.js.html#lineNumber19">source</a></span></span>
+</div>
 
-// let styles = {};
+<div class="self-detail detail">
+  <h1 data-ice="name">StaticReferencesList</h1>
 
-/**
- * dumb static-oriented component for displaying a webpage poster image
- */
-@Radium
-export default class StructuredWebsitePoster extends React.Component {
+  
 
-  /**
-   * propTypes
-   * @property {string} schematype html schema type of the element
-   * @property {object} resource the resource to be parsed
-   * @property {string} captionContent what to display as caption
-   * @property {number} figureNumber in static mode, the number of the figure
-   */
-  static propTypes = {
-    schematype: PropTypes.string,
-    resource: PropTypes.object.isRequired,
-    captionContent: PropTypes.string,
-    figureNumber: PropTypes.number
-  };
+  
+  
+  <div class="flat-list" data-ice="extendsChain"><h4>Extends:</h4><div><span>react~React.Component</span> &#x2192; StaticReferencesList</div></div>
+  
+  
+  
+  
+  
+  
 
-  static defaultProps = {
-    schematype: &apos;website&apos;,
-    captionContent: &apos;&apos;
-  };
+  
+  
+  <div class="description" data-ice="description"><p>dumb component for rendering a static table of figures</p>
+</div>
 
-  /**
-   * render
-   * @return {ReactElement} markup
-   */
-  render() {
-    const invisibleStyle = {
-      display: &apos;none&apos;
-    };
-    return (
-            &lt;figure
-              role=&quot;group&quot;
-              className=&quot;peritext-contents-website-poster peritext-contents-figure&quot;
-              itemScope
-              itemProp=&quot;citation&quot;
-              itemType={&apos;http://schema.org/&apos; + this.props.schematype}
-              typeof={this.props.schematype}
-              resource={&apos;#&apos; + this.props.resource.citeKey}
-              id={this.props.figureNumber ? &apos;peritext-contents-figure-&apos; + this.props.figureNumber : undefined }
-            &gt;
-              &lt;span
-                itemProp=&quot;name&quot;
-                property=&quot;name&quot;
-                style={invisibleStyle}
-              &gt;
-                {this.props.resource.title}
-              &lt;/span&gt;
-              &lt;StaticImageFigure {...this.props} /&gt;
-              &lt;figcaption
-                itemProp=&quot;description&quot;
-                property=&quot;description&quot;
-              &gt;
-                Figure {this.props.figureNumber} &#x2013; {this.props.captionContent} &#x2013; &lt;StructuredHyperLink text={this.props.resource.url} resource={this.props.resource}/&gt;
-              &lt;/figcaption&gt;
-            &lt;/figure&gt;
-          );
-  }
-}
-</code></pre>
+  
 
+  
+
+  
+
+  
+</div>
+
+
+
+
+
+<div data-ice="methodSummary"><h2>Method Summary</h2><table class="summary" data-ice="summary">
+  <thead><tr><td data-ice="title" colspan="3">Public Methods</td></tr></thead>
+  <tbody>
+  
+  <tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/components/StaticComponents/StaticReferencesList.js~StaticReferencesList.html#instance-method-render">render</a></span></span><span data-ice="signature">(): <span>ReactElement</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>render</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+</tbody>
+</table>
+</div>
+
+
+
+
+
+
+
+<div data-ice="methodDetails"><h2 data-ice="title">Public Methods</h2>
+
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-render">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">render</span><span data-ice="signature">(): <span>ReactElement</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/components/StaticComponents/StaticReferencesList.js.html#lineNumber37">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>render</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span>ReactElement</span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>markup</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+</div>
 </div>
 
 <footer class="footer">

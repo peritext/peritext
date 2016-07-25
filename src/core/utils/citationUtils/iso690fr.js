@@ -71,7 +71,7 @@ export class BlockCitation extends BlockCitationModel {
 
   renderAuthors() {
     const pattern = '${lastName:capitals}, ${firstName}';
-    if (this.props.resource.author.length <= 2) {
+    if (this.props.resource.author && this.props.resource.author.length <= 2) {
 
       return (<span className="peritext-contents-citation-authors">
           {this.props.resource.author.map((author, index) => {
@@ -83,13 +83,15 @@ export class BlockCitation extends BlockCitationModel {
               );
           })}
       </span>);
+    } else if (this.props.resource.author) {
+      return (
+          <span className="peritext-contents-citation-authors">
+            <StructuredPerson resource={this.props.resource.author[0]} pattern={pattern} property="author" />
+            <i className="peritext-contents-citation-etal">et al.</i>
+          </span>
+      );
     }
-    return (
-        <span className="peritext-contents-citation-authors">
-          <StructuredPerson resource={this.props.resource.author[0]} pattern={pattern} property="author" />
-          <i className="peritext-contents-citation-etal">et al.</i>
-        </span>
-    );
+    return '';
   }
 
   renderCompleteReference() {
@@ -130,7 +132,7 @@ export class BlockCitation extends BlockCitationModel {
       return (
         <span className="peritext-contents-citation-complete-reference">
           {this.renderAuthors()}
-          <span>. </span>
+          {this.props.resource.author ? <span>. </span> : ''}
           <StructuredCite value={this.props.resource.title} />
           {this.props.resource.edition ? '. ' : ''}
           {this.props.resource.edition ? <StructuredSpan htmlClass="peritext-contents-citation-edition" property="bookEdition" value={this.props.resource.edition} /> : ''}

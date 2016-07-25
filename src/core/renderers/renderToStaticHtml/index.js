@@ -9,6 +9,7 @@ import {getMetaValue} from './../../utils/sectionUtils';
 import {sectionTypeModels, renderingParamsModels} from './../../models';
 import {eatNotes} from './../../converters/markdownConverter';
 import {resolveContextualizationsImplementation, resolveContextualizationsRelations} from './../../resolvers/resolveContextualizations';
+import {computeReferences} from './../../utils/referenceUtils';
 import {
   StaticDocument
 } from './../../components';
@@ -116,6 +117,11 @@ export default function renderSection({
         return Object.assign({}, sectio, {outputHtml}, {notes});
       });
 
+      // build references/bibliography
+      if (renderingParams.referenceScope === 'document') {
+        notedSections[0].references = computeReferences(notedSections, renderingParams);
+      }
+
       // build metadata
       const metaHead = sections[0].metadata
                     .filter((meta) =>{
@@ -131,13 +137,14 @@ export default function renderSection({
         renderingParams.hasCover = true;
       }
 
+
+      // preparing translations
       const lang = getMetaValue(sections[0].metadata, 'general', 'language') || 'en';
       const messages = require('./../../../../translations/locales/' + lang + '.json');
       const renderedContents = ReactDOMServer.renderToStaticMarkup(
         <IntlProvider locale={lang} messages={messages}>
           <StaticDocument sections={notedSections} renderingParams={renderingParams} />
-        </IntlProvider>
-      );
+        </IntlProvider>);
       const html = `
                     <!doctype:html>
                     <html>

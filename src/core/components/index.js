@@ -5,6 +5,7 @@ export { default as StaticEndNotes } from './StaticComponents/StaticEndNotes.js'
 export { default as StaticImageFigure } from './StaticComponents/StaticImageFigure.js';
 export { default as StaticImageGallery } from './StaticComponents/StaticImageGallery.js';
 export { default as StaticNote } from './StaticComponents/StaticNote.js';
+export { default as StaticReferencesList } from './StaticComponents/StaticReferencesList.js';
 export { default as StaticSection } from './StaticComponents/StaticSection.js';
 export { default as StaticTableOfContents } from './StaticComponents/StaticTableOfContents.js';
 export { default as StaticTableOfFigures } from './StaticComponents/StaticTableOfFigures.js';
