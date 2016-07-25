@@ -22,14 +22,14 @@
     "validate": "npm ls",
     "doc": "esdoc -c esdoc.json",
     "coverage": "nyc report npm run test && nyc check-coverage --lines 50 --functions 50 --branches 50",
-    "autocommitadd": "git add doc coverage src/temp test/crud_cobaye"
+    "autocommitadd": "git add doc coverage src/temp"
   },
   "pre-commit": [
     "lint",
     "test",
-    "coverage",
     "doc",
-    "autocommitadd"
+    "autocommitadd",
+    "coverage"
   ],
   "babel": {
     "presets": [
