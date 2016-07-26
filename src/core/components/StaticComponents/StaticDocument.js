@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import Radium from 'radium';
+import { intlShape } from 'react-intl';
 
 import {getMetaValue} from './../../utils/sectionUtils';
 import {bibToSchema} from './../../utils/microDataUtils';
@@ -7,8 +8,9 @@ import {
   StaticBackCover,
   StaticEndNotes,
   StaticFrontCover,
-  StaticSection,
+  StaticGlossary,
   StaticReferencesList,
+  StaticSection,
   StaticTableOfContents,
   StaticTableOfFigures,
   StructuredMetadataPlaceholder
@@ -20,14 +22,15 @@ import {
  * dumb component for rendering the structured representation of a static document
  */
 @Radium
-export default class StaticDocument extends React.Component {
+class StaticDocument extends React.Component {
 
   /**
    * propTypes
    */
   static propTypes = {
     sections: PropTypes.array,
-    renderingParams: PropTypes.object
+    renderingParams: PropTypes.object,
+    glossaryData: PropTypes.array
   };
 
   static defaultProps = {
@@ -38,6 +41,7 @@ export default class StaticDocument extends React.Component {
    * @return {ReactElement} markup
    */
   render() {
+    const { formatMessage } = this.context.intl;
     const bibType = bibToSchema(getMetaValue(this.props.sections[0].metadata, 'general', 'bibType'));
     const citeKey = getMetaValue(this.props.sections[0].metadata, 'general', 'citeKey');
     const tocData = this.props.sections.filter((sectio, index) =>{
@@ -50,10 +54,62 @@ export default class StaticDocument extends React.Component {
       };
     });
 
+    if (this.props.renderingParams.notesPosition === 'documentend') {
+      tocData.push({
+        id: 'peritext-contents-notes-document-end',
+        title: formatMessage({id: 'end_notes'}, {}),
+        level: 0
+      });
+    }
+
+    if (this.props.renderingParams.referenceScope === 'document') {
+      tocData.push({
+        id: 'peritext-contents-reference-list-container',
+        title: formatMessage({id: 'references_title'}, {}),
+        level: 0
+      });
+    }
+
+    if (this.props.renderingParams.figuresTablePosition === 'begining') {
+      tocData.splice(0, 0, {
+        id: 'table-of-figures',
+        title: formatMessage({id: 'table_of_figures'}, {}),
+        level: 0
+      });
+    } else if (this.props.renderingParams.figuresTablePosition === 'end') {
+      tocData.push({
+        id: 'table-of-figures',
+        title: formatMessage({id: 'table_of_figures'}, {}),
+        level: 0
+      });
+    }
+
+    if (this.props.renderingParams.glossaryPosition === 'begining') {
+      tocData.splice(0, 0, {
+        id: 'glossary',
+        title: formatMessage({id: 'glossary'}, {}),
+        level: 0
+      });
+    } else if (this.props.renderingParams.glossaryPosition === 'end') {
+      tocData.push({
+        id: 'glossary',
+        title: formatMessage({id: 'glossary'}, {}),
+        level: 0
+      });
+    }
+
+    // making figures table data
     const figuresTableData = this.props.sections.reduce((figures, section)=> {
+      // 1. take numbered figures
       const figuresL = section.contextualizations.filter((cont)=> {
         return cont.figureNumber !== undefined;
-      }).map((cont)=> {
+      })
+      // 2. filter uniques
+      .filter((figure, index, self) => self.findIndex((other) => {
+        return other.figureNumber === figure.figureNumber;
+      }) === index)
+      // 3. make table array
+      .map((cont)=> {
         return {
           id: 'peritext-contents-figure-' + cont.figureNumber,
           number: cont.figureNumber
@@ -87,6 +143,12 @@ export default class StaticDocument extends React.Component {
           {
             this.props.renderingParams.figuresTablePosition === 'begining' ?
             <StaticTableOfFigures elements={figuresTableData} />
+            : ''
+          }
+
+          {
+            this.props.renderingParams.glossaryPosition === 'begining' ?
+            <StaticGlossary elements={this.props.glossaryData} />
             : ''
           }
 
@@ -129,6 +191,12 @@ export default class StaticDocument extends React.Component {
           }
 
           {
+            this.props.renderingParams.glossaryPosition === 'end' ?
+            <StaticGlossary elements={this.props.glossaryData} />
+            : ''
+          }
+
+          {
             this.props.renderingParams.figuresTablePosition === 'end' ?
             <StaticTableOfFigures elements={figuresTableData} />
             : ''
@@ -149,3 +217,6 @@ export default class StaticDocument extends React.Component {
     );
   }
 }
+
+StaticDocument.contextTypes = { intl: intlShape };
+export default StaticDocument;

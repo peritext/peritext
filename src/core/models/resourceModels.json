@@ -89,9 +89,9 @@
     "entityResource" : {
       "properties" : [
         {
-          "key" : "aliases",
-          "valueType" : "stringArray",
-          "description" : "THe aliases with which the entity can be named",
+          "key" : "name",
+          "valueType" : "string",
+          "description" : "Name of the entity.",
           "required" : false
         }
       ],
@@ -590,13 +590,24 @@
     },
 
 
-
-
     "person" : {
       "categories" : ["entityResource"],
       "defaultContextualizer_inline" : "entityinline",
       "defaultContextualizer_block" : "entitycartel",
-      "properties" : []
+      "properties" : [
+        {
+          "key" : "firstname",
+          "valueType" : "string",
+          "description" : "First name of the person.",
+          "required" : true
+        },
+        {
+          "key" : "lastname",
+          "valueType" : "string",
+          "description" : "Last name of the person.",
+          "required" : true
+        }
+      ]
     },
     "place" : {
       "categories" : ["entityResource"],
@@ -604,7 +615,7 @@
       "defaultContextualizer_block" : "entitycartel",
       "properties" : []
     },
-    "topic" : {
+    "subject" : {
       "categories" : ["entityResource"],
       "defaultContextualizer_inline" : "entityinline",
       "defaultContextualizer_block" : "entitycartel",

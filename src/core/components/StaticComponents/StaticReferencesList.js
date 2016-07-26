@@ -41,6 +41,7 @@ class StaticReferencesList extends React.Component {
     return (
       <section
         className="peritext-contents-reference-list-container"
+        id="peritext-contents-reference-list-container"
       >
         <h2>{ formatMessage(translate.referencestitle, {}) }</h2>
         <section className="peritext-contents-reference-list-items">

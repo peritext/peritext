@@ -40,6 +40,7 @@ class StaticEndNotes extends React.Component {
     return (
       <section
         className={'peritext-contents-notes peritext-contents-notes-' + this.props.classSuffix}
+        id={this.props.classSuffix === 'document-end' ? 'peritext-contents-notes-document-end' : ''}
       >
         {this.props.notes.length > 0 ? <h4 className="peritext-contents-notes-title">
          { formatMessage(translate.endnotes, {}) }

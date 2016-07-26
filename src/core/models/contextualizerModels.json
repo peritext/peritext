@@ -467,11 +467,39 @@
       ]
     },
     "glossary" : {
-      "description" : "This contextualizer displays an entity mark or call.",
-      "acceptedResourceTypes" : [],
-      "properties" : [
+      "description" : "This contextualizer marks an entity or displays an entity information.",
+      "acceptedResourceTypes" : [
+        "artefact",
+        "concept",
+        "organization",
+        "person",
+        "place",
+        "technology",
+        "topic"
       ],
-      "categories" : []
+      "properties" : [
+        {
+          "key" : "alias",
+          "valueType" : "string",
+          "description" : "How to register the entity contextual mention.",
+          "required" : false
+        },
+        {
+          "key" : "comment",
+          "valueType" : "string",
+          "description" : "(block contextualizations only) contextual comment of the entity mention.",
+          "required" : false
+        },
+        {
+          "key" : "showdescription",
+          "valueType" : "string",
+          "description" : "(block contextualizations only) Whether to show the description of the entity, if provided in the entity's resource object.",
+          "required" : false,
+          "default": "yes"
+        }
+      ],
+      "categories" : [
+      ]
     }
   }
 }

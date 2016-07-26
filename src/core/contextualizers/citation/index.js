@@ -20,7 +20,8 @@ export function contextualizeInlineStatic(inputSection, inputContextualization, 
   }).join(', ');
 
   // interpolate html
-  const elRe = new RegExp('<InlineContextualization id="' + contextualization.citeKey + '"[^>]*>(.*)</InlineContextualization>');
+  const elRe = new RegExp('<InlineContextualization id="' + contextualization.citeKey + '"[^>]*>((?:(?!<\\/InlineContextualization>).)*)<\\/InlineContextualization>');
+  // const elRe = new RegExp('<InlineContextualization id="' + contextualization.citeKey + '"[^>]*>(.*)</InlineContextualization>');
   let match;
   // console.log('looking for ', contextualization.citeKey, 'to replace with ', expression);
   const newContents = section.contents.map((block) =>{
@@ -65,7 +66,8 @@ export function contextualizeBlockStatic(inputSection, inputContextualization, r
   }).join(', ');
 
   // interpolate html
-  const elRe = new RegExp('<BlockContextualization id="' + contextualization.citeKey + '"[^>]*>(.*)</BlockContextualization>');
+  const elRe = new RegExp('<BlockContextualization id="' + contextualization.citeKey + '"[^>]*>((?:(?!<\\/BlockContextualization>).)*)<\\/BlockContextualization>');
+  // const elRe = new RegExp('<BlockContextualization id="' + contextualization.citeKey + '"[^>]*>(.*)</BlockContextualization>');
   let match;
   const newContents = section.contents.map((block) =>{
     let outputHtml;

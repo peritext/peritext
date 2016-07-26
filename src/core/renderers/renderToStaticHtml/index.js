@@ -131,33 +131,74 @@ export default function renderSection({
                       return exp + meta.htmlHead;
                     }, '') + '<meta name="generator" content="peritext"/>';
 
+      // prepare glossary
+      const glossaryPointers = sections.reduce((results, thatSection)=>{
+        const sectionCitekey = getMetaValue(thatSection.metadata, 'general', 'citeKey');
+        return results.concat(
+          thatSection.contextualizations
+          .filter((thatContextualization)=> {
+            return thatContextualization.contextualizerType === 'glossary';
+          })
+          .reduce((localResults, contextualization)=> {
+            return localResults.concat({
+              mentionId: '#peritext-content-entity-inline-' + sectionCitekey + '-' + contextualization.citeKey,
+              entity: contextualization.resources[0],
+              alias: contextualization.alias
+            });
+          }, []));
+      }, []);
+
+      const entitiesTypes = ['person', 'place', 'subject', 'concept', 'organization', 'technology', 'artefact'];
+
+      const glossaryData = sections.reduce((results, thatSection)=>{
+        return results.concat(
+          thatSection.resources
+          .filter((thatResource)=> {
+            return thatResource.inheritedVerticallyFrom === undefined
+                    && entitiesTypes.indexOf(thatResource.bibType) > -1;
+          })
+        );
+      }, []).map((glossaryEntry)=> {
+        glossaryEntry.aliases = glossaryPointers.filter((pointer)=> {
+          return pointer.entity === glossaryEntry.citeKey;
+        }).reduce((aliases, entry)=> {
+          const alias = entry.alias || 'no-alias';
+          aliases[alias] = aliases[alias] ? aliases[alias].concat(entry) : [entry];
+          return aliases;
+        }, {});
+        return glossaryEntry;
+      }).sort((entry1, entry2)=> {
+        return (entry1.name || entry1.lastname) > (entry2.name || entry2.lastname) ? 1 : -1;
+      });
+
       // cover handling
       const sectionType = getMetaValue(sections[0].metadata, 'general', 'bibType');
       if (sectionTypeModels.acceptedTypes[sectionType].needsCover) {
         renderingParams.hasCover = true;
       }
 
-
       // preparing translations
       const lang = getMetaValue(sections[0].metadata, 'general', 'language') || 'en';
       const messages = require('./../../../../translations/locales/' + lang + '.json');
+
+      // rendering document
       const renderedContents = ReactDOMServer.renderToStaticMarkup(
         <IntlProvider locale={lang} messages={messages}>
-          <StaticDocument sections={notedSections} renderingParams={renderingParams} />
+          <StaticDocument sections={notedSections} renderingParams={renderingParams} glossaryData={glossaryData} />
         </IntlProvider>);
       const html = `
-                    <!doctype:html>
-                    <html>
-                      <head>
-                        ${metaHead}
-                        <style>
-                          ${style}
-                        </style>
-                      </head>
-                      <body>
-                        ${renderedContents}
-                       </body>
-                    </html>`.replace(/itemscope=""/g, 'itemscope');
+<!doctype:html>
+<html>
+  <head>
+    ${metaHead}
+    <style>
+      ${style}
+    </style>
+  </head>
+  <body>
+    ${renderedContents}
+   </body>
+</html>`.replace(/itemscope=""/g, 'itemscope');
       cback(null, html);
     }
   ], rendererCallback);

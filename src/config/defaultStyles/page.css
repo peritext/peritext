@@ -86,25 +86,21 @@ img
 }
 
 #table-of-contents,
-#table-of-figures
+#table-of-figures,
+#glossary
 {
     page-break-before: always;
     page-break-after: always;
 }
 
-#table-of-contents a::after
-{
-    content: leader('.') target-counter(attr(href), page);
-}
-
+#table-of-contents a::after,
 #table-of-figures a::after
 {
     content: leader('.') target-counter(attr(href), page);
 }
 
-#table-of-figures
-{
-    page-break-after: always;
+#glossary .peritext-content-entity-block-page-pointer::after{
+    content: target-counter(attr(href), page);
 }
 
 .peritext-contents-notes-section-end,
@@ -115,3 +111,9 @@ img
   page-break-after: always;
 }
 
+.peritext-contents-entity-container-inline
+{
+  text-decoration: none;
+  font-weight : 800;
+  color: inherit;
+}

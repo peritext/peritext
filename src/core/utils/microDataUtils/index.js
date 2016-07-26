@@ -38,6 +38,20 @@ export function bibToSchema(bib) {
     return 'VideoObject';
   case 'audio':
     return 'AudioObject';
+  case 'person':
+    return 'Person';
+  case 'place':
+    return 'Place';
+  case 'organization':
+    return 'Organization';
+  // not very accurate
+  case 'artefact':
+    return 'Product';
+  // no schematype for these ones (too abstract)
+  case 'topic':
+  case 'concept':
+  case 'technology':
+    return 'Thing';
   default:
     return 'CreativeWork';
   }

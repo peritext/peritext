@@ -6,7 +6,7 @@ import Radium from 'radium';
 // let styles = {};
 
 /**
- * dumb component for rendering the structured representation of a static section
+ * dumb component for rendering the structured representation of a static note
  */
 @Radium
 export default class StaticNote extends React.Component {
