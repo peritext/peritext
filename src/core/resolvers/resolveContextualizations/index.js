@@ -42,6 +42,15 @@ function resolveContextualizer(contextualizer, section, models) {
       const source = section.resources.find((resource)=>{
         return resource.citeKey === sourceKey;
       });
+      if (source === undefined) {
+        err.push({
+          type: 'error',
+          preciseType: 'invalidContextualizer',
+          sectionCiteKey: getMetaValue(section.metadata, 'general', 'citeKey'),
+          message: 'contextualizer ' + newContextualizer.citeKey + ' (' + newContextualizer.type + ') does not provide a valid resource'
+        });
+        return {err, undefined};
+      }
       const sourceModel = getResourceModel(source.bibType, models.resourceModels);
       newContextualizer.type = sourceModel.defaultContextualizer;
     }
@@ -83,19 +92,21 @@ export function resolveContextualizersAndContextualizations({section, models}, c
     let ok = true;
     // prepare resourceType<->contextualizerType compatibility check
     const contextualizer = section.contextualizers.find((cont) =>{
-      return cont.citeKey === contextualization.contextualizer;
+      return cont && cont.citeKey === contextualization.contextualizer;
     });
-    if (!contextualizer) {
+    if (contextualizer === undefined) {
       errors.push({
         type: 'error',
         preciseType: 'invalidContextualization',
         sectionCiteKey: getMetaValue(section.metadata, 'general', 'citeKey'),
         message: 'contextualizer ' + contextualization.contextualizer + ' was not found'
       });
-    } else {
-      contextualization.contextualizerType = contextualizer.type;
+      return cb(null, {errors, section});
     }
+    contextualization.contextualizerType = contextualizer.type;
+
     const acceptedResourceTypes = getContextualizerModel(contextualizer.type, models.contextualizerModels).acceptedResourceTypes;
+
     // resources compatibility and existence check
     contextualization.resources.some((resId) =>{
       // find related resource
@@ -182,7 +193,7 @@ export function resolveContextualizationsRelations(sections, renderingParams) {
           }
         });
 
-        // todo same authors in year but different work - document scale
+        // todo same authors in year but different work - at document scale
       }
 
       opCitIndex = undefined;
@@ -198,6 +209,10 @@ export function resolveContextualizationsImplementation(section, renderingMode, 
   let contextualizer;
   const sectio = section.contextualizations.reduce((inputSection, contextualization) => {
     contextualizer = contextualizers[contextualization.contextualizerType];
+    if (contextualizer === undefined) {
+      console.log('no contextualizer was found for type ', contextualization.contextualizerType);
+      return Object.assign({}, inputSection);
+    }
     switch (renderingMode) {
     case 'static':
       switch (contextualization.type) {

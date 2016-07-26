@@ -64,8 +64,9 @@ function concatSection({section, models}, callback) {
     return resource;
   });
 
+
   const contextualizers = section.contextualizers.filter((contextualizer)=>{
-    return !contextualizer.describedInline;
+    return contextualizer && !contextualizer.describedInline;
   }).map((contextualizer)=>{
     const modelList = getResourceModel(contextualizer.type, models.contextualizerModels);
     if (modelList) {
@@ -220,7 +221,6 @@ export function parseSection({tree, parameters, parent, models}, callback) {
         cb(err, {errors: newErrors, sections: newSections});
       });
     },
-    // todo: substitute and populate templates
     // parse markdown contents and organize them as blocks lists, and parse+resolve contextualization objects
     function({errors, sections}, cb) {
       asyncMap(sections, function(section, cback) {

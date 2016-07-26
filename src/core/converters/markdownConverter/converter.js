@@ -30,7 +30,6 @@ function eatParamsObject(str) {
   let paramsObject = '';
   let inObject = false;
   let ch;
-
   while (index < str.length) {
     ch = str.charAt(index);
     if (ch === '{') {
@@ -111,8 +110,11 @@ export function eatNotes(inputHtml, sectionCitekey, baseNotesCount = 0, notesPos
 
 function eatContextualizations(inputHtml) {
   let outputHtml = inputHtml;
-  const inlineContextRE = /<a href="@(.*)">(.*)<\/a>/g;
-  const BlockContextualizationRE = /<img src="@(.*)" alt="(.*)">/g;
+  // match the href and content of <a> tag, stopping when detecting </a> by looking ahead
+  const inlineContextRE = /<a href="@([^"]*)">((?:(?!<\/a>).)*)<\/a>/g;
+  // const inlineContextRE = /<a href="@(.*)">(.*)<\/a>/g;
+  const BlockContextualizationRE = /<img src="@([^"]*)" alt="([^"]*)">/g;
+  // const BlockContextualizationRE = /<img src="@(.*)" alt="(.*)">/g;
 
   let match;
   let contextualizationCount = 0;
@@ -200,7 +202,6 @@ function eatContextualizations(inputHtml) {
   // parse inline contextualizations
   while ((match = inlineContextRE.exec(outputHtml)) !== null) {
     paramsObject = eatParamsObject(outputHtml.substr(match.index + match[0].length));
-
     let overloading;
     // detect explicit call to a contextualizer ==> overload
     if (paramsObject && paramsObject.indexOf('@') === 1) {

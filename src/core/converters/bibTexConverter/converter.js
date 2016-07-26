@@ -298,8 +298,8 @@ export function parseBibAuthors(str) {
 
 // nested json-like bib objects
 export function parseBibContextualization(inputStr) {
-  const bracketsRE = /([^=^,]+)=(?:{)([^}]+)(?:}),?/g;
-  const quoteRE = /([^=^,]+)="([^"]+)",?/g;
+  const bracketsRE = /([^=^,]+)=(?:{)([^}]*)(?:}),?/g;
+  const quoteRE = /([^=^,]+)="([^"]*)",?/g;
   const paramsObject = {};
 
 
@@ -309,7 +309,6 @@ export function parseBibContextualization(inputStr) {
   let expression;
   let subObject;
   let newObj;
-
 
   while ((match = bracketsRE.exec(str)) !== null) {
     key = match[1].trim();
@@ -359,7 +358,6 @@ export function parseBibContextualization(inputStr) {
     expression = match[2].trim();
     paramsObject[key] = expression;
   }
-
 
   return paramsObject;
 }
