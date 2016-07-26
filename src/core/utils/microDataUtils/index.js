@@ -1,5 +1,5 @@
 /**
- * Collection of utils for formatting scholarly citations in html/schema/microformat/RDFa
+ * Collection of utils for formatting scholarly citations in html/schema/microformat/RDFa/COiNS
  * Schema reference could be even more covered
  */
 
@@ -41,4 +41,86 @@ export function bibToSchema(bib) {
   default:
     return 'CreativeWork';
   }
+}
+
+/**
+  COiNS related
+*/
+
+function addProp(key, value) {
+  return {
+    key: key,
+    value: value
+  };
+}
+
+function urify(key, value) {
+  return key + '=' + encodeURIComponent(value);
+}
+
+function assembleUri(infos) {
+  const vals = [];
+  infos.forEach(function(info) {
+    vals.push(urify(info.key, info.value));
+  });
+  return vals.join('&amp;');
+}
+
+const baseMap = {
+  'rft.date': 'date',
+  'rft.pages': 'pages',
+  'rft.issn': 'ISSN',
+  'rft.isbn': 'ISBN',
+  'rft_id': 'url',
+  'rft.place': 'address',
+  'rft.pub': 'publisher'
+};
+
+const journalMap = {
+  'rft.atitle': 'title',
+  'rft.jtitle': 'journal',
+  'rft.volume': 'volume',
+  'rft.issue': 'issue'
+};
+
+const chapterMap = {
+  'rft.atitle': 'title',
+  'rft.btitle': 'booktitle'
+};
+
+function translate(data, item, map) {
+  for (const key in map) {
+    if (item[map[key]]) {
+      data.push(addProp(key, item[map[key]]));
+    }
+  }
+  return data;
+}
+
+export function generateOpenUrl(resource) {
+  let data = [];
+  data.push(addProp('ctx_ver', 'Z39.88-2004'));
+
+  if (resource.author && resource.author.length) {
+    resource.author.forEach(function(author) {
+      data.push(addProp('rft.au', author.lastName + ', ' + author.firstName));
+    });
+  }
+  data = translate(data, resource, baseMap);
+  if (resource.bibType === 'journal' || resource.bibType === 'article') {
+    data = translate(data, resource, journalMap);
+    data.push(addProp('rft.genre', 'article'));
+    data.push(addProp('rft_val_fmt', 'info:ofi/fmt:kev:mtx:journal'));
+  }else if (resource.bibType === 'proceedings' || resource.bibType === 'conferencePaper') {
+    data = translate(data, resource, journalMap);
+    data.push(addProp('rft.genre', 'conference'));
+    data.push(addProp('rft_val_fmt', 'info:ofi/fmt:kev:mtx:book'));
+  }else if (resource.bibType === 'chapter') {
+    data = translate(data, resource, chapterMap);
+    data.push(addProp('rft.genre', 'bookitem'));
+    data.push(addProp('rft_val_fmt', 'info:ofi/fmt:kev:mtx:book'));
+  }else {
+    data.push(addProp('rft.genre', 'document'));
+  }
+  return assembleUri(data);
 }

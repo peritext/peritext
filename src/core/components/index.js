@@ -12,6 +12,7 @@ export { default as StaticTableOfFigures } from './StaticComponents/StaticTableO
 export { default as StaticWebsitePoster } from './StaticComponents/StaticWebsitePoster.js';
 
 export { default as StructuredCite } from './StructuredDataComponents/StructuredCite.js';
+export { default as StructuredCOinS } from './StructuredDataComponents/StructuredCOinS.js';
 export { default as StructuredDate } from './StructuredDataComponents/StructuredDate.js';
 export { default as StructuredHyperLink } from './StructuredDataComponents/StructuredHyperLink.js';
 export { default as StructuredMetadataPlaceholder } from './StructuredDataComponents/StructuredMetadataPlaceholder.js';

@@ -15,7 +15,6 @@ export function contextualizeInlineStatic(inputSection, inputContextualization, 
       return res2.citeKey === resourceKey;
     });
 
-    // todo : generate COiNS here
     // apply appropriate html citation formatter
     return ReactDOMServer.renderToStaticMarkup(<InlineCitation resource={res} contextualization={contextualization} ibid={contextualization.sectionIbid} opCit={contextualization.sectionOpCit}/>);
   }).join(', ');
@@ -60,7 +59,6 @@ export function contextualizeBlockStatic(inputSection, inputContextualization, r
       return res2.citeKey === resourceKey;
     });
 
-    // todo : generate COiNS here
     // apply appropriate html citation formatter
     return ReactDOMServer.renderToStaticMarkup(<BlockCitation resource={res} contextualization={contextualization} ibid={contextualization.sectionIbid} opCit={contextualization.sectionOpCit}/>);
     // return formatter.formatBlockCitation(contextualization, res, ibid, opCit);

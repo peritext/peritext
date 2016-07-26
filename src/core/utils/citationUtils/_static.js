@@ -1,9 +1,6 @@
 import React, {PropTypes} from 'react';
 import {
-  // StructuredPerson,
-  // StructuredDate,
-  // StructuredParentJournal,
-  // StructuredSpan
+  StructuredCOinS
 } from './../../components/';
 import * as formatter from './../microDataUtils/';
 
@@ -50,6 +47,7 @@ export class BlockCitationModel extends React.Component {
       itemType={'http://schema.org/' + this.getSchemaType()}
       typeof={this.getSchemaType()}
     >
+      <StructuredCOinS resource={this.props.resource} />
       {this.renderReference()}
       {this.renderAdditionnal(this.props)}
     </p>);

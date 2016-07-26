@@ -66,6 +66,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "peritext/components/structureddatacomponents/structuredcoins.js~structuredcoins",
+    "class/components/StructuredDataComponents/StructuredCOinS.js~StructuredCOinS.html",
+    "<span>StructuredCOinS</span> <span class=\"search-result-import-path\">peritext/components/StructuredDataComponents/StructuredCOinS.js</span>",
+    "class"
+  ],
+  [
     "peritext/components/structureddatacomponents/structuredcite.js~structuredcite",
     "class/components/StructuredDataComponents/StructuredCite.js~StructuredCite.html",
     "<span>StructuredCite</span> <span class=\"search-result-import-path\">peritext/components/StructuredDataComponents/StructuredCite.js</span>",
@@ -603,6 +609,18 @@ window.esdocSearchIndex = [
     "components/staticcomponents/staticwebsiteposter.js~structuredwebsiteposter#render",
     "class/components/StaticComponents/StaticWebsitePoster.js~StructuredWebsitePoster.html#instance-method-render",
     "components/StaticComponents/StaticWebsitePoster.js~StructuredWebsitePoster#render",
+    "method"
+  ],
+  [
+    "components/structureddatacomponents/structuredcoins.js",
+    "file/components/StructuredDataComponents/StructuredCOinS.js.html",
+    "components/StructuredDataComponents/StructuredCOinS.js",
+    "file"
+  ],
+  [
+    "components/structureddatacomponents/structuredcoins.js~structuredcoins#render",
+    "class/components/StructuredDataComponents/StructuredCOinS.js~StructuredCOinS.html#instance-method-render",
+    "components/StructuredDataComponents/StructuredCOinS.js~StructuredCOinS#render",
     "method"
   ],
   [
