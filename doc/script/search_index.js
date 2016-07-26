@@ -18,9 +18,27 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "peritext/components/staticcomponents/staticentityblock.js~staticentityblock",
+    "class/components/StaticComponents/StaticEntityBlock.js~StaticEntityBlock.html",
+    "<span>StaticEntityBlock</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticEntityBlock.js</span>",
+    "class"
+  ],
+  [
+    "peritext/components/staticcomponents/staticentityinline.js~staticentityinline",
+    "class/components/StaticComponents/StaticEntityInline.js~StaticEntityInline.html",
+    "<span>StaticEntityInline</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticEntityInline.js</span>",
+    "class"
+  ],
+  [
     "peritext/components/staticcomponents/staticfrontcover.js~staticfrontcover",
     "class/components/StaticComponents/StaticFrontCover.js~StaticFrontCover.html",
     "<span>StaticFrontCover</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticFrontCover.js</span>",
+    "class"
+  ],
+  [
+    "peritext/components/staticcomponents/staticglossary.js~staticglossary",
+    "class/components/StaticComponents/StaticGlossary.js~StaticGlossary.html",
+    "<span>StaticGlossary</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticGlossary.js</span>",
     "class"
   ],
   [
@@ -498,6 +516,36 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "components/staticcomponents/staticentityblock.js",
+    "file/components/StaticComponents/StaticEntityBlock.js.html",
+    "components/StaticComponents/StaticEntityBlock.js",
+    "file"
+  ],
+  [
+    "components/staticcomponents/staticentityblock.js~staticentityblock#render",
+    "class/components/StaticComponents/StaticEntityBlock.js~StaticEntityBlock.html#instance-method-render",
+    "components/StaticComponents/StaticEntityBlock.js~StaticEntityBlock#render",
+    "method"
+  ],
+  [
+    "components/staticcomponents/staticentityblock.js~staticentityblock#rendermentions",
+    "class/components/StaticComponents/StaticEntityBlock.js~StaticEntityBlock.html#instance-method-renderMentions",
+    "components/StaticComponents/StaticEntityBlock.js~StaticEntityBlock#renderMentions",
+    "method"
+  ],
+  [
+    "components/staticcomponents/staticentityinline.js",
+    "file/components/StaticComponents/StaticEntityInline.js.html",
+    "components/StaticComponents/StaticEntityInline.js",
+    "file"
+  ],
+  [
+    "components/staticcomponents/staticentityinline.js~staticentityinline#render",
+    "class/components/StaticComponents/StaticEntityInline.js~StaticEntityInline.html#instance-method-render",
+    "components/StaticComponents/StaticEntityInline.js~StaticEntityInline#render",
+    "method"
+  ],
+  [
     "components/staticcomponents/staticfrontcover.js",
     "file/components/StaticComponents/StaticFrontCover.js.html",
     "components/StaticComponents/StaticFrontCover.js",
@@ -513,6 +561,18 @@ window.esdocSearchIndex = [
     "components/staticcomponents/staticfrontcover.js~staticfrontcover#render",
     "class/components/StaticComponents/StaticFrontCover.js~StaticFrontCover.html#instance-method-render",
     "components/StaticComponents/StaticFrontCover.js~StaticFrontCover#render",
+    "method"
+  ],
+  [
+    "components/staticcomponents/staticglossary.js",
+    "file/components/StaticComponents/StaticGlossary.js.html",
+    "components/StaticComponents/StaticGlossary.js",
+    "file"
+  ],
+  [
+    "components/staticcomponents/staticglossary.js~staticglossary#render",
+    "class/components/StaticComponents/StaticGlossary.js~StaticGlossary.html#instance-method-render",
+    "components/StaticComponents/StaticGlossary.js~StaticGlossary#render",
     "method"
   ],
   [

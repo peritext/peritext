@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">StaticNote | API Document</title>
+  <title data-ice="title">components/StaticComponents/StaticGlossary.js | API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -60,143 +60,70 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import StaticNote from &apos;<span><a href="file/components/StaticComponents/StaticNote.js.html#lineNumber12">peritext/components/StaticComponents/StaticNote.js</a></span>&apos;</code></pre></div>
-  <span data-ice="access">public</span>
-  <span data-ice="kind">class</span>
-  
-  
-  
-  <span data-ice="source">| <span><a href="file/components/StaticComponents/StaticNote.js.html#lineNumber12">source</a></span></span>
-</div>
+<div class="content" data-ice="content"><h1 data-ice="title">components/StaticComponents/StaticGlossary.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React, {PropTypes} from &apos;react&apos;;
+import Radium from &apos;radium&apos;;
+import { intlShape, defineMessages } from &apos;react-intl&apos;;
+import {
+  StaticEntityBlock
+} from &apos;./../index.js&apos;;
+// let styles = {};
 
-<div class="self-detail detail">
-  <h1 data-ice="name">StaticNote</h1>
+const translate = defineMessages({
+  glossary: {
+    id: &apos;glossary&apos;,
+    description: &apos;Title of glossary section&apos;,
+    defaultMessage: &apos;Glossary&apos;,
+  }
+});
 
-  
+/**
+ * dumb component for rendering a static table of contents
+ */
+@Radium
+class StaticGlossary extends React.Component {
 
-  
-  
-  <div class="flat-list" data-ice="extendsChain"><h4>Extends:</h4><div><span>react~React.Component</span> &#x2192; StaticNote</div></div>
-  
-  
-  
-  
-  
-  
+  /**
+   * propTypes
+   */
+  static propTypes = {
+    elements: PropTypes.array
+  };
 
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-</div>
+  static defaultProps = {
+  };
 
 
+  /**
+   * render
+   * @return {ReactElement} markup
+   */
+  render() {
+    const { formatMessage } = this.context.intl;
+    return (
+      &lt;section
+        id=&quot;glossary&quot;
+        className=&quot;peritext-contents-glossary-container&quot;
+      &gt;
+        &lt;h2&gt;{ formatMessage(translate.glossary, {}) }&lt;/h2&gt;
+        &lt;section
+          className=&quot;peritext-contents-glossary-elements-container&quot;
+        &gt;
+          {
+            this.props.elements.map((entity, index) =&gt; (
+              &lt;StaticEntityBlock key={index} entity={entity} /&gt;
+            ))
+          }
+        &lt;/section&gt;
+      &lt;/section&gt;
+    );
+  }
+}
+StaticGlossary.contextTypes = { intl: intlShape };
 
+export default StaticGlossary;
+</code></pre>
 
-
-<div data-ice="methodSummary"><h2>Method Summary</h2><table class="summary" data-ice="summary">
-  <thead><tr><td data-ice="title" colspan="3">Public Methods</td></tr></thead>
-  <tbody>
-  
-  <tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="class/components/StaticComponents/StaticNote.js~StaticNote.html#instance-method-render">render</a></span></span><span data-ice="signature">(): <span>ReactElement</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>render</p>
-</div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-</tbody>
-</table>
-</div>
-
-
-
-
-
-
-
-<div data-ice="methodDetails"><h2 data-ice="title">Public Methods</h2>
-
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-render">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    <span data-ice="name">render</span><span data-ice="signature">(): <span>ReactElement</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/components/StaticComponents/StaticNote.js.html#lineNumber32">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  <div data-ice="description"><p>render</p>
-</div>
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  <div class="return-params" data-ice="returnParams">
-    <h4>Return:</h4>
-    <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span>ReactElement</span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>markup</p>
-</td>
-      </tr>
-    </table>
-    <div data-ice="returnProperties">
-</div>
-  </div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-</div>
 </div>
 
 <footer class="footer">

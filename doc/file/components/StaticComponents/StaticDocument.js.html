@@ -35,7 +35,10 @@
   <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">StaticComponents</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/StaticComponents/StaticBackCover.js~StaticBackCover.html">StaticBackCover</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/StaticComponents/StaticDocument.js~StaticDocument.html">StaticDocument</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/StaticComponents/StaticEndNotes.js~StaticEndNotes.html">StaticEndNotes</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/StaticComponents/StaticEntityBlock.js~StaticEntityBlock.html">StaticEntityBlock</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/StaticComponents/StaticEntityInline.js~StaticEntityInline.html">StaticEntityInline</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/StaticComponents/StaticFrontCover.js~StaticFrontCover.html">StaticFrontCover</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/StaticComponents/StaticGlossary.js~StaticGlossary.html">StaticGlossary</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/StaticComponents/StaticImageFigure.js~StaticImageFigure.html">StaticImageFigure</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/StaticComponents/StaticImageGallery.js~StaticImageGallery.html">StaticImageGallery</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/components/StaticComponents/StaticNote.js~StaticNote.html">StaticNote</a></span></span></li>
@@ -60,6 +63,7 @@
 <div class="content" data-ice="content"><h1 data-ice="title">components/StaticComponents/StaticDocument.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React, {PropTypes} from &apos;react&apos;;
 import Radium from &apos;radium&apos;;
+import { intlShape } from &apos;react-intl&apos;;
 
 import {getMetaValue} from &apos;./../../utils/sectionUtils&apos;;
 import {bibToSchema} from &apos;./../../utils/microDataUtils&apos;;
@@ -67,8 +71,9 @@ import {
   StaticBackCover,
   StaticEndNotes,
   StaticFrontCover,
-  StaticSection,
+  StaticGlossary,
   StaticReferencesList,
+  StaticSection,
   StaticTableOfContents,
   StaticTableOfFigures,
   StructuredMetadataPlaceholder
@@ -80,14 +85,15 @@ import {
  * dumb component for rendering the structured representation of a static document
  */
 @Radium
-export default class StaticDocument extends React.Component {
+class StaticDocument extends React.Component {
 
   /**
    * propTypes
    */
   static propTypes = {
     sections: PropTypes.array,
-    renderingParams: PropTypes.object
+    renderingParams: PropTypes.object,
+    glossaryData: PropTypes.array
   };
 
   static defaultProps = {
@@ -98,6 +104,7 @@ export default class StaticDocument extends React.Component {
    * @return {ReactElement} markup
    */
   render() {
+    const { formatMessage } = this.context.intl;
     const bibType = bibToSchema(getMetaValue(this.props.sections[0].metadata, &apos;general&apos;, &apos;bibType&apos;));
     const citeKey = getMetaValue(this.props.sections[0].metadata, &apos;general&apos;, &apos;citeKey&apos;);
     const tocData = this.props.sections.filter((sectio, index) =&gt;{
@@ -110,10 +117,62 @@ export default class StaticDocument extends React.Component {
       };
     });
 
+    if (this.props.renderingParams.notesPosition === &apos;documentend&apos;) {
+      tocData.push({
+        id: &apos;peritext-contents-notes-document-end&apos;,
+        title: formatMessage({id: &apos;end_notes&apos;}, {}),
+        level: 0
+      });
+    }
+
+    if (this.props.renderingParams.referenceScope === &apos;document&apos;) {
+      tocData.push({
+        id: &apos;peritext-contents-reference-list-container&apos;,
+        title: formatMessage({id: &apos;references_title&apos;}, {}),
+        level: 0
+      });
+    }
+
+    if (this.props.renderingParams.figuresTablePosition === &apos;begining&apos;) {
+      tocData.splice(0, 0, {
+        id: &apos;table-of-figures&apos;,
+        title: formatMessage({id: &apos;table_of_figures&apos;}, {}),
+        level: 0
+      });
+    } else if (this.props.renderingParams.figuresTablePosition === &apos;end&apos;) {
+      tocData.push({
+        id: &apos;table-of-figures&apos;,
+        title: formatMessage({id: &apos;table_of_figures&apos;}, {}),
+        level: 0
+      });
+    }
+
+    if (this.props.renderingParams.glossaryPosition === &apos;begining&apos;) {
+      tocData.splice(0, 0, {
+        id: &apos;glossary&apos;,
+        title: formatMessage({id: &apos;glossary&apos;}, {}),
+        level: 0
+      });
+    } else if (this.props.renderingParams.glossaryPosition === &apos;end&apos;) {
+      tocData.push({
+        id: &apos;glossary&apos;,
+        title: formatMessage({id: &apos;glossary&apos;}, {}),
+        level: 0
+      });
+    }
+
+    // making figures table data
     const figuresTableData = this.props.sections.reduce((figures, section)=&gt; {
+      // 1. take numbered figures
       const figuresL = section.contextualizations.filter((cont)=&gt; {
         return cont.figureNumber !== undefined;
-      }).map((cont)=&gt; {
+      })
+      // 2. filter uniques
+      .filter((figure, index, self) =&gt; self.findIndex((other) =&gt; {
+        return other.figureNumber === figure.figureNumber;
+      }) === index)
+      // 3. make table array
+      .map((cont)=&gt; {
         return {
           id: &apos;peritext-contents-figure-&apos; + cont.figureNumber,
           number: cont.figureNumber
@@ -147,6 +206,12 @@ export default class StaticDocument extends React.Component {
           {
             this.props.renderingParams.figuresTablePosition === &apos;begining&apos; ?
             &lt;StaticTableOfFigures elements={figuresTableData} /&gt;
+            : &apos;&apos;
+          }
+
+          {
+            this.props.renderingParams.glossaryPosition === &apos;begining&apos; ?
+            &lt;StaticGlossary elements={this.props.glossaryData} /&gt;
             : &apos;&apos;
           }
 
@@ -189,6 +254,12 @@ export default class StaticDocument extends React.Component {
           }
 
           {
+            this.props.renderingParams.glossaryPosition === &apos;end&apos; ?
+            &lt;StaticGlossary elements={this.props.glossaryData} /&gt;
+            : &apos;&apos;
+          }
+
+          {
             this.props.renderingParams.figuresTablePosition === &apos;end&apos; ?
             &lt;StaticTableOfFigures elements={figuresTableData} /&gt;
             : &apos;&apos;
@@ -209,6 +280,9 @@ export default class StaticDocument extends React.Component {
     );
   }
 }
+
+StaticDocument.contextTypes = { intl: intlShape };
+export default StaticDocument;
 </code></pre>
 
 </div>

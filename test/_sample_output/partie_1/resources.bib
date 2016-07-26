@@ -18,3 +18,15 @@
 	type = {timeline},
 	outputmode = {all}
 }
+
+@contextualizer{cool_timeline_1,
+    	dateformat = {%Y-%m-%d},
+	disposition = {superpose},
+	layer = {dates=@res1.data.dates,labels=@res1.data.labels,title=hello ça va},
+	layer = {dates=@res2.data.dates,labels=@res2.data.labels},
+	title = {My cool timeline},
+	inheritedVerticallyFrom = {mybook},
+	type = {timeline},
+	overloading = {cool_timeline},
+	outputmode = {all}
+}

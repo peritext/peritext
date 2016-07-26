@@ -6,11 +6,6 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam nesciunt mole
 
 I try a third footnote[^]{third footnote}
 
+I am going to talk in the end about [Anthony Grafton](@anthony_grafton). But I would like to see his name written without writing his name twice : [](@anthony_grafton).
 
-### A bit of bibliographic trials
-
-![](@ab94)
-
-![](@martin_change_2002)
-
-![](@jakubowicz_bridging)
+And how couldn't I link Grafton to the concept of [](@materiality) ?

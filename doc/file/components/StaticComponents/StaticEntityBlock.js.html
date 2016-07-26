@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">StaticNote | API Document</title>
+  <title data-ice="title">components/StaticComponents/StaticEntityBlock.js | API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -60,143 +60,107 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import StaticNote from &apos;<span><a href="file/components/StaticComponents/StaticNote.js.html#lineNumber12">peritext/components/StaticComponents/StaticNote.js</a></span>&apos;</code></pre></div>
-  <span data-ice="access">public</span>
-  <span data-ice="kind">class</span>
-  
-  
-  
-  <span data-ice="source">| <span><a href="file/components/StaticComponents/StaticNote.js.html#lineNumber12">source</a></span></span>
-</div>
+<div class="content" data-ice="content"><h1 data-ice="title">components/StaticComponents/StaticEntityBlock.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React, {PropTypes} from &apos;react&apos;;
+import Radium from &apos;radium&apos;;
 
-<div class="self-detail detail">
-  <h1 data-ice="name">StaticNote</h1>
-
-  
-
-  
-  
-  <div class="flat-list" data-ice="extendsChain"><h4>Extends:</h4><div><span>react~React.Component</span> &#x2192; StaticNote</div></div>
-  
-  
-  
-  
-  
-  
-
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-</div>
+import {bibToSchema} from &apos;./../../utils/microDataUtils&apos;;
+// let styles = {};
 
 
+/**
+ * dumb component and placeholder for rendering the structured representation of an entity citation
+ */
+@Radium
+export default class StaticEntityBlock extends React.Component {
 
+  /**
+   * propTypes
+   */
+  static propTypes = {
+    entity: PropTypes.object,
+    contextualizer: PropTypes.object,
+    renderingParams: PropTypes.object
+  };
 
+  static defaultProps = {
+    contextualizer: {
+      showdescription: &apos;yes&apos;
+    }
+  };
 
-<div data-ice="methodSummary"><h2>Method Summary</h2><table class="summary" data-ice="summary">
-  <thead><tr><td data-ice="title" colspan="3">Public Methods</td></tr></thead>
-  <tbody>
-  
-  <tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="class/components/StaticComponents/StaticNote.js~StaticNote.html#instance-method-render">render</a></span></span><span data-ice="signature">(): <span>ReactElement</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>render</p>
-</div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-</tbody>
-</table>
-</div>
+  renderMentions() {
+    const self = this;
+    return Object.keys(this.props.entity.aliases).map(function(alias, aliasIndex) {
+      return (&lt;p key={alias} className=&quot;peritext-content-entity-block-page-pointers-container&quot;&gt;
+        &lt;span&gt;{alias === &apos;no-alias&apos; ? &apos;&apos; : alias + &apos; : &apos;}&lt;/span&gt;
+        {self.props.entity.aliases[alias].map((entry, index)=&gt; {
+          return (&lt;span key={entry.mentionId}&gt;
+              p. &lt;a className=&quot;peritext-content-entity-block-page-pointer&quot; href={entry.mentionId}&gt;&lt;/a&gt;
+            &lt;/span&gt;);
+        }).reduce((accu, elem) =&gt; {
+          return accu === null ? [elem] : [...accu, &apos;, &apos;, elem];
+        }, null)}
+      &lt;/p&gt;);
+    });
+  }
 
+  /**
+   * render
+   * @return {ReactElement} markup
+   */
+  render() {
+    const itemType = bibToSchema(this.props.entity.bibType);
+    return (
+      &lt;section
+        className=&quot;peritext-contents-entity-container-block&quot;
+        name={&apos;peritext-content-entity-block-&apos; + this.props.entity.citeKey}
+        id={&apos;peritext-content-entity-block-&apos; + this.props.entity.citeKey}
+        itemProp=&quot;mentions&quot;
+        value=&quot;mentions&quot;
+        itemScope
+        itemType={&apos;http://schema.org/&apos; + itemType}
+        typeof={itemType}
+        resource={this.props.entity.citeKey}
+      &gt;
+        &lt;h5
+          className=&quot;peritext-content-entity-block-name&quot;&gt;
+          {itemType === &apos;Person&apos; ?
+            [&lt;span
+              itemProp=&quot;familyName&quot;
+              property=&quot;familyName&quot;
+              key=&quot;familyName&quot;
+            &gt;{this.props.entity.lastname}&lt;/span&gt;,
+            &lt;span key=&quot;separator1&quot;&gt; (&lt;/span&gt;,
+            &lt;span
+              itemProp=&quot;givenName&quot;
+              property=&quot;givenName&quot;
+              key=&quot;givenName&quot;
+            &gt;{this.props.entity.firstname}&lt;/span&gt;,
+            &lt;span key=&quot;separator2&quot;&gt;)&lt;/span&gt;]
+            :
+            &lt;span
+              property=&quot;name&quot;
+              itemProp=&quot;name&quot;
+            &gt;{this.props.entity.name}&lt;/span&gt;
+          }
+        &lt;/h5&gt;
 
+        {this.props.entity.aliases ?
+            this.renderMentions()
+            : &apos;&apos;}
 
+        {this.props.entity.description &amp;&amp; this.props.contextualizer.showdescription === &apos;yes&apos; ?
+          &lt;p className=&quot;peritext-content-entity-block-description&quot;&gt;
+            {this.props.entity.description}
+          &lt;/p&gt;
+          : &apos;&apos;}
+      &lt;/section&gt;
+    );
+  }
+}
+</code></pre>
 
-
-
-
-<div data-ice="methodDetails"><h2 data-ice="title">Public Methods</h2>
-
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-render">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    <span data-ice="name">render</span><span data-ice="signature">(): <span>ReactElement</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/components/StaticComponents/StaticNote.js.html#lineNumber32">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  <div data-ice="description"><p>render</p>
-</div>
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  <div class="return-params" data-ice="returnParams">
-    <h4>Return:</h4>
-    <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span>ReactElement</span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>markup</p>
-</td>
-      </tr>
-    </table>
-    <div data-ice="returnProperties">
-</div>
-  </div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-</div>
 </div>
 
 <footer class="footer">
