@@ -39,23 +39,23 @@ export default class StructuredParentJournal extends React.Component {
   updateHtml(resource, pattern) {
     let replacedText;
     replacedText = reactStringReplace(pattern, /(\${journal})/g, (match, index)=> (
-      <span key={match + index} className="peritext-contents-citation-journal">{resource.journal}</span>
+      <span key={match + index} className="peritext-structured-parent-journal-journal">{resource.journal}</span>
     ));
 
     replacedText = reactStringReplace(replacedText, /(\${date})/g, (match, index)=> (
-      <span key={match + index} className="peritext-contents-citation-date">{resource.date || resource.year}</span>
+      <span key={match + index} className="peritext-structured-parent-journal-date">{resource.date || resource.year}</span>
     ));
 
     replacedText = reactStringReplace(replacedText, /(\${volume})/g, (match, index)=> (
-      <span key={match + index} className="peritext-contents-citation-volume">{resource.volume}</span>
+      <span key={match + index} className="peritext-structured-parent-journal-volume">{resource.volume}</span>
     ));
 
     replacedText = reactStringReplace(replacedText, /(\${issue})/g, (match, index)=> (
-      <span key={match + index} className="peritext-contents-citation-issue">{resource.issue}</span>
+      <span key={match + index} className="peritext-structured-parent-journal-issue">{resource.issue}</span>
     ));
 
     replacedText = reactStringReplace(replacedText, /(\${issn})/g, (match, index)=> (
-      <span key={match + index} className="peritext-contents-citation-issn">{resource.issn}</span>
+      <span key={match + index} className="peritext-structured-parent-journal-issn">{resource.issn}</span>
     ));
     return replacedText;
   }
@@ -69,7 +69,7 @@ export default class StructuredParentJournal extends React.Component {
 
     return (
       <span
-        className="peritext-contents-journal"
+        className="peritext-structured-parent-journal-container"
         itemProp={this.props.property}
         property={this.props.property}
         itemScope

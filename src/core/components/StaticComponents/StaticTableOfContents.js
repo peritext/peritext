@@ -40,10 +40,11 @@ class StaticTableOfContents extends React.Component {
     const { formatMessage } = this.context.intl;
     return (
       <section
-        id="table-of-contents"
+        id="peritext-static-table-of-contents"
+        className="peritext-static-table-of-contents-container"
       >
         <h2>{ formatMessage(translate.tableofcontents, {}) }</h2>
-        <section className="peritext-contents-table-of-contents-contents">
+        <section className="peritext-static-table-of-contents-elements-container">
           {this.props.elements.map((element) =>{
             return <StaticTableOfContentsElement id={element.id} key={element.id} title={element.title} level={element.level} levelDisplacement={this.props.level}/>;
           })}
@@ -84,7 +85,7 @@ class StaticTableOfContentsElement extends React.Component {
   render() {
     return (
       <section
-        className="peritext-contents-table-of-contents-element"
+        className="peritext-static-table-of-contents-element-container"
         style={{paddingLeft: (this.props.level - this.props.levelDisplacement - 1) * this.props.paddingDisplacement + 'cm'}}
       >
         <a

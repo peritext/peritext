@@ -104,13 +104,13 @@ export default class StructuredWebsitePoster extends React.Component {
     return (
             &lt;figure
               role=&quot;group&quot;
-              className=&quot;peritext-contents-website-poster peritext-contents-figure&quot;
+              className=&quot;peritext-static-website-poster-container peritext-figure-container&quot;
               itemScope
               itemProp=&quot;citation&quot;
               itemType={&apos;http://schema.org/&apos; + this.props.schematype}
               typeof={this.props.schematype}
               resource={&apos;#&apos; + this.props.resource.citeKey}
-              id={this.props.figureNumber ? &apos;peritext-contents-figure-&apos; + this.props.figureNumber : undefined }
+              id={this.props.figureNumber ? &apos;peritext-figure-&apos; + this.props.figureNumber : undefined }
             &gt;
               &lt;span
                 itemProp=&quot;name&quot;

@@ -77,23 +77,23 @@ export default class StructuredPerson extends React.Component {
     let replacedText = this.props.pattern;
     if (firstNameExp) {
       replacedText = reactStringReplace(replacedText, new RegExp('(\\' + firstNameExp[0] + ')', 'g'), (match, index)=> (
-        <span key={match + index} className="peritext-contents-person-firstname" itemProp="givenName" property="givenName" >{vals.firstName}</span>
+        <span key={match + index} className="peritext-structured-person-firstname" itemProp="givenName" property="givenName" >{vals.firstName}</span>
       ));
     }
 
     if (lastNameExp) {
       replacedText = reactStringReplace(replacedText, new RegExp('(\\' + lastNameExp[0] + ')', 'g'), (match, index)=> (
-        <span key={match + index} className="peritext-contents-person-lastname" itemProp="familyName" property="familyName" >{vals.lastName}</span>
+        <span key={match + index} className="peritext-structured-person-lastname" itemProp="familyName" property="familyName" >{vals.lastName}</span>
       ));
     }
 
     replacedText = reactStringReplace(replacedText, /(\${role})/g, (match, index)=> (
-      <span key={match + index} className="peritext-contents-person-role" >{vals.role}</span>
+      <span key={match + index} className="peritext-structured-person-role" >{vals.role}</span>
     ));
 
     if (vals.information) {
       replacedText = reactStringReplace(replacedText, /(\${information})/g, (match, index)=> (
-        <span key={match + index} className="peritext-contents-person-information" >{vals.information}</span>
+        <span key={match + index} className="peritext-structured-person-information" >{vals.information}</span>
       ));
     }
 
@@ -107,7 +107,7 @@ export default class StructuredPerson extends React.Component {
   render() {
     return (
       <span
-        className="peritext-contents-person"
+        className="peritext-structured-person-container"
         itemProp={this.props.property}
         itemScope
         itemType="http://schema.org/Person"

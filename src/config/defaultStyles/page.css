@@ -18,7 +18,7 @@ img
     max-height: 100%;
 }
 
-.peritext-contents-figure
+.peritext-figure
 {
     padding: .5cm;
 
@@ -27,7 +27,7 @@ img
     page-break-inside: avoid;
 }
 
-.peritext-contents-figures-wrapper
+.peritext-static-image-gallery-figures-wrapper
 {
     display: -webkit-box;
     display:    -moz-box;
@@ -52,7 +52,7 @@ img
     align-items: center;
 }
 
-.peritext-contents-figures-wrapper figure
+.peritext-static-image-gallery-figures-wrapper figure
 {
     display: flex;
 
@@ -72,7 +72,7 @@ img
     align-items: center;
 }
 
-.peritext-contents-figures-wrapper img
+.peritext-static-image-gallery-figures-wrapper img
 {
     width: auto;
 }
@@ -85,33 +85,33 @@ img
     }
 }
 
-#table-of-contents,
-#table-of-figures,
-#glossary
+#peritext-static-table-of-contents,
+#peritext-static-table-of-figures,
+#peritext-static-glossary
 {
     page-break-before: always;
     page-break-after: always;
 }
 
-#table-of-contents a::after,
-#table-of-figures a::after
+#peritext-static-table-of-contents a::after,
+#peritext-static-table-of-figures a::after
 {
     content: leader('.') target-counter(attr(href), page);
 }
 
-#glossary .peritext-content-entity-block-page-pointer::after{
+#peritext-static-glossary .peritext-static-entity-block-page-pointer::after{
     content: target-counter(attr(href), page);
 }
 
-.peritext-contents-notes-section-end,
-.peritext-contents-notes-document-end,
-.peritext-contents-reference-list-container
+.peritext-static-end-notes-section-end,
+.peritext-static-end-notes-document-end,
+.peritext-references-list-container
 {
   page-break-before: always;
   page-break-after: always;
 }
 
-.peritext-contents-entity-container-inline
+.peritext-static-entity-inline-container
 {
   text-decoration: none;
   font-weight : 800;

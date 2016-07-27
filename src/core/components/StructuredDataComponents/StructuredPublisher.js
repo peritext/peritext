@@ -34,11 +34,11 @@ export default class StructuredPublisher extends React.Component {
   updateHtml(resource, pattern) {
 
     let replacedText = reactStringReplace(pattern, /(\${publisher})/g, (match, index)=> (
-      <span key={match + index} itemProp="name" property="name" className="peritext-contents-citation-publisher">{resource.publisher}</span>
+      <span key={match + index} itemProp="name" property="name" className="peritext-structured-publisher-publisher">{resource.publisher}</span>
     ));
 
     replacedText = reactStringReplace(replacedText, /(\${address})/g, (match, index)=> (
-      <span key={match + index} itemProp="address" value="address" className="peritext-contents-citation-address">{resource.address}</span>
+      <span key={match + index} itemProp="address" value="address" className="peritext-structured-publisher-address">{resource.address}</span>
     ));
 
     return replacedText;
@@ -51,7 +51,7 @@ export default class StructuredPublisher extends React.Component {
   render() {
     return (
       <span
-        className="peritext-contents-publisher"
+        className="peritext-structured-publisher-container"
         itemProp={this.props.property}
         property={this.props.property}
         itemScope

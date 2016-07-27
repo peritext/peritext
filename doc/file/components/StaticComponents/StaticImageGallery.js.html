@@ -100,15 +100,15 @@ export default class StaticImageGallery extends React.Component {
     return (
             &lt;figure
               role=&quot;group&quot;
-              className=&quot;peritext-contents-figures-gallery peritext-contents-figure&quot;
+              className=&quot;peritext-static-image-gallery-container peritext-figure&quot;
               itemScope
               itemProp=&quot;citation&quot;
               itemType={&apos;http://schema.org/&apos; + this.props.schematype}
               typeof={this.props.schematype}
-              resource={this.props.figureNumber ? &apos;peritext-contents-figure-&apos; + this.props.figureNumber : undefined }
-              id={this.props.figureNumber ? &apos;peritext-contents-figure-&apos; + this.props.figureNumber : undefined }
+              resource={this.props.figureNumber ? &apos;peritext-figure-&apos; + this.props.figureNumber : undefined }
+              id={this.props.figureNumber ? &apos;peritext-figure-&apos; + this.props.figureNumber : undefined }
             &gt;
-              &lt;div className=&quot;peritext-contents-figures-wrapper&quot;&gt;
+              &lt;div className=&quot;peritext-static-image-gallery-figures-wrapper&quot;&gt;
                 {this.props.resources.map((resource)=&gt;{
                   return &lt;StaticImageFigure resource={resource} key={resource.citeKey} /&gt;;
                 })}
@@ -117,7 +117,15 @@ export default class StaticImageGallery extends React.Component {
                 itemProp=&quot;description&quot;
                 property=&quot;description&quot;
               &gt;
-                Figure {this.props.figureNumber} &#x2013; {this.props.captionContent}
+                [
+                  &lt;span className=&quot;peritext-figure-marker&quot;&gt;
+                    Figure &lt;span className=&quot;peritext-figure-number&quot;&gt;{this.props.figureNumber}&lt;/span&gt;
+                  &lt;/span&gt;,
+                  &lt;span&gt; &#x2013; &lt;/span&gt;,
+                  &lt;span className=&quot;peritext-figure-caption-content&quot;&gt;
+                    {this.props.captionContent}
+                  &lt;/span&gt;
+                ]
               &lt;/figcaption&gt;
             &lt;/figure&gt;
           );

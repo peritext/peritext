@@ -103,11 +103,11 @@ class StaticReferencesList extends React.Component {
     const { formatMessage } = this.context.intl;
     return (
       &lt;section
-        className=&quot;peritext-contents-reference-list-container&quot;
-        id=&quot;peritext-contents-reference-list-container&quot;
+        className=&quot;peritext-static-references-list-container&quot;
+        id=&quot;peritext-references-list&quot;
       &gt;
         &lt;h2&gt;{ formatMessage(translate.referencestitle, {}) }&lt;/h2&gt;
-        &lt;section className=&quot;peritext-contents-reference-list-items&quot;&gt;
+        &lt;section className=&quot;peritext-static-references-list-items-container&quot;&gt;
           {this.props.references.map((reference)=&gt; {
             return &lt;BlockCitation key={reference.citeKey} resource={reference} contextualization={{}} /&gt;;
           })}

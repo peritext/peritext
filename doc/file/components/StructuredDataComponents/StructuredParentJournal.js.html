@@ -102,23 +102,23 @@ export default class StructuredParentJournal extends React.Component {
   updateHtml(resource, pattern) {
     let replacedText;
     replacedText = reactStringReplace(pattern, /(\${journal})/g, (match, index)=&gt; (
-      &lt;span key={match + index} className=&quot;peritext-contents-citation-journal&quot;&gt;{resource.journal}&lt;/span&gt;
+      &lt;span key={match + index} className=&quot;peritext-structured-parent-journal-journal&quot;&gt;{resource.journal}&lt;/span&gt;
     ));
 
     replacedText = reactStringReplace(replacedText, /(\${date})/g, (match, index)=&gt; (
-      &lt;span key={match + index} className=&quot;peritext-contents-citation-date&quot;&gt;{resource.date || resource.year}&lt;/span&gt;
+      &lt;span key={match + index} className=&quot;peritext-structured-parent-journal-date&quot;&gt;{resource.date || resource.year}&lt;/span&gt;
     ));
 
     replacedText = reactStringReplace(replacedText, /(\${volume})/g, (match, index)=&gt; (
-      &lt;span key={match + index} className=&quot;peritext-contents-citation-volume&quot;&gt;{resource.volume}&lt;/span&gt;
+      &lt;span key={match + index} className=&quot;peritext-structured-parent-journal-volume&quot;&gt;{resource.volume}&lt;/span&gt;
     ));
 
     replacedText = reactStringReplace(replacedText, /(\${issue})/g, (match, index)=&gt; (
-      &lt;span key={match + index} className=&quot;peritext-contents-citation-issue&quot;&gt;{resource.issue}&lt;/span&gt;
+      &lt;span key={match + index} className=&quot;peritext-structured-parent-journal-issue&quot;&gt;{resource.issue}&lt;/span&gt;
     ));
 
     replacedText = reactStringReplace(replacedText, /(\${issn})/g, (match, index)=&gt; (
-      &lt;span key={match + index} className=&quot;peritext-contents-citation-issn&quot;&gt;{resource.issn}&lt;/span&gt;
+      &lt;span key={match + index} className=&quot;peritext-structured-parent-journal-issn&quot;&gt;{resource.issn}&lt;/span&gt;
     ));
     return replacedText;
   }
@@ -132,7 +132,7 @@ export default class StructuredParentJournal extends React.Component {
 
     return (
       &lt;span
-        className=&quot;peritext-contents-journal&quot;
+        className=&quot;peritext-structured-parent-journal-container&quot;
         itemProp={this.props.property}
         property={this.props.property}
         itemScope

@@ -93,16 +93,16 @@ export default class StaticNote extends React.Component {
    * @return {ReactElement} markup
    */
   render() {
-    const content = this.htmlToReactParser.parse(&apos;&lt;span class=&quot;peritext-contents-note-text&quot;&gt;&apos; + this.props.noteContent + &apos;&lt;/span&gt;&apos;);
+    const content = this.htmlToReactParser.parse(&apos;&lt;span class=&quot;peritext-static-note-content-content&quot;&gt;&apos; + this.props.noteContent + &apos;&lt;/span&gt;&apos;);
     return (
       &lt;p
-        className=&quot;peritext-contents-note-content&quot;
-        name={&apos;note-content-&apos; + this.props.sectionCiteKey + this.props.notesCount}
-        id={&apos;note-content-&apos; + this.props.sectionCiteKey + this.props.notesCount}
+        className=&quot;peritext-static-note-content-container&quot;
+        name={&apos;peritext-static-note-content-&apos; + this.props.sectionCiteKey + this.props.notesCount}
+        id={&apos;peritext-static-note-content-&apos; + this.props.sectionCiteKey + this.props.notesCount}
       &gt;
         &lt;a
-          href={&apos;#note-content-&apos; + this.props.sectionCiteKey + this.props.notesCount}
-          className=&quot;peritext-contents-note-number&quot;
+          href={&apos;#peritext-static-note-content-&apos; + this.props.sectionCiteKey + this.props.notesCount}
+          className=&quot;peritext-static-note-content-number&quot;
         &gt;
           &lt;span&gt;{this.props.notesCount}&lt;/span&gt;
         &lt;/a&gt;

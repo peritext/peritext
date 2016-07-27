@@ -39,12 +39,12 @@ class StaticGlossary extends React.Component {
     const { formatMessage } = this.context.intl;
     return (
       <section
-        id="glossary"
-        className="peritext-contents-glossary-container"
+        id="peritext-static-glossary"
+        className="peritext-static-glossary-container"
       >
         <h2>{ formatMessage(translate.glossary, {}) }</h2>
         <section
-          className="peritext-contents-glossary-elements-container"
+          className="peritext-static-glossary-elements-container"
         >
           {
             this.props.elements.map((entity, index) => (

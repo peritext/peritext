@@ -28,7 +28,7 @@ export default class StructuredCite extends React.Component {
   render() {
     return (
       <cite
-        className="peritext-contents-cite"
+        className="peritext-structred-cite-container"
         property={this.props.property}
         itemProp={this.props.property}
       >

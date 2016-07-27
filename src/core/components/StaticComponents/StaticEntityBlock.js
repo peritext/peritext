@@ -29,11 +29,11 @@ export default class StaticEntityBlock extends React.Component {
   renderMentions() {
     const self = this;
     return Object.keys(this.props.entity.aliases).map(function(alias, aliasIndex) {
-      return (<p key={alias} className="peritext-content-entity-block-page-pointers-container">
+      return (<p key={alias} className="peritext-static-entity-block-page-mentions-container">
         <span>{alias === 'no-alias' ? '' : alias + ' : '}</span>
         {self.props.entity.aliases[alias].map((entry, index)=> {
           return (<span key={entry.mentionId}>
-              p. <a className="peritext-content-entity-block-page-pointer" href={entry.mentionId}></a>
+              p. <a className="peritext-static-entity-block-page-pointer" href={entry.mentionId}></a>
             </span>);
         }).reduce((accu, elem) => {
           return accu === null ? [elem] : [...accu, ', ', elem];
@@ -50,9 +50,9 @@ export default class StaticEntityBlock extends React.Component {
     const itemType = bibToSchema(this.props.entity.bibType);
     return (
       <section
-        className="peritext-contents-entity-container-block"
-        name={'peritext-content-entity-block-' + this.props.entity.citeKey}
-        id={'peritext-content-entity-block-' + this.props.entity.citeKey}
+        className="peritext-static-entity-block-container"
+        name={'peritext-static-entity-block-' + this.props.entity.citeKey}
+        id={'peritext-static-entity-block-' + this.props.entity.citeKey}
         itemProp="mentions"
         value="mentions"
         itemScope
@@ -61,7 +61,7 @@ export default class StaticEntityBlock extends React.Component {
         resource={this.props.entity.citeKey}
       >
         <h5
-          className="peritext-content-entity-block-name">
+          className="peritext-static-entity-block-name">
           {itemType === 'Person' ?
             [<span
               itemProp="familyName"
@@ -88,7 +88,7 @@ export default class StaticEntityBlock extends React.Component {
             : ''}
 
         {this.props.entity.description && this.props.contextualizer.showdescription === 'yes' ?
-          <p className="peritext-content-entity-block-description">
+          <p className="peritext-static-entity-block-description">
             {this.props.entity.description}
           </p>
           : ''}

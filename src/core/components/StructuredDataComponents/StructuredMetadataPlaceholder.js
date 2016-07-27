@@ -31,7 +31,7 @@ export default class StructuredMetadataPlaceholder extends React.Component {
   render() {
     return (
       <div
-        className="peritext-contents-schema-metadata-placeholder"
+        className="peritext-structured-metadata-placeholder-container"
         style={{visibility: 'hidden'}}
       >
         {this.props.section.metadata.filter((prop) =>{

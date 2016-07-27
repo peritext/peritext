@@ -140,23 +140,23 @@ export default class StructuredPerson extends React.Component {
     let replacedText = this.props.pattern;
     if (firstNameExp) {
       replacedText = reactStringReplace(replacedText, new RegExp(&apos;(\\&apos; + firstNameExp[0] + &apos;)&apos;, &apos;g&apos;), (match, index)=&gt; (
-        &lt;span key={match + index} className=&quot;peritext-contents-person-firstname&quot; itemProp=&quot;givenName&quot; property=&quot;givenName&quot; &gt;{vals.firstName}&lt;/span&gt;
+        &lt;span key={match + index} className=&quot;peritext-structured-person-firstname&quot; itemProp=&quot;givenName&quot; property=&quot;givenName&quot; &gt;{vals.firstName}&lt;/span&gt;
       ));
     }
 
     if (lastNameExp) {
       replacedText = reactStringReplace(replacedText, new RegExp(&apos;(\\&apos; + lastNameExp[0] + &apos;)&apos;, &apos;g&apos;), (match, index)=&gt; (
-        &lt;span key={match + index} className=&quot;peritext-contents-person-lastname&quot; itemProp=&quot;familyName&quot; property=&quot;familyName&quot; &gt;{vals.lastName}&lt;/span&gt;
+        &lt;span key={match + index} className=&quot;peritext-structured-person-lastname&quot; itemProp=&quot;familyName&quot; property=&quot;familyName&quot; &gt;{vals.lastName}&lt;/span&gt;
       ));
     }
 
     replacedText = reactStringReplace(replacedText, /(\${role})/g, (match, index)=&gt; (
-      &lt;span key={match + index} className=&quot;peritext-contents-person-role&quot; &gt;{vals.role}&lt;/span&gt;
+      &lt;span key={match + index} className=&quot;peritext-structured-person-role&quot; &gt;{vals.role}&lt;/span&gt;
     ));
 
     if (vals.information) {
       replacedText = reactStringReplace(replacedText, /(\${information})/g, (match, index)=&gt; (
-        &lt;span key={match + index} className=&quot;peritext-contents-person-information&quot; &gt;{vals.information}&lt;/span&gt;
+        &lt;span key={match + index} className=&quot;peritext-structured-person-information&quot; &gt;{vals.information}&lt;/span&gt;
       ));
     }
 
@@ -170,7 +170,7 @@ export default class StructuredPerson extends React.Component {
   render() {
     return (
       &lt;span
-        className=&quot;peritext-contents-person&quot;
+        className=&quot;peritext-structured-person-container&quot;
         itemProp={this.props.property}
         itemScope
         itemType=&quot;http://schema.org/Person&quot;

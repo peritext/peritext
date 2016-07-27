@@ -56,7 +56,7 @@ class StaticDocument extends React.Component {
 
     if (this.props.renderingParams.notesPosition === 'documentend') {
       tocData.push({
-        id: 'peritext-contents-notes-document-end',
+        id: 'peritext-static-end-notes-document-end',
         title: formatMessage({id: 'end_notes'}, {}),
         level: 0
       });
@@ -64,7 +64,7 @@ class StaticDocument extends React.Component {
 
     if (this.props.renderingParams.referenceScope === 'document') {
       tocData.push({
-        id: 'peritext-contents-reference-list-container',
+        id: 'peritext-static-references-list-container',
         title: formatMessage({id: 'references_title'}, {}),
         level: 0
       });
@@ -72,13 +72,13 @@ class StaticDocument extends React.Component {
 
     if (this.props.renderingParams.figuresTablePosition === 'begining') {
       tocData.splice(0, 0, {
-        id: 'table-of-figures',
+        id: 'peritext-static-table-of-figures',
         title: formatMessage({id: 'table_of_figures'}, {}),
         level: 0
       });
     } else if (this.props.renderingParams.figuresTablePosition === 'end') {
       tocData.push({
-        id: 'table-of-figures',
+        id: 'peritext-static-table-of-figures',
         title: formatMessage({id: 'table_of_figures'}, {}),
         level: 0
       });
@@ -86,13 +86,13 @@ class StaticDocument extends React.Component {
 
     if (this.props.renderingParams.glossaryPosition === 'begining') {
       tocData.splice(0, 0, {
-        id: 'glossary',
+        id: 'peritext-static-glossary',
         title: formatMessage({id: 'glossary'}, {}),
         level: 0
       });
     } else if (this.props.renderingParams.glossaryPosition === 'end') {
       tocData.push({
-        id: 'glossary',
+        id: 'peritext-static-glossary',
         title: formatMessage({id: 'glossary'}, {}),
         level: 0
       });
@@ -111,7 +111,7 @@ class StaticDocument extends React.Component {
       // 3. make table array
       .map((cont)=> {
         return {
-          id: 'peritext-contents-figure-' + cont.figureNumber,
+          id: 'peritext-figure-' + cont.figureNumber,
           number: cont.figureNumber
         };
       });

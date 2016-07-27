@@ -25,7 +25,7 @@ export default class StructuredCOinS extends React.Component {
   render() {
     const openUrl = generateOpenUrl(this.props.resource);
     return (
-      <span className="Z3988" title={openUrl}></span>
+      <span className="peritext-structured-context-object-in-span-container Z3988" title={openUrl}></span>
     );
   }
 }

@@ -37,15 +37,15 @@ export default class StaticImageGallery extends React.Component {
     return (
             <figure
               role="group"
-              className="peritext-contents-figures-gallery peritext-contents-figure"
+              className="peritext-static-image-gallery-container peritext-figure"
               itemScope
               itemProp="citation"
               itemType={'http://schema.org/' + this.props.schematype}
               typeof={this.props.schematype}
-              resource={this.props.figureNumber ? 'peritext-contents-figure-' + this.props.figureNumber : undefined }
-              id={this.props.figureNumber ? 'peritext-contents-figure-' + this.props.figureNumber : undefined }
+              resource={this.props.figureNumber ? 'peritext-figure-' + this.props.figureNumber : undefined }
+              id={this.props.figureNumber ? 'peritext-figure-' + this.props.figureNumber : undefined }
             >
-              <div className="peritext-contents-figures-wrapper">
+              <div className="peritext-static-image-gallery-figures-wrapper">
                 {this.props.resources.map((resource)=>{
                   return <StaticImageFigure resource={resource} key={resource.citeKey} />;
                 })}
@@ -54,7 +54,15 @@ export default class StaticImageGallery extends React.Component {
                 itemProp="description"
                 property="description"
               >
-                Figure {this.props.figureNumber} – {this.props.captionContent}
+                [
+                  <span className="peritext-figure-marker">
+                    Figure <span className="peritext-figure-number">{this.props.figureNumber}</span>
+                  </span>,
+                  <span> – </span>,
+                  <span className="peritext-figure-caption-content">
+                    {this.props.captionContent}
+                  </span>
+                ]
               </figcaption>
             </figure>
           );

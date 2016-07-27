@@ -43,13 +43,14 @@ class StaticTableOfFigures extends React.Component {
     const { formatMessage } = this.context.intl;
     return (
       <section
-        id="table-of-figures"
+        id="peritext-static-table-of-figures"
+        className="peritext-static-table-of-figures-container"
       >
         <h2>{ formatMessage(translate.tableoffigures, {}) }</h2>
-        <section className="peritext-contents-table-of-figures-contents">
+        <section className="peritext-static-table-of-figures-elements-container">
           {this.props.elements.map((element, index) =>{
             return (<section
-                      className="peritext-contents-table-of-figures-element"
+                      className="peritext-static-table-of-figures-element"
                       key={element.id + index}>
                       <a
                         href={'#' + element.id}

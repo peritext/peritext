@@ -97,9 +97,9 @@ export function eatNotes(inputHtml, sectionCitekey, baseNotesCount = 0, notesPos
       noteNumber: notesCount
     });
     if (notesPosition === 'footnotes') {
-      newEl = '<sup class="peritext-contents-note-content" name="note-content-' + sectionCitekey + notesCount + '" id="note-content-' + sectionCitekey + notesCount + '">' + noteContent + '</sup>';
+      newEl = '<sup class="peritext-static-note-content-container" name="peritext-static-note-content-' + sectionCitekey + notesCount + '" id="peritext-static-note-content-' + sectionCitekey + notesCount + '">' + noteContent + '</sup>';
     } else {
-      newEl = '<sup class="peritext-contents-note-pointer" name="note-pointer-' + sectionCitekey + notesCount + '" id="note-pointer-' + sectionCitekey + notesCount + '"><a href="#note-content-' + sectionCitekey + notesCount + '"><span class="peritext-contents-note-number">' + notesCount + '</span></a></sup>';
+      newEl = '<sup class="peritext-static-note-pointer-container" name="peritext-static-note-pointer-' + sectionCitekey + notesCount + '" id="peritext-note-pointer-' + sectionCitekey + notesCount + '"><a href="#peritext-note-content-' + sectionCitekey + notesCount + '"><span class="peritext-static-note-pointer-number">' + notesCount + '</span></a></sup>';
     }
     outputHtml = outputHtml.substr(0, beginIndex - 4) + newEl + outputHtml.substr(index);
     displace = index;

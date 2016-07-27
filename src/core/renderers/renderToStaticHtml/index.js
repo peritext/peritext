@@ -92,7 +92,7 @@ export default function renderSection({
       }
 
       if (renderingParams.notesPosition === 'footnotes') {
-        style += `.peritext-contents-note-content
+        style += `.peritext-static-note-content-container
                 {
                     display: prince-footnote;
                     counter-increment: footnote;

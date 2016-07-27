@@ -92,11 +92,11 @@ export default class StaticEntityBlock extends React.Component {
   renderMentions() {
     const self = this;
     return Object.keys(this.props.entity.aliases).map(function(alias, aliasIndex) {
-      return (&lt;p key={alias} className=&quot;peritext-content-entity-block-page-pointers-container&quot;&gt;
+      return (&lt;p key={alias} className=&quot;peritext-static-entity-block-page-mentions-container&quot;&gt;
         &lt;span&gt;{alias === &apos;no-alias&apos; ? &apos;&apos; : alias + &apos; : &apos;}&lt;/span&gt;
         {self.props.entity.aliases[alias].map((entry, index)=&gt; {
           return (&lt;span key={entry.mentionId}&gt;
-              p. &lt;a className=&quot;peritext-content-entity-block-page-pointer&quot; href={entry.mentionId}&gt;&lt;/a&gt;
+              p. &lt;a className=&quot;peritext-static-entity-block-page-pointer&quot; href={entry.mentionId}&gt;&lt;/a&gt;
             &lt;/span&gt;);
         }).reduce((accu, elem) =&gt; {
           return accu === null ? [elem] : [...accu, &apos;, &apos;, elem];
@@ -113,9 +113,9 @@ export default class StaticEntityBlock extends React.Component {
     const itemType = bibToSchema(this.props.entity.bibType);
     return (
       &lt;section
-        className=&quot;peritext-contents-entity-container-block&quot;
-        name={&apos;peritext-content-entity-block-&apos; + this.props.entity.citeKey}
-        id={&apos;peritext-content-entity-block-&apos; + this.props.entity.citeKey}
+        className=&quot;peritext-static-entity-block-container&quot;
+        name={&apos;peritext-static-entity-block-&apos; + this.props.entity.citeKey}
+        id={&apos;peritext-static-entity-block-&apos; + this.props.entity.citeKey}
         itemProp=&quot;mentions&quot;
         value=&quot;mentions&quot;
         itemScope
@@ -124,7 +124,7 @@ export default class StaticEntityBlock extends React.Component {
         resource={this.props.entity.citeKey}
       &gt;
         &lt;h5
-          className=&quot;peritext-content-entity-block-name&quot;&gt;
+          className=&quot;peritext-static-entity-block-name&quot;&gt;
           {itemType === &apos;Person&apos; ?
             [&lt;span
               itemProp=&quot;familyName&quot;
@@ -151,7 +151,7 @@ export default class StaticEntityBlock extends React.Component {
             : &apos;&apos;}
 
         {this.props.entity.description &amp;&amp; this.props.contextualizer.showdescription === &apos;yes&apos; ?
-          &lt;p className=&quot;peritext-content-entity-block-description&quot;&gt;
+          &lt;p className=&quot;peritext-static-entity-block-description&quot;&gt;
             {this.props.entity.description}
           &lt;/p&gt;
           : &apos;&apos;}

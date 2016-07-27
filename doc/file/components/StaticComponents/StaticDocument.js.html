@@ -119,7 +119,7 @@ class StaticDocument extends React.Component {
 
     if (this.props.renderingParams.notesPosition === &apos;documentend&apos;) {
       tocData.push({
-        id: &apos;peritext-contents-notes-document-end&apos;,
+        id: &apos;peritext-static-end-notes-document-end&apos;,
         title: formatMessage({id: &apos;end_notes&apos;}, {}),
         level: 0
       });
@@ -127,7 +127,7 @@ class StaticDocument extends React.Component {
 
     if (this.props.renderingParams.referenceScope === &apos;document&apos;) {
       tocData.push({
-        id: &apos;peritext-contents-reference-list-container&apos;,
+        id: &apos;peritext-static-references-list-container&apos;,
         title: formatMessage({id: &apos;references_title&apos;}, {}),
         level: 0
       });
@@ -135,13 +135,13 @@ class StaticDocument extends React.Component {
 
     if (this.props.renderingParams.figuresTablePosition === &apos;begining&apos;) {
       tocData.splice(0, 0, {
-        id: &apos;table-of-figures&apos;,
+        id: &apos;peritext-static-table-of-figures&apos;,
         title: formatMessage({id: &apos;table_of_figures&apos;}, {}),
         level: 0
       });
     } else if (this.props.renderingParams.figuresTablePosition === &apos;end&apos;) {
       tocData.push({
-        id: &apos;table-of-figures&apos;,
+        id: &apos;peritext-static-table-of-figures&apos;,
         title: formatMessage({id: &apos;table_of_figures&apos;}, {}),
         level: 0
       });
@@ -149,13 +149,13 @@ class StaticDocument extends React.Component {
 
     if (this.props.renderingParams.glossaryPosition === &apos;begining&apos;) {
       tocData.splice(0, 0, {
-        id: &apos;glossary&apos;,
+        id: &apos;peritext-static-glossary&apos;,
         title: formatMessage({id: &apos;glossary&apos;}, {}),
         level: 0
       });
     } else if (this.props.renderingParams.glossaryPosition === &apos;end&apos;) {
       tocData.push({
-        id: &apos;glossary&apos;,
+        id: &apos;peritext-static-glossary&apos;,
         title: formatMessage({id: &apos;glossary&apos;}, {}),
         level: 0
       });
@@ -174,7 +174,7 @@ class StaticDocument extends React.Component {
       // 3. make table array
       .map((cont)=&gt; {
         return {
-          id: &apos;peritext-contents-figure-&apos; + cont.figureNumber,
+          id: &apos;peritext-figure-&apos; + cont.figureNumber,
           number: cont.figureNumber
         };
       });

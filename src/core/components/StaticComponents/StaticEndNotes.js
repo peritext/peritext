@@ -39,14 +39,14 @@ class StaticEndNotes extends React.Component {
     const { formatMessage } = this.context.intl;
     return (
       <section
-        className={'peritext-contents-notes peritext-contents-notes-' + this.props.classSuffix}
-        id={this.props.classSuffix === 'document-end' ? 'peritext-contents-notes-document-end' : ''}
+        className={'peritext-static-end-notes-container peritext-static-end-notes-' + this.props.classSuffix + '-container'}
+        id={this.props.classSuffix === 'document-end' ? 'peritext-static-end-notes-document-end' : ''}
       >
-        {this.props.notes.length > 0 ? <h4 className="peritext-contents-notes-title">
+        {this.props.notes.length > 0 ? <h4 className="peritext-static-end-notes-title">
          { formatMessage(translate.endnotes, {}) }
         </h4> : ''}
 
-        <div className="peritext-contents-notes-container">
+        <div className="peritext-static-end-notes-container">
           {this.props.notes.map((note, noteIndex)=> {
             return <StaticNote key={noteIndex} sectionCitekey={note.sectionCitekey} notesCount={note.notesCount} noteContent={note.noteContent} />;
           })}

@@ -14,13 +14,3 @@ q
     /*quotes : '\00AB\2003' '\2003\00BB' '\2039 ' ' \203A';*/
     quotes: '«' ' »' '\2039 ' ' \203A';
 }
-
-.peritext-contents-inline-quoted::before
-{
-    content: '\00AB ';
-}
-
-.peritext-contents-inline-quoted::after
-{
-    content: ' \00BB';
-}

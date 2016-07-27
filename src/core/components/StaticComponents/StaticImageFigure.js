@@ -37,7 +37,7 @@ export default class StaticImageFigure extends React.Component {
   render() {
     return (
               <figure
-                className="peritext-contents-image-figure"
+                className="peritext-static-image-figure-container"
                 itemProp="image"
                 value="image"
                 itemScope
