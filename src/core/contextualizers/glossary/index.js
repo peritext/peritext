@@ -7,7 +7,7 @@ import {
 } from './../../components';
 import {getMetaValue} from './../../utils/sectionUtils';
 
-export function contextualizeInlineStatic(inputSection, inputContextualization, renderingParams) {
+export function contextualizeInlineStatic(inputSection, inputContextualization, settings) {
   const section = Object.assign({}, inputSection);
   const sectionCiteKey = getMetaValue(section.metadata, 'general', 'citeKey');
   const contextualization = Object.assign({}, inputContextualization);
@@ -40,7 +40,7 @@ export function contextualizeInlineStatic(inputSection, inputContextualization, 
   return Object.assign({}, section, {contents: newContents});
 }
 
-export function contextualizeBlockStatic(inputSection, inputContextualization, renderingParams) {
+export function contextualizeBlockStatic(inputSection, inputContextualization, settings) {
   const section = Object.assign({}, inputSection);
   const contextualization = Object.assign({}, inputContextualization);
   const contextualizer = section.contextualizers.find((thatContextualizer)=> {
@@ -56,7 +56,7 @@ export function contextualizeBlockStatic(inputSection, inputContextualization, r
   const newContents = section.contents.map((block) =>{
     match = block.html.match(elRe);
     if (match) {
-      const element = ReactDOMServer.renderToStaticMarkup(<StaticEntityBlock entity={resource} contextualizer={contextualizer} renderingParams={renderingParams}/>);
+      const element = ReactDOMServer.renderToStaticMarkup(<StaticEntityBlock entity={resource} contextualizer={contextualizer} settings={settings}/>);
       const output = {
         html: element,
         tagType: 'section'
@@ -68,10 +68,10 @@ export function contextualizeBlockStatic(inputSection, inputContextualization, r
   return Object.assign({}, section, {contents: newContents});
 }
 
-export function contextualizeInlineDynamic(section, contextualization, renderingParams) {
+export function contextualizeInlineDynamic(section, contextualization, settings) {
   return section;
 }
 
-export function contextualizeBlockDynamic(section, contextualization, renderingParams) {
+export function contextualizeBlockDynamic(section, contextualization, settings) {
   return section;
 }

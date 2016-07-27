@@ -41,10 +41,13 @@
       "add-module-exports",
       "transform-class-properties",
       "transform-decorators-legacy",
-      ["react-intl", {
-        "messagesDir": "./translations/extractedMessages/",
-        "enforceDescriptions": true
-      }]
+      [
+        "react-intl",
+        {
+          "messagesDir": "./translations/extractedMessages/",
+          "enforceDescriptions": true
+        }
+      ]
     ],
     "env": {
       "test": {
@@ -95,13 +98,15 @@
     "fs": "0.0.2",
     "html-to-react": "git+https://github.com/robindemourat/html-to-react.git",
     "immutable": "^3.7.6",
-    "marked": "^0.3.5",
+    "json-loader": "^0.5.4",
+    "markdown-to-react-components": "^0.2.1",
     "prince": "^1.2.0",
     "radium": "^0.17.1",
     "raw-loader": "^0.5.1",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "react-intl": "^2.1.3",
+    "react-markdown": "^2.4.2",
     "react-string-replace": "^0.3.2",
     "react-string-replace-recursively": "^0.1.27",
     "redux": "^3.3.1",

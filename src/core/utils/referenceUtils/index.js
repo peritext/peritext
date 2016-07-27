@@ -22,8 +22,8 @@ function isBibliographical(bibType) {
   return isOk !== undefined;
 }
 
-export function computeReferences(sections, renderingParams) {
-  if (renderingParams.referenceScope === 'document') {
+export function computeReferences(sections, settings) {
+  if (settings.referenceScope === 'document') {
     const references = sections.reduce((refs, section)=> {
       return refs.concat(section.resources.filter((resource)=> {
         return resource.inheritedVerticallyFrom === undefined;
@@ -31,7 +31,7 @@ export function computeReferences(sections, renderingParams) {
     }, []);
 
     // handle filters
-    const filters = (renderingParams.referenceFilters || []) && renderingParams.referenceFilters.split(' ');
+    const filters = (settings.referenceFilters || []) && settings.referenceFilters.split(' ');
     const filteredReferences = filters.reduce((outputReferences, filter)=> {
       switch (filter) {
       case 'has-title':
@@ -50,7 +50,7 @@ export function computeReferences(sections, renderingParams) {
     }, references);
 
     // order references
-    const order = renderingParams.referenceSortBy;
+    const order = settings.referenceSortBy;
     const sortedReferences = filteredReferences.sort((ref1, ref2)=> {
       switch (order) {
       case 'title':

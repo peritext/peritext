@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 
-export function contextualizeInlineStatic(inputSection, inputContextualization, renderingParams) {
+export function contextualizeInlineStatic(inputSection, inputContextualization, settings) {
   const section = Object.assign({}, inputSection);
   const contextualization = Object.assign({}, inputContextualization);
   let res;
   let withQuotes;
-  const formatter = require('./../../utils/citationUtils/' + renderingParams.citationStyle + '.js');
+  const formatter = require('./../../utils/citationUtils/' + settings.citationStyle + '.js');
   const InlineCitation = formatter.InlineCitation;
 
   // handle each resource separately (if several citations together)
@@ -47,11 +47,11 @@ export function contextualizeInlineStatic(inputSection, inputContextualization, 
   return Object.assign({}, section, {contents: newContents});
 }
 
-export function contextualizeBlockStatic(inputSection, inputContextualization, renderingParams) {
+export function contextualizeBlockStatic(inputSection, inputContextualization, settings) {
   const section = Object.assign({}, inputSection);
   const contextualization = Object.assign({}, inputContextualization);
   let res;
-  const formatter = require('./../../utils/citationUtils/' + renderingParams.citationStyle + '.js');
+  const formatter = require('./../../utils/citationUtils/' + settings.citationStyle + '.js');
   const BlockCitation = formatter.BlockCitation;
 
   // handle each resource separately (if several citations together)
@@ -85,10 +85,10 @@ export function contextualizeBlockStatic(inputSection, inputContextualization, r
   return Object.assign({}, section, {contents: newContents});
 }
 
-export function contextualizeInlineDynamic(section, contextualization, renderingParams) {
+export function contextualizeInlineDynamic(section, contextualization, settings) {
   return section;
 }
 
-export function contextualizeBlockDynamic(section, contextualization, renderingParams) {
+export function contextualizeBlockDynamic(section, contextualization, settings) {
   return section;
 }

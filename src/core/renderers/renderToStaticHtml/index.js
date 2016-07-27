@@ -6,7 +6,7 @@ import ReactDOMServer from 'react-dom/server';
 import {IntlProvider} from 'react-intl';
 
 import {getMetaValue} from './../../utils/sectionUtils';
-import {sectionTypeModels, renderingParamsModels} from './../../models';
+import {sectionTypeModels, settingsModels} from './../../models';
 import {eatNotes} from './../../converters/markdownConverter';
 import {resolveContextualizationsImplementation, resolveContextualizationsRelations} from './../../resolvers/resolveContextualizations';
 import {computeReferences} from './../../utils/referenceUtils';
@@ -32,14 +32,14 @@ function listChildren(sections, key) {
 export default function renderSection({
   section,
   sectionList,
-  renderingParams = {},
+  settings = {},
   includeChildren = true
 }, rendererCallback) {
 
   // populate rendering params with defaults if needed
-  for (const param in renderingParamsModels) {
-    if (renderingParams[param] === undefined) {
-      renderingParams[param] = renderingParamsModels[param].default;
+  for (const param in settingsModels) {
+    if (settings[param] === undefined) {
+      settings[param] = settingsModels[param].default;
     }
   }
 
@@ -71,12 +71,12 @@ export default function renderSection({
     // build html code
     }, function(sections, cback) {
       // order contextualizations (ibid/opCit, ...)
-      const orderedSections = resolveContextualizationsRelations(sections, renderingParams);
+      const orderedSections = resolveContextualizationsRelations(sections, settings);
       // resolve contextualizations by adding blocks, footnotes, or mutating html contents
       let figuresCount = 0;
       const displaySections = orderedSections.map((sectio, index) =>{
         sectio.figuresCount = figuresCount;
-        const newSection = resolveContextualizationsImplementation(sectio, 'static', renderingParams);
+        const newSection = resolveContextualizationsImplementation(sectio, 'static', settings);
         figuresCount = newSection.figuresCount;
         return newSection;
       });
@@ -91,7 +91,7 @@ export default function renderSection({
         }
       }
 
-      if (renderingParams.notesPosition === 'footnotes') {
+      if (settings.notesPosition === 'footnotes') {
         style += `.peritext-static-note-content-container
                 {
                     display: prince-footnote;
@@ -108,9 +108,9 @@ export default function renderSection({
           return newHtml;
         }, '');
 
-        const {outputHtml, notes} = eatNotes(assembled, getMetaValue(sectio.metadata, 'general', 'citeKey'), notesCount, renderingParams.notesPosition);
+        const {outputHtml, notes} = eatNotes(assembled, getMetaValue(sectio.metadata, 'general', 'citeKey'), notesCount, settings.notesPosition);
 
-        if (renderingParams.notesPosition === 'documentend') {
+        if (settings.notesPosition === 'documentend') {
           notesCount += notes.length;
         }
 
@@ -118,8 +118,8 @@ export default function renderSection({
       });
 
       // build references/bibliography
-      if (renderingParams.referenceScope === 'document') {
-        notedSections[0].references = computeReferences(notedSections, renderingParams);
+      if (settings.referenceScope === 'document') {
+        notedSections[0].references = computeReferences(notedSections, settings);
       }
 
       // build metadata
@@ -174,7 +174,7 @@ export default function renderSection({
       // cover handling
       const sectionType = getMetaValue(sections[0].metadata, 'general', 'bibType');
       if (sectionTypeModels.acceptedTypes[sectionType].needsCover) {
-        renderingParams.hasCover = true;
+        settings.hasCover = true;
       }
 
       // preparing translations
@@ -184,7 +184,7 @@ export default function renderSection({
       // rendering document
       const renderedContents = ReactDOMServer.renderToStaticMarkup(
         <IntlProvider locale={lang} messages={messages}>
-          <StaticDocument sections={notedSections} renderingParams={renderingParams} glossaryData={glossaryData} />
+          <StaticDocument sections={notedSections} settings={settings} glossaryData={glossaryData} />
         </IntlProvider>);
       const html = `
 <!doctype:html>

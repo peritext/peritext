@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import {StructuredHyperLink, StaticWebsitePoster} from './../../components';
 
-export function contextualizeInlineStatic(section, contextualization, renderingParams) {
+export function contextualizeInlineStatic(section, contextualization, settings) {
   const elRe = new RegExp('<InlineContextualization id="' + contextualization.citeKey + '"[^>]*>(.*)</InlineContextualization>');
   let match;
   const resource = section.resources.find((res) =>{
@@ -24,7 +24,7 @@ export function contextualizeInlineStatic(section, contextualization, renderingP
   return Object.assign({}, section, {contents: newContents});
 }
 
-export function contextualizeBlockStatic(section, contextualization, renderingParams) {
+export function contextualizeBlockStatic(section, contextualization, settings) {
   const figuresCount = section.figuresCount + 1;
   const elRe = new RegExp('<BlockContextualization id="' + contextualization.citeKey + '"[^>]*>(.*)</BlockContextualization>');
   let match;
@@ -65,10 +65,10 @@ export function contextualizeBlockStatic(section, contextualization, renderingPa
   return Object.assign({}, section, {figuresCount}, {contents: newContents});
 }
 
-export function contextualizeInlineDynamic(section, contextualization, renderingParams) {
+export function contextualizeInlineDynamic(section, contextualization, settings) {
   return section;
 }
 
-export function contextualizeBlockDynamic(section, contextualization, renderingParams) {
+export function contextualizeBlockDynamic(section, contextualization, settings) {
   return section;
 }

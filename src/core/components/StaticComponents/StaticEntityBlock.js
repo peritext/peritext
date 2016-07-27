@@ -17,7 +17,7 @@ export default class StaticEntityBlock extends React.Component {
   static propTypes = {
     entity: PropTypes.object,
     contextualizer: PropTypes.object,
-    renderingParams: PropTypes.object
+    settings: PropTypes.object
   };
 
   static defaultProps = {

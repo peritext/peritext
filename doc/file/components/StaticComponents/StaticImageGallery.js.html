@@ -115,17 +115,14 @@ export default class StaticImageGallery extends React.Component {
               &lt;/div&gt;
               &lt;figcaption
                 itemProp=&quot;description&quot;
-                property=&quot;description&quot;
-              &gt;
-                [
+                property=&quot;description&quot;&gt;
                   &lt;span className=&quot;peritext-figure-marker&quot;&gt;
                     Figure &lt;span className=&quot;peritext-figure-number&quot;&gt;{this.props.figureNumber}&lt;/span&gt;
-                  &lt;/span&gt;,
-                  &lt;span&gt; &#x2013; &lt;/span&gt;,
+                  &lt;/span&gt;
+                  &lt;span&gt; &#x2013; &lt;/span&gt;
                   &lt;span className=&quot;peritext-figure-caption-content&quot;&gt;
                     {this.props.captionContent}
                   &lt;/span&gt;
-                ]
               &lt;/figcaption&gt;
             &lt;/figure&gt;
           );

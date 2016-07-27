@@ -52,17 +52,14 @@ export default class StaticImageGallery extends React.Component {
               </div>
               <figcaption
                 itemProp="description"
-                property="description"
-              >
-                [
+                property="description">
                   <span className="peritext-figure-marker">
                     Figure <span className="peritext-figure-number">{this.props.figureNumber}</span>
-                  </span>,
-                  <span> – </span>,
+                  </span>
+                  <span> – </span>
                   <span className="peritext-figure-caption-content">
                     {this.props.captionContent}
                   </span>
-                ]
               </figcaption>
             </figure>
           );

@@ -63,6 +63,8 @@
 <div class="content" data-ice="content"><h1 data-ice="title">components/StaticComponents/StaticSection.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React, {PropTypes} from &apos;react&apos;;
 import Radium from &apos;radium&apos;;
+import HtmlToReact from &apos;html-to-react&apos;;
+
 import {getMetaValue} from &apos;./../../utils/sectionUtils&apos;;
 import {bibToSchema} from &apos;./../../utils/microDataUtils&apos;;
 
@@ -85,11 +87,13 @@ export default class StaticSection extends React.Component {
    */
   static propTypes = {
     section: PropTypes.object,
-    renderingParams: PropTypes.object
+    settings: PropTypes.object
   };
 
   static defaultProps = {
   };
+
+  htmlToReactParser = new HtmlToReact.Parser(React);
 
   /**
    * render
@@ -98,6 +102,7 @@ export default class StaticSection extends React.Component {
   render() {
     const bibType = bibToSchema(getMetaValue(this.props.section.metadata, &apos;general&apos;, &apos;bibType&apos;));
     const citeKey = getMetaValue(this.props.section.metadata, &apos;general&apos;, &apos;citeKey&apos;);
+    const sectionContent = this.htmlToReactParser.parse(&apos;&lt;section class=&quot;peritext-static-section-contents&quot;&gt;&apos; + this.props.section.outputHtml + &apos;&lt;/section&gt;&apos;);
     return (
       &lt;section
         className={&apos;peritext-static-section-container peritext-static-section-level-&apos; + getMetaValue(this.props.section.metadata, &apos;general&apos;, &apos;generalityLevel&apos;)}
@@ -110,13 +115,8 @@ export default class StaticSection extends React.Component {
         property=&quot;hasPart&quot;
       &gt;
         &lt;StructuredMetadataPlaceholder section={this.props.section} /&gt;
-        &lt;section
-          className=&quot;peritext-static-section-contents&quot;
-          dangerouslySetInnerHTML={{
-            __html: this.props.section.outputHtml
-          }}
-        &gt;&lt;/section&gt;
-        {this.props.renderingParams.notesPosition === &apos;sectionend&apos; ?
+        {sectionContent}
+        {this.props.settings.notesPosition === &apos;sectionend&apos; ?
           &lt;StaticEndNotes
             classSuffix=&quot;section-end&quot;
             notes={this.props.section.notes}

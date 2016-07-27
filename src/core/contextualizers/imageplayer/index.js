@@ -3,7 +3,7 @@ import ReactDOMServer from 'react-dom/server';
 import {StaticImageGallery} from './../../components';
 
 
-export function contextualizeInlineStatic(inputSection, contextualization, renderingParams) {
+export function contextualizeInlineStatic(inputSection, contextualization, settings) {
   const section = Object.assign({}, inputSection);
   // check if a figure with the same resources is already there
   let existant;
@@ -72,7 +72,7 @@ export function contextualizeInlineStatic(inputSection, contextualization, rende
   return Object.assign({}, section, {figuresCount}, {contents: newContents});
 }
 
-export function contextualizeBlockStatic(section, contextualization, renderingParams) {
+export function contextualizeBlockStatic(section, contextualization, settings) {
   const figuresCount = section.figuresCount + 1;
   const elRe = new RegExp('<BlockContextualization id="' + contextualization.citeKey + '"[^>]*>(.*)</BlockContextualization>');
   const resources = contextualization.resources.reduce((list, resKey) =>{
@@ -108,10 +108,10 @@ export function contextualizeBlockStatic(section, contextualization, renderingPa
   return Object.assign({}, section, {figuresCount}, {contents: newContents});
 }
 
-export function contextualizeInlineDynamic(section, contextualization, renderingParams) {
+export function contextualizeInlineDynamic(section, contextualization, settings) {
   return section;
 }
 
-export function contextualizeBlockDynamic(section, contextualization, renderingParams) {
+export function contextualizeBlockDynamic(section, contextualization, settings) {
   return section;
 }

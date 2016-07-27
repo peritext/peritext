@@ -86,7 +86,7 @@ class StaticReferencesList extends React.Component {
    */
   static propTypes = {
     references: PropTypes.array,
-    renderingParams: PropTypes.object
+    settings: PropTypes.object
   };
 
   static defaultProps = {
@@ -98,13 +98,13 @@ class StaticReferencesList extends React.Component {
    * @return {ReactElement} markup
    */
   render() {
-    const citationRenderer = require(&apos;./../../utils/citationUtils/&apos; + this.props.renderingParams.citationStyle + &apos;.js&apos;);
+    const citationRenderer = require(&apos;./../../utils/citationUtils/&apos; + this.props.settings.citationStyle + &apos;.js&apos;);
     const BlockCitation = citationRenderer.BlockCitation;
     const { formatMessage } = this.context.intl;
     return (
       &lt;section
         className=&quot;peritext-static-references-list-container&quot;
-        id=&quot;peritext-references-list&quot;
+        id=&quot;peritext-static-references-list&quot;
       &gt;
         &lt;h2&gt;{ formatMessage(translate.referencestitle, {}) }&lt;/h2&gt;
         &lt;section className=&quot;peritext-static-references-list-items-container&quot;&gt;

@@ -19,7 +19,7 @@ import renderSection from './../../renderers/renderToStaticHtml';
 export function exportSection({
   section,
   sectionList,
-  renderingParams,
+  settings,
   includeChildren,
   destinationFolder = './../../../temp/'
 }, callback) {

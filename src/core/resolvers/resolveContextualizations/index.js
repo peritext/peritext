@@ -152,7 +152,7 @@ export function resolveContextualizersAndContextualizations({section, models}, c
   cb(null, {errors, section});
 }
 
-export function resolveContextualizationsRelations(sections, renderingParams) {
+export function resolveContextualizationsRelations(sections, settings) {
   let opCitIndex;
   let sameResPrint;
   return sections.reduce((inputSections, sectio, index)=> {
@@ -205,7 +205,7 @@ export function resolveContextualizationsRelations(sections, renderingParams) {
 }
 
 // I 'reduce' contextualizations statements to produce a new rendering-specific section representation
-export function resolveContextualizationsImplementation(section, renderingMode, renderingParams) {
+export function resolveContextualizationsImplementation(section, renderingMode, settings) {
   let contextualizer;
   const sectio = section.contextualizations.reduce((inputSection, contextualization) => {
     contextualizer = contextualizers[contextualization.contextualizerType];
@@ -217,9 +217,9 @@ export function resolveContextualizationsImplementation(section, renderingMode, 
     case 'static':
       switch (contextualization.type) {
       case 'inline':
-        return contextualizer.contextualizeInlineStatic(inputSection, contextualization, renderingParams);
+        return contextualizer.contextualizeInlineStatic(inputSection, contextualization, settings);
       case 'block':
-        return contextualizer.contextualizeBlockStatic(inputSection, contextualization, renderingParams);
+        return contextualizer.contextualizeBlockStatic(inputSection, contextualization, settings);
       default:
         break;
       }
@@ -227,9 +227,9 @@ export function resolveContextualizationsImplementation(section, renderingMode, 
     case 'dynamic':
       switch (contextualization.type) {
       case 'inline':
-        return contextualizer.contextualizeInlineDynamic(inputSection, contextualization, renderingParams);
+        return contextualizer.contextualizeInlineDynamic(inputSection, contextualization, settings);
       case 'block':
-        return contextualizer.contextualizeBlockDynamic(inputSection, contextualization, renderingParams);
+        return contextualizer.contextualizeBlockDynamic(inputSection, contextualization, settings);
       default:
         break;
       }

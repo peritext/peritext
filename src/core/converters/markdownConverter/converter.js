@@ -2,8 +2,10 @@
  * This module resolves markdown contents + peritext-specific assertions (notes, contextualizations, contextualizers)
 * It returns a representation of a section's content as an object containing arrays of: paragraphs, notes, contextualizations, contextualizers
  */
-import marked from 'marked';
-// import React from 'react';
+import React from 'react';
+import ReactDOMServer from 'react-dom/server';
+import ReactMarkdown from 'react-markdown';
+
 import {parseBibContextualization, parseBibNestedValues} from './../bibTexConverter';
 /*
 import {
@@ -11,18 +13,6 @@ import {
 } from './../../components';
 */
 // import {getMetaValue} from './../../utils/sectionUtils';
-
-// basic marked parser
-marked.setOptions({
-  renderer: new marked.Renderer(),
-  gfm: true,
-  tables: true,
-  breaks: false,
-  pedantic: false,
-  sanitize: true,
-  smartLists: true,
-  smartypants: false
-});
 
 function eatParamsObject(str) {
   let index = 0;
@@ -291,10 +281,12 @@ function eatBlock(sub, REobj, match) {
     const openingIndex = sub.indexOf(tag);
     closingIndex = sub.indexOf(closingTag);
     outputHtml = sub.substr(openingIndex, closingIndex + closingTag.length - 4);
+  // not nested component
   } else if (!REobj.nested) {
     closingIndex = sub.indexOf(closingTag);
     outputHtml = sub.substr(0, closingIndex + closingTag.length);
-  }else {
+  // nested component (<ul>, ...)
+  } else {
     outputHtml = '';
     let nestingLevel = 0;
     const openingTag = '<' + tag;
@@ -318,7 +310,13 @@ function eatBlock(sub, REobj, match) {
     outputHtml = sub.substr(0, index);
   }
 
-  return {newIndex: outputHtml.length, element: {html: outputHtml.trim(), tagType: REobj.tagType}};
+  return {
+    newIndex: outputHtml.length,
+    element: {
+      html: outputHtml.trim(),
+      tagType: REobj.tagType
+    }
+  };
 }
 
 function divideHtmlInBlocks(outputHtml) {
@@ -370,7 +368,7 @@ function divideHtmlInBlocks(outputHtml) {
     sub = html.substr(index);
 
     // find block type
-    blocksRE.some((REobj)=>{
+    blocksRE.find((REobj)=>{
       match = sub.match(REobj.RE);
       if (match) {
         const {newIndex, element} = eatBlock(sub, REobj, match);
@@ -427,8 +425,9 @@ export function markdownToContentsList(section, parameters, callback) {
 
   section.markdownContents = section.contents;
   section.contextualizers = section.contextualizers.map(parseBibNestedValues);
-
-  const {contentBlocks, contextualizers, notes, contextualizations} = eatHtml(marked(section.contents), parameters, section.metadata);
+  const reactContents = (<ReactMarkdown source={section.contents} />);
+  // const reactNotes = eatReactContents(reactContents);
+  const {contentBlocks, contextualizers, notes, contextualizations} = eatHtml(ReactDOMServer.renderToStaticMarkup(reactContents), parameters, section.metadata);
   section.notes = notes;
   section.contents = contentBlocks;
   section.contextualizers = section.contextualizers.concat(contextualizers);

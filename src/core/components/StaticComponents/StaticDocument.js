@@ -29,7 +29,7 @@ class StaticDocument extends React.Component {
    */
   static propTypes = {
     sections: PropTypes.array,
-    renderingParams: PropTypes.object,
+    settings: PropTypes.object,
     glossaryData: PropTypes.array
   };
 
@@ -54,7 +54,7 @@ class StaticDocument extends React.Component {
       };
     });
 
-    if (this.props.renderingParams.notesPosition === 'documentend') {
+    if (this.props.settings.notesPosition === 'documentend') {
       tocData.push({
         id: 'peritext-static-end-notes-document-end',
         title: formatMessage({id: 'end_notes'}, {}),
@@ -62,21 +62,21 @@ class StaticDocument extends React.Component {
       });
     }
 
-    if (this.props.renderingParams.referenceScope === 'document') {
+    if (this.props.settings.referenceScope === 'document') {
       tocData.push({
-        id: 'peritext-static-references-list-container',
+        id: 'peritext-static-references-list',
         title: formatMessage({id: 'references_title'}, {}),
         level: 0
       });
     }
 
-    if (this.props.renderingParams.figuresTablePosition === 'begining') {
+    if (this.props.settings.figuresTablePosition === 'begining') {
       tocData.splice(0, 0, {
         id: 'peritext-static-table-of-figures',
         title: formatMessage({id: 'table_of_figures'}, {}),
         level: 0
       });
-    } else if (this.props.renderingParams.figuresTablePosition === 'end') {
+    } else if (this.props.settings.figuresTablePosition === 'end') {
       tocData.push({
         id: 'peritext-static-table-of-figures',
         title: formatMessage({id: 'table_of_figures'}, {}),
@@ -84,13 +84,13 @@ class StaticDocument extends React.Component {
       });
     }
 
-    if (this.props.renderingParams.glossaryPosition === 'begining') {
+    if (this.props.settings.glossaryPosition === 'begining') {
       tocData.splice(0, 0, {
         id: 'peritext-static-glossary',
         title: formatMessage({id: 'glossary'}, {}),
         level: 0
       });
-    } else if (this.props.renderingParams.glossaryPosition === 'end') {
+    } else if (this.props.settings.glossaryPosition === 'end') {
       tocData.push({
         id: 'peritext-static-glossary',
         title: formatMessage({id: 'glossary'}, {}),
@@ -129,25 +129,25 @@ class StaticDocument extends React.Component {
           <StructuredMetadataPlaceholder section={this.props.sections[0]} />
 
           {
-            this.props.renderingParams.hasCover ?
+            this.props.settings.hasCover ?
             <StaticFrontCover metadata={this.props.sections[0].metadata} />
             : ''
           }
 
           {
-            this.props.renderingParams.tocPosition === 'begining' ?
+            this.props.settings.tocPosition === 'begining' ?
             <StaticTableOfContents elements={tocData} level={getMetaValue(this.props.sections[0].metadata, 'general', 'generalityLevel')} />
             : ''
           }
 
           {
-            this.props.renderingParams.figuresTablePosition === 'begining' ?
+            this.props.settings.figuresTablePosition === 'begining' ?
             <StaticTableOfFigures elements={figuresTableData} />
             : ''
           }
 
           {
-            this.props.renderingParams.glossaryPosition === 'begining' ?
+            this.props.settings.glossaryPosition === 'begining' ?
             <StaticGlossary elements={this.props.glossaryData} />
             : ''
           }
@@ -159,7 +159,7 @@ class StaticDocument extends React.Component {
             }}
           ></section>
           {
-            this.props.renderingParams.notesPosition === 'sectionend' ?
+            this.props.settings.notesPosition === 'sectionend' ?
               <StaticEndNotes
                 classSuffix="section-end"
                 notes={this.props.sections[0].notes}
@@ -168,12 +168,12 @@ class StaticDocument extends React.Component {
 
           {
             this.props.sections.slice(1).map((section, sectionIndex)=> {
-              return <StaticSection section={section} key={sectionIndex} renderingParams={this.props.renderingParams} />;
+              return <StaticSection section={section} key={sectionIndex} settings={this.props.settings} />;
             })
           }
 
           {
-            this.props.renderingParams.notesPosition === 'documentend' ?
+            this.props.settings.notesPosition === 'documentend' ?
             <StaticEndNotes
               classSuffix="document-end"
               notes={
@@ -185,31 +185,31 @@ class StaticDocument extends React.Component {
           }
 
           {
-            this.props.renderingParams.referenceScope === 'document' ?
-            <StaticReferencesList references={this.props.sections[0].references} renderingParams={this.props.renderingParams} />
+            this.props.settings.referenceScope === 'document' ?
+            <StaticReferencesList references={this.props.sections[0].references} settings={this.props.settings} />
             : ''
           }
 
           {
-            this.props.renderingParams.glossaryPosition === 'end' ?
+            this.props.settings.glossaryPosition === 'end' ?
             <StaticGlossary elements={this.props.glossaryData} />
             : ''
           }
 
           {
-            this.props.renderingParams.figuresTablePosition === 'end' ?
+            this.props.settings.figuresTablePosition === 'end' ?
             <StaticTableOfFigures elements={figuresTableData} />
             : ''
           }
 
           {
-            this.props.renderingParams.tocPosition === 'end' ?
+            this.props.settings.tocPosition === 'end' ?
             <StaticTableOfContents elements={tocData} level={getMetaValue(this.props.sections[0].metadata, 'general', 'generalityLevel')} />
             : ''
           }
 
           {
-            this.props.renderingParams.hasCover ?
+            this.props.settings.hasCover ?
             <StaticBackCover metadata={this.props.sections[0].metadata} />
             : ''
           }
