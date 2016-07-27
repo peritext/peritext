@@ -11,7 +11,11 @@
 const Prince = require('prince');
 import {resolve} from 'path';
 import {waterfall} from 'async';
-import {writeFile} from 'fs';
+import {
+  writeFile,
+  exists,
+  mkdir
+} from 'fs';
 
 import {getMetaValue} from './../../utils/sectionUtils';
 import renderSection from './../../renderers/renderToStaticHtml';
@@ -21,25 +25,34 @@ export function exportSection({
   sectionList,
   settings,
   includeChildren,
-  destinationFolder = './../../../temp/'
+  destinationFolder = './../../../_temp/'
 }, callback) {
 
   const motherKey = getMetaValue(section.metadata, 'general', 'citeKey');
-
+  const path = resolve(__dirname + destinationFolder);
   waterfall([
+    // get or create destination folder
+    (existsCb)=> {
+      exists(path, (isThere)=> {
+        if (!isThere) {
+          return mkdir(path, existsCb);
+        }
+        return existsCb(null);
+      });
+    },
     (renderCb)=> {
       renderSection({section, sectionList, includeChildren, destinationFolder}, renderCb);
     },
     (html, writeCb)=> {
-      writeFile(resolve(__dirname + destinationFolder + motherKey + '.html'), html, 'utf-8', function(err) {
+      writeFile(path + motherKey + '.html', html, 'utf-8', function(err) {
         writeCb(err);
       });
     }
   ], (err)=> {
     if (!err) {
       Prince()
-      .inputs(resolve(__dirname + destinationFolder + motherKey + '.html'))
-      .output(resolve(__dirname + destinationFolder + motherKey + '.pdf'))
+      .inputs(path + motherKey + '.html')
+      .output(path + motherKey + '.pdf')
       .execute()
       .then(function() {
         console.log('saved to pdf with PrinceXML');
