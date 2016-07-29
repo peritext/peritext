@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import Radium from 'radium';
-import {StaticNote} from './../index.js';
+import {StaticNoteContent} from './../index.js';
 import { intlShape, defineMessages } from 'react-intl';
 
 // let styles = {};
@@ -13,7 +13,6 @@ const translate = defineMessages({
   }
 });
 
-
 /**
  * dumb component for rendering the structured representation of a static section
  */
@@ -25,7 +24,8 @@ class StaticEndNotes extends React.Component {
    */
   static propTypes = {
     notes: PropTypes.array,
-    classSuffix: PropTypes.string
+    classSuffix: PropTypes.string,
+    id: PropTypes.id
   };
 
   static defaultProps = {
@@ -40,15 +40,15 @@ class StaticEndNotes extends React.Component {
     return (
       <section
         className={'peritext-static-end-notes-container peritext-static-end-notes-' + this.props.classSuffix + '-container'}
-        id={this.props.classSuffix === 'document-end' ? 'peritext-static-end-notes-document-end' : ''}
+        id={this.props.id}
       >
         {this.props.notes.length > 0 ? <h4 className="peritext-static-end-notes-title">
          { formatMessage(translate.endnotes, {}) }
         </h4> : ''}
 
-        <div className="peritext-static-end-notes-container">
+        <div className="peritext-static-end-notes-notes-container">
           {this.props.notes.map((note, noteIndex)=> {
-            return <StaticNote key={noteIndex} sectionCitekey={note.sectionCitekey} notesCount={note.notesCount} noteContent={note.noteContent} />;
+            return <StaticNoteContent key={noteIndex} note={note} />;
           })}
         </div>
       </section>

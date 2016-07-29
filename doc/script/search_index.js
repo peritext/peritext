@@ -12,21 +12,21 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "peritext/components/staticcomponents/staticendfigures.js~staticendfigures",
+    "class/components/StaticComponents/StaticEndFigures.js~StaticEndFigures.html",
+    "<span>StaticEndFigures</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticEndFigures.js</span>",
+    "class"
+  ],
+  [
     "peritext/components/staticcomponents/staticendnotes.js~staticendnotes",
     "class/components/StaticComponents/StaticEndNotes.js~StaticEndNotes.html",
     "<span>StaticEndNotes</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticEndNotes.js</span>",
     "class"
   ],
   [
-    "peritext/components/staticcomponents/staticentityblock.js~staticentityblock",
-    "class/components/StaticComponents/StaticEntityBlock.js~StaticEntityBlock.html",
-    "<span>StaticEntityBlock</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticEntityBlock.js</span>",
-    "class"
-  ],
-  [
-    "peritext/components/staticcomponents/staticentityinline.js~staticentityinline",
-    "class/components/StaticComponents/StaticEntityInline.js~StaticEntityInline.html",
-    "<span>StaticEntityInline</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticEntityInline.js</span>",
+    "peritext/components/staticcomponents/staticfootnote.js~staticfootnote",
+    "class/components/StaticComponents/StaticFootnote.js~StaticFootnote.html",
+    "<span>StaticFootnote</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticFootnote.js</span>",
     "class"
   ],
   [
@@ -48,15 +48,15 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
-    "peritext/components/staticcomponents/staticimagegallery.js~staticimagegallery",
-    "class/components/StaticComponents/StaticImageGallery.js~StaticImageGallery.html",
-    "<span>StaticImageGallery</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticImageGallery.js</span>",
+    "peritext/components/staticcomponents/staticnotecontent.js~staticnote",
+    "class/components/StaticComponents/StaticNoteContent.js~StaticNote.html",
+    "<span>StaticNote</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticNoteContent.js</span>",
     "class"
   ],
   [
-    "peritext/components/staticcomponents/staticnote.js~staticnote",
-    "class/components/StaticComponents/StaticNote.js~StaticNote.html",
-    "<span>StaticNote</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticNote.js</span>",
+    "peritext/components/staticcomponents/staticnotepointer.js~staticnotepointer",
+    "class/components/StaticComponents/StaticNotePointer.js~StaticNotePointer.html",
+    "<span>StaticNotePointer</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticNotePointer.js</span>",
     "class"
   ],
   [
@@ -138,10 +138,16 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
-    "peritext/components/staticcomponents/staticwebsiteposter.js~structuredwebsiteposter",
-    "class/components/StaticComponents/StaticWebsitePoster.js~StructuredWebsitePoster.html",
-    "<span>StructuredWebsitePoster</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticWebsitePoster.js</span>",
-    "class"
+    "peritext/components/componentfactory.js~jstocomponent",
+    "variable/index.html#static-variable-jsToComponent",
+    "<span>jsToComponent</span> <span class=\"search-result-import-path\">peritext/components/componentFactory.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/components/componentfactory.js~rendercontents",
+    "function/index.html#static-function-renderContents",
+    "<span>renderContents</span> <span class=\"search-result-import-path\">peritext/components/componentFactory.js</span>",
+    "function"
   ],
   [
     "builtinexternal/ecmascriptexternal.js~array",
@@ -504,6 +510,18 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "components/staticcomponents/staticendfigures.js",
+    "file/components/StaticComponents/StaticEndFigures.js.html",
+    "components/StaticComponents/StaticEndFigures.js",
+    "file"
+  ],
+  [
+    "components/staticcomponents/staticendfigures.js~staticendfigures#render",
+    "class/components/StaticComponents/StaticEndFigures.js~StaticEndFigures.html#instance-method-render",
+    "components/StaticComponents/StaticEndFigures.js~StaticEndFigures#render",
+    "method"
+  ],
+  [
     "components/staticcomponents/staticendnotes.js",
     "file/components/StaticComponents/StaticEndNotes.js.html",
     "components/StaticComponents/StaticEndNotes.js",
@@ -516,33 +534,15 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "components/staticcomponents/staticentityblock.js",
-    "file/components/StaticComponents/StaticEntityBlock.js.html",
-    "components/StaticComponents/StaticEntityBlock.js",
+    "components/staticcomponents/staticfootnote.js",
+    "file/components/StaticComponents/StaticFootnote.js.html",
+    "components/StaticComponents/StaticFootnote.js",
     "file"
   ],
   [
-    "components/staticcomponents/staticentityblock.js~staticentityblock#render",
-    "class/components/StaticComponents/StaticEntityBlock.js~StaticEntityBlock.html#instance-method-render",
-    "components/StaticComponents/StaticEntityBlock.js~StaticEntityBlock#render",
-    "method"
-  ],
-  [
-    "components/staticcomponents/staticentityblock.js~staticentityblock#rendermentions",
-    "class/components/StaticComponents/StaticEntityBlock.js~StaticEntityBlock.html#instance-method-renderMentions",
-    "components/StaticComponents/StaticEntityBlock.js~StaticEntityBlock#renderMentions",
-    "method"
-  ],
-  [
-    "components/staticcomponents/staticentityinline.js",
-    "file/components/StaticComponents/StaticEntityInline.js.html",
-    "components/StaticComponents/StaticEntityInline.js",
-    "file"
-  ],
-  [
-    "components/staticcomponents/staticentityinline.js~staticentityinline#render",
-    "class/components/StaticComponents/StaticEntityInline.js~StaticEntityInline.html#instance-method-render",
-    "components/StaticComponents/StaticEntityInline.js~StaticEntityInline#render",
+    "components/staticcomponents/staticfootnote.js~staticfootnote#render",
+    "class/components/StaticComponents/StaticFootnote.js~StaticFootnote.html#instance-method-render",
+    "components/StaticComponents/StaticFootnote.js~StaticFootnote#render",
     "method"
   ],
   [
@@ -588,27 +588,27 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "components/staticcomponents/staticimagegallery.js",
-    "file/components/StaticComponents/StaticImageGallery.js.html",
-    "components/StaticComponents/StaticImageGallery.js",
+    "components/staticcomponents/staticnotecontent.js",
+    "file/components/StaticComponents/StaticNoteContent.js.html",
+    "components/StaticComponents/StaticNoteContent.js",
     "file"
   ],
   [
-    "components/staticcomponents/staticimagegallery.js~staticimagegallery#render",
-    "class/components/StaticComponents/StaticImageGallery.js~StaticImageGallery.html#instance-method-render",
-    "components/StaticComponents/StaticImageGallery.js~StaticImageGallery#render",
+    "components/staticcomponents/staticnotecontent.js~staticnote#render",
+    "class/components/StaticComponents/StaticNoteContent.js~StaticNote.html#instance-method-render",
+    "components/StaticComponents/StaticNoteContent.js~StaticNote#render",
     "method"
   ],
   [
-    "components/staticcomponents/staticnote.js",
-    "file/components/StaticComponents/StaticNote.js.html",
-    "components/StaticComponents/StaticNote.js",
+    "components/staticcomponents/staticnotepointer.js",
+    "file/components/StaticComponents/StaticNotePointer.js.html",
+    "components/StaticComponents/StaticNotePointer.js",
     "file"
   ],
   [
-    "components/staticcomponents/staticnote.js~staticnote#render",
-    "class/components/StaticComponents/StaticNote.js~StaticNote.html#instance-method-render",
-    "components/StaticComponents/StaticNote.js~StaticNote#render",
+    "components/staticcomponents/staticnotepointer.js~staticnotepointer#render",
+    "class/components/StaticComponents/StaticNotePointer.js~StaticNotePointer.html#instance-method-render",
+    "components/StaticComponents/StaticNotePointer.js~StaticNotePointer#render",
     "method"
   ],
   [
@@ -657,18 +657,6 @@ window.esdocSearchIndex = [
     "components/staticcomponents/statictableoffigures.js~statictableoffigures#render",
     "class/components/StaticComponents/StaticTableOfFigures.js~StaticTableOfFigures.html#instance-method-render",
     "components/StaticComponents/StaticTableOfFigures.js~StaticTableOfFigures#render",
-    "method"
-  ],
-  [
-    "components/staticcomponents/staticwebsiteposter.js",
-    "file/components/StaticComponents/StaticWebsitePoster.js.html",
-    "components/StaticComponents/StaticWebsitePoster.js",
-    "file"
-  ],
-  [
-    "components/staticcomponents/staticwebsiteposter.js~structuredwebsiteposter#render",
-    "class/components/StaticComponents/StaticWebsitePoster.js~StructuredWebsitePoster.html#instance-method-render",
-    "components/StaticComponents/StaticWebsitePoster.js~StructuredWebsitePoster#render",
     "method"
   ],
   [
@@ -808,6 +796,12 @@ window.esdocSearchIndex = [
     "class/components/StructuredDataComponents/StructuredSpan.js~StructuredSpan.html#instance-method-render",
     "components/StructuredDataComponents/StructuredSpan.js~StructuredSpan#render",
     "method"
+  ],
+  [
+    "components/componentfactory.js",
+    "file/components/componentFactory.js.html",
+    "components/componentFactory.js",
+    "file"
   ],
   [
     "components/index.js",

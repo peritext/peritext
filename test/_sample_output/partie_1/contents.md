@@ -1,7 +1,7 @@
 # This is part one
 
 
-![A reference](@temporal_data){@cool_timeline}
+![A reference to a timeline should display here when timeline is ready](@temporal_data){@cool_timeline}
 
 
 
@@ -15,7 +15,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, fugit, id. 
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi necessitatibus aliquam nisi odio et perferendis reiciendis porro, fugit repellat similique consequuntur dolor perspiciatis? Laborum doloribus ducimus alias sequi sapiente! Voluptate.
 
-Then I want to say that the image I just showed [image](@image_test_1) is awesome.
+Then I want to say that the [image](@image_test_1) that I showed is awesome.
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio nemo eius autem, saepe dolore nam iste ex inventore, minus neque mollitia molestias facere asperiores vel voluptas beatae esse perspiciatis cupiditate.
 
@@ -27,7 +27,7 @@ And then I want to display a group of images :
 
 And then I want to point to an [online](@website_test) resource.
 
-![This is a block website contextualization, displaying a poster or the resource (typically a screenshot) if specified](@website_test)
+![This is a block *website* contextualization, displaying a poster or the resource (typically a screenshot) if specified](@website_test)
 
 I will talk about that[^]{with a footnote here} :
 

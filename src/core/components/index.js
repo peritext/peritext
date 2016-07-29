@@ -1,19 +1,20 @@
-export { default as StaticFrontCover } from './StaticComponents/StaticFrontCover.js';
+/*
+ * Components exports
+ */
 export { default as StaticBackCover } from './StaticComponents/StaticBackCover.js';
 export { default as StaticDocument } from './StaticComponents/StaticDocument.js';
 export { default as StaticEndNotes } from './StaticComponents/StaticEndNotes.js';
+export { default as StaticEndFigures } from './StaticComponents/StaticEndFigures.js';
+export { default as StaticFootnote } from './StaticComponents/StaticFootnote.js';
+export { default as StaticFrontCover } from './StaticComponents/StaticFrontCover.js';
 export { default as StaticGlossary } from './StaticComponents/StaticGlossary.js';
 export { default as StaticImageFigure } from './StaticComponents/StaticImageFigure.js';
-export { default as StaticImageGallery } from './StaticComponents/StaticImageGallery.js';
-export { default as StaticNote } from './StaticComponents/StaticNote.js';
+export { default as StaticNoteContent } from './StaticComponents/StaticNoteContent.js';
+export { default as StaticNotePointer } from './StaticComponents/StaticNotePointer.js';
 export { default as StaticReferencesList } from './StaticComponents/StaticReferencesList.js';
 export { default as StaticSection } from './StaticComponents/StaticSection.js';
 export { default as StaticTableOfContents } from './StaticComponents/StaticTableOfContents.js';
 export { default as StaticTableOfFigures } from './StaticComponents/StaticTableOfFigures.js';
-export { default as StaticWebsitePoster } from './StaticComponents/StaticWebsitePoster.js';
-export { default as StaticEntityInline } from './StaticComponents/StaticEntityInline.js';
-export { default as StaticEntityBlock } from './StaticComponents/StaticEntityBlock.js';
-
 
 export { default as StructuredCite } from './StructuredDataComponents/StructuredCite.js';
 export { default as StructuredCOinS } from './StructuredDataComponents/StructuredCOinS.js';

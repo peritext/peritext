@@ -145,7 +145,7 @@ export default function resolveDataDependencies(inputSections, assetsController,
                       if (resProp.indexOf('data') !== 0) {
                         // interpolate w/ resource value thanks to resourceProp path
                         nestedProp.value = res[resProp];
-                      } // todo here : ajax data fetching if 'data' prop
+                      } // todo here : store promise if 'data' prop
                     }
                     nestedPropCallback(null, nestedProp);
                   } else if (('' + val3).indexOf('@assets/') === 0) {

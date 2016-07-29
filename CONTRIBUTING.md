@@ -31,7 +31,7 @@ Unit tests are written in a ``test`` folder which is a mirror of the ``src`` fol
 
 ## Committing
 
-Please use commitizen (``git cz`` instead of ``git commit``) while contributing to Peritext, in order to document your commits in the clearest way.
+Consider using commitizen (``git cz`` instead of ``git commit``) while contributing to Peritext, in order to describe your contribution in the clearest way.
 
 Please also document any new piece of code - Peritext uses [ESDoc](https://esdoc.org/) as a documentation generator.
 

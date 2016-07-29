@@ -18,7 +18,7 @@ img
     max-height: 100%;
 }
 
-.peritext-figure
+.peritext-figure-container
 {
     padding: .5cm;
 
@@ -85,21 +85,21 @@ img
     }
 }
 
-#peritext-static-table-of-contents,
-#peritext-static-table-of-figures,
-#peritext-static-glossary
+.peritext-static-table-of-contents-container,
+.peritext-static-table-of-figures-container,
+.peritext-static-glossary-container
 {
     page-break-before: always;
     page-break-after: always;
 }
 
-#peritext-static-table-of-contents a::after,
-#peritext-static-table-of-figures a::after
+.peritext-static-table-of-contents-container a::after,
+.peritext-static-table-of-figures-container a::after
 {
     content: leader('.') target-counter(attr(href), page);
 }
 
-#peritext-static-glossary .peritext-static-entity-block-page-pointer::after{
+.peritext-static-glossary-container .peritext-static-entity-block-page-pointer::after{
     content: target-counter(attr(href), page);
 }
 
@@ -116,4 +116,42 @@ img
   text-decoration: none;
   font-weight : 800;
   color: inherit;
+}
+
+.peritext-static-section-container
+{
+  prince-bookmark-label: attr(title);
+}
+
+.peritext-static-section-level-1
+{
+  prince-bookmark-level: 1;
+}
+.peritext-static-section-level-2
+{
+  prince-bookmark-level: 2;
+}
+.peritext-static-section-level-3
+{
+  prince-bookmark-level: 3;
+}
+.peritext-static-section-level-4
+{
+  prince-bookmark-level: 4;
+}
+.peritext-static-section-level-5
+{
+  prince-bookmark-level: 5;
+}
+.peritext-static-section-level-6
+{
+  prince-bookmark-level: 6;
+}
+.peritext-static-section-level-7
+{
+  prince-bookmark-level: 7;
+}
+.peritext-static-section-level-8
+{
+  prince-bookmark-level: 8;
 }

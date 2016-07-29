@@ -10,7 +10,7 @@ function updateConnector(params) {
   tempConnectorName = params.connector;
   if (tempConnectorName !== connectorName) {
     connectorName = tempConnectorName;
-    connector = require('./../../connectors/' + params.connector);
+    connector = require('./../../../connectors/' + params.connector);
   }
 }
 

@@ -28,10 +28,12 @@ class StaticTableOfFigures extends React.Component {
    * propTypes
    */
   static propTypes = {
-    elements: PropTypes.array
+    contents: PropTypes.array,
+    id: PropTypes.string
   };
 
   static defaultProps = {
+    contents: []
   };
 
 
@@ -43,12 +45,12 @@ class StaticTableOfFigures extends React.Component {
     const { formatMessage } = this.context.intl;
     return (
       <section
-        id="peritext-static-table-of-figures"
+        id={this.props.id}
         className="peritext-static-table-of-figures-container"
       >
         <h2>{ formatMessage(translate.tableoffigures, {}) }</h2>
         <section className="peritext-static-table-of-figures-elements-container">
-          {this.props.elements.map((element, index) =>{
+          {this.props.contents.map((element, index) =>{
             return (<section
                       className="peritext-static-table-of-figures-element"
                       key={element.id + index}>

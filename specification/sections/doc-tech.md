@@ -31,13 +31,31 @@ Social:
 
 Scalability and project evolution:
 
-* it should be internationalized from the begining
-* it should be test-driven from the begining
+* it should be internationalized from scratch
+* it should be test-driven from scratch
 * it should be easily scalable (library, collection, ...) later on
 * it should be able to welcome a further possible editing back-office interface
 * it should be easily convertible into a SaaS platform
 
-# Global architecture : flux/redux architecture
+# Global rationale
+
+Peritext is a library aiming at supporting the writing of contextualization-oriented and multimodal documents.
+
+* ``peritext core`` is a library aimed at performing data conversions : turning the javascript representation of flatfile contents (called a ``fsTree``) to the javascript representation of a contextualization-oriented document (called ``peritextDocument``) - and vice versa. It covers :
+    - ``generic components`` used by core and plugins
+    - ``controllers`` aimed at manipulating a given type of contents (contents, assets, annotations)
+    - ``converters`` aimed at managing the main conversion between ``fsTree`` and ``peritextDocument``, but also bibTex, markdown, ... conversions
+    - ``models`` which describe what can be done by users in terms of resources, contextualizations, rendering settings, and so on
+    - ``resolvers`` which resolve data against models
+    - ``validators`` which are modules aimed at verifying that everything is ok with the contents provided by users, and to throw meaningfull errors and warning if necessary
+    - ``utils`` used along the app
+* a first set of "plugins" called ``connectors`` allow to read & update a flatfile-representable data source according to the ``fsTree`` model
+* a second set of "plugins" called ``renderers`` convert ``peritextDocuments`` to actionable representation (epub-oriented json, html, xml, ...)
+* a third set of "plugins" called ``exporters`` wrap a renderer and output a specific file format (``pdf``, ``epub``, ``zip``)
+* a fourth set of "plugins" called ``contextualizers`` deals with contextualizations and how to transform and render a specific contextualization type (``webpage``, ``timeline``, ``imagegallery``, ``citation``, ...)
+* a fifth set of "plugins" called ``referencers`` deals with the rendering of academic references
+
+# [web plugin] Global app architecture : redux architecture
 
 ![Peritext architecture](https://raw.githubusercontent.com/robindemourat/peritext/master/specification/assets/peritext-architecture.png)
 
@@ -48,7 +66,7 @@ Architecture :
 * Immutable
 * https://www.npmjs.com/package/react-isomorphic-render
 
-* uniloc or react-router (routing)
+* uniloc or **react-router** (routing)
 * axios (http requests)
 * redux-api-middleware --> https://www.npmjs.com/package/redux-api-middleware
 
@@ -118,7 +136,10 @@ There are three different data source supporting different needs.
 
 **Assets source (eg=Amazon s3)** represents all assets being used in resources and figures. They are typically images, videos, data files, and so on ...
 
-**Annotation source (default=Disqus)** is used to allow for comments on specific entities of the document (paragraphs / figures / citations / ...). For the future two things must be kept in mind :
+**Annotation source (default=Disqus)** is used to allow for comments on specific entities of the document (paragraphs / figures / citations / ...). 
+
+For the future two things must be kept in mind :
+
 * in the future of the project, read/write and git-based version of peritext, comments should be able to be targeted both at a specific entity and a specific record of the publication
 * ideally, it could be great to add a layer on top of discussion system (through inline syntax ?) in order to support more precise contributions : support the editorial process (change suggestions, ...), opinion giving, fact-checking, linking to another entity of the publication, ...
 
@@ -127,12 +148,17 @@ There are three different data source supporting different needs.
 Peritext is made of sections. Each section is a linear "part" of the document to display, figuring either a chapter, a section, or even a paragraph if the writer wants to go to this level of granularity.
 
 Each section is made of several types of data :
-* *metadata* : title, author, abstract, ...
-* *resources* : objects which are quoted, used, cited, visualized inside the section. Linkd to contextualizations.
-* *content* : linear, xml/html structured, textual content. Linked to contextualizations and notes, and possibly to metadata through template calls.
-* *notes* : pointed in contents and similar, aside or foot contents. Linked to contents and contextualizations.
-* *contextualizers* : descriptions of some ways to display resources. Linked to contextualizatiosn.
-* *contextualizations* : pointed in contents, resources contextualizations through a contextualizer
+
+* ***metadata*** : title, author, abstract, ...
+* ***resources*** : objects which are quoted, used, cited, visualized inside the section. Linkd to contextualizations.
+* ***data*** : resource-related data (tables, etc.). An array composed of elements which are either an unresolved Promise, the data, or an error. These promises are defined during the content parsing process. They are resolved either lazyly for dynamic web-like outputs, or alltogether for static (e.g. pdf) outputs
+* ***content*** : content composed of a collection or react components. Linked to contextualizations and notes, and possibly to metadata through template calls.
+* ***notes*** : pointed in contents and similar, aside or foot contents. Linked to contents and contextualizations.
+* ***contextualizers*** : descriptions of some ways to display resources. Linked to contextualizatiosn.
+* ***contextualizations*** : pointed in contents, resources contextualizations through a contextualizer
+* ***customizers*** : set of data that customize a specific document aspect
+  - ***css*** : document or section specific style rules
+  - ***settings***: rules about the disposition of contents (whether to put a cover, where to put notes and figures, whether and where to display table of contents, etc.)
 
 Each section inherits by default some data (like metadata) from the root section, and possibly from its parent when it has one.
 
@@ -140,12 +166,13 @@ However, some elements of the contents will be repeatedly called in the document
 
 That's why we should separate "resources" and "resources contextualization" through "contextualizers" in peritext's conceptual model.
 
-"Resources" are of several types :
+"Resources" are of several types, that can be sorted into three broad categories :
+
 * **bibliographical records** : books, documents, ...
 * **data/media** source metadata : images, video, tables, ... which have invariant information (owner, technical information, way to retrieve it)
 * **entities (or glossary entries)** : bound to notions, persons, places, ... these are "things" cited in the document.
 
-They are handled in very different way when featured in sections, but described with the same type of syntax, extended from the BibTeX standard.
+They are handled in very different ways when featured in sections, but described with the same type of syntax, extended from the BibTeX standard.
 
 Then, they are called inside the document through what I chose to call 'countextualizer', which is a way of specifying how it should be displayed. The conjunction of a resource, a contextualizer and a anchoring point inside the contents constitute a "contextualization".
 
@@ -153,55 +180,15 @@ Then, they are called inside the document through what I chose to call 'countext
 * data/media can be inserted inside the document, used to produce a visualization, displayed in rough form as aside figure
 * entities can be used to generate a glossary, or just to enrich the semanticity of a page ...
 
-# Forseen code structure (instable)
+# Modules
 
-Everything here should be in a src/ file distinct from built code :
+Peritext modules could be categorised as following :
 
-```
-.
-//logic and utils modules
-|+--config //everything related to the bootstrapping and specification of the app
-|   +--defaultModels //default metadata models for the application
-|       +--metadataEntities.json //escription (by domain) of the diverse metadata entities
-|       +--metadataPropagation.json // "table" of metadata entity propagation relations (ordered)
-|   +--defaultTemplates //default templates models for the application
-|       +--toc.md
-|       +--short-citation.md
-|       +--long-citation.md
-|   +--config.json //dev and prod configs + application sources (for contents, assets, and comments : flatfile, s3, disqus ...)
-|   +--credentials.json //all private credentials (zotero, google analytics, data sources, ...)
-+--connectors
-|      +--filesystem //handle flatfiles management on local server files
-|      +--s3//handle flatfiles management on S3
-|      +--drive//handle flatfiles management on drive
-|      +--ftp//handle flatfiles management on ftp
-|      +--github//handle flatfiles management on github
-|      +--disqus//default system for annotation management
-|+--converters //parsers/serialisers at different levels on top of the file structure tree level
-|      +--bibTexConverter
-|      +--sectionConverter
-|+--controllers // internal controllers for transactions with different sources (contents, assets, annotations)
-|       +--annotationsController
-|       +--contentsController
-|       +--assetsController
-|+--validators // Functions which take an object containing inputs and return an object containing any errors and also a "purified" version of the object
-|      +--metadataValidator
-|      +--resourceValidator
-|+--models //unchangeable models (using Immutable lib ?) for metadata parsing, ...
-|      +--resourceTypes.json //types of accepted resources types and related information
-|      +--sectionTypes.json //types of sections/documents (book, ...) with inheritance and accepted metadata
-
-//app-relative architecture
-|+--actions // Redux action creators
-|+--actors // Handle changes to the store's state
-|+--components // React components, stateless where possible
-|+--constants // Define stateless data
-|+--containers // Unstyled "smart" components which take the store's state and dispatch, and possibly navigation location, and pass them to "dumb" components
-|+--reducers // Redux reducers
-|+--static // Files which will be copied across to the root directory on build
-|+--styles // Helpers for stylesheets for individual components
-|+--intl //internationalized UI contents
-```
+* the ``core`` of the app is about turning a custom representation of a flatfile content (called ``fsTree`` in app. jargon) into a javascript array representing a series of sections (called ``peritextSectionsArray``), the first being the document root
+* the ``connectors`` plugins handle how to get an ``fsTree`` representation from a given source of data, and how to set the content of a given source of data from a ``fsTree`` representation
+* the ``contextualizers`` plugins handle a specific contextualizer and how to handle it in static/block, static/inline, dynamic/block and dynamic/inline forms
+* the ``renderers`` plugins render a ``peritextSectionsArray`` to a specific data format
+* the ``exporters`` plugins produce a file in a specific format (pdf, epub, ...)
 
 
 # Parsers

@@ -9,24 +9,13 @@
 }
 
 @contextualizer{cool_timeline,
-    	dateformat = {%Y-%m-%d},
-	disposition = {superpose},
-	layer = {dates=@res1.data.dates,labels=@res1.data.labels,title=hello ça va},
-	layer = {dates=@res2.data.dates,labels=@res2.data.labels},
+    	type = {timeline},
 	title = {My cool timeline},
-	inheritedVerticallyFrom = {mybook},
-	type = {timeline},
-	outputmode = {all}
+	layer = {dates=@res1.data.dates,title=hello ça va,labels=@res1.data.labels},
+	layer = {dates=@res2.data.dates,labels=@res2.data.labels},
+	inheritedVerticallyFrom = {mybook}
 }
 
-@contextualizer{cool_timeline_1,
-    	dateformat = {%Y-%m-%d},
-	disposition = {superpose},
-	layer = {dates=@res1.data.dates,labels=@res1.data.labels,title=hello ça va},
-	layer = {dates=@res2.data.dates,labels=@res2.data.labels},
-	title = {My cool timeline},
-	inheritedVerticallyFrom = {mybook},
-	type = {timeline},
-	overloading = {cool_timeline},
-	outputmode = {all}
+@contextualizer{@cool_timeline_1,
+    	overloading = {@cool_timeline}
 }

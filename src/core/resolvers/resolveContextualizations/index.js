@@ -1,17 +1,17 @@
 import {getMetaValue} from './../../utils/sectionUtils';
 import {getResourceModel, getContextualizerModel, resolvePropAgainstType} from './../../utils/modelUtils';
-import * as contextualizers from './../../contextualizers/';
+import * as contextualizers from './../../../contextualizers/';
 
  // I transform 1, 2, 3 incrementation into a, b, c
-export function numbersToLetters(num) {
+export const numbersToLetters = (num) =>{
   const mod = num % 26;
   let pow = num / 26 | 0;
   const out = mod ? String.fromCharCode(64 + mod) : (--pow, 'Z');
   return pow ? numbersToLetters(pow) + out : out.toLowerCase();
-}
+};
 
 // I resolve a contextualizer assertion against its model and context, and record errors
-function resolveContextualizer(contextualizer, section, models) {
+const resolveContextualizer = (contextualizer, contextualization, section, models) =>{
   const err = [];
   let newContextualizer = Object.assign({}, contextualizer);
   // if overloading, first fetch the existing contextualizer
@@ -21,9 +21,9 @@ function resolveContextualizer(contextualizer, section, models) {
     const original = section.contextualizers.find((cont) =>{
       return cont.citeKey === overload;
     });
-    // resolve original
+    // resolve original first
     if (original) {
-      const originalFormatted = resolveContextualizer(original, section, models).finalContextualizer;
+      const originalFormatted = resolveContextualizer(original, contextualization, section, models).finalContextualizer;
       newContextualizer = Object.assign(originalFormatted, newContextualizer);
     } else {
       // no original found ==> overloading reference error
@@ -37,11 +37,8 @@ function resolveContextualizer(contextualizer, section, models) {
   }
   // guess contextualizer type if needed
   if (!newContextualizer.type) {
-    if (newContextualizer.resources.length > 0) {
-      const sourceKey = newContextualizer.resources[0];
-      const source = section.resources.find((resource)=>{
-        return resource.citeKey === sourceKey;
-      });
+    if (contextualization.resources.length > 0) {
+      const source = contextualization.resources[0];
       if (source === undefined) {
         err.push({
           type: 'error',
@@ -71,48 +68,36 @@ function resolveContextualizer(contextualizer, section, models) {
     return obj;
   }, {});
   return {err, finalContextualizer};
-}
+};
 
 // I build formatted objects for contextualizers and contextualizations, and record related parsing and model-related errors
-export function resolveContextualizersAndContextualizations({section, models}, cb) {
+export const resolveBindings = ({section, models}, cb) =>{
   let errors = [];
-
-  // populate contextualizers against their models
-  section.contextualizers = section.contextualizers.map((contextualizer)=>{
-    const {err, finalContextualizer} = resolveContextualizer(contextualizer, section, models);
+  // find implicit contextualizers types
+  section.contextualizations = section.contextualizations.map(contextualization =>{
+    // populate contextualizers against their models
+    const {err, finalContextualizer} = resolveContextualizer(contextualization.contextualizer, contextualization, section, models);
     if (err.length) {
       errors = errors.concat(err);
+    } else {
+      contextualization.contextualizer = finalContextualizer;
     }
-    return finalContextualizer;
-  });
-
-
+    return contextualization;
   // verify that all required resources exist
-  section.contextualizations = section.contextualizations.filter((contextualization) =>{
+  }).filter((contextualization) =>{
     let ok = true;
-    // prepare resourceType<->contextualizerType compatibility check
-    const contextualizer = section.contextualizers.find((cont) =>{
-      return cont && cont.citeKey === contextualization.contextualizer;
-    });
-    if (contextualizer === undefined) {
+    if (contextualization.contextualizer === undefined) {
       errors.push({
         type: 'error',
         preciseType: 'invalidContextualization',
         sectionCiteKey: getMetaValue(section.metadata, 'general', 'citeKey'),
-        message: 'contextualizer ' + contextualization.contextualizer + ' was not found'
+        message: 'contextualizer was not found for contextualization ' + contextualization
       });
       return cb(null, {errors, section});
     }
-    contextualization.contextualizerType = contextualizer.type;
-
-    const acceptedResourceTypes = getContextualizerModel(contextualizer.type, models.contextualizerModels).acceptedResourceTypes;
-
+    const acceptedResourceTypes = getContextualizerModel(contextualization.contextualizer.type, models.contextualizerModels).acceptedResourceTypes;
     // resources compatibility and existence check
-    contextualization.resources.some((resId) =>{
-      // find related resource
-      const res = section.resources.find((resource) =>{
-        return resource.citeKey === resId;
-      });
+    contextualization.resources.some((res) =>{
       // resource exists, check if it is accepted for the contextualizerType
       if (res !== undefined) {
         let accepted = false;
@@ -143,25 +128,23 @@ export function resolveContextualizersAndContextualizations({section, models}, c
       return ok;
     });
     return ok;
-  }).map((cont) =>{
-    const contextualizer = section.contextualizers.find((con) =>{
-      return con.citeKey === cont.contextualizer;
-    });
-    return Object.assign({}, cont, contextualizer, {type: cont.type, citeKey: cont.citeKey});
   });
   cb(null, {errors, section});
-}
+};
 
-export function resolveContextualizationsRelations(sections, settings) {
+export const resolveContextualizationsRelations = (sections, settings) =>{
   let opCitIndex;
   let sameResPrint;
   return sections.reduce((inputSections, sectio, index)=> {
     sectio.contextualizations = sectio.contextualizations.reduce((conts, contextualization, contIndex) => {
-      contextualization.resPrint = contextualization.resources.join('-');
+      contextualization.resPrint = contextualization.resources.map(res =>{
+        return res.citeKey;
+      }).join('-');
       // opcit section
       sameResPrint = conts.find((cont2, cont2Index)=> {
         if (cont2.resPrint === contextualization.resPrint) {
           opCitIndex = cont2Index;
+          contextualization.precursorCiteKey = cont2.citeKey;
           return true;
         }
       });
@@ -172,14 +155,20 @@ export function resolveContextualizationsRelations(sections, settings) {
       // todo opcit document
 
       // ibid section
-      if (opCitIndex && opCitIndex === contIndex - 1) {
-        contextualization.sectionIbid = true;
+      if (opCitIndex) {
+        const substrate = conts.slice(opCitIndex, contIndex).filter(oCont=> {
+          return oCont.contextualizer.type === contextualization.contextualizer.type;
+        });
+        if (substrate.length === 2) {
+          contextualization.sectionIbid = true;
+        }
       }
+
       // todo ibid document
 
-      if (contextualization.contextualizerType === 'citation') {
+      if (contextualization.contextualizer.type === 'citation') {
         // same authors but different work in year - section scale
-        contextualization.authorsPrint = contextualization.author.reduce((str, author)=> {
+        contextualization.authorsPrint = contextualization.resources[0].author.reduce((str, author)=> {
           return str + author.lastName + '-' + author.firstName;
         }, '');
 
@@ -192,7 +181,6 @@ export function resolveContextualizationsRelations(sections, settings) {
             return true;
           }
         });
-
         // todo same authors in year but different work - at document scale
       }
 
@@ -202,15 +190,21 @@ export function resolveContextualizationsRelations(sections, settings) {
 
     return inputSections.concat(sectio);
   }, []);
-}
+};
 
 // I 'reduce' contextualizations statements to produce a new rendering-specific section representation
-export function resolveContextualizationsImplementation(section, renderingMode, settings) {
+export const resolveContextualizationsImplementation = (section, renderingMode, settings) =>{
   let contextualizer;
   const sectio = section.contextualizations.reduce((inputSection, contextualization) => {
-    contextualizer = contextualizers[contextualization.contextualizerType];
+    // rebind resources
+    contextualization.resources = contextualization.resources.map(res1 =>{
+      return inputSection.resources.find(res2 =>{
+        return res1.citeKey === res2.citeKey;
+      });
+    });
+    contextualizer = contextualizers[contextualization.contextualizer.type];
     if (contextualizer === undefined) {
-      console.log('no contextualizer was found for type ', contextualization.contextualizerType);
+      console.log('no contextualizer function was found for type ', contextualization.contextualizer.type);
       return Object.assign({}, inputSection);
     }
     switch (renderingMode) {
@@ -241,4 +235,4 @@ export function resolveContextualizationsImplementation(section, renderingMode, 
   }, Object.assign({}, section));
 
   return sectio;
-}
+};

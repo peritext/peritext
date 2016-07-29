@@ -1,7 +1,7 @@
 import {expect} from 'chai';
 import {waterfall} from 'async';
 
-import * as connector from './../../../src/core/connectors/filesystem';
+import * as connector from './../../../src/connectors/filesystem';
 import {exists} from 'fs';
 import * as lib from './../../../src/core/controllers/contentsController';
 

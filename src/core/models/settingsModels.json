@@ -4,8 +4,8 @@
     "valueType" : "string",
     "values" : [
       "footnotes",
-      "sectionend",
-      "documentend"
+      "section-end",
+      "document-end"
     ],
     "default" : "footnotes"
   },
@@ -36,7 +36,7 @@
       "type"
     ]
   },
-  "tocPosition" : {
+  "contentsTablePosition" : {
     "description": "Where to put the table of contents",
     "valueType": "string",
     "default": "begining",
@@ -47,6 +47,12 @@
     "valueType": "string",
     "default": "end",
     "values": ["begining", "end", "none"]
+  },
+  "figuresPosition" : {
+    "description": "Where to put the figures in static outputs",
+    "valueType": "string",
+    "default": "inline",
+    "values": ["inline", "section-end", "document-end"]
   },
   "glossaryPosition" : {
     "description": "Where to put the glossary ?",

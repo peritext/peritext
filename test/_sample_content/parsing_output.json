@@ -310,24 +310,109 @@
       ],
       "contents": [
         {
-          "html": "<h1 id=\"forewords\">Forewords</h1>",
-          "tagType": "heading"
+          "node": "element",
+          "tag": "h1",
+          "attr": {
+            "id": "forewords"
+          },
+          "child": [
+            {
+              "node": "text",
+              "text": "Forewords",
+              "blockIndex": 0
+            }
+          ],
+          "blockIndex": 0
         },
         {
-          "html": "<p>These are the forewords</p>",
-          "tagType": "p"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 1
         },
         {
-          "html": "<p>Thanks to all !</p>",
-          "tagType": "p"
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "These are the forewords",
+              "blockIndex": 2
+            }
+          ],
+          "blockIndex": 2
         },
         {
-          "html": "<p>Momanddad\nThe dog\nMy imaginary friend Serge</p>",
-          "tagType": "p"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 3
         },
         {
-          "html": "<p>I am just there, not linked to <code>content.md</code>. I should be put at the end of content by alphabetical order.</p>",
-          "tagType": "p"
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Thanks to all !",
+              "blockIndex": 4
+            }
+          ],
+          "blockIndex": 4
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 5
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Momanddad\nThe dog\nMy imaginary friend Serge",
+              "blockIndex": 6
+            }
+          ],
+          "blockIndex": 6
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 7
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "I am just there, not linked to ",
+              "blockIndex": 8
+            },
+            {
+              "node": "element",
+              "tag": "code",
+              "child": [
+                {
+                  "node": "text",
+                  "text": "content.md",
+                  "blockIndex": 8
+                }
+              ],
+              "blockIndex": 8
+            },
+            {
+              "node": "text",
+              "text": ". I should be put at the end of content by alphabetical order.",
+              "blockIndex": 8
+            }
+          ],
+          "blockIndex": 8
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 9
         }
       ],
       "resources": [
@@ -492,28 +577,26 @@
       },
       "contextualizers": [
         {
-          "dateformat": "%Y-%m-%d",
-          "disposition": "superpose",
+          "bibType": "contextualizer",
+          "citeKey": "cool_timeline",
+          "type": "timeline",
+          "title": "My cool timeline",
           "layer": [
             {
               "dates": "@res1.data.dates",
-              "labels": "@res1.data.labels",
-              "title": "hello ça va"
+              "title": "hello ça va",
+              "labels": "@res1.data.labels"
             },
             {
               "dates": "@res2.data.dates",
               "labels": "@res2.data.labels"
             }
-          ],
-          "title": "My cool timeline",
-          "citeKey": "cool_timeline",
-          "type": "timeline",
-          "outputmode": "all"
+          ]
         }
       ],
       "markdownContents": "# Forewords\n\nThese are the forewords\n\nThanks to all !\n\nMomanddad\nThe dog\nMy imaginary friend Serge\n\n\nI am just there, not linked to ``content.md``. I should be put at the end of content by alphabetical order.\n\n\n",
-      "notes": [],
-      "contextualizations": []
+      "contextualizations": [],
+      "notes": []
     },
     {
       "metadata": [
@@ -858,112 +941,976 @@
       ],
       "contents": [
         {
-          "html": "<h1 id=\"this-is-part-one\">This is part one</h1>",
-          "tagType": "heading"
+          "node": "element",
+          "tag": "h1",
+          "attr": {
+            "id": "this-is-part-one"
+          },
+          "child": [
+            {
+              "node": "text",
+              "text": "This is part one",
+              "blockIndex": 0
+            }
+          ],
+          "blockIndex": 0
         },
         {
-          "html": "<BlockContextualization id=\"contextualization_1\" resources=\"@temporal_data\" contextualizer=\"cool_timeline_1\">A reference</BlockContextualization>",
-          "tagType": "BlockContextualization"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 1
         },
         {
-          "html": "<BlockContextualization id=\"contextualization_2\" resources=\"@temporal_data\" contextualizer=\"cool_timeline_2\">Another view on the timeline</BlockContextualization>",
-          "tagType": "BlockContextualization"
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "element",
+              "tag": "blockC",
+              "attr": {
+                "src": "contextualization_0",
+                "alt": [
+                  "A",
+                  "reference",
+                  "to",
+                  "a",
+                  "timeline",
+                  "should",
+                  "display",
+                  "here",
+                  "when",
+                  "timeline",
+                  "is",
+                  "ready"
+                ]
+              },
+              "blockIndex": 2,
+              "child": [
+                {
+                  "node": "element",
+                  "tag": "p",
+                  "child": [
+                    {
+                      "node": "text",
+                      "text": "A reference to a timeline should display here when timeline is ready",
+                      "blockIndex": 2
+                    }
+                  ],
+                  "blockIndex": 2
+                }
+              ]
+            }
+          ],
+          "blockIndex": 2
         },
         {
-          "html": "<p>I am inline referencing to an <InlineContextualization id=\"contextualization_9\" resources=\"@image_test_1\" contextualizer=\"contextualizer_9\">image</InlineContextualization>.</p>",
-          "tagType": "p"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 3
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, fugit, id. Unde nulla incidunt sapiente reiciendis atque similique totam, facere earum dolores. Soluta earum, autem! Fugit, iure, repellat. Nesciunt, inventore.</p>",
-          "tagType": "p"
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "element",
+              "tag": "blockC",
+              "attr": {
+                "src": "contextualization_1",
+                "alt": [
+                  "Another",
+                  "view",
+                  "on",
+                  "the",
+                  "timeline"
+                ]
+              },
+              "blockIndex": 4,
+              "child": [
+                {
+                  "node": "element",
+                  "tag": "p",
+                  "child": [
+                    {
+                      "node": "text",
+                      "text": "Another view on the timeline",
+                      "blockIndex": 4
+                    }
+                  ],
+                  "blockIndex": 4
+                }
+              ]
+            }
+          ],
+          "blockIndex": 4
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi necessitatibus aliquam nisi odio et perferendis reiciendis porro, fugit repellat similique consequuntur dolor perspiciatis? Laborum doloribus ducimus alias sequi sapiente! Voluptate.</p>",
-          "tagType": "p"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 5
         },
         {
-          "html": "<p>Then I want to say that the image I just showed <InlineContextualization id=\"contextualization_10\" resources=\"@image_test_1\" contextualizer=\"contextualizer_10\">image</InlineContextualization> is awesome.</p>",
-          "tagType": "p"
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "I am inline referencing to an ",
+              "blockIndex": 6
+            },
+            {
+              "node": "element",
+              "tag": "inlineC",
+              "attr": {
+                "href": "contextualization_2"
+              },
+              "child": [
+                {
+                  "node": "text",
+                  "text": "image",
+                  "blockIndex": 6
+                }
+              ],
+              "blockIndex": 6
+            },
+            {
+              "node": "text",
+              "text": ".",
+              "blockIndex": 6
+            }
+          ],
+          "blockIndex": 6
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio nemo eius autem, saepe dolore nam iste ex inventore, minus neque mollitia molestias facere asperiores vel voluptas beatae esse perspiciatis cupiditate.</p>",
-          "tagType": "p"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 7
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore commodi maxime laborum cupiditate nam consequuntur in. Laudantium autem, accusantium! Iure, autem quas quis, odit fugit dolor voluptatum esse quisquam asperiores.</p>",
-          "tagType": "p"
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, fugit, id. Unde nulla incidunt sapiente reiciendis atque similique totam, facere earum dolores. Soluta earum, autem! Fugit, iure, repellat. Nesciunt, inventore.",
+              "blockIndex": 8
+            }
+          ],
+          "blockIndex": 8
         },
         {
-          "html": "<p>And then I want to display a group of images :</p>",
-          "tagType": "p"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 9
         },
         {
-          "html": "<BlockContextualization id=\"contextualization_4\" resources=\"@image_test_1,@image_test_2\" contextualizer=\"contextualizer_3\">A group of images</BlockContextualization>",
-          "tagType": "BlockContextualization"
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi necessitatibus aliquam nisi odio et perferendis reiciendis porro, fugit repellat similique consequuntur dolor perspiciatis? Laborum doloribus ducimus alias sequi sapiente! Voluptate.",
+              "blockIndex": 10
+            }
+          ],
+          "blockIndex": 10
         },
         {
-          "html": "<p>And then I want to point to an <InlineContextualization id=\"contextualization_11\" resources=\"@website_test\" contextualizer=\"contextualizer_11\">online</InlineContextualization> resource.</p>",
-          "tagType": "p"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 11
         },
         {
-          "html": "<BlockContextualization id=\"contextualization_6\" resources=\"@website_test\" contextualizer=\"contextualizer_5\">This is a block website contextualization, displaying a poster or the resource (typically a screenshot) if specified</BlockContextualization>",
-          "tagType": "BlockContextualization"
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Then I want to say that the ",
+              "blockIndex": 12
+            },
+            {
+              "node": "element",
+              "tag": "inlineC",
+              "attr": {
+                "href": "contextualization_3"
+              },
+              "child": [
+                {
+                  "node": "text",
+                  "text": "image",
+                  "blockIndex": 12
+                }
+              ],
+              "blockIndex": 12
+            },
+            {
+              "node": "text",
+              "text": " that I showed is awesome.",
+              "blockIndex": 12
+            }
+          ],
+          "blockIndex": 12
         },
         {
-          "html": "<p>I will talk about that[^]{with a footnote here} :</p>",
-          "tagType": "p"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 13
         },
         {
-          "html": "<BlockContextualization id=\"contextualization_8\" resources=\"@temporal_data\" contextualizer=\"contextualizer_7\">Another reference with unnamed contextualizer</BlockContextualization>",
-          "tagType": "BlockContextualization"
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio nemo eius autem, saepe dolore nam iste ex inventore, minus neque mollitia molestias facere asperiores vel voluptas beatae esse perspiciatis cupiditate.",
+              "blockIndex": 14
+            }
+          ],
+          "blockIndex": 14
         },
         {
-          "html": "<p>I will first quote in a book where someone that says <InlineContextualization id=\"contextualization_12\" resources=\"@ab94\" contextualizer=\"contextualizer_12\">it&#39;s not possible</InlineContextualization>.\nBut I would like to quote again my <InlineContextualization id=\"contextualization_13\" resources=\"@image_test_1,@image_test_2\" contextualizer=\"contextualizer_13\">group of images</InlineContextualization>.</p>",
-          "tagType": "p"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 15
         },
         {
-          "html": "<p>Then I should have an ibid here [^]{<InlineContextualization id=\"contextualization_14\" resources=\"@ab94\" contextualizer=\"contextualizer_14\"></InlineContextualization>.}</p>",
-          "tagType": "p"
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore commodi maxime laborum cupiditate nam consequuntur in. Laudantium autem, accusantium! Iure, autem quas quis, odit fugit dolor voluptatum esse quisquam asperiores.",
+              "blockIndex": 16
+            }
+          ],
+          "blockIndex": 16
         },
         {
-          "html": "<p>And as say a lot of people[^]{<InlineContextualization id=\"contextualization_15\" resources=\"@martin_change_2002\" contextualizer=\"contextualizer_15\"></InlineContextualization>}, publishing could be simpler.</p>",
-          "tagType": "p"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 17
         },
         {
-          "html": "<p>I&#39;m now going to quote a book from the same authors in the same year, but different - it should add a b but let&#39;s see what&#39;s in the footnote[^]{<InlineContextualization id=\"contextualization_16\" resources=\"@martin_change_2002b\" contextualizer=\"contextualizer_16\"></InlineContextualization>}.</p>",
-          "tagType": "p"
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "And then I want to display a group of images :",
+              "blockIndex": 18
+            }
+          ],
+          "blockIndex": 18
         },
         {
-          "html": "<p>And for the footnotes, I want to say that Martin said that[^]{I&#39;m referencing to <InlineContextualization id=\"contextualization_17\" resources=\"@martin_change_2002\" contextualizer=\"contextualizer_17\"></InlineContextualization> when he says : &quot;hello&quot;}</p>",
-          "tagType": "p"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 19
         },
         {
-          "html": "<p>Whe Martin says <InlineContextualization id=\"contextualization_18\" resources=\"@martin_change_2002\" contextualizer=\"contextualizer_18\">there has to be some <em>change</em></InlineContextualization>.</p>",
-          "tagType": "p"
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "element",
+              "tag": "blockC",
+              "attr": {
+                "src": "contextualization_4",
+                "alt": [
+                  "A",
+                  "group",
+                  "of",
+                  "images"
+                ]
+              },
+              "blockIndex": 20,
+              "child": [
+                {
+                  "node": "element",
+                  "tag": "p",
+                  "child": [
+                    {
+                      "node": "text",
+                      "text": "A group of images",
+                      "blockIndex": 20
+                    }
+                  ],
+                  "blockIndex": 20
+                }
+              ]
+            }
+          ],
+          "blockIndex": 20
         },
         {
-          "html": "<p>Now let&#39;s say I want to link to this <InlineContextualization id=\"contextualization_19\" resources=\"@temporal_data\" contextualizer=\"contextualizer_19\">timeline</InlineContextualization> and continue my paragraph quietly.</p>",
-          "tagType": "p"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 21
         },
         {
-          "html": "<p>Welcome to my awesome book.</p>",
-          "tagType": "p"
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "And then I want to point to an ",
+              "blockIndex": 22
+            },
+            {
+              "node": "element",
+              "tag": "inlineC",
+              "attr": {
+                "href": "contextualization_5"
+              },
+              "child": [
+                {
+                  "node": "text",
+                  "text": "online",
+                  "blockIndex": 22
+                }
+              ],
+              "blockIndex": 22
+            },
+            {
+              "node": "text",
+              "text": " resource.",
+              "blockIndex": 22
+            }
+          ],
+          "blockIndex": 22
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
-          "tagType": "p"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 23
         },
         {
-          "html": "<p>An inline resource video, it should display a thumbnail or something in static mode even if its not visible :</p>",
-          "tagType": "p"
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "element",
+              "tag": "blockC",
+              "attr": {
+                "src": "contextualization_6",
+                "alt": [
+                  "This",
+                  "is",
+                  "a",
+                  "block",
+                  "*website*",
+                  "contextualization,",
+                  "displaying",
+                  "a",
+                  "poster",
+                  "or",
+                  "the",
+                  "resource",
+                  "(typically",
+                  "a",
+                  "screenshot)",
+                  "if",
+                  "specified"
+                ]
+              },
+              "blockIndex": 24,
+              "child": [
+                {
+                  "node": "element",
+                  "tag": "p",
+                  "child": [
+                    {
+                      "node": "text",
+                      "text": "This is a block ",
+                      "blockIndex": 24
+                    },
+                    {
+                      "node": "element",
+                      "tag": "em",
+                      "child": [
+                        {
+                          "node": "text",
+                          "text": "website",
+                          "blockIndex": 24
+                        }
+                      ],
+                      "blockIndex": 24
+                    },
+                    {
+                      "node": "text",
+                      "text": " contextualization, displaying a poster or the resource (typically a screenshot) if specified",
+                      "blockIndex": 24
+                    }
+                  ],
+                  "blockIndex": 24
+                }
+              ]
+            }
+          ],
+          "blockIndex": 24
         },
         {
-          "html": "<p>I am now talking about <InlineContextualization id=\"contextualization_20\" resources=\"@materiality\" contextualizer=\"contextualizer_20\">material things</InlineContextualization>. But I would prefer to register it as <InlineContextualization id=\"contextualization_21\" resources=\"@materiality\" contextualizer=\"contextualizer_21\">a concept</InlineContextualization>, for instance &quot;materiality of things&quot;. Check out the glossary !.</p>",
-          "tagType": "p"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 25
         },
         {
-          "html": "<ul>\n<li>a first list level<ul>\n<li>second list level</li>\n</ul>\n</li>\n<li>return to first list level</li>\n</ul>",
-          "tagType": "ul"
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "I will talk about that",
+              "blockIndex": 26
+            },
+            {
+              "node": "element",
+              "tag": "note",
+              "attr": {
+                "href": "note_partie_11"
+              },
+              "child": [
+                {
+                  "node": "text",
+                  "text": "footnote",
+                  "blockIndex": 26
+                }
+              ],
+              "blockIndex": 26,
+              "target": "partie_11"
+            },
+            {
+              "node": "text",
+              "text": " :",
+              "blockIndex": 26
+            }
+          ],
+          "blockIndex": 26
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 27
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "element",
+              "tag": "blockC",
+              "attr": {
+                "src": "contextualization_7",
+                "alt": [
+                  "Another",
+                  "reference",
+                  "with",
+                  "unnamed",
+                  "contextualizer"
+                ]
+              },
+              "blockIndex": 28,
+              "child": [
+                {
+                  "node": "element",
+                  "tag": "p",
+                  "child": [
+                    {
+                      "node": "text",
+                      "text": "Another reference with unnamed contextualizer",
+                      "blockIndex": 28
+                    }
+                  ],
+                  "blockIndex": 28
+                }
+              ]
+            }
+          ],
+          "blockIndex": 28
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 29
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "I will first quote in a book where someone that says ",
+              "blockIndex": 30
+            },
+            {
+              "node": "element",
+              "tag": "inlineC",
+              "attr": {
+                "href": "contextualization_8"
+              },
+              "child": [
+                {
+                  "node": "text",
+                  "text": "it's not possible",
+                  "blockIndex": 30
+                }
+              ],
+              "blockIndex": 30
+            },
+            {
+              "node": "text",
+              "text": ".\nBut I would like to quote again my ",
+              "blockIndex": 30
+            },
+            {
+              "node": "element",
+              "tag": "inlineC",
+              "attr": {
+                "href": "contextualization_9"
+              },
+              "child": [
+                {
+                  "node": "text",
+                  "text": "group of images",
+                  "blockIndex": 30
+                }
+              ],
+              "blockIndex": 30
+            },
+            {
+              "node": "text",
+              "text": ".",
+              "blockIndex": 30
+            }
+          ],
+          "blockIndex": 30
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 31
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Then I should have an ibid here ",
+              "blockIndex": 32
+            },
+            {
+              "node": "element",
+              "tag": "note",
+              "attr": {
+                "href": "note_partie_12"
+              },
+              "child": [
+                {
+                  "node": "text",
+                  "text": "footnote",
+                  "blockIndex": 32
+                }
+              ],
+              "blockIndex": 32,
+              "target": "partie_12"
+            }
+          ],
+          "blockIndex": 32
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 33
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "And as say a lot of people",
+              "blockIndex": 34
+            },
+            {
+              "node": "element",
+              "tag": "note",
+              "attr": {
+                "href": "note_partie_13"
+              },
+              "child": [
+                {
+                  "node": "text",
+                  "text": "footnote",
+                  "blockIndex": 34
+                }
+              ],
+              "blockIndex": 34,
+              "target": "partie_13"
+            },
+            {
+              "node": "text",
+              "text": ", publishing could be simpler.",
+              "blockIndex": 34
+            }
+          ],
+          "blockIndex": 34
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 35
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "I'm now going to quote a book from the same authors in the same year, but different - it should add a b but let's see what's in the footnote",
+              "blockIndex": 36
+            },
+            {
+              "node": "element",
+              "tag": "note",
+              "attr": {
+                "href": "note_partie_14"
+              },
+              "child": [
+                {
+                  "node": "text",
+                  "text": "footnote",
+                  "blockIndex": 36
+                }
+              ],
+              "blockIndex": 36,
+              "target": "partie_14"
+            },
+            {
+              "node": "text",
+              "text": ".",
+              "blockIndex": 36
+            }
+          ],
+          "blockIndex": 36
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 37
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "And for the footnotes, I want to say that Martin said that",
+              "blockIndex": 38
+            },
+            {
+              "node": "element",
+              "tag": "note",
+              "attr": {
+                "href": "note_partie_15"
+              },
+              "child": [
+                {
+                  "node": "text",
+                  "text": "footnote",
+                  "blockIndex": 38
+                }
+              ],
+              "blockIndex": 38,
+              "target": "partie_15"
+            }
+          ],
+          "blockIndex": 38
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 39
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Whe Martin says ",
+              "blockIndex": 40
+            },
+            {
+              "node": "element",
+              "tag": "inlineC",
+              "attr": {
+                "href": "contextualization_14"
+              },
+              "child": [
+                {
+                  "node": "text",
+                  "text": "there has to be some ",
+                  "blockIndex": 40
+                },
+                {
+                  "node": "element",
+                  "tag": "em",
+                  "child": [
+                    {
+                      "node": "text",
+                      "text": "change",
+                      "blockIndex": 40
+                    }
+                  ],
+                  "blockIndex": 40
+                }
+              ],
+              "blockIndex": 40
+            },
+            {
+              "node": "text",
+              "text": ".",
+              "blockIndex": 40
+            }
+          ],
+          "blockIndex": 40
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 41
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Now let's say I want to link to this ",
+              "blockIndex": 42
+            },
+            {
+              "node": "element",
+              "tag": "inlineC",
+              "attr": {
+                "href": "contextualization_15"
+              },
+              "child": [
+                {
+                  "node": "text",
+                  "text": "timeline",
+                  "blockIndex": 42
+                }
+              ],
+              "blockIndex": 42
+            },
+            {
+              "node": "text",
+              "text": " and continue my paragraph quietly.",
+              "blockIndex": 42
+            }
+          ],
+          "blockIndex": 42
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 43
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Welcome to my awesome book.",
+              "blockIndex": 44
+            }
+          ],
+          "blockIndex": 44
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 45
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.",
+              "blockIndex": 46
+            }
+          ],
+          "blockIndex": 46
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 47
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "An inline resource video, it should display a thumbnail or something in static mode even if its not visible :",
+              "blockIndex": 48
+            }
+          ],
+          "blockIndex": 48
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 49
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "I am now talking about ",
+              "blockIndex": 50
+            },
+            {
+              "node": "element",
+              "tag": "inlineC",
+              "attr": {
+                "href": "contextualization_16"
+              },
+              "child": [
+                {
+                  "node": "text",
+                  "text": "material things",
+                  "blockIndex": 50
+                }
+              ],
+              "blockIndex": 50
+            },
+            {
+              "node": "text",
+              "text": ". But I would prefer to register it as ",
+              "blockIndex": 50
+            },
+            {
+              "node": "element",
+              "tag": "inlineC",
+              "attr": {
+                "href": "contextualization_17"
+              },
+              "child": [
+                {
+                  "node": "text",
+                  "text": "a concept",
+                  "blockIndex": 50
+                }
+              ],
+              "blockIndex": 50
+            },
+            {
+              "node": "text",
+              "text": ", for instance \"materiality of things\". Check out the glossary !.",
+              "blockIndex": 50
+            }
+          ],
+          "blockIndex": 50
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 51
+        },
+        {
+          "node": "element",
+          "tag": "ul",
+          "child": [
+            {
+              "node": "text",
+              "text": "\n",
+              "blockIndex": 52
+            },
+            {
+              "node": "element",
+              "tag": "li",
+              "child": [
+                {
+                  "node": "text",
+                  "text": "a first list level",
+                  "blockIndex": 52
+                },
+                {
+                  "node": "element",
+                  "tag": "ul",
+                  "child": [
+                    {
+                      "node": "text",
+                      "text": "\n",
+                      "blockIndex": 52
+                    },
+                    {
+                      "node": "element",
+                      "tag": "li",
+                      "child": [
+                        {
+                          "node": "text",
+                          "text": "second list level",
+                          "blockIndex": 52
+                        }
+                      ],
+                      "blockIndex": 52
+                    },
+                    {
+                      "node": "text",
+                      "text": "\n",
+                      "blockIndex": 52
+                    }
+                  ],
+                  "blockIndex": 52
+                },
+                {
+                  "node": "text",
+                  "text": "\n",
+                  "blockIndex": 52
+                }
+              ],
+              "blockIndex": 52
+            },
+            {
+              "node": "text",
+              "text": "\n",
+              "blockIndex": 52
+            },
+            {
+              "node": "element",
+              "tag": "li",
+              "child": [
+                {
+                  "node": "text",
+                  "text": "return to first list level",
+                  "blockIndex": 52
+                }
+              ],
+              "blockIndex": 52
+            },
+            {
+              "node": "text",
+              "text": "\n",
+              "blockIndex": 52
+            }
+          ],
+          "blockIndex": 52
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 53
         }
       ],
       "resources": [
@@ -1144,192 +2091,105 @@
       },
       "contextualizers": [
         {
-          "dateformat": "%Y-%m-%d",
-          "disposition": "superpose",
-          "layer": [
-            {
-              "dates": "@res1.data.dates",
-              "labels": "@res1.data.labels",
-              "title": "hello ça va"
-            },
-            {
-              "dates": "@res2.data.dates",
-              "labels": "@res2.data.labels"
-            }
-          ],
-          "title": "My cool timeline",
-          "inheritedVerticallyFrom": "mybook",
+          "bibType": "contextualizer",
           "citeKey": "cool_timeline",
           "type": "timeline",
-          "outputmode": "all"
-        },
-        {
-          "dateformat": "%Y-%m-%d",
-          "disposition": "superpose",
+          "title": "My cool timeline",
           "layer": [
             {
               "dates": "@res1.data.dates",
-              "labels": "@res1.data.labels",
-              "title": "hello ça va"
+              "title": "hello ça va",
+              "labels": "@res1.data.labels"
             },
             {
               "dates": "@res2.data.dates",
               "labels": "@res2.data.labels"
             }
           ],
-          "title": "My cool timeline",
-          "inheritedVerticallyFrom": "mybook",
-          "citeKey": "cool_timeline_1",
-          "type": "timeline",
-          "overloading": "cool_timeline",
-          "outputmode": "all"
+          "inheritedVerticallyFrom": "mybook"
+        },
+        {
+          "overloading": "@cool_timeline",
+          "citeKey": "@cool_timeline_1"
         },
         {
           "startat": "2012-21-01",
-          "dateformat": "%Y-%m-%d",
-          "disposition": "superpose",
-          "layer": [
-            {
-              "dates": "@res1.data.dates",
-              "labels": "@res1.data.labels",
-              "title": "hello ça va"
-            },
-            {
-              "dates": "@res2.data.dates",
-              "labels": "@res2.data.labels"
-            }
-          ],
-          "title": "My cool timeline",
-          "inheritedVerticallyFrom": "mybook",
-          "citeKey": "cool_timeline_2",
-          "type": "timeline",
           "describedInline": true,
-          "overloading": "cool_timeline",
-          "outputmode": "all"
+          "overloading": "@cool_timeline",
+          "citeKey": "@cool_timeline_2"
         },
         {
-          "title": "@res.title",
-          "citeKey": "contextualizer_3",
-          "type": "imageplayer",
           "describedInline": true,
-          "outputmode": "all"
+          "fullyImplicit": true,
+          "citeKey": "contextualizer_21"
         },
         {
-          "title": "@res.title",
-          "citeKey": "contextualizer_5",
-          "type": "webpage",
           "describedInline": true,
-          "outputmode": "all"
+          "fullyImplicit": true,
+          "citeKey": "contextualizer_31"
         },
         {
-          "dateformat": "%Y-%m-%d",
-          "disposition": "superpose",
+          "describedInline": true,
+          "fullyImplicit": true,
+          "citeKey": "contextualizer_41"
+        },
+        {
+          "describedInline": true,
+          "fullyImplicit": true,
+          "citeKey": "contextualizer_51"
+        },
+        {
+          "describedInline": true,
+          "fullyImplicit": true,
+          "citeKey": "contextualizer_61"
+        },
+        {
           "layer": {
             "layertype": "events",
             "data": "@res.data.dates",
             "labels": "@res.data.labels"
           },
-          "title": "My title",
-          "citeKey": "contextualizer_7",
           "type": "timeline",
+          "title": "My title",
           "describedInline": true,
-          "outputmode": "all"
+          "citeKey": "contextualizer_71"
         },
         {
-          "title": "@res.title",
-          "citeKey": "contextualizer_9",
-          "type": "imageplayer",
           "describedInline": true,
-          "outputmode": "all"
+          "fullyImplicit": true,
+          "citeKey": "contextualizer_81"
         },
         {
-          "title": "@res.title",
-          "citeKey": "contextualizer_10",
-          "type": "imageplayer",
           "describedInline": true,
-          "outputmode": "all"
-        },
-        {
-          "title": "@res.title",
-          "citeKey": "contextualizer_11",
-          "type": "webpage",
-          "describedInline": true,
-          "outputmode": "all"
-        },
-        {
-          "year": "@res.year",
-          "date": "@res.date",
-          "author": "@res.author",
-          "title": "@res.title",
-          "citeKey": "contextualizer_12",
-          "type": "citation",
-          "describedInline": true,
-          "outputmode": "all"
-        },
-        {
-          "title": "@res.title",
-          "citeKey": "contextualizer_13",
-          "type": "imageplayer",
-          "describedInline": true,
-          "outputmode": "all"
+          "fullyImplicit": true,
+          "citeKey": "contextualizer_91"
         },
         {
           "page": "12",
-          "year": "@res.year",
-          "date": "@res.date",
-          "author": "@res.author",
-          "title": "@res.title",
-          "citeKey": "contextualizer_14",
-          "type": "citation",
           "describedInline": true,
-          "outputmode": "all"
+          "citeKey": "contextualizer_101"
         },
         {
           "pages": "30-40",
-          "year": "@res.year",
-          "date": "@res.date",
-          "author": "@res.author",
-          "title": "@res.title",
-          "citeKey": "contextualizer_15",
-          "type": "citation",
           "describedInline": true,
-          "outputmode": "all"
+          "citeKey": "contextualizer_111"
         },
         {
           "pages": "32-36",
-          "year": "@res.year",
-          "date": "@res.date",
-          "author": "@res.author",
-          "title": "@res.title",
-          "citeKey": "contextualizer_16",
-          "type": "citation",
           "describedInline": true,
-          "outputmode": "all"
+          "citeKey": "contextualizer_121"
         },
         {
           "pages": "12-13",
-          "year": "@res.year",
-          "date": "@res.date",
-          "author": "@res.author",
-          "title": "@res.title",
-          "citeKey": "contextualizer_17",
-          "type": "citation",
           "describedInline": true,
-          "outputmode": "all"
+          "citeKey": "contextualizer_131"
         },
         {
-          "year": "@res.year",
-          "date": "@res.date",
-          "author": "@res.author",
-          "title": "@res.title",
-          "citeKey": "contextualizer_18",
-          "type": "citation",
           "describedInline": true,
-          "outputmode": "all"
+          "fullyImplicit": true,
+          "citeKey": "contextualizer_141"
         },
         {
-          "dateformat": "%Y-%m-%d",
-          "disposition": "superpose",
           "layer": [
             {
               "dates": "@res.data.dates",
@@ -1340,344 +2200,1051 @@
               "labels": "@res.data.labels"
             }
           ],
-          "title": "@res.title",
-          "citeKey": "contextualizer_19",
           "type": "timeline",
+          "caption": "This is a text with {stuf} but it should work",
           "describedInline": true,
-          "outputmode": "all"
+          "citeKey": "contextualizer_151"
         },
         {
           "alias": "",
-          "showdescription": "yes",
-          "title": "@res.title",
-          "citeKey": "contextualizer_20",
-          "type": "glossary",
           "describedInline": true,
-          "outputmode": "all"
+          "citeKey": "contextualizer_161"
         },
         {
           "alias": "materiality of things",
-          "showdescription": "yes",
-          "title": "@res.title",
-          "citeKey": "contextualizer_21",
-          "type": "glossary",
           "describedInline": true,
-          "outputmode": "all"
+          "citeKey": "contextualizer_171"
         }
       ],
-      "markdownContents": "# This is part one\n\n\n![A reference](@temporal_data){@cool_timeline}\n\n\n\n![Another view on the timeline](@temporal_data){@cool_timeline,\n    startat=\"2012-21-01\"\n}\n\nI am inline referencing to an [image](@image_test_1).\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, fugit, id. Unde nulla incidunt sapiente reiciendis atque similique totam, facere earum dolores. Soluta earum, autem! Fugit, iure, repellat. Nesciunt, inventore.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi necessitatibus aliquam nisi odio et perferendis reiciendis porro, fugit repellat similique consequuntur dolor perspiciatis? Laborum doloribus ducimus alias sequi sapiente! Voluptate.\n\nThen I want to say that the image I just showed [image](@image_test_1) is awesome.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Optio nemo eius autem, saepe dolore nam iste ex inventore, minus neque mollitia molestias facere asperiores vel voluptas beatae esse perspiciatis cupiditate.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore commodi maxime laborum cupiditate nam consequuntur in. Laudantium autem, accusantium! Iure, autem quas quis, odit fugit dolor voluptatum esse quisquam asperiores.\n\nAnd then I want to display a group of images :\n\n![A group of images](@image_test_1,@image_test_2)\n\nAnd then I want to point to an [online](@website_test) resource.\n\n![This is a block website contextualization, displaying a poster or the resource (typically a screenshot) if specified](@website_test)\n\nI will talk about that[^]{with a footnote here} :\n\n![Another reference with unnamed contextualizer](@temporal_data){\n    type=\"timeline\",\n    layer={layertype=events,data=@res.data.dates,labels=@res.data.labels},\n    title=\"My title\"\n}\n\nI will first quote in a book where someone that says [it's not possible](@ab94).\nBut I would like to quote again my [group of images](@image_test_1,@image_test_2).\n\nThen I should have an ibid here [^]{[](@ab94){page=\"12\"}.}\n\nAnd as say a lot of people[^]{[](@martin_change_2002){pages=\"30-40\"}}, publishing could be simpler.\n\nI'm now going to quote a book from the same authors in the same year, but different - it should add a b but let's see what's in the footnote[^]{[](@martin_change_2002b){pages=\"32-36\"}}.\n\nAnd for the footnotes, I want to say that Martin said that[^]{I'm referencing to [](@martin_change_2002){pages=\"12-13\"} when he says : \"hello\"}\n\nWhe Martin says [there has to be some *change*](@martin_change_2002).\n\nNow let's say I want to link to this [timeline](@temporal_data){\n    type=\"timeline\",\n    layer={dates=@res.data.dates,labels=@res.data.labels},\n    layer={dates=@res.data.dates,labels=@res.data.labels},\n    caption=\"This is a text with {stuf} but it should work\"\n} and continue my paragraph quietly.\n\nWelcome to my awesome book.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nAn inline resource video, it should display a thumbnail or something in static mode even if its not visible :\n\n\nI am now talking about [material things](@materiality){\nalias=\"\"\n}. But I would prefer to register it as [a concept](@materiality){alias=\"materiality of things\"}, for instance \"materiality of things\". Check out the glossary !.\n\n* a first list level\n    - second list level\n* return to first list level\n",
-      "notes": [],
+      "markdownContents": "# This is part one\n\n\n![A reference to a timeline should display here when timeline is ready](@temporal_data){@cool_timeline}\n\n\n\n![Another view on the timeline](@temporal_data){@cool_timeline,\n    startat=\"2012-21-01\"\n}\n\nI am inline referencing to an [image](@image_test_1).\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, fugit, id. Unde nulla incidunt sapiente reiciendis atque similique totam, facere earum dolores. Soluta earum, autem! Fugit, iure, repellat. Nesciunt, inventore.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi necessitatibus aliquam nisi odio et perferendis reiciendis porro, fugit repellat similique consequuntur dolor perspiciatis? Laborum doloribus ducimus alias sequi sapiente! Voluptate.\n\nThen I want to say that the [image](@image_test_1) that I showed is awesome.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Optio nemo eius autem, saepe dolore nam iste ex inventore, minus neque mollitia molestias facere asperiores vel voluptas beatae esse perspiciatis cupiditate.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore commodi maxime laborum cupiditate nam consequuntur in. Laudantium autem, accusantium! Iure, autem quas quis, odit fugit dolor voluptatum esse quisquam asperiores.\n\nAnd then I want to display a group of images :\n\n![A group of images](@image_test_1,@image_test_2)\n\nAnd then I want to point to an [online](@website_test) resource.\n\n![This is a block *website* contextualization, displaying a poster or the resource (typically a screenshot) if specified](@website_test)\n\nI will talk about that[^]{with a footnote here} :\n\n![Another reference with unnamed contextualizer](@temporal_data){\n    type=\"timeline\",\n    layer={layertype=events,data=@res.data.dates,labels=@res.data.labels},\n    title=\"My title\"\n}\n\nI will first quote in a book where someone that says [it's not possible](@ab94).\nBut I would like to quote again my [group of images](@image_test_1,@image_test_2).\n\nThen I should have an ibid here [^]{[](@ab94){page=\"12\"}.}\n\nAnd as say a lot of people[^]{[](@martin_change_2002){pages=\"30-40\"}}, publishing could be simpler.\n\nI'm now going to quote a book from the same authors in the same year, but different - it should add a b but let's see what's in the footnote[^]{[](@martin_change_2002b){pages=\"32-36\"}}.\n\nAnd for the footnotes, I want to say that Martin said that[^]{I'm referencing to [](@martin_change_2002){pages=\"12-13\"} when he says : \"hello\"}\n\nWhe Martin says [there has to be some *change*](@martin_change_2002).\n\nNow let's say I want to link to this [timeline](@temporal_data){\n    type=\"timeline\",\n    layer={dates=@res.data.dates,labels=@res.data.labels},\n    layer={dates=@res.data.dates,labels=@res.data.labels},\n    caption=\"This is a text with {stuf} but it should work\"\n} and continue my paragraph quietly.\n\nWelcome to my awesome book.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nAn inline resource video, it should display a thumbnail or something in static mode even if its not visible :\n\n\nI am now talking about [material things](@materiality){\nalias=\"\"\n}. But I would prefer to register it as [a concept](@materiality){alias=\"materiality of things\"}, for instance \"materiality of things\". Check out the glossary !.\n\n* a first list level\n    - second list level\n* return to first list level\n",
       "contextualizations": [
         {
-          "matchIndex": -34,
-          "contextualizer": "cool_timeline_1",
-          "citeKey": "contextualization_1",
-          "resources": [
-            "temporal_data"
-          ],
-          "type": "block",
-          "contextualizerType": "timeline",
-          "dateformat": "%Y-%m-%d",
-          "disposition": "superpose",
-          "layer": [
-            {
-              "dates": "@res1.data.dates",
-              "labels": "@res1.data.labels",
-              "title": "hello ça va"
-            },
-            {
-              "dates": "@res2.data.dates",
-              "labels": "@res2.data.labels"
-            }
-          ],
-          "title": "My cool timeline",
-          "inheritedVerticallyFrom": "mybook",
-          "overloading": "cool_timeline",
-          "outputmode": "all"
-        },
-        {
-          "matchIndex": -3,
-          "citeKey": "contextualization_9",
-          "contextualizer": "contextualizer_9",
-          "resources": [
-            "image_test_1"
-          ],
-          "type": "inline",
-          "contextualizerType": "imageplayer",
-          "title": "@res.title",
-          "describedInline": true,
-          "outputmode": "all"
-        },
-        {
-          "matchIndex": 71,
-          "contextualizer": "cool_timeline_2",
-          "citeKey": "contextualization_2",
-          "resources": [
-            "temporal_data"
-          ],
-          "type": "block",
-          "contextualizerType": "timeline",
-          "startat": "2012-21-01",
-          "dateformat": "%Y-%m-%d",
-          "disposition": "superpose",
-          "layer": [
-            {
-              "dates": "@res1.data.dates",
-              "labels": "@res1.data.labels",
-              "title": "hello ça va"
-            },
-            {
-              "dates": "@res2.data.dates",
-              "labels": "@res2.data.labels"
-            }
-          ],
-          "title": "My cool timeline",
-          "inheritedVerticallyFrom": "mybook",
-          "describedInline": true,
-          "overloading": "cool_timeline",
-          "outputmode": "all"
-        },
-        {
-          "matchIndex": 576,
-          "citeKey": "contextualization_10",
-          "contextualizer": "contextualizer_10",
-          "resources": [
-            "image_test_1"
-          ],
-          "type": "inline",
-          "contextualizerType": "imageplayer",
-          "title": "@res.title",
-          "describedInline": true,
-          "outputmode": "all"
-        },
-        {
-          "matchIndex": 1315,
-          "contextualizer": "contextualizer_3",
-          "citeKey": "contextualization_4",
-          "resources": [
-            "image_test_1",
-            "image_test_2"
-          ],
-          "type": "block",
-          "contextualizerType": "imageplayer",
-          "title": "@res.title",
-          "describedInline": true,
-          "outputmode": "all"
-        },
-        {
-          "matchIndex": 1345,
-          "citeKey": "contextualization_11",
-          "contextualizer": "contextualizer_11",
-          "resources": [
-            "website_test"
-          ],
-          "type": "inline",
-          "contextualizerType": "webpage",
-          "title": "@res.title",
-          "describedInline": true,
-          "outputmode": "all"
-        },
-        {
-          "matchIndex": 1469,
-          "contextualizer": "contextualizer_5",
-          "citeKey": "contextualization_6",
-          "resources": [
-            "website_test"
-          ],
-          "type": "block",
-          "contextualizerType": "webpage",
-          "title": "@res.title",
-          "describedInline": true,
-          "outputmode": "all"
-        },
-        {
-          "matchIndex": 1822,
-          "contextualizer": "contextualizer_7",
-          "citeKey": "contextualization_8",
-          "resources": [
-            "temporal_data"
-          ],
-          "type": "block",
-          "contextualizerType": "timeline",
-          "dateformat": "%Y-%m-%d",
-          "disposition": "superpose",
-          "layer": {
-            "layertype": "events",
-            "data": "@res.data.dates",
-            "labels": "@res.data.labels"
+          "citeKey": "contextualization_0",
+          "contextualizer": {
+            "dateformat": "%Y-%m-%d",
+            "disposition": "superpose",
+            "layer": [
+              {
+                "dates": "@res1.data.dates",
+                "labels": "@res1.data.labels",
+                "title": "hello ça va"
+              },
+              {
+                "dates": "@res2.data.dates",
+                "labels": "@res2.data.labels"
+              }
+            ],
+            "title": "My cool timeline",
+            "inheritedVerticallyFrom": "mybook",
+            "citeKey": "@cool_timeline_1",
+            "type": "timeline",
+            "overloading": "@cool_timeline",
+            "outputmode": "all"
           },
-          "title": "My title",
-          "describedInline": true,
-          "outputmode": "all"
-        },
-        {
-          "matchIndex": 1953,
-          "citeKey": "contextualization_12",
-          "contextualizer": "contextualizer_12",
           "resources": [
-            "ab94"
-          ],
-          "type": "inline",
-          "contextualizerType": "citation",
-          "year": "@res.year",
-          "date": "@res.date",
-          "author": "@res.author",
-          "title": "@res.title",
-          "describedInline": true,
-          "outputmode": "all"
-        },
-        {
-          "matchIndex": 2031,
-          "citeKey": "contextualization_13",
-          "contextualizer": "contextualizer_13",
-          "resources": [
-            "image_test_1",
-            "image_test_2"
-          ],
-          "type": "inline",
-          "contextualizerType": "imageplayer",
-          "title": "@res.title",
-          "describedInline": true,
-          "outputmode": "all"
-        },
-        {
-          "matchIndex": 2154,
-          "citeKey": "contextualization_14",
-          "contextualizer": "contextualizer_14",
-          "resources": [
-            "ab94"
-          ],
-          "type": "inline",
-          "contextualizerType": "citation",
-          "page": "12",
-          "year": "@res.year",
-          "date": "@res.date",
-          "author": "@res.author",
-          "title": "@res.title",
-          "describedInline": true,
-          "outputmode": "all"
-        },
-        {
-          "matchIndex": 2239,
-          "citeKey": "contextualization_15",
-          "contextualizer": "contextualizer_15",
-          "resources": [
-            "martin_change_2002"
-          ],
-          "type": "inline",
-          "contextualizerType": "citation",
-          "pages": "30-40",
-          "year": "@res.year",
-          "date": "@res.date",
-          "author": "@res.author",
-          "title": "@res.title",
-          "describedInline": true,
-          "outputmode": "all"
-        },
-        {
-          "matchIndex": 2493,
-          "citeKey": "contextualization_16",
-          "contextualizer": "contextualizer_16",
-          "resources": [
-            "martin_change_2002b"
-          ],
-          "type": "inline",
-          "contextualizerType": "citation",
-          "pages": "32-36",
-          "year": "@res.year",
-          "date": "@res.date",
-          "author": "@res.author",
-          "title": "@res.title",
-          "describedInline": true,
-          "outputmode": "all"
-        },
-        {
-          "matchIndex": 2648,
-          "citeKey": "contextualization_17",
-          "contextualizer": "contextualizer_17",
-          "resources": [
-            "martin_change_2002"
-          ],
-          "type": "inline",
-          "contextualizerType": "citation",
-          "pages": "12-13",
-          "year": "@res.year",
-          "date": "@res.date",
-          "author": "@res.author",
-          "title": "@res.title",
-          "describedInline": true,
-          "outputmode": "all"
-        },
-        {
-          "matchIndex": 2740,
-          "citeKey": "contextualization_18",
-          "contextualizer": "contextualizer_18",
-          "resources": [
-            "martin_change_2002"
-          ],
-          "type": "inline",
-          "contextualizerType": "citation",
-          "year": "@res.year",
-          "date": "@res.date",
-          "author": "@res.author",
-          "title": "@res.title",
-          "describedInline": true,
-          "outputmode": "all"
-        },
-        {
-          "matchIndex": 3082,
-          "citeKey": "contextualization_19",
-          "contextualizer": "contextualizer_19",
-          "resources": [
-            "temporal_data"
-          ],
-          "type": "inline",
-          "contextualizerType": "timeline",
-          "dateformat": "%Y-%m-%d",
-          "disposition": "superpose",
-          "layer": [
             {
-              "dates": "@res.data.dates",
-              "labels": "@res.data.labels"
-            },
-            {
-              "dates": "@res.data.dates",
-              "labels": "@res.data.labels"
+              "url": "cool_url",
+              "bibType": "tabularData",
+              "citeKey": "temporal_data",
+              "title": "cool data",
+              "inheritedVerticallyFrom": "mybook"
             }
           ],
-          "title": "@res.title",
-          "describedInline": true,
-          "outputmode": "all"
+          "type": "block",
+          "node": {
+            "node": "element",
+            "tag": "blockC",
+            "attr": {
+              "src": "contextualization_0",
+              "alt": [
+                "A",
+                "reference",
+                "to",
+                "a",
+                "timeline",
+                "should",
+                "display",
+                "here",
+                "when",
+                "timeline",
+                "is",
+                "ready"
+              ]
+            },
+            "blockIndex": 2,
+            "child": [
+              {
+                "node": "element",
+                "tag": "p",
+                "child": [
+                  {
+                    "node": "text",
+                    "text": "A reference to a timeline should display here when timeline is ready",
+                    "blockIndex": 2
+                  }
+                ],
+                "blockIndex": 2
+              }
+            ]
+          }
         },
         {
-          "matchIndex": 3600,
-          "citeKey": "contextualization_20",
-          "contextualizer": "contextualizer_20",
+          "citeKey": "contextualization_1",
+          "contextualizer": {
+            "startat": "2012-21-01",
+            "dateformat": "%Y-%m-%d",
+            "disposition": "superpose",
+            "layer": [
+              {
+                "dates": "@res1.data.dates",
+                "labels": "@res1.data.labels",
+                "title": "hello ça va"
+              },
+              {
+                "dates": "@res2.data.dates",
+                "labels": "@res2.data.labels"
+              }
+            ],
+            "title": "My cool timeline",
+            "inheritedVerticallyFrom": "mybook",
+            "citeKey": "@cool_timeline_2",
+            "type": "timeline",
+            "describedInline": true,
+            "overloading": "@cool_timeline",
+            "outputmode": "all"
+          },
           "resources": [
-            "materiality"
+            {
+              "url": "cool_url",
+              "bibType": "tabularData",
+              "citeKey": "temporal_data",
+              "title": "cool data",
+              "inheritedVerticallyFrom": "mybook"
+            }
           ],
-          "type": "inline",
-          "contextualizerType": "glossary",
-          "alias": "",
-          "showdescription": "yes",
-          "title": "@res.title",
-          "describedInline": true,
-          "outputmode": "all"
+          "type": "block",
+          "node": {
+            "node": "element",
+            "tag": "blockC",
+            "attr": {
+              "src": "contextualization_1",
+              "alt": [
+                "Another",
+                "view",
+                "on",
+                "the",
+                "timeline"
+              ]
+            },
+            "blockIndex": 4,
+            "child": [
+              {
+                "node": "element",
+                "tag": "p",
+                "child": [
+                  {
+                    "node": "text",
+                    "text": "Another view on the timeline",
+                    "blockIndex": 4
+                  }
+                ],
+                "blockIndex": 4
+              }
+            ]
+          }
         },
         {
-          "matchIndex": 3722,
-          "citeKey": "contextualization_21",
-          "contextualizer": "contextualizer_21",
+          "citeKey": "contextualization_2",
+          "contextualizer": {
+            "title": "@res.title",
+            "citeKey": "contextualizer_21",
+            "type": "imagegallery",
+            "describedInline": true,
+            "outputmode": "all"
+          },
           "resources": [
-            "materiality"
+            {
+              "imageurl": "@assets/imagetest1.jpg",
+              "url": "http://payload.cargocollective.com/1/0/9226/235006/PULSE_6.jpg",
+              "bibType": "image",
+              "citeKey": "image_test_1",
+              "title": "installation: pulse",
+              "schematype": "CreativeWork",
+              "inheritedVerticallyFrom": "mybook"
+            }
           ],
           "type": "inline",
-          "contextualizerType": "glossary",
-          "alias": "materiality of things",
-          "showdescription": "yes",
-          "title": "@res.title",
-          "describedInline": true,
-          "outputmode": "all"
+          "node": {
+            "node": "element",
+            "tag": "inlineC",
+            "attr": {
+              "href": "contextualization_2"
+            },
+            "child": [
+              {
+                "node": "text",
+                "text": "image",
+                "blockIndex": 6
+              }
+            ],
+            "blockIndex": 6
+          }
+        },
+        {
+          "citeKey": "contextualization_3",
+          "contextualizer": {
+            "title": "@res.title",
+            "citeKey": "contextualizer_31",
+            "type": "imagegallery",
+            "describedInline": true,
+            "outputmode": "all"
+          },
+          "resources": [
+            {
+              "imageurl": "@assets/imagetest1.jpg",
+              "url": "http://payload.cargocollective.com/1/0/9226/235006/PULSE_6.jpg",
+              "bibType": "image",
+              "citeKey": "image_test_1",
+              "title": "installation: pulse",
+              "schematype": "CreativeWork",
+              "inheritedVerticallyFrom": "mybook"
+            }
+          ],
+          "type": "inline",
+          "node": {
+            "node": "element",
+            "tag": "inlineC",
+            "attr": {
+              "href": "contextualization_3"
+            },
+            "child": [
+              {
+                "node": "text",
+                "text": "image",
+                "blockIndex": 12
+              }
+            ],
+            "blockIndex": 12
+          }
+        },
+        {
+          "citeKey": "contextualization_4",
+          "contextualizer": {
+            "title": "@res.title",
+            "citeKey": "contextualizer_41",
+            "type": "imagegallery",
+            "describedInline": true,
+            "outputmode": "all"
+          },
+          "resources": [
+            {
+              "imageurl": "@assets/imagetest1.jpg",
+              "url": "http://payload.cargocollective.com/1/0/9226/235006/PULSE_6.jpg",
+              "bibType": "image",
+              "citeKey": "image_test_1",
+              "title": "installation: pulse",
+              "schematype": "CreativeWork",
+              "inheritedVerticallyFrom": "mybook"
+            },
+            {
+              "imageurl": "@assets/imagetest2.jpg",
+              "url": "http://payload.cargocollective.com/1/0/9226/235006/PULSE_5.jpg",
+              "bibType": "image",
+              "citeKey": "image_test_2",
+              "title": "installation: pulse",
+              "schematype": "CreativeWork",
+              "inheritedVerticallyFrom": "mybook"
+            }
+          ],
+          "type": "block",
+          "node": {
+            "node": "element",
+            "tag": "blockC",
+            "attr": {
+              "src": "contextualization_4",
+              "alt": [
+                "A",
+                "group",
+                "of",
+                "images"
+              ]
+            },
+            "blockIndex": 20,
+            "child": [
+              {
+                "node": "element",
+                "tag": "p",
+                "child": [
+                  {
+                    "node": "text",
+                    "text": "A group of images",
+                    "blockIndex": 20
+                  }
+                ],
+                "blockIndex": 20
+              }
+            ]
+          }
+        },
+        {
+          "citeKey": "contextualization_5",
+          "contextualizer": {
+            "title": "@res.title",
+            "citeKey": "contextualizer_51",
+            "type": "webpage",
+            "describedInline": true,
+            "outputmode": "all"
+          },
+          "resources": [
+            {
+              "posterurl": "@assets/screenshot.png",
+              "url": "https://medium.com/@sxywu/on-d3-react-and-a-little-bit-of-flux-88a226f328f3#.4z6m379fa",
+              "bibType": "online",
+              "citeKey": "website_test",
+              "title": "D3 and react tutorial",
+              "inheritedVerticallyFrom": "mybook"
+            }
+          ],
+          "type": "inline",
+          "node": {
+            "node": "element",
+            "tag": "inlineC",
+            "attr": {
+              "href": "contextualization_5"
+            },
+            "child": [
+              {
+                "node": "text",
+                "text": "online",
+                "blockIndex": 22
+              }
+            ],
+            "blockIndex": 22
+          }
+        },
+        {
+          "citeKey": "contextualization_6",
+          "contextualizer": {
+            "title": "@res.title",
+            "citeKey": "contextualizer_61",
+            "type": "webpage",
+            "describedInline": true,
+            "outputmode": "all"
+          },
+          "resources": [
+            {
+              "posterurl": "@assets/screenshot.png",
+              "url": "https://medium.com/@sxywu/on-d3-react-and-a-little-bit-of-flux-88a226f328f3#.4z6m379fa",
+              "bibType": "online",
+              "citeKey": "website_test",
+              "title": "D3 and react tutorial",
+              "inheritedVerticallyFrom": "mybook"
+            }
+          ],
+          "type": "block",
+          "node": {
+            "node": "element",
+            "tag": "blockC",
+            "attr": {
+              "src": "contextualization_6",
+              "alt": [
+                "This",
+                "is",
+                "a",
+                "block",
+                "*website*",
+                "contextualization,",
+                "displaying",
+                "a",
+                "poster",
+                "or",
+                "the",
+                "resource",
+                "(typically",
+                "a",
+                "screenshot)",
+                "if",
+                "specified"
+              ]
+            },
+            "blockIndex": 24,
+            "child": [
+              {
+                "node": "element",
+                "tag": "p",
+                "child": [
+                  {
+                    "node": "text",
+                    "text": "This is a block ",
+                    "blockIndex": 24
+                  },
+                  {
+                    "node": "element",
+                    "tag": "em",
+                    "child": [
+                      {
+                        "node": "text",
+                        "text": "website",
+                        "blockIndex": 24
+                      }
+                    ],
+                    "blockIndex": 24
+                  },
+                  {
+                    "node": "text",
+                    "text": " contextualization, displaying a poster or the resource (typically a screenshot) if specified",
+                    "blockIndex": 24
+                  }
+                ],
+                "blockIndex": 24
+              }
+            ]
+          }
+        },
+        {
+          "citeKey": "contextualization_7",
+          "contextualizer": {
+            "dateformat": "%Y-%m-%d",
+            "disposition": "superpose",
+            "layer": {
+              "layertype": "events",
+              "data": "@res.data.dates",
+              "labels": "@res.data.labels"
+            },
+            "title": "My title",
+            "citeKey": "contextualizer_71",
+            "type": "timeline",
+            "describedInline": true,
+            "outputmode": "all"
+          },
+          "resources": [
+            {
+              "url": "cool_url",
+              "bibType": "tabularData",
+              "citeKey": "temporal_data",
+              "title": "cool data",
+              "inheritedVerticallyFrom": "mybook"
+            }
+          ],
+          "type": "block",
+          "node": {
+            "node": "element",
+            "tag": "blockC",
+            "attr": {
+              "src": "contextualization_7",
+              "alt": [
+                "Another",
+                "reference",
+                "with",
+                "unnamed",
+                "contextualizer"
+              ]
+            },
+            "blockIndex": 28,
+            "child": [
+              {
+                "node": "element",
+                "tag": "p",
+                "child": [
+                  {
+                    "node": "text",
+                    "text": "Another reference with unnamed contextualizer",
+                    "blockIndex": 28
+                  }
+                ],
+                "blockIndex": 28
+              }
+            ]
+          }
+        },
+        {
+          "citeKey": "contextualization_8",
+          "contextualizer": {
+            "year": "@res.year",
+            "date": "@res.date",
+            "author": "@res.author",
+            "title": "@res.title",
+            "citeKey": "contextualizer_81",
+            "type": "citation",
+            "describedInline": true,
+            "outputmode": "all"
+          },
+          "resources": [
+            {
+              "publisher": "Springer",
+              "edition": "second edition",
+              "address": "Berlin",
+              "title": "Infinite Dimensional Analysis",
+              "author": [
+                {
+                  "firstName": "D. Aliprantis",
+                  "lastName": "Charalambos",
+                  "role": "author",
+                  "citeKey": "author-d.-aliprantischaralambos"
+                },
+                {
+                  "firstName": "Kim C.",
+                  "lastName": "Border",
+                  "role": "author",
+                  "citeKey": "author-kim-c.border"
+                }
+              ],
+              "year": 1994,
+              "bibType": "book",
+              "citeKey": "ab94",
+              "inheritedVerticallyFrom": "mybook"
+            }
+          ],
+          "type": "inline",
+          "node": {
+            "node": "element",
+            "tag": "inlineC",
+            "attr": {
+              "href": "contextualization_8"
+            },
+            "child": [
+              {
+                "node": "text",
+                "text": "it's not possible",
+                "blockIndex": 30
+              }
+            ],
+            "blockIndex": 30
+          }
+        },
+        {
+          "citeKey": "contextualization_9",
+          "contextualizer": {
+            "title": "@res.title",
+            "citeKey": "contextualizer_91",
+            "type": "imagegallery",
+            "describedInline": true,
+            "outputmode": "all"
+          },
+          "resources": [
+            {
+              "imageurl": "@assets/imagetest1.jpg",
+              "url": "http://payload.cargocollective.com/1/0/9226/235006/PULSE_6.jpg",
+              "bibType": "image",
+              "citeKey": "image_test_1",
+              "title": "installation: pulse",
+              "schematype": "CreativeWork",
+              "inheritedVerticallyFrom": "mybook"
+            },
+            {
+              "imageurl": "@assets/imagetest2.jpg",
+              "url": "http://payload.cargocollective.com/1/0/9226/235006/PULSE_5.jpg",
+              "bibType": "image",
+              "citeKey": "image_test_2",
+              "title": "installation: pulse",
+              "schematype": "CreativeWork",
+              "inheritedVerticallyFrom": "mybook"
+            }
+          ],
+          "type": "inline",
+          "node": {
+            "node": "element",
+            "tag": "inlineC",
+            "attr": {
+              "href": "contextualization_9"
+            },
+            "child": [
+              {
+                "node": "text",
+                "text": "group of images",
+                "blockIndex": 30
+              }
+            ],
+            "blockIndex": 30
+          }
+        },
+        {
+          "citeKey": "contextualization_10",
+          "contextualizer": {
+            "page": "12",
+            "year": "@res.year",
+            "date": "@res.date",
+            "author": "@res.author",
+            "title": "@res.title",
+            "citeKey": "contextualizer_101",
+            "type": "citation",
+            "describedInline": true,
+            "outputmode": "all"
+          },
+          "resources": [
+            {
+              "publisher": "Springer",
+              "edition": "second edition",
+              "address": "Berlin",
+              "title": "Infinite Dimensional Analysis",
+              "author": [
+                {
+                  "firstName": "D. Aliprantis",
+                  "lastName": "Charalambos",
+                  "role": "author",
+                  "citeKey": "author-d.-aliprantischaralambos"
+                },
+                {
+                  "firstName": "Kim C.",
+                  "lastName": "Border",
+                  "role": "author",
+                  "citeKey": "author-kim-c.border"
+                }
+              ],
+              "year": 1994,
+              "bibType": "book",
+              "citeKey": "ab94",
+              "inheritedVerticallyFrom": "mybook"
+            }
+          ],
+          "type": "inline",
+          "node": {
+            "node": "element",
+            "tag": "inlineC",
+            "attr": {
+              "href": "contextualization_10"
+            },
+            "blockIndex": 0
+          }
+        },
+        {
+          "citeKey": "contextualization_11",
+          "contextualizer": {
+            "pages": "30-40",
+            "year": "@res.year",
+            "date": "@res.date",
+            "author": "@res.author",
+            "title": "@res.title",
+            "citeKey": "contextualizer_111",
+            "type": "citation",
+            "describedInline": true,
+            "outputmode": "all"
+          },
+          "resources": [
+            {
+              "journal": "Journal of Electronic Publishing",
+              "issue": 3,
+              "volume": 7,
+              "pages": "12-60",
+              "title": "Change the {Metaphor}: {The} {Archive} as an {Ecosystem}",
+              "author": [
+                {
+                  "firstName": "Julia",
+                  "lastName": "Martin",
+                  "role": "author",
+                  "citeKey": "author-juliamartin"
+                },
+                {
+                  "firstName": "Nicolas",
+                  "lastName": "Coleman",
+                  "role": "author",
+                  "citeKey": "author-nicolascoleman"
+                }
+              ],
+              "year": 2002,
+              "month": "april",
+              "issn": "1080-2711",
+              "bibType": "article",
+              "citeKey": "martin_change_2002",
+              "doi": "10.3998/3336451.0007.301",
+              "url": "http://hdl.handle.net/2027/spo.3336451.0007.301",
+              "inheritedVerticallyFrom": "mybook"
+            }
+          ],
+          "type": "inline",
+          "node": {
+            "node": "element",
+            "tag": "inlineC",
+            "attr": {
+              "href": "contextualization_11"
+            },
+            "blockIndex": 0
+          }
+        },
+        {
+          "citeKey": "contextualization_12",
+          "contextualizer": {
+            "pages": "32-36",
+            "year": "@res.year",
+            "date": "@res.date",
+            "author": "@res.author",
+            "title": "@res.title",
+            "citeKey": "contextualizer_121",
+            "type": "citation",
+            "describedInline": true,
+            "outputmode": "all"
+          },
+          "resources": [
+            {
+              "journal": "Journal of Electronic Publishing",
+              "issue": 3,
+              "volume": 7,
+              "pages": "12-60",
+              "title": "Change the {Metaphor}: {The} {Archive} as an {Ecosystem} - version 2",
+              "author": [
+                {
+                  "firstName": "Julia",
+                  "lastName": "Martin",
+                  "role": "author",
+                  "citeKey": "author-juliamartin"
+                },
+                {
+                  "firstName": "Nicolas",
+                  "lastName": "Coleman",
+                  "role": "author",
+                  "citeKey": "author-nicolascoleman"
+                }
+              ],
+              "year": 2002,
+              "month": "april",
+              "issn": "1080-2711",
+              "bibType": "article",
+              "citeKey": "martin_change_2002b",
+              "doi": "10.3998/3336451.0007.301",
+              "url": "http://hdl.handle.net/2027/spo.3336451.0007.301",
+              "inheritedVerticallyFrom": "mybook"
+            }
+          ],
+          "type": "inline",
+          "node": {
+            "node": "element",
+            "tag": "inlineC",
+            "attr": {
+              "href": "contextualization_12"
+            },
+            "blockIndex": 0
+          }
+        },
+        {
+          "citeKey": "contextualization_13",
+          "contextualizer": {
+            "pages": "12-13",
+            "year": "@res.year",
+            "date": "@res.date",
+            "author": "@res.author",
+            "title": "@res.title",
+            "citeKey": "contextualizer_131",
+            "type": "citation",
+            "describedInline": true,
+            "outputmode": "all"
+          },
+          "resources": [
+            {
+              "journal": "Journal of Electronic Publishing",
+              "issue": 3,
+              "volume": 7,
+              "pages": "12-60",
+              "title": "Change the {Metaphor}: {The} {Archive} as an {Ecosystem}",
+              "author": [
+                {
+                  "firstName": "Julia",
+                  "lastName": "Martin",
+                  "role": "author",
+                  "citeKey": "author-juliamartin"
+                },
+                {
+                  "firstName": "Nicolas",
+                  "lastName": "Coleman",
+                  "role": "author",
+                  "citeKey": "author-nicolascoleman"
+                }
+              ],
+              "year": 2002,
+              "month": "april",
+              "issn": "1080-2711",
+              "bibType": "article",
+              "citeKey": "martin_change_2002",
+              "doi": "10.3998/3336451.0007.301",
+              "url": "http://hdl.handle.net/2027/spo.3336451.0007.301",
+              "inheritedVerticallyFrom": "mybook"
+            }
+          ],
+          "type": "inline",
+          "node": {
+            "node": "element",
+            "tag": "inlineC",
+            "attr": {
+              "href": "contextualization_13"
+            },
+            "blockIndex": 0
+          }
+        },
+        {
+          "citeKey": "contextualization_14",
+          "contextualizer": {
+            "year": "@res.year",
+            "date": "@res.date",
+            "author": "@res.author",
+            "title": "@res.title",
+            "citeKey": "contextualizer_141",
+            "type": "citation",
+            "describedInline": true,
+            "outputmode": "all"
+          },
+          "resources": [
+            {
+              "journal": "Journal of Electronic Publishing",
+              "issue": 3,
+              "volume": 7,
+              "pages": "12-60",
+              "title": "Change the {Metaphor}: {The} {Archive} as an {Ecosystem}",
+              "author": [
+                {
+                  "firstName": "Julia",
+                  "lastName": "Martin",
+                  "role": "author",
+                  "citeKey": "author-juliamartin"
+                },
+                {
+                  "firstName": "Nicolas",
+                  "lastName": "Coleman",
+                  "role": "author",
+                  "citeKey": "author-nicolascoleman"
+                }
+              ],
+              "year": 2002,
+              "month": "april",
+              "issn": "1080-2711",
+              "bibType": "article",
+              "citeKey": "martin_change_2002",
+              "doi": "10.3998/3336451.0007.301",
+              "url": "http://hdl.handle.net/2027/spo.3336451.0007.301",
+              "inheritedVerticallyFrom": "mybook"
+            }
+          ],
+          "type": "inline",
+          "node": {
+            "node": "element",
+            "tag": "inlineC",
+            "attr": {
+              "href": "contextualization_14"
+            },
+            "child": [
+              {
+                "node": "text",
+                "text": "there has to be some ",
+                "blockIndex": 40
+              },
+              {
+                "node": "element",
+                "tag": "em",
+                "child": [
+                  {
+                    "node": "text",
+                    "text": "change",
+                    "blockIndex": 40
+                  }
+                ],
+                "blockIndex": 40
+              }
+            ],
+            "blockIndex": 40
+          }
+        },
+        {
+          "citeKey": "contextualization_15",
+          "contextualizer": {
+            "dateformat": "%Y-%m-%d",
+            "disposition": "superpose",
+            "layer": [
+              {
+                "dates": "@res.data.dates",
+                "labels": "@res.data.labels"
+              },
+              {
+                "dates": "@res.data.dates",
+                "labels": "@res.data.labels"
+              }
+            ],
+            "title": "@res.title",
+            "citeKey": "contextualizer_151",
+            "type": "timeline",
+            "describedInline": true,
+            "outputmode": "all"
+          },
+          "resources": [
+            {
+              "url": "cool_url",
+              "bibType": "tabularData",
+              "citeKey": "temporal_data",
+              "title": "cool data",
+              "inheritedVerticallyFrom": "mybook"
+            }
+          ],
+          "type": "inline",
+          "node": {
+            "node": "element",
+            "tag": "inlineC",
+            "attr": {
+              "href": "contextualization_15"
+            },
+            "child": [
+              {
+                "node": "text",
+                "text": "timeline",
+                "blockIndex": 42
+              }
+            ],
+            "blockIndex": 42
+          }
+        },
+        {
+          "citeKey": "contextualization_16",
+          "contextualizer": {
+            "alias": "",
+            "showdescription": "yes",
+            "title": "@res.title",
+            "citeKey": "contextualizer_161",
+            "type": "glossary",
+            "describedInline": true,
+            "outputmode": "all"
+          },
+          "resources": [
+            {
+              "name": "Materiality",
+              "bibType": "concept",
+              "citeKey": "materiality",
+              "description": "When we read literature and look at images on pages or screens, we are usually trying to extract information from words, symbols and figures. We don’t often think about the physical processes involved in this or even the material objects with which we are interacting: we seem to see through the paper pages and the illuminated computer screens, barely registering differences between media as we work out the messages being transmitted through them. Yet the material properties of different media have all sorts of subtle effects on our reading and viewing experiences. For example, the way that the cover of a book feels or looks can determine whether we pick it up and enjoy reading it, and the brightness and speed of electronic images can determine whether we stay on one site or click our way to another.",
+              "inheritedVerticallyFrom": "mybook"
+            }
+          ],
+          "type": "inline",
+          "node": {
+            "node": "element",
+            "tag": "inlineC",
+            "attr": {
+              "href": "contextualization_16"
+            },
+            "child": [
+              {
+                "node": "text",
+                "text": "material things",
+                "blockIndex": 50
+              }
+            ],
+            "blockIndex": 50
+          }
+        },
+        {
+          "citeKey": "contextualization_17",
+          "contextualizer": {
+            "alias": "materiality of things",
+            "showdescription": "yes",
+            "title": "@res.title",
+            "citeKey": "contextualizer_171",
+            "type": "glossary",
+            "describedInline": true,
+            "outputmode": "all"
+          },
+          "resources": [
+            {
+              "name": "Materiality",
+              "bibType": "concept",
+              "citeKey": "materiality",
+              "description": "When we read literature and look at images on pages or screens, we are usually trying to extract information from words, symbols and figures. We don’t often think about the physical processes involved in this or even the material objects with which we are interacting: we seem to see through the paper pages and the illuminated computer screens, barely registering differences between media as we work out the messages being transmitted through them. Yet the material properties of different media have all sorts of subtle effects on our reading and viewing experiences. For example, the way that the cover of a book feels or looks can determine whether we pick it up and enjoy reading it, and the brightness and speed of electronic images can determine whether we stay on one site or click our way to another.",
+              "inheritedVerticallyFrom": "mybook"
+            }
+          ],
+          "type": "inline",
+          "node": {
+            "node": "element",
+            "tag": "inlineC",
+            "attr": {
+              "href": "contextualization_17"
+            },
+            "child": [
+              {
+                "node": "text",
+                "text": "a concept",
+                "blockIndex": 50
+              }
+            ],
+            "blockIndex": 50
+          }
+        }
+      ],
+      "notes": [
+        {
+          "noteNumber": 1,
+          "contents": [
+            {
+              "node": "text",
+              "text": "with a footnote here",
+              "blockIndex": 0
+            }
+          ],
+          "id": "partie_11"
+        },
+        {
+          "noteNumber": 2,
+          "contents": [
+            {
+              "node": "element",
+              "tag": "inlineC",
+              "attr": {
+                "href": "contextualization_10"
+              },
+              "blockIndex": 0
+            },
+            {
+              "node": "text",
+              "text": ".",
+              "blockIndex": 0
+            }
+          ],
+          "id": "partie_12"
+        },
+        {
+          "noteNumber": 3,
+          "contents": [
+            {
+              "node": "element",
+              "tag": "inlineC",
+              "attr": {
+                "href": "contextualization_11"
+              },
+              "blockIndex": 0
+            }
+          ],
+          "id": "partie_13"
+        },
+        {
+          "noteNumber": 4,
+          "contents": [
+            {
+              "node": "element",
+              "tag": "inlineC",
+              "attr": {
+                "href": "contextualization_12"
+              },
+              "blockIndex": 0
+            }
+          ],
+          "id": "partie_14"
+        },
+        {
+          "noteNumber": 5,
+          "contents": [
+            {
+              "node": "text",
+              "text": "I'm referencing to ",
+              "blockIndex": 0
+            },
+            {
+              "node": "element",
+              "tag": "inlineC",
+              "attr": {
+                "href": "contextualization_13"
+              },
+              "blockIndex": 0
+            },
+            {
+              "node": "text",
+              "text": " when he says : \"hello\"",
+              "blockIndex": 0
+            }
+          ],
+          "id": "partie_15"
         }
       ]
     },
@@ -2027,164 +3594,802 @@
       ],
       "contents": [
         {
-          "html": "<h1 id=\"this-is-part-two\">This is part two</h1>",
-          "tagType": "heading"
+          "node": "element",
+          "tag": "h1",
+          "attr": {
+            "id": "this-is-part-two"
+          },
+          "child": [
+            {
+              "node": "text",
+              "text": "This is part two",
+              "blockIndex": 0
+            }
+          ],
+          "blockIndex": 0
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
-          "tagType": "p"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 1
         },
         {
-          "html": "<p>Again something about <InlineContextualization id=\"contextualization_1\" resources=\"@materiality\" contextualizer=\"contextualizer_1\">materiality</InlineContextualization>.</p>",
-          "tagType": "p"
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.",
+              "blockIndex": 2
+            }
+          ],
+          "blockIndex": 2
         },
         {
-          "html": "<p>Footnote[^]{This is another footnote}</p>",
-          "tagType": "p"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 3
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
-          "tagType": "p"
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Again something about ",
+              "blockIndex": 4
+            },
+            {
+              "node": "element",
+              "tag": "inlineC",
+              "attr": {
+                "href": "contextualization_0"
+              },
+              "child": [
+                {
+                  "node": "text",
+                  "text": "materiality",
+                  "blockIndex": 4
+                }
+              ],
+              "blockIndex": 4
+            },
+            {
+              "node": "text",
+              "text": ".",
+              "blockIndex": 4
+            }
+          ],
+          "blockIndex": 4
         },
         {
-          "html": "<p>Footnote[^]{This is another footnote}</p>",
-          "tagType": "p"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 5
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
-          "tagType": "p"
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Footnote",
+              "blockIndex": 6
+            },
+            {
+              "node": "element",
+              "tag": "note",
+              "attr": {
+                "href": "note_partie_21"
+              },
+              "child": [
+                {
+                  "node": "text",
+                  "text": "footnote",
+                  "blockIndex": 6
+                }
+              ],
+              "blockIndex": 6,
+              "target": "partie_21"
+            }
+          ],
+          "blockIndex": 6
         },
         {
-          "html": "<p>Footnote[^]{Lorem ipsum dolor sit amet, consectetur adipisicing elit. At, id autem incidunt delectus ea. Architecto aliquam alias iure mollitia voluptate totam in repellendus, dignissimos. Quia necessitatibus ipsam, quis itaque nisi.}</p>",
-          "tagType": "p"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 7
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
-          "tagType": "p"
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.",
+              "blockIndex": 8
+            }
+          ],
+          "blockIndex": 8
         },
         {
-          "html": "<p>Footnote[^]{This is another footnote}</p>",
-          "tagType": "p"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 9
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
-          "tagType": "p"
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Footnote",
+              "blockIndex": 10
+            },
+            {
+              "node": "element",
+              "tag": "note",
+              "attr": {
+                "href": "note_partie_22"
+              },
+              "child": [
+                {
+                  "node": "text",
+                  "text": "footnote",
+                  "blockIndex": 10
+                }
+              ],
+              "blockIndex": 10,
+              "target": "partie_22"
+            }
+          ],
+          "blockIndex": 10
         },
         {
-          "html": "<p>Footnote[^]{This is another footnote}</p>",
-          "tagType": "p"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 11
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
-          "tagType": "p"
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.",
+              "blockIndex": 12
+            }
+          ],
+          "blockIndex": 12
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
-          "tagType": "p"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 13
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
-          "tagType": "p"
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Footnote",
+              "blockIndex": 14
+            },
+            {
+              "node": "element",
+              "tag": "note",
+              "attr": {
+                "href": "note_partie_23"
+              },
+              "child": [
+                {
+                  "node": "text",
+                  "text": "footnote",
+                  "blockIndex": 14
+                }
+              ],
+              "blockIndex": 14,
+              "target": "partie_23"
+            }
+          ],
+          "blockIndex": 14
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
-          "tagType": "p"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 15
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
-          "tagType": "p"
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.",
+              "blockIndex": 16
+            }
+          ],
+          "blockIndex": 16
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
-          "tagType": "p"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 17
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
-          "tagType": "p"
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Footnote",
+              "blockIndex": 18
+            },
+            {
+              "node": "element",
+              "tag": "note",
+              "attr": {
+                "href": "note_partie_24"
+              },
+              "child": [
+                {
+                  "node": "text",
+                  "text": "footnote",
+                  "blockIndex": 18
+                }
+              ],
+              "blockIndex": 18,
+              "target": "partie_24"
+            }
+          ],
+          "blockIndex": 18
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
-          "tagType": "p"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 19
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
-          "tagType": "p"
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.",
+              "blockIndex": 20
+            }
+          ],
+          "blockIndex": 20
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
-          "tagType": "p"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 21
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
-          "tagType": "p"
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Footnote",
+              "blockIndex": 22
+            },
+            {
+              "node": "element",
+              "tag": "note",
+              "attr": {
+                "href": "note_partie_25"
+              },
+              "child": [
+                {
+                  "node": "text",
+                  "text": "footnote",
+                  "blockIndex": 22
+                }
+              ],
+              "blockIndex": 22,
+              "target": "partie_25"
+            }
+          ],
+          "blockIndex": 22
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
-          "tagType": "p"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 23
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
-          "tagType": "p"
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.",
+              "blockIndex": 24
+            }
+          ],
+          "blockIndex": 24
         },
         {
-          "html": "<p>Here I would like to talk about <InlineContextualization id=\"contextualization_2\" resources=\"@materiality\" contextualizer=\"contextualizer_2\">material aspects of computers</InlineContextualization></p>",
-          "tagType": "p"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 25
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
-          "tagType": "p"
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.",
+              "blockIndex": 26
+            }
+          ],
+          "blockIndex": 26
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
-          "tagType": "p"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 27
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
-          "tagType": "p"
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.",
+              "blockIndex": 28
+            }
+          ],
+          "blockIndex": 28
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
-          "tagType": "p"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 29
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
-          "tagType": "p"
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.",
+              "blockIndex": 30
+            }
+          ],
+          "blockIndex": 30
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
-          "tagType": "p"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 31
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
-          "tagType": "p"
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.",
+              "blockIndex": 32
+            }
+          ],
+          "blockIndex": 32
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
-          "tagType": "p"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 33
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
-          "tagType": "p"
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.",
+              "blockIndex": 34
+            }
+          ],
+          "blockIndex": 34
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
-          "tagType": "p"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 35
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
-          "tagType": "p"
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.",
+              "blockIndex": 36
+            }
+          ],
+          "blockIndex": 36
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
-          "tagType": "p"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 37
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
-          "tagType": "p"
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.",
+              "blockIndex": 38
+            }
+          ],
+          "blockIndex": 38
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
-          "tagType": "p"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 39
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.",
+              "blockIndex": 40
+            }
+          ],
+          "blockIndex": 40
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 41
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.",
+              "blockIndex": 42
+            }
+          ],
+          "blockIndex": 42
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 43
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.",
+              "blockIndex": 44
+            }
+          ],
+          "blockIndex": 44
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 45
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.",
+              "blockIndex": 46
+            }
+          ],
+          "blockIndex": 46
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 47
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.",
+              "blockIndex": 48
+            }
+          ],
+          "blockIndex": 48
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 49
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Here I would like to talk about ",
+              "blockIndex": 50
+            },
+            {
+              "node": "element",
+              "tag": "inlineC",
+              "attr": {
+                "href": "contextualization_1"
+              },
+              "child": [
+                {
+                  "node": "text",
+                  "text": "material aspects of computers",
+                  "blockIndex": 50
+                }
+              ],
+              "blockIndex": 50
+            }
+          ],
+          "blockIndex": 50
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 51
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.",
+              "blockIndex": 52
+            }
+          ],
+          "blockIndex": 52
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 53
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.",
+              "blockIndex": 54
+            }
+          ],
+          "blockIndex": 54
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 55
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.",
+              "blockIndex": 56
+            }
+          ],
+          "blockIndex": 56
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 57
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.",
+              "blockIndex": 58
+            }
+          ],
+          "blockIndex": 58
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 59
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.",
+              "blockIndex": 60
+            }
+          ],
+          "blockIndex": 60
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 61
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.",
+              "blockIndex": 62
+            }
+          ],
+          "blockIndex": 62
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 63
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.",
+              "blockIndex": 64
+            }
+          ],
+          "blockIndex": 64
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 65
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.",
+              "blockIndex": 66
+            }
+          ],
+          "blockIndex": 66
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 67
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.",
+              "blockIndex": 68
+            }
+          ],
+          "blockIndex": 68
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 69
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.",
+              "blockIndex": 70
+            }
+          ],
+          "blockIndex": 70
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 71
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.",
+              "blockIndex": 72
+            }
+          ],
+          "blockIndex": 72
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 73
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.",
+              "blockIndex": 74
+            }
+          ],
+          "blockIndex": 74
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 75
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.",
+              "blockIndex": 76
+            }
+          ],
+          "blockIndex": 76
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 77
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.",
+              "blockIndex": 78
+            }
+          ],
+          "blockIndex": 78
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 79
         }
       ],
       "resources": [
@@ -2398,75 +4603,166 @@
       },
       "contextualizers": [
         {
-          "dateformat": "%Y-%m-%d",
-          "disposition": "superpose",
+          "bibType": "contextualizer",
+          "citeKey": "cool_timeline",
+          "type": "timeline",
+          "title": "My cool timeline",
           "layer": [
             {
               "dates": "@res1.data.dates",
-              "labels": "@res1.data.labels",
-              "title": "hello ça va"
+              "title": "hello ça va",
+              "labels": "@res1.data.labels"
             },
             {
               "dates": "@res2.data.dates",
               "labels": "@res2.data.labels"
             }
           ],
-          "title": "My cool timeline",
-          "inheritedVerticallyFrom": "mybook",
-          "citeKey": "cool_timeline",
-          "type": "timeline",
-          "outputmode": "all"
+          "inheritedVerticallyFrom": "mybook"
         },
         {
-          "showdescription": "yes",
-          "title": "@res.title",
-          "citeKey": "contextualizer_1",
-          "type": "glossary",
           "describedInline": true,
-          "outputmode": "all"
+          "fullyImplicit": true,
+          "citeKey": "contextualizer_01"
         },
         {
           "alias": "Materiality of computers",
-          "showdescription": "yes",
-          "title": "@res.title",
-          "citeKey": "contextualizer_2",
-          "type": "glossary",
           "describedInline": true,
-          "outputmode": "all"
+          "citeKey": "contextualizer_11"
         }
       ],
       "after": "partie_1",
       "markdownContents": "# This is part two\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nAgain something about [materiality](@materiality).\n\nFootnote[^]{This is another footnote}\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nFootnote[^]{This is another footnote}\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nFootnote[^]{Lorem ipsum dolor sit amet, consectetur adipisicing elit. At, id autem incidunt delectus ea. Architecto aliquam alias iure mollitia voluptate totam in repellendus, dignissimos. Quia necessitatibus ipsam, quis itaque nisi.}\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nFootnote[^]{This is another footnote}\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\n\nFootnote[^]{This is another footnote}\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\n\nHere I would like to talk about [material aspects of computers](@materiality){\n  alias=\"Materiality of computers\"\n}\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\n",
-      "notes": [],
       "contextualizations": [
         {
-          "matchIndex": 206,
-          "citeKey": "contextualization_1",
-          "contextualizer": "contextualizer_1",
+          "citeKey": "contextualization_0",
+          "contextualizer": {
+            "showdescription": "yes",
+            "title": "@res.title",
+            "citeKey": "contextualizer_01",
+            "type": "glossary",
+            "describedInline": true,
+            "outputmode": "all"
+          },
           "resources": [
-            "materiality"
+            {
+              "name": "Materiality",
+              "bibType": "concept",
+              "citeKey": "materiality",
+              "description": "When we read literature and look at images on pages or screens, we are usually trying to extract information from words, symbols and figures. We don’t often think about the physical processes involved in this or even the material objects with which we are interacting: we seem to see through the paper pages and the illuminated computer screens, barely registering differences between media as we work out the messages being transmitted through them. Yet the material properties of different media have all sorts of subtle effects on our reading and viewing experiences. For example, the way that the cover of a book feels or looks can determine whether we pick it up and enjoy reading it, and the brightness and speed of electronic images can determine whether we stay on one site or click our way to another.",
+              "inheritedVerticallyFrom": "mybook"
+            }
           ],
           "type": "inline",
-          "contextualizerType": "glossary",
-          "showdescription": "yes",
-          "title": "@res.title",
-          "describedInline": true,
-          "outputmode": "all"
+          "node": {
+            "node": "element",
+            "tag": "inlineC",
+            "attr": {
+              "href": "contextualization_0"
+            },
+            "child": [
+              {
+                "node": "text",
+                "text": "materiality",
+                "blockIndex": 4
+              }
+            ],
+            "blockIndex": 4
+          }
         },
         {
-          "matchIndex": 4852,
-          "citeKey": "contextualization_2",
-          "contextualizer": "contextualizer_2",
+          "citeKey": "contextualization_1",
+          "contextualizer": {
+            "alias": "Materiality of computers",
+            "showdescription": "yes",
+            "title": "@res.title",
+            "citeKey": "contextualizer_11",
+            "type": "glossary",
+            "describedInline": true,
+            "outputmode": "all"
+          },
           "resources": [
-            "materiality"
+            {
+              "name": "Materiality",
+              "bibType": "concept",
+              "citeKey": "materiality",
+              "description": "When we read literature and look at images on pages or screens, we are usually trying to extract information from words, symbols and figures. We don’t often think about the physical processes involved in this or even the material objects with which we are interacting: we seem to see through the paper pages and the illuminated computer screens, barely registering differences between media as we work out the messages being transmitted through them. Yet the material properties of different media have all sorts of subtle effects on our reading and viewing experiences. For example, the way that the cover of a book feels or looks can determine whether we pick it up and enjoy reading it, and the brightness and speed of electronic images can determine whether we stay on one site or click our way to another.",
+              "inheritedVerticallyFrom": "mybook"
+            }
           ],
           "type": "inline",
-          "contextualizerType": "glossary",
-          "alias": "Materiality of computers",
-          "showdescription": "yes",
-          "title": "@res.title",
-          "describedInline": true,
-          "outputmode": "all"
+          "node": {
+            "node": "element",
+            "tag": "inlineC",
+            "attr": {
+              "href": "contextualization_1"
+            },
+            "child": [
+              {
+                "node": "text",
+                "text": "material aspects of computers",
+                "blockIndex": 50
+              }
+            ],
+            "blockIndex": 50
+          }
+        }
+      ],
+      "notes": [
+        {
+          "noteNumber": 1,
+          "contents": [
+            {
+              "node": "text",
+              "text": "This is another footnote",
+              "blockIndex": 0
+            }
+          ],
+          "id": "partie_21"
+        },
+        {
+          "noteNumber": 2,
+          "contents": [
+            {
+              "node": "text",
+              "text": "This is another footnote",
+              "blockIndex": 0
+            }
+          ],
+          "id": "partie_22"
+        },
+        {
+          "noteNumber": 3,
+          "contents": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At, id autem incidunt delectus ea. Architecto aliquam alias iure mollitia voluptate totam in repellendus, dignissimos. Quia necessitatibus ipsam, quis itaque nisi.",
+              "blockIndex": 0
+            }
+          ],
+          "id": "partie_23"
+        },
+        {
+          "noteNumber": 4,
+          "contents": [
+            {
+              "node": "text",
+              "text": "This is another footnote",
+              "blockIndex": 0
+            }
+          ],
+          "id": "partie_24"
+        },
+        {
+          "noteNumber": 5,
+          "contents": [
+            {
+              "node": "text",
+              "text": "This is another footnote",
+              "blockIndex": 0
+            }
+          ],
+          "id": "partie_25"
         }
       ]
     },
@@ -2816,28 +5112,171 @@
       ],
       "contents": [
         {
-          "html": "<h1 id=\"this-is-part-two-point-two\">This is part two point two</h1>",
-          "tagType": "heading"
+          "node": "element",
+          "tag": "h1",
+          "attr": {
+            "id": "this-is-part-two-point-two"
+          },
+          "child": [
+            {
+              "node": "text",
+              "text": "This is part two point two",
+              "blockIndex": 0
+            }
+          ],
+          "blockIndex": 0
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.</p>",
-          "tagType": "p"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 1
         },
         {
-          "html": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam nesciunt molestias hic error dignissimos blanditiis, quo, voluptas necessitatibus neque, aliquid cupiditate commodi sed dolor consequatur ipsum fugiat esse placeat illo.</p>",
-          "tagType": "p"
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.",
+              "blockIndex": 2
+            }
+          ],
+          "blockIndex": 2
         },
         {
-          "html": "<p>I try a third footnote[^]{third footnote}</p>",
-          "tagType": "p"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 3
         },
         {
-          "html": "<p>I am going to talk in the end about <InlineContextualization id=\"contextualization_1\" resources=\"@anthony_grafton\" contextualizer=\"contextualizer_1\">Anthony Grafton</InlineContextualization>. But I would like to see his name written without writing his name twice : <InlineContextualization id=\"contextualization_2\" resources=\"@anthony_grafton\" contextualizer=\"contextualizer_2\"></InlineContextualization>.</p>",
-          "tagType": "p"
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam nesciunt molestias hic error dignissimos blanditiis, quo, voluptas necessitatibus neque, aliquid cupiditate commodi sed dolor consequatur ipsum fugiat esse placeat illo.",
+              "blockIndex": 4
+            }
+          ],
+          "blockIndex": 4
         },
         {
-          "html": "<p>And how couldn&#39;t I link Grafton to the concept of <InlineContextualization id=\"contextualization_3\" resources=\"@materiality\" contextualizer=\"contextualizer_3\"></InlineContextualization> ?</p>",
-          "tagType": "p"
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 5
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "I try a third footnote",
+              "blockIndex": 6
+            },
+            {
+              "node": "element",
+              "tag": "note",
+              "attr": {
+                "href": "note_partie_2_21"
+              },
+              "child": [
+                {
+                  "node": "text",
+                  "text": "footnote",
+                  "blockIndex": 6
+                }
+              ],
+              "blockIndex": 6,
+              "target": "partie_2_21"
+            }
+          ],
+          "blockIndex": 6
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 7
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "I am going to talk in the end about ",
+              "blockIndex": 8
+            },
+            {
+              "node": "element",
+              "tag": "inlineC",
+              "attr": {
+                "href": "contextualization_0"
+              },
+              "child": [
+                {
+                  "node": "text",
+                  "text": "Anthony Grafton",
+                  "blockIndex": 8
+                }
+              ],
+              "blockIndex": 8
+            },
+            {
+              "node": "text",
+              "text": ". But I would like to see his name written without writing his name twice : ",
+              "blockIndex": 8
+            },
+            {
+              "node": "element",
+              "tag": "inlineC",
+              "attr": {
+                "href": "contextualization_1"
+              },
+              "blockIndex": 8
+            },
+            {
+              "node": "text",
+              "text": ".",
+              "blockIndex": 8
+            }
+          ],
+          "blockIndex": 8
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 9
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "And how couldn't I link Grafton to the concept of ",
+              "blockIndex": 10
+            },
+            {
+              "node": "element",
+              "tag": "inlineC",
+              "attr": {
+                "href": "contextualization_2"
+              },
+              "blockIndex": 10
+            },
+            {
+              "node": "text",
+              "text": " ?",
+              "blockIndex": 10
+            }
+          ],
+          "blockIndex": 10
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 11
         }
       ],
       "resources": [
@@ -3058,94 +5497,149 @@
       },
       "contextualizers": [
         {
-          "dateformat": "%Y-%m-%d",
-          "disposition": "superpose",
+          "bibType": "contextualizer",
+          "citeKey": "cool_timeline",
+          "type": "timeline",
+          "title": "My cool timeline",
           "layer": [
             {
               "dates": "@res1.data.dates",
-              "labels": "@res1.data.labels",
-              "title": "hello ça va"
+              "title": "hello ça va",
+              "labels": "@res1.data.labels"
             },
             {
               "dates": "@res2.data.dates",
               "labels": "@res2.data.labels"
             }
           ],
-          "title": "My cool timeline",
-          "inheritedVerticallyFrom": "partie_2",
-          "citeKey": "cool_timeline",
-          "type": "timeline",
-          "outputmode": "all"
+          "inheritedVerticallyFrom": "partie_2"
         },
         {
-          "showdescription": "yes",
-          "title": "@res.title",
-          "citeKey": "contextualizer_1",
-          "type": "glossary",
           "describedInline": true,
-          "outputmode": "all"
+          "fullyImplicit": true,
+          "citeKey": "contextualizer_01"
         },
         {
-          "showdescription": "yes",
-          "title": "@res.title",
-          "citeKey": "contextualizer_2",
-          "type": "glossary",
           "describedInline": true,
-          "outputmode": "all"
+          "fullyImplicit": true,
+          "citeKey": "contextualizer_11"
         },
         {
-          "showdescription": "yes",
-          "title": "@res.title",
-          "citeKey": "contextualizer_3",
-          "type": "glossary",
           "describedInline": true,
-          "outputmode": "all"
+          "fullyImplicit": true,
+          "citeKey": "contextualizer_21"
         }
       ],
       "markdownContents": "# This is part two point two\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam nesciunt molestias hic error dignissimos blanditiis, quo, voluptas necessitatibus neque, aliquid cupiditate commodi sed dolor consequatur ipsum fugiat esse placeat illo.\n\nI try a third footnote[^]{third footnote}\n\nI am going to talk in the end about [Anthony Grafton](@anthony_grafton). But I would like to see his name written without writing his name twice : [](@anthony_grafton).\n\nAnd how couldn't I link Grafton to the concept of [](@materiality) ?\n",
-      "notes": [],
       "contextualizations": [
         {
-          "matchIndex": 533,
+          "citeKey": "contextualization_0",
+          "contextualizer": {
+            "showdescription": "yes",
+            "title": "@res.title",
+            "citeKey": "contextualizer_01",
+            "type": "glossary",
+            "describedInline": true,
+            "outputmode": "all"
+          },
+          "resources": [
+            {
+              "firstname": "Anthony",
+              "lastname": "Grafton",
+              "bibType": "person",
+              "citeKey": "anthony_grafton",
+              "description": "Henry Putnam University Professor of History",
+              "inheritedVerticallyFrom": "partie_2"
+            }
+          ],
+          "type": "inline",
+          "node": {
+            "node": "element",
+            "tag": "inlineC",
+            "attr": {
+              "href": "contextualization_0"
+            },
+            "child": [
+              {
+                "node": "text",
+                "text": "Anthony Grafton",
+                "blockIndex": 8
+              }
+            ],
+            "blockIndex": 8
+          }
+        },
+        {
           "citeKey": "contextualization_1",
-          "contextualizer": "contextualizer_1",
+          "contextualizer": {
+            "showdescription": "yes",
+            "title": "@res.title",
+            "citeKey": "contextualizer_11",
+            "type": "glossary",
+            "describedInline": true,
+            "outputmode": "all"
+          },
           "resources": [
-            "anthony_grafton"
+            {
+              "firstname": "Anthony",
+              "lastname": "Grafton",
+              "bibType": "person",
+              "citeKey": "anthony_grafton",
+              "description": "Henry Putnam University Professor of History",
+              "inheritedVerticallyFrom": "partie_2"
+            }
           ],
           "type": "inline",
-          "contextualizerType": "glossary",
-          "showdescription": "yes",
-          "title": "@res.title",
-          "describedInline": true,
-          "outputmode": "all"
+          "node": {
+            "node": "element",
+            "tag": "inlineC",
+            "attr": {
+              "href": "contextualization_1"
+            },
+            "blockIndex": 8
+          }
         },
         {
-          "matchIndex": 655,
           "citeKey": "contextualization_2",
-          "contextualizer": "contextualizer_2",
+          "contextualizer": {
+            "showdescription": "yes",
+            "title": "@res.title",
+            "citeKey": "contextualizer_21",
+            "type": "glossary",
+            "describedInline": true,
+            "outputmode": "all"
+          },
           "resources": [
-            "anthony_grafton"
+            {
+              "name": "Materiality",
+              "bibType": "concept",
+              "citeKey": "materiality",
+              "description": "When we read literature and look at images on pages or screens, we are usually trying to extract information from words, symbols and figures. We don’t often think about the physical processes involved in this or even the material objects with which we are interacting: we seem to see through the paper pages and the illuminated computer screens, barely registering differences between media as we work out the messages being transmitted through them. Yet the material properties of different media have all sorts of subtle effects on our reading and viewing experiences. For example, the way that the cover of a book feels or looks can determine whether we pick it up and enjoy reading it, and the brightness and speed of electronic images can determine whether we stay on one site or click our way to another.",
+              "inheritedVerticallyFrom": "partie_2"
+            }
           ],
           "type": "inline",
-          "contextualizerType": "glossary",
-          "showdescription": "yes",
-          "title": "@res.title",
-          "describedInline": true,
-          "outputmode": "all"
-        },
+          "node": {
+            "node": "element",
+            "tag": "inlineC",
+            "attr": {
+              "href": "contextualization_2"
+            },
+            "blockIndex": 10
+          }
+        }
+      ],
+      "notes": [
         {
-          "matchIndex": 749,
-          "citeKey": "contextualization_3",
-          "contextualizer": "contextualizer_3",
-          "resources": [
-            "materiality"
+          "noteNumber": 1,
+          "contents": [
+            {
+              "node": "text",
+              "text": "third footnote",
+              "blockIndex": 0
+            }
           ],
-          "type": "inline",
-          "contextualizerType": "glossary",
-          "showdescription": "yes",
-          "title": "@res.title",
-          "describedInline": true,
-          "outputmode": "all"
+          "id": "partie_2_21"
         }
       ]
     }

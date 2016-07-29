@@ -2,7 +2,6 @@ import React, {PropTypes} from 'react';
 import Radium from 'radium';
 
 // let styles = {};
-
 /**
  * dumb component for displaying a simple structured image figure
  */
@@ -20,13 +19,13 @@ export default class StaticImageFigure extends React.Component {
     schematype: PropTypes.string,
     resource: PropTypes.object,
     imageKey: PropTypes.string,
-    captionContent: PropTypes.string,
+    captionContent: PropTypes.array,
     figureNumber: PropTypes.number
   };
 
   static defaultProps = {
     schematype: 'ImageObject',
-    captionContent: '',
+    captionContent: [],
     imageKey: 'imageurl'
   };
 

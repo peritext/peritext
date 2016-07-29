@@ -13,12 +13,12 @@ import {validateResources} from './../../validators/sectionValidator';
 import {getResourceModel, serializePropAgainstType} from './../../utils/modelUtils';
 import {getMetaValue} from './../../utils/sectionUtils';
 import {resolveSectionAgainstModels} from './../../resolvers/resolveSectionAgainstModels';
-import {resolveContextualizersAndContextualizations} from './../../resolvers/resolveContextualizations';
-import {markdownToContentsList} from './../markdownConverter';
+import {resolveBindings} from './../../resolvers/resolveContextualizations';
+import {markdownToJsAbstraction} from './../markdownConverter';
 import {serializeBibTexObject} from './../../converters/bibTexConverter';
 
 
-function concatSection({section, models}, callback) {
+const concatSection = ({section, models}, callback) =>{
   const genuineMeta = section.metadata.filter((metadata)=>{
     return !metadata.inheritedVerticallyFrom && !metadata.inheritedHorizontallyFrom;
   });
@@ -92,7 +92,7 @@ function concatSection({section, models}, callback) {
 
   const bibResources = [metadata].concat(resources).concat(contextualizers);
 
-  asyncMap(bibResources, serializeBibTexObject, function(err, inputBibStr) {
+  asyncMap(bibResources, serializeBibTexObject, (err, inputBibStr) =>{
     let bibStr;
     if (inputBibStr) {
       bibStr = inputBibStr.join('\n\n');
@@ -105,9 +105,9 @@ function concatSection({section, models}, callback) {
       root
     });
   });
-}
+};
 
-function sectionListToFsTree(inputSectionList, basePath, callback) {
+const sectionListToFsTree = (inputSectionList, basePath, callback) =>{
   const sectionList = inputSectionList.map((section)=>{
     const folderTitle = section.citeKey;
     const relPath = (section.root) ? '' : '/' + folderTitle;
@@ -149,55 +149,55 @@ function sectionListToFsTree(inputSectionList, basePath, callback) {
   root.children = root.children.concat(children);
   root.name = basePath.split('/').pop();
   callback(null, root);
-}
+};
 
 // from documentSectionsList to fsTree
-export function serializeSectionList({sectionList, models, basePath}, callback) {
+export const serializeSectionList = ({sectionList, models, basePath}, callback) =>{
   waterfall([
-    function(cb) {
-      asyncMap(sectionList, function(section, callbck) {
+    (cb) =>{
+      asyncMap(sectionList, (section, callbck) =>{
         concatSection({section, models}, callbck);
-      }, function(err, concatSections) {
+      }, (err, concatSections) =>{
         cb(err, concatSections);
       });
     },
-    function(sections, cb) {
+    (sections, cb) =>{
       sectionListToFsTree(sections, basePath, cb);
     }
     // all done - return a fsTree
   ], callback);
-}
+};
 
 // from fsTree (returned by any connector) to a documentSectionsList usable in app
-export function parseSection({tree, parameters, parent, models}, callback) {
+export const parseSection = ({tree, parameters, parent, models}, callback)=> {
   waterfall([
     // concat markdown, resources, styles, templates, components, and resolve includes, producing a clean 'dumb tree'
-    function(cb) {
+    (cb) =>{
       //  console.log(tree);
       concatTree(tree, parameters, cb);
     },
       // parse bibtext to produce resources and metadata props, producing a 'naive tree' of sections
-    function(dumbTree, cb) {
+    (dumbTree, cb) =>{
       parseTreeResources(dumbTree, cb);
     },
     // validate and resolve metadata against their models for all sections
-    function(naiveTree, cb) {
+    (naiveTree, cb) =>{
       cleanNaiveTree({validTree: naiveTree}, models, cb);
     },
     // format objects, normalize metadata, and resolve organization statements
-    function({errors, validTree}, cb) {
+    ({errors, validTree}, cb) =>{
       organizeTree({errors, validTree}, cb);
     },
     // propagate resources, metadata and customizers vertically (from parents to children sections), metadata lateraly (from metadata models propagation data)
-    function({errors, sections}, cb) {
+    ({errors, sections}, cb) =>{
       propagateData({errors, sections, models, parent}, cb);
     },
     // validate each resource against their models to produce errors and warnings from parsing
-    function({errors, sections}, cb) {
+    ({errors, sections}, cb) =>{
 
-      asyncMap(sections, function(section, cback) {
+      asyncMap(sections, (section, cback) =>{
         validateResources(section, models, cback);
-      }, function(err, results) {
+      }, (err, results) =>{
         const newSections = results.map((result)=>{
           return result.section;
         });
@@ -208,10 +208,10 @@ export function parseSection({tree, parameters, parent, models}, callback) {
       });
     },
     // resolve section resources and metadata against their models
-    function({errors, sections}, cb) {
-      asyncMap(sections, function(section, cback) {
+    ({errors, sections}, cb) =>{
+      asyncMap(sections, (section, cback) =>{
         resolveSectionAgainstModels(section, models, cback);
-      }, function(err, results) {
+      }, (err, results) =>{
         const newSections = results.map((result)=>{
           return result.section;
         });
@@ -222,10 +222,10 @@ export function parseSection({tree, parameters, parent, models}, callback) {
       });
     },
     // parse markdown contents and organize them as blocks lists, and parse+resolve contextualization objects
-    function({errors, sections}, cb) {
-      asyncMap(sections, function(section, cback) {
-        markdownToContentsList(section, parameters, cback);
-      }, function(err, results) {
+    ({errors, sections}, cb) =>{
+      asyncMap(sections, (section, cback) =>{
+        markdownToJsAbstraction(section, parameters, cback);
+      }, (err, results) =>{
         const newSections = results.map((result)=>{
           return result.section;
         });
@@ -236,10 +236,10 @@ export function parseSection({tree, parameters, parent, models}, callback) {
       });
     },
     // resolve contextualizers statements with their models
-    function({errors, sections}, cb) {
-      asyncMap(sections, function(section, cback) {
-        resolveContextualizersAndContextualizations({section, models}, cback);
-      }, function(err, results) {
+    ({errors, sections}, cb) =>{
+      asyncMap(sections, (section, cback) =>{
+        resolveBindings({section, models}, cback);
+      }, (err, results) =>{
         const newSections = results.map((result)=>{
           return result.section;
         });
@@ -251,4 +251,4 @@ export function parseSection({tree, parameters, parent, models}, callback) {
     }
     // all done - return a documentTree to use as data state in the app
   ], callback);
-}
+};

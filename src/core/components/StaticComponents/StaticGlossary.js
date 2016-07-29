@@ -1,9 +1,7 @@
 import React, {PropTypes} from 'react';
 import Radium from 'radium';
 import { intlShape, defineMessages } from 'react-intl';
-import {
-  StaticEntityBlock
-} from './../index.js';
+import StaticEntityBlock from './../../../contextualizers/glossary/StaticEntityBlock.js';
 // let styles = {};
 
 const translate = defineMessages({
@@ -24,10 +22,12 @@ class StaticGlossary extends React.Component {
    * propTypes
    */
   static propTypes = {
-    elements: PropTypes.array
+    elements: PropTypes.array,
+    id: PropTypes.string
   };
 
   static defaultProps = {
+    elements: []
   };
 
 
@@ -39,7 +39,7 @@ class StaticGlossary extends React.Component {
     const { formatMessage } = this.context.intl;
     return (
       <section
-        id="peritext-static-glossary"
+        id={this.props.id}
         className="peritext-static-glossary-container"
       >
         <h2>{ formatMessage(translate.glossary, {}) }</h2>

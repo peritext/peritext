@@ -8,7 +8,6 @@ export function cleanNaiveTree({errors = [], validTree}, models, callback) {
   const contextualizers = [];
   const naiveTree = Object.assign({}, validTree);
   let metadata;
-
   const hasResources = naiveTree && naiveTree.resources;
   if (hasResources) {
     naiveTree.resources = naiveTree.resources.filter(function(res) {
@@ -56,7 +55,7 @@ export function cleanNaiveTree({errors = [], validTree}, models, callback) {
     const newErrors = (errors.length > 0) ? errors.reverse() : null;
     return callback(null, {errors: newErrors, validTree: undefined});
   }else if (naiveTree.children) {
-    asyncMap(naiveTree.children, function(child, cb) {
+    return asyncMap(naiveTree.children, function(child, cb) {
       cleanNaiveTree({validTree: child}, models, cb);
     }, function(err, results) {
       // filter valid children tree leaves

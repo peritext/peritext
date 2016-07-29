@@ -1,15 +1,16 @@
 import React, {PropTypes} from 'react';
 import Radium from 'radium';
-import HtmlToReact from 'html-to-react';
 
 import {getMetaValue} from './../../utils/sectionUtils';
 import {bibToSchema} from './../../utils/microDataUtils';
 
 import {
   StructuredMetadataPlaceholder,
-  StaticEndNotes
+  StaticEndNotes,
+  StaticEndFigures
 } from './../index.js';
 
+import renderContents from './../componentFactory.js';
 
 // let styles = {};
 
@@ -30,8 +31,6 @@ export default class StaticSection extends React.Component {
   static defaultProps = {
   };
 
-  htmlToReactParser = new HtmlToReact.Parser(React);
-
   /**
    * render
    * @return {ReactElement} markup
@@ -39,7 +38,6 @@ export default class StaticSection extends React.Component {
   render() {
     const bibType = bibToSchema(getMetaValue(this.props.section.metadata, 'general', 'bibType'));
     const citeKey = getMetaValue(this.props.section.metadata, 'general', 'citeKey');
-    const sectionContent = this.htmlToReactParser.parse('<section class="peritext-static-section-contents">' + this.props.section.outputHtml + '</section>');
     return (
       <section
         className={'peritext-static-section-container peritext-static-section-level-' + getMetaValue(this.props.section.metadata, 'general', 'generalityLevel')}
@@ -52,13 +50,17 @@ export default class StaticSection extends React.Component {
         property="hasPart"
       >
         <StructuredMetadataPlaceholder section={this.props.section} />
-        {sectionContent}
-        {this.props.settings.notesPosition === 'sectionend' ?
+        {renderContents(this.props.section.contents)}
+        {this.props.settings.figuresPosition === 'section-end' && this.props.section.figures ?
+          <StaticEndFigures
+            contents={this.props.section.figures}
+            classSuffix="section-end"
+          /> : ''}
+        {this.props.settings.notesPosition === 'section-end' && this.props.section.notes.length ?
           <StaticEndNotes
             classSuffix="section-end"
             notes={this.props.section.notes}
-          /> : ''
-        }
+          /> : ''}
       </section>
     );
   }

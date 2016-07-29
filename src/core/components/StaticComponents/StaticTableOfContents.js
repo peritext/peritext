@@ -22,13 +22,14 @@ class StaticTableOfContents extends React.Component {
    * propTypes
    */
   static propTypes = {
-    title: PropTypes.string,
-    elements: PropTypes.array,
-    level: PropTypes.number
+    contents: PropTypes.array,
+    level: PropTypes.number,
+    id: PropTypes.string
   };
 
   static defaultProps = {
-    title: 'Table of contents'
+    title: 'Table of contents',
+    level: 1
   };
 
 
@@ -40,12 +41,12 @@ class StaticTableOfContents extends React.Component {
     const { formatMessage } = this.context.intl;
     return (
       <section
-        id="peritext-static-table-of-contents"
+        id={this.props.id}
         className="peritext-static-table-of-contents-container"
       >
         <h2>{ formatMessage(translate.tableofcontents, {}) }</h2>
         <section className="peritext-static-table-of-contents-elements-container">
-          {this.props.elements.map((element) =>{
+          {this.props.contents.map((element) =>{
             return <StaticTableOfContentsElement id={element.id} key={element.id} title={element.title} level={element.level} levelDisplacement={this.props.level}/>;
           })}
         </section>
@@ -53,10 +54,10 @@ class StaticTableOfContents extends React.Component {
     );
   }
 }
+
 StaticTableOfContents.contextTypes = { intl: intlShape };
 
 export default StaticTableOfContents;
-
 
 class StaticTableOfContentsElement extends React.Component {
 
@@ -76,7 +77,6 @@ class StaticTableOfContentsElement extends React.Component {
     paddingDisplacement: 0.5,
     levelDisplacement: 0
   };
-
 
   /**
    * render
