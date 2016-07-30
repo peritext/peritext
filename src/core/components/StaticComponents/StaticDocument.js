@@ -29,6 +29,7 @@ class StaticDocument extends React.Component {
    * propTypes
    */
   static propTypes = {
+    rootSection: PropTypes.object,
     sections: PropTypes.array,
     settings: PropTypes.object
   };
@@ -41,8 +42,8 @@ class StaticDocument extends React.Component {
    * @return {ReactElement} markup
    */
   render() {
-    const bibType = bibToSchema(getMetaValue(this.props.sections[0].metadata, 'general', 'bibType'));
-    const citeKey = getMetaValue(this.props.sections[0].metadata, 'general', 'citeKey');
+    const bibType = bibToSchema(getMetaValue(this.props.rootSection.metadata, 'general', 'bibType'));
+    const citeKey = getMetaValue(this.props.rootSection.metadata, 'general', 'citeKey');
     return (
         <section
           itemScope
@@ -51,7 +52,7 @@ class StaticDocument extends React.Component {
           vocab="http://schema.org/"
           resource={'#' + citeKey}
         >
-          <StructuredMetadataPlaceholder section={this.props.sections[0]} />
+          <StructuredMetadataPlaceholder section={this.props.rootSection} />
 
           {this.props.sections.map((section, index)=> {
             switch (section.type) {

@@ -3,7 +3,7 @@ import {StaticImageFigure, StructuredHyperLink} from './../../core/components';
 import Radium from 'radium';
 
 // let styles = {};
-import renderContents from './../../core/components/componentFactory.js';
+import renderContents from './../../core/utils/componentsFactory';
 
 /**
  * dumb static-oriented component for displaying a webpage poster image

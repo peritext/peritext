@@ -212,3 +212,15 @@ export const resolvePropAgainstType = (prop, valueType, model) => {
     return prop;
   }
 };
+
+export const resolveSettings = (settings, bibType, settingsModel) =>{
+  const typeModel = {};
+  for (const param in settingsModel) {
+    if (settingsModel[param].default[bibType]) {
+      typeModel[param] = settingsModel[param].default[bibType];
+    } else {
+      typeModel[param] = settingsModel[param].default.default;
+    }
+  }
+  return Object.assign(typeModel, settings);
+};

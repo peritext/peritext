@@ -1,7 +1,8 @@
 import React, {PropTypes} from 'react';
-import renderContents from './../componentFactory.js';
 
 import Radium from 'radium';
+
+import renderContents from './../../utils/componentsFactory';
 
 // let styles = {};
 

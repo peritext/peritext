@@ -3,7 +3,7 @@ import Radium from 'radium';
 
 import {bibToSchema} from './../../core/utils/microDataUtils';
 // let styles = {};
-import renderContents from './../../core/components/componentFactory.js';
+import renderContents from './../../core/utils/componentsFactory';
 
 /**
  * dumb component and placeholder for rendering the structured representation of an entity citation

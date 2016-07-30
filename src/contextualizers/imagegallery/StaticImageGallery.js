@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import {StaticImageFigure} from './../../core/components';
 
-import renderContents from './../../core/components/componentFactory.js';
+import renderContents from './../../core/utils/componentsFactory';
 import Radium from 'radium';
 
 // let styles = {};
