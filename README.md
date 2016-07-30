@@ -1,29 +1,53 @@
-Peritext - *make a multimodal academic publication from simple text files*
+[Hard WIP] Peritext - *a contextualization-oriented academic publishing engine*
 ==========
 
-![Peritext project in one image](https://raw.githubusercontent.com/robindemourat/peritext/master/specification/assets/peritext-project.png)
+Peritext is a library aimed at facilitating the making of media-rich, data-driven and multimodal academic publication projects.
 
+# The RCC model
 
-Peritext is an application aimed at facilitating the making of media-rich, data-driven and multimodal academic publication projects.
+The core of the library is centered on manipulating a specific abstraction of academic documents, which I labeled the *Resource-Contexutalization-Contextualizer Model*.
 
-To do so, it turns flatfile contents coming from web platforms into several formats of academic publishing : webtext, pdf document, REST Api, ...
+The *Resource Contextualization Contextualizer Model* is a way to model an academic document as something composed by ``contents``, ``resources`` and ``contextualizations``:
 
-Contents are written in plain text files (in ``markdown`` and ``bibtex`` syntaxes), and hosted mainly in external flatfile-structured data sources (ftp server, local files, google drive, amazon s3, ...).
+* ``Contents`` are the main titles, paragraphs, ... written by the author. They are written in ``markdown`` syntax
+* ``Resources`` are all the external resources mentionned by the author (whether they be images, videos, data, books, articles, persons, places, ...). They are written in ``bibTeX`` syntax
+* ``Contextualizations`` are statements written by the author about **how to contextualize a specific resource at a specific point of her text, in a specific way.** For example, the same *dataset* resource will be able to be *contextualized* by the author as a ``table``, a ``timeline``, a `map`, or a simple ``academic reference`` contextualization.
+* ``Contextualizers`` are reusable sets of parameters describing how to contextualize a resource. They can be reused along a given document, or taken as basis by specific contextualizations, to perform ``data travelling`` operations for instance.
 
-Peritext is designed to be a "reader" in the first place, though its structure allows for connecting it to a content-edition application later on.
+# Why is this model useful ?
+
+* it allows a great attention to the non-textual elements that compose a publication. Through **parametric illustrations** descriptions, the author describes very precisely how to present her resources
+* it **allows users to author high-quality documents accross several media**, while not avoiding to put a great attention into specific designs (through css styling)
+* it **enforces a sense of rigourousness** by the author while referencing resources. Authors cannot mention something if they don't describe it first.
+* it **facilitates SEO and indexation**, as peritext outputs are highly enriched in ``dublincore``  & ``opengraph`` metadata, and ``RDFa`` microdata at the level of tiniest contents
+
+# What use cases is this model useful for ?
+
+* multi-supports publication: write once, publish everywhere
+* media-related or interview-related research publishing: quote timecoded specific portions of recorded media. Display subtitles/transcriptions if you have them. See media thumbnails in static outputs.
+* data-related research publishing: show your data through different angles. Discuss it, argument with it, travel inside it, make it live with your text.
+* web-related research publishing: quote tweets, webpages, search engine results. See the publication evolve with time.
+* design-related publishing: show your productions and process extensively, take care of your publication's design through fine-grained custom css, while staying inside academic standards.
+
+---
+
+# The library
+
+To allow an authoring process based on the RCC Model, Peritext library is a modular set of modules whose core is centered on **converting the javascript representation of *flatfile contents* to the javascript ``RCC`` representation of a *multimodal academic document*, and vice versa**.
+
+Flatfiles are written in plain text files (in ``markdown`` and ``bibtex`` syntaxes), and hosted in flatfile-structured data sources (ftp server, local hard drive/server files, google drive, amazon s3, ...). The relation to these datasources is handled by *connectors* plugins.
+
+Contextualizations are handled through *contextualizers* plugins (written in javascript and react), that can be customized and overridable by specific applications. They are all supposed to handle both static/print outputs and dynamic/web outputs.
+
+Outputs can be either files (in pdf, xml, html, ... formats) handled by ``exporters`` plugins, or a library to use in another application to produce APIs, webapps, content editors, ...
 
 # Caution : Work In Progress
 
-Peritext is being rewritten at the moment as a source-agnostic, annotation-ready, and editor-ready, [universal javascript application](https://medium.com/@mjackson/universal-javascript-4761051b7ae9).
+Peritext is in its really early phase of existence : test coverage is quasi inexistant, most doc is missing, contextualization components are minimal, and exporters too. Use it at your own risk, but more than that, feel free to give a hand to the project if you wish !
 
-See an implementation of the first, front-end only, version of Peritext there : http://modesofexistence.org/anomalies/ (source there : https://github.com/robindemourat/clues-anomaly-understanding )
+# Detailed description
 
-If you're curious about what's going on, [check here the in-progress peritext v2 working documents about markdown specification, contents structures and technical choices](https://github.com/robindemourat/peritext/tree/master/specification).
-
-
-# Presentation
-
-Peritext is aimed at being an interface and rendering engine to multimodal academic publishing projects - built with flexibility, extensibility and lightness as core values.
+Peritext is built with flexibility, extensibility and lightness as core values.
 
 Project's goal is to simplify and democratize the possibility of setting up a scholarly textual document accompanied with various interactive/multimodal figures (whether they be embedded from web services, or interactive figures presenting data such as timelines, graphs, interviews, ...).
 
@@ -55,28 +79,14 @@ Experience-related goals :
 1. **linearity-driven** : peritext's interface goal is to take advantage of the hypertextuality and knowledge-linking capabilities of digital content while always focusing on not getting the reader (and maybe later, the writer) lost. This is seeked by emphasizing strongly a linear, hierarchical mental model of the document accessible at all times
 2. **built for reuse, citation, and quoting** : it should be extremely easy to precisely quote a part of a Peritext document, and to retrieve document's own metadata and document's cited sources from any bibliography management software (like Zotero)
 
+# History of the project
 
-## (Previous version) existing features
+Peritext is a technology built in the context of my Ph.D. in digital humanities, design & aesthetics, which deals with academic publishing in the humanities.
 
-* index auto-building and navigation system
-* complex interactions with interactive elements, through scroll and click
-* diversely extended markdown language
-* fully responsive academic document design (desktop/tablet/mobile/print)
+The project comes as the amplification of a previous, very specific, multimodal article experiment, that I participated to as a designer, a developper and a researcher : http://modesofexistence.org/anomalies/ (source there : https://github.com/robindemourat/clues-anomaly-understanding ).
 
-Current available figure modules (embedded contents) :
-* google spreadsheet table
-* vimeo
-* youtube
-* tableau
-* twitter
-* pdf embed
-* slideshare
-* image gallery
-* iframe embed
+In the frame of my Ph.D., this experiment became first the project of a generic flat-file application engine for generating multimodal publications. Then it became an even more generic technology, aimed at being used as client tool, or as a library in other applications, such as the one I am developping in order to publish my own Ph.D. in multimodal format.
 
-Available figure modules for specific data :
-* transcripted interview
-* multi-dimensional timeline
-* sankey diagram
-* network graph
+Therefore, the [github peritext organization](https://github.com/peritext) is aimed, on the long term, at progressively hosting the Peritext core library, but also a series of contextualization/connection/exporting plugins, and applications making use of this library in the context of reading and/or authoring multimodal academic contents.
 
+If you're curious about what's going on or want to comment/give a hand to the project, [check here the in-progress peritext v2 working documents about markdown specification, contents structures and technical choices](https://github.com/robindemourat/peritext/tree/master/specification).

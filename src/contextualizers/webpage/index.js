@@ -61,6 +61,7 @@ export const contextualizeBlockStatic = (inputSection, inputContextualization, s
       id: figureId
     }
   };
+
   if (settings.figuresPosition === 'inline') {
     section.contents[blockIndex + section.figuresCount - 1] = figure;
   } else {

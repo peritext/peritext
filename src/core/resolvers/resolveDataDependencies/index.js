@@ -264,6 +264,8 @@ export default function resolveDataDependencies(inputSections, assetsController,
 
             // console.log('new contextualization', Object.assign(contextualization, newContextualizer));
             // pass contextualizer's resolved values to contextualization object
+            newContextualizer.contextualizerType = newContextualizer.type;
+            delete newContextualizer.type;// contextualization has a type also
             const newContextualization = Object.assign(contextualization, newContextualizer);
             contextualizationCallback(err1, newContextualization);
           });

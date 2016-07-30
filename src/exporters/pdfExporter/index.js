@@ -20,16 +20,17 @@ import {
 import {getMetaValue} from './../../core/utils/sectionUtils';
 import renderSection from './../../renderers/renderToStaticHtml';
 
-export function exportSection({
+export default function exportSection({
   section,
   sectionList,
   settings,
   includeChildren,
-  destinationFolder = './../../_temp/'
+  destinationFolder,
 }, assetsController, assetsParams, finalCallback) {
 
   const motherKey = getMetaValue(section.metadata, 'general', 'citeKey');
-  const path = resolve(__dirname + destinationFolder);
+  const path = destinationFolder || resolve(__dirname + './temp/');
+  console.log('path', path);
   waterfall([
     // get or create destination folder
     (existsCb)=> {

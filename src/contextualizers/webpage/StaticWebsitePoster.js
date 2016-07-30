@@ -54,7 +54,7 @@ export default class StructuredWebsitePoster extends React.Component {
               itemType={'http://schema.org/' + this.props.schematype}
               typeof={this.props.schematype}
               resource={'#' + this.props.resource.citeKey}
-              id={this.props.id}
+              id={'peritext-figure-' + this.props.id}
             >
               <span
                 itemProp="name"
