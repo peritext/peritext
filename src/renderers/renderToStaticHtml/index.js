@@ -95,7 +95,7 @@ export default function renderSection({
         cback(err, sections);
       });
     }, (inputSections, depCallback) =>{
-      resolveDataDependencies(inputSections, assetsController, assetsParams, depCallback);
+      resolveDataDependencies(inputSections, assetsController, assetsParams, true, depCallback);
     // build html code
     }, (inputSections, cback) =>{
       let sections = inputSections.slice();

@@ -60,7 +60,13 @@ const parseElement = ({path = '', element, parseFiles, depth, actualDepth, accep
 };
 
 // cRud
-export const readFromPath = ({path = [], params, depth = 1, parseFiles = false, acceptedExtensions = ['.md', '.bib', '.css', '.js']}, callback) =>{
+export const readFromPath = ({
+    path = [],
+    params,
+    depth = 1,
+    parseFiles = false,
+    acceptedExtensions = ['.md', '.bib', '.css', '.js']
+  }, callback) =>{
   const resolvedPath = (Array.isArray(path)) ? path.join('/') : path;
   const finalPath = resolve(params.basePath) + '/' + resolvedPath;
   let element;
@@ -79,7 +85,7 @@ export const readFromPath = ({path = [], params, depth = 1, parseFiles = false, 
 
   if (element.type === 'directory') {
     return parseElement({path: finalPath, element, parseFiles, depth, actualDepth: 0, acceptedExtensions}, callback);
-  } else if (acceptedExtensions.indexOf(element.extname) > -1) {
+  } else if (acceptedExtensions === '*' || acceptedExtensions.indexOf(element.extname) > -1) {
     readFile(finalPath, 'utf8', (err, str) => {
       if (err) {
         return callback(err, undefined);

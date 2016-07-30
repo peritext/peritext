@@ -14,3 +14,8 @@ export const getAssetUri = (path, params, callback)=> {
   updateConnector(params);
   connector.getAssetUri({path, params}, callback);
 };
+
+export const getReader = (params) =>{
+  updateConnector(params);
+  return connector.readFromPath;
+};

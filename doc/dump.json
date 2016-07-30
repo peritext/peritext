@@ -98,7 +98,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React, {PropTypes} from 'react';\nimport Radium from 'radium';\nimport { intlShape } from 'react-intl';\n\nimport {getMetaValue} from './../../utils/sectionUtils';\nimport {bibToSchema} from './../../utils/microDataUtils';\nimport {\n  StaticBackCover,\n  StaticEndNotes,\n  StaticEndFigures,\n  StaticFrontCover,\n  StaticGlossary,\n  StaticReferencesList,\n  StaticSection,\n  StaticTableOfContents,\n  StaticTableOfFigures,\n  StructuredMetadataPlaceholder\n} from './../index.js';\n\n// let styles = {};\n\n/**\n * dumb component for rendering the structured representation of a static document\n */\n@Radium\nclass StaticDocument extends React.Component {\n\n  /**\n   * propTypes\n   */\n  static propTypes = {\n    sections: PropTypes.array,\n    settings: PropTypes.object\n  };\n\n  static defaultProps = {\n  };\n\n  /**\n   * render\n   * @return {ReactElement} markup\n   */\n  render() {\n    const bibType = bibToSchema(getMetaValue(this.props.sections[0].metadata, 'general', 'bibType'));\n    const citeKey = getMetaValue(this.props.sections[0].metadata, 'general', 'citeKey');\n    return (\n        <section\n          itemScope\n          itemType={'http://schema.org/' + bibType}\n          typeof={bibType}\n          vocab=\"http://schema.org/\"\n          resource={'#' + citeKey}\n        >\n          <StructuredMetadataPlaceholder section={this.props.sections[0]} />\n\n          {this.props.sections.map((section, index)=> {\n            switch (section.type) {\n            case 'table-of-contents':\n              return <StaticTableOfContents id={section.id} key={index} contents={section.contents} />;\n            case 'table-of-figures':\n              return <StaticTableOfFigures id={section.id} key={index} contents={section.contents} />;\n            case 'front-cover':\n              return <StaticFrontCover key={index} metadata={section.metadata} />;\n            case 'back-cover':\n              return <StaticBackCover key={index} metadata={section.metadata} />;\n            case 'endnotes':\n              return <StaticEndNotes id={section.id} key={index} notes={section.contents} classSuffix=\"document-end\" />;\n            case 'endfigures':\n              return <StaticEndFigures id={section.id} key={index} contents={section.contents} classSuffix=\"document-end\" />;\n            case 'references':\n              return <StaticReferencesList id={section.id} key={index} references={section.contents} settings={this.props.settings} />;\n            case 'glossary':\n              return <StaticGlossary id={section.id} key={index} elements={section.contents} />;\n            case 'contents':\n              return <StaticSection key={index} section={section} settings={this.props.settings} />;\n            default:\n              break;\n            }\n          })}\n        </section>\n    );\n  }\n}\n\nStaticDocument.contextTypes = { intl: intlShape };\nexport default StaticDocument;\n"
+    "content": "import React, {PropTypes} from 'react';\nimport Radium from 'radium';\nimport { intlShape } from 'react-intl';\n\nimport {getMetaValue} from './../../utils/sectionUtils';\nimport {bibToSchema} from './../../utils/microDataUtils';\nimport {\n  StaticBackCover,\n  StaticEndNotes,\n  StaticEndFigures,\n  StaticFrontCover,\n  StaticGlossary,\n  StaticReferencesList,\n  StaticSection,\n  StaticTableOfContents,\n  StaticTableOfFigures,\n  StructuredMetadataPlaceholder\n} from './../index.js';\n\n// let styles = {};\n\n/**\n * dumb component for rendering the structured representation of a static document\n */\n@Radium\nclass StaticDocument extends React.Component {\n\n  /**\n   * propTypes\n   */\n  static propTypes = {\n    rootSection: PropTypes.object,\n    sections: PropTypes.array,\n    settings: PropTypes.object\n  };\n\n  static defaultProps = {\n  };\n\n  /**\n   * render\n   * @return {ReactElement} markup\n   */\n  render() {\n    const bibType = bibToSchema(getMetaValue(this.props.rootSection.metadata, 'general', 'bibType'));\n    const citeKey = getMetaValue(this.props.rootSection.metadata, 'general', 'citeKey');\n    return (\n        <section\n          itemScope\n          itemType={'http://schema.org/' + bibType}\n          typeof={bibType}\n          vocab=\"http://schema.org/\"\n          resource={'#' + citeKey}\n        >\n          <StructuredMetadataPlaceholder section={this.props.rootSection} />\n\n          {this.props.sections.map((section, index)=> {\n            switch (section.type) {\n            case 'table-of-contents':\n              return <StaticTableOfContents id={section.id} key={index} contents={section.contents} />;\n            case 'table-of-figures':\n              return <StaticTableOfFigures id={section.id} key={index} contents={section.contents} />;\n            case 'front-cover':\n              return <StaticFrontCover key={index} metadata={section.metadata} />;\n            case 'back-cover':\n              return <StaticBackCover key={index} metadata={section.metadata} />;\n            case 'endnotes':\n              return <StaticEndNotes id={section.id} key={index} notes={section.contents} classSuffix=\"document-end\" />;\n            case 'endfigures':\n              return <StaticEndFigures id={section.id} key={index} contents={section.contents} classSuffix=\"document-end\" />;\n            case 'references':\n              return <StaticReferencesList id={section.id} key={index} references={section.contents} settings={this.props.settings} />;\n            case 'glossary':\n              return <StaticGlossary id={section.id} key={index} elements={section.contents} />;\n            case 'contents':\n              return <StaticSection key={index} section={section} settings={this.props.settings} />;\n            default:\n              break;\n            }\n          })}\n        </section>\n    );\n  }\n}\n\nStaticDocument.contextTypes = { intl: intlShape };\nexport default StaticDocument;\n"
   },
   {
     "__docId__": 5,
@@ -130,7 +130,7 @@
     "longname": "components/StaticComponents/StaticDocument.js~StaticDocument#render",
     "access": null,
     "description": "render",
-    "lineNumber": 43,
+    "lineNumber": 44,
     "params": [],
     "return": {
       "nullable": null,
@@ -153,7 +153,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React, {PropTypes} from 'react';\nimport Radium from 'radium';\nimport { intlShape, defineMessages } from 'react-intl';\n\nimport renderContents from './../componentFactory.js';\n\n// let styles = {};\n\nconst translate = defineMessages({\n  endfigures: {\n    id: 'end_figures',\n    description: 'Title of the end figures',\n    defaultMessage: 'Figures',\n  }\n});\n\n/**\n * dumb component for rendering the structured representation of a static section\n */\n@Radium\nclass StaticEndFigures extends React.Component {\n\n  /**\n   * propTypes\n   */\n  static propTypes = {\n    contents: PropTypes.array,\n    classSuffix: PropTypes.string,\n    id: PropTypes.string\n  };\n\n  static defaultProps = {\n  };\n\n  /**\n   * render\n   * @return {ReactElement} markup\n   */\n  render() {\n    const { formatMessage } = this.context.intl;\n    return (\n      <section\n        className={'peritext-static-end-figures-container peritext-static-end-figures-' + this.props.classSuffix + '-container'}\n        id={this.props.id}\n      >\n        {this.props.contents.length > 0 ? <h4 className=\"peritext-static-end-figures-title\">\n         { formatMessage(translate.endfigures, {}) }\n        </h4> : ''}\n\n        <div className=\"peritext-static-end-figures-figures-container\">\n          {renderContents(this.props.contents)}\n        </div>\n      </section>\n    );\n  }\n}\n\nStaticEndFigures.contextTypes = { intl: intlShape };\n\nexport default StaticEndFigures;\n"
+    "content": "import React, {PropTypes} from 'react';\nimport Radium from 'radium';\nimport { intlShape, defineMessages } from 'react-intl';\n\nimport renderContents from './../../utils/componentsFactory';\n\n// let styles = {};\n\nconst translate = defineMessages({\n  endfigures: {\n    id: 'end_figures',\n    description: 'Title of the end figures',\n    defaultMessage: 'Figures',\n  }\n});\n\n/**\n * dumb component for rendering the structured representation of a static section\n */\n@Radium\nclass StaticEndFigures extends React.Component {\n\n  /**\n   * propTypes\n   */\n  static propTypes = {\n    contents: PropTypes.array,\n    classSuffix: PropTypes.string,\n    id: PropTypes.string\n  };\n\n  static defaultProps = {\n  };\n\n  /**\n   * render\n   * @return {ReactElement} markup\n   */\n  render() {\n    const { formatMessage } = this.context.intl;\n    return (\n      <section\n        className={'peritext-static-end-figures-container peritext-static-end-figures-' + this.props.classSuffix + '-container'}\n        id={this.props.id}\n      >\n        {this.props.contents.length > 0 ? <h4 className=\"peritext-static-end-figures-title\">\n         { formatMessage(translate.endfigures, {}) }\n        </h4> : ''}\n\n        <div className=\"peritext-static-end-figures-figures-container\">\n          {renderContents(this.props.contents)}\n        </div>\n      </section>\n    );\n  }\n}\n\nStaticEndFigures.contextTypes = { intl: intlShape };\n\nexport default StaticEndFigures;\n"
   },
   {
     "__docId__": 8,
@@ -303,7 +303,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React, {PropTypes} from 'react';\nimport renderContents from './../componentFactory.js';\n\nimport Radium from 'radium';\n\n// let styles = {};\n\n/**\n * dumb component for containing either a static or dynamic note, acting whether as a pointer or as a container\n */\n@Radium\nexport default class StaticFootnote extends React.Component {\n\n  /**\n   * propTypes\n   */\n  static propTypes = {\n    note: PropTypes.object,\n  };\n\n  static defaultProps = {\n  };\n\n  /**\n   * render\n   * @return {ReactElement} markup\n   */\n  render() {\n    return (\n      <sup\n        className=\"peritext-static-note-content-container\"\n        name={'peritext-static-note-content-' + this.props.note.target }\n        id={'peritext-static-note-content-' + this.props.note.target}\n      >\n        {renderContents(this.props.note.contents)}\n      </sup>);\n  }\n}\n"
+    "content": "import React, {PropTypes} from 'react';\n\nimport Radium from 'radium';\n\nimport renderContents from './../../utils/componentsFactory';\n\n// let styles = {};\n\n/**\n * dumb component for containing either a static or dynamic note, acting whether as a pointer or as a container\n */\n@Radium\nexport default class StaticFootnote extends React.Component {\n\n  /**\n   * propTypes\n   */\n  static propTypes = {\n    note: PropTypes.object,\n  };\n\n  static defaultProps = {\n  };\n\n  /**\n   * render\n   * @return {ReactElement} markup\n   */\n  render() {\n    return (\n      <sup\n        className=\"peritext-static-note-content-container\"\n        name={'peritext-static-note-content-' + this.props.note.target }\n        id={'peritext-static-note-content-' + this.props.note.target}\n      >\n        {renderContents(this.props.note.contents)}\n      </sup>);\n  }\n}\n"
   },
   {
     "__docId__": 16,
@@ -318,7 +318,7 @@
     "importPath": "peritext/components/StaticComponents/StaticFootnote.js",
     "importStyle": "StaticFootnote",
     "description": null,
-    "lineNumber": 12,
+    "lineNumber": 13,
     "undocument": true,
     "interface": false,
     "extends": [
@@ -335,7 +335,7 @@
     "longname": "components/StaticComponents/StaticFootnote.js~StaticFootnote#render",
     "access": null,
     "description": "render",
-    "lineNumber": 28,
+    "lineNumber": 29,
     "params": [],
     "return": {
       "nullable": null,
@@ -576,7 +576,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React, {PropTypes} from 'react';\nimport Radium from 'radium';\n\nimport renderContents from './../componentFactory.js';\n\n// let styles = {};\n\n/**\n * dumb component for rendering the structured representation of a static note\n */\n@Radium\nexport default class StaticNote extends React.Component {\n\n  /**\n   * propTypes\n   */\n  static propTypes = {\n    note: PropTypes.object,\n  };\n\n  static defaultProps = {\n  };\n\n  /**\n   * render\n   * @return {ReactElement} markup\n   */\n  render() {\n    return (\n      <span\n        style={{display: 'block'}}\n        className=\"peritext-static-note-content-container\"\n        name={'peritext-static-note-content-' + this.props.note.id}\n        id={'peritext-static-note-content-' + this.props.note.id}\n      >\n        <a\n          href={'#peritext-static-note-pointer-' + this.props.note.id}\n          className=\"peritext-static-note-content-number\"\n        >\n          {this.props.note.noteNumber}\n        </a>\n        {renderContents(this.props.note.contents)}\n      </span>\n    );\n  }\n}\n"
+    "content": "import React, {PropTypes} from 'react';\nimport Radium from 'radium';\n\nimport renderContents from './../../utils/componentsFactory';\n\n// let styles = {};\n\n/**\n * dumb component for rendering the structured representation of a static note\n */\n@Radium\nexport default class StaticNote extends React.Component {\n\n  /**\n   * propTypes\n   */\n  static propTypes = {\n    note: PropTypes.object,\n  };\n\n  static defaultProps = {\n  };\n\n  /**\n   * render\n   * @return {ReactElement} markup\n   */\n  render() {\n    return (\n      <span\n        style={{display: 'block'}}\n        className=\"peritext-static-note-content-container\"\n        name={'peritext-static-note-content-' + this.props.note.id}\n        id={'peritext-static-note-content-' + this.props.note.id}\n      >\n        <a\n          href={'#peritext-static-note-pointer-' + this.props.note.id}\n          className=\"peritext-static-note-content-number\"\n        >\n          {this.props.note.noteNumber}\n        </a>\n        {renderContents(this.props.note.contents)}\n      </span>\n    );\n  }\n}\n"
   },
   {
     "__docId__": 30,
@@ -761,7 +761,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React, {PropTypes} from 'react';\nimport Radium from 'radium';\n\nimport {getMetaValue} from './../../utils/sectionUtils';\nimport {bibToSchema} from './../../utils/microDataUtils';\n\nimport {\n  StructuredMetadataPlaceholder,\n  StaticEndNotes,\n  StaticEndFigures\n} from './../index.js';\n\nimport renderContents from './../componentFactory.js';\n\n// let styles = {};\n\n/**\n * dumb component for rendering the structured representation of a static section\n */\n@Radium\nexport default class StaticSection extends React.Component {\n\n  /**\n   * propTypes\n   */\n  static propTypes = {\n    section: PropTypes.object,\n    settings: PropTypes.object\n  };\n\n  static defaultProps = {\n  };\n\n  /**\n   * render\n   * @return {ReactElement} markup\n   */\n  render() {\n    const bibType = bibToSchema(getMetaValue(this.props.section.metadata, 'general', 'bibType'));\n    const citeKey = getMetaValue(this.props.section.metadata, 'general', 'citeKey');\n    return (\n      <section\n        className={'peritext-static-section-container peritext-static-section-level-' + getMetaValue(this.props.section.metadata, 'general', 'generalityLevel')}\n        id={getMetaValue(this.props.section.metadata, 'general', 'citeKey')}\n        itemScope\n        itemType={'http://schema.org/' + bibType}\n        typeof={bibType}\n        resource={'#' + citeKey}\n        itemProp=\"hasPart\"\n        property=\"hasPart\"\n      >\n        <StructuredMetadataPlaceholder section={this.props.section} />\n        {renderContents(this.props.section.contents)}\n        {this.props.settings.figuresPosition === 'section-end' && this.props.section.figures ?\n          <StaticEndFigures\n            contents={this.props.section.figures}\n            classSuffix=\"section-end\"\n          /> : ''}\n        {this.props.settings.notesPosition === 'section-end' && this.props.section.notes.length ?\n          <StaticEndNotes\n            classSuffix=\"section-end\"\n            notes={this.props.section.notes}\n          /> : ''}\n      </section>\n    );\n  }\n}\n"
+    "content": "import React, {PropTypes} from 'react';\nimport Radium from 'radium';\n\nimport {getMetaValue} from './../../utils/sectionUtils';\nimport {bibToSchema} from './../../utils/microDataUtils';\n\nimport {\n  StructuredMetadataPlaceholder,\n  StaticEndNotes,\n  StaticEndFigures\n} from './../index.js';\n\nimport renderContents from './../../utils/componentsFactory';\n\n// let styles = {};\n\n/**\n * dumb component for rendering the structured representation of a static section\n */\n@Radium\nexport default class StaticSection extends React.Component {\n\n  /**\n   * propTypes\n   */\n  static propTypes = {\n    section: PropTypes.object,\n    settings: PropTypes.object\n  };\n\n  static defaultProps = {\n  };\n\n  /**\n   * render\n   * @return {ReactElement} markup\n   */\n  render() {\n    const bibType = bibToSchema(getMetaValue(this.props.section.metadata, 'general', 'bibType'));\n    const citeKey = getMetaValue(this.props.section.metadata, 'general', 'citeKey');\n    return (\n      <section\n        className={'peritext-static-section-container peritext-static-section-level-' + getMetaValue(this.props.section.metadata, 'general', 'generalityLevel')}\n        id={getMetaValue(this.props.section.metadata, 'general', 'citeKey')}\n        itemScope\n        itemType={'http://schema.org/' + bibType}\n        typeof={bibType}\n        resource={'#' + citeKey}\n        itemProp=\"hasPart\"\n        property=\"hasPart\"\n      >\n        <StructuredMetadataPlaceholder section={this.props.section} />\n        {renderContents(this.props.section.contents)}\n        {this.props.settings.figuresPosition === 'section-end' && this.props.section.figures ?\n          <StaticEndFigures\n            contents={this.props.section.figures}\n            classSuffix=\"section-end\"\n          /> : ''}\n        {this.props.settings.notesPosition === 'section-end' && this.props.section.notes.length ?\n          <StaticEndNotes\n            classSuffix=\"section-end\"\n            notes={this.props.section.notes}\n          /> : ''}\n      </section>\n    );\n  }\n}\n"
   },
   {
     "__docId__": 40,
@@ -1205,7 +1205,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React, {PropTypes} from 'react';\nimport Radium from 'radium';\n\n// let styles = {};\nimport renderContents from './../componentFactory.js';\n\n/**\n * dumb component for displaying a structured simple hyperlink <a>\n */\n@Radium\nexport default class StructuredHyperLink extends React.Component {\n\n  /**\n   * propTypes\n   * @property {string} schematype html schema type of the element\n   * @property {array} contents the text to display inside the hyperlink\n   * @property {object} resource the resource to be parsed\n   * @property {object} property the microformat property of the hyperlink\n   */\n  static propTypes = {\n    contents: PropTypes.array,\n    schematype: PropTypes.string,\n    resource: PropTypes.object,\n    property: PropTypes.string\n  };\n\n  static defaultProps = {\n    schematype: 'website',\n    property: 'citation'\n  };\n\n  /**\n   * render\n   * @return {ReactElement} markup\n   */\n  render() {\n    const invisibleStyle = {\n      display: 'none'\n    };\n    return (\n            <a className=\"peritext-structured-hyperlink-container\"\n                itemScope\n                itemProp={this.props.property}\n                itemType={'http://schema.org/' + this.props.schematype}\n                typeof={this.props.schematype}\n                resource={'#' + this.props.resource.citeKey}\n                href={this.props.resource.url}\n            >\n              <span\n                itemProp=\"name\"\n                property=\"name\"\n                value={this.props.resource.title}\n                style={invisibleStyle}\n              >\n                {this.props.resource.title}\n              </span>\n              <span\n                itemrop=\"name\"\n                property=\"name\"\n                value={this.props.resource.url}\n                style={invisibleStyle}\n              >\n                {this.props.resource.url}\n              </span>\n              <span>\n                {renderContents(this.props.contents)}\n              </span>\n            </a>\n          );\n  }\n}\n"
+    "content": "import React, {PropTypes} from 'react';\nimport Radium from 'radium';\n\n// let styles = {};\nimport renderContents from './../../utils/componentsFactory';\n\n/**\n * dumb component for displaying a structured simple hyperlink <a>\n */\n@Radium\nexport default class StructuredHyperLink extends React.Component {\n\n  /**\n   * propTypes\n   * @property {string} schematype html schema type of the element\n   * @property {array} contents the text to display inside the hyperlink\n   * @property {object} resource the resource to be parsed\n   * @property {object} property the microformat property of the hyperlink\n   */\n  static propTypes = {\n    contents: PropTypes.array,\n    schematype: PropTypes.string,\n    resource: PropTypes.object,\n    property: PropTypes.string\n  };\n\n  static defaultProps = {\n    schematype: 'website',\n    property: 'citation'\n  };\n\n  /**\n   * render\n   * @return {ReactElement} markup\n   */\n  render() {\n    const invisibleStyle = {\n      display: 'none'\n    };\n    return (\n            <a className=\"peritext-structured-hyperlink-container\"\n                itemScope\n                itemProp={this.props.property}\n                itemType={'http://schema.org/' + this.props.schematype}\n                typeof={this.props.schematype}\n                resource={'#' + this.props.resource.citeKey}\n                href={this.props.resource.url}\n            >\n              <span\n                itemProp=\"name\"\n                property=\"name\"\n                value={this.props.resource.title}\n                style={invisibleStyle}\n              >\n                {this.props.resource.title}\n              </span>\n              <span\n                itemrop=\"name\"\n                property=\"name\"\n                value={this.props.resource.url}\n                style={invisibleStyle}\n              >\n                {this.props.resource.url}\n              </span>\n              <span>\n                {renderContents(this.props.contents)}\n              </span>\n            </a>\n          );\n  }\n}\n"
   },
   {
     "__docId__": 63,
@@ -1655,70 +1655,6 @@
     "kind": "file",
     "static": true,
     "variation": null,
-    "name": "components/componentFactory.js",
-    "memberof": null,
-    "longname": "components/componentFactory.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import React from 'react';\n\n// import * as components from './index.js';\n\nexport const jsToComponent = (node, index)=> {\n  if (node.node === 'text') {\n    return node.text;\n  }\n  if (node.special) {\n    // Component class stored as referenced object\n    const Component = node.tag;\n    return <Component key={index} {...node.props} />;\n  }\n  // plain string tag name\n  const Tag = node.tag;\n  return (<Tag key={index} id={node.attr && node.attr.id} href={node.attr && node.attr.href}>\n    {node.child && node.child.map(jsToComponent)}\n  </Tag>);\n};\n\nexport default function renderContents(contents) {\n  if (Array.isArray(contents)) {\n    return contents.map(jsToComponent);\n  } else if (typeof contents === 'string') {\n    return contents;\n  }\n  return '';\n}\n"
-  },
-  {
-    "__docId__": 85,
-    "kind": "variable",
-    "static": true,
-    "variation": null,
-    "name": "jsToComponent",
-    "memberof": "components/componentFactory.js",
-    "longname": "components/componentFactory.js~jsToComponent",
-    "access": null,
-    "export": true,
-    "importPath": "peritext/components/componentFactory.js",
-    "importStyle": "{jsToComponent}",
-    "description": null,
-    "lineNumber": 5,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 86,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "renderContents",
-    "memberof": "components/componentFactory.js",
-    "longname": "components/componentFactory.js~renderContents",
-    "access": null,
-    "export": true,
-    "importPath": "peritext/components/componentFactory.js",
-    "importStyle": "renderContents",
-    "description": null,
-    "lineNumber": 21,
-    "undocument": true,
-    "params": [
-      {
-        "name": "contents",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "string"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 87,
-    "kind": "file",
-    "static": true,
-    "variation": null,
     "name": "components/index.js",
     "memberof": null,
     "longname": "components/index.js",
@@ -1728,7 +1664,7 @@
     "content": "/*\n * Components exports\n */\nexport { default as StaticBackCover } from './StaticComponents/StaticBackCover.js';\nexport { default as StaticDocument } from './StaticComponents/StaticDocument.js';\nexport { default as StaticEndNotes } from './StaticComponents/StaticEndNotes.js';\nexport { default as StaticEndFigures } from './StaticComponents/StaticEndFigures.js';\nexport { default as StaticFootnote } from './StaticComponents/StaticFootnote.js';\nexport { default as StaticFrontCover } from './StaticComponents/StaticFrontCover.js';\nexport { default as StaticGlossary } from './StaticComponents/StaticGlossary.js';\nexport { default as StaticImageFigure } from './StaticComponents/StaticImageFigure.js';\nexport { default as StaticNoteContent } from './StaticComponents/StaticNoteContent.js';\nexport { default as StaticNotePointer } from './StaticComponents/StaticNotePointer.js';\nexport { default as StaticReferencesList } from './StaticComponents/StaticReferencesList.js';\nexport { default as StaticSection } from './StaticComponents/StaticSection.js';\nexport { default as StaticTableOfContents } from './StaticComponents/StaticTableOfContents.js';\nexport { default as StaticTableOfFigures } from './StaticComponents/StaticTableOfFigures.js';\n\nexport { default as StructuredCite } from './StructuredDataComponents/StructuredCite.js';\nexport { default as StructuredCOinS } from './StructuredDataComponents/StructuredCOinS.js';\nexport { default as StructuredDate } from './StructuredDataComponents/StructuredDate.js';\nexport { default as StructuredHyperLink } from './StructuredDataComponents/StructuredHyperLink.js';\nexport { default as StructuredMetadataPlaceholder } from './StructuredDataComponents/StructuredMetadataPlaceholder.js';\nexport { default as StructuredParentJournal } from './StructuredDataComponents/StructuredParentJournal.js';\nexport { default as StructuredPerson } from './StructuredDataComponents/StructuredPerson.js';\nexport { default as StructuredPublisher } from './StructuredDataComponents/StructuredPublisher.js';\nexport { default as StructuredSpan } from './StructuredDataComponents/StructuredSpan.js';\n"
   },
   {
-    "__docId__": 89,
+    "__docId__": 86,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1741,7 +1677,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 90,
+    "__docId__": 87,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1754,7 +1690,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 91,
+    "__docId__": 88,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1767,7 +1703,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 92,
+    "__docId__": 89,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1780,7 +1716,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 93,
+    "__docId__": 90,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1793,7 +1729,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 94,
+    "__docId__": 91,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1806,7 +1742,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 95,
+    "__docId__": 92,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1819,7 +1755,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 96,
+    "__docId__": 93,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1832,7 +1768,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 97,
+    "__docId__": 94,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1845,7 +1781,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 98,
+    "__docId__": 95,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1858,7 +1794,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 99,
+    "__docId__": 96,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1871,7 +1807,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 100,
+    "__docId__": 97,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1884,7 +1820,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 101,
+    "__docId__": 98,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1897,7 +1833,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 102,
+    "__docId__": 99,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1910,7 +1846,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 103,
+    "__docId__": 100,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1923,7 +1859,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 104,
+    "__docId__": 101,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1936,7 +1872,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 105,
+    "__docId__": 102,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1949,7 +1885,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 106,
+    "__docId__": 103,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1962,7 +1898,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 107,
+    "__docId__": 104,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1975,7 +1911,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 108,
+    "__docId__": 105,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1988,7 +1924,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 109,
+    "__docId__": 106,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2001,7 +1937,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 110,
+    "__docId__": 107,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2014,7 +1950,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 111,
+    "__docId__": 108,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2027,7 +1963,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 112,
+    "__docId__": 109,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2040,7 +1976,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 113,
+    "__docId__": 110,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2053,7 +1989,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 114,
+    "__docId__": 111,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2066,7 +2002,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 115,
+    "__docId__": 112,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2079,7 +2015,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 116,
+    "__docId__": 113,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2092,7 +2028,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 117,
+    "__docId__": 114,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2105,7 +2041,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 118,
+    "__docId__": 115,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2118,7 +2054,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 119,
+    "__docId__": 116,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2131,7 +2067,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 120,
+    "__docId__": 117,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2144,7 +2080,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 121,
+    "__docId__": 118,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2157,7 +2093,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 122,
+    "__docId__": 119,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2170,7 +2106,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 123,
+    "__docId__": 120,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2183,7 +2119,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 124,
+    "__docId__": 121,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2196,7 +2132,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 125,
+    "__docId__": 122,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2209,7 +2145,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 126,
+    "__docId__": 123,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2222,7 +2158,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 127,
+    "__docId__": 124,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2235,7 +2171,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 128,
+    "__docId__": 125,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2248,7 +2184,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 129,
+    "__docId__": 126,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2261,7 +2197,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 130,
+    "__docId__": 127,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2274,7 +2210,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 131,
+    "__docId__": 128,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2287,7 +2223,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 132,
+    "__docId__": 129,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2300,7 +2236,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 133,
+    "__docId__": 130,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2313,7 +2249,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 134,
+    "__docId__": 131,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2326,7 +2262,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 135,
+    "__docId__": 132,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2339,7 +2275,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 137,
+    "__docId__": 134,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2352,7 +2288,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 138,
+    "__docId__": 135,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2365,7 +2301,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 139,
+    "__docId__": 136,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2378,7 +2314,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 140,
+    "__docId__": 137,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2391,7 +2327,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 141,
+    "__docId__": 138,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2404,7 +2340,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 142,
+    "__docId__": 139,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2417,7 +2353,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 143,
+    "__docId__": 140,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2430,7 +2366,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 144,
+    "__docId__": 141,
     "kind": "external",
     "static": true,
     "variation": null,

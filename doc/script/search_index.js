@@ -138,18 +138,6 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
-    "peritext/components/componentfactory.js~jstocomponent",
-    "variable/index.html#static-variable-jsToComponent",
-    "<span>jsToComponent</span> <span class=\"search-result-import-path\">peritext/components/componentFactory.js</span>",
-    "variable"
-  ],
-  [
-    "peritext/components/componentfactory.js~rendercontents",
-    "function/index.html#static-function-renderContents",
-    "<span>renderContents</span> <span class=\"search-result-import-path\">peritext/components/componentFactory.js</span>",
-    "function"
-  ],
-  [
     "builtinexternal/ecmascriptexternal.js~array",
     "external/index.html",
     "BuiltinExternal/ECMAScriptExternal.js~Array",
@@ -796,12 +784,6 @@ window.esdocSearchIndex = [
     "class/components/StructuredDataComponents/StructuredSpan.js~StructuredSpan.html#instance-method-render",
     "components/StructuredDataComponents/StructuredSpan.js~StructuredSpan#render",
     "method"
-  ],
-  [
-    "components/componentfactory.js",
-    "file/components/componentFactory.js.html",
-    "components/componentFactory.js",
-    "file"
   ],
   [
     "components/index.js",

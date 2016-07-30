@@ -1,8 +1,11 @@
-import {map as asyncMap, waterfall} from 'async';
+import {map as asyncMap, mapSeries as asyncMapSeries, waterfall} from 'async';
+const CsvConverter = require('csvtojson').Converter;
+const csvConverter = new CsvConverter({});
 
-export default function resolveDataDependencies(inputSections, assetsController, assetsParams, callback) {
+export default function resolveDataDependencies(inputSections, assetsController, assetsParams, resolveData, callback) {
   let res;
   let match;
+  const data = {};// this object stores resolved and unresolved promises about resources data
   const resRe = /@res([\d]+)?.(.*)/g;
   const assetsRe = /@assets\/([^']+)/g;
   asyncMap(inputSections, (section, allSectionsCallback)=> {
@@ -105,9 +108,9 @@ export default function resolveDataDependencies(inputSections, assetsController,
           res = undefined;
           const props = [];
           // format props as array for performing an async map
-          for (const prop in contextualization) {
-            if (contextualization[prop]) {
-              props.push({key: prop, value: contextualization[prop]});
+          for (const prop in contextualization.contextualizer) {
+            if (contextualization.contextualizer[prop]) {
+              props.push({key: prop, value: contextualization.contextualizer[prop]});
             }
           }
           /**
@@ -135,17 +138,45 @@ export default function resolveDataDependencies(inputSections, assetsController,
                     while ((match = resRe.exec(val3)) !== null) {
                       // Identify which resource is targetted (handling multi-resource contextualizations)
                       const rank = match[1] ? (+match[1] - 1) : 0;
-                      // find resource key
-                      res = contextualization.resources[rank];
                       // find resource data
-                      res = sectio.resources.find((oRes) =>{
-                        return oRes.citeKey === res;
-                      });
+                      res = contextualization.resources[rank];
+                      if (res === undefined) {
+                        console.log('res is undefined, expression: ', val3);
+                        return nestedPropCallback(undefined, nestedProp);
+                      }
+                      // case: metadata call
                       const resProp = match[match.length - 1];
                       if (resProp.indexOf('data') !== 0) {
                         // interpolate w/ resource value thanks to resourceProp path
                         nestedProp.value = res[resProp];
-                      } // todo here : store promise if 'data' prop
+                        // contextualizationPropCallback(null, prop);
+                      // case : data call
+                      } else {
+                        const dataPath = ('' + val3).split('.').filter(path=>{
+                          return path.length;
+                        });
+                        nestedProp.value = {
+                          type: 'path',
+                          target: 'data',
+                          path: dataPath
+                        };
+                        const defined = data[res.citeKey];
+                        if (!defined) {
+                          const accessor = res.data || res.url;
+                          if (('' + accessor).indexOf('@assets/') === 0) {
+                            const toResolve = {};
+                            toResolve.params = {
+                              path: accessor.split('@assets/')[1],
+                              params: assetsParams,
+                              acceptedExtensions: '*'
+                            };
+                            toResolve.read = assetsController.getReader(assetsParams);
+                            data[res.citeKey] = toResolve;
+                          } else {
+                            console.log('unhandled data accessor : ', accessor);
+                          }
+                        }
+                      }
                     }
                     nestedPropCallback(null, nestedProp);
                   } else if (('' + val3).indexOf('@assets/') === 0) {
@@ -173,21 +204,49 @@ export default function resolveDataDependencies(inputSections, assetsController,
                 while ((match = resRe.exec(val)) !== null) {
                   // Identify which resource is targetted (handling multi-resource contextualizations)
                   const rank = match[1] ? (+match[1] - 1) : 0;
-                  // find resource key
-                  res = contextualization.resources[rank];
                   // find resource data
-                  res = sectio.resources.find((oRes) =>{
-                    return oRes.citeKey === res;
-                  });
+                  res = contextualization.resources[rank];
+                  if (res === undefined) {
+                    console.log('res is undefined, expression: ', val);
+                    return contextualizationPropCallback(undefined, prop);
+                  }
                   const resProp = match[match.length - 1];
+                  // case: metadata call
                   if (resProp.indexOf('data') !== 0) {
                     // interpolate w/ resource value thanks to resourceProp path
                     prop.value = res[resProp];
-                  } // todo here : ajax data fetching if 'data' prop
+                    // contextualizationPropCallback(null, prop);
+                  // case : data call
+                  } else {
+                    const dataPath = ('' + val).split('.').filter(path=>{
+                      return path.length;
+                    });
+                    prop.value = {
+                      type: 'path',
+                      target: 'data',
+                      path: dataPath
+                    };
+                    const defined = data[res.citeKey];
+                    if (!defined) {
+                      const accessor = res.data || res.url;
+                      if (('' + accessor).indexOf('@assets/') === 0) {
+                        const toResolve = {};
+                        toResolve.params = {
+                          path: accessor.split('@assets/')[1],
+                          params: assetsParams,
+                          acceptedExtensions: '*'
+                        };
+                        toResolve.read = assetsController.getReader(assetsParams);
+                        data[res.citeKey] = toResolve;
+                      } else {
+                        console.log('unhandled data accessor : ', accessor);
+                      }
+                    }
+                  }
                 }
                 contextualizationPropCallback(null, prop);
               } else if (('' + val).indexOf('@assets/') === 0) {
-                assetsController.getAssetsUri(val.split('@assets/')[1], assetsParams, (err3, uri)=> {
+                assetsController.getAssetUri(val.split('@assets/')[1], assetsParams, (err3, uri)=> {
                   prop.value = uri;
                   contextualizationPropCallback(err3, prop);
                 });
@@ -198,10 +257,14 @@ export default function resolveDataDependencies(inputSections, assetsController,
               contextualizationPropCallback(null, prop);
             }
           }, (err1, propsOut1)=> {
-            const newContextualization = propsOut1.reduce((newCont, propOut) =>{
+            const newContextualizer = propsOut1.reduce((newCont, propOut) =>{
               newCont[propOut.key] = propOut.value;
               return newCont;
             }, {});
+
+            // console.log('new contextualization', Object.assign(contextualization, newContextualizer));
+            // pass contextualizer's resolved values to contextualization object
+            const newContextualization = Object.assign(contextualization, newContextualizer);
             contextualizationCallback(err1, newContextualization);
           });
         }, (contextualizationsError, contextualizations)=> {
@@ -209,12 +272,48 @@ export default function resolveDataDependencies(inputSections, assetsController,
           contextualizationsCallback(contextualizationsError, sectio);
         });
       }
-    // waterfall callback - all sections
+    // waterfall callback for all sections
     ], (errs, sectios)=> {
       allSectionsCallback(errs, sectios);
     });
-  // step callback
+  // global & final callback
   }, (err, sections)=> {
-    callback(err, sections);
+    if (resolveDataDependencies) {
+      asyncMapSeries(Object.keys(data), (key, dataCallback) =>{
+        const toResolve = data[key];
+        toResolve.read(toResolve.params, (dataErr, dataResult) =>{
+          if (dataErr) {
+            data[key] = dataErr;
+            dataCallback(null, key);
+          } else {
+            const raw = dataResult && dataResult.stringContents;
+            const ext = dataResult.extname;
+            // todo : handle other file formats
+            if (raw && ext === '.csv') {
+              csvConverter.fromString(raw, (parseErr, json)=>{
+                data[key] = {
+                  format: 'json',
+                  data: json
+                };
+                dataCallback(parseErr, key);
+              });
+            }else {
+              console.log('unhandled file format ', ext);
+              dataCallback(null, key);
+            }
+          }
+        });
+      }, (finalErr, keys) =>{
+        const finalSections = sections.map(sectio =>{
+          return Object.assign(sectio, {data: data});
+        });
+        callback(finalErr, finalSections);
+      });
+    } else {
+      const finalSections = sections.map(sectio =>{
+        return Object.assign(sectio, {data});
+      });
+      callback(err, finalSections);
+    }
   });
 }

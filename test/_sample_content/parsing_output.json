@@ -6,11 +6,6 @@
       "message": "no metadata specified for the folder empty_folder so it was not taken into account"
     },
     {
-      "type": "warning",
-      "preciseType": "metadataNotFound",
-      "message": "no metadata specified for the folder home so it was not taken into account"
-    },
-    {
       "type": "error",
       "preciseType": "invalidResource",
       "sectionCiteKey": "partie_2_2",
@@ -486,7 +481,7 @@
           "url": "http://hdl.handle.net/2027/spo.3336451.0007.301"
         },
         {
-          "url": "cool_url",
+          "url": "@assets/timeline_data.csv",
           "bibType": "tabularData",
           "citeKey": "temporal_data",
           "title": "cool data"
@@ -565,7 +560,6 @@
         }
       ],
       "customizers": {
-        "components": {},
         "styles": {
           "my_style.css": "body{\n  color : black;\n}\n\n@font-face {\n    font-family: 'callunaregular';\n    src: url('@assets/Calluna-Regular-webfont.eot');\n    src: url('@assets/Calluna-Regular-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/Calluna-Regular-webfont.woff2') format('woff2'),\n         url('@assets/Calluna-Regular-webfont.woff') format('woff'),\n         url('@assets/Calluna-Regular-webfont.ttf') format('truetype'),\n         url('@assets/Calluna-Regular-webfont.svg#callunaregular') format('svg');\n    font-weight: normal;\n    font-style: normal;\n}\n\n@font-face {\n    font-family: 'cabinbold_italic';\n    src: url('@assets/cabin-bolditalic-webfont.eot');\n    src: url('@assets/cabin-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-bolditalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-bolditalic-webfont.woff') format('woff'),\n         url('@assets/cabin-bolditalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-bolditalic-webfont.svg#cabinbold_italic') format('svg');\n    font-weight: 700;\n    font-style: italic;\n\n}\n\n\n@font-face {\n    font-family: 'cabinbold';\n    src: url('@assets/cabin-bold-webfont.eot');\n    src: url('@assets/cabin-bold-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-bold-webfont.woff2') format('woff2'),\n         url('@assets/cabin-bold-webfont.woff') format('woff'),\n         url('@assets/cabin-bold-webfont.ttf') format('truetype'),\n         url('@assets/cabin-bold-webfont.svg#cabinbold') format('svg');\n    font-weight: 700;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinsemibold_italic';\n    src: url('@assets/cabin-semibolditalic-webfont.eot');\n    src: url('@assets/cabin-semibolditalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-semibolditalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-semibolditalic-webfont.woff') format('woff'),\n         url('@assets/cabin-semibolditalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-semibolditalic-webfont.svg#cabinsemibold_italic') format('svg');\n    font-weight: 600;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinsemibold';\n    src: url('@assets/cabin-semibold-webfont.eot');\n    src: url('@assets/cabin-semibold-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-semibold-webfont.woff2') format('woff2'),\n         url('@assets/cabin-semibold-webfont.woff') format('woff'),\n         url('@assets/cabin-semibold-webfont.ttf') format('truetype'),\n         url('@assets/cabin-semibold-webfont.svg#cabinsemibold') format('svg');\n    font-weight: 600;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinmedium_italic';\n    src: url('@assets/cabin-mediumitalic-webfont.eot');\n    src: url('@assets/cabin-mediumitalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-mediumitalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-mediumitalic-webfont.woff') format('woff'),\n         url('@assets/cabin-mediumitalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-mediumitalic-webfont.svg#cabinmedium_italic') format('svg');\n    font-weight: 500;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinmedium';\n    src: url('@assets/cabin-medium-webfont.eot');\n    src: url('@assets/cabin-medium-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-medium-webfont.woff2') format('woff2'),\n         url('@assets/cabin-medium-webfont.woff') format('woff'),\n         url('@assets/cabin-medium-webfont.ttf') format('truetype'),\n         url('@assets/cabin-medium-webfont.svg#cabinmedium') format('svg');\n    font-weight: 500;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'Cabin';\n    src: url('@assets/cabin-italic-webfont.eot');\n    src: url('@assets/cabin-italic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-italic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-italic-webfont.woff') format('woff'),\n         url('@assets/cabin-italic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-italic-webfont.svg#cabinitalic') format('svg');\n    font-weight: 400;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'Cabin';\n    src: url('@assets/cabin-regular-webfont.eot');\n    src: url('@assets/cabin-regular-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-regular-webfont.woff2') format('woff2'),\n         url('@assets/cabin-regular-webfont.woff') format('woff'),\n         url('@assets/cabin-regular-webfont.ttf') format('truetype'),\n         url('@assets/cabin-regular-webfont.svg#cabinregular') format('svg');\n    font-weight: 400;\n    font-style: normal;\n\n}\n",
           "page.css": "body\n{\n  font-family: 'callunaregular';\n  font-size : 12px;\n}\n\n\nh1,h2,h3,h4,h5,h6\n{\n  font-family: 'Cabin', 'callunaregular';\n  font-weight : 700;\n}\n\n@page:first\n{\n  margin : 0;\n  page-break-after: always;\n  @bottom\n  {\n      content: none;\n  }\n}\n\n.peritext-static-front-cover-container\n{\n  page-break-after: always;\n  margin : 0;\n  font-family: Arial;\n}\n\n@page.peritext-static-front-cover-container\n{\n  margin : 0;\n  font-family: Arial;\n}\n\n.peritext-static-front-cover-container\n{\n  page-break-after: always;\n  margin : 0;\n  font-family: Arial;\n}\n\n.peritext-static-back-cover\n{\n  page-break-before: always;\n  margin: 0;\n  padding: 0;\n  font-size : 2em;\n  background: yellow;\n  position: absolute;\n  left : 0;\n  top : 0;\n  width : 100%;\n  height : 100%;\n}\n\n#peritext-static-front-cover-image-container\n{\n  background-size:     cover;\n  background-repeat:   no-repeat;\n  background-position: center center;\n  /*height : 16cm;*/\n  height : 18.3cm;\n  /*width : 100%;*/\n}\n\n.peritext-static-front-cover-part-top-left,\n.peritext-static-front-cover-part-top-right,\n.peritext-static-front-cover-part-bottom-left,\n.peritext-static-front-cover-part-bottom-right\n{\n  position: fixed;\n  width : 50%;\n}\n\n.peritext-static-front-cover-part-top-left,\n.peritext-static-front-cover-part-bottom-left\n{\n  left : .5cm;\n  text-align : right;\n  padding-right : 1.5cm;\n  width : 45%;\n}\n\n.peritext-static-front-cover-part-top-right,\n.peritext-static-front-cover-part-bottom-right\n{\n  left : 1cm;\n  padding-left : 50%;\n  padding-right : 1cm;\n}\n\n.peritext-static-front-cover-part-top-left,\n.peritext-static-front-cover-part-top-right\n{\n  bottom : 31.6%;\n  color : white;\n  padding-bottom : .8cm;\n}\n\n.peritext-static-front-cover-part-bottom-left,\n.peritext-static-front-cover-part-bottom-right\n{\n  top : 68%;\n}\n\n.peritext-static-front-cover-part-top-left h3,\n.peritext-static-front-cover-part-top-left h4,\n.peritext-static-front-cover-part-top-left p,\n.peritext-static-front-cover-part-top-right h3,\n.peritext-static-front-cover-part-top-right h4,\n.peritext-static-front-cover-part-top-right p\n{\n  margin-top : 0;\n  margin-bottom : 0;\n  font-size : 12px;\n}\n\n.peritext-static-front-cover-part-top-right h1\n{\n  margin : 0;\n  padding : 0;\n}\n\n.peritext-static-front-cover-part-bottom-left h1{\n  margin : 0;\n}\n\n.peritext-static-front-cover-date\n{\n  font-weight : 800;\n}\n\n.peritext-static-front-cover-jury-member .peritext-structured-person-firstname,\n.peritext-static-front-cover-jury-member .peritext-structured-person-lastname\n{\n  font-weight : 800;\n}\n",
@@ -965,40 +959,9 @@
           "tag": "p",
           "child": [
             {
-              "node": "element",
-              "tag": "blockC",
-              "attr": {
-                "src": "contextualization_0",
-                "alt": [
-                  "A",
-                  "reference",
-                  "to",
-                  "a",
-                  "timeline",
-                  "should",
-                  "display",
-                  "here",
-                  "when",
-                  "timeline",
-                  "is",
-                  "ready"
-                ]
-              },
-              "blockIndex": 2,
-              "child": [
-                {
-                  "node": "element",
-                  "tag": "p",
-                  "child": [
-                    {
-                      "node": "text",
-                      "text": "A reference to a timeline should display here when timeline is ready",
-                      "blockIndex": 2
-                    }
-                  ],
-                  "blockIndex": 2
-                }
-              ]
+              "node": "text",
+              "text": "I want a table for my resource there :",
+              "blockIndex": 2
             }
           ],
           "blockIndex": 2
@@ -1016,13 +979,10 @@
               "node": "element",
               "tag": "blockC",
               "attr": {
-                "src": "contextualization_1",
+                "src": "contextualization_0",
                 "alt": [
-                  "Another",
-                  "view",
-                  "on",
-                  "the",
-                  "timeline"
+                  "My",
+                  "table"
                 ]
               },
               "blockIndex": 4,
@@ -1033,7 +993,7 @@
                   "child": [
                     {
                       "node": "text",
-                      "text": "Another view on the timeline",
+                      "text": "My table",
                       "blockIndex": 4
                     }
                   ],
@@ -1055,27 +1015,7 @@
           "child": [
             {
               "node": "text",
-              "text": "I am inline referencing to an ",
-              "blockIndex": 6
-            },
-            {
-              "node": "element",
-              "tag": "inlineC",
-              "attr": {
-                "href": "contextualization_2"
-              },
-              "child": [
-                {
-                  "node": "text",
-                  "text": "image",
-                  "blockIndex": 6
-                }
-              ],
-              "blockIndex": 6
-            },
-            {
-              "node": "text",
-              "text": ".",
+              "text": "But I can also display the same resource as a timeline :",
               "blockIndex": 6
             }
           ],
@@ -1091,9 +1031,40 @@
           "tag": "p",
           "child": [
             {
-              "node": "text",
-              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, fugit, id. Unde nulla incidunt sapiente reiciendis atque similique totam, facere earum dolores. Soluta earum, autem! Fugit, iure, repellat. Nesciunt, inventore.",
-              "blockIndex": 8
+              "node": "element",
+              "tag": "blockC",
+              "attr": {
+                "src": "contextualization_1",
+                "alt": [
+                  "A",
+                  "reference",
+                  "to",
+                  "a",
+                  "timeline",
+                  "should",
+                  "display",
+                  "here",
+                  "when",
+                  "timeline",
+                  "is",
+                  "ready"
+                ]
+              },
+              "blockIndex": 8,
+              "child": [
+                {
+                  "node": "element",
+                  "tag": "p",
+                  "child": [
+                    {
+                      "node": "text",
+                      "text": "A reference to a timeline should display here when timeline is ready",
+                      "blockIndex": 8
+                    }
+                  ],
+                  "blockIndex": 8
+                }
+              ]
             }
           ],
           "blockIndex": 8
@@ -1108,9 +1079,33 @@
           "tag": "p",
           "child": [
             {
-              "node": "text",
-              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi necessitatibus aliquam nisi odio et perferendis reiciendis porro, fugit repellat similique consequuntur dolor perspiciatis? Laborum doloribus ducimus alias sequi sapiente! Voluptate.",
-              "blockIndex": 10
+              "node": "element",
+              "tag": "blockC",
+              "attr": {
+                "src": "contextualization_2",
+                "alt": [
+                  "Another",
+                  "view",
+                  "on",
+                  "the",
+                  "timeline"
+                ]
+              },
+              "blockIndex": 10,
+              "child": [
+                {
+                  "node": "element",
+                  "tag": "p",
+                  "child": [
+                    {
+                      "node": "text",
+                      "text": "Another view on the timeline",
+                      "blockIndex": 10
+                    }
+                  ],
+                  "blockIndex": 10
+                }
+              ]
             }
           ],
           "blockIndex": 10
@@ -1126,7 +1121,7 @@
           "child": [
             {
               "node": "text",
-              "text": "Then I want to say that the ",
+              "text": "I am inline referencing to an ",
               "blockIndex": 12
             },
             {
@@ -1146,7 +1141,7 @@
             },
             {
               "node": "text",
-              "text": " that I showed is awesome.",
+              "text": ".",
               "blockIndex": 12
             }
           ],
@@ -1163,7 +1158,7 @@
           "child": [
             {
               "node": "text",
-              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio nemo eius autem, saepe dolore nam iste ex inventore, minus neque mollitia molestias facere asperiores vel voluptas beatae esse perspiciatis cupiditate.",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, fugit, id. Unde nulla incidunt sapiente reiciendis atque similique totam, facere earum dolores. Soluta earum, autem! Fugit, iure, repellat. Nesciunt, inventore.",
               "blockIndex": 14
             }
           ],
@@ -1180,7 +1175,7 @@
           "child": [
             {
               "node": "text",
-              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore commodi maxime laborum cupiditate nam consequuntur in. Laudantium autem, accusantium! Iure, autem quas quis, odit fugit dolor voluptatum esse quisquam asperiores.",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi necessitatibus aliquam nisi odio et perferendis reiciendis porro, fugit repellat similique consequuntur dolor perspiciatis? Laborum doloribus ducimus alias sequi sapiente! Voluptate.",
               "blockIndex": 16
             }
           ],
@@ -1197,7 +1192,27 @@
           "child": [
             {
               "node": "text",
-              "text": "And then I want to display a group of images :",
+              "text": "Then I want to say that the ",
+              "blockIndex": 18
+            },
+            {
+              "node": "element",
+              "tag": "inlineC",
+              "attr": {
+                "href": "contextualization_4"
+              },
+              "child": [
+                {
+                  "node": "text",
+                  "text": "image",
+                  "blockIndex": 18
+                }
+              ],
+              "blockIndex": 18
+            },
+            {
+              "node": "text",
+              "text": " that I showed is awesome.",
               "blockIndex": 18
             }
           ],
@@ -1213,32 +1228,9 @@
           "tag": "p",
           "child": [
             {
-              "node": "element",
-              "tag": "blockC",
-              "attr": {
-                "src": "contextualization_4",
-                "alt": [
-                  "A",
-                  "group",
-                  "of",
-                  "images"
-                ]
-              },
-              "blockIndex": 20,
-              "child": [
-                {
-                  "node": "element",
-                  "tag": "p",
-                  "child": [
-                    {
-                      "node": "text",
-                      "text": "A group of images",
-                      "blockIndex": 20
-                    }
-                  ],
-                  "blockIndex": 20
-                }
-              ]
+              "node": "text",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio nemo eius autem, saepe dolore nam iste ex inventore, minus neque mollitia molestias facere asperiores vel voluptas beatae esse perspiciatis cupiditate.",
+              "blockIndex": 20
             }
           ],
           "blockIndex": 20
@@ -1254,27 +1246,7 @@
           "child": [
             {
               "node": "text",
-              "text": "And then I want to point to an ",
-              "blockIndex": 22
-            },
-            {
-              "node": "element",
-              "tag": "inlineC",
-              "attr": {
-                "href": "contextualization_5"
-              },
-              "child": [
-                {
-                  "node": "text",
-                  "text": "online",
-                  "blockIndex": 22
-                }
-              ],
-              "blockIndex": 22
-            },
-            {
-              "node": "text",
-              "text": " resource.",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore commodi maxime laborum cupiditate nam consequuntur in. Laudantium autem, accusantium! Iure, autem quas quis, odit fugit dolor voluptatum esse quisquam asperiores.",
               "blockIndex": 22
             }
           ],
@@ -1290,10 +1262,104 @@
           "tag": "p",
           "child": [
             {
+              "node": "text",
+              "text": "And then I want to display a group of images :",
+              "blockIndex": 24
+            }
+          ],
+          "blockIndex": 24
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 25
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
               "node": "element",
               "tag": "blockC",
               "attr": {
-                "src": "contextualization_6",
+                "src": "contextualization_5",
+                "alt": [
+                  "A",
+                  "group",
+                  "of",
+                  "images"
+                ]
+              },
+              "blockIndex": 26,
+              "child": [
+                {
+                  "node": "element",
+                  "tag": "p",
+                  "child": [
+                    {
+                      "node": "text",
+                      "text": "A group of images",
+                      "blockIndex": 26
+                    }
+                  ],
+                  "blockIndex": 26
+                }
+              ]
+            }
+          ],
+          "blockIndex": 26
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 27
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "And then I want to point to an ",
+              "blockIndex": 28
+            },
+            {
+              "node": "element",
+              "tag": "inlineC",
+              "attr": {
+                "href": "contextualization_6"
+              },
+              "child": [
+                {
+                  "node": "text",
+                  "text": "online",
+                  "blockIndex": 28
+                }
+              ],
+              "blockIndex": 28
+            },
+            {
+              "node": "text",
+              "text": " resource.",
+              "blockIndex": 28
+            }
+          ],
+          "blockIndex": 28
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 29
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "element",
+              "tag": "blockC",
+              "attr": {
+                "src": "contextualization_7",
                 "alt": [
                   "This",
                   "is",
@@ -1314,7 +1380,7 @@
                   "specified"
                 ]
               },
-              "blockIndex": 24,
+              "blockIndex": 30,
               "child": [
                 {
                   "node": "element",
@@ -1323,7 +1389,7 @@
                     {
                       "node": "text",
                       "text": "This is a block ",
-                      "blockIndex": 24
+                      "blockIndex": 30
                     },
                     {
                       "node": "element",
@@ -1332,156 +1398,20 @@
                         {
                           "node": "text",
                           "text": "website",
-                          "blockIndex": 24
+                          "blockIndex": 30
                         }
                       ],
-                      "blockIndex": 24
+                      "blockIndex": 30
                     },
                     {
                       "node": "text",
                       "text": " contextualization, displaying a poster or the resource (typically a screenshot) if specified",
-                      "blockIndex": 24
+                      "blockIndex": 30
                     }
                   ],
-                  "blockIndex": 24
-                }
-              ]
-            }
-          ],
-          "blockIndex": 24
-        },
-        {
-          "node": "text",
-          "text": "\n",
-          "blockIndex": 25
-        },
-        {
-          "node": "element",
-          "tag": "p",
-          "child": [
-            {
-              "node": "text",
-              "text": "I will talk about that",
-              "blockIndex": 26
-            },
-            {
-              "node": "element",
-              "tag": "note",
-              "attr": {
-                "href": "note_partie_11"
-              },
-              "child": [
-                {
-                  "node": "text",
-                  "text": "footnote",
-                  "blockIndex": 26
-                }
-              ],
-              "blockIndex": 26,
-              "target": "partie_11"
-            },
-            {
-              "node": "text",
-              "text": " :",
-              "blockIndex": 26
-            }
-          ],
-          "blockIndex": 26
-        },
-        {
-          "node": "text",
-          "text": "\n",
-          "blockIndex": 27
-        },
-        {
-          "node": "element",
-          "tag": "p",
-          "child": [
-            {
-              "node": "element",
-              "tag": "blockC",
-              "attr": {
-                "src": "contextualization_7",
-                "alt": [
-                  "Another",
-                  "reference",
-                  "with",
-                  "unnamed",
-                  "contextualizer"
-                ]
-              },
-              "blockIndex": 28,
-              "child": [
-                {
-                  "node": "element",
-                  "tag": "p",
-                  "child": [
-                    {
-                      "node": "text",
-                      "text": "Another reference with unnamed contextualizer",
-                      "blockIndex": 28
-                    }
-                  ],
-                  "blockIndex": 28
-                }
-              ]
-            }
-          ],
-          "blockIndex": 28
-        },
-        {
-          "node": "text",
-          "text": "\n",
-          "blockIndex": 29
-        },
-        {
-          "node": "element",
-          "tag": "p",
-          "child": [
-            {
-              "node": "text",
-              "text": "I will first quote in a book where someone that says ",
-              "blockIndex": 30
-            },
-            {
-              "node": "element",
-              "tag": "inlineC",
-              "attr": {
-                "href": "contextualization_8"
-              },
-              "child": [
-                {
-                  "node": "text",
-                  "text": "it's not possible",
                   "blockIndex": 30
                 }
-              ],
-              "blockIndex": 30
-            },
-            {
-              "node": "text",
-              "text": ".\nBut I would like to quote again my ",
-              "blockIndex": 30
-            },
-            {
-              "node": "element",
-              "tag": "inlineC",
-              "attr": {
-                "href": "contextualization_9"
-              },
-              "child": [
-                {
-                  "node": "text",
-                  "text": "group of images",
-                  "blockIndex": 30
-                }
-              ],
-              "blockIndex": 30
-            },
-            {
-              "node": "text",
-              "text": ".",
-              "blockIndex": 30
+              ]
             }
           ],
           "blockIndex": 30
@@ -1497,14 +1427,14 @@
           "child": [
             {
               "node": "text",
-              "text": "Then I should have an ibid here ",
+              "text": "I will talk about that",
               "blockIndex": 32
             },
             {
               "node": "element",
               "tag": "note",
               "attr": {
-                "href": "note_partie_12"
+                "href": "note_partie_11"
               },
               "child": [
                 {
@@ -1514,7 +1444,12 @@
                 }
               ],
               "blockIndex": 32,
-              "target": "partie_12"
+              "target": "partie_11"
+            },
+            {
+              "node": "text",
+              "text": " :",
+              "blockIndex": 32
             }
           ],
           "blockIndex": 32
@@ -1529,30 +1464,33 @@
           "tag": "p",
           "child": [
             {
-              "node": "text",
-              "text": "And as say a lot of people",
-              "blockIndex": 34
-            },
-            {
               "node": "element",
-              "tag": "note",
+              "tag": "blockC",
               "attr": {
-                "href": "note_partie_13"
+                "src": "contextualization_8",
+                "alt": [
+                  "Another",
+                  "reference",
+                  "with",
+                  "unnamed",
+                  "contextualizer"
+                ]
               },
+              "blockIndex": 34,
               "child": [
                 {
-                  "node": "text",
-                  "text": "footnote",
+                  "node": "element",
+                  "tag": "p",
+                  "child": [
+                    {
+                      "node": "text",
+                      "text": "Another reference with unnamed contextualizer",
+                      "blockIndex": 34
+                    }
+                  ],
                   "blockIndex": 34
                 }
-              ],
-              "blockIndex": 34,
-              "target": "partie_13"
-            },
-            {
-              "node": "text",
-              "text": ", publishing could be simpler.",
-              "blockIndex": 34
+              ]
             }
           ],
           "blockIndex": 34
@@ -1568,24 +1506,43 @@
           "child": [
             {
               "node": "text",
-              "text": "I'm now going to quote a book from the same authors in the same year, but different - it should add a b but let's see what's in the footnote",
+              "text": "I will first quote in a book where someone that says ",
               "blockIndex": 36
             },
             {
               "node": "element",
-              "tag": "note",
+              "tag": "inlineC",
               "attr": {
-                "href": "note_partie_14"
+                "href": "contextualization_9"
               },
               "child": [
                 {
                   "node": "text",
-                  "text": "footnote",
+                  "text": "it's not possible",
                   "blockIndex": 36
                 }
               ],
-              "blockIndex": 36,
-              "target": "partie_14"
+              "blockIndex": 36
+            },
+            {
+              "node": "text",
+              "text": ".\nBut I would like to quote again my ",
+              "blockIndex": 36
+            },
+            {
+              "node": "element",
+              "tag": "inlineC",
+              "attr": {
+                "href": "contextualization_10"
+              },
+              "child": [
+                {
+                  "node": "text",
+                  "text": "group of images",
+                  "blockIndex": 36
+                }
+              ],
+              "blockIndex": 36
             },
             {
               "node": "text",
@@ -1606,14 +1563,14 @@
           "child": [
             {
               "node": "text",
-              "text": "And for the footnotes, I want to say that Martin said that",
+              "text": "Then I should have an ibid here ",
               "blockIndex": 38
             },
             {
               "node": "element",
               "tag": "note",
               "attr": {
-                "href": "note_partie_15"
+                "href": "note_partie_12"
               },
               "child": [
                 {
@@ -1623,7 +1580,7 @@
                 }
               ],
               "blockIndex": 38,
-              "target": "partie_15"
+              "target": "partie_12"
             }
           ],
           "blockIndex": 38
@@ -1639,39 +1596,28 @@
           "child": [
             {
               "node": "text",
-              "text": "Whe Martin says ",
+              "text": "And as say a lot of people",
               "blockIndex": 40
             },
             {
               "node": "element",
-              "tag": "inlineC",
+              "tag": "note",
               "attr": {
-                "href": "contextualization_14"
+                "href": "note_partie_13"
               },
               "child": [
                 {
                   "node": "text",
-                  "text": "there has to be some ",
-                  "blockIndex": 40
-                },
-                {
-                  "node": "element",
-                  "tag": "em",
-                  "child": [
-                    {
-                      "node": "text",
-                      "text": "change",
-                      "blockIndex": 40
-                    }
-                  ],
+                  "text": "footnote",
                   "blockIndex": 40
                 }
               ],
-              "blockIndex": 40
+              "blockIndex": 40,
+              "target": "partie_13"
             },
             {
               "node": "text",
-              "text": ".",
+              "text": ", publishing could be simpler.",
               "blockIndex": 40
             }
           ],
@@ -1688,27 +1634,28 @@
           "child": [
             {
               "node": "text",
-              "text": "Now let's say I want to link to this ",
+              "text": "I'm now going to quote a book from the same authors in the same year, but different - it should add a b but let's see what's in the footnote",
               "blockIndex": 42
             },
             {
               "node": "element",
-              "tag": "inlineC",
+              "tag": "note",
               "attr": {
-                "href": "contextualization_15"
+                "href": "note_partie_14"
               },
               "child": [
                 {
                   "node": "text",
-                  "text": "timeline",
+                  "text": "footnote",
                   "blockIndex": 42
                 }
               ],
-              "blockIndex": 42
+              "blockIndex": 42,
+              "target": "partie_14"
             },
             {
               "node": "text",
-              "text": " and continue my paragraph quietly.",
+              "text": ".",
               "blockIndex": 42
             }
           ],
@@ -1725,8 +1672,24 @@
           "child": [
             {
               "node": "text",
-              "text": "Welcome to my awesome book.",
+              "text": "And for the footnotes, I want to say that Martin said that",
               "blockIndex": 44
+            },
+            {
+              "node": "element",
+              "tag": "note",
+              "attr": {
+                "href": "note_partie_15"
+              },
+              "child": [
+                {
+                  "node": "text",
+                  "text": "footnote",
+                  "blockIndex": 44
+                }
+              ],
+              "blockIndex": 44,
+              "target": "partie_15"
             }
           ],
           "blockIndex": 44
@@ -1742,7 +1705,39 @@
           "child": [
             {
               "node": "text",
-              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.",
+              "text": "Whe Martin says ",
+              "blockIndex": 46
+            },
+            {
+              "node": "element",
+              "tag": "inlineC",
+              "attr": {
+                "href": "contextualization_15"
+              },
+              "child": [
+                {
+                  "node": "text",
+                  "text": "there has to be some ",
+                  "blockIndex": 46
+                },
+                {
+                  "node": "element",
+                  "tag": "em",
+                  "child": [
+                    {
+                      "node": "text",
+                      "text": "change",
+                      "blockIndex": 46
+                    }
+                  ],
+                  "blockIndex": 46
+                }
+              ],
+              "blockIndex": 46
+            },
+            {
+              "node": "text",
+              "text": ".",
               "blockIndex": 46
             }
           ],
@@ -1759,7 +1754,27 @@
           "child": [
             {
               "node": "text",
-              "text": "An inline resource video, it should display a thumbnail or something in static mode even if its not visible :",
+              "text": "Now let's say I want to link to this ",
+              "blockIndex": 48
+            },
+            {
+              "node": "element",
+              "tag": "inlineC",
+              "attr": {
+                "href": "contextualization_16"
+              },
+              "child": [
+                {
+                  "node": "text",
+                  "text": "timeline",
+                  "blockIndex": 48
+                }
+              ],
+              "blockIndex": 48
+            },
+            {
+              "node": "text",
+              "text": " and continue my paragraph quietly.",
               "blockIndex": 48
             }
           ],
@@ -1776,47 +1791,7 @@
           "child": [
             {
               "node": "text",
-              "text": "I am now talking about ",
-              "blockIndex": 50
-            },
-            {
-              "node": "element",
-              "tag": "inlineC",
-              "attr": {
-                "href": "contextualization_16"
-              },
-              "child": [
-                {
-                  "node": "text",
-                  "text": "material things",
-                  "blockIndex": 50
-                }
-              ],
-              "blockIndex": 50
-            },
-            {
-              "node": "text",
-              "text": ". But I would prefer to register it as ",
-              "blockIndex": 50
-            },
-            {
-              "node": "element",
-              "tag": "inlineC",
-              "attr": {
-                "href": "contextualization_17"
-              },
-              "child": [
-                {
-                  "node": "text",
-                  "text": "a concept",
-                  "blockIndex": 50
-                }
-              ],
-              "blockIndex": 50
-            },
-            {
-              "node": "text",
-              "text": ", for instance \"materiality of things\". Check out the glossary !.",
+              "text": "Welcome to my awesome book.",
               "blockIndex": 50
             }
           ],
@@ -1829,79 +1804,11 @@
         },
         {
           "node": "element",
-          "tag": "ul",
+          "tag": "p",
           "child": [
             {
               "node": "text",
-              "text": "\n",
-              "blockIndex": 52
-            },
-            {
-              "node": "element",
-              "tag": "li",
-              "child": [
-                {
-                  "node": "text",
-                  "text": "a first list level",
-                  "blockIndex": 52
-                },
-                {
-                  "node": "element",
-                  "tag": "ul",
-                  "child": [
-                    {
-                      "node": "text",
-                      "text": "\n",
-                      "blockIndex": 52
-                    },
-                    {
-                      "node": "element",
-                      "tag": "li",
-                      "child": [
-                        {
-                          "node": "text",
-                          "text": "second list level",
-                          "blockIndex": 52
-                        }
-                      ],
-                      "blockIndex": 52
-                    },
-                    {
-                      "node": "text",
-                      "text": "\n",
-                      "blockIndex": 52
-                    }
-                  ],
-                  "blockIndex": 52
-                },
-                {
-                  "node": "text",
-                  "text": "\n",
-                  "blockIndex": 52
-                }
-              ],
-              "blockIndex": 52
-            },
-            {
-              "node": "text",
-              "text": "\n",
-              "blockIndex": 52
-            },
-            {
-              "node": "element",
-              "tag": "li",
-              "child": [
-                {
-                  "node": "text",
-                  "text": "return to first list level",
-                  "blockIndex": 52
-                }
-              ],
-              "blockIndex": 52
-            },
-            {
-              "node": "text",
-              "text": "\n",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.",
               "blockIndex": 52
             }
           ],
@@ -1911,6 +1818,165 @@
           "node": "text",
           "text": "\n",
           "blockIndex": 53
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "An inline resource video, it should display a thumbnail or something in static mode even if its not visible :",
+              "blockIndex": 54
+            }
+          ],
+          "blockIndex": 54
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 55
+        },
+        {
+          "node": "element",
+          "tag": "p",
+          "child": [
+            {
+              "node": "text",
+              "text": "I am now talking about ",
+              "blockIndex": 56
+            },
+            {
+              "node": "element",
+              "tag": "inlineC",
+              "attr": {
+                "href": "contextualization_17"
+              },
+              "child": [
+                {
+                  "node": "text",
+                  "text": "material things",
+                  "blockIndex": 56
+                }
+              ],
+              "blockIndex": 56
+            },
+            {
+              "node": "text",
+              "text": ". But I would prefer to register it as ",
+              "blockIndex": 56
+            },
+            {
+              "node": "element",
+              "tag": "inlineC",
+              "attr": {
+                "href": "contextualization_18"
+              },
+              "child": [
+                {
+                  "node": "text",
+                  "text": "a concept",
+                  "blockIndex": 56
+                }
+              ],
+              "blockIndex": 56
+            },
+            {
+              "node": "text",
+              "text": ", for instance \"materiality of things\". Check out the glossary !.",
+              "blockIndex": 56
+            }
+          ],
+          "blockIndex": 56
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 57
+        },
+        {
+          "node": "element",
+          "tag": "ul",
+          "child": [
+            {
+              "node": "text",
+              "text": "\n",
+              "blockIndex": 58
+            },
+            {
+              "node": "element",
+              "tag": "li",
+              "child": [
+                {
+                  "node": "text",
+                  "text": "a first list level",
+                  "blockIndex": 58
+                },
+                {
+                  "node": "element",
+                  "tag": "ul",
+                  "child": [
+                    {
+                      "node": "text",
+                      "text": "\n",
+                      "blockIndex": 58
+                    },
+                    {
+                      "node": "element",
+                      "tag": "li",
+                      "child": [
+                        {
+                          "node": "text",
+                          "text": "second list level",
+                          "blockIndex": 58
+                        }
+                      ],
+                      "blockIndex": 58
+                    },
+                    {
+                      "node": "text",
+                      "text": "\n",
+                      "blockIndex": 58
+                    }
+                  ],
+                  "blockIndex": 58
+                },
+                {
+                  "node": "text",
+                  "text": "\n",
+                  "blockIndex": 58
+                }
+              ],
+              "blockIndex": 58
+            },
+            {
+              "node": "text",
+              "text": "\n",
+              "blockIndex": 58
+            },
+            {
+              "node": "element",
+              "tag": "li",
+              "child": [
+                {
+                  "node": "text",
+                  "text": "return to first list level",
+                  "blockIndex": 58
+                }
+              ],
+              "blockIndex": 58
+            },
+            {
+              "node": "text",
+              "text": "\n",
+              "blockIndex": 58
+            }
+          ],
+          "blockIndex": 58
+        },
+        {
+          "node": "text",
+          "text": "\n",
+          "blockIndex": 59
         }
       ],
       "resources": [
@@ -1993,7 +2059,7 @@
           "inheritedVerticallyFrom": "mybook"
         },
         {
-          "url": "cool_url",
+          "url": "@assets/timeline_data.csv",
           "bibType": "tabularData",
           "citeKey": "temporal_data",
           "title": "cool data",
@@ -2079,7 +2145,6 @@
       ],
       "parent": "mybook",
       "customizers": {
-        "components": {},
         "styles": {
           "my_style.css": "body{\n  color : black;\n}\n\n@font-face {\n    font-family: 'callunaregular';\n    src: url('@assets/Calluna-Regular-webfont.eot');\n    src: url('@assets/Calluna-Regular-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/Calluna-Regular-webfont.woff2') format('woff2'),\n         url('@assets/Calluna-Regular-webfont.woff') format('woff'),\n         url('@assets/Calluna-Regular-webfont.ttf') format('truetype'),\n         url('@assets/Calluna-Regular-webfont.svg#callunaregular') format('svg');\n    font-weight: normal;\n    font-style: normal;\n}\n\n@font-face {\n    font-family: 'cabinbold_italic';\n    src: url('@assets/cabin-bolditalic-webfont.eot');\n    src: url('@assets/cabin-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-bolditalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-bolditalic-webfont.woff') format('woff'),\n         url('@assets/cabin-bolditalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-bolditalic-webfont.svg#cabinbold_italic') format('svg');\n    font-weight: 700;\n    font-style: italic;\n\n}\n\n\n@font-face {\n    font-family: 'cabinbold';\n    src: url('@assets/cabin-bold-webfont.eot');\n    src: url('@assets/cabin-bold-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-bold-webfont.woff2') format('woff2'),\n         url('@assets/cabin-bold-webfont.woff') format('woff'),\n         url('@assets/cabin-bold-webfont.ttf') format('truetype'),\n         url('@assets/cabin-bold-webfont.svg#cabinbold') format('svg');\n    font-weight: 700;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinsemibold_italic';\n    src: url('@assets/cabin-semibolditalic-webfont.eot');\n    src: url('@assets/cabin-semibolditalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-semibolditalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-semibolditalic-webfont.woff') format('woff'),\n         url('@assets/cabin-semibolditalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-semibolditalic-webfont.svg#cabinsemibold_italic') format('svg');\n    font-weight: 600;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinsemibold';\n    src: url('@assets/cabin-semibold-webfont.eot');\n    src: url('@assets/cabin-semibold-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-semibold-webfont.woff2') format('woff2'),\n         url('@assets/cabin-semibold-webfont.woff') format('woff'),\n         url('@assets/cabin-semibold-webfont.ttf') format('truetype'),\n         url('@assets/cabin-semibold-webfont.svg#cabinsemibold') format('svg');\n    font-weight: 600;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinmedium_italic';\n    src: url('@assets/cabin-mediumitalic-webfont.eot');\n    src: url('@assets/cabin-mediumitalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-mediumitalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-mediumitalic-webfont.woff') format('woff'),\n         url('@assets/cabin-mediumitalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-mediumitalic-webfont.svg#cabinmedium_italic') format('svg');\n    font-weight: 500;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinmedium';\n    src: url('@assets/cabin-medium-webfont.eot');\n    src: url('@assets/cabin-medium-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-medium-webfont.woff2') format('woff2'),\n         url('@assets/cabin-medium-webfont.woff') format('woff'),\n         url('@assets/cabin-medium-webfont.ttf') format('truetype'),\n         url('@assets/cabin-medium-webfont.svg#cabinmedium') format('svg');\n    font-weight: 500;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'Cabin';\n    src: url('@assets/cabin-italic-webfont.eot');\n    src: url('@assets/cabin-italic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-italic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-italic-webfont.woff') format('woff'),\n         url('@assets/cabin-italic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-italic-webfont.svg#cabinitalic') format('svg');\n    font-weight: 400;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'Cabin';\n    src: url('@assets/cabin-regular-webfont.eot');\n    src: url('@assets/cabin-regular-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-regular-webfont.woff2') format('woff2'),\n         url('@assets/cabin-regular-webfont.woff') format('woff'),\n         url('@assets/cabin-regular-webfont.ttf') format('truetype'),\n         url('@assets/cabin-regular-webfont.svg#cabinregular') format('svg');\n    font-weight: 400;\n    font-style: normal;\n\n}\n",
           "page.css": "body\n{\n  font-family: 'callunaregular';\n  font-size : 12px;\n}\n\n\nh1,h2,h3,h4,h5,h6\n{\n  font-family: 'Cabin', 'callunaregular';\n  font-weight : 700;\n}\n\n@page:first\n{\n  margin : 0;\n  page-break-after: always;\n  @bottom\n  {\n      content: none;\n  }\n}\n\n.peritext-static-front-cover-container\n{\n  page-break-after: always;\n  margin : 0;\n  font-family: Arial;\n}\n\n@page.peritext-static-front-cover-container\n{\n  margin : 0;\n  font-family: Arial;\n}\n\n.peritext-static-front-cover-container\n{\n  page-break-after: always;\n  margin : 0;\n  font-family: Arial;\n}\n\n.peritext-static-back-cover\n{\n  page-break-before: always;\n  margin: 0;\n  padding: 0;\n  font-size : 2em;\n  background: yellow;\n  position: absolute;\n  left : 0;\n  top : 0;\n  width : 100%;\n  height : 100%;\n}\n\n#peritext-static-front-cover-image-container\n{\n  background-size:     cover;\n  background-repeat:   no-repeat;\n  background-position: center center;\n  /*height : 16cm;*/\n  height : 18.3cm;\n  /*width : 100%;*/\n}\n\n.peritext-static-front-cover-part-top-left,\n.peritext-static-front-cover-part-top-right,\n.peritext-static-front-cover-part-bottom-left,\n.peritext-static-front-cover-part-bottom-right\n{\n  position: fixed;\n  width : 50%;\n}\n\n.peritext-static-front-cover-part-top-left,\n.peritext-static-front-cover-part-bottom-left\n{\n  left : .5cm;\n  text-align : right;\n  padding-right : 1.5cm;\n  width : 45%;\n}\n\n.peritext-static-front-cover-part-top-right,\n.peritext-static-front-cover-part-bottom-right\n{\n  left : 1cm;\n  padding-left : 50%;\n  padding-right : 1cm;\n}\n\n.peritext-static-front-cover-part-top-left,\n.peritext-static-front-cover-part-top-right\n{\n  bottom : 31.6%;\n  color : white;\n  padding-bottom : .8cm;\n}\n\n.peritext-static-front-cover-part-bottom-left,\n.peritext-static-front-cover-part-bottom-right\n{\n  top : 68%;\n}\n\n.peritext-static-front-cover-part-top-left h3,\n.peritext-static-front-cover-part-top-left h4,\n.peritext-static-front-cover-part-top-left p,\n.peritext-static-front-cover-part-top-right h3,\n.peritext-static-front-cover-part-top-right h4,\n.peritext-static-front-cover-part-top-right p\n{\n  margin-top : 0;\n  margin-bottom : 0;\n  font-size : 12px;\n}\n\n.peritext-static-front-cover-part-top-right h1\n{\n  margin : 0;\n  padding : 0;\n}\n\n.peritext-static-front-cover-part-bottom-left h1{\n  margin : 0;\n}\n\n.peritext-static-front-cover-date\n{\n  font-weight : 800;\n}\n\n.peritext-static-front-cover-jury-member .peritext-structured-person-firstname,\n.peritext-static-front-cover-jury-member .peritext-structured-person-lastname\n{\n  font-weight : 800;\n}\n",
@@ -2109,6 +2174,11 @@
           "inheritedVerticallyFrom": "mybook"
         },
         {
+          "describedInline": true,
+          "fullyImplicit": true,
+          "citeKey": "contextualizer_01"
+        },
+        {
           "overloading": "@cool_timeline",
           "citeKey": "@cool_timeline_1"
         },
@@ -2117,11 +2187,6 @@
           "describedInline": true,
           "overloading": "@cool_timeline",
           "citeKey": "@cool_timeline_2"
-        },
-        {
-          "describedInline": true,
-          "fullyImplicit": true,
-          "citeKey": "contextualizer_21"
         },
         {
           "describedInline": true,
@@ -2144,6 +2209,11 @@
           "citeKey": "contextualizer_61"
         },
         {
+          "describedInline": true,
+          "fullyImplicit": true,
+          "citeKey": "contextualizer_71"
+        },
+        {
           "layer": {
             "layertype": "events",
             "data": "@res.data.dates",
@@ -2152,11 +2222,6 @@
           "type": "timeline",
           "title": "My title",
           "describedInline": true,
-          "citeKey": "contextualizer_71"
-        },
-        {
-          "describedInline": true,
-          "fullyImplicit": true,
           "citeKey": "contextualizer_81"
         },
         {
@@ -2165,29 +2230,34 @@
           "citeKey": "contextualizer_91"
         },
         {
-          "page": "12",
           "describedInline": true,
+          "fullyImplicit": true,
           "citeKey": "contextualizer_101"
         },
         {
-          "pages": "30-40",
+          "page": "12",
           "describedInline": true,
           "citeKey": "contextualizer_111"
         },
         {
-          "pages": "32-36",
+          "pages": "30-40",
           "describedInline": true,
           "citeKey": "contextualizer_121"
         },
         {
-          "pages": "12-13",
+          "pages": "32-36",
           "describedInline": true,
           "citeKey": "contextualizer_131"
         },
         {
+          "pages": "12-13",
+          "describedInline": true,
+          "citeKey": "contextualizer_141"
+        },
+        {
           "describedInline": true,
           "fullyImplicit": true,
-          "citeKey": "contextualizer_141"
+          "citeKey": "contextualizer_151"
         },
         {
           "layer": [
@@ -2203,23 +2273,70 @@
           "type": "timeline",
           "caption": "This is a text with {stuf} but it should work",
           "describedInline": true,
-          "citeKey": "contextualizer_151"
+          "citeKey": "contextualizer_161"
         },
         {
           "alias": "",
           "describedInline": true,
-          "citeKey": "contextualizer_161"
+          "citeKey": "contextualizer_171"
         },
         {
           "alias": "materiality of things",
           "describedInline": true,
-          "citeKey": "contextualizer_171"
+          "citeKey": "contextualizer_181"
         }
       ],
-      "markdownContents": "# This is part one\n\n\n![A reference to a timeline should display here when timeline is ready](@temporal_data){@cool_timeline}\n\n\n\n![Another view on the timeline](@temporal_data){@cool_timeline,\n    startat=\"2012-21-01\"\n}\n\nI am inline referencing to an [image](@image_test_1).\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, fugit, id. Unde nulla incidunt sapiente reiciendis atque similique totam, facere earum dolores. Soluta earum, autem! Fugit, iure, repellat. Nesciunt, inventore.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi necessitatibus aliquam nisi odio et perferendis reiciendis porro, fugit repellat similique consequuntur dolor perspiciatis? Laborum doloribus ducimus alias sequi sapiente! Voluptate.\n\nThen I want to say that the [image](@image_test_1) that I showed is awesome.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Optio nemo eius autem, saepe dolore nam iste ex inventore, minus neque mollitia molestias facere asperiores vel voluptas beatae esse perspiciatis cupiditate.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore commodi maxime laborum cupiditate nam consequuntur in. Laudantium autem, accusantium! Iure, autem quas quis, odit fugit dolor voluptatum esse quisquam asperiores.\n\nAnd then I want to display a group of images :\n\n![A group of images](@image_test_1,@image_test_2)\n\nAnd then I want to point to an [online](@website_test) resource.\n\n![This is a block *website* contextualization, displaying a poster or the resource (typically a screenshot) if specified](@website_test)\n\nI will talk about that[^]{with a footnote here} :\n\n![Another reference with unnamed contextualizer](@temporal_data){\n    type=\"timeline\",\n    layer={layertype=events,data=@res.data.dates,labels=@res.data.labels},\n    title=\"My title\"\n}\n\nI will first quote in a book where someone that says [it's not possible](@ab94).\nBut I would like to quote again my [group of images](@image_test_1,@image_test_2).\n\nThen I should have an ibid here [^]{[](@ab94){page=\"12\"}.}\n\nAnd as say a lot of people[^]{[](@martin_change_2002){pages=\"30-40\"}}, publishing could be simpler.\n\nI'm now going to quote a book from the same authors in the same year, but different - it should add a b but let's see what's in the footnote[^]{[](@martin_change_2002b){pages=\"32-36\"}}.\n\nAnd for the footnotes, I want to say that Martin said that[^]{I'm referencing to [](@martin_change_2002){pages=\"12-13\"} when he says : \"hello\"}\n\nWhe Martin says [there has to be some *change*](@martin_change_2002).\n\nNow let's say I want to link to this [timeline](@temporal_data){\n    type=\"timeline\",\n    layer={dates=@res.data.dates,labels=@res.data.labels},\n    layer={dates=@res.data.dates,labels=@res.data.labels},\n    caption=\"This is a text with {stuf} but it should work\"\n} and continue my paragraph quietly.\n\nWelcome to my awesome book.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nAn inline resource video, it should display a thumbnail or something in static mode even if its not visible :\n\n\nI am now talking about [material things](@materiality){\nalias=\"\"\n}. But I would prefer to register it as [a concept](@materiality){alias=\"materiality of things\"}, for instance \"materiality of things\". Check out the glossary !.\n\n* a first list level\n    - second list level\n* return to first list level\n",
+      "markdownContents": "# This is part one\n\n\nI want a table for my resource there :\n\n![My table](@temporal_data)\n\nBut I can also display the same resource as a timeline :\n\n![A reference to a timeline should display here when timeline is ready](@temporal_data){@cool_timeline}\n\n\n\n![Another view on the timeline](@temporal_data){@cool_timeline,\n    startat=\"2012-21-01\"\n}\n\nI am inline referencing to an [image](@image_test_1).\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, fugit, id. Unde nulla incidunt sapiente reiciendis atque similique totam, facere earum dolores. Soluta earum, autem! Fugit, iure, repellat. Nesciunt, inventore.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi necessitatibus aliquam nisi odio et perferendis reiciendis porro, fugit repellat similique consequuntur dolor perspiciatis? Laborum doloribus ducimus alias sequi sapiente! Voluptate.\n\nThen I want to say that the [image](@image_test_1) that I showed is awesome.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Optio nemo eius autem, saepe dolore nam iste ex inventore, minus neque mollitia molestias facere asperiores vel voluptas beatae esse perspiciatis cupiditate.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore commodi maxime laborum cupiditate nam consequuntur in. Laudantium autem, accusantium! Iure, autem quas quis, odit fugit dolor voluptatum esse quisquam asperiores.\n\nAnd then I want to display a group of images :\n\n![A group of images](@image_test_1,@image_test_2)\n\nAnd then I want to point to an [online](@website_test) resource.\n\n![This is a block *website* contextualization, displaying a poster or the resource (typically a screenshot) if specified](@website_test)\n\nI will talk about that[^]{with a footnote here} :\n\n![Another reference with unnamed contextualizer](@temporal_data){\n    type=\"timeline\",\n    layer={layertype=events,data=@res.data.dates,labels=@res.data.labels},\n    title=\"My title\"\n}\n\nI will first quote in a book where someone that says [it's not possible](@ab94).\nBut I would like to quote again my [group of images](@image_test_1,@image_test_2).\n\nThen I should have an ibid here [^]{[](@ab94){page=\"12\"}.}\n\nAnd as say a lot of people[^]{[](@martin_change_2002){pages=\"30-40\"}}, publishing could be simpler.\n\nI'm now going to quote a book from the same authors in the same year, but different - it should add a b but let's see what's in the footnote[^]{[](@martin_change_2002b){pages=\"32-36\"}}.\n\nAnd for the footnotes, I want to say that Martin said that[^]{I'm referencing to [](@martin_change_2002){pages=\"12-13\"} when he says : \"hello\"}\n\nWhe Martin says [there has to be some *change*](@martin_change_2002).\n\nNow let's say I want to link to this [timeline](@temporal_data){\n    type=\"timeline\",\n    layer={dates=@res.data.dates,labels=@res.data.labels},\n    layer={dates=@res.data.dates,labels=@res.data.labels},\n    caption=\"This is a text with {stuf} but it should work\"\n} and continue my paragraph quietly.\n\nWelcome to my awesome book.\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, saepe. Facere minus dolores, voluptatem quia provident dolor odit neque nihil, est commodi, suscipit eligendi, mollitia. Ratione voluptates, alias! Consequuntur, earum.\n\nAn inline resource video, it should display a thumbnail or something in static mode even if its not visible :\n\n\nI am now talking about [material things](@materiality){\nalias=\"\"\n}. But I would prefer to register it as [a concept](@materiality){alias=\"materiality of things\"}, for instance \"materiality of things\". Check out the glossary !.\n\n* a first list level\n    - second list level\n* return to first list level\n",
       "contextualizations": [
         {
           "citeKey": "contextualization_0",
+          "contextualizer": {
+            "data": "@res.data",
+            "title": "@res.title",
+            "citeKey": "contextualizer_01",
+            "type": "table",
+            "describedInline": true,
+            "outputmode": "all"
+          },
+          "resources": [
+            {
+              "url": "@assets/timeline_data.csv",
+              "bibType": "tabularData",
+              "citeKey": "temporal_data",
+              "title": "cool data",
+              "inheritedVerticallyFrom": "mybook"
+            }
+          ],
+          "type": "block",
+          "node": {
+            "node": "element",
+            "tag": "blockC",
+            "attr": {
+              "src": "contextualization_0",
+              "alt": [
+                "My",
+                "table"
+              ]
+            },
+            "blockIndex": 4,
+            "child": [
+              {
+                "node": "element",
+                "tag": "p",
+                "child": [
+                  {
+                    "node": "text",
+                    "text": "My table",
+                    "blockIndex": 4
+                  }
+                ],
+                "blockIndex": 4
+              }
+            ]
+          }
+        },
+        {
+          "citeKey": "contextualization_1",
           "contextualizer": {
             "dateformat": "%Y-%m-%d",
             "disposition": "superpose",
@@ -2243,7 +2360,7 @@
           },
           "resources": [
             {
-              "url": "cool_url",
+              "url": "@assets/timeline_data.csv",
               "bibType": "tabularData",
               "citeKey": "temporal_data",
               "title": "cool data",
@@ -2255,7 +2372,7 @@
             "node": "element",
             "tag": "blockC",
             "attr": {
-              "src": "contextualization_0",
+              "src": "contextualization_1",
               "alt": [
                 "A",
                 "reference",
@@ -2271,7 +2388,7 @@
                 "ready"
               ]
             },
-            "blockIndex": 2,
+            "blockIndex": 8,
             "child": [
               {
                 "node": "element",
@@ -2280,16 +2397,16 @@
                   {
                     "node": "text",
                     "text": "A reference to a timeline should display here when timeline is ready",
-                    "blockIndex": 2
+                    "blockIndex": 8
                   }
                 ],
-                "blockIndex": 2
+                "blockIndex": 8
               }
             ]
           }
         },
         {
-          "citeKey": "contextualization_1",
+          "citeKey": "contextualization_2",
           "contextualizer": {
             "startat": "2012-21-01",
             "dateformat": "%Y-%m-%d",
@@ -2315,7 +2432,7 @@
           },
           "resources": [
             {
-              "url": "cool_url",
+              "url": "@assets/timeline_data.csv",
               "bibType": "tabularData",
               "citeKey": "temporal_data",
               "title": "cool data",
@@ -2327,7 +2444,7 @@
             "node": "element",
             "tag": "blockC",
             "attr": {
-              "src": "contextualization_1",
+              "src": "contextualization_2",
               "alt": [
                 "Another",
                 "view",
@@ -2336,7 +2453,7 @@
                 "timeline"
               ]
             },
-            "blockIndex": 4,
+            "blockIndex": 10,
             "child": [
               {
                 "node": "element",
@@ -2345,49 +2462,12 @@
                   {
                     "node": "text",
                     "text": "Another view on the timeline",
-                    "blockIndex": 4
+                    "blockIndex": 10
                   }
                 ],
-                "blockIndex": 4
+                "blockIndex": 10
               }
             ]
-          }
-        },
-        {
-          "citeKey": "contextualization_2",
-          "contextualizer": {
-            "title": "@res.title",
-            "citeKey": "contextualizer_21",
-            "type": "imagegallery",
-            "describedInline": true,
-            "outputmode": "all"
-          },
-          "resources": [
-            {
-              "imageurl": "@assets/imagetest1.jpg",
-              "url": "http://payload.cargocollective.com/1/0/9226/235006/PULSE_6.jpg",
-              "bibType": "image",
-              "citeKey": "image_test_1",
-              "title": "installation: pulse",
-              "schematype": "CreativeWork",
-              "inheritedVerticallyFrom": "mybook"
-            }
-          ],
-          "type": "inline",
-          "node": {
-            "node": "element",
-            "tag": "inlineC",
-            "attr": {
-              "href": "contextualization_2"
-            },
-            "child": [
-              {
-                "node": "text",
-                "text": "image",
-                "blockIndex": 6
-              }
-            ],
-            "blockIndex": 6
           }
         },
         {
@@ -2445,6 +2525,43 @@
               "title": "installation: pulse",
               "schematype": "CreativeWork",
               "inheritedVerticallyFrom": "mybook"
+            }
+          ],
+          "type": "inline",
+          "node": {
+            "node": "element",
+            "tag": "inlineC",
+            "attr": {
+              "href": "contextualization_4"
+            },
+            "child": [
+              {
+                "node": "text",
+                "text": "image",
+                "blockIndex": 18
+              }
+            ],
+            "blockIndex": 18
+          }
+        },
+        {
+          "citeKey": "contextualization_5",
+          "contextualizer": {
+            "title": "@res.title",
+            "citeKey": "contextualizer_51",
+            "type": "imagegallery",
+            "describedInline": true,
+            "outputmode": "all"
+          },
+          "resources": [
+            {
+              "imageurl": "@assets/imagetest1.jpg",
+              "url": "http://payload.cargocollective.com/1/0/9226/235006/PULSE_6.jpg",
+              "bibType": "image",
+              "citeKey": "image_test_1",
+              "title": "installation: pulse",
+              "schematype": "CreativeWork",
+              "inheritedVerticallyFrom": "mybook"
             },
             {
               "imageurl": "@assets/imagetest2.jpg",
@@ -2461,7 +2578,7 @@
             "node": "element",
             "tag": "blockC",
             "attr": {
-              "src": "contextualization_4",
+              "src": "contextualization_5",
               "alt": [
                 "A",
                 "group",
@@ -2469,7 +2586,7 @@
                 "images"
               ]
             },
-            "blockIndex": 20,
+            "blockIndex": 26,
             "child": [
               {
                 "node": "element",
@@ -2478,48 +2595,12 @@
                   {
                     "node": "text",
                     "text": "A group of images",
-                    "blockIndex": 20
+                    "blockIndex": 26
                   }
                 ],
-                "blockIndex": 20
+                "blockIndex": 26
               }
             ]
-          }
-        },
-        {
-          "citeKey": "contextualization_5",
-          "contextualizer": {
-            "title": "@res.title",
-            "citeKey": "contextualizer_51",
-            "type": "webpage",
-            "describedInline": true,
-            "outputmode": "all"
-          },
-          "resources": [
-            {
-              "posterurl": "@assets/screenshot.png",
-              "url": "https://medium.com/@sxywu/on-d3-react-and-a-little-bit-of-flux-88a226f328f3#.4z6m379fa",
-              "bibType": "online",
-              "citeKey": "website_test",
-              "title": "D3 and react tutorial",
-              "inheritedVerticallyFrom": "mybook"
-            }
-          ],
-          "type": "inline",
-          "node": {
-            "node": "element",
-            "tag": "inlineC",
-            "attr": {
-              "href": "contextualization_5"
-            },
-            "child": [
-              {
-                "node": "text",
-                "text": "online",
-                "blockIndex": 22
-              }
-            ],
-            "blockIndex": 22
           }
         },
         {
@@ -2541,12 +2622,48 @@
               "inheritedVerticallyFrom": "mybook"
             }
           ],
+          "type": "inline",
+          "node": {
+            "node": "element",
+            "tag": "inlineC",
+            "attr": {
+              "href": "contextualization_6"
+            },
+            "child": [
+              {
+                "node": "text",
+                "text": "online",
+                "blockIndex": 28
+              }
+            ],
+            "blockIndex": 28
+          }
+        },
+        {
+          "citeKey": "contextualization_7",
+          "contextualizer": {
+            "title": "@res.title",
+            "citeKey": "contextualizer_71",
+            "type": "webpage",
+            "describedInline": true,
+            "outputmode": "all"
+          },
+          "resources": [
+            {
+              "posterurl": "@assets/screenshot.png",
+              "url": "https://medium.com/@sxywu/on-d3-react-and-a-little-bit-of-flux-88a226f328f3#.4z6m379fa",
+              "bibType": "online",
+              "citeKey": "website_test",
+              "title": "D3 and react tutorial",
+              "inheritedVerticallyFrom": "mybook"
+            }
+          ],
           "type": "block",
           "node": {
             "node": "element",
             "tag": "blockC",
             "attr": {
-              "src": "contextualization_6",
+              "src": "contextualization_7",
               "alt": [
                 "This",
                 "is",
@@ -2567,7 +2684,7 @@
                 "specified"
               ]
             },
-            "blockIndex": 24,
+            "blockIndex": 30,
             "child": [
               {
                 "node": "element",
@@ -2576,7 +2693,7 @@
                   {
                     "node": "text",
                     "text": "This is a block ",
-                    "blockIndex": 24
+                    "blockIndex": 30
                   },
                   {
                     "node": "element",
@@ -2585,24 +2702,24 @@
                       {
                         "node": "text",
                         "text": "website",
-                        "blockIndex": 24
+                        "blockIndex": 30
                       }
                     ],
-                    "blockIndex": 24
+                    "blockIndex": 30
                   },
                   {
                     "node": "text",
                     "text": " contextualization, displaying a poster or the resource (typically a screenshot) if specified",
-                    "blockIndex": 24
+                    "blockIndex": 30
                   }
                 ],
-                "blockIndex": 24
+                "blockIndex": 30
               }
             ]
           }
         },
         {
-          "citeKey": "contextualization_7",
+          "citeKey": "contextualization_8",
           "contextualizer": {
             "dateformat": "%Y-%m-%d",
             "disposition": "superpose",
@@ -2612,14 +2729,14 @@
               "labels": "@res.data.labels"
             },
             "title": "My title",
-            "citeKey": "contextualizer_71",
+            "citeKey": "contextualizer_81",
             "type": "timeline",
             "describedInline": true,
             "outputmode": "all"
           },
           "resources": [
             {
-              "url": "cool_url",
+              "url": "@assets/timeline_data.csv",
               "bibType": "tabularData",
               "citeKey": "temporal_data",
               "title": "cool data",
@@ -2631,7 +2748,7 @@
             "node": "element",
             "tag": "blockC",
             "attr": {
-              "src": "contextualization_7",
+              "src": "contextualization_8",
               "alt": [
                 "Another",
                 "reference",
@@ -2640,7 +2757,7 @@
                 "contextualizer"
               ]
             },
-            "blockIndex": 28,
+            "blockIndex": 34,
             "child": [
               {
                 "node": "element",
@@ -2649,22 +2766,22 @@
                   {
                     "node": "text",
                     "text": "Another reference with unnamed contextualizer",
-                    "blockIndex": 28
+                    "blockIndex": 34
                   }
                 ],
-                "blockIndex": 28
+                "blockIndex": 34
               }
             ]
           }
         },
         {
-          "citeKey": "contextualization_8",
+          "citeKey": "contextualization_9",
           "contextualizer": {
             "year": "@res.year",
             "date": "@res.date",
             "author": "@res.author",
             "title": "@res.title",
-            "citeKey": "contextualizer_81",
+            "citeKey": "contextualizer_91",
             "type": "citation",
             "describedInline": true,
             "outputmode": "all"
@@ -2700,23 +2817,23 @@
             "node": "element",
             "tag": "inlineC",
             "attr": {
-              "href": "contextualization_8"
+              "href": "contextualization_9"
             },
             "child": [
               {
                 "node": "text",
                 "text": "it's not possible",
-                "blockIndex": 30
+                "blockIndex": 36
               }
             ],
-            "blockIndex": 30
+            "blockIndex": 36
           }
         },
         {
-          "citeKey": "contextualization_9",
+          "citeKey": "contextualization_10",
           "contextualizer": {
             "title": "@res.title",
-            "citeKey": "contextualizer_91",
+            "citeKey": "contextualizer_101",
             "type": "imagegallery",
             "describedInline": true,
             "outputmode": "all"
@@ -2746,27 +2863,27 @@
             "node": "element",
             "tag": "inlineC",
             "attr": {
-              "href": "contextualization_9"
+              "href": "contextualization_10"
             },
             "child": [
               {
                 "node": "text",
                 "text": "group of images",
-                "blockIndex": 30
+                "blockIndex": 36
               }
             ],
-            "blockIndex": 30
+            "blockIndex": 36
           }
         },
         {
-          "citeKey": "contextualization_10",
+          "citeKey": "contextualization_11",
           "contextualizer": {
             "page": "12",
             "year": "@res.year",
             "date": "@res.date",
             "author": "@res.author",
             "title": "@res.title",
-            "citeKey": "contextualizer_101",
+            "citeKey": "contextualizer_111",
             "type": "citation",
             "describedInline": true,
             "outputmode": "all"
@@ -2802,20 +2919,20 @@
             "node": "element",
             "tag": "inlineC",
             "attr": {
-              "href": "contextualization_10"
+              "href": "contextualization_11"
             },
             "blockIndex": 0
           }
         },
         {
-          "citeKey": "contextualization_11",
+          "citeKey": "contextualization_12",
           "contextualizer": {
             "pages": "30-40",
             "year": "@res.year",
             "date": "@res.date",
             "author": "@res.author",
             "title": "@res.title",
-            "citeKey": "contextualizer_111",
+            "citeKey": "contextualizer_121",
             "type": "citation",
             "describedInline": true,
             "outputmode": "all"
@@ -2856,20 +2973,20 @@
             "node": "element",
             "tag": "inlineC",
             "attr": {
-              "href": "contextualization_11"
+              "href": "contextualization_12"
             },
             "blockIndex": 0
           }
         },
         {
-          "citeKey": "contextualization_12",
+          "citeKey": "contextualization_13",
           "contextualizer": {
             "pages": "32-36",
             "year": "@res.year",
             "date": "@res.date",
             "author": "@res.author",
             "title": "@res.title",
-            "citeKey": "contextualizer_121",
+            "citeKey": "contextualizer_131",
             "type": "citation",
             "describedInline": true,
             "outputmode": "all"
@@ -2910,60 +3027,6 @@
             "node": "element",
             "tag": "inlineC",
             "attr": {
-              "href": "contextualization_12"
-            },
-            "blockIndex": 0
-          }
-        },
-        {
-          "citeKey": "contextualization_13",
-          "contextualizer": {
-            "pages": "12-13",
-            "year": "@res.year",
-            "date": "@res.date",
-            "author": "@res.author",
-            "title": "@res.title",
-            "citeKey": "contextualizer_131",
-            "type": "citation",
-            "describedInline": true,
-            "outputmode": "all"
-          },
-          "resources": [
-            {
-              "journal": "Journal of Electronic Publishing",
-              "issue": 3,
-              "volume": 7,
-              "pages": "12-60",
-              "title": "Change the {Metaphor}: {The} {Archive} as an {Ecosystem}",
-              "author": [
-                {
-                  "firstName": "Julia",
-                  "lastName": "Martin",
-                  "role": "author",
-                  "citeKey": "author-juliamartin"
-                },
-                {
-                  "firstName": "Nicolas",
-                  "lastName": "Coleman",
-                  "role": "author",
-                  "citeKey": "author-nicolascoleman"
-                }
-              ],
-              "year": 2002,
-              "month": "april",
-              "issn": "1080-2711",
-              "bibType": "article",
-              "citeKey": "martin_change_2002",
-              "doi": "10.3998/3336451.0007.301",
-              "url": "http://hdl.handle.net/2027/spo.3336451.0007.301",
-              "inheritedVerticallyFrom": "mybook"
-            }
-          ],
-          "type": "inline",
-          "node": {
-            "node": "element",
-            "tag": "inlineC",
-            "attr": {
               "href": "contextualization_13"
             },
             "blockIndex": 0
@@ -2972,6 +3035,7 @@
         {
           "citeKey": "contextualization_14",
           "contextualizer": {
+            "pages": "12-13",
             "year": "@res.year",
             "date": "@res.date",
             "author": "@res.author",
@@ -3019,11 +3083,64 @@
             "attr": {
               "href": "contextualization_14"
             },
+            "blockIndex": 0
+          }
+        },
+        {
+          "citeKey": "contextualization_15",
+          "contextualizer": {
+            "year": "@res.year",
+            "date": "@res.date",
+            "author": "@res.author",
+            "title": "@res.title",
+            "citeKey": "contextualizer_151",
+            "type": "citation",
+            "describedInline": true,
+            "outputmode": "all"
+          },
+          "resources": [
+            {
+              "journal": "Journal of Electronic Publishing",
+              "issue": 3,
+              "volume": 7,
+              "pages": "12-60",
+              "title": "Change the {Metaphor}: {The} {Archive} as an {Ecosystem}",
+              "author": [
+                {
+                  "firstName": "Julia",
+                  "lastName": "Martin",
+                  "role": "author",
+                  "citeKey": "author-juliamartin"
+                },
+                {
+                  "firstName": "Nicolas",
+                  "lastName": "Coleman",
+                  "role": "author",
+                  "citeKey": "author-nicolascoleman"
+                }
+              ],
+              "year": 2002,
+              "month": "april",
+              "issn": "1080-2711",
+              "bibType": "article",
+              "citeKey": "martin_change_2002",
+              "doi": "10.3998/3336451.0007.301",
+              "url": "http://hdl.handle.net/2027/spo.3336451.0007.301",
+              "inheritedVerticallyFrom": "mybook"
+            }
+          ],
+          "type": "inline",
+          "node": {
+            "node": "element",
+            "tag": "inlineC",
+            "attr": {
+              "href": "contextualization_15"
+            },
             "child": [
               {
                 "node": "text",
                 "text": "there has to be some ",
-                "blockIndex": 40
+                "blockIndex": 46
               },
               {
                 "node": "element",
@@ -3032,17 +3149,17 @@
                   {
                     "node": "text",
                     "text": "change",
-                    "blockIndex": 40
+                    "blockIndex": 46
                   }
                 ],
-                "blockIndex": 40
+                "blockIndex": 46
               }
             ],
-            "blockIndex": 40
+            "blockIndex": 46
           }
         },
         {
-          "citeKey": "contextualization_15",
+          "citeKey": "contextualization_16",
           "contextualizer": {
             "dateformat": "%Y-%m-%d",
             "disposition": "superpose",
@@ -3057,54 +3174,17 @@
               }
             ],
             "title": "@res.title",
-            "citeKey": "contextualizer_151",
+            "citeKey": "contextualizer_161",
             "type": "timeline",
             "describedInline": true,
             "outputmode": "all"
           },
           "resources": [
             {
-              "url": "cool_url",
+              "url": "@assets/timeline_data.csv",
               "bibType": "tabularData",
               "citeKey": "temporal_data",
               "title": "cool data",
-              "inheritedVerticallyFrom": "mybook"
-            }
-          ],
-          "type": "inline",
-          "node": {
-            "node": "element",
-            "tag": "inlineC",
-            "attr": {
-              "href": "contextualization_15"
-            },
-            "child": [
-              {
-                "node": "text",
-                "text": "timeline",
-                "blockIndex": 42
-              }
-            ],
-            "blockIndex": 42
-          }
-        },
-        {
-          "citeKey": "contextualization_16",
-          "contextualizer": {
-            "alias": "",
-            "showdescription": "yes",
-            "title": "@res.title",
-            "citeKey": "contextualizer_161",
-            "type": "glossary",
-            "describedInline": true,
-            "outputmode": "all"
-          },
-          "resources": [
-            {
-              "name": "Materiality",
-              "bibType": "concept",
-              "citeKey": "materiality",
-              "description": "When we read literature and look at images on pages or screens, we are usually trying to extract information from words, symbols and figures. We don’t often think about the physical processes involved in this or even the material objects with which we are interacting: we seem to see through the paper pages and the illuminated computer screens, barely registering differences between media as we work out the messages being transmitted through them. Yet the material properties of different media have all sorts of subtle effects on our reading and viewing experiences. For example, the way that the cover of a book feels or looks can determine whether we pick it up and enjoy reading it, and the brightness and speed of electronic images can determine whether we stay on one site or click our way to another.",
               "inheritedVerticallyFrom": "mybook"
             }
           ],
@@ -3118,19 +3198,19 @@
             "child": [
               {
                 "node": "text",
-                "text": "material things",
-                "blockIndex": 50
+                "text": "timeline",
+                "blockIndex": 48
               }
             ],
-            "blockIndex": 50
+            "blockIndex": 48
           }
         },
         {
           "citeKey": "contextualization_17",
           "contextualizer": {
-            "alias": "materiality of things",
+            "title": "@res.name",
+            "alias": "",
             "showdescription": "yes",
-            "title": "@res.title",
             "citeKey": "contextualizer_171",
             "type": "glossary",
             "describedInline": true,
@@ -3155,11 +3235,48 @@
             "child": [
               {
                 "node": "text",
-                "text": "a concept",
-                "blockIndex": 50
+                "text": "material things",
+                "blockIndex": 56
               }
             ],
-            "blockIndex": 50
+            "blockIndex": 56
+          }
+        },
+        {
+          "citeKey": "contextualization_18",
+          "contextualizer": {
+            "title": "@res.name",
+            "alias": "materiality of things",
+            "showdescription": "yes",
+            "citeKey": "contextualizer_181",
+            "type": "glossary",
+            "describedInline": true,
+            "outputmode": "all"
+          },
+          "resources": [
+            {
+              "name": "Materiality",
+              "bibType": "concept",
+              "citeKey": "materiality",
+              "description": "When we read literature and look at images on pages or screens, we are usually trying to extract information from words, symbols and figures. We don’t often think about the physical processes involved in this or even the material objects with which we are interacting: we seem to see through the paper pages and the illuminated computer screens, barely registering differences between media as we work out the messages being transmitted through them. Yet the material properties of different media have all sorts of subtle effects on our reading and viewing experiences. For example, the way that the cover of a book feels or looks can determine whether we pick it up and enjoy reading it, and the brightness and speed of electronic images can determine whether we stay on one site or click our way to another.",
+              "inheritedVerticallyFrom": "mybook"
+            }
+          ],
+          "type": "inline",
+          "node": {
+            "node": "element",
+            "tag": "inlineC",
+            "attr": {
+              "href": "contextualization_18"
+            },
+            "child": [
+              {
+                "node": "text",
+                "text": "a concept",
+                "blockIndex": 56
+              }
+            ],
+            "blockIndex": 56
           }
         }
       ],
@@ -3182,7 +3299,7 @@
               "node": "element",
               "tag": "inlineC",
               "attr": {
-                "href": "contextualization_10"
+                "href": "contextualization_11"
               },
               "blockIndex": 0
             },
@@ -3201,7 +3318,7 @@
               "node": "element",
               "tag": "inlineC",
               "attr": {
-                "href": "contextualization_11"
+                "href": "contextualization_12"
               },
               "blockIndex": 0
             }
@@ -3215,7 +3332,7 @@
               "node": "element",
               "tag": "inlineC",
               "attr": {
-                "href": "contextualization_12"
+                "href": "contextualization_13"
               },
               "blockIndex": 0
             }
@@ -3234,7 +3351,7 @@
               "node": "element",
               "tag": "inlineC",
               "attr": {
-                "href": "contextualization_13"
+                "href": "contextualization_14"
               },
               "blockIndex": 0
             },
@@ -4505,7 +4622,7 @@
           "inheritedVerticallyFrom": "mybook"
         },
         {
-          "url": "cool_url",
+          "url": "@assets/timeline_data.csv",
           "bibType": "tabularData",
           "citeKey": "temporal_data",
           "title": "cool data",
@@ -4591,7 +4708,6 @@
       ],
       "parent": "mybook",
       "customizers": {
-        "components": {},
         "styles": {
           "my_style.css": "body{\n  color : black;\n}\n\n@font-face {\n    font-family: 'callunaregular';\n    src: url('@assets/Calluna-Regular-webfont.eot');\n    src: url('@assets/Calluna-Regular-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/Calluna-Regular-webfont.woff2') format('woff2'),\n         url('@assets/Calluna-Regular-webfont.woff') format('woff'),\n         url('@assets/Calluna-Regular-webfont.ttf') format('truetype'),\n         url('@assets/Calluna-Regular-webfont.svg#callunaregular') format('svg');\n    font-weight: normal;\n    font-style: normal;\n}\n\n@font-face {\n    font-family: 'cabinbold_italic';\n    src: url('@assets/cabin-bolditalic-webfont.eot');\n    src: url('@assets/cabin-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-bolditalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-bolditalic-webfont.woff') format('woff'),\n         url('@assets/cabin-bolditalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-bolditalic-webfont.svg#cabinbold_italic') format('svg');\n    font-weight: 700;\n    font-style: italic;\n\n}\n\n\n@font-face {\n    font-family: 'cabinbold';\n    src: url('@assets/cabin-bold-webfont.eot');\n    src: url('@assets/cabin-bold-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-bold-webfont.woff2') format('woff2'),\n         url('@assets/cabin-bold-webfont.woff') format('woff'),\n         url('@assets/cabin-bold-webfont.ttf') format('truetype'),\n         url('@assets/cabin-bold-webfont.svg#cabinbold') format('svg');\n    font-weight: 700;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinsemibold_italic';\n    src: url('@assets/cabin-semibolditalic-webfont.eot');\n    src: url('@assets/cabin-semibolditalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-semibolditalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-semibolditalic-webfont.woff') format('woff'),\n         url('@assets/cabin-semibolditalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-semibolditalic-webfont.svg#cabinsemibold_italic') format('svg');\n    font-weight: 600;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinsemibold';\n    src: url('@assets/cabin-semibold-webfont.eot');\n    src: url('@assets/cabin-semibold-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-semibold-webfont.woff2') format('woff2'),\n         url('@assets/cabin-semibold-webfont.woff') format('woff'),\n         url('@assets/cabin-semibold-webfont.ttf') format('truetype'),\n         url('@assets/cabin-semibold-webfont.svg#cabinsemibold') format('svg');\n    font-weight: 600;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinmedium_italic';\n    src: url('@assets/cabin-mediumitalic-webfont.eot');\n    src: url('@assets/cabin-mediumitalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-mediumitalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-mediumitalic-webfont.woff') format('woff'),\n         url('@assets/cabin-mediumitalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-mediumitalic-webfont.svg#cabinmedium_italic') format('svg');\n    font-weight: 500;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinmedium';\n    src: url('@assets/cabin-medium-webfont.eot');\n    src: url('@assets/cabin-medium-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-medium-webfont.woff2') format('woff2'),\n         url('@assets/cabin-medium-webfont.woff') format('woff'),\n         url('@assets/cabin-medium-webfont.ttf') format('truetype'),\n         url('@assets/cabin-medium-webfont.svg#cabinmedium') format('svg');\n    font-weight: 500;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'Cabin';\n    src: url('@assets/cabin-italic-webfont.eot');\n    src: url('@assets/cabin-italic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-italic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-italic-webfont.woff') format('woff'),\n         url('@assets/cabin-italic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-italic-webfont.svg#cabinitalic') format('svg');\n    font-weight: 400;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'Cabin';\n    src: url('@assets/cabin-regular-webfont.eot');\n    src: url('@assets/cabin-regular-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-regular-webfont.woff2') format('woff2'),\n         url('@assets/cabin-regular-webfont.woff') format('woff'),\n         url('@assets/cabin-regular-webfont.ttf') format('truetype'),\n         url('@assets/cabin-regular-webfont.svg#cabinregular') format('svg');\n    font-weight: 400;\n    font-style: normal;\n\n}\n",
           "page.css": "body\n{\n  font-family: 'callunaregular';\n  font-size : 12px;\n}\n\n\nh1,h2,h3,h4,h5,h6\n{\n  font-family: 'Cabin', 'callunaregular';\n  font-weight : 700;\n}\n\n@page:first\n{\n  margin : 0;\n  page-break-after: always;\n  @bottom\n  {\n      content: none;\n  }\n}\n\n.peritext-static-front-cover-container\n{\n  page-break-after: always;\n  margin : 0;\n  font-family: Arial;\n}\n\n@page.peritext-static-front-cover-container\n{\n  margin : 0;\n  font-family: Arial;\n}\n\n.peritext-static-front-cover-container\n{\n  page-break-after: always;\n  margin : 0;\n  font-family: Arial;\n}\n\n.peritext-static-back-cover\n{\n  page-break-before: always;\n  margin: 0;\n  padding: 0;\n  font-size : 2em;\n  background: yellow;\n  position: absolute;\n  left : 0;\n  top : 0;\n  width : 100%;\n  height : 100%;\n}\n\n#peritext-static-front-cover-image-container\n{\n  background-size:     cover;\n  background-repeat:   no-repeat;\n  background-position: center center;\n  /*height : 16cm;*/\n  height : 18.3cm;\n  /*width : 100%;*/\n}\n\n.peritext-static-front-cover-part-top-left,\n.peritext-static-front-cover-part-top-right,\n.peritext-static-front-cover-part-bottom-left,\n.peritext-static-front-cover-part-bottom-right\n{\n  position: fixed;\n  width : 50%;\n}\n\n.peritext-static-front-cover-part-top-left,\n.peritext-static-front-cover-part-bottom-left\n{\n  left : .5cm;\n  text-align : right;\n  padding-right : 1.5cm;\n  width : 45%;\n}\n\n.peritext-static-front-cover-part-top-right,\n.peritext-static-front-cover-part-bottom-right\n{\n  left : 1cm;\n  padding-left : 50%;\n  padding-right : 1cm;\n}\n\n.peritext-static-front-cover-part-top-left,\n.peritext-static-front-cover-part-top-right\n{\n  bottom : 31.6%;\n  color : white;\n  padding-bottom : .8cm;\n}\n\n.peritext-static-front-cover-part-bottom-left,\n.peritext-static-front-cover-part-bottom-right\n{\n  top : 68%;\n}\n\n.peritext-static-front-cover-part-top-left h3,\n.peritext-static-front-cover-part-top-left h4,\n.peritext-static-front-cover-part-top-left p,\n.peritext-static-front-cover-part-top-right h3,\n.peritext-static-front-cover-part-top-right h4,\n.peritext-static-front-cover-part-top-right p\n{\n  margin-top : 0;\n  margin-bottom : 0;\n  font-size : 12px;\n}\n\n.peritext-static-front-cover-part-top-right h1\n{\n  margin : 0;\n  padding : 0;\n}\n\n.peritext-static-front-cover-part-bottom-left h1{\n  margin : 0;\n}\n\n.peritext-static-front-cover-date\n{\n  font-weight : 800;\n}\n\n.peritext-static-front-cover-jury-member .peritext-structured-person-firstname,\n.peritext-static-front-cover-jury-member .peritext-structured-person-lastname\n{\n  font-weight : 800;\n}\n",
@@ -4637,8 +4753,8 @@
         {
           "citeKey": "contextualization_0",
           "contextualizer": {
+            "title": "@res.name",
             "showdescription": "yes",
-            "title": "@res.title",
             "citeKey": "contextualizer_01",
             "type": "glossary",
             "describedInline": true,
@@ -4673,9 +4789,9 @@
         {
           "citeKey": "contextualization_1",
           "contextualizer": {
+            "title": "@res.name",
             "alias": "Materiality of computers",
             "showdescription": "yes",
-            "title": "@res.title",
             "citeKey": "contextualizer_11",
             "type": "glossary",
             "describedInline": true,
@@ -5399,7 +5515,7 @@
           "inheritedVerticallyFrom": "partie_2"
         },
         {
-          "url": "cool_url",
+          "url": "@assets/timeline_data.csv",
           "bibType": "tabularData",
           "citeKey": "temporal_data",
           "title": "cool data",
@@ -5485,7 +5601,6 @@
       ],
       "parent": "partie_2",
       "customizers": {
-        "components": {},
         "styles": {
           "my_style.css": "body{\n  color : black;\n}\n\n@font-face {\n    font-family: 'callunaregular';\n    src: url('@assets/Calluna-Regular-webfont.eot');\n    src: url('@assets/Calluna-Regular-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/Calluna-Regular-webfont.woff2') format('woff2'),\n         url('@assets/Calluna-Regular-webfont.woff') format('woff'),\n         url('@assets/Calluna-Regular-webfont.ttf') format('truetype'),\n         url('@assets/Calluna-Regular-webfont.svg#callunaregular') format('svg');\n    font-weight: normal;\n    font-style: normal;\n}\n\n@font-face {\n    font-family: 'cabinbold_italic';\n    src: url('@assets/cabin-bolditalic-webfont.eot');\n    src: url('@assets/cabin-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-bolditalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-bolditalic-webfont.woff') format('woff'),\n         url('@assets/cabin-bolditalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-bolditalic-webfont.svg#cabinbold_italic') format('svg');\n    font-weight: 700;\n    font-style: italic;\n\n}\n\n\n@font-face {\n    font-family: 'cabinbold';\n    src: url('@assets/cabin-bold-webfont.eot');\n    src: url('@assets/cabin-bold-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-bold-webfont.woff2') format('woff2'),\n         url('@assets/cabin-bold-webfont.woff') format('woff'),\n         url('@assets/cabin-bold-webfont.ttf') format('truetype'),\n         url('@assets/cabin-bold-webfont.svg#cabinbold') format('svg');\n    font-weight: 700;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinsemibold_italic';\n    src: url('@assets/cabin-semibolditalic-webfont.eot');\n    src: url('@assets/cabin-semibolditalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-semibolditalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-semibolditalic-webfont.woff') format('woff'),\n         url('@assets/cabin-semibolditalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-semibolditalic-webfont.svg#cabinsemibold_italic') format('svg');\n    font-weight: 600;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinsemibold';\n    src: url('@assets/cabin-semibold-webfont.eot');\n    src: url('@assets/cabin-semibold-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-semibold-webfont.woff2') format('woff2'),\n         url('@assets/cabin-semibold-webfont.woff') format('woff'),\n         url('@assets/cabin-semibold-webfont.ttf') format('truetype'),\n         url('@assets/cabin-semibold-webfont.svg#cabinsemibold') format('svg');\n    font-weight: 600;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinmedium_italic';\n    src: url('@assets/cabin-mediumitalic-webfont.eot');\n    src: url('@assets/cabin-mediumitalic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-mediumitalic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-mediumitalic-webfont.woff') format('woff'),\n         url('@assets/cabin-mediumitalic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-mediumitalic-webfont.svg#cabinmedium_italic') format('svg');\n    font-weight: 500;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'cabinmedium';\n    src: url('@assets/cabin-medium-webfont.eot');\n    src: url('@assets/cabin-medium-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-medium-webfont.woff2') format('woff2'),\n         url('@assets/cabin-medium-webfont.woff') format('woff'),\n         url('@assets/cabin-medium-webfont.ttf') format('truetype'),\n         url('@assets/cabin-medium-webfont.svg#cabinmedium') format('svg');\n    font-weight: 500;\n    font-style: normal;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'Cabin';\n    src: url('@assets/cabin-italic-webfont.eot');\n    src: url('@assets/cabin-italic-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-italic-webfont.woff2') format('woff2'),\n         url('@assets/cabin-italic-webfont.woff') format('woff'),\n         url('@assets/cabin-italic-webfont.ttf') format('truetype'),\n         url('@assets/cabin-italic-webfont.svg#cabinitalic') format('svg');\n    font-weight: 400;\n    font-style: italic;\n\n}\n\n\n\n\n@font-face {\n    font-family: 'Cabin';\n    src: url('@assets/cabin-regular-webfont.eot');\n    src: url('@assets/cabin-regular-webfont.eot?#iefix') format('embedded-opentype'),\n         url('@assets/cabin-regular-webfont.woff2') format('woff2'),\n         url('@assets/cabin-regular-webfont.woff') format('woff'),\n         url('@assets/cabin-regular-webfont.ttf') format('truetype'),\n         url('@assets/cabin-regular-webfont.svg#cabinregular') format('svg');\n    font-weight: 400;\n    font-style: normal;\n\n}\n",
           "page.css": "body\n{\n  font-family: 'callunaregular';\n  font-size : 12px;\n}\n\n\nh1,h2,h3,h4,h5,h6\n{\n  font-family: 'Cabin', 'callunaregular';\n  font-weight : 700;\n}\n\n@page:first\n{\n  margin : 0;\n  page-break-after: always;\n  @bottom\n  {\n      content: none;\n  }\n}\n\n.peritext-static-front-cover-container\n{\n  page-break-after: always;\n  margin : 0;\n  font-family: Arial;\n}\n\n@page.peritext-static-front-cover-container\n{\n  margin : 0;\n  font-family: Arial;\n}\n\n.peritext-static-front-cover-container\n{\n  page-break-after: always;\n  margin : 0;\n  font-family: Arial;\n}\n\n.peritext-static-back-cover\n{\n  page-break-before: always;\n  margin: 0;\n  padding: 0;\n  font-size : 2em;\n  background: yellow;\n  position: absolute;\n  left : 0;\n  top : 0;\n  width : 100%;\n  height : 100%;\n}\n\n#peritext-static-front-cover-image-container\n{\n  background-size:     cover;\n  background-repeat:   no-repeat;\n  background-position: center center;\n  /*height : 16cm;*/\n  height : 18.3cm;\n  /*width : 100%;*/\n}\n\n.peritext-static-front-cover-part-top-left,\n.peritext-static-front-cover-part-top-right,\n.peritext-static-front-cover-part-bottom-left,\n.peritext-static-front-cover-part-bottom-right\n{\n  position: fixed;\n  width : 50%;\n}\n\n.peritext-static-front-cover-part-top-left,\n.peritext-static-front-cover-part-bottom-left\n{\n  left : .5cm;\n  text-align : right;\n  padding-right : 1.5cm;\n  width : 45%;\n}\n\n.peritext-static-front-cover-part-top-right,\n.peritext-static-front-cover-part-bottom-right\n{\n  left : 1cm;\n  padding-left : 50%;\n  padding-right : 1cm;\n}\n\n.peritext-static-front-cover-part-top-left,\n.peritext-static-front-cover-part-top-right\n{\n  bottom : 31.6%;\n  color : white;\n  padding-bottom : .8cm;\n}\n\n.peritext-static-front-cover-part-bottom-left,\n.peritext-static-front-cover-part-bottom-right\n{\n  top : 68%;\n}\n\n.peritext-static-front-cover-part-top-left h3,\n.peritext-static-front-cover-part-top-left h4,\n.peritext-static-front-cover-part-top-left p,\n.peritext-static-front-cover-part-top-right h3,\n.peritext-static-front-cover-part-top-right h4,\n.peritext-static-front-cover-part-top-right p\n{\n  margin-top : 0;\n  margin-bottom : 0;\n  font-size : 12px;\n}\n\n.peritext-static-front-cover-part-top-right h1\n{\n  margin : 0;\n  padding : 0;\n}\n\n.peritext-static-front-cover-part-bottom-left h1{\n  margin : 0;\n}\n\n.peritext-static-front-cover-date\n{\n  font-weight : 800;\n}\n\n.peritext-static-front-cover-jury-member .peritext-structured-person-firstname,\n.peritext-static-front-cover-jury-member .peritext-structured-person-lastname\n{\n  font-weight : 800;\n}\n",
@@ -5535,8 +5650,8 @@
         {
           "citeKey": "contextualization_0",
           "contextualizer": {
+            "title": "@res.name",
             "showdescription": "yes",
-            "title": "@res.title",
             "citeKey": "contextualizer_01",
             "type": "glossary",
             "describedInline": true,
@@ -5572,8 +5687,8 @@
         {
           "citeKey": "contextualization_1",
           "contextualizer": {
+            "title": "@res.name",
             "showdescription": "yes",
-            "title": "@res.title",
             "citeKey": "contextualizer_11",
             "type": "glossary",
             "describedInline": true,
@@ -5602,8 +5717,8 @@
         {
           "citeKey": "contextualization_2",
           "contextualizer": {
+            "title": "@res.name",
             "showdescription": "yes",
-            "title": "@res.title",
             "citeKey": "contextualizer_21",
             "type": "glossary",
             "describedInline": true,

@@ -209,6 +209,12 @@
       "acceptedResourceTypes" : ["tabularData"],
       "properties" : [
         {
+            "key" : "data",
+            "description" : "Describes where to find the data.",
+            "valueType" : "accessorArray",
+            "default": "@res.data",
+            "required" : false
+        },{
             "key" : "columns",
             "description" : "Describes which columns to display.",
             "valueType" : "accessorArray",
@@ -478,6 +484,13 @@
         "topic"
       ],
       "properties" : [
+        {
+            "key" : "title",
+            "description" : "The title of the contextualizer (appears as default related contextualizations name if not specified)",
+            "valueType" : "string",
+            "default" : "@res.name",
+            "required" : false
+        },
         {
           "key" : "alias",
           "valueType" : "string",

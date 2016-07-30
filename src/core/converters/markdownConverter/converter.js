@@ -243,7 +243,8 @@ mapMdJsonToPJson = (inputElement, contextualizations, blockIndex) =>{
       return cont.citeKey === contextualizationCitekey;
     });
     contextualization.node = element;
-    element.child = [representContents(element.attr.alt.join(' '))[0]];
+    const contents = (element.attr && element.attr.alt) ? element.attr.alt.join(' ') : '';
+    element.child = [representContents(contents)[0]];
   }
   if (element.child) {
     element.child = element.child.map((child)=>{

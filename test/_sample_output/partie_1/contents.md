@@ -1,6 +1,12 @@
 # This is part one
 
 
+I want a table for my resource there :
+
+![My table](@temporal_data)
+
+But I can also display the same resource as a timeline :
+
 ![A reference to a timeline should display here when timeline is ready](@temporal_data){@cool_timeline}
 
 
