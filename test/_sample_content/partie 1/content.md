@@ -1,9 +1,7 @@
 # This is part one
 
 
-I want a table for my resource there :
-
-![My table](@temporal_data)
+I want to deal with [a table representation](@temporal_data) there.
 
 But I can also display the same resource as a timeline :
 
