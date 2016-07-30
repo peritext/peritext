@@ -1,7 +1,7 @@
 import {parseBibTexStr} from './../../converters/bibTexConverter/';
 import {map as asyncMap} from 'async';
 
-export function parseTreeResources(dumbTree, callback) {
+export const parseTreeResources = (dumbTree, callback) => {
   if (dumbTree.resourcesStr) {
     parseBibTexStr(dumbTree.resourcesStr, function(err, resources) {
       if (dumbTree.children) {
@@ -11,4 +11,4 @@ export function parseTreeResources(dumbTree, callback) {
       }
     });
   }else callback(null, Object.assign({}, dumbTree));
-}
+};

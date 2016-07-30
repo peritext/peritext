@@ -4,7 +4,7 @@
  */
 
 // I give the schema type of an object based on its bibType
-export function bibToSchema(bib) {
+export const bibToSchema = (bib) => {
   switch (bib) {
   case 'book':
     return 'Book';
@@ -55,30 +55,30 @@ export function bibToSchema(bib) {
   default:
     return 'CreativeWork';
   }
-}
+};
 
 /**
   COiNS related
 */
 
-function addProp(key, value) {
+const addProp = (key, value) => {
   return {
     key: key,
     value: value
   };
-}
+};
 
-function urify(key, value) {
+const urify = (key, value) => {
   return key + '=' + encodeURIComponent(value);
-}
+};
 
-function assembleUri(infos) {
+const assembleUri = (infos) => {
   const vals = [];
   infos.forEach(function(info) {
     vals.push(urify(info.key, info.value));
   });
   return vals.join('&amp;');
-}
+};
 
 const baseMap = {
   'rft.date': 'date',
@@ -102,16 +102,16 @@ const chapterMap = {
   'rft.btitle': 'booktitle'
 };
 
-function translate(data, item, map) {
+const translate = (data, item, map) => {
   for (const key in map) {
     if (item[map[key]]) {
       data.push(addProp(key, item[map[key]]));
     }
   }
   return data;
-}
+};
 
-export function generateOpenUrl(resource) {
+export const generateOpenUrl = (resource) => {
   let data = [];
   data.push(addProp('ctx_ver', 'Z39.88-2004'));
 
@@ -137,4 +137,4 @@ export function generateOpenUrl(resource) {
     data.push(addProp('rft.genre', 'document'));
   }
   return assembleUri(data);
-}
+};

@@ -5,7 +5,7 @@
 import {parseBibAuthors} from './../../converters/bibTexConverter';
 
 // I build a model object from a specific bibType, composing it according to its inheritance dependencies, from more general models to the specific bibType
-export function getResourceModel(bibType, resourceModels) {
+export const getResourceModel = (bibType, resourceModels) =>{
   const model = resourceModels.individual[bibType];
   if (model) {
     // first set highestly specific props
@@ -51,10 +51,10 @@ export function getResourceModel(bibType, resourceModels) {
     return Object.assign({}, model, {properties: model.properties.concat(properties)}, {defaultContextualizer});
   }
   return undefined;
-}
+};
 
 // I build a model object from a specific bibType, composing it according to its inheritance dependencies, from more general models to the specific bibType
-export function getContextualizerModel(bibType, contextualizerModels) {
+export const getContextualizerModel = (bibType, contextualizerModels) =>{
   const model = contextualizerModels.individual[bibType];
   if (model) {
     // first set highestly specific props
@@ -94,10 +94,10 @@ export function getContextualizerModel(bibType, contextualizerModels) {
     return Object.assign({}, model, {properties});
   }
   return undefined;
-}
+};
 
 // I turn a (possibly not primitive : array, object, bibAuthor) value to a string-friendly value, thanks to its model's type
-export function serializePropAgainstType(prop, valueType, model) {
+export const serializePropAgainstType = (prop, valueType, model) => {
   if (prop === undefined) {
     return undefined;
   }
@@ -139,10 +139,10 @@ export function serializePropAgainstType(prop, valueType, model) {
     return prop;
   }
 
-}
+};
 
 // I turn a string value into another (possibly complex) value, thanks to its model's type
-export function resolvePropAgainstType(prop, valueType, model) {
+export const resolvePropAgainstType = (prop, valueType, model) => {
   if (prop === undefined) {
     // looking for a default value if no value specified
     if (model.default) {
@@ -211,4 +211,4 @@ export function resolvePropAgainstType(prop, valueType, model) {
   default:
     return prop;
   }
-}
+};

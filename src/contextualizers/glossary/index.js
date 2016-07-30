@@ -2,7 +2,7 @@ import StaticEntityInline from './StaticEntityInline.js';
 import StaticEntityBlock from './StaticEntityBlock.js';
 import {getMetaValue} from './../../core/utils/sectionUtils';
 
-export function contextualizeInlineStatic(inputSection, inputContextualization, settings) {
+export const contextualizeInlineStatic = (inputSection, inputContextualization, settings) => {
   const section = Object.assign({}, inputSection);
   const contextualization = Object.assign({}, inputContextualization);
   const node = contextualization.node;
@@ -25,9 +25,9 @@ export function contextualizeInlineStatic(inputSection, inputContextualization, 
   node.special = true;
   node.tag = StaticEntityInline;
   return Object.assign({}, inputSection);
-}
+};
 
-export function contextualizeBlockStatic(inputSection, inputContextualization, settings) {
+export const contextualizeBlockStatic = (inputSection, inputContextualization, settings) => {
   const contextualization = Object.assign({}, inputContextualization);
   const node = contextualization.node;
   const entity = contextualization.resources[0];
@@ -39,12 +39,12 @@ export function contextualizeBlockStatic(inputSection, inputContextualization, s
   node.special = true;
   node.tag = StaticEntityBlock;
   return Object.assign({}, inputSection);
-}
+};
 
-export function contextualizeInlineDynamic(section, contextualization, settings) {
+export const contextualizeInlineDynamic = (section, contextualization, settings) => {
   return section;
-}
+};
 
-export function contextualizeBlockDynamic(section, contextualization, settings) {
+export const contextualizeBlockDynamic = (section, contextualization, settings) => {
   return section;
-}
+};

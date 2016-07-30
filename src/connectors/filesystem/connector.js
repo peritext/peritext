@@ -3,7 +3,7 @@ import {resolve, extname, basename, join as joinPath} from 'path';
 import {map as asyncMap, reduce as asyncReduce} from 'async';
 import removeFolderRecursively from 'rmdir';
 
-const analyseElement = function(fileName, absPath) {
+const analyseElement = (fileName, absPath) =>{
   const path = joinPath(absPath, fileName);
   return {
     name: fileName,
@@ -13,7 +13,7 @@ const analyseElement = function(fileName, absPath) {
   };
 };
 
-const analyseContents = function(filesList, absPath) {
+const analyseContents = (filesList, absPath) =>{
   if (!filesList) {
     return undefined;
   }
@@ -24,7 +24,7 @@ const analyseContents = function(filesList, absPath) {
 
 
 // recursive fs element parser
-const parseElement = function({path = '', element, parseFiles, depth, actualDepth, acceptedExtensions}, callback) {
+const parseElement = ({path = '', element, parseFiles, depth, actualDepth, acceptedExtensions}, callback) =>{
   // file to parse
   if (element.type === 'file' && parseFiles === true && acceptedExtensions.indexOf(element.extname) > -1) {
     try {
@@ -60,7 +60,7 @@ const parseElement = function({path = '', element, parseFiles, depth, actualDept
 };
 
 // cRud
-export function readFromPath({path = [], params, depth = 1, parseFiles = false, acceptedExtensions = ['.md', '.bib', '.css', '.js']}, callback) {
+export const readFromPath = ({path = [], params, depth = 1, parseFiles = false, acceptedExtensions = ['.md', '.bib', '.css', '.js']}, callback) =>{
   const resolvedPath = (Array.isArray(path)) ? path.join('/') : path;
   const finalPath = resolve(params.basePath) + '/' + resolvedPath;
   let element;
@@ -89,16 +89,16 @@ export function readFromPath({path = [], params, depth = 1, parseFiles = false, 
   } else {
     return callback(new Error('the file extension is not accepted'), undefined);
   }
-}
+};
 
 // Crud
-export function createFromPath({path = '', params, type = 'file', stringContents = '', overwrite = false}, callback) {
+export const createFromPath = ({path = '', params, type = 'file', stringContents = '', overwrite = false}, callback) =>{
   const resolvedPath = (Array.isArray(path)) ? path.join('/') : path;
   const finalPath = resolve(params.basePath) + '/' + resolvedPath;
   const pathSteps = finalPath.split('/').filter((thatPath)=> {return thatPath.length > 0;});
   // first check-or-create path folders
   const activePath = '/';
-  asyncReduce(pathSteps, activePath, function(inputMemo, pathStep, cback) {
+  asyncReduce(pathSteps, activePath, (inputMemo, pathStep, cback) =>{
     // case : not end of path, walking through
     if (pathStep !== pathSteps[pathSteps.length - 1]) {
       const memo = inputMemo + pathStep + '/';
@@ -116,7 +116,7 @@ export function createFromPath({path = '', params, type = 'file', stringContents
       cback(null, inputMemo + pathStep);
     }
 
-  }, function(err, result) {
+  }, (err, result) =>{
     // check if element already exists
     exists(finalPath, function(isThere) {
       if ((isThere && overwrite === true) || !isThere) {
@@ -136,13 +136,13 @@ export function createFromPath({path = '', params, type = 'file', stringContents
       }
     });
   });
-}
+};
 
 // crUd
-export function updateFromPath({path = '', params, stringContents = ''}, callback) {
+export const updateFromPath = ({path = '', params, stringContents = ''}, callback) => {
   const resolvedPath = (Array.isArray(path)) ? path.join('/') : path;
   const finalPath = resolve(params.basePath + '/' + resolvedPath);
-  exists(finalPath, function(isThere) {
+  exists(finalPath, (isThere) =>{
     if (isThere) {
       const pathSteps = finalPath.split('/').filter((thatPath)=> {return thatPath.length > 0;});
       const elementName = pathSteps.pop();
@@ -150,7 +150,7 @@ export function updateFromPath({path = '', params, stringContents = ''}, callbac
       if (element.type === 'directory') {
         callback(new Error('cannot update directories'));
       } else if (element.type === 'file') {
-        writeFile(finalPath, stringContents, function(err) {
+        writeFile(finalPath, stringContents, (err) =>{
           callback(err);
         });
       }
@@ -158,10 +158,10 @@ export function updateFromPath({path = '', params, stringContents = ''}, callbac
       callback(new Error('Path does not exists'));
     }
   });
-}
+};
 
 // cruD
-export function deleteFromPath({path = '', params}, callback) {
+export const deleteFromPath = ({path = '', params}, callback) => {
   const resolvedPath = (Array.isArray(path)) ? path.join('/') : path;
   const finalPath = resolve(params.basePath) + '/' + resolvedPath;
   exists(finalPath, function(isThere) {
@@ -170,11 +170,11 @@ export function deleteFromPath({path = '', params}, callback) {
       const elementName = pathSteps.pop();
       const element = analyseElement(elementName, '/' + pathSteps.join('/'));
       if (element.type === 'directory') {
-        removeFolderRecursively(finalPath, function(err) {
+        removeFolderRecursively(finalPath, (err) =>{
           callback(err);
         });
       }else if (element.type === 'file') {
-        unlink(finalPath, function(err) {
+        unlink(finalPath, (err) =>{
           callback(err);
         });
       }
@@ -182,15 +182,15 @@ export function deleteFromPath({path = '', params}, callback) {
       callback(new Error('Path does not exists'));
     }
   });
-}
+};
 
 // asset resolver
 // pretty useless for fs connector
 // but kept for architecture consistency
 // because it will be a more complex process for other connectors
 // WIP TODO QUESTION : should it check for resource availability ?
-export function getAssetUri({path, params}, callback) {
+export const getAssetUri = ({path, params}, callback) => {
   const resolvedPath = (Array.isArray(path)) ? path.join('/') : path;
   const finalPath = resolve(params.basePath) + '/' + resolvedPath;
   return callback(null, finalPath);
-}
+};

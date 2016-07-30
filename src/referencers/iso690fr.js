@@ -18,7 +18,7 @@ import {
 } from './../core/components/';
 import Radium from 'radium';
 
-function renderAdditionnal(obj) {
+const renderAdditionnal = (obj) =>{
   const details = obj.contextualization.contextualizer;
   if (!details) {
     return '';
@@ -58,7 +58,7 @@ function renderAdditionnal(obj) {
         }
     </span>
   );
-}
+};
 
 /**
  * Dumb component for rendering a iso690fr block citation

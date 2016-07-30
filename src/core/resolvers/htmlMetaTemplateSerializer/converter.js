@@ -3,7 +3,7 @@
 // modificators are specifed after commas
 // modificators : join(), personsToString
 
-export function serializeHtmlMeta(metadata, template) {
+export const serializeHtmlMeta = (metadata, template) => {
   let transformationAction = template.match(/\${value:([^}]*)/);
   let transformationArgument;
   let value;
@@ -31,4 +31,4 @@ export function serializeHtmlMeta(metadata, template) {
     output = output.replace('${key}', metadata.key).replace(/\${value:?([^}]*)?}/, value);
   }
   return output;
-}
+};

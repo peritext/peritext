@@ -1,7 +1,7 @@
 import {getMetaValue, setMetaValue, hasMeta, findByMetadata, metaStringToCouple, hasResource} from './../../utils/sectionUtils';
 
 
-function inheritMetadataFromParent(section, sectionTypeModels, sections, parentMetadata) {
+const inheritMetadataFromParent = (section, sectionTypeModels, sections, parentMetadata) => {
   if (parentMetadata === undefined) {
     return section;
   }
@@ -49,10 +49,10 @@ function inheritMetadataFromParent(section, sectionTypeModels, sections, parentM
     });
   }
   return section;
-}
+};
 
 
-function doInheritMetadataFromParent(section, sectionTypeModels, sections) {
+const doInheritMetadataFromParent = (section, sectionTypeModels, sections) => {
   if (section.parent && !section.metadataInherited) {
 
     section.metadataInherited = true;
@@ -70,10 +70,10 @@ function doInheritMetadataFromParent(section, sectionTypeModels, sections) {
   // }
   section.metadataInherited = true;
   return section;
-}
+};
 
 
-function inheritResourcesFromParent(section, sections, parentResources, parentKey) {
+const inheritResourcesFromParent = (section, sections, parentResources, parentKey) => {
   if (parentResources === undefined) {
     return section;
   }
@@ -86,10 +86,10 @@ function inheritResourcesFromParent(section, sections, parentResources, parentKe
     return Object.assign({}, meta, {inheritedVerticallyFrom: parentKey});
   }));
   return section;
-}
+};
 
 
-function doInheritResourcesFromParent(section, sections) {
+const doInheritResourcesFromParent = (section, sections) => {
   if (section.parent && !section.resourcesInherited) {
     section.resourcesInherited = true;
     let parent = findByMetadata(sections, 'general', 'citeKey', section.parent);
@@ -102,9 +102,9 @@ function doInheritResourcesFromParent(section, sections) {
   }
   section.resourcesInherited = true;
   return section;
-}
+};
 
-function inheritContextualizersFromParent(section, sections, parentContextualizers, parentKey) {
+const inheritContextualizersFromParent = (section, sections, parentContextualizers, parentKey) => {
   if (parentContextualizers === undefined) {
     return section;
   }
@@ -117,10 +117,10 @@ function inheritContextualizersFromParent(section, sections, parentContextualize
     return Object.assign({}, meta, {inheritedVerticallyFrom: parentKey});
   }));
   return section;
-}
+};
 
 
-function doInheritContextualizersFromParent(section, sections) {
+const doInheritContextualizersFromParent = (section, sections) => {
   if (section.parent && !section.contextualizersInherited) {
     section.contextualizersInherited = true;
     let parent = findByMetadata(sections, 'general', 'citeKey', section.parent);
@@ -133,9 +133,9 @@ function doInheritContextualizersFromParent(section, sections) {
   }
   section.contextualizersInherited = true;
   return section;
-}
+};
 
-function inheritCustomizersFromParent(section, sections, parentCustomizers, parentKey) {
+const inheritCustomizersFromParent = (section, sections, parentCustomizers, parentKey) => {
   if (parentCustomizers === undefined) {
     return section;
   }else if (section.customizers === undefined) {
@@ -158,9 +158,9 @@ function inheritCustomizersFromParent(section, sections, parentCustomizers, pare
     }
   }
   return section;
-}
+};
 
-function doInheritCustomizersFromParent(section, sections) {
+const doInheritCustomizersFromParent = (section, sections) => {
   if (section.parent && !section.customizersInherited) {
     section.customizersInherited = true;
     let parent = findByMetadata(sections, 'general', 'citeKey', section.parent);
@@ -173,9 +173,9 @@ function doInheritCustomizersFromParent(section, sections) {
   }
   section.customizersInherited = true;
   return section;
-}
+};
 
-function populateLaterally(section, models) {
+const populateLaterally = (section, models) => {
   const toInclude = [];
 
   section.metadata.forEach((meta) => {
@@ -192,10 +192,10 @@ function populateLaterally(section, models) {
   });
   section.metadata = section.metadata.concat(toInclude);
   return section;
-}
+};
 
 
-export function propagateData({errors, sections, models, parent}, callback) {
+export const propagateData = ({errors, sections, models, parent}, callback) => {
   let noParents = sections.filter((section) =>{
     return !section.parent;
   });
@@ -275,4 +275,4 @@ export function propagateData({errors, sections, models, parent}, callback) {
   });
 
   callback(null, {errors, sections: outputSections});
-}
+};

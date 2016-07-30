@@ -1,4 +1,4 @@
-export function contextualizeInlineStatic(inputSection, inputContextualization, settings) {
+export const contextualizeInlineStatic = (inputSection, inputContextualization, settings) => {
   const contextualization = Object.assign({}, inputContextualization);
   const formatter = require('./../../referencers/' + settings.citationStyle + '.js');
   const node = contextualization.node;
@@ -46,9 +46,9 @@ export function contextualizeInlineStatic(inputSection, inputContextualization, 
     node.props = props;
   }
   return Object.assign({}, inputSection);
-}
+};
 
-export function contextualizeBlockStatic(inputSection, inputContextualization, settings) {
+export const contextualizeBlockStatic = (inputSection, inputContextualization, settings) => {
   const contextualization = Object.assign({}, inputContextualization);
   const formatter = require('./../../referencers/' + settings.citationStyle + '.js');
   const node = contextualization.node;
@@ -62,12 +62,12 @@ export function contextualizeBlockStatic(inputSection, inputContextualization, s
   node.tag = formatter.BlockCitation;
   node.props = props;
   return Object.assign({}, inputSection);
-}
+};
 
-export function contextualizeInlineDynamic(section, contextualization, settings) {
+export const contextualizeInlineDynamic = (section, contextualization, settings) => {
   return section;
-}
+};
 
-export function contextualizeBlockDynamic(section, contextualization, settings) {
+export const contextualizeBlockDynamic = (section, contextualization, settings) => {
   return section;
-}
+};

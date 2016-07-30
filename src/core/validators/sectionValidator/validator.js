@@ -1,7 +1,7 @@
 import {getMetaValue, filterResources} from './../../utils/sectionUtils';
 
 // I verify if the resources of a section are correct
-export function validateResources(section, models, callback) {
+export const validateResources = (section, models, callback) =>{
   const errors = [];
 
   section.resources.forEach((resource) =>{
@@ -18,4 +18,4 @@ export function validateResources(section, models, callback) {
     }
   });
   return callback(null, {errors, section});
-}
+};

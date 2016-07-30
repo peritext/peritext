@@ -15,14 +15,14 @@ const bibliographicTypes = [
   'unpublished'
 ];
 
-function isBibliographical(bibType) {
+const isBibliographical = (bibType) =>{
   const isOk = bibliographicTypes.find((type)=> {
     return bibType === type;
   });
   return isOk !== undefined;
-}
+};
 
-export function computeReferences(sections, settings) {
+export const computeReferences = (sections, settings) =>{
   if (settings.referenceScope === 'document') {
     const references = sections.reduce((refs, section)=> {
       return refs.concat(section.resources.filter((resource)=> {
@@ -73,4 +73,4 @@ export function computeReferences(sections, settings) {
     });
     return sortedReferences;
   }
-}
+};

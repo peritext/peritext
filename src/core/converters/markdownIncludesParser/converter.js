@@ -11,7 +11,7 @@ const regexEscape = function(str) {
 };
 
 
-export function parseMarkdown(str, {includeWrappingChars, resWrappingChars}, callback) {
+export const parseMarkdown = (str, {includeWrappingChars, resWrappingChars}, callback) => {
   const includesRegexp = new RegExp(regexEscape(includeWrappingChars[0]) + 'include:([^\\\}]+)' + regexEscape(includeWrappingChars[1]), 'g');
   const resourcesRegexp = new RegExp(regexEscape(resWrappingChars[0]) + '\\\n([\\\w\\\W]+)\\\n' + regexEscape(resWrappingChars[1]), 'g');
   let extracted = [];
@@ -44,11 +44,11 @@ export function parseMarkdown(str, {includeWrappingChars, resWrappingChars}, cal
   }
 
   // reverse sort (for further string substitution operations)
-  extracted = extracted.sort(function(one, two) {
+  extracted = extracted.sort((one, two) =>{
     if (one.index > two.index) {
       return -1;
     }
     return 1;
   });
   return callback(null, {extracted, cleanStr});
-}
+};

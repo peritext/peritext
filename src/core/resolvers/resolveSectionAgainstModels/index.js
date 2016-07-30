@@ -2,7 +2,7 @@ import {getResourceModel, resolvePropAgainstType} from './../../utils/modelUtils
 import {getMetaValue} from './../../utils/sectionUtils';
 import {serializeHtmlMeta} from './../../resolvers/htmlMetaTemplateSerializer';
 
-export function resolveSectionAgainstModels(section, models, callback) {
+export const resolveSectionAgainstModels = (section, models, callback) => {
   const errors = [];
   // validate resources
   section.resources = section.resources.map((resource) =>{
@@ -93,4 +93,4 @@ export function resolveSectionAgainstModels(section, models, callback) {
     }
   }
   return callback(null, {errors, section});
-}
+};

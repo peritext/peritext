@@ -73,9 +73,9 @@ resolveFileIncludes = function(file, mdFilesWithIncludes) {
  * I turn non nested file object into include-based nested file objects
  * @mdFilesWithIncludes : non nested file objects
  */
-const nestIncludes = function({resourcesStr, mdFilesWithIncludes, params}, cb) {
+const nestIncludes = ({resourcesStr, mdFilesWithIncludes, params}, cb) =>{
 
-  mdFilesWithIncludes.forEach(function(mdfile) {
+  mdFilesWithIncludes.forEach((mdfile) =>{
     resolveFileIncludes(mdfile, mdFilesWithIncludes);
   });
   cb(null, {resourcesStr, mdFilesWithIncludes});
@@ -86,7 +86,7 @@ const nestIncludes = function({resourcesStr, mdFilesWithIncludes, params}, cb) {
  * resolved recursively
  * @file : the file
  */
-const buildFinalMdContent = function(file) {
+const buildFinalMdContent = (file) =>{
   let content = file.stringContents;
   const hasIncludes = file.includes && file.includes.length && file.includes.length > 0;
   if (hasIncludes) {
@@ -110,7 +110,7 @@ const buildFinalMdContent = function(file) {
  * I turn an array of nested file objects into one single string
  * @mdFilesWithIncludes : non nested file objects
  */
-const resolveNestedIncludes = function({resourcesStr, mdFilesWithIncludes, params}, cb) {
+const resolveNestedIncludes = ({resourcesStr, mdFilesWithIncludes, params}, cb) =>{
   const contentStr = mdFilesWithIncludes
                       .reduce((str, file) => {
                         return str + buildFinalMdContent(file);
@@ -118,7 +118,7 @@ const resolveNestedIncludes = function({resourcesStr, mdFilesWithIncludes, param
   cb(null, {contentStr, resourcesStr, params});
 };
 
-const concatCustomizers = function(newTree) {
+const concatCustomizers = (newTree) =>{
   return newTree.children
       .filter((child) => {
         return child.type === 'directory' && child.name.charAt(0) === '_';
@@ -140,7 +140,7 @@ const concatCustomizers = function(newTree) {
  * I turn a fsTree into a dumTree, that is a tree which presents
  * .bib resources and .md files contents concatenated by folder (according to inner 'include' statements and then automatically)
  */
-export function concatTree(tree, params, callback) {
+export const concatTree = (tree, params, callback) => {
   const newTree = Object.assign({}, tree);
   // concat .bib res files
   const resources = newTree.children
@@ -165,10 +165,10 @@ export function concatTree(tree, params, callback) {
   const childrenCustomizers = concatCustomizers(newTree);
   waterfall([
     // extract md files elements includes statements
-    function(cb) {
-      asyncMap(mdContents, function(child, cback) {
+    (cb) =>{
+      asyncMap(mdContents, (child, cback) =>{
         populateElementWithIncludes(child, params, cback);
-      }, function(err, mdFilesWithIncludes) {
+      }, (err, mdFilesWithIncludes) =>{
         // concat extracted bibtex resources
         const resourcesStr = mdFilesWithIncludes
                       .reduce((str, mdFile) => {
@@ -186,18 +186,18 @@ export function concatTree(tree, params, callback) {
     },
     nestIncludes,
     resolveNestedIncludes
-  ], function(err, {resourcesStr, contentStr}) {
+  ], (err, {resourcesStr, contentStr}) =>{
     newTree.resourcesStr = resourcesStr;
     newTree.contentStr = contentStr;
     if (childrenCustomizers.length > 0) {
       newTree.customizers = childrenCustomizers;
     }
-    // recursively repeat dat stuf with children dirs
-    asyncMap(childrenDirs, function(dir, cback) {
+    // recursively repeat dat stuff with children dirs
+    asyncMap(childrenDirs, (dir, cback) =>{
       concatTree(dir, params, cback);
-    }, function(error, populatedDirs) {
+    }, (error, populatedDirs) =>{
       newTree.children = populatedDirs;
       callback(error, newTree);
     });
   });
-}
+};

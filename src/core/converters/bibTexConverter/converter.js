@@ -195,7 +195,7 @@ const validateBibObject = function(bibObject) {
   return true;
 };
 
-export function serializeBibTexObject(bibObject, callback) {
+export const serializeBibTexObject = (bibObject, callback) => {
   const validated = validateBibObject(bibObject);
   if (validated.type === 'error') {
     return callback(validated, undefined);
@@ -222,14 +222,14 @@ export function serializeBibTexObject(bibObject, callback) {
   return callback(null, `@${bibObject.bibType}{${bibObject.citeKey},
     ${str}
 }`);
-}
+};
 
-export function parseBibTexStr(str, callback) {
+export const parseBibTexStr = (str, callback) => {
   if (typeof str === 'string') {
     return parser.parse(str, callback);
   }
   return callback(new Error('must input a string'), undefined);
-}
+};
 
 /**
 Accepted inputs for authors and persons (to add in doc/spec):
@@ -248,7 +248,7 @@ Maskin, Eric S.
 {Jakubowicz}, Andrew
 {Charalambos}, D. Aliprantis and Kim C. {Border}
 */
-export function parseBibAuthors(str) {
+export const parseBibAuthors = (str) => {
   const authors = str.split(/;|and|et/);
   const additionalInfo = /\(([^)]*)?\)?\(?([^)]*)?\)?/;
   let match;
@@ -294,10 +294,10 @@ export function parseBibAuthors(str) {
     const citeKey = (role + '-' + firstName + lastName).toLowerCase().replace(' ', '-');
     return {firstName, lastName, role, information, citeKey};
   });
-}
+};
 
 // nested json-like bib objects
-export function parseBibContextualization(inputStr) {
+export const parseBibContextualization = (inputStr) => {
   const bracketsRE = /([^=^,]+)=(?:{)([^}]*)(?:}),?/g;
   const quoteRE = /([^=^,]+)="([^"]*)",?/g;
   const paramsObject = {};
@@ -360,10 +360,10 @@ export function parseBibContextualization(inputStr) {
   }
 
   return paramsObject;
-}
+};
 
 
-function resolveNested(subVal) {
+const resolveNested = (subVal) => {
   if (typeof subVal !== 'string') {
     return subVal;
   }
@@ -399,9 +399,9 @@ function resolveNested(subVal) {
 
   newObj = Object.assign({}, subObject);
   return newObj;
-}
+};
 
-export function parseBibNestedValues(bibObject) {
+export const parseBibNestedValues = (bibObject) => {
   const newObject = Object.assign({}, bibObject);
   let subVal;
   for (const index in newObject) {
@@ -415,4 +415,4 @@ export function parseBibNestedValues(bibObject) {
     }
   }
   return newObject;
-}
+};

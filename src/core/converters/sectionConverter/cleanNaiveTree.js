@@ -4,7 +4,7 @@
 
 import {map as asyncMap} from 'async';
 
-export function cleanNaiveTree({errors = [], validTree}, models, callback) {
+export const cleanNaiveTree = ({errors = [], validTree}, models, callback) => {
   const contextualizers = [];
   const naiveTree = Object.assign({}, validTree);
   let metadata;
@@ -57,7 +57,7 @@ export function cleanNaiveTree({errors = [], validTree}, models, callback) {
   }else if (naiveTree.children) {
     return asyncMap(naiveTree.children, function(child, cb) {
       cleanNaiveTree({validTree: child}, models, cb);
-    }, function(err, results) {
+    }, (err, results) =>{
       // filter valid children tree leaves
       const children = results
                       .filter((result)=>{
@@ -75,4 +75,4 @@ export function cleanNaiveTree({errors = [], validTree}, models, callback) {
   }
   const newErrors = (errors.length > 0) ? errors.reverse() : null;
   return callback(null, {errors: newErrors, validTree: Object.assign({}, naiveTree, {metadata}, {contextualizers})});
-}
+};

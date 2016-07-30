@@ -2,7 +2,7 @@ import {StructuredHyperLink} from './../../core/components';
 import StaticWebsitePoster from './StaticWebsitePoster.js';
 import {getMetaValue} from './../../core/utils/sectionUtils';
 
-export function contextualizeInlineStatic(inputSection, inputContextualization, settings) {
+export const contextualizeInlineStatic = (inputSection, inputContextualization, settings) => {
   const section = Object.assign({}, inputSection);
   const contextualization = Object.assign({}, inputContextualization);
   const citeKey = getMetaValue(section.metadata, 'general', 'citeKey');
@@ -36,9 +36,9 @@ export function contextualizeInlineStatic(inputSection, inputContextualization, 
   ];
 
   return Object.assign({}, section);
-}
+};
 
-export function contextualizeBlockStatic(inputSection, inputContextualization, settings) {
+export const contextualizeBlockStatic = (inputSection, inputContextualization, settings) => {
   const section = Object.assign({}, inputSection);
   const contextualization = Object.assign({}, inputContextualization);
   const citeKey = getMetaValue(section.metadata, 'general', 'citeKey');
@@ -73,12 +73,12 @@ export function contextualizeBlockStatic(inputSection, inputContextualization, s
     return cont;
   });
   return Object.assign({}, section);
-}
+};
 
-export function contextualizeInlineDynamic(section, contextualization, settings) {
+export const contextualizeInlineDynamic = (section, contextualization, settings) => {
   return section;
-}
+};
 
-export function contextualizeBlockDynamic(section, contextualization, settings) {
+export const contextualizeBlockDynamic = (section, contextualization, settings) => {
   return section;
-}
+};

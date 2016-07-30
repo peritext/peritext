@@ -6,19 +6,19 @@ let connector;
 let connectorName;
 let tempConnectorName;
 
-function updateConnector(params) {
+const updateConnector = (params) => {
   tempConnectorName = params.connector;
   if (tempConnectorName !== connectorName) {
     connectorName = tempConnectorName;
     connector = require('./../../../connectors/' + params.connector);
   }
-}
+};
 
 /**
  * I echo an expected/actual fstree difference with Create/Update/Delete operations
  * on the content source through the appropriate connector middleware
  */
-function applyDifference(difference, params, connect, callback) {
+const applyDifference = (difference, params, connect, callback) => {
   let item;
   switch (difference.kind) {
   // new element
@@ -88,12 +88,12 @@ function applyDifference(difference, params, connect, callback) {
     break;
   }
   callback();
-}
+};
 
 /**
  * I parse source through connector and returns a peritextSectionArray javascript representation
  */
-export function updateFromSource(params, models, parameters, callback) {
+export const updateFromSource = (params, models, parameters, callback) => {
   updateConnector(params);
   waterfall([
     function(cb) {
@@ -108,7 +108,7 @@ export function updateFromSource(params, models, parameters, callback) {
   function(err, results) {
     callback(err, results);
   });
-}
+};
 
 /**
  * I update a data source from a peritextSectionArray, by "diffing" new fsTree with previous fsTree
@@ -116,7 +116,7 @@ export function updateFromSource(params, models, parameters, callback) {
  * then make a diff list with deep-diff
  * then monitor source tree updating (with C.U.D. operations) accordingly
  */
-export function updateToSource(params, sections, models, oldFsTree, callback) {
+export const updateToSource = (params, sections, models, oldFsTree, callback) => {
   updateConnector(params);
   serializeSectionList({sectionList: sections, models, basePath: params.basePath}, function(err, newFsTree) {
     const differences = diff(oldFsTree, newFsTree);
@@ -126,4 +126,4 @@ export function updateToSource(params, sections, models, oldFsTree, callback) {
       callback(errors, sections);
     });
   });
-}
+};

@@ -102,7 +102,7 @@ const makeRelations = function(inputSections, callback) {
   callback(null, sections);
 };
 
-export function organizeTree({errors, validTree}, callback) {
+export const organizeTree = ({errors, validTree}, callback) => {
 
   waterfall([
     function(cb) {
@@ -117,4 +117,4 @@ export function organizeTree({errors, validTree}, callback) {
   ], function(err, sections) {
     callback(err, {sections, errors});
   });
-}
+};
