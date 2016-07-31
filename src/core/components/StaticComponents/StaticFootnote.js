@@ -1,10 +1,7 @@
 import React, {PropTypes} from 'react';
-
 import Radium from 'radium';
-
-import renderContents from './../../utils/componentsFactory';
-
 // let styles = {};
+import renderContents from './../../utils/componentsFactory';
 
 /**
  * dumb component for containing either a static or dynamic note, acting whether as a pointer or as a container
@@ -14,6 +11,7 @@ export default class StaticFootnote extends React.Component {
 
   /**
    * propTypes
+   * @property {Object} note - the note object to use in order to render the footnote
    */
   static propTypes = {
     note: PropTypes.object,

@@ -1,3 +1,8 @@
+/**
+ * Render to static html
+ * @module renderers/renderToStaticHtml
+ */
+
 import {waterfall} from 'async';
 import {readFile} from 'fs';
 import {resolve} from 'path';
@@ -58,12 +63,24 @@ const setSectionContents = (section, settings) =>{
   });
 };
 
-export default function renderSection({
+/**
+ * Renders a section representation as a string representation of an html page
+ * @param {Object} params - The params of the export
+ * @param {Object} params.section - the (root) section to export
+ * @param {array} params.sectionList - the section context (if necessary)
+ * @param {Object} params.settings - the specific rendering settings to use in order to produce the output
+ * @param {boolean} params.includeChildren - whether to include section's children sections
+ * @param {string} params.destinationFolder - where to output the file
+ * @params {Object} assetsController - the module to use in order to communicate with assets
+ * @param {Object} assetsParams - the assets parameters to use while communicating with assetsController
+ * @param {function(err:error, result:string)} rendererCallback - the possible errors encountered during rendering, and the resulting html data as a string
+ */
+export const renderSection = ({
   section,
   sectionList,
   settings = {},
   includeChildren = true
-}, assetsController, assetsParams, rendererCallback) {
+}, assetsController, assetsParams, rendererCallback) =>{
 
   // populate rendering params with defaults if needed
   // todo : resolve in a separate file (modelUtils)
@@ -156,4 +173,4 @@ export default function renderSection({
       cback(null, html);
     }
   ], rendererCallback);
-}
+};

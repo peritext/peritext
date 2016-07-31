@@ -1,8 +1,6 @@
 import React, {PropTypes} from 'react';
 import Radium from 'radium';
 
-// let styles = {};
-
 /**
  * dumb component for rendering the structured representation of a cite element
  */
@@ -11,6 +9,8 @@ export default class StructuredCite extends React.Component {
 
   /**
    * propTypes
+   * @property {string} value - the value of the cite item
+   * @property {string} property - the schema property to apply
    */
   static propTypes = {
     value: PropTypes.string,

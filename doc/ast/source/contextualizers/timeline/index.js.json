@@ -1,0 +1,1431 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 2566,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 49,
+      "column": 0
+    }
+  },
+  "sourceType": "module",
+  "body": [
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 625,
+      "end": 749,
+      "loc": {
+        "start": {
+          "line": 13,
+          "column": 0
+        },
+        "end": {
+          "line": 15,
+          "column": 2
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 632,
+        "end": 749,
+        "loc": {
+          "start": {
+            "line": 13,
+            "column": 7
+          },
+          "end": {
+            "line": 15,
+            "column": 2
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 638,
+            "end": 748,
+            "loc": {
+              "start": {
+                "line": 13,
+                "column": 13
+              },
+              "end": {
+                "line": 15,
+                "column": 1
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 638,
+              "end": 663,
+              "loc": {
+                "start": {
+                  "line": 13,
+                  "column": 13
+                },
+                "end": {
+                  "line": 13,
+                  "column": 38
+                }
+              },
+              "name": "contextualizeInlineStatic",
+              "leadingComments": null
+            },
+            "init": {
+              "type": "ArrowFunctionExpression",
+              "start": 666,
+              "end": 748,
+              "loc": {
+                "start": {
+                  "line": 13,
+                  "column": 41
+                },
+                "end": {
+                  "line": 15,
+                  "column": 1
+                }
+              },
+              "id": null,
+              "generator": false,
+              "expression": false,
+              "async": false,
+              "params": [
+                {
+                  "type": "Identifier",
+                  "start": 667,
+                  "end": 674,
+                  "loc": {
+                    "start": {
+                      "line": 13,
+                      "column": 42
+                    },
+                    "end": {
+                      "line": 13,
+                      "column": 49
+                    }
+                  },
+                  "name": "section"
+                },
+                {
+                  "type": "Identifier",
+                  "start": 676,
+                  "end": 693,
+                  "loc": {
+                    "start": {
+                      "line": 13,
+                      "column": 51
+                    },
+                    "end": {
+                      "line": 13,
+                      "column": 68
+                    }
+                  },
+                  "name": "contextualization"
+                },
+                {
+                  "type": "Identifier",
+                  "start": 695,
+                  "end": 703,
+                  "loc": {
+                    "start": {
+                      "line": 13,
+                      "column": 70
+                    },
+                    "end": {
+                      "line": 13,
+                      "column": 78
+                    }
+                  },
+                  "name": "settings"
+                }
+              ],
+              "body": {
+                "type": "BlockStatement",
+                "start": 708,
+                "end": 748,
+                "loc": {
+                  "start": {
+                    "line": 13,
+                    "column": 83
+                  },
+                  "end": {
+                    "line": 15,
+                    "column": 1
+                  }
+                },
+                "body": [
+                  {
+                    "type": "ReturnStatement",
+                    "start": 712,
+                    "end": 746,
+                    "loc": {
+                      "start": {
+                        "line": 14,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 14,
+                        "column": 36
+                      }
+                    },
+                    "argument": {
+                      "type": "CallExpression",
+                      "start": 719,
+                      "end": 745,
+                      "loc": {
+                        "start": {
+                          "line": 14,
+                          "column": 9
+                        },
+                        "end": {
+                          "line": 14,
+                          "column": 35
+                        }
+                      },
+                      "callee": {
+                        "type": "MemberExpression",
+                        "start": 719,
+                        "end": 732,
+                        "loc": {
+                          "start": {
+                            "line": 14,
+                            "column": 9
+                          },
+                          "end": {
+                            "line": 14,
+                            "column": 22
+                          }
+                        },
+                        "object": {
+                          "type": "Identifier",
+                          "start": 719,
+                          "end": 725,
+                          "loc": {
+                            "start": {
+                              "line": 14,
+                              "column": 9
+                            },
+                            "end": {
+                              "line": 14,
+                              "column": 15
+                            }
+                          },
+                          "name": "Object"
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "start": 726,
+                          "end": 732,
+                          "loc": {
+                            "start": {
+                              "line": 14,
+                              "column": 16
+                            },
+                            "end": {
+                              "line": 14,
+                              "column": 22
+                            }
+                          },
+                          "name": "assign"
+                        },
+                        "computed": false
+                      },
+                      "arguments": [
+                        {
+                          "type": "ObjectExpression",
+                          "start": 733,
+                          "end": 735,
+                          "loc": {
+                            "start": {
+                              "line": 14,
+                              "column": 23
+                            },
+                            "end": {
+                              "line": 14,
+                              "column": 25
+                            }
+                          },
+                          "properties": []
+                        },
+                        {
+                          "type": "Identifier",
+                          "start": 737,
+                          "end": 744,
+                          "loc": {
+                            "start": {
+                              "line": 14,
+                              "column": 27
+                            },
+                            "end": {
+                              "line": 14,
+                              "column": 34
+                            }
+                          },
+                          "name": "section"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            "leadingComments": null
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Timline contextualizer that resolve sections data according to contextualization+settings params\n * @module contextualizers/timeline\n ",
+            "start": 0,
+            "end": 143,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 0
+              },
+              "end": {
+                "line": 4,
+                "column": 3
+              }
+            },
+            "range": [
+              0,
+              143
+            ]
+          },
+          {
+            "type": "Block",
+            "value": "*\n * Handle an inline contextualization for static outputs\n * @param {Object} inputSection - The representation of the peritext section to update\n * @param {Object} inputContextualization - The representation of the contextualization to resolve\n * @param {Object} settings - the specific rendering settings to use for resolving the contextualization\n * @return {Object} newSection - the updated representation of the peritext section in which the contextualization was made\n ",
+            "start": 145,
+            "end": 624,
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 0
+              },
+              "end": {
+                "line": 12,
+                "column": 3
+              }
+            },
+            "range": [
+              145,
+              624
+            ]
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Handle a block contextualization for static outputs\n * @param {Object} inputSection - The representation of the peritext section to update\n * @param {Object} inputContextualization - The representation of the contextualization to resolve\n * @param {Object} settings - the specific rendering settings to use for resolving the contextualization\n * @return {Object} newSection - the updated representation of the peritext section in which the contextualization was made\n ",
+            "start": 751,
+            "end": 1228,
+            "loc": {
+              "start": {
+                "line": 17,
+                "column": 0
+              },
+              "end": {
+                "line": 23,
+                "column": 3
+              }
+            },
+            "range": [
+              751,
+              1228
+            ]
+          }
+        ]
+      },
+      "specifiers": [],
+      "source": null,
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Timline contextualizer that resolve sections data according to contextualization+settings params\n * @module contextualizers/timeline\n ",
+          "start": 0,
+          "end": 143,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 4,
+              "column": 3
+            }
+          },
+          "range": [
+            0,
+            143
+          ]
+        },
+        {
+          "type": "Block",
+          "value": "*\n * Handle an inline contextualization for static outputs\n * @param {Object} inputSection - The representation of the peritext section to update\n * @param {Object} inputContextualization - The representation of the contextualization to resolve\n * @param {Object} settings - the specific rendering settings to use for resolving the contextualization\n * @return {Object} newSection - the updated representation of the peritext section in which the contextualization was made\n ",
+          "start": 145,
+          "end": 624,
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 0
+            },
+            "end": {
+              "line": 12,
+              "column": 3
+            }
+          },
+          "range": [
+            145,
+            624
+          ]
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Handle a block contextualization for static outputs\n * @param {Object} inputSection - The representation of the peritext section to update\n * @param {Object} inputContextualization - The representation of the contextualization to resolve\n * @param {Object} settings - the specific rendering settings to use for resolving the contextualization\n * @return {Object} newSection - the updated representation of the peritext section in which the contextualization was made\n ",
+          "start": 751,
+          "end": 1228,
+          "loc": {
+            "start": {
+              "line": 17,
+              "column": 0
+            },
+            "end": {
+              "line": 23,
+              "column": 3
+            }
+          },
+          "range": [
+            751,
+            1228
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 1229,
+      "end": 1352,
+      "loc": {
+        "start": {
+          "line": 24,
+          "column": 0
+        },
+        "end": {
+          "line": 26,
+          "column": 2
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 1236,
+        "end": 1352,
+        "loc": {
+          "start": {
+            "line": 24,
+            "column": 7
+          },
+          "end": {
+            "line": 26,
+            "column": 2
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 1242,
+            "end": 1351,
+            "loc": {
+              "start": {
+                "line": 24,
+                "column": 13
+              },
+              "end": {
+                "line": 26,
+                "column": 1
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 1242,
+              "end": 1266,
+              "loc": {
+                "start": {
+                  "line": 24,
+                  "column": 13
+                },
+                "end": {
+                  "line": 24,
+                  "column": 37
+                }
+              },
+              "name": "contextualizeBlockStatic",
+              "leadingComments": null
+            },
+            "init": {
+              "type": "ArrowFunctionExpression",
+              "start": 1269,
+              "end": 1351,
+              "loc": {
+                "start": {
+                  "line": 24,
+                  "column": 40
+                },
+                "end": {
+                  "line": 26,
+                  "column": 1
+                }
+              },
+              "id": null,
+              "generator": false,
+              "expression": false,
+              "async": false,
+              "params": [
+                {
+                  "type": "Identifier",
+                  "start": 1270,
+                  "end": 1277,
+                  "loc": {
+                    "start": {
+                      "line": 24,
+                      "column": 41
+                    },
+                    "end": {
+                      "line": 24,
+                      "column": 48
+                    }
+                  },
+                  "name": "section"
+                },
+                {
+                  "type": "Identifier",
+                  "start": 1279,
+                  "end": 1296,
+                  "loc": {
+                    "start": {
+                      "line": 24,
+                      "column": 50
+                    },
+                    "end": {
+                      "line": 24,
+                      "column": 67
+                    }
+                  },
+                  "name": "contextualization"
+                },
+                {
+                  "type": "Identifier",
+                  "start": 1298,
+                  "end": 1306,
+                  "loc": {
+                    "start": {
+                      "line": 24,
+                      "column": 69
+                    },
+                    "end": {
+                      "line": 24,
+                      "column": 77
+                    }
+                  },
+                  "name": "settings"
+                }
+              ],
+              "body": {
+                "type": "BlockStatement",
+                "start": 1311,
+                "end": 1351,
+                "loc": {
+                  "start": {
+                    "line": 24,
+                    "column": 82
+                  },
+                  "end": {
+                    "line": 26,
+                    "column": 1
+                  }
+                },
+                "body": [
+                  {
+                    "type": "ReturnStatement",
+                    "start": 1315,
+                    "end": 1349,
+                    "loc": {
+                      "start": {
+                        "line": 25,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 25,
+                        "column": 36
+                      }
+                    },
+                    "argument": {
+                      "type": "CallExpression",
+                      "start": 1322,
+                      "end": 1348,
+                      "loc": {
+                        "start": {
+                          "line": 25,
+                          "column": 9
+                        },
+                        "end": {
+                          "line": 25,
+                          "column": 35
+                        }
+                      },
+                      "callee": {
+                        "type": "MemberExpression",
+                        "start": 1322,
+                        "end": 1335,
+                        "loc": {
+                          "start": {
+                            "line": 25,
+                            "column": 9
+                          },
+                          "end": {
+                            "line": 25,
+                            "column": 22
+                          }
+                        },
+                        "object": {
+                          "type": "Identifier",
+                          "start": 1322,
+                          "end": 1328,
+                          "loc": {
+                            "start": {
+                              "line": 25,
+                              "column": 9
+                            },
+                            "end": {
+                              "line": 25,
+                              "column": 15
+                            }
+                          },
+                          "name": "Object"
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "start": 1329,
+                          "end": 1335,
+                          "loc": {
+                            "start": {
+                              "line": 25,
+                              "column": 16
+                            },
+                            "end": {
+                              "line": 25,
+                              "column": 22
+                            }
+                          },
+                          "name": "assign"
+                        },
+                        "computed": false
+                      },
+                      "arguments": [
+                        {
+                          "type": "ObjectExpression",
+                          "start": 1336,
+                          "end": 1338,
+                          "loc": {
+                            "start": {
+                              "line": 25,
+                              "column": 23
+                            },
+                            "end": {
+                              "line": 25,
+                              "column": 25
+                            }
+                          },
+                          "properties": []
+                        },
+                        {
+                          "type": "Identifier",
+                          "start": 1340,
+                          "end": 1347,
+                          "loc": {
+                            "start": {
+                              "line": 25,
+                              "column": 27
+                            },
+                            "end": {
+                              "line": 25,
+                              "column": 34
+                            }
+                          },
+                          "name": "section"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            "leadingComments": null
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Handle a block contextualization for static outputs\n * @param {Object} inputSection - The representation of the peritext section to update\n * @param {Object} inputContextualization - The representation of the contextualization to resolve\n * @param {Object} settings - the specific rendering settings to use for resolving the contextualization\n * @return {Object} newSection - the updated representation of the peritext section in which the contextualization was made\n ",
+            "start": 751,
+            "end": 1228,
+            "loc": {
+              "start": {
+                "line": 17,
+                "column": 0
+              },
+              "end": {
+                "line": 23,
+                "column": 3
+              }
+            },
+            "range": [
+              751,
+              1228
+            ]
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Handle an inline contextualization for dynamic outputs\n * @param {Object} inputSection - The representation of the peritext section to update\n * @param {Object} inputContextualization - The representation of the contextualization to resolve\n * @param {Object} settings - the specific rendering settings to use for resolving the contextualization\n * @return {Object} newSection - the updated representation of the peritext section in which the contextualization was made\n ",
+            "start": 1354,
+            "end": 1834,
+            "loc": {
+              "start": {
+                "line": 28,
+                "column": 0
+              },
+              "end": {
+                "line": 34,
+                "column": 3
+              }
+            },
+            "range": [
+              1354,
+              1834
+            ]
+          }
+        ]
+      },
+      "specifiers": [],
+      "source": null,
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Handle a block contextualization for static outputs\n * @param {Object} inputSection - The representation of the peritext section to update\n * @param {Object} inputContextualization - The representation of the contextualization to resolve\n * @param {Object} settings - the specific rendering settings to use for resolving the contextualization\n * @return {Object} newSection - the updated representation of the peritext section in which the contextualization was made\n ",
+          "start": 751,
+          "end": 1228,
+          "loc": {
+            "start": {
+              "line": 17,
+              "column": 0
+            },
+            "end": {
+              "line": 23,
+              "column": 3
+            }
+          },
+          "range": [
+            751,
+            1228
+          ]
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Handle an inline contextualization for dynamic outputs\n * @param {Object} inputSection - The representation of the peritext section to update\n * @param {Object} inputContextualization - The representation of the contextualization to resolve\n * @param {Object} settings - the specific rendering settings to use for resolving the contextualization\n * @return {Object} newSection - the updated representation of the peritext section in which the contextualization was made\n ",
+          "start": 1354,
+          "end": 1834,
+          "loc": {
+            "start": {
+              "line": 28,
+              "column": 0
+            },
+            "end": {
+              "line": 34,
+              "column": 3
+            }
+          },
+          "range": [
+            1354,
+            1834
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 1835,
+      "end": 1960,
+      "loc": {
+        "start": {
+          "line": 35,
+          "column": 0
+        },
+        "end": {
+          "line": 37,
+          "column": 2
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 1842,
+        "end": 1960,
+        "loc": {
+          "start": {
+            "line": 35,
+            "column": 7
+          },
+          "end": {
+            "line": 37,
+            "column": 2
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 1848,
+            "end": 1959,
+            "loc": {
+              "start": {
+                "line": 35,
+                "column": 13
+              },
+              "end": {
+                "line": 37,
+                "column": 1
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 1848,
+              "end": 1874,
+              "loc": {
+                "start": {
+                  "line": 35,
+                  "column": 13
+                },
+                "end": {
+                  "line": 35,
+                  "column": 39
+                }
+              },
+              "name": "contextualizeInlineDynamic",
+              "leadingComments": null
+            },
+            "init": {
+              "type": "ArrowFunctionExpression",
+              "start": 1877,
+              "end": 1959,
+              "loc": {
+                "start": {
+                  "line": 35,
+                  "column": 42
+                },
+                "end": {
+                  "line": 37,
+                  "column": 1
+                }
+              },
+              "id": null,
+              "generator": false,
+              "expression": false,
+              "async": false,
+              "params": [
+                {
+                  "type": "Identifier",
+                  "start": 1878,
+                  "end": 1885,
+                  "loc": {
+                    "start": {
+                      "line": 35,
+                      "column": 43
+                    },
+                    "end": {
+                      "line": 35,
+                      "column": 50
+                    }
+                  },
+                  "name": "section"
+                },
+                {
+                  "type": "Identifier",
+                  "start": 1887,
+                  "end": 1904,
+                  "loc": {
+                    "start": {
+                      "line": 35,
+                      "column": 52
+                    },
+                    "end": {
+                      "line": 35,
+                      "column": 69
+                    }
+                  },
+                  "name": "contextualization"
+                },
+                {
+                  "type": "Identifier",
+                  "start": 1906,
+                  "end": 1914,
+                  "loc": {
+                    "start": {
+                      "line": 35,
+                      "column": 71
+                    },
+                    "end": {
+                      "line": 35,
+                      "column": 79
+                    }
+                  },
+                  "name": "settings"
+                }
+              ],
+              "body": {
+                "type": "BlockStatement",
+                "start": 1919,
+                "end": 1959,
+                "loc": {
+                  "start": {
+                    "line": 35,
+                    "column": 84
+                  },
+                  "end": {
+                    "line": 37,
+                    "column": 1
+                  }
+                },
+                "body": [
+                  {
+                    "type": "ReturnStatement",
+                    "start": 1923,
+                    "end": 1957,
+                    "loc": {
+                      "start": {
+                        "line": 36,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 36,
+                        "column": 36
+                      }
+                    },
+                    "argument": {
+                      "type": "CallExpression",
+                      "start": 1930,
+                      "end": 1956,
+                      "loc": {
+                        "start": {
+                          "line": 36,
+                          "column": 9
+                        },
+                        "end": {
+                          "line": 36,
+                          "column": 35
+                        }
+                      },
+                      "callee": {
+                        "type": "MemberExpression",
+                        "start": 1930,
+                        "end": 1943,
+                        "loc": {
+                          "start": {
+                            "line": 36,
+                            "column": 9
+                          },
+                          "end": {
+                            "line": 36,
+                            "column": 22
+                          }
+                        },
+                        "object": {
+                          "type": "Identifier",
+                          "start": 1930,
+                          "end": 1936,
+                          "loc": {
+                            "start": {
+                              "line": 36,
+                              "column": 9
+                            },
+                            "end": {
+                              "line": 36,
+                              "column": 15
+                            }
+                          },
+                          "name": "Object"
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "start": 1937,
+                          "end": 1943,
+                          "loc": {
+                            "start": {
+                              "line": 36,
+                              "column": 16
+                            },
+                            "end": {
+                              "line": 36,
+                              "column": 22
+                            }
+                          },
+                          "name": "assign"
+                        },
+                        "computed": false
+                      },
+                      "arguments": [
+                        {
+                          "type": "ObjectExpression",
+                          "start": 1944,
+                          "end": 1946,
+                          "loc": {
+                            "start": {
+                              "line": 36,
+                              "column": 23
+                            },
+                            "end": {
+                              "line": 36,
+                              "column": 25
+                            }
+                          },
+                          "properties": []
+                        },
+                        {
+                          "type": "Identifier",
+                          "start": 1948,
+                          "end": 1955,
+                          "loc": {
+                            "start": {
+                              "line": 36,
+                              "column": 27
+                            },
+                            "end": {
+                              "line": 36,
+                              "column": 34
+                            }
+                          },
+                          "name": "section"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            "leadingComments": null
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Handle an inline contextualization for dynamic outputs\n * @param {Object} inputSection - The representation of the peritext section to update\n * @param {Object} inputContextualization - The representation of the contextualization to resolve\n * @param {Object} settings - the specific rendering settings to use for resolving the contextualization\n * @return {Object} newSection - the updated representation of the peritext section in which the contextualization was made\n ",
+            "start": 1354,
+            "end": 1834,
+            "loc": {
+              "start": {
+                "line": 28,
+                "column": 0
+              },
+              "end": {
+                "line": 34,
+                "column": 3
+              }
+            },
+            "range": [
+              1354,
+              1834
+            ]
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Handle a block contextualization for dynamic outputs\n * @param {Object} inputSection - The representation of the peritext section to update\n * @param {Object} inputContextualization - The representation of the contextualization to resolve\n * @param {Object} settings - the specific rendering settings to use for resolving the contextualization\n * @return {Object} newSection - the updated representation of the peritext section in which the contextualization was made\n ",
+            "start": 1962,
+            "end": 2440,
+            "loc": {
+              "start": {
+                "line": 39,
+                "column": 0
+              },
+              "end": {
+                "line": 45,
+                "column": 3
+              }
+            },
+            "range": [
+              1962,
+              2440
+            ]
+          }
+        ]
+      },
+      "specifiers": [],
+      "source": null,
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Handle an inline contextualization for dynamic outputs\n * @param {Object} inputSection - The representation of the peritext section to update\n * @param {Object} inputContextualization - The representation of the contextualization to resolve\n * @param {Object} settings - the specific rendering settings to use for resolving the contextualization\n * @return {Object} newSection - the updated representation of the peritext section in which the contextualization was made\n ",
+          "start": 1354,
+          "end": 1834,
+          "loc": {
+            "start": {
+              "line": 28,
+              "column": 0
+            },
+            "end": {
+              "line": 34,
+              "column": 3
+            }
+          },
+          "range": [
+            1354,
+            1834
+          ]
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Handle a block contextualization for dynamic outputs\n * @param {Object} inputSection - The representation of the peritext section to update\n * @param {Object} inputContextualization - The representation of the contextualization to resolve\n * @param {Object} settings - the specific rendering settings to use for resolving the contextualization\n * @return {Object} newSection - the updated representation of the peritext section in which the contextualization was made\n ",
+          "start": 1962,
+          "end": 2440,
+          "loc": {
+            "start": {
+              "line": 39,
+              "column": 0
+            },
+            "end": {
+              "line": 45,
+              "column": 3
+            }
+          },
+          "range": [
+            1962,
+            2440
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 2441,
+      "end": 2565,
+      "loc": {
+        "start": {
+          "line": 46,
+          "column": 0
+        },
+        "end": {
+          "line": 48,
+          "column": 2
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 2448,
+        "end": 2565,
+        "loc": {
+          "start": {
+            "line": 46,
+            "column": 7
+          },
+          "end": {
+            "line": 48,
+            "column": 2
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 2454,
+            "end": 2564,
+            "loc": {
+              "start": {
+                "line": 46,
+                "column": 13
+              },
+              "end": {
+                "line": 48,
+                "column": 1
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 2454,
+              "end": 2479,
+              "loc": {
+                "start": {
+                  "line": 46,
+                  "column": 13
+                },
+                "end": {
+                  "line": 46,
+                  "column": 38
+                }
+              },
+              "name": "contextualizeBlockDynamic",
+              "leadingComments": null
+            },
+            "init": {
+              "type": "ArrowFunctionExpression",
+              "start": 2482,
+              "end": 2564,
+              "loc": {
+                "start": {
+                  "line": 46,
+                  "column": 41
+                },
+                "end": {
+                  "line": 48,
+                  "column": 1
+                }
+              },
+              "id": null,
+              "generator": false,
+              "expression": false,
+              "async": false,
+              "params": [
+                {
+                  "type": "Identifier",
+                  "start": 2483,
+                  "end": 2490,
+                  "loc": {
+                    "start": {
+                      "line": 46,
+                      "column": 42
+                    },
+                    "end": {
+                      "line": 46,
+                      "column": 49
+                    }
+                  },
+                  "name": "section"
+                },
+                {
+                  "type": "Identifier",
+                  "start": 2492,
+                  "end": 2509,
+                  "loc": {
+                    "start": {
+                      "line": 46,
+                      "column": 51
+                    },
+                    "end": {
+                      "line": 46,
+                      "column": 68
+                    }
+                  },
+                  "name": "contextualization"
+                },
+                {
+                  "type": "Identifier",
+                  "start": 2511,
+                  "end": 2519,
+                  "loc": {
+                    "start": {
+                      "line": 46,
+                      "column": 70
+                    },
+                    "end": {
+                      "line": 46,
+                      "column": 78
+                    }
+                  },
+                  "name": "settings"
+                }
+              ],
+              "body": {
+                "type": "BlockStatement",
+                "start": 2524,
+                "end": 2564,
+                "loc": {
+                  "start": {
+                    "line": 46,
+                    "column": 83
+                  },
+                  "end": {
+                    "line": 48,
+                    "column": 1
+                  }
+                },
+                "body": [
+                  {
+                    "type": "ReturnStatement",
+                    "start": 2528,
+                    "end": 2562,
+                    "loc": {
+                      "start": {
+                        "line": 47,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 47,
+                        "column": 36
+                      }
+                    },
+                    "argument": {
+                      "type": "CallExpression",
+                      "start": 2535,
+                      "end": 2561,
+                      "loc": {
+                        "start": {
+                          "line": 47,
+                          "column": 9
+                        },
+                        "end": {
+                          "line": 47,
+                          "column": 35
+                        }
+                      },
+                      "callee": {
+                        "type": "MemberExpression",
+                        "start": 2535,
+                        "end": 2548,
+                        "loc": {
+                          "start": {
+                            "line": 47,
+                            "column": 9
+                          },
+                          "end": {
+                            "line": 47,
+                            "column": 22
+                          }
+                        },
+                        "object": {
+                          "type": "Identifier",
+                          "start": 2535,
+                          "end": 2541,
+                          "loc": {
+                            "start": {
+                              "line": 47,
+                              "column": 9
+                            },
+                            "end": {
+                              "line": 47,
+                              "column": 15
+                            }
+                          },
+                          "name": "Object"
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "start": 2542,
+                          "end": 2548,
+                          "loc": {
+                            "start": {
+                              "line": 47,
+                              "column": 16
+                            },
+                            "end": {
+                              "line": 47,
+                              "column": 22
+                            }
+                          },
+                          "name": "assign"
+                        },
+                        "computed": false
+                      },
+                      "arguments": [
+                        {
+                          "type": "ObjectExpression",
+                          "start": 2549,
+                          "end": 2551,
+                          "loc": {
+                            "start": {
+                              "line": 47,
+                              "column": 23
+                            },
+                            "end": {
+                              "line": 47,
+                              "column": 25
+                            }
+                          },
+                          "properties": []
+                        },
+                        {
+                          "type": "Identifier",
+                          "start": 2553,
+                          "end": 2560,
+                          "loc": {
+                            "start": {
+                              "line": 47,
+                              "column": 27
+                            },
+                            "end": {
+                              "line": 47,
+                              "column": 34
+                            }
+                          },
+                          "name": "section"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            "leadingComments": null
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Handle a block contextualization for dynamic outputs\n * @param {Object} inputSection - The representation of the peritext section to update\n * @param {Object} inputContextualization - The representation of the contextualization to resolve\n * @param {Object} settings - the specific rendering settings to use for resolving the contextualization\n * @return {Object} newSection - the updated representation of the peritext section in which the contextualization was made\n ",
+            "start": 1962,
+            "end": 2440,
+            "loc": {
+              "start": {
+                "line": 39,
+                "column": 0
+              },
+              "end": {
+                "line": 45,
+                "column": 3
+              }
+            },
+            "range": [
+              1962,
+              2440
+            ]
+          }
+        ],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null,
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Handle a block contextualization for dynamic outputs\n * @param {Object} inputSection - The representation of the peritext section to update\n * @param {Object} inputContextualization - The representation of the contextualization to resolve\n * @param {Object} settings - the specific rendering settings to use for resolving the contextualization\n * @return {Object} newSection - the updated representation of the peritext section in which the contextualization was made\n ",
+          "start": 1962,
+          "end": 2440,
+          "loc": {
+            "start": {
+              "line": 39,
+              "column": 0
+            },
+            "end": {
+              "line": 45,
+              "column": 3
+            }
+          },
+          "range": [
+            1962,
+            2440
+          ]
+        }
+      ]
+    }
+  ]
+}

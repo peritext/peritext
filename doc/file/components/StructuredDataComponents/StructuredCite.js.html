@@ -63,8 +63,6 @@
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React, {PropTypes} from &apos;react&apos;;
 import Radium from &apos;radium&apos;;
 
-// let styles = {};
-
 /**
  * dumb component for rendering the structured representation of a cite element
  */
@@ -73,6 +71,8 @@ export default class StructuredCite extends React.Component {
 
   /**
    * propTypes
+   * @property {string} value - the value of the cite item
+   * @property {string} property - the schema property to apply
    */
   static propTypes = {
     value: PropTypes.string,

@@ -1,21 +1,18 @@
 import React, {PropTypes} from 'react';
-import Radium from 'radium';
 import {
   StructuredDate,
   StructuredSpan,
   StructuredPerson
 } from './../index.js';
 
-// let styles = {};
-
 /**
  * dumb component for rendering the structured representation of a section
  */
-@Radium
 export default class StructuredMetadataPlaceholder extends React.Component {
 
   /**
    * propTypes
+   * @property {Object} section - section to represent with metadata
    */
   static propTypes = {
     section: PropTypes.object

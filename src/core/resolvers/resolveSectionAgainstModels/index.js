@@ -1,7 +1,17 @@
+/**
+ * Resolver dedicated to resolve sections against metadata models
+ * @module resolvers/resolveSectionAgainstModels
+ */
 import {getResourceModel, resolvePropAgainstType} from './../../utils/modelUtils';
 import {getMetaValue} from './../../utils/sectionUtils';
 import {serializeHtmlMeta} from './../../resolvers/htmlMetaTemplateSerializer';
 
+/**
+ * Consumes and normalize the metadata of a section
+ * @param {Object} section - the section to resolve
+ * @param {Object} models - the models to use for resolution
+ * @param {function(err:error, result: {errors: array, section: Object})} callback - the resulting resolution errors and updated section
+ */
 export const resolveSectionAgainstModels = (section, models, callback) => {
   const errors = [];
   // validate resources

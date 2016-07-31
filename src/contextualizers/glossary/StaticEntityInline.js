@@ -13,6 +13,10 @@ export default class StaticEntityInline extends React.Component {
 
   /**
    * propTypes
+   * @property {object} entity - the entity resource to contextualize
+   * @property {string} sectionCiteKey - the host section citeKey (used for identifying the element)
+   * @property {object} contextualization - the contextualization object
+   * @property {array} contents - the pseudo-dom js representation of contextualization's pointer contents
    */
   static propTypes = {
     entity: PropTypes.object,

@@ -1,7 +1,15 @@
+/**
+ * Utils - dedicated to consuming peritext contents' pseudo-dom representations by returning React markup
+ * @module utils/modelUtils
+ */
 import React from 'react';
 
-// import * as components from './index.js';
-
+/**
+ * Consumes a peritext content's pseudo-dom node (described as a js object) and returns a react component
+ * @param {Object} node - the pseudo-dom node
+ * @param {number} index - the index of the node (used for providing react keys)
+ * @return {ReactElement} markup describing the node
+ */
 export const jsToComponent = (node, index)=> {
   if (node.node === 'text') {
     return node.text;
@@ -18,6 +26,11 @@ export const jsToComponent = (node, index)=> {
   </Tag>);
 };
 
+/**
+ * Consumes a peritext content's pseudo-dom nodes list to produce react markup
+ * @param {Object} contents - the pseudo-dom nodes array
+ * @return {ReactElement|string} markup or string contents
+ */
 export default function renderContents(contents) {
   if (Array.isArray(contents)) {
     return contents.map(jsToComponent);

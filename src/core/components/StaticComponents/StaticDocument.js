@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import Radium from 'radium';
 import { intlShape } from 'react-intl';
-
+// let styles = {};
 import {getMetaValue} from './../../utils/sectionUtils';
 import {bibToSchema} from './../../utils/microDataUtils';
 import {
@@ -17,7 +17,6 @@ import {
   StructuredMetadataPlaceholder
 } from './../index.js';
 
-// let styles = {};
 
 /**
  * dumb component for rendering the structured representation of a static document
@@ -27,6 +26,9 @@ class StaticDocument extends React.Component {
 
   /**
    * propTypes
+   * @property {Object} rootSection - the root/first/mother section of the document
+   * @property {array} sections - the list of rendering sections to include - warning -> can include cover, table of contents, ... sections
+   * @property {Object} settings - the rendering settings to use
    */
   static propTypes = {
     rootSection: PropTypes.object,

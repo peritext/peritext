@@ -1,9 +1,13 @@
 /**
- * Collection of utils for formatting scholarly citations in html/schema/microformat/RDFa/COiNS
- * Schema reference could be even more covered
+ * Utils - Collection of utils for formatting scholarly citations in html+schema+RDFa+COiNS elements
+ * @module utils/microDataUtils
  */
 
-// I give the schema type of an object based on its bibType
+/**
+ * Translates a peritext bibType to a schema.org Type
+ * @param {string} bib - the peritext bibType
+ * @return {string} SchemaType - the corresponding SchemaType
+ */
 export const bibToSchema = (bib) => {
   switch (bib) {
   case 'book':
@@ -57,11 +61,11 @@ export const bibToSchema = (bib) => {
   }
 };
 
-/**
-  COiNS related
+/*
+  Context Objects in Spans (COiNS) related functions
 */
 
-const addProp = (key, value) => {
+const addPropToCOinSData = (key, value) => {
   return {
     key: key,
     value: value
@@ -105,36 +109,41 @@ const chapterMap = {
 const translate = (data, item, map) => {
   for (const key in map) {
     if (item[map[key]]) {
-      data.push(addProp(key, item[map[key]]));
+      data.push(addPropToCOinSData(key, item[map[key]]));
     }
   }
   return data;
 };
 
+/**
+ * Generates an openUrl URI describing the resource, and aimed at being used in a ContextObjectInSpan (COinS)
+ * @param {Object} resource - the resource to describe with an openUrl
+ * @return {string} uri - the uri describing the resource
+ */
 export const generateOpenUrl = (resource) => {
   let data = [];
-  data.push(addProp('ctx_ver', 'Z39.88-2004'));
+  data.push(addPropToCOinSData('ctx_ver', 'Z39.88-2004'));
 
   if (resource.author && resource.author.length) {
     resource.author.forEach(function(author) {
-      data.push(addProp('rft.au', author.lastName + ', ' + author.firstName));
+      data.push(addPropToCOinSData('rft.au', author.lastName + ', ' + author.firstName));
     });
   }
   data = translate(data, resource, baseMap);
   if (resource.bibType === 'journal' || resource.bibType === 'article') {
     data = translate(data, resource, journalMap);
-    data.push(addProp('rft.genre', 'article'));
-    data.push(addProp('rft_val_fmt', 'info:ofi/fmt:kev:mtx:journal'));
+    data.push(addPropToCOinSData('rft.genre', 'article'));
+    data.push(addPropToCOinSData('rft_val_fmt', 'info:ofi/fmt:kev:mtx:journal'));
   }else if (resource.bibType === 'proceedings' || resource.bibType === 'conferencePaper') {
     data = translate(data, resource, journalMap);
-    data.push(addProp('rft.genre', 'conference'));
-    data.push(addProp('rft_val_fmt', 'info:ofi/fmt:kev:mtx:book'));
+    data.push(addPropToCOinSData('rft.genre', 'conference'));
+    data.push(addPropToCOinSData('rft_val_fmt', 'info:ofi/fmt:kev:mtx:book'));
   }else if (resource.bibType === 'chapter') {
     data = translate(data, resource, chapterMap);
-    data.push(addProp('rft.genre', 'bookitem'));
-    data.push(addProp('rft_val_fmt', 'info:ofi/fmt:kev:mtx:book'));
+    data.push(addPropToCOinSData('rft.genre', 'bookitem'));
+    data.push(addPropToCOinSData('rft_val_fmt', 'info:ofi/fmt:kev:mtx:book'));
   }else {
-    data.push(addProp('rft.genre', 'document'));
+    data.push(addPropToCOinSData('rft.genre', 'document'));
   }
   return assembleUri(data);
 };

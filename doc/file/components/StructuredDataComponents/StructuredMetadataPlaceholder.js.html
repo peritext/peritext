@@ -61,23 +61,20 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">components/StructuredDataComponents/StructuredMetadataPlaceholder.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React, {PropTypes} from &apos;react&apos;;
-import Radium from &apos;radium&apos;;
 import {
   StructuredDate,
   StructuredSpan,
   StructuredPerson
 } from &apos;./../index.js&apos;;
 
-// let styles = {};
-
 /**
  * dumb component for rendering the structured representation of a section
  */
-@Radium
 export default class StructuredMetadataPlaceholder extends React.Component {
 
   /**
    * propTypes
+   * @property {Object} section - section to represent with metadata
    */
   static propTypes = {
     section: PropTypes.object

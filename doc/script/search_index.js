@@ -1,141 +1,753 @@
 window.esdocSearchIndex = [
   [
-    "peritext/components/staticcomponents/staticbackcover.js~staticbackcover",
-    "class/components/StaticComponents/StaticBackCover.js~StaticBackCover.html",
-    "<span>StaticBackCover</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticBackCover.js</span>",
+    "peritext/src/referencers/iso690fr.js~blockcitation",
+    "class/src/referencers/iso690fr.js~BlockCitation.html",
+    "<span>BlockCitation</span> <span class=\"search-result-import-path\">peritext/src/referencers/iso690fr.js</span>",
     "class"
   ],
   [
-    "peritext/components/staticcomponents/staticdocument.js~staticdocument",
-    "class/components/StaticComponents/StaticDocument.js~StaticDocument.html",
-    "<span>StaticDocument</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticDocument.js</span>",
+    "peritext/src/core/utils/citationutils/citationmodels.js~blockcitationmodel",
+    "class/src/core/utils/citationUtils/citationModels.js~BlockCitationModel.html",
+    "<span>BlockCitationModel</span> <span class=\"search-result-import-path\">peritext/src/core/utils/citationUtils/citationModels.js</span>",
     "class"
   ],
   [
-    "peritext/components/staticcomponents/staticendfigures.js~staticendfigures",
-    "class/components/StaticComponents/StaticEndFigures.js~StaticEndFigures.html",
-    "<span>StaticEndFigures</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticEndFigures.js</span>",
+    "peritext/src/referencers/iso690fr.js~inlinecitation",
+    "class/src/referencers/iso690fr.js~InlineCitation.html",
+    "<span>InlineCitation</span> <span class=\"search-result-import-path\">peritext/src/referencers/iso690fr.js</span>",
     "class"
   ],
   [
-    "peritext/components/staticcomponents/staticendnotes.js~staticendnotes",
-    "class/components/StaticComponents/StaticEndNotes.js~StaticEndNotes.html",
-    "<span>StaticEndNotes</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticEndNotes.js</span>",
+    "peritext/src/core/utils/citationutils/citationmodels.js~inlinecitationmodel",
+    "class/src/core/utils/citationUtils/citationModels.js~InlineCitationModel.html",
+    "<span>InlineCitationModel</span> <span class=\"search-result-import-path\">peritext/src/core/utils/citationUtils/citationModels.js</span>",
     "class"
   ],
   [
-    "peritext/components/staticcomponents/staticfootnote.js~staticfootnote",
-    "class/components/StaticComponents/StaticFootnote.js~StaticFootnote.html",
-    "<span>StaticFootnote</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticFootnote.js</span>",
+    "peritext/src/core/components/staticcomponents/staticbackcover.js~staticbackcover",
+    "class/src/core/components/StaticComponents/StaticBackCover.js~StaticBackCover.html",
+    "<span>StaticBackCover</span> <span class=\"search-result-import-path\">peritext/src/core/components/StaticComponents/StaticBackCover.js</span>",
     "class"
   ],
   [
-    "peritext/components/staticcomponents/staticfrontcover.js~staticfrontcover",
-    "class/components/StaticComponents/StaticFrontCover.js~StaticFrontCover.html",
-    "<span>StaticFrontCover</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticFrontCover.js</span>",
+    "peritext/src/core/components/staticcomponents/staticdocument.js~staticdocument",
+    "class/src/core/components/StaticComponents/StaticDocument.js~StaticDocument.html",
+    "<span>StaticDocument</span> <span class=\"search-result-import-path\">peritext/src/core/components/StaticComponents/StaticDocument.js</span>",
     "class"
   ],
   [
-    "peritext/components/staticcomponents/staticglossary.js~staticglossary",
-    "class/components/StaticComponents/StaticGlossary.js~StaticGlossary.html",
-    "<span>StaticGlossary</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticGlossary.js</span>",
+    "peritext/src/core/components/staticcomponents/staticendfigures.js~staticendfigures",
+    "class/src/core/components/StaticComponents/StaticEndFigures.js~StaticEndFigures.html",
+    "<span>StaticEndFigures</span> <span class=\"search-result-import-path\">peritext/src/core/components/StaticComponents/StaticEndFigures.js</span>",
     "class"
   ],
   [
-    "peritext/components/staticcomponents/staticimagefigure.js~staticimagefigure",
-    "class/components/StaticComponents/StaticImageFigure.js~StaticImageFigure.html",
-    "<span>StaticImageFigure</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticImageFigure.js</span>",
+    "peritext/src/core/components/staticcomponents/staticendnotes.js~staticendnotes",
+    "class/src/core/components/StaticComponents/StaticEndNotes.js~StaticEndNotes.html",
+    "<span>StaticEndNotes</span> <span class=\"search-result-import-path\">peritext/src/core/components/StaticComponents/StaticEndNotes.js</span>",
     "class"
   ],
   [
-    "peritext/components/staticcomponents/staticnotecontent.js~staticnote",
-    "class/components/StaticComponents/StaticNoteContent.js~StaticNote.html",
-    "<span>StaticNote</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticNoteContent.js</span>",
+    "peritext/src/contextualizers/glossary/staticentityblock.js~staticentityblock",
+    "class/src/contextualizers/glossary/StaticEntityBlock.js~StaticEntityBlock.html",
+    "<span>StaticEntityBlock</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/glossary/StaticEntityBlock.js</span>",
     "class"
   ],
   [
-    "peritext/components/staticcomponents/staticnotepointer.js~staticnotepointer",
-    "class/components/StaticComponents/StaticNotePointer.js~StaticNotePointer.html",
-    "<span>StaticNotePointer</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticNotePointer.js</span>",
+    "peritext/src/contextualizers/glossary/staticentityinline.js~staticentityinline",
+    "class/src/contextualizers/glossary/StaticEntityInline.js~StaticEntityInline.html",
+    "<span>StaticEntityInline</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/glossary/StaticEntityInline.js</span>",
     "class"
   ],
   [
-    "peritext/components/staticcomponents/staticreferenceslist.js~staticreferenceslist",
-    "class/components/StaticComponents/StaticReferencesList.js~StaticReferencesList.html",
-    "<span>StaticReferencesList</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticReferencesList.js</span>",
+    "peritext/src/core/components/staticcomponents/staticfootnote.js~staticfootnote",
+    "class/src/core/components/StaticComponents/StaticFootnote.js~StaticFootnote.html",
+    "<span>StaticFootnote</span> <span class=\"search-result-import-path\">peritext/src/core/components/StaticComponents/StaticFootnote.js</span>",
     "class"
   ],
   [
-    "peritext/components/staticcomponents/staticsection.js~staticsection",
-    "class/components/StaticComponents/StaticSection.js~StaticSection.html",
-    "<span>StaticSection</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticSection.js</span>",
+    "peritext/src/core/components/staticcomponents/staticfrontcover.js~staticfrontcover",
+    "class/src/core/components/StaticComponents/StaticFrontCover.js~StaticFrontCover.html",
+    "<span>StaticFrontCover</span> <span class=\"search-result-import-path\">peritext/src/core/components/StaticComponents/StaticFrontCover.js</span>",
     "class"
   ],
   [
-    "peritext/components/staticcomponents/statictableofcontents.js~statictableofcontents",
-    "class/components/StaticComponents/StaticTableOfContents.js~StaticTableOfContents.html",
-    "<span>StaticTableOfContents</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticTableOfContents.js</span>",
+    "peritext/src/core/components/staticcomponents/staticglossary.js~staticglossary",
+    "class/src/core/components/StaticComponents/StaticGlossary.js~StaticGlossary.html",
+    "<span>StaticGlossary</span> <span class=\"search-result-import-path\">peritext/src/core/components/StaticComponents/StaticGlossary.js</span>",
     "class"
   ],
   [
-    "peritext/components/staticcomponents/statictableoffigures.js~statictableoffigures",
-    "class/components/StaticComponents/StaticTableOfFigures.js~StaticTableOfFigures.html",
-    "<span>StaticTableOfFigures</span> <span class=\"search-result-import-path\">peritext/components/StaticComponents/StaticTableOfFigures.js</span>",
+    "peritext/src/core/components/staticcomponents/staticimagefigure.js~staticimagefigure",
+    "class/src/core/components/StaticComponents/StaticImageFigure.js~StaticImageFigure.html",
+    "<span>StaticImageFigure</span> <span class=\"search-result-import-path\">peritext/src/core/components/StaticComponents/StaticImageFigure.js</span>",
     "class"
   ],
   [
-    "peritext/components/structureddatacomponents/structuredcoins.js~structuredcoins",
-    "class/components/StructuredDataComponents/StructuredCOinS.js~StructuredCOinS.html",
-    "<span>StructuredCOinS</span> <span class=\"search-result-import-path\">peritext/components/StructuredDataComponents/StructuredCOinS.js</span>",
+    "peritext/src/contextualizers/imagegallery/staticimagegallery.js~staticimagegallery",
+    "class/src/contextualizers/imagegallery/StaticImageGallery.js~StaticImageGallery.html",
+    "<span>StaticImageGallery</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/imagegallery/StaticImageGallery.js</span>",
     "class"
   ],
   [
-    "peritext/components/structureddatacomponents/structuredcite.js~structuredcite",
-    "class/components/StructuredDataComponents/StructuredCite.js~StructuredCite.html",
-    "<span>StructuredCite</span> <span class=\"search-result-import-path\">peritext/components/StructuredDataComponents/StructuredCite.js</span>",
+    "peritext/src/core/components/staticcomponents/staticnotecontent.js~staticnote",
+    "class/src/core/components/StaticComponents/StaticNoteContent.js~StaticNote.html",
+    "<span>StaticNote</span> <span class=\"search-result-import-path\">peritext/src/core/components/StaticComponents/StaticNoteContent.js</span>",
     "class"
   ],
   [
-    "peritext/components/structureddatacomponents/structureddate.js~structureddate",
-    "class/components/StructuredDataComponents/StructuredDate.js~StructuredDate.html",
-    "<span>StructuredDate</span> <span class=\"search-result-import-path\">peritext/components/StructuredDataComponents/StructuredDate.js</span>",
+    "peritext/src/core/components/staticcomponents/staticnotepointer.js~staticnotepointer",
+    "class/src/core/components/StaticComponents/StaticNotePointer.js~StaticNotePointer.html",
+    "<span>StaticNotePointer</span> <span class=\"search-result-import-path\">peritext/src/core/components/StaticComponents/StaticNotePointer.js</span>",
     "class"
   ],
   [
-    "peritext/components/structureddatacomponents/structuredhyperlink.js~structuredhyperlink",
-    "class/components/StructuredDataComponents/StructuredHyperLink.js~StructuredHyperLink.html",
-    "<span>StructuredHyperLink</span> <span class=\"search-result-import-path\">peritext/components/StructuredDataComponents/StructuredHyperLink.js</span>",
+    "peritext/src/core/components/staticcomponents/staticreferenceslist.js~staticreferenceslist",
+    "class/src/core/components/StaticComponents/StaticReferencesList.js~StaticReferencesList.html",
+    "<span>StaticReferencesList</span> <span class=\"search-result-import-path\">peritext/src/core/components/StaticComponents/StaticReferencesList.js</span>",
     "class"
   ],
   [
-    "peritext/components/structureddatacomponents/structuredmetadataplaceholder.js~structuredmetadataplaceholder",
-    "class/components/StructuredDataComponents/StructuredMetadataPlaceholder.js~StructuredMetadataPlaceholder.html",
-    "<span>StructuredMetadataPlaceholder</span> <span class=\"search-result-import-path\">peritext/components/StructuredDataComponents/StructuredMetadataPlaceholder.js</span>",
+    "peritext/src/core/components/staticcomponents/staticsection.js~staticsection",
+    "class/src/core/components/StaticComponents/StaticSection.js~StaticSection.html",
+    "<span>StaticSection</span> <span class=\"search-result-import-path\">peritext/src/core/components/StaticComponents/StaticSection.js</span>",
     "class"
   ],
   [
-    "peritext/components/structureddatacomponents/structuredparentjournal.js~structuredparentjournal",
-    "class/components/StructuredDataComponents/StructuredParentJournal.js~StructuredParentJournal.html",
-    "<span>StructuredParentJournal</span> <span class=\"search-result-import-path\">peritext/components/StructuredDataComponents/StructuredParentJournal.js</span>",
+    "peritext/src/contextualizers/table/statictable.js~statictable",
+    "class/src/contextualizers/table/StaticTable.js~StaticTable.html",
+    "<span>StaticTable</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/table/StaticTable.js</span>",
     "class"
   ],
   [
-    "peritext/components/structureddatacomponents/structuredperson.js~structuredperson",
-    "class/components/StructuredDataComponents/StructuredPerson.js~StructuredPerson.html",
-    "<span>StructuredPerson</span> <span class=\"search-result-import-path\">peritext/components/StructuredDataComponents/StructuredPerson.js</span>",
+    "peritext/src/core/components/staticcomponents/statictableofcontents.js~statictableofcontents",
+    "class/src/core/components/StaticComponents/StaticTableOfContents.js~StaticTableOfContents.html",
+    "<span>StaticTableOfContents</span> <span class=\"search-result-import-path\">peritext/src/core/components/StaticComponents/StaticTableOfContents.js</span>",
     "class"
   ],
   [
-    "peritext/components/structureddatacomponents/structuredpublisher.js~structuredpublisher",
-    "class/components/StructuredDataComponents/StructuredPublisher.js~StructuredPublisher.html",
-    "<span>StructuredPublisher</span> <span class=\"search-result-import-path\">peritext/components/StructuredDataComponents/StructuredPublisher.js</span>",
+    "peritext/src/core/components/staticcomponents/statictableoffigures.js~statictableoffigures",
+    "class/src/core/components/StaticComponents/StaticTableOfFigures.js~StaticTableOfFigures.html",
+    "<span>StaticTableOfFigures</span> <span class=\"search-result-import-path\">peritext/src/core/components/StaticComponents/StaticTableOfFigures.js</span>",
     "class"
   ],
   [
-    "peritext/components/structureddatacomponents/structuredspan.js~structuredspan",
-    "class/components/StructuredDataComponents/StructuredSpan.js~StructuredSpan.html",
-    "<span>StructuredSpan</span> <span class=\"search-result-import-path\">peritext/components/StructuredDataComponents/StructuredSpan.js</span>",
+    "peritext/src/core/components/structureddatacomponents/structuredcoins.js~structuredcoins",
+    "class/src/core/components/StructuredDataComponents/StructuredCOinS.js~StructuredCOinS.html",
+    "<span>StructuredCOinS</span> <span class=\"search-result-import-path\">peritext/src/core/components/StructuredDataComponents/StructuredCOinS.js</span>",
     "class"
+  ],
+  [
+    "peritext/src/core/components/structureddatacomponents/structuredcite.js~structuredcite",
+    "class/src/core/components/StructuredDataComponents/StructuredCite.js~StructuredCite.html",
+    "<span>StructuredCite</span> <span class=\"search-result-import-path\">peritext/src/core/components/StructuredDataComponents/StructuredCite.js</span>",
+    "class"
+  ],
+  [
+    "peritext/src/core/components/structureddatacomponents/structureddate.js~structureddate",
+    "class/src/core/components/StructuredDataComponents/StructuredDate.js~StructuredDate.html",
+    "<span>StructuredDate</span> <span class=\"search-result-import-path\">peritext/src/core/components/StructuredDataComponents/StructuredDate.js</span>",
+    "class"
+  ],
+  [
+    "peritext/src/core/components/structureddatacomponents/structuredhyperlink.js~structuredhyperlink",
+    "class/src/core/components/StructuredDataComponents/StructuredHyperLink.js~StructuredHyperLink.html",
+    "<span>StructuredHyperLink</span> <span class=\"search-result-import-path\">peritext/src/core/components/StructuredDataComponents/StructuredHyperLink.js</span>",
+    "class"
+  ],
+  [
+    "peritext/src/core/components/structureddatacomponents/structuredmetadataplaceholder.js~structuredmetadataplaceholder",
+    "class/src/core/components/StructuredDataComponents/StructuredMetadataPlaceholder.js~StructuredMetadataPlaceholder.html",
+    "<span>StructuredMetadataPlaceholder</span> <span class=\"search-result-import-path\">peritext/src/core/components/StructuredDataComponents/StructuredMetadataPlaceholder.js</span>",
+    "class"
+  ],
+  [
+    "peritext/src/core/components/structureddatacomponents/structuredparentjournal.js~structuredparentjournal",
+    "class/src/core/components/StructuredDataComponents/StructuredParentJournal.js~StructuredParentJournal.html",
+    "<span>StructuredParentJournal</span> <span class=\"search-result-import-path\">peritext/src/core/components/StructuredDataComponents/StructuredParentJournal.js</span>",
+    "class"
+  ],
+  [
+    "peritext/src/core/components/structureddatacomponents/structuredperson.js~structuredperson",
+    "class/src/core/components/StructuredDataComponents/StructuredPerson.js~StructuredPerson.html",
+    "<span>StructuredPerson</span> <span class=\"search-result-import-path\">peritext/src/core/components/StructuredDataComponents/StructuredPerson.js</span>",
+    "class"
+  ],
+  [
+    "peritext/src/core/components/structureddatacomponents/structuredpublisher.js~structuredpublisher",
+    "class/src/core/components/StructuredDataComponents/StructuredPublisher.js~StructuredPublisher.html",
+    "<span>StructuredPublisher</span> <span class=\"search-result-import-path\">peritext/src/core/components/StructuredDataComponents/StructuredPublisher.js</span>",
+    "class"
+  ],
+  [
+    "peritext/src/core/components/structureddatacomponents/structuredspan.js~structuredspan",
+    "class/src/core/components/StructuredDataComponents/StructuredSpan.js~StructuredSpan.html",
+    "<span>StructuredSpan</span> <span class=\"search-result-import-path\">peritext/src/core/components/StructuredDataComponents/StructuredSpan.js</span>",
+    "class"
+  ],
+  [
+    "peritext/src/contextualizers/webpage/staticwebsiteposter.js~structuredwebsiteposter",
+    "class/src/contextualizers/webpage/StaticWebsitePoster.js~StructuredWebsitePoster.html",
+    "<span>StructuredWebsitePoster</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/webpage/StaticWebsitePoster.js</span>",
+    "class"
+  ],
+  [
+    "peritext/src/index.js~assetscontroller",
+    "variable/index.html#static-variable-assetsController",
+    "<span>assetsController</span> <span class=\"search-result-import-path\">peritext/src/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/utils/microdatautils/index.js~bibtoschema",
+    "variable/index.html#static-variable-bibToSchema",
+    "<span>bibToSchema</span> <span class=\"search-result-import-path\">peritext/src/core/utils/microDataUtils/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/contextualizers/index.js~citation",
+    "variable/index.html#static-variable-citation",
+    "<span>citation</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/converters/sectionconverter/cleannaivetree.js~cleannaivetree",
+    "variable/index.html#static-variable-cleanNaiveTree",
+    "<span>cleanNaiveTree</span> <span class=\"search-result-import-path\">peritext/src/core/converters/sectionConverter/cleanNaiveTree.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/renderers/sharedstaticutils/index.js~composerenderedsections",
+    "variable/index.html#static-variable-composeRenderedSections",
+    "<span>composeRenderedSections</span> <span class=\"search-result-import-path\">peritext/src/renderers/sharedStaticUtils/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/utils/referenceutils/index.js~computereferences",
+    "variable/index.html#static-variable-computeReferences",
+    "<span>computeReferences</span> <span class=\"search-result-import-path\">peritext/src/core/utils/referenceUtils/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/converters/sectionconverter/concattree.js~concattree",
+    "variable/index.html#static-variable-concatTree",
+    "<span>concatTree</span> <span class=\"search-result-import-path\">peritext/src/core/converters/sectionConverter/concatTree.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/index.js~contentscontroller",
+    "variable/index.html#static-variable-contentsController",
+    "<span>contentsController</span> <span class=\"search-result-import-path\">peritext/src/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/contextualizers/citation/index.js~contextualizeblockdynamic",
+    "variable/index.html#static-variable-contextualizeBlockDynamic",
+    "<span>contextualizeBlockDynamic</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/citation/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/contextualizers/glossary/index.js~contextualizeblockdynamic",
+    "variable/index.html#static-variable-contextualizeBlockDynamic",
+    "<span>contextualizeBlockDynamic</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/glossary/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/contextualizers/imagegallery/index.js~contextualizeblockdynamic",
+    "variable/index.html#static-variable-contextualizeBlockDynamic",
+    "<span>contextualizeBlockDynamic</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/imagegallery/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/contextualizers/table/index.js~contextualizeblockdynamic",
+    "variable/index.html#static-variable-contextualizeBlockDynamic",
+    "<span>contextualizeBlockDynamic</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/table/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/contextualizers/timeline/index.js~contextualizeblockdynamic",
+    "variable/index.html#static-variable-contextualizeBlockDynamic",
+    "<span>contextualizeBlockDynamic</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/timeline/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/contextualizers/webpage/index.js~contextualizeblockdynamic",
+    "variable/index.html#static-variable-contextualizeBlockDynamic",
+    "<span>contextualizeBlockDynamic</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/webpage/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/contextualizers/citation/index.js~contextualizeblockstatic",
+    "variable/index.html#static-variable-contextualizeBlockStatic",
+    "<span>contextualizeBlockStatic</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/citation/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/contextualizers/glossary/index.js~contextualizeblockstatic",
+    "variable/index.html#static-variable-contextualizeBlockStatic",
+    "<span>contextualizeBlockStatic</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/glossary/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/contextualizers/imagegallery/index.js~contextualizeblockstatic",
+    "variable/index.html#static-variable-contextualizeBlockStatic",
+    "<span>contextualizeBlockStatic</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/imagegallery/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/contextualizers/table/index.js~contextualizeblockstatic",
+    "variable/index.html#static-variable-contextualizeBlockStatic",
+    "<span>contextualizeBlockStatic</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/table/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/contextualizers/timeline/index.js~contextualizeblockstatic",
+    "variable/index.html#static-variable-contextualizeBlockStatic",
+    "<span>contextualizeBlockStatic</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/timeline/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/contextualizers/webpage/index.js~contextualizeblockstatic",
+    "variable/index.html#static-variable-contextualizeBlockStatic",
+    "<span>contextualizeBlockStatic</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/webpage/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/contextualizers/citation/index.js~contextualizeinlinedynamic",
+    "variable/index.html#static-variable-contextualizeInlineDynamic",
+    "<span>contextualizeInlineDynamic</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/citation/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/contextualizers/glossary/index.js~contextualizeinlinedynamic",
+    "variable/index.html#static-variable-contextualizeInlineDynamic",
+    "<span>contextualizeInlineDynamic</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/glossary/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/contextualizers/imagegallery/index.js~contextualizeinlinedynamic",
+    "variable/index.html#static-variable-contextualizeInlineDynamic",
+    "<span>contextualizeInlineDynamic</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/imagegallery/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/contextualizers/table/index.js~contextualizeinlinedynamic",
+    "variable/index.html#static-variable-contextualizeInlineDynamic",
+    "<span>contextualizeInlineDynamic</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/table/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/contextualizers/timeline/index.js~contextualizeinlinedynamic",
+    "variable/index.html#static-variable-contextualizeInlineDynamic",
+    "<span>contextualizeInlineDynamic</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/timeline/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/contextualizers/webpage/index.js~contextualizeinlinedynamic",
+    "variable/index.html#static-variable-contextualizeInlineDynamic",
+    "<span>contextualizeInlineDynamic</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/webpage/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/contextualizers/citation/index.js~contextualizeinlinestatic",
+    "variable/index.html#static-variable-contextualizeInlineStatic",
+    "<span>contextualizeInlineStatic</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/citation/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/contextualizers/glossary/index.js~contextualizeinlinestatic",
+    "variable/index.html#static-variable-contextualizeInlineStatic",
+    "<span>contextualizeInlineStatic</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/glossary/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/contextualizers/imagegallery/index.js~contextualizeinlinestatic",
+    "variable/index.html#static-variable-contextualizeInlineStatic",
+    "<span>contextualizeInlineStatic</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/imagegallery/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/contextualizers/table/index.js~contextualizeinlinestatic",
+    "variable/index.html#static-variable-contextualizeInlineStatic",
+    "<span>contextualizeInlineStatic</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/table/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/contextualizers/timeline/index.js~contextualizeinlinestatic",
+    "variable/index.html#static-variable-contextualizeInlineStatic",
+    "<span>contextualizeInlineStatic</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/timeline/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/contextualizers/webpage/index.js~contextualizeinlinestatic",
+    "variable/index.html#static-variable-contextualizeInlineStatic",
+    "<span>contextualizeInlineStatic</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/webpage/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/models/index.js~contextualizermodels",
+    "variable/index.html#static-variable-contextualizerModels",
+    "<span>contextualizerModels</span> <span class=\"search-result-import-path\">peritext/src/core/models/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/connectors/filesystem/index.js~createfrompath",
+    "variable/index.html#static-variable-createFromPath",
+    "<span>createFromPath</span> <span class=\"search-result-import-path\">peritext/src/connectors/filesystem/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/index.js~defaultmodels",
+    "variable/index.html#static-variable-defaultModels",
+    "<span>defaultModels</span> <span class=\"search-result-import-path\">peritext/src/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/index.js~defaultparameters",
+    "variable/index.html#static-variable-defaultParameters",
+    "<span>defaultParameters</span> <span class=\"search-result-import-path\">peritext/src/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/connectors/filesystem/index.js~deletefrompath",
+    "variable/index.html#static-variable-deleteFromPath",
+    "<span>deleteFromPath</span> <span class=\"search-result-import-path\">peritext/src/connectors/filesystem/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/utils/sectionutils/index.js~deletemeta",
+    "variable/index.html#static-variable-deleteMeta",
+    "<span>deleteMeta</span> <span class=\"search-result-import-path\">peritext/src/core/utils/sectionUtils/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/exporters/pdfexporter/index.js~exportsectiontopdf",
+    "variable/index.html#static-variable-exportSectionToPdf",
+    "<span>exportSectionToPdf</span> <span class=\"search-result-import-path\">peritext/src/exporters/pdfExporter/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/utils/sectionutils/index.js~filterresources",
+    "variable/index.html#static-variable-filterResources",
+    "<span>filterResources</span> <span class=\"search-result-import-path\">peritext/src/core/utils/sectionUtils/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/utils/sectionutils/index.js~findbymetadata",
+    "variable/index.html#static-variable-findByMetadata",
+    "<span>findByMetadata</span> <span class=\"search-result-import-path\">peritext/src/core/utils/sectionUtils/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/utils/microdatautils/index.js~generateopenurl",
+    "variable/index.html#static-variable-generateOpenUrl",
+    "<span>generateOpenUrl</span> <span class=\"search-result-import-path\">peritext/src/core/utils/microDataUtils/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/connectors/filesystem/index.js~getasseturi",
+    "variable/index.html#static-variable-getAssetUri",
+    "<span>getAssetUri</span> <span class=\"search-result-import-path\">peritext/src/connectors/filesystem/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/controllers/assetscontroller/index.js~getasseturi",
+    "variable/index.html#static-variable-getAssetUri",
+    "<span>getAssetUri</span> <span class=\"search-result-import-path\">peritext/src/core/controllers/assetsController/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/utils/modelutils/index.js~getcontextualizermodel",
+    "variable/index.html#static-variable-getContextualizerModel",
+    "<span>getContextualizerModel</span> <span class=\"search-result-import-path\">peritext/src/core/utils/modelUtils/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/utils/sectionutils/index.js~getmetavalue",
+    "variable/index.html#static-variable-getMetaValue",
+    "<span>getMetaValue</span> <span class=\"search-result-import-path\">peritext/src/core/utils/sectionUtils/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/controllers/assetscontroller/index.js~getreader",
+    "variable/index.html#static-variable-getReader",
+    "<span>getReader</span> <span class=\"search-result-import-path\">peritext/src/core/controllers/assetsController/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/utils/modelutils/index.js~getresourcemodel",
+    "variable/index.html#static-variable-getResourceModel",
+    "<span>getResourceModel</span> <span class=\"search-result-import-path\">peritext/src/core/utils/modelUtils/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/contextualizers/index.js~glossary",
+    "variable/index.html#static-variable-glossary",
+    "<span>glossary</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/utils/sectionutils/index.js~hasmeta",
+    "variable/index.html#static-variable-hasMeta",
+    "<span>hasMeta</span> <span class=\"search-result-import-path\">peritext/src/core/utils/sectionUtils/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/utils/sectionutils/index.js~hasresource",
+    "variable/index.html#static-variable-hasResource",
+    "<span>hasResource</span> <span class=\"search-result-import-path\">peritext/src/core/utils/sectionUtils/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/contextualizers/index.js~imagegallery",
+    "variable/index.html#static-variable-imagegallery",
+    "<span>imagegallery</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/referencers/index.js~iso690fr",
+    "variable/index.html#static-variable-iso690fr",
+    "<span>iso690fr</span> <span class=\"search-result-import-path\">peritext/src/referencers/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/utils/componentsfactory/index.js~jstocomponent",
+    "variable/index.html#static-variable-jsToComponent",
+    "<span>jsToComponent</span> <span class=\"search-result-import-path\">peritext/src/core/utils/componentsFactory/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/converters/markdownconverter/index.js~markdowntojsabstraction",
+    "variable/index.html#static-variable-markdownToJsAbstraction",
+    "<span>markdownToJsAbstraction</span> <span class=\"search-result-import-path\">peritext/src/core/converters/markdownConverter/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/utils/sectionutils/index.js~metastringtocouple",
+    "variable/index.html#static-variable-metaStringToCouple",
+    "<span>metaStringToCouple</span> <span class=\"search-result-import-path\">peritext/src/core/utils/sectionUtils/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/models/index.js~metadatamodels",
+    "variable/index.html#static-variable-metadataModels",
+    "<span>metadataModels</span> <span class=\"search-result-import-path\">peritext/src/core/models/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/resolvers/resolvecontextualizations/index.js~numberstoletters",
+    "variable/index.html#static-variable-numbersToLetters",
+    "<span>numbersToLetters</span> <span class=\"search-result-import-path\">peritext/src/core/resolvers/resolveContextualizations/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/converters/sectionconverter/organizetree.js~organizetree",
+    "variable/index.html#static-variable-organizeTree",
+    "<span>organizeTree</span> <span class=\"search-result-import-path\">peritext/src/core/converters/sectionConverter/organizeTree.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/converters/bibtexconverter/index.js~parsebibauthors",
+    "variable/index.html#static-variable-parseBibAuthors",
+    "<span>parseBibAuthors</span> <span class=\"search-result-import-path\">peritext/src/core/converters/bibTexConverter/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/converters/bibtexconverter/index.js~parsebibcontextualization",
+    "variable/index.html#static-variable-parseBibContextualization",
+    "<span>parseBibContextualization</span> <span class=\"search-result-import-path\">peritext/src/core/converters/bibTexConverter/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/converters/bibtexconverter/index.js~parsebibnestedvalues",
+    "variable/index.html#static-variable-parseBibNestedValues",
+    "<span>parseBibNestedValues</span> <span class=\"search-result-import-path\">peritext/src/core/converters/bibTexConverter/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/converters/bibtexconverter/index.js~parsebibtexstr",
+    "variable/index.html#static-variable-parseBibTexStr",
+    "<span>parseBibTexStr</span> <span class=\"search-result-import-path\">peritext/src/core/converters/bibTexConverter/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/converters/markdownincludesparser/index.js~parsemarkdown",
+    "variable/index.html#static-variable-parseMarkdown",
+    "<span>parseMarkdown</span> <span class=\"search-result-import-path\">peritext/src/core/converters/markdownIncludesParser/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/converters/sectionconverter/index.js~parsesection",
+    "variable/index.html#static-variable-parseSection",
+    "<span>parseSection</span> <span class=\"search-result-import-path\">peritext/src/core/converters/sectionConverter/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/converters/sectionconverter/parsetreeresources.js~parsetreeresources",
+    "variable/index.html#static-variable-parseTreeResources",
+    "<span>parseTreeResources</span> <span class=\"search-result-import-path\">peritext/src/core/converters/sectionConverter/parseTreeResources.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/converters/sectionconverter/propagatedata.js~propagatedata",
+    "variable/index.html#static-variable-propagateData",
+    "<span>propagateData</span> <span class=\"search-result-import-path\">peritext/src/core/converters/sectionConverter/propagateData.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/connectors/filesystem/index.js~readfrompath",
+    "variable/index.html#static-variable-readFromPath",
+    "<span>readFromPath</span> <span class=\"search-result-import-path\">peritext/src/connectors/filesystem/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/utils/componentsfactory/index.js~rendercontents",
+    "function/index.html#static-function-renderContents",
+    "<span>renderContents</span> <span class=\"search-result-import-path\">peritext/src/core/utils/componentsFactory/index.js</span>",
+    "function"
+  ],
+  [
+    "peritext/src/renderers/rendertostatichtml/index.js~rendersection",
+    "variable/index.html#static-variable-renderSection",
+    "<span>renderSection</span> <span class=\"search-result-import-path\">peritext/src/renderers/renderToStaticHtml/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/resolvers/resolvecontextualizations/index.js~resolvebindings",
+    "variable/index.html#static-variable-resolveBindings",
+    "<span>resolveBindings</span> <span class=\"search-result-import-path\">peritext/src/core/resolvers/resolveContextualizations/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/resolvers/resolvecontextualizations/index.js~resolvecontextualizationsimplementation",
+    "variable/index.html#static-variable-resolveContextualizationsImplementation",
+    "<span>resolveContextualizationsImplementation</span> <span class=\"search-result-import-path\">peritext/src/core/resolvers/resolveContextualizations/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/resolvers/resolvecontextualizations/index.js~resolvecontextualizationsrelations",
+    "variable/index.html#static-variable-resolveContextualizationsRelations",
+    "<span>resolveContextualizationsRelations</span> <span class=\"search-result-import-path\">peritext/src/core/resolvers/resolveContextualizations/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/resolvers/resolvedatadependencies/index.js~resolvedatadependencies",
+    "function/index.html#static-function-resolveDataDependencies",
+    "<span>resolveDataDependencies</span> <span class=\"search-result-import-path\">peritext/src/core/resolvers/resolveDataDependencies/index.js</span>",
+    "function"
+  ],
+  [
+    "peritext/src/core/utils/modelutils/index.js~resolvepropagainsttype",
+    "variable/index.html#static-variable-resolvePropAgainstType",
+    "<span>resolvePropAgainstType</span> <span class=\"search-result-import-path\">peritext/src/core/utils/modelUtils/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/resolvers/resolvesectionagainstmodels/index.js~resolvesectionagainstmodels",
+    "variable/index.html#static-variable-resolveSectionAgainstModels",
+    "<span>resolveSectionAgainstModels</span> <span class=\"search-result-import-path\">peritext/src/core/resolvers/resolveSectionAgainstModels/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/utils/modelutils/index.js~resolvesettings",
+    "variable/index.html#static-variable-resolveSettings",
+    "<span>resolveSettings</span> <span class=\"search-result-import-path\">peritext/src/core/utils/modelUtils/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/models/index.js~resourcemodels",
+    "variable/index.html#static-variable-resourceModels",
+    "<span>resourceModels</span> <span class=\"search-result-import-path\">peritext/src/core/models/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/utils/sectionutils/index.js~samemetascope",
+    "variable/index.html#static-variable-sameMetaScope",
+    "<span>sameMetaScope</span> <span class=\"search-result-import-path\">peritext/src/core/utils/sectionUtils/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/models/index.js~sectiontypemodels",
+    "variable/index.html#static-variable-sectionTypeModels",
+    "<span>sectionTypeModels</span> <span class=\"search-result-import-path\">peritext/src/core/models/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/converters/bibtexconverter/index.js~serializebibtexobject",
+    "variable/index.html#static-variable-serializeBibTexObject",
+    "<span>serializeBibTexObject</span> <span class=\"search-result-import-path\">peritext/src/core/converters/bibTexConverter/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/resolvers/htmlmetatemplateserializer/index.js~serializehtmlmeta",
+    "variable/index.html#static-variable-serializeHtmlMeta",
+    "<span>serializeHtmlMeta</span> <span class=\"search-result-import-path\">peritext/src/core/resolvers/htmlMetaTemplateSerializer/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/utils/modelutils/index.js~serializepropagainsttype",
+    "variable/index.html#static-variable-serializePropAgainstType",
+    "<span>serializePropAgainstType</span> <span class=\"search-result-import-path\">peritext/src/core/utils/modelUtils/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/converters/sectionconverter/index.js~serializesectionlist",
+    "variable/index.html#static-variable-serializeSectionList",
+    "<span>serializeSectionList</span> <span class=\"search-result-import-path\">peritext/src/core/converters/sectionConverter/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/utils/sectionutils/index.js~setmetavalue",
+    "variable/index.html#static-variable-setMetaValue",
+    "<span>setMetaValue</span> <span class=\"search-result-import-path\">peritext/src/core/utils/sectionUtils/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/models/index.js~settingsmodels",
+    "variable/index.html#static-variable-settingsModels",
+    "<span>settingsModels</span> <span class=\"search-result-import-path\">peritext/src/core/models/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/contextualizers/index.js~table",
+    "variable/index.html#static-variable-table",
+    "<span>table</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/contextualizers/index.js~timeline",
+    "variable/index.html#static-variable-timeline",
+    "<span>timeline</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/connectors/filesystem/index.js~updatefrompath",
+    "variable/index.html#static-variable-updateFromPath",
+    "<span>updateFromPath</span> <span class=\"search-result-import-path\">peritext/src/connectors/filesystem/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/controllers/contentscontroller/index.js~updatefromsource",
+    "variable/index.html#static-variable-updateFromSource",
+    "<span>updateFromSource</span> <span class=\"search-result-import-path\">peritext/src/core/controllers/contentsController/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/controllers/contentscontroller/index.js~updatetosource",
+    "variable/index.html#static-variable-updateToSource",
+    "<span>updateToSource</span> <span class=\"search-result-import-path\">peritext/src/core/controllers/contentsController/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/validators/sectionvalidator/index.js~validateresources",
+    "variable/index.html#static-variable-validateResources",
+    "<span>validateResources</span> <span class=\"search-result-import-path\">peritext/src/core/validators/sectionValidator/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/contextualizers/index.js~webpage",
+    "variable/index.html#static-variable-webpage",
+    "<span>webpage</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/index.js</span>",
+    "variable"
   ],
   [
     "builtinexternal/ecmascriptexternal.js~array",
@@ -468,327 +1080,717 @@ window.esdocSearchIndex = [
     "external"
   ],
   [
-    "components/staticcomponents/staticbackcover.js",
-    "file/components/StaticComponents/StaticBackCover.js.html",
-    "components/StaticComponents/StaticBackCover.js",
+    "src/config/defaultparameters/index.js",
+    "file/src/config/defaultParameters/index.js.html",
+    "src/config/defaultParameters/index.js",
     "file"
   ],
   [
-    "components/staticcomponents/staticbackcover.js~staticbackcover#getgeneralprop",
-    "class/components/StaticComponents/StaticBackCover.js~StaticBackCover.html#instance-method-getGeneralProp",
-    "components/StaticComponents/StaticBackCover.js~StaticBackCover#getGeneralProp",
-    "method"
-  ],
-  [
-    "components/staticcomponents/staticbackcover.js~staticbackcover#render",
-    "class/components/StaticComponents/StaticBackCover.js~StaticBackCover.html#instance-method-render",
-    "components/StaticComponents/StaticBackCover.js~StaticBackCover#render",
-    "method"
-  ],
-  [
-    "components/staticcomponents/staticdocument.js",
-    "file/components/StaticComponents/StaticDocument.js.html",
-    "components/StaticComponents/StaticDocument.js",
+    "src/connectors/filesystem/index.js",
+    "file/src/connectors/filesystem/index.js.html",
+    "src/connectors/filesystem/index.js",
     "file"
   ],
   [
-    "components/staticcomponents/staticdocument.js~staticdocument#render",
-    "class/components/StaticComponents/StaticDocument.js~StaticDocument.html#instance-method-render",
-    "components/StaticComponents/StaticDocument.js~StaticDocument#render",
-    "method"
-  ],
-  [
-    "components/staticcomponents/staticendfigures.js",
-    "file/components/StaticComponents/StaticEndFigures.js.html",
-    "components/StaticComponents/StaticEndFigures.js",
+    "src/contextualizers/citation/index.js",
+    "file/src/contextualizers/citation/index.js.html",
+    "src/contextualizers/citation/index.js",
     "file"
   ],
   [
-    "components/staticcomponents/staticendfigures.js~staticendfigures#render",
-    "class/components/StaticComponents/StaticEndFigures.js~StaticEndFigures.html#instance-method-render",
-    "components/StaticComponents/StaticEndFigures.js~StaticEndFigures#render",
-    "method"
-  ],
-  [
-    "components/staticcomponents/staticendnotes.js",
-    "file/components/StaticComponents/StaticEndNotes.js.html",
-    "components/StaticComponents/StaticEndNotes.js",
+    "src/contextualizers/glossary/staticentityblock.js",
+    "file/src/contextualizers/glossary/StaticEntityBlock.js.html",
+    "src/contextualizers/glossary/StaticEntityBlock.js",
     "file"
   ],
   [
-    "components/staticcomponents/staticendnotes.js~staticendnotes#render",
-    "class/components/StaticComponents/StaticEndNotes.js~StaticEndNotes.html#instance-method-render",
-    "components/StaticComponents/StaticEndNotes.js~StaticEndNotes#render",
+    "src/contextualizers/glossary/staticentityblock.js~staticentityblock#render",
+    "class/src/contextualizers/glossary/StaticEntityBlock.js~StaticEntityBlock.html#instance-method-render",
+    "src/contextualizers/glossary/StaticEntityBlock.js~StaticEntityBlock#render",
     "method"
   ],
   [
-    "components/staticcomponents/staticfootnote.js",
-    "file/components/StaticComponents/StaticFootnote.js.html",
-    "components/StaticComponents/StaticFootnote.js",
+    "src/contextualizers/glossary/staticentityblock.js~staticentityblock#rendermentions",
+    "class/src/contextualizers/glossary/StaticEntityBlock.js~StaticEntityBlock.html#instance-method-renderMentions",
+    "src/contextualizers/glossary/StaticEntityBlock.js~StaticEntityBlock#renderMentions",
+    "method"
+  ],
+  [
+    "src/contextualizers/glossary/staticentityinline.js",
+    "file/src/contextualizers/glossary/StaticEntityInline.js.html",
+    "src/contextualizers/glossary/StaticEntityInline.js",
     "file"
   ],
   [
-    "components/staticcomponents/staticfootnote.js~staticfootnote#render",
-    "class/components/StaticComponents/StaticFootnote.js~StaticFootnote.html#instance-method-render",
-    "components/StaticComponents/StaticFootnote.js~StaticFootnote#render",
+    "src/contextualizers/glossary/staticentityinline.js~staticentityinline#render",
+    "class/src/contextualizers/glossary/StaticEntityInline.js~StaticEntityInline.html#instance-method-render",
+    "src/contextualizers/glossary/StaticEntityInline.js~StaticEntityInline#render",
     "method"
   ],
   [
-    "components/staticcomponents/staticfrontcover.js",
-    "file/components/StaticComponents/StaticFrontCover.js.html",
-    "components/StaticComponents/StaticFrontCover.js",
+    "src/contextualizers/glossary/index.js",
+    "file/src/contextualizers/glossary/index.js.html",
+    "src/contextualizers/glossary/index.js",
     "file"
   ],
   [
-    "components/staticcomponents/staticfrontcover.js~staticfrontcover#getgeneralprop",
-    "class/components/StaticComponents/StaticFrontCover.js~StaticFrontCover.html#instance-method-getGeneralProp",
-    "components/StaticComponents/StaticFrontCover.js~StaticFrontCover#getGeneralProp",
-    "method"
-  ],
-  [
-    "components/staticcomponents/staticfrontcover.js~staticfrontcover#render",
-    "class/components/StaticComponents/StaticFrontCover.js~StaticFrontCover.html#instance-method-render",
-    "components/StaticComponents/StaticFrontCover.js~StaticFrontCover#render",
-    "method"
-  ],
-  [
-    "components/staticcomponents/staticglossary.js",
-    "file/components/StaticComponents/StaticGlossary.js.html",
-    "components/StaticComponents/StaticGlossary.js",
+    "src/contextualizers/imagegallery/staticimagegallery.js",
+    "file/src/contextualizers/imagegallery/StaticImageGallery.js.html",
+    "src/contextualizers/imagegallery/StaticImageGallery.js",
     "file"
   ],
   [
-    "components/staticcomponents/staticglossary.js~staticglossary#render",
-    "class/components/StaticComponents/StaticGlossary.js~StaticGlossary.html#instance-method-render",
-    "components/StaticComponents/StaticGlossary.js~StaticGlossary#render",
+    "src/contextualizers/imagegallery/staticimagegallery.js~staticimagegallery#render",
+    "class/src/contextualizers/imagegallery/StaticImageGallery.js~StaticImageGallery.html#instance-method-render",
+    "src/contextualizers/imagegallery/StaticImageGallery.js~StaticImageGallery#render",
     "method"
   ],
   [
-    "components/staticcomponents/staticimagefigure.js",
-    "file/components/StaticComponents/StaticImageFigure.js.html",
-    "components/StaticComponents/StaticImageFigure.js",
+    "src/contextualizers/imagegallery/index.js",
+    "file/src/contextualizers/imagegallery/index.js.html",
+    "src/contextualizers/imagegallery/index.js",
     "file"
   ],
   [
-    "components/staticcomponents/staticimagefigure.js~staticimagefigure#render",
-    "class/components/StaticComponents/StaticImageFigure.js~StaticImageFigure.html#instance-method-render",
-    "components/StaticComponents/StaticImageFigure.js~StaticImageFigure#render",
-    "method"
-  ],
-  [
-    "components/staticcomponents/staticnotecontent.js",
-    "file/components/StaticComponents/StaticNoteContent.js.html",
-    "components/StaticComponents/StaticNoteContent.js",
+    "src/contextualizers/index.js",
+    "file/src/contextualizers/index.js.html",
+    "src/contextualizers/index.js",
     "file"
   ],
   [
-    "components/staticcomponents/staticnotecontent.js~staticnote#render",
-    "class/components/StaticComponents/StaticNoteContent.js~StaticNote.html#instance-method-render",
-    "components/StaticComponents/StaticNoteContent.js~StaticNote#render",
-    "method"
-  ],
-  [
-    "components/staticcomponents/staticnotepointer.js",
-    "file/components/StaticComponents/StaticNotePointer.js.html",
-    "components/StaticComponents/StaticNotePointer.js",
+    "src/contextualizers/table/statictable.js",
+    "file/src/contextualizers/table/StaticTable.js.html",
+    "src/contextualizers/table/StaticTable.js",
     "file"
   ],
   [
-    "components/staticcomponents/staticnotepointer.js~staticnotepointer#render",
-    "class/components/StaticComponents/StaticNotePointer.js~StaticNotePointer.html#instance-method-render",
-    "components/StaticComponents/StaticNotePointer.js~StaticNotePointer#render",
+    "src/contextualizers/table/statictable.js~statictable#render",
+    "class/src/contextualizers/table/StaticTable.js~StaticTable.html#instance-method-render",
+    "src/contextualizers/table/StaticTable.js~StaticTable#render",
     "method"
   ],
   [
-    "components/staticcomponents/staticreferenceslist.js",
-    "file/components/StaticComponents/StaticReferencesList.js.html",
-    "components/StaticComponents/StaticReferencesList.js",
+    "src/contextualizers/table/index.js",
+    "file/src/contextualizers/table/index.js.html",
+    "src/contextualizers/table/index.js",
     "file"
   ],
   [
-    "components/staticcomponents/staticreferenceslist.js~staticreferenceslist#render",
-    "class/components/StaticComponents/StaticReferencesList.js~StaticReferencesList.html#instance-method-render",
-    "components/StaticComponents/StaticReferencesList.js~StaticReferencesList#render",
-    "method"
-  ],
-  [
-    "components/staticcomponents/staticsection.js",
-    "file/components/StaticComponents/StaticSection.js.html",
-    "components/StaticComponents/StaticSection.js",
+    "src/contextualizers/timeline/index.js",
+    "file/src/contextualizers/timeline/index.js.html",
+    "src/contextualizers/timeline/index.js",
     "file"
   ],
   [
-    "components/staticcomponents/staticsection.js~staticsection#render",
-    "class/components/StaticComponents/StaticSection.js~StaticSection.html#instance-method-render",
-    "components/StaticComponents/StaticSection.js~StaticSection#render",
-    "method"
-  ],
-  [
-    "components/staticcomponents/statictableofcontents.js",
-    "file/components/StaticComponents/StaticTableOfContents.js.html",
-    "components/StaticComponents/StaticTableOfContents.js",
+    "src/contextualizers/webpage/staticwebsiteposter.js",
+    "file/src/contextualizers/webpage/StaticWebsitePoster.js.html",
+    "src/contextualizers/webpage/StaticWebsitePoster.js",
     "file"
   ],
   [
-    "components/staticcomponents/statictableofcontents.js~statictableofcontents#render",
-    "class/components/StaticComponents/StaticTableOfContents.js~StaticTableOfContents.html#instance-method-render",
-    "components/StaticComponents/StaticTableOfContents.js~StaticTableOfContents#render",
+    "src/contextualizers/webpage/staticwebsiteposter.js~structuredwebsiteposter#render",
+    "class/src/contextualizers/webpage/StaticWebsitePoster.js~StructuredWebsitePoster.html#instance-method-render",
+    "src/contextualizers/webpage/StaticWebsitePoster.js~StructuredWebsitePoster#render",
     "method"
   ],
   [
-    "components/staticcomponents/statictableoffigures.js",
-    "file/components/StaticComponents/StaticTableOfFigures.js.html",
-    "components/StaticComponents/StaticTableOfFigures.js",
+    "src/contextualizers/webpage/index.js",
+    "file/src/contextualizers/webpage/index.js.html",
+    "src/contextualizers/webpage/index.js",
     "file"
   ],
   [
-    "components/staticcomponents/statictableoffigures.js~statictableoffigures#render",
-    "class/components/StaticComponents/StaticTableOfFigures.js~StaticTableOfFigures.html#instance-method-render",
-    "components/StaticComponents/StaticTableOfFigures.js~StaticTableOfFigures#render",
-    "method"
-  ],
-  [
-    "components/structureddatacomponents/structuredcoins.js",
-    "file/components/StructuredDataComponents/StructuredCOinS.js.html",
-    "components/StructuredDataComponents/StructuredCOinS.js",
+    "src/core/components/staticcomponents/staticbackcover.js",
+    "file/src/core/components/StaticComponents/StaticBackCover.js.html",
+    "src/core/components/StaticComponents/StaticBackCover.js",
     "file"
   ],
   [
-    "components/structureddatacomponents/structuredcoins.js~structuredcoins#render",
-    "class/components/StructuredDataComponents/StructuredCOinS.js~StructuredCOinS.html#instance-method-render",
-    "components/StructuredDataComponents/StructuredCOinS.js~StructuredCOinS#render",
+    "src/core/components/staticcomponents/staticbackcover.js~staticbackcover#getgeneralprop",
+    "class/src/core/components/StaticComponents/StaticBackCover.js~StaticBackCover.html#instance-method-getGeneralProp",
+    "src/core/components/StaticComponents/StaticBackCover.js~StaticBackCover#getGeneralProp",
     "method"
   ],
   [
-    "components/structureddatacomponents/structuredcite.js",
-    "file/components/StructuredDataComponents/StructuredCite.js.html",
-    "components/StructuredDataComponents/StructuredCite.js",
+    "src/core/components/staticcomponents/staticbackcover.js~staticbackcover#render",
+    "class/src/core/components/StaticComponents/StaticBackCover.js~StaticBackCover.html#instance-method-render",
+    "src/core/components/StaticComponents/StaticBackCover.js~StaticBackCover#render",
+    "method"
+  ],
+  [
+    "src/core/components/staticcomponents/staticdocument.js",
+    "file/src/core/components/StaticComponents/StaticDocument.js.html",
+    "src/core/components/StaticComponents/StaticDocument.js",
     "file"
   ],
   [
-    "components/structureddatacomponents/structuredcite.js~structuredcite#render",
-    "class/components/StructuredDataComponents/StructuredCite.js~StructuredCite.html#instance-method-render",
-    "components/StructuredDataComponents/StructuredCite.js~StructuredCite#render",
+    "src/core/components/staticcomponents/staticdocument.js~staticdocument#render",
+    "class/src/core/components/StaticComponents/StaticDocument.js~StaticDocument.html#instance-method-render",
+    "src/core/components/StaticComponents/StaticDocument.js~StaticDocument#render",
     "method"
   ],
   [
-    "components/structureddatacomponents/structureddate.js",
-    "file/components/StructuredDataComponents/StructuredDate.js.html",
-    "components/StructuredDataComponents/StructuredDate.js",
+    "src/core/components/staticcomponents/staticendfigures.js",
+    "file/src/core/components/StaticComponents/StaticEndFigures.js.html",
+    "src/core/components/StaticComponents/StaticEndFigures.js",
     "file"
   ],
   [
-    "components/structureddatacomponents/structureddate.js~structureddate#render",
-    "class/components/StructuredDataComponents/StructuredDate.js~StructuredDate.html#instance-method-render",
-    "components/StructuredDataComponents/StructuredDate.js~StructuredDate#render",
+    "src/core/components/staticcomponents/staticendfigures.js~staticendfigures#render",
+    "class/src/core/components/StaticComponents/StaticEndFigures.js~StaticEndFigures.html#instance-method-render",
+    "src/core/components/StaticComponents/StaticEndFigures.js~StaticEndFigures#render",
     "method"
   ],
   [
-    "components/structureddatacomponents/structureddate.js~structureddate#setfinalvalue",
-    "class/components/StructuredDataComponents/StructuredDate.js~StructuredDate.html#instance-method-setFinalValue",
-    "components/StructuredDataComponents/StructuredDate.js~StructuredDate#setFinalValue",
-    "method"
-  ],
-  [
-    "components/structureddatacomponents/structuredhyperlink.js",
-    "file/components/StructuredDataComponents/StructuredHyperLink.js.html",
-    "components/StructuredDataComponents/StructuredHyperLink.js",
+    "src/core/components/staticcomponents/staticendnotes.js",
+    "file/src/core/components/StaticComponents/StaticEndNotes.js.html",
+    "src/core/components/StaticComponents/StaticEndNotes.js",
     "file"
   ],
   [
-    "components/structureddatacomponents/structuredhyperlink.js~structuredhyperlink#render",
-    "class/components/StructuredDataComponents/StructuredHyperLink.js~StructuredHyperLink.html#instance-method-render",
-    "components/StructuredDataComponents/StructuredHyperLink.js~StructuredHyperLink#render",
+    "src/core/components/staticcomponents/staticendnotes.js~staticendnotes#render",
+    "class/src/core/components/StaticComponents/StaticEndNotes.js~StaticEndNotes.html#instance-method-render",
+    "src/core/components/StaticComponents/StaticEndNotes.js~StaticEndNotes#render",
     "method"
   ],
   [
-    "components/structureddatacomponents/structuredmetadataplaceholder.js",
-    "file/components/StructuredDataComponents/StructuredMetadataPlaceholder.js.html",
-    "components/StructuredDataComponents/StructuredMetadataPlaceholder.js",
+    "src/core/components/staticcomponents/staticfootnote.js",
+    "file/src/core/components/StaticComponents/StaticFootnote.js.html",
+    "src/core/components/StaticComponents/StaticFootnote.js",
     "file"
   ],
   [
-    "components/structureddatacomponents/structuredmetadataplaceholder.js~structuredmetadataplaceholder#render",
-    "class/components/StructuredDataComponents/StructuredMetadataPlaceholder.js~StructuredMetadataPlaceholder.html#instance-method-render",
-    "components/StructuredDataComponents/StructuredMetadataPlaceholder.js~StructuredMetadataPlaceholder#render",
+    "src/core/components/staticcomponents/staticfootnote.js~staticfootnote#render",
+    "class/src/core/components/StaticComponents/StaticFootnote.js~StaticFootnote.html#instance-method-render",
+    "src/core/components/StaticComponents/StaticFootnote.js~StaticFootnote#render",
     "method"
   ],
   [
-    "components/structureddatacomponents/structuredparentjournal.js",
-    "file/components/StructuredDataComponents/StructuredParentJournal.js.html",
-    "components/StructuredDataComponents/StructuredParentJournal.js",
+    "src/core/components/staticcomponents/staticfrontcover.js",
+    "file/src/core/components/StaticComponents/StaticFrontCover.js.html",
+    "src/core/components/StaticComponents/StaticFrontCover.js",
     "file"
   ],
   [
-    "components/structureddatacomponents/structuredparentjournal.js~structuredparentjournal#render",
-    "class/components/StructuredDataComponents/StructuredParentJournal.js~StructuredParentJournal.html#instance-method-render",
-    "components/StructuredDataComponents/StructuredParentJournal.js~StructuredParentJournal#render",
+    "src/core/components/staticcomponents/staticfrontcover.js~staticfrontcover#getgeneralprop",
+    "class/src/core/components/StaticComponents/StaticFrontCover.js~StaticFrontCover.html#instance-method-getGeneralProp",
+    "src/core/components/StaticComponents/StaticFrontCover.js~StaticFrontCover#getGeneralProp",
     "method"
   ],
   [
-    "components/structureddatacomponents/structuredparentjournal.js~structuredparentjournal#updatehtml",
-    "class/components/StructuredDataComponents/StructuredParentJournal.js~StructuredParentJournal.html#instance-method-updateHtml",
-    "components/StructuredDataComponents/StructuredParentJournal.js~StructuredParentJournal#updateHtml",
+    "src/core/components/staticcomponents/staticfrontcover.js~staticfrontcover#render",
+    "class/src/core/components/StaticComponents/StaticFrontCover.js~StaticFrontCover.html#instance-method-render",
+    "src/core/components/StaticComponents/StaticFrontCover.js~StaticFrontCover#render",
     "method"
   ],
   [
-    "components/structureddatacomponents/structuredperson.js",
-    "file/components/StructuredDataComponents/StructuredPerson.js.html",
-    "components/StructuredDataComponents/StructuredPerson.js",
+    "src/core/components/staticcomponents/staticglossary.js",
+    "file/src/core/components/StaticComponents/StaticGlossary.js.html",
+    "src/core/components/StaticComponents/StaticGlossary.js",
     "file"
   ],
   [
-    "components/structureddatacomponents/structuredperson.js~structuredperson#render",
-    "class/components/StructuredDataComponents/StructuredPerson.js~StructuredPerson.html#instance-method-render",
-    "components/StructuredDataComponents/StructuredPerson.js~StructuredPerson#render",
+    "src/core/components/staticcomponents/staticglossary.js~staticglossary#render",
+    "class/src/core/components/StaticComponents/StaticGlossary.js~StaticGlossary.html#instance-method-render",
+    "src/core/components/StaticComponents/StaticGlossary.js~StaticGlossary#render",
     "method"
   ],
   [
-    "components/structureddatacomponents/structuredperson.js~structuredperson#transformvalues",
-    "class/components/StructuredDataComponents/StructuredPerson.js~StructuredPerson.html#instance-method-transformValues",
-    "components/StructuredDataComponents/StructuredPerson.js~StructuredPerson#transformValues",
-    "method"
-  ],
-  [
-    "components/structureddatacomponents/structuredperson.js~structuredperson#updatehtml",
-    "class/components/StructuredDataComponents/StructuredPerson.js~StructuredPerson.html#instance-method-updateHtml",
-    "components/StructuredDataComponents/StructuredPerson.js~StructuredPerson#updateHtml",
-    "method"
-  ],
-  [
-    "components/structureddatacomponents/structuredpublisher.js",
-    "file/components/StructuredDataComponents/StructuredPublisher.js.html",
-    "components/StructuredDataComponents/StructuredPublisher.js",
+    "src/core/components/staticcomponents/staticimagefigure.js",
+    "file/src/core/components/StaticComponents/StaticImageFigure.js.html",
+    "src/core/components/StaticComponents/StaticImageFigure.js",
     "file"
   ],
   [
-    "components/structureddatacomponents/structuredpublisher.js~structuredpublisher#render",
-    "class/components/StructuredDataComponents/StructuredPublisher.js~StructuredPublisher.html#instance-method-render",
-    "components/StructuredDataComponents/StructuredPublisher.js~StructuredPublisher#render",
+    "src/core/components/staticcomponents/staticimagefigure.js~staticimagefigure#render",
+    "class/src/core/components/StaticComponents/StaticImageFigure.js~StaticImageFigure.html#instance-method-render",
+    "src/core/components/StaticComponents/StaticImageFigure.js~StaticImageFigure#render",
     "method"
   ],
   [
-    "components/structureddatacomponents/structuredpublisher.js~structuredpublisher#updatehtml",
-    "class/components/StructuredDataComponents/StructuredPublisher.js~StructuredPublisher.html#instance-method-updateHtml",
-    "components/StructuredDataComponents/StructuredPublisher.js~StructuredPublisher#updateHtml",
-    "method"
-  ],
-  [
-    "components/structureddatacomponents/structuredspan.js",
-    "file/components/StructuredDataComponents/StructuredSpan.js.html",
-    "components/StructuredDataComponents/StructuredSpan.js",
+    "src/core/components/staticcomponents/staticnotecontent.js",
+    "file/src/core/components/StaticComponents/StaticNoteContent.js.html",
+    "src/core/components/StaticComponents/StaticNoteContent.js",
     "file"
   ],
   [
-    "components/structureddatacomponents/structuredspan.js~structuredspan#render",
-    "class/components/StructuredDataComponents/StructuredSpan.js~StructuredSpan.html#instance-method-render",
-    "components/StructuredDataComponents/StructuredSpan.js~StructuredSpan#render",
+    "src/core/components/staticcomponents/staticnotecontent.js~staticnote#render",
+    "class/src/core/components/StaticComponents/StaticNoteContent.js~StaticNote.html#instance-method-render",
+    "src/core/components/StaticComponents/StaticNoteContent.js~StaticNote#render",
     "method"
   ],
   [
-    "components/index.js",
-    "file/components/index.js.html",
-    "components/index.js",
+    "src/core/components/staticcomponents/staticnotepointer.js",
+    "file/src/core/components/StaticComponents/StaticNotePointer.js.html",
+    "src/core/components/StaticComponents/StaticNotePointer.js",
+    "file"
+  ],
+  [
+    "src/core/components/staticcomponents/staticnotepointer.js~staticnotepointer#render",
+    "class/src/core/components/StaticComponents/StaticNotePointer.js~StaticNotePointer.html#instance-method-render",
+    "src/core/components/StaticComponents/StaticNotePointer.js~StaticNotePointer#render",
+    "method"
+  ],
+  [
+    "src/core/components/staticcomponents/staticreferenceslist.js",
+    "file/src/core/components/StaticComponents/StaticReferencesList.js.html",
+    "src/core/components/StaticComponents/StaticReferencesList.js",
+    "file"
+  ],
+  [
+    "src/core/components/staticcomponents/staticreferenceslist.js~staticreferenceslist#render",
+    "class/src/core/components/StaticComponents/StaticReferencesList.js~StaticReferencesList.html#instance-method-render",
+    "src/core/components/StaticComponents/StaticReferencesList.js~StaticReferencesList#render",
+    "method"
+  ],
+  [
+    "src/core/components/staticcomponents/staticsection.js",
+    "file/src/core/components/StaticComponents/StaticSection.js.html",
+    "src/core/components/StaticComponents/StaticSection.js",
+    "file"
+  ],
+  [
+    "src/core/components/staticcomponents/staticsection.js~staticsection#render",
+    "class/src/core/components/StaticComponents/StaticSection.js~StaticSection.html#instance-method-render",
+    "src/core/components/StaticComponents/StaticSection.js~StaticSection#render",
+    "method"
+  ],
+  [
+    "src/core/components/staticcomponents/statictableofcontents.js",
+    "file/src/core/components/StaticComponents/StaticTableOfContents.js.html",
+    "src/core/components/StaticComponents/StaticTableOfContents.js",
+    "file"
+  ],
+  [
+    "src/core/components/staticcomponents/statictableofcontents.js~statictableofcontents#render",
+    "class/src/core/components/StaticComponents/StaticTableOfContents.js~StaticTableOfContents.html#instance-method-render",
+    "src/core/components/StaticComponents/StaticTableOfContents.js~StaticTableOfContents#render",
+    "method"
+  ],
+  [
+    "src/core/components/staticcomponents/statictableoffigures.js",
+    "file/src/core/components/StaticComponents/StaticTableOfFigures.js.html",
+    "src/core/components/StaticComponents/StaticTableOfFigures.js",
+    "file"
+  ],
+  [
+    "src/core/components/staticcomponents/statictableoffigures.js~statictableoffigures#render",
+    "class/src/core/components/StaticComponents/StaticTableOfFigures.js~StaticTableOfFigures.html#instance-method-render",
+    "src/core/components/StaticComponents/StaticTableOfFigures.js~StaticTableOfFigures#render",
+    "method"
+  ],
+  [
+    "src/core/components/structureddatacomponents/structuredcoins.js",
+    "file/src/core/components/StructuredDataComponents/StructuredCOinS.js.html",
+    "src/core/components/StructuredDataComponents/StructuredCOinS.js",
+    "file"
+  ],
+  [
+    "src/core/components/structureddatacomponents/structuredcoins.js~structuredcoins#render",
+    "class/src/core/components/StructuredDataComponents/StructuredCOinS.js~StructuredCOinS.html#instance-method-render",
+    "src/core/components/StructuredDataComponents/StructuredCOinS.js~StructuredCOinS#render",
+    "method"
+  ],
+  [
+    "src/core/components/structureddatacomponents/structuredcite.js",
+    "file/src/core/components/StructuredDataComponents/StructuredCite.js.html",
+    "src/core/components/StructuredDataComponents/StructuredCite.js",
+    "file"
+  ],
+  [
+    "src/core/components/structureddatacomponents/structuredcite.js~structuredcite#render",
+    "class/src/core/components/StructuredDataComponents/StructuredCite.js~StructuredCite.html#instance-method-render",
+    "src/core/components/StructuredDataComponents/StructuredCite.js~StructuredCite#render",
+    "method"
+  ],
+  [
+    "src/core/components/structureddatacomponents/structureddate.js",
+    "file/src/core/components/StructuredDataComponents/StructuredDate.js.html",
+    "src/core/components/StructuredDataComponents/StructuredDate.js",
+    "file"
+  ],
+  [
+    "src/core/components/structureddatacomponents/structureddate.js~structureddate#render",
+    "class/src/core/components/StructuredDataComponents/StructuredDate.js~StructuredDate.html#instance-method-render",
+    "src/core/components/StructuredDataComponents/StructuredDate.js~StructuredDate#render",
+    "method"
+  ],
+  [
+    "src/core/components/structureddatacomponents/structureddate.js~structureddate#setfinalvalue",
+    "class/src/core/components/StructuredDataComponents/StructuredDate.js~StructuredDate.html#instance-method-setFinalValue",
+    "src/core/components/StructuredDataComponents/StructuredDate.js~StructuredDate#setFinalValue",
+    "method"
+  ],
+  [
+    "src/core/components/structureddatacomponents/structuredhyperlink.js",
+    "file/src/core/components/StructuredDataComponents/StructuredHyperLink.js.html",
+    "src/core/components/StructuredDataComponents/StructuredHyperLink.js",
+    "file"
+  ],
+  [
+    "src/core/components/structureddatacomponents/structuredhyperlink.js~structuredhyperlink#render",
+    "class/src/core/components/StructuredDataComponents/StructuredHyperLink.js~StructuredHyperLink.html#instance-method-render",
+    "src/core/components/StructuredDataComponents/StructuredHyperLink.js~StructuredHyperLink#render",
+    "method"
+  ],
+  [
+    "src/core/components/structureddatacomponents/structuredmetadataplaceholder.js",
+    "file/src/core/components/StructuredDataComponents/StructuredMetadataPlaceholder.js.html",
+    "src/core/components/StructuredDataComponents/StructuredMetadataPlaceholder.js",
+    "file"
+  ],
+  [
+    "src/core/components/structureddatacomponents/structuredmetadataplaceholder.js~structuredmetadataplaceholder#render",
+    "class/src/core/components/StructuredDataComponents/StructuredMetadataPlaceholder.js~StructuredMetadataPlaceholder.html#instance-method-render",
+    "src/core/components/StructuredDataComponents/StructuredMetadataPlaceholder.js~StructuredMetadataPlaceholder#render",
+    "method"
+  ],
+  [
+    "src/core/components/structureddatacomponents/structuredparentjournal.js",
+    "file/src/core/components/StructuredDataComponents/StructuredParentJournal.js.html",
+    "src/core/components/StructuredDataComponents/StructuredParentJournal.js",
+    "file"
+  ],
+  [
+    "src/core/components/structureddatacomponents/structuredparentjournal.js~structuredparentjournal#render",
+    "class/src/core/components/StructuredDataComponents/StructuredParentJournal.js~StructuredParentJournal.html#instance-method-render",
+    "src/core/components/StructuredDataComponents/StructuredParentJournal.js~StructuredParentJournal#render",
+    "method"
+  ],
+  [
+    "src/core/components/structureddatacomponents/structuredparentjournal.js~structuredparentjournal#updatehtml",
+    "class/src/core/components/StructuredDataComponents/StructuredParentJournal.js~StructuredParentJournal.html#instance-method-updateHtml",
+    "src/core/components/StructuredDataComponents/StructuredParentJournal.js~StructuredParentJournal#updateHtml",
+    "method"
+  ],
+  [
+    "src/core/components/structureddatacomponents/structuredperson.js",
+    "file/src/core/components/StructuredDataComponents/StructuredPerson.js.html",
+    "src/core/components/StructuredDataComponents/StructuredPerson.js",
+    "file"
+  ],
+  [
+    "src/core/components/structureddatacomponents/structuredperson.js~structuredperson#render",
+    "class/src/core/components/StructuredDataComponents/StructuredPerson.js~StructuredPerson.html#instance-method-render",
+    "src/core/components/StructuredDataComponents/StructuredPerson.js~StructuredPerson#render",
+    "method"
+  ],
+  [
+    "src/core/components/structureddatacomponents/structuredperson.js~structuredperson#transformvalues",
+    "class/src/core/components/StructuredDataComponents/StructuredPerson.js~StructuredPerson.html#instance-method-transformValues",
+    "src/core/components/StructuredDataComponents/StructuredPerson.js~StructuredPerson#transformValues",
+    "method"
+  ],
+  [
+    "src/core/components/structureddatacomponents/structuredperson.js~structuredperson#updatehtml",
+    "class/src/core/components/StructuredDataComponents/StructuredPerson.js~StructuredPerson.html#instance-method-updateHtml",
+    "src/core/components/StructuredDataComponents/StructuredPerson.js~StructuredPerson#updateHtml",
+    "method"
+  ],
+  [
+    "src/core/components/structureddatacomponents/structuredpublisher.js",
+    "file/src/core/components/StructuredDataComponents/StructuredPublisher.js.html",
+    "src/core/components/StructuredDataComponents/StructuredPublisher.js",
+    "file"
+  ],
+  [
+    "src/core/components/structureddatacomponents/structuredpublisher.js~structuredpublisher#render",
+    "class/src/core/components/StructuredDataComponents/StructuredPublisher.js~StructuredPublisher.html#instance-method-render",
+    "src/core/components/StructuredDataComponents/StructuredPublisher.js~StructuredPublisher#render",
+    "method"
+  ],
+  [
+    "src/core/components/structureddatacomponents/structuredpublisher.js~structuredpublisher#updatehtml",
+    "class/src/core/components/StructuredDataComponents/StructuredPublisher.js~StructuredPublisher.html#instance-method-updateHtml",
+    "src/core/components/StructuredDataComponents/StructuredPublisher.js~StructuredPublisher#updateHtml",
+    "method"
+  ],
+  [
+    "src/core/components/structureddatacomponents/structuredspan.js",
+    "file/src/core/components/StructuredDataComponents/StructuredSpan.js.html",
+    "src/core/components/StructuredDataComponents/StructuredSpan.js",
+    "file"
+  ],
+  [
+    "src/core/components/structureddatacomponents/structuredspan.js~structuredspan#render",
+    "class/src/core/components/StructuredDataComponents/StructuredSpan.js~StructuredSpan.html#instance-method-render",
+    "src/core/components/StructuredDataComponents/StructuredSpan.js~StructuredSpan#render",
+    "method"
+  ],
+  [
+    "src/core/components/index.js",
+    "file/src/core/components/index.js.html",
+    "src/core/components/index.js",
+    "file"
+  ],
+  [
+    "src/core/controllers/annotationscontroller/index.js",
+    "file/src/core/controllers/annotationsController/index.js.html",
+    "src/core/controllers/annotationsController/index.js",
+    "file"
+  ],
+  [
+    "src/core/controllers/assetscontroller/index.js",
+    "file/src/core/controllers/assetsController/index.js.html",
+    "src/core/controllers/assetsController/index.js",
+    "file"
+  ],
+  [
+    "src/core/controllers/contentscontroller/index.js",
+    "file/src/core/controllers/contentsController/index.js.html",
+    "src/core/controllers/contentsController/index.js",
+    "file"
+  ],
+  [
+    "src/core/converters/bibtexconverter/index.js",
+    "file/src/core/converters/bibTexConverter/index.js.html",
+    "src/core/converters/bibTexConverter/index.js",
+    "file"
+  ],
+  [
+    "src/core/converters/markdownconverter/index.js",
+    "file/src/core/converters/markdownConverter/index.js.html",
+    "src/core/converters/markdownConverter/index.js",
+    "file"
+  ],
+  [
+    "src/core/converters/markdownincludesparser/index.js",
+    "file/src/core/converters/markdownIncludesParser/index.js.html",
+    "src/core/converters/markdownIncludesParser/index.js",
+    "file"
+  ],
+  [
+    "src/core/converters/sectionconverter/cleannaivetree.js",
+    "file/src/core/converters/sectionConverter/cleanNaiveTree.js.html",
+    "src/core/converters/sectionConverter/cleanNaiveTree.js",
+    "file"
+  ],
+  [
+    "src/core/converters/sectionconverter/concattree.js",
+    "file/src/core/converters/sectionConverter/concatTree.js.html",
+    "src/core/converters/sectionConverter/concatTree.js",
+    "file"
+  ],
+  [
+    "src/core/converters/sectionconverter/index.js",
+    "file/src/core/converters/sectionConverter/index.js.html",
+    "src/core/converters/sectionConverter/index.js",
+    "file"
+  ],
+  [
+    "src/core/converters/sectionconverter/organizetree.js",
+    "file/src/core/converters/sectionConverter/organizeTree.js.html",
+    "src/core/converters/sectionConverter/organizeTree.js",
+    "file"
+  ],
+  [
+    "src/core/converters/sectionconverter/parsetreeresources.js",
+    "file/src/core/converters/sectionConverter/parseTreeResources.js.html",
+    "src/core/converters/sectionConverter/parseTreeResources.js",
+    "file"
+  ],
+  [
+    "src/core/converters/sectionconverter/propagatedata.js",
+    "file/src/core/converters/sectionConverter/propagateData.js.html",
+    "src/core/converters/sectionConverter/propagateData.js",
+    "file"
+  ],
+  [
+    "src/core/models/index.js",
+    "file/src/core/models/index.js.html",
+    "src/core/models/index.js",
+    "file"
+  ],
+  [
+    "src/core/resolvers/htmlmetatemplateserializer/index.js",
+    "file/src/core/resolvers/htmlMetaTemplateSerializer/index.js.html",
+    "src/core/resolvers/htmlMetaTemplateSerializer/index.js",
+    "file"
+  ],
+  [
+    "src/core/resolvers/resolvecontextualizations/index.js",
+    "file/src/core/resolvers/resolveContextualizations/index.js.html",
+    "src/core/resolvers/resolveContextualizations/index.js",
+    "file"
+  ],
+  [
+    "src/core/resolvers/resolvedatadependencies/index.js",
+    "file/src/core/resolvers/resolveDataDependencies/index.js.html",
+    "src/core/resolvers/resolveDataDependencies/index.js",
+    "file"
+  ],
+  [
+    "src/core/resolvers/resolvesectionagainstmodels/index.js",
+    "file/src/core/resolvers/resolveSectionAgainstModels/index.js.html",
+    "src/core/resolvers/resolveSectionAgainstModels/index.js",
+    "file"
+  ],
+  [
+    "src/core/utils/citationutils/citationmodels.js",
+    "file/src/core/utils/citationUtils/citationModels.js.html",
+    "src/core/utils/citationUtils/citationModels.js",
+    "file"
+  ],
+  [
+    "src/core/utils/citationutils/citationmodels.js~blockcitationmodel#getschematype",
+    "class/src/core/utils/citationUtils/citationModels.js~BlockCitationModel.html#instance-method-getSchemaType",
+    "src/core/utils/citationUtils/citationModels.js~BlockCitationModel#getSchemaType",
+    "method"
+  ],
+  [
+    "src/core/utils/citationutils/citationmodels.js~blockcitationmodel#render",
+    "class/src/core/utils/citationUtils/citationModels.js~BlockCitationModel.html#instance-method-render",
+    "src/core/utils/citationUtils/citationModels.js~BlockCitationModel#render",
+    "method"
+  ],
+  [
+    "src/core/utils/citationutils/citationmodels.js~inlinecitationmodel#getschematype",
+    "class/src/core/utils/citationUtils/citationModels.js~InlineCitationModel.html#instance-method-getSchemaType",
+    "src/core/utils/citationUtils/citationModels.js~InlineCitationModel#getSchemaType",
+    "method"
+  ],
+  [
+    "src/core/utils/citationutils/citationmodels.js~inlinecitationmodel#render",
+    "class/src/core/utils/citationUtils/citationModels.js~InlineCitationModel.html#instance-method-render",
+    "src/core/utils/citationUtils/citationModels.js~InlineCitationModel#render",
+    "method"
+  ],
+  [
+    "src/core/utils/componentsfactory/index.js",
+    "file/src/core/utils/componentsFactory/index.js.html",
+    "src/core/utils/componentsFactory/index.js",
+    "file"
+  ],
+  [
+    "src/core/utils/microdatautils/index.js",
+    "file/src/core/utils/microDataUtils/index.js.html",
+    "src/core/utils/microDataUtils/index.js",
+    "file"
+  ],
+  [
+    "src/core/utils/modelutils/index.js",
+    "file/src/core/utils/modelUtils/index.js.html",
+    "src/core/utils/modelUtils/index.js",
+    "file"
+  ],
+  [
+    "src/core/utils/referenceutils/index.js",
+    "file/src/core/utils/referenceUtils/index.js.html",
+    "src/core/utils/referenceUtils/index.js",
+    "file"
+  ],
+  [
+    "src/core/utils/sectionutils/index.js",
+    "file/src/core/utils/sectionUtils/index.js.html",
+    "src/core/utils/sectionUtils/index.js",
+    "file"
+  ],
+  [
+    "src/core/validators/index.js",
+    "file/src/core/validators/index.js.html",
+    "src/core/validators/index.js",
+    "file"
+  ],
+  [
+    "src/core/validators/sectionvalidator/index.js",
+    "file/src/core/validators/sectionValidator/index.js.html",
+    "src/core/validators/sectionValidator/index.js",
+    "file"
+  ],
+  [
+    "src/exporters/index.js",
+    "file/src/exporters/index.js.html",
+    "src/exporters/index.js",
+    "file"
+  ],
+  [
+    "src/exporters/pdfexporter/index.js",
+    "file/src/exporters/pdfExporter/index.js.html",
+    "src/exporters/pdfExporter/index.js",
+    "file"
+  ],
+  [
+    "src/index.js",
+    "file/src/index.js.html",
+    "src/index.js",
+    "file"
+  ],
+  [
+    "src/referencers/index.js",
+    "file/src/referencers/index.js.html",
+    "src/referencers/index.js",
+    "file"
+  ],
+  [
+    "src/referencers/iso690fr.js",
+    "file/src/referencers/iso690fr.js.html",
+    "src/referencers/iso690fr.js",
+    "file"
+  ],
+  [
+    "src/referencers/iso690fr.js~blockcitation#constructor",
+    "class/src/referencers/iso690fr.js~BlockCitation.html#instance-constructor-constructor",
+    "src/referencers/iso690fr.js~BlockCitation#constructor",
+    "method"
+  ],
+  [
+    "src/referencers/iso690fr.js~blockcitation#renderauthors",
+    "class/src/referencers/iso690fr.js~BlockCitation.html#instance-method-renderAuthors",
+    "src/referencers/iso690fr.js~BlockCitation#renderAuthors",
+    "method"
+  ],
+  [
+    "src/referencers/iso690fr.js~blockcitation#rendercompletereference",
+    "class/src/referencers/iso690fr.js~BlockCitation.html#instance-method-renderCompleteReference",
+    "src/referencers/iso690fr.js~BlockCitation#renderCompleteReference",
+    "method"
+  ],
+  [
+    "src/referencers/iso690fr.js~blockcitation#renderreference",
+    "class/src/referencers/iso690fr.js~BlockCitation.html#instance-method-renderReference",
+    "src/referencers/iso690fr.js~BlockCitation#renderReference",
+    "method"
+  ],
+  [
+    "src/referencers/iso690fr.js~blockcitation#renderreferencedecoration",
+    "class/src/referencers/iso690fr.js~BlockCitation.html#instance-method-renderReferenceDecoration",
+    "src/referencers/iso690fr.js~BlockCitation#renderReferenceDecoration",
+    "method"
+  ],
+  [
+    "src/referencers/iso690fr.js~inlinecitation#constructor",
+    "class/src/referencers/iso690fr.js~InlineCitation.html#instance-constructor-constructor",
+    "src/referencers/iso690fr.js~InlineCitation#constructor",
+    "method"
+  ],
+  [
+    "src/referencers/iso690fr.js~inlinecitation#renderauthors",
+    "class/src/referencers/iso690fr.js~InlineCitation.html#instance-method-renderAuthors",
+    "src/referencers/iso690fr.js~InlineCitation#renderAuthors",
+    "method"
+  ],
+  [
+    "src/referencers/iso690fr.js~inlinecitation#renderreference",
+    "class/src/referencers/iso690fr.js~InlineCitation.html#instance-method-renderReference",
+    "src/referencers/iso690fr.js~InlineCitation#renderReference",
+    "method"
+  ],
+  [
+    "src/renderers/index.js",
+    "file/src/renderers/index.js.html",
+    "src/renderers/index.js",
+    "file"
+  ],
+  [
+    "src/renderers/rendertostatichtml/index.js",
+    "file/src/renderers/renderToStaticHtml/index.js.html",
+    "src/renderers/renderToStaticHtml/index.js",
+    "file"
+  ],
+  [
+    "src/renderers/sharedstaticutils/index.js",
+    "file/src/renderers/sharedStaticUtils/index.js.html",
+    "src/renderers/sharedStaticUtils/index.js",
     "file"
   ]
 ]

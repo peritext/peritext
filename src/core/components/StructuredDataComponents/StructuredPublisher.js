@@ -2,8 +2,6 @@ import React, {PropTypes} from 'react';
 import reactStringReplace from 'react-string-replace';
 import Radium from 'radium';
 
-// let styles = {};
-
 /**
  * dumb component for rendering the structured representation of publisher information
  */
@@ -12,9 +10,9 @@ export default class StructuredPublisher extends React.Component {
 
   /**
    * propTypes
-   * @property {object} resource the resource parsed for structuring data
-   * @property {string} pattern the pattern to apply for formatting thresource
-   * @property {string} property the microformat property to apply to the structured element
+   * @property {object} resource - the resource parsed for structuring data
+   * @property {string} pattern - the pattern to apply for formatting thresource
+   * @property {string} property - the microformat property to apply to the structured element
    */
   static propTypes = {
     resource: PropTypes.object,
@@ -29,6 +27,8 @@ export default class StructuredPublisher extends React.Component {
 
   /**
    * updateHtml : transform pattern+resource props into a react element
+   * @param {object} resource - the resource to represent
+   * @param {string} pattern - the pattern to represent the resource with
    * @return {ReactElement} markup
    */
   updateHtml(resource, pattern) {

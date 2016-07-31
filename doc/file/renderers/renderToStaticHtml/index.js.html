@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">renderers/renderToStaticHtml/index.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/peritext/peritext.git" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">renderToStaticHtml</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-renderSection">renderSection</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">sharedStaticUtils</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-composeRenderedSections">composeRenderedSections</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">renderers/renderToStaticHtml/index.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * Render to static html
+ * @module renderers/renderToStaticHtml
+ */
+
+import {waterfall} from &apos;async&apos;;
+import {readFile} from &apos;fs&apos;;
+import {resolve} from &apos;path&apos;;
+import React from &apos;react&apos;;
+import ReactDOMServer from &apos;react-dom/server&apos;;
+import {IntlProvider} from &apos;react-intl&apos;;
+
+import resolveDataDependencies from &apos;./../../core/resolvers/resolveDataDependencies&apos;;
+import {getMetaValue} from &apos;./../../core/utils/sectionUtils&apos;;
+import {resolveSettings} from &apos;./../../core/utils/modelUtils&apos;;
+import {settingsModels} from &apos;./../../core/models&apos;;
+import {resolveContextualizationsImplementation, resolveContextualizationsRelations} from &apos;./../../core/resolvers/resolveContextualizations&apos;;
+import {composeRenderedSections} from &apos;./../sharedStaticUtils&apos;;
+import {
+  StaticDocument,
+  StaticFootnote,
+  StaticNotePointer
+} from &apos;./../../core/components&apos;;
+
+const defaultStylesPath = &apos;./../../config/defaultStyles/&apos;;
+
+const listChildren = (sections, key)=&gt; {
+  let output = [];
+  sections.forEach((thatSection) =&gt;{
+    if (thatSection.parent === key) {
+      output = output.concat(thatSection);
+      const thatKey = getMetaValue(thatSection.metadata, &apos;general&apos;, &apos;citeKey&apos;);
+      output = output.concat(listChildren(sections, thatKey));
+    }
+  });
+  return output;
+};
+
+const resolveNode = (node, section, settings) =&gt;{
+  if (node.tag === &apos;note&apos;) {
+    const note = section.notes.find(thatNote =&gt;{
+      return thatNote.id === node.target;
+    });
+    node.props = {note};
+    if (settings.notesPosition === &apos;footnotes&apos;) {
+      node.tag = StaticFootnote;
+    } else {
+      node.tag = StaticNotePointer;
+    }
+    node.special = true;
+  }
+  if (node.child) {
+    node.child = node.child.map(child =&gt;{
+      return resolveNode(child, section, settings);
+    });
+  }
+  return node;
+};
+
+const setSectionContents = (section, settings) =&gt;{
+  return section.contents.map(node =&gt; {
+    return resolveNode(node, section, settings);
+  });
+};
+
+/**
+ * Renders a section representation as a string representation of an html page
+ * @param {Object} params - The params of the export
+ * @param {Object} params.section - the (root) section to export
+ * @param {array} params.sectionList - the section context (if necessary)
+ * @param {Object} params.settings - the specific rendering settings to use in order to produce the output
+ * @param {boolean} params.includeChildren - whether to include section&apos;s children sections
+ * @param {string} params.destinationFolder - where to output the file
+ * @params {Object} assetsController - the module to use in order to communicate with assets
+ * @param {Object} assetsParams - the assets parameters to use while communicating with assetsController
+ * @param {function(err:error, result:string)} rendererCallback - the possible errors encountered during rendering, and the resulting html data as a string
+ */
+export const renderSection = ({
+  section,
+  sectionList,
+  settings = {},
+  includeChildren = true
+}, assetsController, assetsParams, rendererCallback) =&gt;{
+
+  // populate rendering params with defaults if needed
+  // todo : resolve in a separate file (modelUtils)
+  const finalSettings = resolveSettings(settings, getMetaValue(section.metadata, &apos;general&apos;, &apos;bibType&apos;), settingsModels);
+
+  // always work with a list of sections, even if just one
+  let sectios = [section];
+  let style = &apos;&apos;;
+  const motherKey = getMetaValue(section.metadata, &apos;general&apos;, &apos;citeKey&apos;);
+  // delimitate the sections to render - if includeChildren is enabled filter parented
+  if (includeChildren) {
+    sectios = sectios.concat(listChildren(sectionList, motherKey));
+  }
+  waterfall([
+    // load default css rules
+    (cback) =&gt;{
+      readFile(resolve(__dirname + defaultStylesPath + &apos;global.css&apos;), (err, contents)=&gt; {
+        if (!err) {
+          style += contents;
+        }
+        cback(err, sectios);
+      });
+    // load default paged-related css rules
+    }, (sections, cback) =&gt;{
+      readFile(resolve(__dirname + defaultStylesPath + &apos;page.css&apos;), (err, contents)=&gt; {
+        if (!err) {
+          style += contents;
+        }
+        cback(err, sections);
+      });
+    }, (inputSections, depCallback) =&gt;{
+      resolveDataDependencies(inputSections, assetsController, assetsParams, true, depCallback);
+    // build html code
+    }, (inputSections, cback) =&gt;{
+      let sections = inputSections.slice();
+      // build final css code (default + user-generated customizers)
+      const cssCustomizers = sections[0].customizers &amp;&amp; sections[0].customizers.styles;
+      if (cssCustomizers !== undefined) {
+        for (const name in cssCustomizers) {
+          if (name !== &apos;screen.css&apos;) {
+            style += &apos;\n\n&apos; + cssCustomizers[name];
+          }
+        }
+      }
+       // prepare translations
+      const lang = getMetaValue(sections[0].metadata, &apos;general&apos;, &apos;language&apos;) || &apos;en&apos;;
+      const messages = require(&apos;./../../../translations/locales/&apos; + lang + &apos;.json&apos;);
+      // build metadata (todo : check if react-based helmet lib could cover &quot;rare&quot; metadata props like dublincore ones)
+      const metaHead = sections[0].metadata
+                    .filter((meta) =&gt;{
+                      return meta.htmlHead;
+                    })
+                    .reduce((exp, meta) =&gt;{
+                      return exp + meta.htmlHead;
+                    }, &apos;&apos;) + &apos;&lt;meta name=&quot;generator&quot; content=&quot;peritext&quot;/&gt;&apos;;
+      // order contextualizations (ibid/opCit, ...)
+      sections = resolveContextualizationsRelations(sections, finalSettings);
+      // resolve contextualizations js representation according to settings
+      let figuresCount = 0;
+      sections = sections.map((sectio, index) =&gt;{
+        sectio.figuresCount = figuresCount;
+        const newSection = resolveContextualizationsImplementation(sectio, &apos;static&apos;, finalSettings);
+        figuresCount = newSection.figuresCount;
+        return newSection;
+      });
+      // transform input js abstraction of contents to a js abstraction specific to rendering settings
+      sections = sections.map(section1 =&gt; {
+        const contents = setSectionContents(section1, finalSettings);
+        return Object.assign(section1, contents, {type: &apos;contents&apos;});
+      });
+      const {renderedSections, finalStyle} = composeRenderedSections(sections, finalSettings, style, messages);
+      // render document
+      const renderedContents = ReactDOMServer.renderToStaticMarkup(
+        &lt;IntlProvider locale={lang} messages={messages}&gt;
+          &lt;StaticDocument sections={renderedSections} rootSection={sections[0]} settings={finalSettings} /&gt;
+        &lt;/IntlProvider&gt;);
+      const html = `
+&lt;!doctype:html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    ${metaHead}
+    &lt;style&gt;
+      ${finalStyle}
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    ${renderedContents}
+   &lt;/body&gt;
+&lt;/html&gt;`.replace(/itemscope=&quot;&quot;/g, &apos;itemscope&apos;);
+      cback(null, html);
+    }
+  ], rendererCallback);
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.7)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

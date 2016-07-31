@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">controllers/contentsController/controller.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/peritext/peritext.git" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">assetsController</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getAssetUri">getAssetUri</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getReader">getReader</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">contentsController</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-updateFromSource">updateFromSource</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-updateToSource">updateToSource</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-updateFromSource">updateFromSource</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-updateToSource">updateToSource</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">controllers/contentsController/controller.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import {waterfall, map as asyncMap} from &apos;async&apos;;
+import {parseSection, serializeSectionList} from &apos;./../../converters/sectionConverter&apos;;
+import {diff} from &apos;deep-diff&apos;;
+
+let connector;
+let connectorName;
+let tempConnectorName;
+
+const updateConnector = (params) =&gt; {
+  tempConnectorName = params.connector;
+  if (tempConnectorName !== connectorName) {
+    connectorName = tempConnectorName;
+    connector = require(&apos;./../../../connectors/&apos; + params.connector);
+  }
+};
+
+/**
+ * I echo an expected/actual fstree difference with Create/Update/Delete operations
+ * on the content source through the appropriate connector middleware
+ */
+const applyDifference = (difference, params, connect, callback) =&gt; {
+  let item;
+  switch (difference.kind) {
+  // new element
+  case &apos;N&apos;:
+    console.log(&apos;unhandled new element difference &apos;, difference);
+    break;
+  // delete element
+  case &apos;D&apos;:
+    connect.deleteFromPath({path: difference.lhs.path, params}, callback);
+    break;
+  // edit element
+  case &apos;E&apos;:
+    if (difference.path.pop() === &apos;path&apos;) {
+      return callback();
+    }
+    console.log(&apos;unhandled edit difference &apos;, difference);
+    break;
+  // change in array
+  case &apos;A&apos;:
+    switch (difference.item.kind) {
+    case &apos;N&apos;:
+      item = difference.item.rhs;
+      waterfall([
+        // create root
+        function(cb) {
+          connect.createFromPath({path: item.path, params, type: item.type, overwrite: true, stringContents: (item.stringContents || &apos;&apos;)}, cb);
+        },
+        // create children
+        function(cb) {
+          if (item.children) {
+            asyncMap(item.children, function(child, cb2) {
+              connect.createFromPath({path: child.path, params, type: child.type, overwrite: true, stringContents: (child.stringContents || &apos;&apos;)}, cb2);
+            }, cb);
+          } else cb();
+        }
+      ], callback);
+      break;
+
+    case &apos;D&apos;:
+      item = difference.item.lhs;
+      connect.deleteFromPath({path: item.path, params}, callback);
+      break;
+    case &apos;E&apos;:
+      item = difference.item.rhs;
+      waterfall([
+        // create root
+        function(cb) {
+          connect.updateFromPath({path: item.path, params, stringContents: (item.stringContents || &apos;&apos;)}, cb);
+        },
+        // create children
+        function(cb) {
+          if (item.children) {
+            asyncMap(item.children, function(child, cb2) {
+              connect.updateFromPath({path: child.path, params, stringContents: (child.stringContents || &apos;&apos;)}, cb2);
+            }, cb);
+          } else cb();
+        }
+      ], callback);
+      break;
+    default:
+      console.log(&apos;unhandled difference &apos;, difference);
+      break;
+    }
+    break;
+  default:
+    console.log(&apos;unhandled difference &apos;, difference);
+    break;
+  }
+  callback();
+};
+
+/**
+ * I parse source through connector and returns a peritextSectionArray javascript representation
+ */
+export const updateFromSource = (params, models, parameters, callback) =&gt; {
+  updateConnector(params);
+  waterfall([
+    function(cb) {
+      connector.readFromPath({params, path: [], depth: true, parseFiles: true}, function(err, results) {
+        cb(err, results);
+      });
+    },
+    function(tree, cb) {
+      parseSection({tree, models, parameters}, cb);
+    }
+  ],
+  function(err, results) {
+    callback(err, results);
+  });
+};
+
+/**
+ * I update a data source from a peritextSectionArray, by &quot;diffing&quot; new fsTree with previous fsTree
+ * I compare new peritextSectionArray javascript state to old fsTree tree
+ * then make a diff list with deep-diff
+ * then monitor source tree updating (with C.U.D. operations) accordingly
+ */
+export const updateToSource = (params, sections, models, oldFsTree, callback) =&gt; {
+  updateConnector(params);
+  serializeSectionList({sectionList: sections, models, basePath: params.basePath}, function(err, newFsTree) {
+    const differences = diff(oldFsTree, newFsTree);
+    asyncMap(differences, function(difference, cb) {
+      applyDifference(difference, params, connector, cb);
+    }, function(errors, res) {
+      callback(errors, sections);
+    });
+  });
+};
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.7)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

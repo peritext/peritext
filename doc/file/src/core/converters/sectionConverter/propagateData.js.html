@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../../">
+  <title data-ice="title">src/core/converters/sectionConverter/propagateData.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/peritext/peritext.git" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-assetsController">assetsController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contentsController">contentsController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-defaultModels">defaultModels</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-defaultParameters">defaultParameters</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">connectors/filesystem</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createFromPath">createFromPath</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-deleteFromPath">deleteFromPath</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getAssetUri">getAssetUri</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-readFromPath">readFromPath</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-updateFromPath">updateFromPath</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">contextualizers</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-citation">citation</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-glossary">glossary</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-imagegallery">imagegallery</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-table">table</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-timeline">timeline</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-webpage">webpage</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">contextualizers/citation</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockDynamic">contextualizeBlockDynamic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockStatic">contextualizeBlockStatic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineDynamic">contextualizeInlineDynamic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineStatic">contextualizeInlineStatic</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">contextualizers/glossary</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/contextualizers/glossary/StaticEntityBlock.js~StaticEntityBlock.html">StaticEntityBlock</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/contextualizers/glossary/StaticEntityInline.js~StaticEntityInline.html">StaticEntityInline</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockDynamic">contextualizeBlockDynamic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockStatic">contextualizeBlockStatic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineDynamic">contextualizeInlineDynamic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineStatic">contextualizeInlineStatic</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">contextualizers/imagegallery</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/contextualizers/imagegallery/StaticImageGallery.js~StaticImageGallery.html">StaticImageGallery</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockDynamic">contextualizeBlockDynamic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockStatic">contextualizeBlockStatic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineDynamic">contextualizeInlineDynamic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineStatic">contextualizeInlineStatic</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">contextualizers/table</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/contextualizers/table/StaticTable.js~StaticTable.html">StaticTable</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockDynamic">contextualizeBlockDynamic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockStatic">contextualizeBlockStatic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineDynamic">contextualizeInlineDynamic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineStatic">contextualizeInlineStatic</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">contextualizers/timeline</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockDynamic">contextualizeBlockDynamic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockStatic">contextualizeBlockStatic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineDynamic">contextualizeInlineDynamic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineStatic">contextualizeInlineStatic</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">contextualizers/webpage</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/contextualizers/webpage/StaticWebsitePoster.js~StructuredWebsitePoster.html">StructuredWebsitePoster</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockDynamic">contextualizeBlockDynamic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockStatic">contextualizeBlockStatic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineDynamic">contextualizeInlineDynamic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineStatic">contextualizeInlineStatic</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core/components/StaticComponents</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticBackCover.js~StaticBackCover.html">StaticBackCover</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticDocument.js~StaticDocument.html">StaticDocument</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticEndFigures.js~StaticEndFigures.html">StaticEndFigures</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticEndNotes.js~StaticEndNotes.html">StaticEndNotes</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticFootnote.js~StaticFootnote.html">StaticFootnote</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticFrontCover.js~StaticFrontCover.html">StaticFrontCover</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticGlossary.js~StaticGlossary.html">StaticGlossary</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticImageFigure.js~StaticImageFigure.html">StaticImageFigure</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticNoteContent.js~StaticNote.html">StaticNote</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticNotePointer.js~StaticNotePointer.html">StaticNotePointer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticReferencesList.js~StaticReferencesList.html">StaticReferencesList</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticSection.js~StaticSection.html">StaticSection</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticTableOfContents.js~StaticTableOfContents.html">StaticTableOfContents</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticTableOfFigures.js~StaticTableOfFigures.html">StaticTableOfFigures</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core/components/StructuredDataComponents</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StructuredDataComponents/StructuredCOinS.js~StructuredCOinS.html">StructuredCOinS</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StructuredDataComponents/StructuredCite.js~StructuredCite.html">StructuredCite</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StructuredDataComponents/StructuredDate.js~StructuredDate.html">StructuredDate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StructuredDataComponents/StructuredHyperLink.js~StructuredHyperLink.html">StructuredHyperLink</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StructuredDataComponents/StructuredMetadataPlaceholder.js~StructuredMetadataPlaceholder.html">StructuredMetadataPlaceholder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StructuredDataComponents/StructuredParentJournal.js~StructuredParentJournal.html">StructuredParentJournal</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StructuredDataComponents/StructuredPerson.js~StructuredPerson.html">StructuredPerson</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StructuredDataComponents/StructuredPublisher.js~StructuredPublisher.html">StructuredPublisher</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StructuredDataComponents/StructuredSpan.js~StructuredSpan.html">StructuredSpan</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core/controllers/assetsController</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getAssetUri">getAssetUri</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getReader">getReader</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core/controllers/contentsController</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-updateFromSource">updateFromSource</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-updateToSource">updateToSource</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core/converters/bibTexConverter</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-parseBibAuthors">parseBibAuthors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-parseBibContextualization">parseBibContextualization</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-parseBibNestedValues">parseBibNestedValues</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-parseBibTexStr">parseBibTexStr</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-serializeBibTexObject">serializeBibTexObject</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core/converters/markdownConverter</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-markdownToJsAbstraction">markdownToJsAbstraction</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core/converters/markdownIncludesParser</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-parseMarkdown">parseMarkdown</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core/converters/sectionConverter</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cleanNaiveTree">cleanNaiveTree</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-concatTree">concatTree</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-parseSection">parseSection</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-serializeSectionList">serializeSectionList</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-organizeTree">organizeTree</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-parseTreeResources">parseTreeResources</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-propagateData">propagateData</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core/models</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizerModels">contextualizerModels</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-metadataModels">metadataModels</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-resourceModels">resourceModels</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-sectionTypeModels">sectionTypeModels</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-settingsModels">settingsModels</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core/resolvers/htmlMetaTemplateSerializer</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-serializeHtmlMeta">serializeHtmlMeta</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core/resolvers/resolveContextualizations</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-numbersToLetters">numbersToLetters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-resolveBindings">resolveBindings</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-resolveContextualizationsImplementation">resolveContextualizationsImplementation</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-resolveContextualizationsRelations">resolveContextualizationsRelations</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core/resolvers/resolveDataDependencies</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-resolveDataDependencies">resolveDataDependencies</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core/resolvers/resolveSectionAgainstModels</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-resolveSectionAgainstModels">resolveSectionAgainstModels</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core/utils/citationUtils</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/utils/citationUtils/citationModels.js~BlockCitationModel.html">BlockCitationModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/utils/citationUtils/citationModels.js~InlineCitationModel.html">InlineCitationModel</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core/utils/componentsFactory</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-renderContents">renderContents</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-jsToComponent">jsToComponent</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core/utils/microDataUtils</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-bibToSchema">bibToSchema</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-generateOpenUrl">generateOpenUrl</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core/utils/modelUtils</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getContextualizerModel">getContextualizerModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getResourceModel">getResourceModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-resolvePropAgainstType">resolvePropAgainstType</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-resolveSettings">resolveSettings</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-serializePropAgainstType">serializePropAgainstType</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core/utils/referenceUtils</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-computeReferences">computeReferences</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core/utils/sectionUtils</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-deleteMeta">deleteMeta</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-filterResources">filterResources</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-findByMetadata">findByMetadata</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getMetaValue">getMetaValue</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-hasMeta">hasMeta</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-hasResource">hasResource</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-metaStringToCouple">metaStringToCouple</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-sameMetaScope">sameMetaScope</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-setMetaValue">setMetaValue</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core/validators/sectionValidator</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-validateResources">validateResources</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">exporters/pdfExporter</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-exportSectionToPdf">exportSectionToPdf</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">referencers</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/referencers/iso690fr.js~BlockCitation.html">BlockCitation</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/referencers/iso690fr.js~InlineCitation.html">InlineCitation</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-iso690fr">iso690fr</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">renderers/renderToStaticHtml</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-renderSection">renderSection</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">renderers/sharedStaticUtils</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-composeRenderedSections">composeRenderedSections</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/core/converters/sectionConverter/propagateData.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * This module handles metadata propagation within and between sections
+ * @module converter/sectionConverter/propagateData
+ */
+import {getMetaValue, setMetaValue, hasMeta, findByMetadata, metaStringToCouple, hasResource} from &apos;./../../utils/sectionUtils&apos;;
+
+const inheritMetadataFromParent = (section, sectionTypeModels, sections, parentMetadata) =&gt; {
+  if (parentMetadata === undefined) {
+    return section;
+  }
+  // inherit metadata props
+  // discriminated inedit propert
+  const inherited = parentMetadata.filter((pmeta) =&gt;{
+    if (hasMeta(section.metadata, pmeta)) {
+      return false;
+    }
+    return true;
+  });
+
+  const parentKey = getMetaValue(parentMetadata, &apos;general&apos;, &apos;citeKey&apos;);
+  section.metadata = section.metadata.concat(inherited.map((meta) =&gt;{
+    return Object.assign({}, meta, {inheritedVerticallyFrom: {domain: &apos;general&apos;, key: &apos;citeKey&apos;, value: parentKey}});
+  }));
+
+  // set final bibType
+  const bibType = getMetaValue(section.metadata, &apos;general&apos;, &apos;bibType&apos;);
+  if (bibType === &apos;section&apos;) {
+    const parentBibType = getMetaValue(parentMetadata, &apos;general&apos;, &apos;bibType&apos;);
+    const parentModel = sectionTypeModels.acceptedTypes[parentBibType];
+    if (parentModel) {
+      section.metadata = setMetaValue(section.metadata, &apos;general&apos;, &apos;bibType&apos;, parentModel.childrenType);
+    }
+  }
+
+  // set hierarchical level (parent + 1 or parent + own level)
+  const parentLevel = getMetaValue(parentMetadata, &apos;general&apos;, &apos;generalityLevel&apos;);
+  const ownLevel = getMetaValue(section.metadata, &apos;general&apos;, &apos;generalityLevel&apos;);
+  if (parentLevel &amp;&amp; ownLevel) {
+    section.metadata = setMetaValue(section.metadata, &apos;general&apos;, &apos;generalityLevel&apos;, parentLevel + ownLevel);
+  }else if (parentLevel) {
+    section.metadata.push({
+      domain: &apos;general&apos;,
+      key: &apos;generalityLevel&apos;,
+      value: parentLevel + 1
+    });
+  }else {
+    section.metadata.push({
+      domain: &apos;general&apos;,
+      key: &apos;generalityLevel&apos;,
+      value: 1
+    });
+  }
+  return section;
+};
+
+
+const doInheritMetadataFromParent = (section, sectionTypeModels, sections) =&gt; {
+  if (section.parent &amp;&amp; !section.metadataInherited) {
+
+    section.metadataInherited = true;
+
+    let parent = findByMetadata(sections, &apos;general&apos;, &apos;citeKey&apos;, section.parent);
+    // first, make your parent inherit from its parent
+    if (!parent.metadataInherited) {
+      parent = doInheritMetadataFromParent(section, sectionTypeModels, sections);
+    }
+    // then inherit yourself from your parent
+    return inheritMetadataFromParent(section, sectionTypeModels, sections, parent.metadata);
+  }
+  // if(getMetaValue(section.metadata, &apos;general&apos;, &apos;citeKey&apos;) === &apos;mybook&apos;){
+  //   console.log(section.metadata);
+  // }
+  section.metadataInherited = true;
+  return section;
+};
+
+
+const inheritResourcesFromParent = (section, sections, parentResources, parentKey) =&gt; {
+  if (parentResources === undefined) {
+    return section;
+  }
+
+  // inherit meta props - take anything that you don&apos;t already have
+  const inherited = parentResources.filter((presource) =&gt;{
+    return !hasResource(section.resources, presource);
+  });
+  section.resources = section.resources.concat(inherited.map((meta) =&gt;{
+    return Object.assign({}, meta, {inheritedVerticallyFrom: parentKey});
+  }));
+  return section;
+};
+
+
+const doInheritResourcesFromParent = (section, sections) =&gt; {
+  if (section.parent &amp;&amp; !section.resourcesInherited) {
+    section.resourcesInherited = true;
+    let parent = findByMetadata(sections, &apos;general&apos;, &apos;citeKey&apos;, section.parent);
+    // first, make your parent inherit from its parent
+    if (!parent.resourcesInherited) {
+      parent = doInheritResourcesFromParent(section, sections);
+    }
+    // then inherit yourself from your parent
+    return inheritResourcesFromParent(section, sections, parent.resources, getMetaValue(parent.metadata, &apos;general&apos;, &apos;citeKey&apos;));
+  }
+  section.resourcesInherited = true;
+  return section;
+};
+
+const inheritContextualizersFromParent = (section, sections, parentContextualizers, parentKey) =&gt; {
+  if (parentContextualizers === undefined) {
+    return section;
+  }
+  // inherit context props - take anything that you don&apos;t already have
+  const inherited = parentContextualizers.filter((presource) =&gt;{
+    return !hasResource(section.contextualizers, presource);
+  });
+
+  section.contextualizers = section.contextualizers.concat(inherited.map((meta) =&gt;{
+    return Object.assign({}, meta, {inheritedVerticallyFrom: parentKey});
+  }));
+  return section;
+};
+
+
+const doInheritContextualizersFromParent = (section, sections) =&gt; {
+  if (section.parent &amp;&amp; !section.contextualizersInherited) {
+    section.contextualizersInherited = true;
+    let parent = findByMetadata(sections, &apos;general&apos;, &apos;citeKey&apos;, section.parent);
+    // first, make your parent inherit from its parent
+    if (!parent.contextualizersInherited) {
+      parent = doInheritResourcesFromParent(section, sections);
+    }
+    // then inherit yourself from your parent
+    return inheritContextualizersFromParent(section, sections, parent.contextualizers, getMetaValue(parent.metadata, &apos;general&apos;, &apos;citeKey&apos;));
+  }
+  section.contextualizersInherited = true;
+  return section;
+};
+
+const inheritCustomizersFromParent = (section, sections, parentCustomizers, parentKey) =&gt; {
+  if (parentCustomizers === undefined) {
+    return section;
+  }else if (section.customizers === undefined) {
+    section.customizers = Object.assign({}, parentCustomizers);
+  }else {
+    for (const index in section.customizers) {
+      if (parentCustomizers[index] !== undefined) {
+        // if customizer is a string (e.g. : css data) append child data after parent data
+        if (typeof section.customizers[index] === &apos;string&apos;) {
+          section.customizers[index] = parentCustomizers[index] + &apos;\n\n\n&apos; + section.customizers[index];
+        }else {
+          for (const jindex in parentCustomizers[index]) {
+            // add customizer from parent (e.g. : template) if not defined in child
+            if (section.customizers[index][jindex] === undefined) {
+              section.customizers[index][jindex] = parentCustomizers[index][jindex];
+            }
+          }
+        }
+      }
+    }
+  }
+  return section;
+};
+
+const doInheritCustomizersFromParent = (section, sections) =&gt; {
+  if (section.parent &amp;&amp; !section.customizersInherited) {
+    section.customizersInherited = true;
+    let parent = findByMetadata(sections, &apos;general&apos;, &apos;citeKey&apos;, section.parent);
+    // first, make your parent inherit from its parent
+    if (!parent.customizersInherited) {
+      parent = doInheritCustomizersFromParent(section, sections);
+    }
+    // then inherit yourself from your parent
+    return inheritCustomizersFromParent(section, sections, parent.customizers, getMetaValue(parent.metadata, &apos;general&apos;, &apos;citeKey&apos;));
+  }
+  section.customizersInherited = true;
+  return section;
+};
+
+const populateLaterally = (section, models) =&gt; {
+  const toInclude = [];
+
+  section.metadata.forEach((meta) =&gt; {
+    const model = models[meta.domain][meta.key];
+    if (model) {
+      const spreaded = model.propagatesTo.map(metaStringToCouple);
+      spreaded.forEach((sp) =&gt;{
+        const existantProp = hasMeta(section.metadata, sp);
+        if (!existantProp) {
+          toInclude.push(Object.assign({}, sp, {value: meta.value}, {inheritedHorizontallyFrom: {domain: meta.domain, key: meta.key}}));
+        }
+      });
+    }
+  });
+  section.metadata = section.metadata.concat(toInclude);
+  return section;
+};
+
+/**
+ * Populate the metadatas of a list of sections, by applying propagation from parents or inbetween metadata values (e.g. : from twitter domain to open graph domain)
+ * @param {Object} params - the params of propagation
+ * @param {array} params.errors - the list of errors possibly inherited from previous steps
+ * @param {array} params.sections - the list of sections to transform
+ * @param {Object} params.models - the models to parse the sections with
+ * @param {Object} params.parent - if specified, sections that don&apos;t have a parent will all be considered as children of this one (but it won&apos;t be parsed itself)
+ * @param {function(error: error, result: {errors: array, sections: array})} callback - the new transformation errors and updated sections
+ */
+export const propagateData = ({errors, sections, models, parent}, callback) =&gt; {
+  let noParents = sections.filter((section) =&gt;{
+    return !section.parent;
+  });
+  if (parent) {
+    // inherit metadata from args
+    const inheritedMetadata = parent.metadata;
+    const inheritedResources = parent.resources;
+    const inheritedContextualizations = parent.contextualizers;
+    const parentKey = getMetaValue(inheritedMetadata, &apos;general&apos;, &apos;citeKey&apos;);
+
+    noParents = noParents.map((inputSection) =&gt;{
+      let section = Object.assign({}, inputSection);
+      section.metadataInherited = true;
+      section.resourcesInherited = true;
+      section.contextualizersInherited = true;
+      section = inheritResourcesFromParent(section, sections, inheritedResources, parentKey);
+      section = inheritContextualizersFromParent(section, sections, inheritedContextualizations, parentKey);
+      section = inheritMetadataFromParent(section, models.sectionTypeModels, sections, inheritedMetadata);
+      return section;
+    });
+    // inherit resources from arguments
+  } else {
+    noParents.forEach((section) =&gt;{
+      // hierarchical level bootstrapping
+      section.metadata.push({
+        domain: &apos;general&apos;,
+        key: &apos;generalityLevel&apos;,
+        value: 1
+      });
+      section.resourcesInherited = true;
+      section.metadataInherited = true;
+      section.customizersInherited = true;
+      section.contextualizersInherited = true;
+    });
+  }
+  let outputSections = [].concat(sections);
+  // clean bibType
+  outputSections = sections.map((section) =&gt;{
+    let newBibType = getMetaValue(section.metadata, &apos;general&apos;, &apos;bibType&apos;);
+    newBibType = newBibType ? newBibType.split(&apos;peritext&apos;) : [];
+    newBibType = newBibType.length &gt; 1 ? newBibType[1] : newBibType[0];
+    section.metadata = setMetaValue(section.metadata, &apos;general&apos;, &apos;bibType&apos;, newBibType);
+    return section;
+  });
+
+  // inherit metadata from parents to children
+  outputSections = sections.map((section) =&gt;{
+    return doInheritMetadataFromParent(section, models.sectionTypeModels, sections);
+  });
+
+  // inherit resources from parents to children
+  outputSections = sections.map((section) =&gt;{
+    return doInheritResourcesFromParent(section, sections);
+  });
+
+  // inherit contextualizers from parents to children
+  outputSections = sections.map((section) =&gt;{
+    return doInheritContextualizersFromParent(section, sections);
+  });
+
+  // inherit customizers form parents to children
+  outputSections = sections.map((section) =&gt;{
+    return doInheritCustomizersFromParent(section, sections);
+  });
+
+  // inherit metadata laterally, from one property to another
+  outputSections = sections.map((section) =&gt;{
+    return populateLaterally(section, models.metadataModels);
+  });
+
+  // cleaning control properties
+  outputSections.forEach((section) =&gt;{
+    delete section.metadataInherited;
+    delete section.customizersInherited;
+    delete section.resourcesInherited;
+    delete section.contextualizersInherited;
+  });
+
+  callback(null, {errors, sections: outputSections});
+};
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.7)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

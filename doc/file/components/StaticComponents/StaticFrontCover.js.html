@@ -64,8 +64,6 @@
 import StructuredPerson from &apos;./../StructuredDataComponents/StructuredPerson.js&apos;;
 import Radium from &apos;radium&apos;;
 
-// let styles = {};
-
 /**
  * dumb component for cover page of a static publication of document
  */
@@ -83,6 +81,12 @@ export default class StaticFrontCover extends React.Component {
   static defaultProps = {
   };
 
+  /**
+   * Util for returning the value of a &quot;general&quot; type metadata
+   * @param {array} list - the list of metadata
+   * @param {string} key - the key of the metadata prop
+   * @return {string} value
+   */
   getGeneralProp(list, key) {
     const obj = list.find((meta) =&gt; {
       return meta.domain === &apos;general&apos; &amp;&amp; meta.key === key;

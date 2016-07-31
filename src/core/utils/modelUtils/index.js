@@ -1,10 +1,15 @@
 /**
- * Dedicated to everything that deals with models (composing, translating values, ...)
+ * Utils - dedicated to everything that deals with models (composing, translating values, ...)
+ * @module utils/modelUtils
  */
-
 import {parseBibAuthors} from './../../converters/bibTexConverter';
 
-// I build a model object from a specific bibType, composing it according to its inheritance dependencies, from more general models to the specific bibType
+/**
+ * Builds a model object from a specific bibType, composing it according to its inheritance dependencies, from more general models to the specific bibType
+ * @param {string} bibType - the bibType of the resource
+ * @param {Object} resourceModels - the models describing resources data
+ * @return {Object} model - the model corresponding to the input bibType
+ */
 export const getResourceModel = (bibType, resourceModels) =>{
   const model = resourceModels.individual[bibType];
   if (model) {
@@ -33,7 +38,6 @@ export const getResourceModel = (bibType, resourceModels) =>{
         defaultContextualizer = resourceModels.collective[category].defaultContextualizer;
       }
     });
-
     // then finally parse common props
     otherProps = resourceModels.collective.common
                     .properties
@@ -53,7 +57,12 @@ export const getResourceModel = (bibType, resourceModels) =>{
   return undefined;
 };
 
-// I build a model object from a specific bibType, composing it according to its inheritance dependencies, from more general models to the specific bibType
+/**
+ * Build a model object from a specific bibType, composing it according to its inheritance dependencies, from more general models to the specific bibType
+ * @param {string} bibType - the bibType of the contextualizer
+ * @param {Object} contextualizerModels - the models describing contextualizer possible data
+ * @return {Object} model - the model corresponding to the input bibType
+ */
 export const getContextualizerModel = (bibType, contextualizerModels) =>{
   const model = contextualizerModels.individual[bibType];
   if (model) {
@@ -96,7 +105,13 @@ export const getContextualizerModel = (bibType, contextualizerModels) =>{
   return undefined;
 };
 
-// I turn a (possibly not primitive : array, object, bibAuthor) value to a string-friendly value, thanks to its model's type
+/**
+ * Transforms a (possibly not primitive : array, object, bibAuthor) value to a string-friendly value, thanks to its model's type
+ * @param {Object} prop - the prop to serialize
+ * @param {string} valueType - the type of the value ('string', 'stringArray', 'bibAuthor', ...)
+ * @param {Object} model - the model to parse the prop against
+ * @return {string} newValue - the serialized value
+ */
 export const serializePropAgainstType = (prop, valueType, model) => {
   if (prop === undefined) {
     return undefined;
@@ -141,7 +156,13 @@ export const serializePropAgainstType = (prop, valueType, model) => {
 
 };
 
-// I turn a string value into another (possibly complex) value, thanks to its model's type
+/**
+ * Transforms a string value to a complex and type-compliant value, thanks to its model's type
+ * @param {Object} prop - the prop to resolve
+ * @param {string} valueType - the type of the value ('string', 'stringArray', 'bibAuthor', ...)
+ * @param {Object} model - the model to parse the prop against
+ * @return {string|array|number|Object} newValue - the resolved value
+ */
 export const resolvePropAgainstType = (prop, valueType, model) => {
   if (prop === undefined) {
     // looking for a default value if no value specified
@@ -213,6 +234,13 @@ export const resolvePropAgainstType = (prop, valueType, model) => {
   }
 };
 
+/**
+ * Populate rendering settings according to default bibtype-related settings
+ * @param {Object} settings - the settings provided as input
+ * @param {string} bibType - the bibType of the root section to render
+ * @param {Object} settingsModel - the model to use for populating the settings
+ * @return {Object} newSettings - the populated settings
+ */
 export const resolveSettings = (settings, bibType, settingsModel) =>{
   const typeModel = {};
   for (const param in settingsModel) {

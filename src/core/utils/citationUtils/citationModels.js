@@ -1,3 +1,7 @@
+/**
+ * Utils - dedicated to create a super abstract class for producing citation style specific, citation components
+ * @module utils/citationModels
+ */
 import React, {PropTypes} from 'react';
 import {
   StructuredCOinS
@@ -10,11 +14,11 @@ import * as formatter from './../microDataUtils/';
 export class BlockCitationModel extends React.Component {
   /**
    * propTypes
-   * @property {object} resource the resource to use for making the citation
-   * @property {object} contextualization the details of contextualization (e.g. page)
-   * @property {boolean} ibid immediately recurrent citation ?
-   * @property {boolean} opCit not immediately recurent citation ?
-   * @property {string} schemaType microformat type fo the item
+   * @property {object} resource - the resource to use for making the citation
+   * @property {object} contextualization - the details of contextualization (e.g. page)
+   * @property {boolean} ibid - immediately recurrent citation ?
+   * @property {boolean} opCit - not immediately recurent citation ?
+   * @property {string} schemaType - microformat type fo the item
    */
   static propTypes = {
     resource: PropTypes.object,
@@ -24,10 +28,10 @@ export class BlockCitationModel extends React.Component {
     schemaType: PropTypes.string
   };
 
-  static defaultProps() {
-
-  }
-
+  /**
+   * Gets the schematype of the citation, from contextualization statement or from the resource bibType
+   * @return schemaType - the schematype of the citation
+  */
   getSchemaType() {
     return this.props.schemaType || formatter.bibToSchema(this.props.resource.bibType);
   }
@@ -74,10 +78,10 @@ export class InlineCitationModel extends React.Component {
     schemaType: PropTypes.string
   };
 
-  static defaultProps() {
-
-  }
-
+  /**
+   * Gets the schematype of the citation, from contextualization statement or from the resource bibType
+   * @return schemaType - the schematype of the citation
+  */
   getSchemaType() {
     return this.props.schemaType || formatter.bibToSchema(this.props.resource.bibType);
   }

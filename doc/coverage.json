@@ -1,155 +1,332 @@
 {
-  "coverage": "66.03%",
-  "expectCount": 53,
-  "actualCount": 35,
+  "coverage": "100%",
+  "expectCount": 173,
+  "actualCount": 173,
   "files": {
-    "components/StaticComponents/StaticBackCover.js": {
+    "src/referencers/iso690fr.js": {
+      "expectCount": 10,
+      "actualCount": 10,
+      "undocumentLines": []
+    },
+    "src/core/utils/citationUtils/citationModels.js": {
+      "expectCount": 6,
+      "actualCount": 6,
+      "undocumentLines": []
+    },
+    "src/core/components/StaticComponents/StaticBackCover.js": {
       "expectCount": 3,
-      "actualCount": 1,
-      "undocumentLines": [
-        10,
-        23
-      ]
-    },
-    "components/StaticComponents/StaticDocument.js": {
-      "expectCount": 2,
-      "actualCount": 1,
-      "undocumentLines": [
-        26
-      ]
-    },
-    "components/StaticComponents/StaticEndFigures.js": {
-      "expectCount": 2,
-      "actualCount": 2,
-      "undocumentLines": []
-    },
-    "components/StaticComponents/StaticEndNotes.js": {
-      "expectCount": 2,
-      "actualCount": 2,
-      "undocumentLines": []
-    },
-    "components/StaticComponents/StaticFootnote.js": {
-      "expectCount": 2,
-      "actualCount": 1,
-      "undocumentLines": [
-        13
-      ]
-    },
-    "components/StaticComponents/StaticFrontCover.js": {
-      "expectCount": 3,
-      "actualCount": 1,
-      "undocumentLines": [
-        11,
-        24
-      ]
-    },
-    "components/StaticComponents/StaticGlossary.js": {
-      "expectCount": 2,
-      "actualCount": 2,
-      "undocumentLines": []
-    },
-    "components/StaticComponents/StaticImageFigure.js": {
-      "expectCount": 2,
-      "actualCount": 1,
-      "undocumentLines": [
-        9
-      ]
-    },
-    "components/StaticComponents/StaticNoteContent.js": {
-      "expectCount": 2,
-      "actualCount": 1,
-      "undocumentLines": [
-        12
-      ]
-    },
-    "components/StaticComponents/StaticNotePointer.js": {
-      "expectCount": 2,
-      "actualCount": 1,
-      "undocumentLines": [
-        10
-      ]
-    },
-    "components/StaticComponents/StaticReferencesList.js": {
-      "expectCount": 2,
-      "actualCount": 2,
-      "undocumentLines": []
-    },
-    "components/StaticComponents/StaticSection.js": {
-      "expectCount": 2,
-      "actualCount": 1,
-      "undocumentLines": [
-        21
-      ]
-    },
-    "components/StaticComponents/StaticTableOfContents.js": {
-      "expectCount": 2,
-      "actualCount": 2,
-      "undocumentLines": []
-    },
-    "components/StaticComponents/StaticTableOfFigures.js": {
-      "expectCount": 2,
-      "actualCount": 2,
-      "undocumentLines": []
-    },
-    "components/StructuredDataComponents/StructuredCOinS.js": {
-      "expectCount": 2,
-      "actualCount": 2,
-      "undocumentLines": []
-    },
-    "components/StructuredDataComponents/StructuredCite.js": {
-      "expectCount": 2,
-      "actualCount": 1,
-      "undocumentLines": [
-        10
-      ]
-    },
-    "components/StructuredDataComponents/StructuredDate.js": {
-      "expectCount": 3,
-      "actualCount": 1,
-      "undocumentLines": [
-        10,
-        28
-      ]
-    },
-    "components/StructuredDataComponents/StructuredHyperLink.js": {
-      "expectCount": 2,
-      "actualCount": 2,
-      "undocumentLines": []
-    },
-    "components/StructuredDataComponents/StructuredMetadataPlaceholder.js": {
-      "expectCount": 2,
-      "actualCount": 1,
-      "undocumentLines": [
-        15
-      ]
-    },
-    "components/StructuredDataComponents/StructuredParentJournal.js": {
-      "expectCount": 3,
-      "actualCount": 2,
-      "undocumentLines": [
-        16
-      ]
-    },
-    "components/StructuredDataComponents/StructuredPerson.js": {
-      "expectCount": 4,
       "actualCount": 3,
-      "undocumentLines": [
-        12
-      ]
+      "undocumentLines": []
     },
-    "components/StructuredDataComponents/StructuredPublisher.js": {
-      "expectCount": 3,
-      "actualCount": 2,
-      "undocumentLines": [
-        11
-      ]
-    },
-    "components/StructuredDataComponents/StructuredSpan.js": {
+    "src/core/components/StaticComponents/StaticDocument.js": {
       "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/core/components/StaticComponents/StaticEndFigures.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/core/components/StaticComponents/StaticEndNotes.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/contextualizers/glossary/StaticEntityBlock.js": {
+      "expectCount": 3,
+      "actualCount": 3,
+      "undocumentLines": []
+    },
+    "src/contextualizers/glossary/StaticEntityInline.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/core/components/StaticComponents/StaticFootnote.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/core/components/StaticComponents/StaticFrontCover.js": {
+      "expectCount": 3,
+      "actualCount": 3,
+      "undocumentLines": []
+    },
+    "src/core/components/StaticComponents/StaticGlossary.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/core/components/StaticComponents/StaticImageFigure.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/contextualizers/imagegallery/StaticImageGallery.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/core/components/StaticComponents/StaticNoteContent.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/core/components/StaticComponents/StaticNotePointer.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/core/components/StaticComponents/StaticReferencesList.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/core/components/StaticComponents/StaticSection.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/contextualizers/table/StaticTable.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/core/components/StaticComponents/StaticTableOfContents.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/core/components/StaticComponents/StaticTableOfFigures.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/core/components/StructuredDataComponents/StructuredCOinS.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/core/components/StructuredDataComponents/StructuredCite.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/core/components/StructuredDataComponents/StructuredDate.js": {
+      "expectCount": 3,
+      "actualCount": 3,
+      "undocumentLines": []
+    },
+    "src/core/components/StructuredDataComponents/StructuredHyperLink.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/core/components/StructuredDataComponents/StructuredMetadataPlaceholder.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/core/components/StructuredDataComponents/StructuredParentJournal.js": {
+      "expectCount": 3,
+      "actualCount": 3,
+      "undocumentLines": []
+    },
+    "src/core/components/StructuredDataComponents/StructuredPerson.js": {
+      "expectCount": 4,
+      "actualCount": 4,
+      "undocumentLines": []
+    },
+    "src/core/components/StructuredDataComponents/StructuredPublisher.js": {
+      "expectCount": 3,
+      "actualCount": 3,
+      "undocumentLines": []
+    },
+    "src/core/components/StructuredDataComponents/StructuredSpan.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/contextualizers/webpage/StaticWebsitePoster.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/index.js": {
+      "expectCount": 4,
+      "actualCount": 4,
+      "undocumentLines": []
+    },
+    "src/core/utils/microDataUtils/index.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/contextualizers/index.js": {
+      "expectCount": 6,
+      "actualCount": 6,
+      "undocumentLines": []
+    },
+    "src/core/converters/sectionConverter/cleanNaiveTree.js": {
+      "expectCount": 1,
       "actualCount": 1,
-      "undocumentLines": [
-        10
-      ]
+      "undocumentLines": []
+    },
+    "src/renderers/sharedStaticUtils/index.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/core/utils/referenceUtils/index.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/core/converters/sectionConverter/concatTree.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/contextualizers/webpage/index.js": {
+      "expectCount": 4,
+      "actualCount": 4,
+      "undocumentLines": []
+    },
+    "src/contextualizers/citation/index.js": {
+      "expectCount": 4,
+      "actualCount": 4,
+      "undocumentLines": []
+    },
+    "src/contextualizers/table/index.js": {
+      "expectCount": 4,
+      "actualCount": 4,
+      "undocumentLines": []
+    },
+    "src/contextualizers/timeline/index.js": {
+      "expectCount": 4,
+      "actualCount": 4,
+      "undocumentLines": []
+    },
+    "src/contextualizers/glossary/index.js": {
+      "expectCount": 4,
+      "actualCount": 4,
+      "undocumentLines": []
+    },
+    "src/contextualizers/imagegallery/index.js": {
+      "expectCount": 4,
+      "actualCount": 4,
+      "undocumentLines": []
+    },
+    "src/core/models/index.js": {
+      "expectCount": 5,
+      "actualCount": 5,
+      "undocumentLines": []
+    },
+    "src/connectors/filesystem/index.js": {
+      "expectCount": 5,
+      "actualCount": 5,
+      "undocumentLines": []
+    },
+    "src/core/utils/sectionUtils/index.js": {
+      "expectCount": 9,
+      "actualCount": 9,
+      "undocumentLines": []
+    },
+    "src/exporters/pdfExporter/index.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/core/controllers/assetsController/index.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/core/utils/modelUtils/index.js": {
+      "expectCount": 5,
+      "actualCount": 5,
+      "undocumentLines": []
+    },
+    "src/referencers/index.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/core/utils/componentsFactory/index.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/core/converters/markdownConverter/index.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/core/resolvers/resolveContextualizations/index.js": {
+      "expectCount": 4,
+      "actualCount": 4,
+      "undocumentLines": []
+    },
+    "src/core/converters/sectionConverter/organizeTree.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/core/converters/bibTexConverter/index.js": {
+      "expectCount": 5,
+      "actualCount": 5,
+      "undocumentLines": []
+    },
+    "src/core/converters/markdownIncludesParser/index.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/core/converters/sectionConverter/index.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/core/converters/sectionConverter/parseTreeResources.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/core/converters/sectionConverter/propagateData.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/renderers/renderToStaticHtml/index.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/core/resolvers/resolveDataDependencies/index.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/core/resolvers/resolveSectionAgainstModels/index.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/core/resolvers/htmlMetaTemplateSerializer/index.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/core/controllers/contentsController/index.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/core/validators/sectionValidator/index.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
     }
   }
 }

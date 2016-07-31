@@ -1,11 +1,13 @@
+/**
+ * This module handles metadata propagation within and between sections
+ * @module converter/sectionConverter/propagateData
+ */
 import {getMetaValue, setMetaValue, hasMeta, findByMetadata, metaStringToCouple, hasResource} from './../../utils/sectionUtils';
-
 
 const inheritMetadataFromParent = (section, sectionTypeModels, sections, parentMetadata) => {
   if (parentMetadata === undefined) {
     return section;
   }
-
   // inherit metadata props
   // discriminated inedit propert
   const inherited = parentMetadata.filter((pmeta) =>{
@@ -194,7 +196,15 @@ const populateLaterally = (section, models) => {
   return section;
 };
 
-
+/**
+ * Populate the metadatas of a list of sections, by applying propagation from parents or inbetween metadata values (e.g. : from twitter domain to open graph domain)
+ * @param {Object} params - the params of propagation
+ * @param {array} params.errors - the list of errors possibly inherited from previous steps
+ * @param {array} params.sections - the list of sections to transform
+ * @param {Object} params.models - the models to parse the sections with
+ * @param {Object} params.parent - if specified, sections that don't have a parent will all be considered as children of this one (but it won't be parsed itself)
+ * @param {function(error: error, result: {errors: array, sections: array})} callback - the new transformation errors and updated sections
+ */
 export const propagateData = ({errors, sections, models, parent}, callback) => {
   let noParents = sections.filter((section) =>{
     return !section.parent;

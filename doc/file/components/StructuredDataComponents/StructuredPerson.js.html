@@ -65,8 +65,6 @@ import reactStringReplace from &apos;react-string-replace&apos;;
 
 import Radium from &apos;radium&apos;;
 
-// let styles = {};
-
 /**
  * dumb component for rendering the structured representation of a person
  */
@@ -75,9 +73,9 @@ export default class StructuredPerson extends React.Component {
 
   /**
    * propTypes
-   * @property {object} resource the person object which may contain the following props : &quot;lastName&quot;, &quot;firstName&quot;, &quot;role&quot;, and &quot;information&quot;
-   * @property {string} pattern the pattern to apply for formatting the person name to html, eg : &quot; ${lastName:capitals}, ${firstName:initials}&quot;
-   * @property {string} property the microformat property to apply to the structured element
+   * @property {object} resource - the person object which may contain the following props : &quot;lastName&quot;, &quot;firstName&quot;, &quot;role&quot;, and &quot;information&quot;
+   * @property {string} pattern - the pattern to apply for formatting the person name to html, eg : &quot; ${lastName:capitals}, ${firstName:initials}&quot;
+   * @property {string} property - the microformat property to apply to the structured element
    */
   static propTypes = {
     resource: PropTypes.object,
@@ -92,7 +90,9 @@ export default class StructuredPerson extends React.Component {
 
   /**
    * transformValues modifies firstName and lastName according to pattern indications
-   * @return {Object}
+   * @param {Object} author - the person representation to transform
+   * @param {string} pattern - the pattern to use for transforming person representation
+   * @return {Object} newAuthor - new author object
    */
   transformValues(author, pattern) {
     const vals = Object.assign({}, author);

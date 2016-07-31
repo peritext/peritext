@@ -1,8 +1,6 @@
 import React, {PropTypes} from 'react';
 import Radium from 'radium';
 
-// let styles = {};
-
 /**
  * dumb component for rendering the structured representation of a static note pointer
  */
@@ -11,6 +9,7 @@ export default class StaticNotePointer extends React.Component {
 
   /**
    * propTypes
+   * @property {Object} note - the note object to use in order to render the note pointer
    */
   static propTypes = {
     note: PropTypes.object,

@@ -1,12 +1,12 @@
 /**
  * iso690 bibliographic norm formatter (lang: fr)
+ * @module referencers/iso690fr
+ * @todo Not finished resourceType-to-citation mapping (documented properly only books and journal articles - setup a default presentation for others)
  * Doc 1 : http://revues.refer.org/telechargement/fiche-bibliographie.pdf
  * Doc 2 : https://www.mpl.ird.fr/documentation/download/FormBibliog.pdf
- * TODO 1 : Not finished resourceType-to-citation mapping (documented properly only books and journal articles - setup a default presentation for others)
- * TODO 2 : handle year numerotation - if several publications of the same author(s) are cited, they should be alphabetically numeroted in the order of bibliography
- * (this require to handle the ${bibliography} template feature first, then update code accordingly)
  */
-import React from 'react';
+
+import React, {PropTypes} from 'react';
 import {InlineCitationModel, BlockCitationModel} from './../core/utils/citationUtils/citationModels.js';
 import {
   StructuredPerson,
@@ -18,14 +18,19 @@ import {
 } from './../core/components/';
 import Radium from 'radium';
 
-const renderAdditionnal = (obj) =>{
-  const details = obj.contextualization.contextualizer;
+/**
+ * Renders additionnal citation information, such as pages mentions, translations, etc.
+ * @param {Object} propsObj - the React element props
+ * @return {ReactElement} markup
+ */
+const renderAdditionnal = (propsObj) =>{
+  const details = propsObj.contextualization.contextualizer;
   if (!details) {
     return '';
   }
   return (
     <span className="peritext-citation-details">
-      {details.page || details.pages || obj.resource.caption || obj.resource.note || obj.resource.translation || obj.resource.original ? ', ' : ''}
+      {details.page || details.pages || propsObj.resource.caption || propsObj.resource.note || propsObj.resource.translation || propsObj.resource.original ? ', ' : ''}
       {details.page ?
         <span className="peritext-citation-quote-pages">
         p. {details.page}
@@ -36,21 +41,21 @@ const renderAdditionnal = (obj) =>{
         pp. {details.pages}
         </span>
        : ''}
-       {(details.page || details.pages) && obj.resource.caption ? ', ' : ''}
-       {obj.resource.caption ?
-        <StructuredSpan htmlClass="peritext-citation-comment" property="comment" value={obj.resource.caption} />
+       {(details.page || details.pages) && propsObj.resource.caption ? ', ' : ''}
+       {propsObj.resource.caption ?
+        <StructuredSpan htmlClass="peritext-citation-comment" property="comment" value={propsObj.resource.caption} />
        : ''}
-       {(details.page || details.pages) && obj.resource.note ? ', ' : ''}
-       {obj.resource.note ?
-        <StructuredSpan htmlClass="peritext-citation-comment" property="comment" value={obj.resource.note} />
+       {(details.page || details.pages) && propsObj.resource.note ? ', ' : ''}
+       {propsObj.resource.note ?
+        <StructuredSpan htmlClass="peritext-citation-comment" property="comment" value={propsObj.resource.note} />
        : ''}
-       {obj.resource.translation ?
+       {propsObj.resource.translation ?
           <span className="peritext-citation-translation">
             . Traduction : <q>details.translation</q>
           </span>
           : ''
         }
-       {obj.resource.translation ?
+       {propsObj.resource.translation ?
           <span className="peritext-citation-original">
             . Citation originale : <q>details.original</q>
           </span>
@@ -65,13 +70,31 @@ const renderAdditionnal = (obj) =>{
  */
 @Radium
 export class BlockCitation extends BlockCitationModel {
-
+  /**
+   * constructor
+   * @param {object} props
+   */
   constructor() {
     super();
   }
 
+  /**
+   * propTypes
+   * @property {object} resource - the resource to build the citation with
+   * @property {object} contextualization - the contextualization to build the citation with
+   */
+  static propTypes = {
+    contextualization: PropTypes.object,
+    resource: PropTypes.object
+  }
+  /**
+   * Renders additionnal citation information, such as pages mentions, translations, etc.
+   */
   renderAdditionnal = renderAdditionnal;
-
+  /**
+   * Renders the representation of involved author (from resource), for long citations outputs
+   * @return {ReactElement} markup
+   */
   renderAuthors() {
     const pattern = '${lastName:capitals}, ${firstName}';
     if (this.props.resource.author && this.props.resource.author.length <= 2) {
@@ -97,6 +120,10 @@ export class BlockCitation extends BlockCitationModel {
     return '';
   }
 
+  /**
+   * Renders the complete reference of a resource
+   * @return {ReactElement} markup
+   */
   renderCompleteReference() {
     switch (this.props.resource.bibType) {
     /* case book not set because is default for now
@@ -148,6 +175,10 @@ export class BlockCitation extends BlockCitationModel {
     }
   }
 
+  /**
+   * Renders additionnal reference information (isbn, doi, url)
+   * @return {ReactElement} markup
+   */
   renderReferenceDecoration() {
     if (this.props.resource.isbn || this.props.resource.url || this.props.resource.doi) {
       return (
@@ -169,6 +200,10 @@ export class BlockCitation extends BlockCitationModel {
     }
   }
 
+  /**
+   * Renders final markup of the contextualization
+   * @return {ReactElement} markup
+   */
   renderReference() {
     return (
       <span
@@ -194,13 +229,33 @@ export class BlockCitation extends BlockCitationModel {
  */
 @Radium
 export class InlineCitation extends InlineCitationModel {
-
+  /**
+   * constructor
+   * @param {object} props
+   */
   constructor() {
     super();
   }
 
+  /**
+   * propTypes
+   * @property {object} resource - the resource to build the citation with
+   * @property {object} contextualization - the contextualization to build the citation with
+   */
+   static propTypes = {
+     contextualization: PropTypes.object,
+     resource: PropTypes.object
+   }
+
+  /**
+   * Renders additionnal citation information, such as pages mentions, translations, etc.
+   */
   renderAdditionnal = renderAdditionnal;
 
+  /**
+   * Renders the representation of involved author (from resource), for short citations outputs
+   * @return {ReactElement} markup
+   */
   renderAuthors() {
     if (this.props.resource.author.length <= 2) {
       return this.props.resource.author.map((author, index) => {
@@ -220,6 +275,10 @@ export class InlineCitation extends InlineCitationModel {
     );
   }
 
+  /**
+   * Renders final markup of the contextualization
+   * @return {ReactElement} markup
+   */
   renderReference() {
     if (this.props.ibid === true) {
       return (

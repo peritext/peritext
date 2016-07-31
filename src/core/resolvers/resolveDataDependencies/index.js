@@ -1,7 +1,19 @@
+/**
+ * Resolver dedicated to resolve @assets statements and @res statements
+ * @module resolvers/resolveDataDependencies
+ */
 import {map as asyncMap, mapSeries as asyncMapSeries, waterfall} from 'async';
 const CsvConverter = require('csvtojson').Converter;
 const csvConverter = new CsvConverter({});
 
+/**
+ * Resolves interpolations ni metadata, resources, and contextualizations, and possibly fetches stores necessary data for rendering
+ * @param {array} inputSections - the sections to resolve
+ * @param {Object} assetsController - the assets controller module to use to communicate with assets
+ * @param {Object} assetsParams - the params to use for accessing the assets
+ * @param {boolean} resolveData - whether to fetch and store necessary data right away or to store methods for later lazy-loading
+ * @param {function(err: error, finalSections: array)} callback - callbacks a possible errors and the updated list of sections
+ */
 export default function resolveDataDependencies(inputSections, assetsController, assetsParams, resolveData, callback) {
   let res;
   let match;

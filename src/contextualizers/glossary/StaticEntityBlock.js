@@ -1,18 +1,20 @@
 import React, {PropTypes} from 'react';
 import Radium from 'radium';
-
-import {bibToSchema} from './../../core/utils/microDataUtils';
 // let styles = {};
-
+import {bibToSchema} from './../../core/utils/microDataUtils';
 
 /**
- * dumb component and placeholder for rendering the structured representation of an entity citation
+ * dumb component and placeholder for rendering the structured representation of an entity long citation (in a glossary for example)
  */
 @Radium
 export default class StaticEntityBlock extends React.Component {
 
   /**
    * propTypes
+   * @property {object} entity - the entity resource to contextualize
+   * @property {object} contextualizer - the contextualizer params to use for contextualization
+   * @property {object} contextualization - the contextualization object
+   * @property {object} settings - the set of settings to use for rendering
    */
   static propTypes = {
     entity: PropTypes.object,
@@ -27,6 +29,10 @@ export default class StaticEntityBlock extends React.Component {
     }
   };
 
+  /**
+   * render a structured representation of the entities mentions, sorted by aliases
+   * @return {ReactElement} markup
+   */
   renderMentions() {
     const self = this;
     return Object.keys(this.props.entity.aliases).map(function(alias, aliasIndex) {
@@ -44,7 +50,7 @@ export default class StaticEntityBlock extends React.Component {
   }
 
   /**
-   * render
+   * render component
    * @return {ReactElement} markup
    */
   render() {

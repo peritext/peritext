@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">exporters/pdfExporter/index.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/peritext/peritext.git" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">pdfExporter</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-exportSectionToPdf">exportSectionToPdf</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">exporters/pdfExporter/index.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * Prince PDF exporter
+ * @module exporters/pdfExporter
+ */
+
+
+/**
+ * This module inputs a specific peritext section, including possibly its children sections
+ * and outputs a pdf file ready to display.
+ * The converter used is PrinceXML non-commercial version.
+ * After endless trials with free software converters such as wkhtmltopdf, weasyprint or phantomjs-pdf,
+ * I could not find a way to use a free (gratis &amp; open) tech. to produce &amp; sufficiently reliable and user-customizable pdf output (notably via css3 @paged-media props).
+ * For instance, wkhtmltopdf (and webkit-based converters in general) does not support &apos;float:footnotes&apos; feature which is mandatory for scholarly outputs like peritext&apos;s ones
+ * Therefore I chose proprietary software PrinceXML, which works wonderfully well. It is used in its free version for now (which is why Prince logo is added on the first page, no commercial use license)
+ */
+
+const Prince = require(&apos;prince&apos;);
+import {resolve} from &apos;path&apos;;
+import {waterfall} from &apos;async&apos;;
+import {
+  writeFile,
+  exists,
+  mkdir
+} from &apos;fs&apos;;
+
+import {getMetaValue} from &apos;./../../core/utils/sectionUtils&apos;;
+import renderSection from &apos;./../../renderers/renderToStaticHtml&apos;;
+
+/**
+ * Exports a section representation to a pdf file
+ * @param {Object} params - The params of the export
+ * @param {Object} params.section - the (root) section to export
+ * @param {array} params.sectionList - the section context (if necessary)
+ * @param {Object} params.settings - the specific rendering settings to use in order to produce the output
+ * @param {boolean} params.includeChildren - whether to include section&apos;s children sections
+ * @param {string} params.destinationFolder - where to output the file
+ * @params {Object} assetsController - the module to use in order to communicate with assets
+ * @param {Object} assetsParams - the assets parameters to use while communicating with assetsController
+ * @param {function(err:error)} callback - the possible errors encountered during export
+ */
+export const exportSectionToPdf = ({
+  section,
+  sectionList,
+  settings,
+  includeChildren,
+  destinationFolder,
+}, assetsController, assetsParams, finalCallback) =&gt;{
+
+  const motherKey = getMetaValue(section.metadata, &apos;general&apos;, &apos;citeKey&apos;);
+  const path = destinationFolder || resolve(__dirname + &apos;./temp/&apos;);
+  console.log(&apos;path&apos;, path);
+  waterfall([
+    // get or create destination folder
+    (existsCb)=&gt; {
+      exists(path, (isThere)=&gt; {
+        if (!isThere) {
+          return mkdir(path, existsCb);
+        }
+        return existsCb(null);
+      });
+    },
+    // render the section to static html
+    (renderCb)=&gt; {
+      renderSection({section, sectionList, includeChildren, destinationFolder}, assetsController, assetsParams, renderCb);
+    },
+    // write the section to a static html file
+    (html, writeCb)=&gt; {
+      writeFile(path + &apos;/&apos; + motherKey + &apos;.html&apos;, html, &apos;utf-8&apos;, writeCb);
+    }
+  ], (err)=&gt; {
+    if (!err) {
+      Prince()
+      .inputs(path + &apos;/&apos; + motherKey + &apos;.html&apos;)
+      .output(path + &apos;/&apos; + motherKey + &apos;.pdf&apos;)
+      .execute()
+      .then(function() {
+        console.log(&apos;saved to pdf with PrinceXML&apos;);
+        return finalCallback();
+      }, function(error) {
+        console.log(&apos;Prince ERROR: &apos;, error);
+        return finalCallback(error);
+      });
+    } else {
+      console.error(&apos;error during rendering to static html : &apos;, err);
+      return finalCallback(err);
+    }
+  });
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.7)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

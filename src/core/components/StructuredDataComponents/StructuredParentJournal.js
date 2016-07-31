@@ -2,12 +2,10 @@ import React, {PropTypes} from 'react';
 import reactStringReplace from 'react-string-replace';
 import {
   StructuredDate
-  // , StructuredSpan
 } from './../index.js';
 
 import Radium from 'radium';
 
-// let styles = {};
 
 /**
  * dumb component for rendering the structured representation of parent journal information
@@ -17,9 +15,9 @@ export default class StructuredParentJournal extends React.Component {
 
   /**
    * propTypes
-   * @property {object} resource the resource parsed for structuring data
-   * @property {string} pattern the pattern to apply for formatting thresource
-   * @property {string} property the microformat property to apply to the structured element
+   * @property {object} resource - the resource parsed for structuring data
+   * @property {string} pattern - the pattern to apply for formatting thresource
+   * @property {string} property - the microformat property to apply to the structured element
    */
   static propTypes = {
     resource: PropTypes.object,
@@ -34,6 +32,8 @@ export default class StructuredParentJournal extends React.Component {
 
   /**
    * updateHtml : transform pattern+resource props into a react element
+   * @param {object} resource - the resource to render
+   * @param {string} pattern - the pattern to use for rendering the resource
    * @return {ReactElement} markup
    */
   updateHtml(resource, pattern) {
@@ -65,8 +65,6 @@ export default class StructuredParentJournal extends React.Component {
    * @return {ReactElement} markup
    */
   render() {
-    // return this.updateHtml(this.props.resource, this.props.pattern);
-
     return (
       <span
         className="peritext-structured-parent-journal-container"

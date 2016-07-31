@@ -1,10 +1,19 @@
 /**
  * This module cleans resources and metadata from a naive (resource concatenated) tree
+ * @module converter/sectionConverter/cleanNaiveTree
  */
 
 import {map as asyncMap} from 'async';
 
-export const cleanNaiveTree = ({errors = [], validTree}, models, callback) => {
+/**
+ * Resolves resource and metadata statements from a naive representation of a section
+ * @param {Object} params - the cleaning params
+ * @param {array} params.errors - the inherited parsing errors to pass along to the next step
+ * @param {Object} params.validTree - the tree to clean
+ * @param {Object} models - the models to parse the resources with
+ * @param {function(error: error, results: {errors: array, validTree: Object})} callback - the possible error, a list of parsing minor errors, and the resulting tree
+ */
+export const cleanNaiveTree = ({errors = [], validTree}, models, callback) =>{
   const contextualizers = [];
   const naiveTree = Object.assign({}, validTree);
   let metadata;

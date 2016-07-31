@@ -1,7 +1,6 @@
 import React, {PropTypes} from 'react';
-import Radium from 'radium';
-
 // let styles = {};
+import Radium from 'radium';
 
 /**
  * dumb component for back cover page of a static publication of document
@@ -11,7 +10,7 @@ export default class StaticBackCover extends React.Component {
 
   /**
    * propTypes
-   * @property {array} metadata a section metadata to parse in order to fill cover template
+   * @property {array} metadata - a section metadata to parse in order to fill cover template
    */
   static propTypes = {
     metadata: PropTypes.array
@@ -20,6 +19,12 @@ export default class StaticBackCover extends React.Component {
   static defaultProps = {
   };
 
+  /**
+   * Util for returning the value of a "general" type metadata
+   * @param {array} list - the list of metadata
+   * @param {string} key - the key of the metadata prop
+   * @return {string} value
+   */
   getGeneralProp(list, key) {
     const obj = list.find((meta) => {
       return meta.domain === 'general' && meta.key === key;

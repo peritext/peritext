@@ -1,3 +1,15 @@
+/**
+ * Citation contextualizer that resolve sections data according to contextualization+settings params
+ * @module contextualizers/citation
+ */
+
+/**
+ * Handle an inline contextualization for static outputs
+ * @param {Object} inputSection - The representation of the peritext section to update
+ * @param {Object} inputContextualization - The representation of the contextualization to resolve
+ * @param {Object} settings - the specific rendering settings to use for resolving the contextualization
+ * @return {Object} newSection - the updated representation of the peritext section in which the contextualization was made
+ */
 export const contextualizeInlineStatic = (inputSection, inputContextualization, settings) => {
   const contextualization = Object.assign({}, inputContextualization);
   const formatter = require('./../../referencers/' + settings.citationStyle + '.js');
@@ -48,6 +60,13 @@ export const contextualizeInlineStatic = (inputSection, inputContextualization, 
   return Object.assign({}, inputSection);
 };
 
+/**
+ * Handle a block contextualization for static outputs
+ * @param {Object} inputSection - The representation of the peritext section to update
+ * @param {Object} inputContextualization - The representation of the contextualization to resolve
+ * @param {Object} settings - the specific rendering settings to use for resolving the contextualization
+ * @return {Object} newSection - the updated representation of the peritext section in which the contextualization was made
+ */
 export const contextualizeBlockStatic = (inputSection, inputContextualization, settings) => {
   const contextualization = Object.assign({}, inputContextualization);
   const formatter = require('./../../referencers/' + settings.citationStyle + '.js');
@@ -64,10 +83,24 @@ export const contextualizeBlockStatic = (inputSection, inputContextualization, s
   return Object.assign({}, inputSection);
 };
 
+/**
+ * Handle an inline contextualization for dynamic outputs
+ * @param {Object} inputSection - The representation of the peritext section to update
+ * @param {Object} inputContextualization - The representation of the contextualization to resolve
+ * @param {Object} settings - the specific rendering settings to use for resolving the contextualization
+ * @return {Object} newSection - the updated representation of the peritext section in which the contextualization was made
+ */
 export const contextualizeInlineDynamic = (section, contextualization, settings) => {
   return section;
 };
 
+/**
+ * Handle an block contextualization for dynamic outputs
+ * @param {Object} inputSection - The representation of the peritext section to update
+ * @param {Object} inputContextualization - The representation of the contextualization to resolve
+ * @param {Object} settings - the specific rendering settings to use for resolving the contextualization
+ * @return {Object} newSection - the updated representation of the peritext section in which the contextualization was made
+ */
 export const contextualizeBlockDynamic = (section, contextualization, settings) => {
   return section;
 };

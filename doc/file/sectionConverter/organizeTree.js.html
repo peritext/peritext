@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">sectionConverter/organizeTree.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/peritext/peritext.git" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cleanNaiveTree">cleanNaiveTree</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-concatTree">concatTree</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-parseSection">parseSection</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-serializeSectionList">serializeSectionList</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-organizeTree">organizeTree</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-parseTreeResources">parseTreeResources</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-propagateData">propagateData</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">sectionConverter/organizeTree.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * This module organizes relations between sections (order, inheritance, generality level)
+ * @module converter/sectionConverter/organizeTree
+ */
+import {map as asyncMap, waterfall} from &apos;async&apos;;
+
+import {getMetaValue, deleteMeta} from &apos;./../../utils/sectionUtils&apos;;
+
+const formatMetadata = (metadataObj) =&gt;{
+  const output = [];
+  let value;
+  let keydetail;
+  let domain;
+  for (let key in metadataObj) {
+    if (metadataObj[key] !== undefined) {
+      value = metadataObj[key];
+      keydetail = key.split(&apos;_&apos;);
+      domain = (keydetail.length &gt; 1) ? keydetail.shift() : &apos;general&apos;;
+      key = keydetail.join(&apos;_&apos;);
+      output.push({
+        domain,
+        key,
+        value
+      });
+    }
+  }
+  return output;
+};
+
+const flattenSections = (tree, callback) =&gt;{
+
+  if (tree.children) {
+    asyncMap(tree.children, flattenSections, (err, children) =&gt;{
+      const newTree = Object.assign({}, tree);
+      const newChildren = children.map((child)=&gt;{
+        return Object.assign({}, child[0], {parent: tree.metadata.citeKey});
+      });
+
+      return callback(null, [newTree, ...newChildren]);
+    });
+  }else return callback(null, tree);
+};
+
+
+const formatSection = (section) =&gt;{
+  const metadata = formatMetadata(section.metadata);
+  let keyedCustomizers;
+  if (section.customizers) {
+    keyedCustomizers = {};
+    section.customizers.forEach((customizer) =&gt; {
+      keyedCustomizers[customizer.type] = customizer.contents;
+    });
+  }
+  return {
+    metadata,
+    contents: section.contentStr,
+    resources: section.resources,
+    parent: section.parent,
+    customizers: keyedCustomizers,
+    contextualizers: section.contextualizers
+  };
+};
+
+const formatSections = (sections, callback) =&gt;{
+  const formatted = sections.map(formatSection);
+  return callback(null, formatted);
+};
+
+const makeRelations = (inputSections, callback) =&gt;{
+  // find parents and predecessors
+  const sections = inputSections.map((inputSection) =&gt;{
+    const section = Object.assign({}, inputSection);
+    const parent = getMetaValue(section.metadata, &apos;general&apos;, &apos;parent&apos;);
+    const after = getMetaValue(section.metadata, &apos;general&apos;, &apos;after&apos;);
+    if (parent) {
+      section.parent = parent;
+      section.metadata = deleteMeta(section.metadata, &apos;general&apos;, &apos;parent&apos;);
+    }
+    if (after) {
+      section.after = after;
+      section.metadata = deleteMeta(section.metadata, &apos;general&apos;, &apos;after&apos;);
+    }
+    return section;
+  });
+  // order sections
+  for (let index = sections.length - 1; index &gt;= 0; index--) {
+    const section = sections[index];
+    if (section.after) {
+      let indexAfter;
+      sections.some((sec, id) =&gt;{
+        const citeKey = sec.metadata.find((meta)=&gt;{
+          return meta.domain === &apos;general&apos; &amp;&amp; meta.key === &apos;citeKey&apos;;
+        }).value;
+
+        if (section.after === citeKey) {
+          indexAfter = id;
+          return true;
+        }
+      });
+      sections.splice(indexAfter + 1, 0, section);
+      sections.splice(index + 1, 1);
+    }
+  }
+
+  callback(null, sections);
+};
+
+/**
+ * Organizes relations betwwen sections
+ * @param {Object} params - the organization params
+ * @param {array} params.errors - the inherited parsing errors to pass along to next step
+ * @param {Object} params.validTree - the tree to process
+ * @param {function(error: error, results: {errors: array, sections: array})} callback - an updated list of parsing errors and updated sections
+ */
+export const organizeTree = ({errors, validTree}, callback) =&gt; {
+
+  waterfall([
+    function(cb) {
+      flattenSections(validTree, cb);
+    },
+    function(sections, cb) {
+      formatSections(sections, cb);
+    },
+    function(sections, cb) {
+      makeRelations(sections, cb);
+    },
+  ], function(err, sections) {
+    callback(err, {sections, errors});
+  });
+};
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.7)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

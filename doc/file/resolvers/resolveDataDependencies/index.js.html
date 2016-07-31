@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">resolvers/resolveDataDependencies/index.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/peritext/peritext.git" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">htmlMetaTemplateSerializer</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-serializeHtmlMeta">serializeHtmlMeta</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">resolveContextualizations</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-numbersToLetters">numbersToLetters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-resolveBindings">resolveBindings</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-resolveContextualizationsImplementation">resolveContextualizationsImplementation</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-resolveContextualizationsRelations">resolveContextualizationsRelations</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">resolveDataDependencies</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-resolveDataDependencies">resolveDataDependencies</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">resolveSectionAgainstModels</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-resolveSectionAgainstModels">resolveSectionAgainstModels</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">resolvers/resolveDataDependencies/index.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * Resolver dedicated to resolve @assets statements and @res statements
+ * @module resolvers/resolveDataDependencies
+ */
+import {map as asyncMap, mapSeries as asyncMapSeries, waterfall} from &apos;async&apos;;
+const CsvConverter = require(&apos;csvtojson&apos;).Converter;
+const csvConverter = new CsvConverter({});
+
+/**
+ * Resolves interpolations ni metadata, resources, and contextualizations, and possibly fetches stores necessary data for rendering
+ * @param {array} inputSections - the sections to resolve
+ * @param {Object} assetsController - the assets controller module to use to communicate with assets
+ * @param {Object} assetsParams - the params to use for accessing the assets
+ * @param {boolean} resolveData - whether to fetch and store necessary data right away or to store methods for later lazy-loading
+ * @param {function(err: error, finalSections: array)} callback - callbacks a possible errors and the updated list of sections
+ */
+export default function resolveDataDependencies(inputSections, assetsController, assetsParams, resolveData, callback) {
+  let res;
+  let match;
+  const data = {};// this object stores resolved and unresolved promises about resources data
+  const resRe = /@res([\d]+)?.(.*)/g;
+  const assetsRe = /@assets\/([^&apos;]+)/g;
+  asyncMap(inputSections, (section, allSectionsCallback)=&gt; {
+    waterfall([
+      // styles resolution
+      (stylesResolutionCallback)=&gt; {
+        if (section.customizers &amp;&amp; section.customizers.styles) {
+          const styles = [];
+          for (const prop in section.customizers.styles) {
+            if (section.customizers.styles[prop]) {
+              styles.push({key: prop, value: section.customizers.styles[prop]});
+            }
+          }
+          // map each style customizer
+          asyncMap(styles, (styleCouple, singleStyleCallback)=&gt; {
+            let style = styleCouple.value;
+            // get all expressions
+            const matches = [];
+            do {
+              match = assetsRe.exec(style);
+              if (match) {
+                matches.push(match);
+              }
+            } while (match);
+            // some assets interpolations to do
+            if (matches.length) {
+              // reverse array to begin with last matches and not mess around with indexes
+              matches.reverse();
+              asyncMap(matches, (thisMatch, matchCallback)=&gt; {
+                assetsController.getAssetUri(thisMatch[1], assetsParams, (err4, uri)=&gt; {
+                  style = style.substr(0, thisMatch.index) + uri + style.substr(thisMatch.index + thisMatch[0].length);
+                  matchCallback(err4, thisMatch);
+                });
+              }, (matchErrors, theseMatches)=&gt; {
+                styleCouple.value = style;
+                singleStyleCallback(matchErrors, styleCouple);
+              });
+            // no interpolations to do
+            } else {
+              styleCouple.value = style;
+              singleStyleCallback(null, styleCouple);
+            }
+          }, (stylesErrors, styleCouples)=&gt; {
+            styleCouples.forEach((styleCouple) =&gt;{
+              section.customizers.styles[styleCouple.key] = styleCouple.value;
+            });
+            stylesResolutionCallback(stylesErrors, section);
+          });
+        } else stylesResolutionCallback(null, section);
+      },
+      // resolve metadata
+      (sectio, metadataCallback)=&gt; {
+        asyncMap(sectio.metadata, (metadata, singleMetadataCallback)=&gt; {
+          if (typeof metadata.value === &apos;string&apos; &amp;&amp; metadata.value.indexOf(&apos;@assets/&apos;) === 0) {
+            assetsController.getAssetUri(metadata.value.split(&apos;@assets/&apos;)[1], assetsParams, (err4, uri)=&gt; {
+              metadata.value = uri;
+              singleMetadataCallback(err4, metadata);
+            });
+          } else {
+            singleMetadataCallback(null, metadata);
+          }
+        }, (metadataErrors, newMetadata)=&gt;{
+          sectio.metadata = newMetadata;
+          metadataCallback(metadataErrors, sectio);
+        });
+      },
+      // resolve resources
+      (sectio, resourcesCallback)=&gt; {
+        asyncMap(sectio.resources, (resource, singleResourceCallback)=&gt; {
+          const props = [];
+          // format props as array for performing an async map
+          for (const prop in resource) {
+            if (resource[prop]) {
+              props.push({key: prop, value: resource[prop]});
+            }
+          }
+          asyncMap(props, (prop, resourcePropCallback)=&gt; {
+            if (typeof prop.value === &apos;string&apos; &amp;&amp; prop.value.indexOf(&apos;@assets/&apos;) === 0) {
+              assetsController.getAssetUri(prop.value.split(&apos;@assets/&apos;)[1], assetsParams, (err4, uri)=&gt; {
+                prop.value = uri;
+                resourcePropCallback(err4, prop);
+              });
+            } else {
+              resourcePropCallback(null, prop);
+            }
+          }, (singleResourceError, newProps)=&gt; {
+            const newResource = newProps.reduce((obj, prop) =&gt;{
+              obj[prop.key] = prop.value;
+              return obj;
+            }, {});
+            singleResourceCallback(singleResourceError, newResource);
+          });
+        }, (resourcesErrors, resources)=&gt; {
+          sectio.resources = resources;
+          resourcesCallback(resourcesErrors, sectio);
+        });
+      },
+      (sectio, contextualizationsCallback)=&gt; {
+        asyncMap(sectio.contextualizations, (contextualization, contextualizationCallback)=&gt; {
+          res = undefined;
+          const props = [];
+          // format props as array for performing an async map
+          for (const prop in contextualization.contextualizer) {
+            if (contextualization.contextualizer[prop]) {
+              props.push({key: prop, value: contextualization.contextualizer[prop]});
+            }
+          }
+          /**
+           * First level props
+           */
+          // resolve async. props
+          asyncMap(props, (prop, contextualizationPropCallback)=&gt; {
+            const val = prop.value;
+            // if prop is itself an array, need for another nested async resolution
+            if (Array.isArray(val) &amp;&amp; prop.key !== &apos;resources&apos;) {
+              // loop through propArray members
+              asyncMap(val, (prop2, propArrayMembersCallback)=&gt; {
+                // prepare for asyncMap for propArray member
+                const nestedProps = [];
+                for (const nestedProp in prop2) {
+                  if (prop2[nestedProp]) {
+                    nestedProps.push({key: nestedProp, value: prop2[nestedProp]});
+                  }
+                }
+                // Second level props (contextualization.arrayProp[array member].prop)
+                asyncMap(nestedProps, (nestedProp, nestedPropCallback)=&gt; {
+                  // resolve nested props here
+                  const val3 = nestedProp.value;
+                  if ((&apos;&apos; + val3).indexOf(&apos;@res&apos;) === 0) {
+                    while ((match = resRe.exec(val3)) !== null) {
+                      // Identify which resource is targetted (handling multi-resource contextualizations)
+                      const rank = match[1] ? (+match[1] - 1) : 0;
+                      // find resource data
+                      res = contextualization.resources[rank];
+                      if (res === undefined) {
+                        console.log(&apos;res is undefined, expression: &apos;, val3);
+                        return nestedPropCallback(undefined, nestedProp);
+                      }
+                      // case: metadata call
+                      const resProp = match[match.length - 1];
+                      if (resProp.indexOf(&apos;data&apos;) !== 0) {
+                        // interpolate w/ resource value thanks to resourceProp path
+                        nestedProp.value = res[resProp];
+                        // contextualizationPropCallback(null, prop);
+                      // case : data call
+                      } else {
+                        const dataPath = (&apos;&apos; + val3).split(&apos;.&apos;).filter(path=&gt;{
+                          return path.length;
+                        });
+                        nestedProp.value = {
+                          type: &apos;path&apos;,
+                          target: &apos;data&apos;,
+                          path: dataPath
+                        };
+                        const defined = data[res.citeKey];
+                        if (!defined) {
+                          const accessor = res.data || res.url;
+                          if ((&apos;&apos; + accessor).indexOf(&apos;@assets/&apos;) === 0) {
+                            const toResolve = {};
+                            toResolve.params = {
+                              path: accessor.split(&apos;@assets/&apos;)[1],
+                              params: assetsParams,
+                              acceptedExtensions: &apos;*&apos;
+                            };
+                            toResolve.read = assetsController.getReader(assetsParams);
+                            data[res.citeKey] = toResolve;
+                          } else {
+                            console.log(&apos;unhandled data accessor : &apos;, accessor);
+                          }
+                        }
+                      }
+                    }
+                    nestedPropCallback(null, nestedProp);
+                  } else if ((&apos;&apos; + val3).indexOf(&apos;@assets/&apos;) === 0) {
+                    assetsController.getAssetUri(val3.split(&apos;@assets/&apos;)[1], assetsParams, (err4, uri)=&gt; {
+                      nestedProp.value = uri;
+                      nestedPropCallback(err4, nestedProp);
+                    });
+                  } else {
+                    nestedPropCallback(null, nestedProp);
+                  }
+                }, (err3, propsOut2)=&gt; {
+                  const newProp2 = propsOut2.reduce((newCont, newContProp) =&gt;{
+                    newCont[newContProp.key] = newContProp.value;
+                    return newCont;
+                  }, {});
+                  propArrayMembersCallback(err3, newProp2);
+                });
+              // resolve arrayed prop
+              }, (err2, arrayMembers)=&gt; {
+                prop.value = arrayMembers;
+                contextualizationPropCallback(null, prop);
+              });
+            } else if (typeof val !== undefined &amp;&amp; prop.key !== &apos;resources&apos;) {
+              if ((&apos;&apos; + val).indexOf(&apos;@res&apos;) === 0) {
+                while ((match = resRe.exec(val)) !== null) {
+                  // Identify which resource is targetted (handling multi-resource contextualizations)
+                  const rank = match[1] ? (+match[1] - 1) : 0;
+                  // find resource data
+                  res = contextualization.resources[rank];
+                  if (res === undefined) {
+                    console.log(&apos;res is undefined, expression: &apos;, val);
+                    return contextualizationPropCallback(undefined, prop);
+                  }
+                  const resProp = match[match.length - 1];
+                  // case: metadata call
+                  if (resProp.indexOf(&apos;data&apos;) !== 0) {
+                    // interpolate w/ resource value thanks to resourceProp path
+                    prop.value = res[resProp];
+                    // contextualizationPropCallback(null, prop);
+                  // case : data call
+                  } else {
+                    const dataPath = (&apos;&apos; + val).split(&apos;.&apos;).filter(path=&gt;{
+                      return path.length;
+                    });
+                    prop.value = {
+                      type: &apos;path&apos;,
+                      target: &apos;data&apos;,
+                      path: dataPath
+                    };
+                    const defined = data[res.citeKey];
+                    if (!defined) {
+                      const accessor = res.data || res.url;
+                      if ((&apos;&apos; + accessor).indexOf(&apos;@assets/&apos;) === 0) {
+                        const toResolve = {};
+                        toResolve.params = {
+                          path: accessor.split(&apos;@assets/&apos;)[1],
+                          params: assetsParams,
+                          acceptedExtensions: &apos;*&apos;
+                        };
+                        toResolve.read = assetsController.getReader(assetsParams);
+                        data[res.citeKey] = toResolve;
+                      } else {
+                        console.log(&apos;unhandled data accessor : &apos;, accessor);
+                      }
+                    }
+                  }
+                }
+                contextualizationPropCallback(null, prop);
+              } else if ((&apos;&apos; + val).indexOf(&apos;@assets/&apos;) === 0) {
+                assetsController.getAssetUri(val.split(&apos;@assets/&apos;)[1], assetsParams, (err3, uri)=&gt; {
+                  prop.value = uri;
+                  contextualizationPropCallback(err3, prop);
+                });
+              } else {
+                contextualizationPropCallback(null, prop);
+              }
+            } else {
+              contextualizationPropCallback(null, prop);
+            }
+          }, (err1, propsOut1)=&gt; {
+            const newContextualizer = propsOut1.reduce((newCont, propOut) =&gt;{
+              newCont[propOut.key] = propOut.value;
+              return newCont;
+            }, {});
+
+            // console.log(&apos;new contextualization&apos;, Object.assign(contextualization, newContextualizer));
+            // pass contextualizer&apos;s resolved values to contextualization object
+            newContextualizer.contextualizerType = newContextualizer.type;
+            delete newContextualizer.type;// contextualization has a type also
+            const newContextualization = Object.assign(contextualization, newContextualizer);
+            contextualizationCallback(err1, newContextualization);
+          });
+        }, (contextualizationsError, contextualizations)=&gt; {
+          sectio.contextualizations = contextualizations;
+          contextualizationsCallback(contextualizationsError, sectio);
+        });
+      }
+    // waterfall callback for all sections
+    ], (errs, sectios)=&gt; {
+      allSectionsCallback(errs, sectios);
+    });
+  // global &amp; final callback
+  }, (err, sections)=&gt; {
+    if (resolveDataDependencies) {
+      asyncMapSeries(Object.keys(data), (key, dataCallback) =&gt;{
+        const toResolve = data[key];
+        toResolve.read(toResolve.params, (dataErr, dataResult) =&gt;{
+          if (dataErr) {
+            data[key] = dataErr;
+            dataCallback(null, key);
+          } else {
+            const raw = dataResult &amp;&amp; dataResult.stringContents;
+            const ext = dataResult.extname;
+            // todo : handle other file formats
+            if (raw &amp;&amp; ext === &apos;.csv&apos;) {
+              csvConverter.fromString(raw, (parseErr, json)=&gt;{
+                data[key] = {
+                  format: &apos;json&apos;,
+                  data: json
+                };
+                dataCallback(parseErr, key);
+              });
+            }else {
+              console.log(&apos;unhandled file format &apos;, ext);
+              dataCallback(null, key);
+            }
+          }
+        });
+      }, (finalErr, keys) =&gt;{
+        const finalSections = sections.map(sectio =&gt;{
+          return Object.assign(sectio, {data: data});
+        });
+        callback(finalErr, finalSections);
+      });
+    } else {
+      const finalSections = sections.map(sectio =&gt;{
+        return Object.assign(sectio, {data});
+      });
+      callback(err, finalSections);
+    }
+  });
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.7)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

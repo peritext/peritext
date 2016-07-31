@@ -1,8 +1,6 @@
 import React, {PropTypes} from 'react';
 import Radium from 'radium';
 
-// let styles = {};
-
 /**
  * dumb generic component for rendering the structured representation of a property
  */
@@ -11,6 +9,9 @@ export default class StructuredSpan extends React.Component {
 
   /**
    * propTypes
+   * @property {string|number} value - the value to put in the span
+   * @property {string} property - the schema property to microformat the span with
+   * @property {string} htmlClass - the class to apply to the span element
    */
   static propTypes = {
     value: PropTypes.oneOfType([

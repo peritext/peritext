@@ -1,0 +1,1455 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 1273,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 36,
+      "column": 0
+    }
+  },
+  "sourceType": "module",
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "start": 137,
+      "end": 179,
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 42
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportNamespaceSpecifier",
+          "start": 144,
+          "end": 160,
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 7
+            },
+            "end": {
+              "line": 5,
+              "column": 23
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 149,
+            "end": 160,
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 12
+              },
+              "end": {
+                "line": 5,
+                "column": 23
+              }
+            },
+            "name": "citationLib",
+            "leadingComments": null
+          },
+          "leadingComments": null
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 166,
+        "end": 178,
+        "loc": {
+          "start": {
+            "line": 5,
+            "column": 29
+          },
+          "end": {
+            "line": 5,
+            "column": 41
+          }
+        },
+        "value": "./citation",
+        "rawValue": "./citation",
+        "raw": "'./citation'"
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Contextualizers - pure functions that resolve sections against contextualizations+settings objects\n * @module contextualizers\n ",
+          "start": 0,
+          "end": 136,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 4,
+              "column": 3
+            }
+          },
+          "range": [
+            0,
+            136
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 180,
+      "end": 222,
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 0
+        },
+        "end": {
+          "line": 6,
+          "column": 42
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportNamespaceSpecifier",
+          "start": 187,
+          "end": 203,
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 7
+            },
+            "end": {
+              "line": 6,
+              "column": 23
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 192,
+            "end": 203,
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 12
+              },
+              "end": {
+                "line": 6,
+                "column": 23
+              }
+            },
+            "name": "timelineLib"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 209,
+        "end": 221,
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 29
+          },
+          "end": {
+            "line": 6,
+            "column": 41
+          }
+        },
+        "value": "./timeline",
+        "rawValue": "./timeline",
+        "raw": "'./timeline'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 223,
+      "end": 273,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 50
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportNamespaceSpecifier",
+          "start": 230,
+          "end": 250,
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 7
+            },
+            "end": {
+              "line": 7,
+              "column": 27
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 235,
+            "end": 250,
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 12
+              },
+              "end": {
+                "line": 7,
+                "column": 27
+              }
+            },
+            "name": "imagegalleryLib"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 256,
+        "end": 272,
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 33
+          },
+          "end": {
+            "line": 7,
+            "column": 49
+          }
+        },
+        "value": "./imagegallery",
+        "rawValue": "./imagegallery",
+        "raw": "'./imagegallery'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 274,
+      "end": 314,
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 40
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportNamespaceSpecifier",
+          "start": 281,
+          "end": 296,
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 7
+            },
+            "end": {
+              "line": 8,
+              "column": 22
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 286,
+            "end": 296,
+            "loc": {
+              "start": {
+                "line": 8,
+                "column": 12
+              },
+              "end": {
+                "line": 8,
+                "column": 22
+              }
+            },
+            "name": "webpageLib"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 302,
+        "end": 313,
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 28
+          },
+          "end": {
+            "line": 8,
+            "column": 39
+          }
+        },
+        "value": "./webpage",
+        "rawValue": "./webpage",
+        "raw": "'./webpage'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 315,
+      "end": 357,
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 9,
+          "column": 42
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportNamespaceSpecifier",
+          "start": 322,
+          "end": 338,
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 7
+            },
+            "end": {
+              "line": 9,
+              "column": 23
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 327,
+            "end": 338,
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 12
+              },
+              "end": {
+                "line": 9,
+                "column": 23
+              }
+            },
+            "name": "glossaryLib"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 344,
+        "end": 356,
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 29
+          },
+          "end": {
+            "line": 9,
+            "column": 41
+          }
+        },
+        "value": "./glossary",
+        "rawValue": "./glossary",
+        "raw": "'./glossary'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 358,
+      "end": 394,
+      "loc": {
+        "start": {
+          "line": 10,
+          "column": 0
+        },
+        "end": {
+          "line": 10,
+          "column": 36
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportNamespaceSpecifier",
+          "start": 365,
+          "end": 378,
+          "loc": {
+            "start": {
+              "line": 10,
+              "column": 7
+            },
+            "end": {
+              "line": 10,
+              "column": 20
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 370,
+            "end": 378,
+            "loc": {
+              "start": {
+                "line": 10,
+                "column": 12
+              },
+              "end": {
+                "line": 10,
+                "column": 20
+              }
+            },
+            "name": "tableLib"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 384,
+        "end": 393,
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 26
+          },
+          "end": {
+            "line": 10,
+            "column": 35
+          }
+        },
+        "value": "./table",
+        "rawValue": "./table",
+        "raw": "'./table'"
+      },
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Citation contextualizer that resolve sections data according to contextualization+settings params\n ",
+          "start": 396,
+          "end": 504,
+          "loc": {
+            "start": {
+              "line": 12,
+              "column": 0
+            },
+            "end": {
+              "line": 14,
+              "column": 3
+            }
+          },
+          "range": [
+            396,
+            504
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 505,
+      "end": 541,
+      "loc": {
+        "start": {
+          "line": 15,
+          "column": 0
+        },
+        "end": {
+          "line": 15,
+          "column": 36
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 512,
+        "end": 541,
+        "loc": {
+          "start": {
+            "line": 15,
+            "column": 7
+          },
+          "end": {
+            "line": 15,
+            "column": 36
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 518,
+            "end": 540,
+            "loc": {
+              "start": {
+                "line": 15,
+                "column": 13
+              },
+              "end": {
+                "line": 15,
+                "column": 35
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 518,
+              "end": 526,
+              "loc": {
+                "start": {
+                  "line": 15,
+                  "column": 13
+                },
+                "end": {
+                  "line": 15,
+                  "column": 21
+                }
+              },
+              "name": "citation",
+              "leadingComments": null
+            },
+            "init": {
+              "type": "Identifier",
+              "start": 529,
+              "end": 540,
+              "loc": {
+                "start": {
+                  "line": 15,
+                  "column": 24
+                },
+                "end": {
+                  "line": 15,
+                  "column": 35
+                }
+              },
+              "name": "citationLib"
+            },
+            "leadingComments": null
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Citation contextualizer that resolve sections data according to contextualization+settings params\n ",
+            "start": 396,
+            "end": 504,
+            "loc": {
+              "start": {
+                "line": 12,
+                "column": 0
+              },
+              "end": {
+                "line": 14,
+                "column": 3
+              }
+            },
+            "range": [
+              396,
+              504
+            ]
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Timeline contextualizer that resolve sections data according to contextualization+settings params\n ",
+            "start": 542,
+            "end": 650,
+            "loc": {
+              "start": {
+                "line": 16,
+                "column": 0
+              },
+              "end": {
+                "line": 18,
+                "column": 3
+              }
+            },
+            "range": [
+              542,
+              650
+            ]
+          }
+        ]
+      },
+      "specifiers": [],
+      "source": null,
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Citation contextualizer that resolve sections data according to contextualization+settings params\n ",
+          "start": 396,
+          "end": 504,
+          "loc": {
+            "start": {
+              "line": 12,
+              "column": 0
+            },
+            "end": {
+              "line": 14,
+              "column": 3
+            }
+          },
+          "range": [
+            396,
+            504
+          ]
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Timeline contextualizer that resolve sections data according to contextualization+settings params\n ",
+          "start": 542,
+          "end": 650,
+          "loc": {
+            "start": {
+              "line": 16,
+              "column": 0
+            },
+            "end": {
+              "line": 18,
+              "column": 3
+            }
+          },
+          "range": [
+            542,
+            650
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 651,
+      "end": 687,
+      "loc": {
+        "start": {
+          "line": 19,
+          "column": 0
+        },
+        "end": {
+          "line": 19,
+          "column": 36
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 658,
+        "end": 687,
+        "loc": {
+          "start": {
+            "line": 19,
+            "column": 7
+          },
+          "end": {
+            "line": 19,
+            "column": 36
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 664,
+            "end": 686,
+            "loc": {
+              "start": {
+                "line": 19,
+                "column": 13
+              },
+              "end": {
+                "line": 19,
+                "column": 35
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 664,
+              "end": 672,
+              "loc": {
+                "start": {
+                  "line": 19,
+                  "column": 13
+                },
+                "end": {
+                  "line": 19,
+                  "column": 21
+                }
+              },
+              "name": "timeline",
+              "leadingComments": null
+            },
+            "init": {
+              "type": "Identifier",
+              "start": 675,
+              "end": 686,
+              "loc": {
+                "start": {
+                  "line": 19,
+                  "column": 24
+                },
+                "end": {
+                  "line": 19,
+                  "column": 35
+                }
+              },
+              "name": "timelineLib"
+            },
+            "leadingComments": null
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Timeline contextualizer that resolve sections data according to contextualization+settings params\n ",
+            "start": 542,
+            "end": 650,
+            "loc": {
+              "start": {
+                "line": 16,
+                "column": 0
+              },
+              "end": {
+                "line": 18,
+                "column": 3
+              }
+            },
+            "range": [
+              542,
+              650
+            ]
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Image gallery contextualizer that resolve sections data according to contextualization+settings params\n ",
+            "start": 688,
+            "end": 801,
+            "loc": {
+              "start": {
+                "line": 20,
+                "column": 0
+              },
+              "end": {
+                "line": 22,
+                "column": 3
+              }
+            },
+            "range": [
+              688,
+              801
+            ]
+          }
+        ]
+      },
+      "specifiers": [],
+      "source": null,
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Timeline contextualizer that resolve sections data according to contextualization+settings params\n ",
+          "start": 542,
+          "end": 650,
+          "loc": {
+            "start": {
+              "line": 16,
+              "column": 0
+            },
+            "end": {
+              "line": 18,
+              "column": 3
+            }
+          },
+          "range": [
+            542,
+            650
+          ]
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Image gallery contextualizer that resolve sections data according to contextualization+settings params\n ",
+          "start": 688,
+          "end": 801,
+          "loc": {
+            "start": {
+              "line": 20,
+              "column": 0
+            },
+            "end": {
+              "line": 22,
+              "column": 3
+            }
+          },
+          "range": [
+            688,
+            801
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 802,
+      "end": 846,
+      "loc": {
+        "start": {
+          "line": 23,
+          "column": 0
+        },
+        "end": {
+          "line": 23,
+          "column": 44
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 809,
+        "end": 846,
+        "loc": {
+          "start": {
+            "line": 23,
+            "column": 7
+          },
+          "end": {
+            "line": 23,
+            "column": 44
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 815,
+            "end": 845,
+            "loc": {
+              "start": {
+                "line": 23,
+                "column": 13
+              },
+              "end": {
+                "line": 23,
+                "column": 43
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 815,
+              "end": 827,
+              "loc": {
+                "start": {
+                  "line": 23,
+                  "column": 13
+                },
+                "end": {
+                  "line": 23,
+                  "column": 25
+                }
+              },
+              "name": "imagegallery",
+              "leadingComments": null
+            },
+            "init": {
+              "type": "Identifier",
+              "start": 830,
+              "end": 845,
+              "loc": {
+                "start": {
+                  "line": 23,
+                  "column": 28
+                },
+                "end": {
+                  "line": 23,
+                  "column": 43
+                }
+              },
+              "name": "imagegalleryLib"
+            },
+            "leadingComments": null
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Image gallery contextualizer that resolve sections data according to contextualization+settings params\n ",
+            "start": 688,
+            "end": 801,
+            "loc": {
+              "start": {
+                "line": 20,
+                "column": 0
+              },
+              "end": {
+                "line": 22,
+                "column": 3
+              }
+            },
+            "range": [
+              688,
+              801
+            ]
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Webpage contextualizer that resolve sections data according to contextualization+settings params\n ",
+            "start": 847,
+            "end": 954,
+            "loc": {
+              "start": {
+                "line": 24,
+                "column": 0
+              },
+              "end": {
+                "line": 26,
+                "column": 3
+              }
+            },
+            "range": [
+              847,
+              954
+            ]
+          }
+        ]
+      },
+      "specifiers": [],
+      "source": null,
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Image gallery contextualizer that resolve sections data according to contextualization+settings params\n ",
+          "start": 688,
+          "end": 801,
+          "loc": {
+            "start": {
+              "line": 20,
+              "column": 0
+            },
+            "end": {
+              "line": 22,
+              "column": 3
+            }
+          },
+          "range": [
+            688,
+            801
+          ]
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Webpage contextualizer that resolve sections data according to contextualization+settings params\n ",
+          "start": 847,
+          "end": 954,
+          "loc": {
+            "start": {
+              "line": 24,
+              "column": 0
+            },
+            "end": {
+              "line": 26,
+              "column": 3
+            }
+          },
+          "range": [
+            847,
+            954
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 955,
+      "end": 989,
+      "loc": {
+        "start": {
+          "line": 27,
+          "column": 0
+        },
+        "end": {
+          "line": 27,
+          "column": 34
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 962,
+        "end": 989,
+        "loc": {
+          "start": {
+            "line": 27,
+            "column": 7
+          },
+          "end": {
+            "line": 27,
+            "column": 34
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 968,
+            "end": 988,
+            "loc": {
+              "start": {
+                "line": 27,
+                "column": 13
+              },
+              "end": {
+                "line": 27,
+                "column": 33
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 968,
+              "end": 975,
+              "loc": {
+                "start": {
+                  "line": 27,
+                  "column": 13
+                },
+                "end": {
+                  "line": 27,
+                  "column": 20
+                }
+              },
+              "name": "webpage",
+              "leadingComments": null
+            },
+            "init": {
+              "type": "Identifier",
+              "start": 978,
+              "end": 988,
+              "loc": {
+                "start": {
+                  "line": 27,
+                  "column": 23
+                },
+                "end": {
+                  "line": 27,
+                  "column": 33
+                }
+              },
+              "name": "webpageLib"
+            },
+            "leadingComments": null
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Webpage contextualizer that resolve sections data according to contextualization+settings params\n ",
+            "start": 847,
+            "end": 954,
+            "loc": {
+              "start": {
+                "line": 24,
+                "column": 0
+              },
+              "end": {
+                "line": 26,
+                "column": 3
+              }
+            },
+            "range": [
+              847,
+              954
+            ]
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Glossary contextualizer that resolve sections data according to contextualization+settings params\n ",
+            "start": 990,
+            "end": 1098,
+            "loc": {
+              "start": {
+                "line": 28,
+                "column": 0
+              },
+              "end": {
+                "line": 30,
+                "column": 3
+              }
+            },
+            "range": [
+              990,
+              1098
+            ]
+          }
+        ]
+      },
+      "specifiers": [],
+      "source": null,
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Webpage contextualizer that resolve sections data according to contextualization+settings params\n ",
+          "start": 847,
+          "end": 954,
+          "loc": {
+            "start": {
+              "line": 24,
+              "column": 0
+            },
+            "end": {
+              "line": 26,
+              "column": 3
+            }
+          },
+          "range": [
+            847,
+            954
+          ]
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Glossary contextualizer that resolve sections data according to contextualization+settings params\n ",
+          "start": 990,
+          "end": 1098,
+          "loc": {
+            "start": {
+              "line": 28,
+              "column": 0
+            },
+            "end": {
+              "line": 30,
+              "column": 3
+            }
+          },
+          "range": [
+            990,
+            1098
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 1099,
+      "end": 1135,
+      "loc": {
+        "start": {
+          "line": 31,
+          "column": 0
+        },
+        "end": {
+          "line": 31,
+          "column": 36
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 1106,
+        "end": 1135,
+        "loc": {
+          "start": {
+            "line": 31,
+            "column": 7
+          },
+          "end": {
+            "line": 31,
+            "column": 36
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 1112,
+            "end": 1134,
+            "loc": {
+              "start": {
+                "line": 31,
+                "column": 13
+              },
+              "end": {
+                "line": 31,
+                "column": 35
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 1112,
+              "end": 1120,
+              "loc": {
+                "start": {
+                  "line": 31,
+                  "column": 13
+                },
+                "end": {
+                  "line": 31,
+                  "column": 21
+                }
+              },
+              "name": "glossary",
+              "leadingComments": null
+            },
+            "init": {
+              "type": "Identifier",
+              "start": 1123,
+              "end": 1134,
+              "loc": {
+                "start": {
+                  "line": 31,
+                  "column": 24
+                },
+                "end": {
+                  "line": 31,
+                  "column": 35
+                }
+              },
+              "name": "glossaryLib"
+            },
+            "leadingComments": null
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Glossary contextualizer that resolve sections data according to contextualization+settings params\n ",
+            "start": 990,
+            "end": 1098,
+            "loc": {
+              "start": {
+                "line": 28,
+                "column": 0
+              },
+              "end": {
+                "line": 30,
+                "column": 3
+              }
+            },
+            "range": [
+              990,
+              1098
+            ]
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Table contextualizer that resolve sections data according to contextualization+settings params\n ",
+            "start": 1136,
+            "end": 1241,
+            "loc": {
+              "start": {
+                "line": 32,
+                "column": 0
+              },
+              "end": {
+                "line": 34,
+                "column": 3
+              }
+            },
+            "range": [
+              1136,
+              1241
+            ]
+          }
+        ]
+      },
+      "specifiers": [],
+      "source": null,
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Glossary contextualizer that resolve sections data according to contextualization+settings params\n ",
+          "start": 990,
+          "end": 1098,
+          "loc": {
+            "start": {
+              "line": 28,
+              "column": 0
+            },
+            "end": {
+              "line": 30,
+              "column": 3
+            }
+          },
+          "range": [
+            990,
+            1098
+          ]
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Table contextualizer that resolve sections data according to contextualization+settings params\n ",
+          "start": 1136,
+          "end": 1241,
+          "loc": {
+            "start": {
+              "line": 32,
+              "column": 0
+            },
+            "end": {
+              "line": 34,
+              "column": 3
+            }
+          },
+          "range": [
+            1136,
+            1241
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 1242,
+      "end": 1272,
+      "loc": {
+        "start": {
+          "line": 35,
+          "column": 0
+        },
+        "end": {
+          "line": 35,
+          "column": 30
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 1249,
+        "end": 1272,
+        "loc": {
+          "start": {
+            "line": 35,
+            "column": 7
+          },
+          "end": {
+            "line": 35,
+            "column": 30
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 1255,
+            "end": 1271,
+            "loc": {
+              "start": {
+                "line": 35,
+                "column": 13
+              },
+              "end": {
+                "line": 35,
+                "column": 29
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 1255,
+              "end": 1260,
+              "loc": {
+                "start": {
+                  "line": 35,
+                  "column": 13
+                },
+                "end": {
+                  "line": 35,
+                  "column": 18
+                }
+              },
+              "name": "table",
+              "leadingComments": null
+            },
+            "init": {
+              "type": "Identifier",
+              "start": 1263,
+              "end": 1271,
+              "loc": {
+                "start": {
+                  "line": 35,
+                  "column": 21
+                },
+                "end": {
+                  "line": 35,
+                  "column": 29
+                }
+              },
+              "name": "tableLib"
+            },
+            "leadingComments": null
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Table contextualizer that resolve sections data according to contextualization+settings params\n ",
+            "start": 1136,
+            "end": 1241,
+            "loc": {
+              "start": {
+                "line": 32,
+                "column": 0
+              },
+              "end": {
+                "line": 34,
+                "column": 3
+              }
+            },
+            "range": [
+              1136,
+              1241
+            ]
+          }
+        ],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null,
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Table contextualizer that resolve sections data according to contextualization+settings params\n ",
+          "start": 1136,
+          "end": 1241,
+          "loc": {
+            "start": {
+              "line": 32,
+              "column": 0
+            },
+            "end": {
+              "line": 34,
+              "column": 3
+            }
+          },
+          "range": [
+            1136,
+            1241
+          ]
+        }
+      ]
+    }
+  ]
+}

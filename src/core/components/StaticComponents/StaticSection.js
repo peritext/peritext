@@ -12,8 +12,6 @@ import {
 
 import renderContents from './../../utils/componentsFactory';
 
-// let styles = {};
-
 /**
  * dumb component for rendering the structured representation of a static section
  */
@@ -22,6 +20,8 @@ export default class StaticSection extends React.Component {
 
   /**
    * propTypes
+   * @property {Object} section - the section to render
+   * @property {Object} settings - the settings to use for section rendering
    */
   static propTypes = {
     section: PropTypes.object,

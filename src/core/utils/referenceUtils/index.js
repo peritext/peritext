@@ -1,3 +1,8 @@
+/**
+ * Utils - dedicated to representing a reference/bibliography section
+ * @module utils/referenceUtils
+ */
+
 const bibliographicTypes = [
   'article',
   'book',
@@ -15,13 +20,24 @@ const bibliographicTypes = [
   'unpublished'
 ];
 
+/**
+ * Checks whether a given references belongs to a "traditional" bibliographical reference (journal article, book, ...)
+ * @param {string} bibType - the bibType of the resource
+ * @return {boolean} isBibliographical
+ */
 const isBibliographical = (bibType) =>{
-  const isOk = bibliographicTypes.find((type)=> {
+  const bibliType = bibliographicTypes.find((type)=> {
     return bibType === type;
   });
-  return isOk !== undefined;
+  return bibliType !== undefined;
 };
 
+/**
+ * Filter and order a list of resources against bibliography settings
+ * @param {array} sections - the sections to handle for building the list
+ * @param {Object} settings - the rendering settings, among which are bibliography-making related settings
+ * @return {array} references - the resulting list
+ */
 export const computeReferences = (sections, settings) =>{
   if (settings.referenceScope === 'document') {
     const references = sections.reduce((refs, section)=> {

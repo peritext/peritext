@@ -1,960 +1,337 @@
 {
   "type": "Program",
   "start": 0,
-  "end": 2126,
+  "end": 1070,
   "loc": {
     "start": {
       "line": 1,
       "column": 0
     },
     "end": {
-      "line": 28,
+      "line": 37,
       "column": 0
     }
   },
   "sourceType": "module",
   "body": [
     {
-      "type": "ExportNamedDeclaration",
-      "start": 29,
-      "end": 112,
+      "type": "ImportDeclaration",
+      "start": 60,
+      "end": 123,
       "loc": {
         "start": {
-          "line": 4,
+          "line": 6,
           "column": 0
         },
         "end": {
-          "line": 4,
-          "column": 83
+          "line": 6,
+          "column": 63
         }
       },
-      "declaration": null,
       "specifiers": [
         {
-          "type": "ExportSpecifier",
-          "start": 38,
-          "end": 64,
+          "type": "ImportNamespaceSpecifier",
+          "start": 67,
+          "end": 79,
           "loc": {
             "start": {
-              "line": 4,
-              "column": 9
+              "line": 6,
+              "column": 7
             },
             "end": {
-              "line": 4,
-              "column": 35
+              "line": 6,
+              "column": 19
             }
           },
           "local": {
             "type": "Identifier",
-            "start": 38,
-            "end": 45,
+            "start": 72,
+            "end": 79,
             "loc": {
               "start": {
-                "line": 4,
-                "column": 9
+                "line": 6,
+                "column": 12
               },
               "end": {
-                "line": 4,
-                "column": 16
+                "line": 6,
+                "column": 19
               }
             },
-            "name": "default",
+            "name": "assetsC",
             "leadingComments": null
-          },
-          "exported": {
-            "type": "Identifier",
-            "start": 49,
-            "end": 64,
-            "loc": {
-              "start": {
-                "line": 4,
-                "column": 20
-              },
-              "end": {
-                "line": 4,
-                "column": 35
-              }
-            },
-            "name": "StaticBackCover"
           },
           "leadingComments": null
         }
       ],
+      "importKind": "value",
       "source": {
         "type": "Literal",
-        "start": 72,
-        "end": 111,
+        "start": 85,
+        "end": 122,
         "loc": {
           "start": {
-            "line": 4,
-            "column": 43
+            "line": 6,
+            "column": 25
           },
           "end": {
-            "line": 4,
-            "column": 82
+            "line": 6,
+            "column": 62
           }
         },
-        "value": "./StaticComponents/StaticBackCover.js",
-        "rawValue": "./StaticComponents/StaticBackCover.js",
-        "raw": "'./StaticComponents/StaticBackCover.js'"
+        "value": "./core/controllers/assetsController",
+        "rawValue": "./core/controllers/assetsController",
+        "raw": "'./core/controllers/assetsController'"
       },
       "leadingComments": [
         {
           "type": "Block",
-          "value": "\n * Components exports\n ",
+          "value": "*\n * Peritext library entrypoint\n * @module peritext\n ",
           "start": 0,
-          "end": 28,
+          "end": 58,
           "loc": {
             "start": {
               "line": 1,
               "column": 0
             },
             "end": {
-              "line": 3,
+              "line": 4,
               "column": 3
             }
           },
           "range": [
             0,
-            28
+            58
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 124,
+      "end": 191,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 67
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportNamespaceSpecifier",
+          "start": 131,
+          "end": 145,
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 7
+            },
+            "end": {
+              "line": 7,
+              "column": 21
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 136,
+            "end": 145,
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 12
+              },
+              "end": {
+                "line": 7,
+                "column": 21
+              }
+            },
+            "name": "contentsC"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 151,
+        "end": 190,
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 27
+          },
+          "end": {
+            "line": 7,
+            "column": 66
+          }
+        },
+        "value": "./core/controllers/contentsController",
+        "rawValue": "./core/controllers/contentsController",
+        "raw": "'./core/controllers/contentsController'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 192,
+      "end": 232,
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 40
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportNamespaceSpecifier",
+          "start": 199,
+          "end": 210,
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 7
+            },
+            "end": {
+              "line": 8,
+              "column": 18
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 204,
+            "end": 210,
+            "loc": {
+              "start": {
+                "line": 8,
+                "column": 12
+              },
+              "end": {
+                "line": 8,
+                "column": 18
+              }
+            },
+            "name": "models"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 216,
+        "end": 231,
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 24
+          },
+          "end": {
+            "line": 8,
+            "column": 39
+          }
+        },
+        "value": "./core/models",
+        "rawValue": "./core/models",
+        "raw": "'./core/models'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 233,
+      "end": 290,
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 9,
+          "column": 57
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportNamespaceSpecifier",
+          "start": 240,
+          "end": 255,
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 7
+            },
+            "end": {
+              "line": 9,
+              "column": 22
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 245,
+            "end": 255,
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 12
+              },
+              "end": {
+                "line": 9,
+                "column": 22
+              }
+            },
+            "name": "parameters"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 261,
+        "end": 289,
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 28
+          },
+          "end": {
+            "line": 9,
+            "column": 56
+          }
+        },
+        "value": "./config/defaultParameters",
+        "rawValue": "./config/defaultParameters",
+        "raw": "'./config/defaultParameters'"
+      },
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Exposes assets communication methods\n * @property {Object} assetsController\n ",
+          "start": 292,
+          "end": 378,
+          "loc": {
+            "start": {
+              "line": 11,
+              "column": 0
+            },
+            "end": {
+              "line": 14,
+              "column": 3
+            }
+          },
+          "range": [
+            292,
+            378
           ]
         }
       ]
     },
     {
       "type": "ExportNamedDeclaration",
-      "start": 113,
-      "end": 194,
-      "loc": {
-        "start": {
-          "line": 5,
-          "column": 0
-        },
-        "end": {
-          "line": 5,
-          "column": 81
-        }
-      },
-      "declaration": null,
-      "specifiers": [
-        {
-          "type": "ExportSpecifier",
-          "start": 122,
-          "end": 147,
-          "loc": {
-            "start": {
-              "line": 5,
-              "column": 9
-            },
-            "end": {
-              "line": 5,
-              "column": 34
-            }
-          },
-          "local": {
-            "type": "Identifier",
-            "start": 122,
-            "end": 129,
-            "loc": {
-              "start": {
-                "line": 5,
-                "column": 9
-              },
-              "end": {
-                "line": 5,
-                "column": 16
-              }
-            },
-            "name": "default"
-          },
-          "exported": {
-            "type": "Identifier",
-            "start": 133,
-            "end": 147,
-            "loc": {
-              "start": {
-                "line": 5,
-                "column": 20
-              },
-              "end": {
-                "line": 5,
-                "column": 34
-              }
-            },
-            "name": "StaticDocument"
-          }
-        }
-      ],
-      "source": {
-        "type": "Literal",
-        "start": 155,
-        "end": 193,
-        "loc": {
-          "start": {
-            "line": 5,
-            "column": 42
-          },
-          "end": {
-            "line": 5,
-            "column": 80
-          }
-        },
-        "value": "./StaticComponents/StaticDocument.js",
-        "rawValue": "./StaticComponents/StaticDocument.js",
-        "raw": "'./StaticComponents/StaticDocument.js'"
-      }
-    },
-    {
-      "type": "ExportNamedDeclaration",
-      "start": 195,
-      "end": 276,
-      "loc": {
-        "start": {
-          "line": 6,
-          "column": 0
-        },
-        "end": {
-          "line": 6,
-          "column": 81
-        }
-      },
-      "declaration": null,
-      "specifiers": [
-        {
-          "type": "ExportSpecifier",
-          "start": 204,
-          "end": 229,
-          "loc": {
-            "start": {
-              "line": 6,
-              "column": 9
-            },
-            "end": {
-              "line": 6,
-              "column": 34
-            }
-          },
-          "local": {
-            "type": "Identifier",
-            "start": 204,
-            "end": 211,
-            "loc": {
-              "start": {
-                "line": 6,
-                "column": 9
-              },
-              "end": {
-                "line": 6,
-                "column": 16
-              }
-            },
-            "name": "default"
-          },
-          "exported": {
-            "type": "Identifier",
-            "start": 215,
-            "end": 229,
-            "loc": {
-              "start": {
-                "line": 6,
-                "column": 20
-              },
-              "end": {
-                "line": 6,
-                "column": 34
-              }
-            },
-            "name": "StaticEndNotes"
-          }
-        }
-      ],
-      "source": {
-        "type": "Literal",
-        "start": 237,
-        "end": 275,
-        "loc": {
-          "start": {
-            "line": 6,
-            "column": 42
-          },
-          "end": {
-            "line": 6,
-            "column": 80
-          }
-        },
-        "value": "./StaticComponents/StaticEndNotes.js",
-        "rawValue": "./StaticComponents/StaticEndNotes.js",
-        "raw": "'./StaticComponents/StaticEndNotes.js'"
-      }
-    },
-    {
-      "type": "ExportNamedDeclaration",
-      "start": 277,
-      "end": 362,
-      "loc": {
-        "start": {
-          "line": 7,
-          "column": 0
-        },
-        "end": {
-          "line": 7,
-          "column": 85
-        }
-      },
-      "declaration": null,
-      "specifiers": [
-        {
-          "type": "ExportSpecifier",
-          "start": 286,
-          "end": 313,
-          "loc": {
-            "start": {
-              "line": 7,
-              "column": 9
-            },
-            "end": {
-              "line": 7,
-              "column": 36
-            }
-          },
-          "local": {
-            "type": "Identifier",
-            "start": 286,
-            "end": 293,
-            "loc": {
-              "start": {
-                "line": 7,
-                "column": 9
-              },
-              "end": {
-                "line": 7,
-                "column": 16
-              }
-            },
-            "name": "default"
-          },
-          "exported": {
-            "type": "Identifier",
-            "start": 297,
-            "end": 313,
-            "loc": {
-              "start": {
-                "line": 7,
-                "column": 20
-              },
-              "end": {
-                "line": 7,
-                "column": 36
-              }
-            },
-            "name": "StaticEndFigures"
-          }
-        }
-      ],
-      "source": {
-        "type": "Literal",
-        "start": 321,
-        "end": 361,
-        "loc": {
-          "start": {
-            "line": 7,
-            "column": 44
-          },
-          "end": {
-            "line": 7,
-            "column": 84
-          }
-        },
-        "value": "./StaticComponents/StaticEndFigures.js",
-        "rawValue": "./StaticComponents/StaticEndFigures.js",
-        "raw": "'./StaticComponents/StaticEndFigures.js'"
-      }
-    },
-    {
-      "type": "ExportNamedDeclaration",
-      "start": 363,
-      "end": 444,
-      "loc": {
-        "start": {
-          "line": 8,
-          "column": 0
-        },
-        "end": {
-          "line": 8,
-          "column": 81
-        }
-      },
-      "declaration": null,
-      "specifiers": [
-        {
-          "type": "ExportSpecifier",
-          "start": 372,
-          "end": 397,
-          "loc": {
-            "start": {
-              "line": 8,
-              "column": 9
-            },
-            "end": {
-              "line": 8,
-              "column": 34
-            }
-          },
-          "local": {
-            "type": "Identifier",
-            "start": 372,
-            "end": 379,
-            "loc": {
-              "start": {
-                "line": 8,
-                "column": 9
-              },
-              "end": {
-                "line": 8,
-                "column": 16
-              }
-            },
-            "name": "default"
-          },
-          "exported": {
-            "type": "Identifier",
-            "start": 383,
-            "end": 397,
-            "loc": {
-              "start": {
-                "line": 8,
-                "column": 20
-              },
-              "end": {
-                "line": 8,
-                "column": 34
-              }
-            },
-            "name": "StaticFootnote"
-          }
-        }
-      ],
-      "source": {
-        "type": "Literal",
-        "start": 405,
-        "end": 443,
-        "loc": {
-          "start": {
-            "line": 8,
-            "column": 42
-          },
-          "end": {
-            "line": 8,
-            "column": 80
-          }
-        },
-        "value": "./StaticComponents/StaticFootnote.js",
-        "rawValue": "./StaticComponents/StaticFootnote.js",
-        "raw": "'./StaticComponents/StaticFootnote.js'"
-      }
-    },
-    {
-      "type": "ExportNamedDeclaration",
-      "start": 445,
-      "end": 530,
-      "loc": {
-        "start": {
-          "line": 9,
-          "column": 0
-        },
-        "end": {
-          "line": 9,
-          "column": 85
-        }
-      },
-      "declaration": null,
-      "specifiers": [
-        {
-          "type": "ExportSpecifier",
-          "start": 454,
-          "end": 481,
-          "loc": {
-            "start": {
-              "line": 9,
-              "column": 9
-            },
-            "end": {
-              "line": 9,
-              "column": 36
-            }
-          },
-          "local": {
-            "type": "Identifier",
-            "start": 454,
-            "end": 461,
-            "loc": {
-              "start": {
-                "line": 9,
-                "column": 9
-              },
-              "end": {
-                "line": 9,
-                "column": 16
-              }
-            },
-            "name": "default"
-          },
-          "exported": {
-            "type": "Identifier",
-            "start": 465,
-            "end": 481,
-            "loc": {
-              "start": {
-                "line": 9,
-                "column": 20
-              },
-              "end": {
-                "line": 9,
-                "column": 36
-              }
-            },
-            "name": "StaticFrontCover"
-          }
-        }
-      ],
-      "source": {
-        "type": "Literal",
-        "start": 489,
-        "end": 529,
-        "loc": {
-          "start": {
-            "line": 9,
-            "column": 44
-          },
-          "end": {
-            "line": 9,
-            "column": 84
-          }
-        },
-        "value": "./StaticComponents/StaticFrontCover.js",
-        "rawValue": "./StaticComponents/StaticFrontCover.js",
-        "raw": "'./StaticComponents/StaticFrontCover.js'"
-      }
-    },
-    {
-      "type": "ExportNamedDeclaration",
-      "start": 531,
-      "end": 612,
-      "loc": {
-        "start": {
-          "line": 10,
-          "column": 0
-        },
-        "end": {
-          "line": 10,
-          "column": 81
-        }
-      },
-      "declaration": null,
-      "specifiers": [
-        {
-          "type": "ExportSpecifier",
-          "start": 540,
-          "end": 565,
-          "loc": {
-            "start": {
-              "line": 10,
-              "column": 9
-            },
-            "end": {
-              "line": 10,
-              "column": 34
-            }
-          },
-          "local": {
-            "type": "Identifier",
-            "start": 540,
-            "end": 547,
-            "loc": {
-              "start": {
-                "line": 10,
-                "column": 9
-              },
-              "end": {
-                "line": 10,
-                "column": 16
-              }
-            },
-            "name": "default"
-          },
-          "exported": {
-            "type": "Identifier",
-            "start": 551,
-            "end": 565,
-            "loc": {
-              "start": {
-                "line": 10,
-                "column": 20
-              },
-              "end": {
-                "line": 10,
-                "column": 34
-              }
-            },
-            "name": "StaticGlossary"
-          }
-        }
-      ],
-      "source": {
-        "type": "Literal",
-        "start": 573,
-        "end": 611,
-        "loc": {
-          "start": {
-            "line": 10,
-            "column": 42
-          },
-          "end": {
-            "line": 10,
-            "column": 80
-          }
-        },
-        "value": "./StaticComponents/StaticGlossary.js",
-        "rawValue": "./StaticComponents/StaticGlossary.js",
-        "raw": "'./StaticComponents/StaticGlossary.js'"
-      }
-    },
-    {
-      "type": "ExportNamedDeclaration",
-      "start": 613,
-      "end": 700,
-      "loc": {
-        "start": {
-          "line": 11,
-          "column": 0
-        },
-        "end": {
-          "line": 11,
-          "column": 87
-        }
-      },
-      "declaration": null,
-      "specifiers": [
-        {
-          "type": "ExportSpecifier",
-          "start": 622,
-          "end": 650,
-          "loc": {
-            "start": {
-              "line": 11,
-              "column": 9
-            },
-            "end": {
-              "line": 11,
-              "column": 37
-            }
-          },
-          "local": {
-            "type": "Identifier",
-            "start": 622,
-            "end": 629,
-            "loc": {
-              "start": {
-                "line": 11,
-                "column": 9
-              },
-              "end": {
-                "line": 11,
-                "column": 16
-              }
-            },
-            "name": "default"
-          },
-          "exported": {
-            "type": "Identifier",
-            "start": 633,
-            "end": 650,
-            "loc": {
-              "start": {
-                "line": 11,
-                "column": 20
-              },
-              "end": {
-                "line": 11,
-                "column": 37
-              }
-            },
-            "name": "StaticImageFigure"
-          }
-        }
-      ],
-      "source": {
-        "type": "Literal",
-        "start": 658,
-        "end": 699,
-        "loc": {
-          "start": {
-            "line": 11,
-            "column": 45
-          },
-          "end": {
-            "line": 11,
-            "column": 86
-          }
-        },
-        "value": "./StaticComponents/StaticImageFigure.js",
-        "rawValue": "./StaticComponents/StaticImageFigure.js",
-        "raw": "'./StaticComponents/StaticImageFigure.js'"
-      }
-    },
-    {
-      "type": "ExportNamedDeclaration",
-      "start": 701,
-      "end": 788,
-      "loc": {
-        "start": {
-          "line": 12,
-          "column": 0
-        },
-        "end": {
-          "line": 12,
-          "column": 87
-        }
-      },
-      "declaration": null,
-      "specifiers": [
-        {
-          "type": "ExportSpecifier",
-          "start": 710,
-          "end": 738,
-          "loc": {
-            "start": {
-              "line": 12,
-              "column": 9
-            },
-            "end": {
-              "line": 12,
-              "column": 37
-            }
-          },
-          "local": {
-            "type": "Identifier",
-            "start": 710,
-            "end": 717,
-            "loc": {
-              "start": {
-                "line": 12,
-                "column": 9
-              },
-              "end": {
-                "line": 12,
-                "column": 16
-              }
-            },
-            "name": "default"
-          },
-          "exported": {
-            "type": "Identifier",
-            "start": 721,
-            "end": 738,
-            "loc": {
-              "start": {
-                "line": 12,
-                "column": 20
-              },
-              "end": {
-                "line": 12,
-                "column": 37
-              }
-            },
-            "name": "StaticNoteContent"
-          }
-        }
-      ],
-      "source": {
-        "type": "Literal",
-        "start": 746,
-        "end": 787,
-        "loc": {
-          "start": {
-            "line": 12,
-            "column": 45
-          },
-          "end": {
-            "line": 12,
-            "column": 86
-          }
-        },
-        "value": "./StaticComponents/StaticNoteContent.js",
-        "rawValue": "./StaticComponents/StaticNoteContent.js",
-        "raw": "'./StaticComponents/StaticNoteContent.js'"
-      }
-    },
-    {
-      "type": "ExportNamedDeclaration",
-      "start": 789,
-      "end": 876,
-      "loc": {
-        "start": {
-          "line": 13,
-          "column": 0
-        },
-        "end": {
-          "line": 13,
-          "column": 87
-        }
-      },
-      "declaration": null,
-      "specifiers": [
-        {
-          "type": "ExportSpecifier",
-          "start": 798,
-          "end": 826,
-          "loc": {
-            "start": {
-              "line": 13,
-              "column": 9
-            },
-            "end": {
-              "line": 13,
-              "column": 37
-            }
-          },
-          "local": {
-            "type": "Identifier",
-            "start": 798,
-            "end": 805,
-            "loc": {
-              "start": {
-                "line": 13,
-                "column": 9
-              },
-              "end": {
-                "line": 13,
-                "column": 16
-              }
-            },
-            "name": "default"
-          },
-          "exported": {
-            "type": "Identifier",
-            "start": 809,
-            "end": 826,
-            "loc": {
-              "start": {
-                "line": 13,
-                "column": 20
-              },
-              "end": {
-                "line": 13,
-                "column": 37
-              }
-            },
-            "name": "StaticNotePointer"
-          }
-        }
-      ],
-      "source": {
-        "type": "Literal",
-        "start": 834,
-        "end": 875,
-        "loc": {
-          "start": {
-            "line": 13,
-            "column": 45
-          },
-          "end": {
-            "line": 13,
-            "column": 86
-          }
-        },
-        "value": "./StaticComponents/StaticNotePointer.js",
-        "rawValue": "./StaticComponents/StaticNotePointer.js",
-        "raw": "'./StaticComponents/StaticNotePointer.js'"
-      }
-    },
-    {
-      "type": "ExportNamedDeclaration",
-      "start": 877,
-      "end": 970,
-      "loc": {
-        "start": {
-          "line": 14,
-          "column": 0
-        },
-        "end": {
-          "line": 14,
-          "column": 93
-        }
-      },
-      "declaration": null,
-      "specifiers": [
-        {
-          "type": "ExportSpecifier",
-          "start": 886,
-          "end": 917,
-          "loc": {
-            "start": {
-              "line": 14,
-              "column": 9
-            },
-            "end": {
-              "line": 14,
-              "column": 40
-            }
-          },
-          "local": {
-            "type": "Identifier",
-            "start": 886,
-            "end": 893,
-            "loc": {
-              "start": {
-                "line": 14,
-                "column": 9
-              },
-              "end": {
-                "line": 14,
-                "column": 16
-              }
-            },
-            "name": "default"
-          },
-          "exported": {
-            "type": "Identifier",
-            "start": 897,
-            "end": 917,
-            "loc": {
-              "start": {
-                "line": 14,
-                "column": 20
-              },
-              "end": {
-                "line": 14,
-                "column": 40
-              }
-            },
-            "name": "StaticReferencesList"
-          }
-        }
-      ],
-      "source": {
-        "type": "Literal",
-        "start": 925,
-        "end": 969,
-        "loc": {
-          "start": {
-            "line": 14,
-            "column": 48
-          },
-          "end": {
-            "line": 14,
-            "column": 92
-          }
-        },
-        "value": "./StaticComponents/StaticReferencesList.js",
-        "rawValue": "./StaticComponents/StaticReferencesList.js",
-        "raw": "'./StaticComponents/StaticReferencesList.js'"
-      }
-    },
-    {
-      "type": "ExportNamedDeclaration",
-      "start": 971,
-      "end": 1050,
+      "start": 379,
+      "end": 419,
       "loc": {
         "start": {
           "line": 15,
@@ -962,746 +339,343 @@
         },
         "end": {
           "line": 15,
-          "column": 79
+          "column": 40
         }
       },
-      "declaration": null,
-      "specifiers": [
-        {
-          "type": "ExportSpecifier",
-          "start": 980,
-          "end": 1004,
-          "loc": {
-            "start": {
-              "line": 15,
-              "column": 9
-            },
-            "end": {
-              "line": 15,
-              "column": 33
-            }
-          },
-          "local": {
-            "type": "Identifier",
-            "start": 980,
-            "end": 987,
-            "loc": {
-              "start": {
-                "line": 15,
-                "column": 9
-              },
-              "end": {
-                "line": 15,
-                "column": 16
-              }
-            },
-            "name": "default"
-          },
-          "exported": {
-            "type": "Identifier",
-            "start": 991,
-            "end": 1004,
-            "loc": {
-              "start": {
-                "line": 15,
-                "column": 20
-              },
-              "end": {
-                "line": 15,
-                "column": 33
-              }
-            },
-            "name": "StaticSection"
-          }
-        }
-      ],
-      "source": {
-        "type": "Literal",
-        "start": 1012,
-        "end": 1049,
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 386,
+        "end": 419,
         "loc": {
           "start": {
             "line": 15,
-            "column": 41
+            "column": 7
           },
           "end": {
             "line": 15,
-            "column": 78
+            "column": 40
           }
         },
-        "value": "./StaticComponents/StaticSection.js",
-        "rawValue": "./StaticComponents/StaticSection.js",
-        "raw": "'./StaticComponents/StaticSection.js'"
-      }
-    },
-    {
-      "type": "ExportNamedDeclaration",
-      "start": 1051,
-      "end": 1146,
-      "loc": {
-        "start": {
-          "line": 16,
-          "column": 0
-        },
-        "end": {
-          "line": 16,
-          "column": 95
-        }
-      },
-      "declaration": null,
-      "specifiers": [
-        {
-          "type": "ExportSpecifier",
-          "start": 1060,
-          "end": 1092,
-          "loc": {
-            "start": {
-              "line": 16,
-              "column": 9
-            },
-            "end": {
-              "line": 16,
-              "column": 41
-            }
-          },
-          "local": {
-            "type": "Identifier",
-            "start": 1060,
-            "end": 1067,
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 392,
+            "end": 418,
             "loc": {
               "start": {
-                "line": 16,
-                "column": 9
+                "line": 15,
+                "column": 13
               },
               "end": {
-                "line": 16,
-                "column": 16
-              }
-            },
-            "name": "default"
-          },
-          "exported": {
-            "type": "Identifier",
-            "start": 1071,
-            "end": 1092,
-            "loc": {
-              "start": {
-                "line": 16,
-                "column": 20
-              },
-              "end": {
-                "line": 16,
-                "column": 41
-              }
-            },
-            "name": "StaticTableOfContents"
-          }
-        }
-      ],
-      "source": {
-        "type": "Literal",
-        "start": 1100,
-        "end": 1145,
-        "loc": {
-          "start": {
-            "line": 16,
-            "column": 49
-          },
-          "end": {
-            "line": 16,
-            "column": 94
-          }
-        },
-        "value": "./StaticComponents/StaticTableOfContents.js",
-        "rawValue": "./StaticComponents/StaticTableOfContents.js",
-        "raw": "'./StaticComponents/StaticTableOfContents.js'"
-      }
-    },
-    {
-      "type": "ExportNamedDeclaration",
-      "start": 1147,
-      "end": 1240,
-      "loc": {
-        "start": {
-          "line": 17,
-          "column": 0
-        },
-        "end": {
-          "line": 17,
-          "column": 93
-        }
-      },
-      "declaration": null,
-      "specifiers": [
-        {
-          "type": "ExportSpecifier",
-          "start": 1156,
-          "end": 1187,
-          "loc": {
-            "start": {
-              "line": 17,
-              "column": 9
-            },
-            "end": {
-              "line": 17,
-              "column": 40
-            }
-          },
-          "local": {
-            "type": "Identifier",
-            "start": 1156,
-            "end": 1163,
-            "loc": {
-              "start": {
-                "line": 17,
-                "column": 9
-              },
-              "end": {
-                "line": 17,
-                "column": 16
-              }
-            },
-            "name": "default"
-          },
-          "exported": {
-            "type": "Identifier",
-            "start": 1167,
-            "end": 1187,
-            "loc": {
-              "start": {
-                "line": 17,
-                "column": 20
-              },
-              "end": {
-                "line": 17,
-                "column": 40
-              }
-            },
-            "name": "StaticTableOfFigures"
-          }
-        }
-      ],
-      "source": {
-        "type": "Literal",
-        "start": 1195,
-        "end": 1239,
-        "loc": {
-          "start": {
-            "line": 17,
-            "column": 48
-          },
-          "end": {
-            "line": 17,
-            "column": 92
-          }
-        },
-        "value": "./StaticComponents/StaticTableOfFigures.js",
-        "rawValue": "./StaticComponents/StaticTableOfFigures.js",
-        "raw": "'./StaticComponents/StaticTableOfFigures.js'"
-      }
-    },
-    {
-      "type": "ExportNamedDeclaration",
-      "start": 1242,
-      "end": 1331,
-      "loc": {
-        "start": {
-          "line": 19,
-          "column": 0
-        },
-        "end": {
-          "line": 19,
-          "column": 89
-        }
-      },
-      "declaration": null,
-      "specifiers": [
-        {
-          "type": "ExportSpecifier",
-          "start": 1251,
-          "end": 1276,
-          "loc": {
-            "start": {
-              "line": 19,
-              "column": 9
-            },
-            "end": {
-              "line": 19,
-              "column": 34
-            }
-          },
-          "local": {
-            "type": "Identifier",
-            "start": 1251,
-            "end": 1258,
-            "loc": {
-              "start": {
-                "line": 19,
-                "column": 9
-              },
-              "end": {
-                "line": 19,
-                "column": 16
-              }
-            },
-            "name": "default"
-          },
-          "exported": {
-            "type": "Identifier",
-            "start": 1262,
-            "end": 1276,
-            "loc": {
-              "start": {
-                "line": 19,
-                "column": 20
-              },
-              "end": {
-                "line": 19,
-                "column": 34
-              }
-            },
-            "name": "StructuredCite"
-          }
-        }
-      ],
-      "source": {
-        "type": "Literal",
-        "start": 1284,
-        "end": 1330,
-        "loc": {
-          "start": {
-            "line": 19,
-            "column": 42
-          },
-          "end": {
-            "line": 19,
-            "column": 88
-          }
-        },
-        "value": "./StructuredDataComponents/StructuredCite.js",
-        "rawValue": "./StructuredDataComponents/StructuredCite.js",
-        "raw": "'./StructuredDataComponents/StructuredCite.js'"
-      }
-    },
-    {
-      "type": "ExportNamedDeclaration",
-      "start": 1332,
-      "end": 1423,
-      "loc": {
-        "start": {
-          "line": 20,
-          "column": 0
-        },
-        "end": {
-          "line": 20,
-          "column": 91
-        }
-      },
-      "declaration": null,
-      "specifiers": [
-        {
-          "type": "ExportSpecifier",
-          "start": 1341,
-          "end": 1367,
-          "loc": {
-            "start": {
-              "line": 20,
-              "column": 9
-            },
-            "end": {
-              "line": 20,
-              "column": 35
-            }
-          },
-          "local": {
-            "type": "Identifier",
-            "start": 1341,
-            "end": 1348,
-            "loc": {
-              "start": {
-                "line": 20,
-                "column": 9
-              },
-              "end": {
-                "line": 20,
-                "column": 16
-              }
-            },
-            "name": "default"
-          },
-          "exported": {
-            "type": "Identifier",
-            "start": 1352,
-            "end": 1367,
-            "loc": {
-              "start": {
-                "line": 20,
-                "column": 20
-              },
-              "end": {
-                "line": 20,
-                "column": 35
-              }
-            },
-            "name": "StructuredCOinS"
-          }
-        }
-      ],
-      "source": {
-        "type": "Literal",
-        "start": 1375,
-        "end": 1422,
-        "loc": {
-          "start": {
-            "line": 20,
-            "column": 43
-          },
-          "end": {
-            "line": 20,
-            "column": 90
-          }
-        },
-        "value": "./StructuredDataComponents/StructuredCOinS.js",
-        "rawValue": "./StructuredDataComponents/StructuredCOinS.js",
-        "raw": "'./StructuredDataComponents/StructuredCOinS.js'"
-      }
-    },
-    {
-      "type": "ExportNamedDeclaration",
-      "start": 1424,
-      "end": 1513,
-      "loc": {
-        "start": {
-          "line": 21,
-          "column": 0
-        },
-        "end": {
-          "line": 21,
-          "column": 89
-        }
-      },
-      "declaration": null,
-      "specifiers": [
-        {
-          "type": "ExportSpecifier",
-          "start": 1433,
-          "end": 1458,
-          "loc": {
-            "start": {
-              "line": 21,
-              "column": 9
-            },
-            "end": {
-              "line": 21,
-              "column": 34
-            }
-          },
-          "local": {
-            "type": "Identifier",
-            "start": 1433,
-            "end": 1440,
-            "loc": {
-              "start": {
-                "line": 21,
-                "column": 9
-              },
-              "end": {
-                "line": 21,
-                "column": 16
-              }
-            },
-            "name": "default"
-          },
-          "exported": {
-            "type": "Identifier",
-            "start": 1444,
-            "end": 1458,
-            "loc": {
-              "start": {
-                "line": 21,
-                "column": 20
-              },
-              "end": {
-                "line": 21,
-                "column": 34
-              }
-            },
-            "name": "StructuredDate"
-          }
-        }
-      ],
-      "source": {
-        "type": "Literal",
-        "start": 1466,
-        "end": 1512,
-        "loc": {
-          "start": {
-            "line": 21,
-            "column": 42
-          },
-          "end": {
-            "line": 21,
-            "column": 88
-          }
-        },
-        "value": "./StructuredDataComponents/StructuredDate.js",
-        "rawValue": "./StructuredDataComponents/StructuredDate.js",
-        "raw": "'./StructuredDataComponents/StructuredDate.js'"
-      }
-    },
-    {
-      "type": "ExportNamedDeclaration",
-      "start": 1514,
-      "end": 1613,
-      "loc": {
-        "start": {
-          "line": 22,
-          "column": 0
-        },
-        "end": {
-          "line": 22,
-          "column": 99
-        }
-      },
-      "declaration": null,
-      "specifiers": [
-        {
-          "type": "ExportSpecifier",
-          "start": 1523,
-          "end": 1553,
-          "loc": {
-            "start": {
-              "line": 22,
-              "column": 9
-            },
-            "end": {
-              "line": 22,
-              "column": 39
-            }
-          },
-          "local": {
-            "type": "Identifier",
-            "start": 1523,
-            "end": 1530,
-            "loc": {
-              "start": {
-                "line": 22,
-                "column": 9
-              },
-              "end": {
-                "line": 22,
-                "column": 16
-              }
-            },
-            "name": "default"
-          },
-          "exported": {
-            "type": "Identifier",
-            "start": 1534,
-            "end": 1553,
-            "loc": {
-              "start": {
-                "line": 22,
-                "column": 20
-              },
-              "end": {
-                "line": 22,
+                "line": 15,
                 "column": 39
               }
             },
-            "name": "StructuredHyperLink"
+            "id": {
+              "type": "Identifier",
+              "start": 392,
+              "end": 408,
+              "loc": {
+                "start": {
+                  "line": 15,
+                  "column": 13
+                },
+                "end": {
+                  "line": 15,
+                  "column": 29
+                }
+              },
+              "name": "assetsController",
+              "leadingComments": null
+            },
+            "init": {
+              "type": "Identifier",
+              "start": 411,
+              "end": 418,
+              "loc": {
+                "start": {
+                  "line": 15,
+                  "column": 32
+                },
+                "end": {
+                  "line": 15,
+                  "column": 39
+                }
+              },
+              "name": "assetsC"
+            },
+            "leadingComments": null
           }
+        ],
+        "kind": "const",
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Exposes assets communication methods\n * @property {Object} assetsController\n ",
+            "start": 292,
+            "end": 378,
+            "loc": {
+              "start": {
+                "line": 11,
+                "column": 0
+              },
+              "end": {
+                "line": 14,
+                "column": 3
+              }
+            },
+            "range": [
+              292,
+              378
+            ]
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Exposes contents communication methods\n * @property {Object} contentsController\n ",
+            "start": 420,
+            "end": 510,
+            "loc": {
+              "start": {
+                "line": 16,
+                "column": 0
+              },
+              "end": {
+                "line": 19,
+                "column": 3
+              }
+            },
+            "range": [
+              420,
+              510
+            ]
+          }
+        ]
+      },
+      "specifiers": [],
+      "source": null,
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Exposes assets communication methods\n * @property {Object} assetsController\n ",
+          "start": 292,
+          "end": 378,
+          "loc": {
+            "start": {
+              "line": 11,
+              "column": 0
+            },
+            "end": {
+              "line": 14,
+              "column": 3
+            }
+          },
+          "range": [
+            292,
+            378
+          ]
         }
       ],
-      "source": {
-        "type": "Literal",
-        "start": 1561,
-        "end": 1612,
-        "loc": {
-          "start": {
-            "line": 22,
-            "column": 47
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Exposes contents communication methods\n * @property {Object} contentsController\n ",
+          "start": 420,
+          "end": 510,
+          "loc": {
+            "start": {
+              "line": 16,
+              "column": 0
+            },
+            "end": {
+              "line": 19,
+              "column": 3
+            }
           },
-          "end": {
-            "line": 22,
-            "column": 98
-          }
-        },
-        "value": "./StructuredDataComponents/StructuredHyperLink.js",
-        "rawValue": "./StructuredDataComponents/StructuredHyperLink.js",
-        "raw": "'./StructuredDataComponents/StructuredHyperLink.js'"
-      }
+          "range": [
+            420,
+            510
+          ]
+        }
+      ]
     },
     {
       "type": "ExportNamedDeclaration",
-      "start": 1614,
-      "end": 1733,
+      "start": 511,
+      "end": 555,
       "loc": {
         "start": {
-          "line": 23,
+          "line": 20,
           "column": 0
         },
         "end": {
-          "line": 23,
-          "column": 119
+          "line": 20,
+          "column": 44
         }
       },
-      "declaration": null,
-      "specifiers": [
-        {
-          "type": "ExportSpecifier",
-          "start": 1623,
-          "end": 1663,
-          "loc": {
-            "start": {
-              "line": 23,
-              "column": 9
-            },
-            "end": {
-              "line": 23,
-              "column": 49
-            }
-          },
-          "local": {
-            "type": "Identifier",
-            "start": 1623,
-            "end": 1630,
-            "loc": {
-              "start": {
-                "line": 23,
-                "column": 9
-              },
-              "end": {
-                "line": 23,
-                "column": 16
-              }
-            },
-            "name": "default"
-          },
-          "exported": {
-            "type": "Identifier",
-            "start": 1634,
-            "end": 1663,
-            "loc": {
-              "start": {
-                "line": 23,
-                "column": 20
-              },
-              "end": {
-                "line": 23,
-                "column": 49
-              }
-            },
-            "name": "StructuredMetadataPlaceholder"
-          }
-        }
-      ],
-      "source": {
-        "type": "Literal",
-        "start": 1671,
-        "end": 1732,
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 518,
+        "end": 555,
         "loc": {
           "start": {
-            "line": 23,
-            "column": 57
+            "line": 20,
+            "column": 7
           },
           "end": {
-            "line": 23,
-            "column": 118
+            "line": 20,
+            "column": 44
           }
         },
-        "value": "./StructuredDataComponents/StructuredMetadataPlaceholder.js",
-        "rawValue": "./StructuredDataComponents/StructuredMetadataPlaceholder.js",
-        "raw": "'./StructuredDataComponents/StructuredMetadataPlaceholder.js'"
-      }
-    },
-    {
-      "type": "ExportNamedDeclaration",
-      "start": 1734,
-      "end": 1841,
-      "loc": {
-        "start": {
-          "line": 24,
-          "column": 0
-        },
-        "end": {
-          "line": 24,
-          "column": 107
-        }
-      },
-      "declaration": null,
-      "specifiers": [
-        {
-          "type": "ExportSpecifier",
-          "start": 1743,
-          "end": 1777,
-          "loc": {
-            "start": {
-              "line": 24,
-              "column": 9
-            },
-            "end": {
-              "line": 24,
-              "column": 43
-            }
-          },
-          "local": {
-            "type": "Identifier",
-            "start": 1743,
-            "end": 1750,
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 524,
+            "end": 554,
             "loc": {
               "start": {
-                "line": 24,
-                "column": 9
+                "line": 20,
+                "column": 13
               },
               "end": {
-                "line": 24,
-                "column": 16
-              }
-            },
-            "name": "default"
-          },
-          "exported": {
-            "type": "Identifier",
-            "start": 1754,
-            "end": 1777,
-            "loc": {
-              "start": {
-                "line": 24,
-                "column": 20
-              },
-              "end": {
-                "line": 24,
+                "line": 20,
                 "column": 43
               }
             },
-            "name": "StructuredParentJournal"
+            "id": {
+              "type": "Identifier",
+              "start": 524,
+              "end": 542,
+              "loc": {
+                "start": {
+                  "line": 20,
+                  "column": 13
+                },
+                "end": {
+                  "line": 20,
+                  "column": 31
+                }
+              },
+              "name": "contentsController",
+              "leadingComments": null
+            },
+            "init": {
+              "type": "Identifier",
+              "start": 545,
+              "end": 554,
+              "loc": {
+                "start": {
+                  "line": 20,
+                  "column": 34
+                },
+                "end": {
+                  "line": 20,
+                  "column": 43
+                }
+              },
+              "name": "contentsC"
+            },
+            "leadingComments": null
           }
+        ],
+        "kind": "const",
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Exposes contents communication methods\n * @property {Object} contentsController\n ",
+            "start": 420,
+            "end": 510,
+            "loc": {
+              "start": {
+                "line": 16,
+                "column": 0
+              },
+              "end": {
+                "line": 19,
+                "column": 3
+              }
+            },
+            "range": [
+              420,
+              510
+            ]
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Exposes peritext default models for metadata, resources, contextualizers, and rendering settings\n * @property {Object} defaultModels\n ",
+            "start": 556,
+            "end": 699,
+            "loc": {
+              "start": {
+                "line": 21,
+                "column": 0
+              },
+              "end": {
+                "line": 24,
+                "column": 3
+              }
+            },
+            "range": [
+              556,
+              699
+            ]
+          }
+        ]
+      },
+      "specifiers": [],
+      "source": null,
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Exposes contents communication methods\n * @property {Object} contentsController\n ",
+          "start": 420,
+          "end": 510,
+          "loc": {
+            "start": {
+              "line": 16,
+              "column": 0
+            },
+            "end": {
+              "line": 19,
+              "column": 3
+            }
+          },
+          "range": [
+            420,
+            510
+          ]
         }
       ],
-      "source": {
-        "type": "Literal",
-        "start": 1785,
-        "end": 1840,
-        "loc": {
-          "start": {
-            "line": 24,
-            "column": 51
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Exposes peritext default models for metadata, resources, contextualizers, and rendering settings\n * @property {Object} defaultModels\n ",
+          "start": 556,
+          "end": 699,
+          "loc": {
+            "start": {
+              "line": 21,
+              "column": 0
+            },
+            "end": {
+              "line": 24,
+              "column": 3
+            }
           },
-          "end": {
-            "line": 24,
-            "column": 106
-          }
-        },
-        "value": "./StructuredDataComponents/StructuredParentJournal.js",
-        "rawValue": "./StructuredDataComponents/StructuredParentJournal.js",
-        "raw": "'./StructuredDataComponents/StructuredParentJournal.js'"
-      }
+          "range": [
+            556,
+            699
+          ]
+        }
+      ]
     },
     {
       "type": "ExportNamedDeclaration",
-      "start": 1842,
-      "end": 1935,
+      "start": 700,
+      "end": 736,
       "loc": {
         "start": {
           "line": 25,
@@ -1709,243 +683,467 @@
         },
         "end": {
           "line": 25,
-          "column": 93
+          "column": 36
         }
       },
-      "declaration": null,
-      "specifiers": [
-        {
-          "type": "ExportSpecifier",
-          "start": 1851,
-          "end": 1878,
-          "loc": {
-            "start": {
-              "line": 25,
-              "column": 9
-            },
-            "end": {
-              "line": 25,
-              "column": 36
-            }
-          },
-          "local": {
-            "type": "Identifier",
-            "start": 1851,
-            "end": 1858,
-            "loc": {
-              "start": {
-                "line": 25,
-                "column": 9
-              },
-              "end": {
-                "line": 25,
-                "column": 16
-              }
-            },
-            "name": "default"
-          },
-          "exported": {
-            "type": "Identifier",
-            "start": 1862,
-            "end": 1878,
-            "loc": {
-              "start": {
-                "line": 25,
-                "column": 20
-              },
-              "end": {
-                "line": 25,
-                "column": 36
-              }
-            },
-            "name": "StructuredPerson"
-          }
-        }
-      ],
-      "source": {
-        "type": "Literal",
-        "start": 1886,
-        "end": 1934,
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 707,
+        "end": 736,
         "loc": {
           "start": {
             "line": 25,
+            "column": 7
+          },
+          "end": {
+            "line": 25,
+            "column": 36
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 713,
+            "end": 735,
+            "loc": {
+              "start": {
+                "line": 25,
+                "column": 13
+              },
+              "end": {
+                "line": 25,
+                "column": 35
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 713,
+              "end": 726,
+              "loc": {
+                "start": {
+                  "line": 25,
+                  "column": 13
+                },
+                "end": {
+                  "line": 25,
+                  "column": 26
+                }
+              },
+              "name": "defaultModels",
+              "leadingComments": null
+            },
+            "init": {
+              "type": "Identifier",
+              "start": 729,
+              "end": 735,
+              "loc": {
+                "start": {
+                  "line": 25,
+                  "column": 29
+                },
+                "end": {
+                  "line": 25,
+                  "column": 35
+                }
+              },
+              "name": "models"
+            },
+            "leadingComments": null
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Exposes peritext default models for metadata, resources, contextualizers, and rendering settings\n * @property {Object} defaultModels\n ",
+            "start": 556,
+            "end": 699,
+            "loc": {
+              "start": {
+                "line": 21,
+                "column": 0
+              },
+              "end": {
+                "line": 24,
+                "column": 3
+              }
+            },
+            "range": [
+              556,
+              699
+            ]
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Exposes default language parameters for includes and templates\n * @property {Object} defaultParameters\n ",
+            "start": 737,
+            "end": 850,
+            "loc": {
+              "start": {
+                "line": 26,
+                "column": 0
+              },
+              "end": {
+                "line": 29,
+                "column": 3
+              }
+            },
+            "range": [
+              737,
+              850
+            ]
+          }
+        ]
+      },
+      "specifiers": [],
+      "source": null,
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Exposes peritext default models for metadata, resources, contextualizers, and rendering settings\n * @property {Object} defaultModels\n ",
+          "start": 556,
+          "end": 699,
+          "loc": {
+            "start": {
+              "line": 21,
+              "column": 0
+            },
+            "end": {
+              "line": 24,
+              "column": 3
+            }
+          },
+          "range": [
+            556,
+            699
+          ]
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Exposes default language parameters for includes and templates\n * @property {Object} defaultParameters\n ",
+          "start": 737,
+          "end": 850,
+          "loc": {
+            "start": {
+              "line": 26,
+              "column": 0
+            },
+            "end": {
+              "line": 29,
+              "column": 3
+            }
+          },
+          "range": [
+            737,
+            850
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 851,
+      "end": 895,
+      "loc": {
+        "start": {
+          "line": 30,
+          "column": 0
+        },
+        "end": {
+          "line": 30,
+          "column": 44
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 858,
+        "end": 895,
+        "loc": {
+          "start": {
+            "line": 30,
+            "column": 7
+          },
+          "end": {
+            "line": 30,
             "column": 44
-          },
-          "end": {
-            "line": 25,
-            "column": 92
           }
         },
-        "value": "./StructuredDataComponents/StructuredPerson.js",
-        "rawValue": "./StructuredDataComponents/StructuredPerson.js",
-        "raw": "'./StructuredDataComponents/StructuredPerson.js'"
-      }
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 864,
+            "end": 894,
+            "loc": {
+              "start": {
+                "line": 30,
+                "column": 13
+              },
+              "end": {
+                "line": 30,
+                "column": 43
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 864,
+              "end": 881,
+              "loc": {
+                "start": {
+                  "line": 30,
+                  "column": 13
+                },
+                "end": {
+                  "line": 30,
+                  "column": 30
+                }
+              },
+              "name": "defaultParameters",
+              "leadingComments": null
+            },
+            "init": {
+              "type": "Identifier",
+              "start": 884,
+              "end": 894,
+              "loc": {
+                "start": {
+                  "line": 30,
+                  "column": 33
+                },
+                "end": {
+                  "line": 30,
+                  "column": 43
+                }
+              },
+              "name": "parameters"
+            },
+            "leadingComments": null
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Exposes default language parameters for includes and templates\n * @property {Object} defaultParameters\n ",
+            "start": 737,
+            "end": 850,
+            "loc": {
+              "start": {
+                "line": 26,
+                "column": 0
+              },
+              "end": {
+                "line": 29,
+                "column": 3
+              }
+            },
+            "range": [
+              737,
+              850
+            ]
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Exposes section export to pdf with print renderer function\n * @property {function} exportSectionToPdf\n ",
+            "start": 897,
+            "end": 1009,
+            "loc": {
+              "start": {
+                "line": 32,
+                "column": 0
+              },
+              "end": {
+                "line": 35,
+                "column": 3
+              }
+            },
+            "range": [
+              897,
+              1009
+            ]
+          }
+        ]
+      },
+      "specifiers": [],
+      "source": null,
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Exposes default language parameters for includes and templates\n * @property {Object} defaultParameters\n ",
+          "start": 737,
+          "end": 850,
+          "loc": {
+            "start": {
+              "line": 26,
+              "column": 0
+            },
+            "end": {
+              "line": 29,
+              "column": 3
+            }
+          },
+          "range": [
+            737,
+            850
+          ]
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Exposes section export to pdf with print renderer function\n * @property {function} exportSectionToPdf\n ",
+          "start": 897,
+          "end": 1009,
+          "loc": {
+            "start": {
+              "line": 32,
+              "column": 0
+            },
+            "end": {
+              "line": 35,
+              "column": 3
+            }
+          },
+          "range": [
+            897,
+            1009
+          ]
+        }
+      ]
     },
     {
       "type": "ExportNamedDeclaration",
-      "start": 1936,
-      "end": 2035,
+      "start": 1010,
+      "end": 1069,
       "loc": {
         "start": {
-          "line": 26,
+          "line": 36,
           "column": 0
         },
         "end": {
-          "line": 26,
-          "column": 99
+          "line": 36,
+          "column": 59
         }
       },
       "declaration": null,
       "specifiers": [
         {
           "type": "ExportSpecifier",
-          "start": 1945,
-          "end": 1975,
+          "start": 1018,
+          "end": 1036,
           "loc": {
             "start": {
-              "line": 26,
-              "column": 9
+              "line": 36,
+              "column": 8
             },
             "end": {
-              "line": 26,
-              "column": 39
+              "line": 36,
+              "column": 26
             }
           },
           "local": {
             "type": "Identifier",
-            "start": 1945,
-            "end": 1952,
+            "start": 1018,
+            "end": 1036,
             "loc": {
               "start": {
-                "line": 26,
-                "column": 9
+                "line": 36,
+                "column": 8
               },
               "end": {
-                "line": 26,
-                "column": 16
+                "line": 36,
+                "column": 26
               }
             },
-            "name": "default"
+            "name": "exportSectionToPdf",
+            "leadingComments": null
           },
           "exported": {
             "type": "Identifier",
-            "start": 1956,
-            "end": 1975,
+            "start": 1018,
+            "end": 1036,
             "loc": {
               "start": {
-                "line": 26,
-                "column": 20
+                "line": 36,
+                "column": 8
               },
               "end": {
-                "line": 26,
-                "column": 39
+                "line": 36,
+                "column": 26
               }
             },
-            "name": "StructuredPublisher"
-          }
+            "name": "exportSectionToPdf",
+            "leadingComments": [
+              {
+                "type": "Block",
+                "value": "*\n * Exposes section export to pdf with print renderer function\n * @property {function} exportSectionToPdf\n ",
+                "start": 897,
+                "end": 1009,
+                "loc": {
+                  "start": {
+                    "line": 32,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 35,
+                    "column": 3
+                  }
+                },
+                "range": [
+                  897,
+                  1009
+                ]
+              }
+            ]
+          },
+          "leadingComments": null
         }
       ],
       "source": {
         "type": "Literal",
-        "start": 1983,
-        "end": 2034,
+        "start": 1043,
+        "end": 1068,
         "loc": {
           "start": {
-            "line": 26,
-            "column": 47
+            "line": 36,
+            "column": 33
           },
           "end": {
-            "line": 26,
-            "column": 98
+            "line": 36,
+            "column": 58
           }
         },
-        "value": "./StructuredDataComponents/StructuredPublisher.js",
-        "rawValue": "./StructuredDataComponents/StructuredPublisher.js",
-        "raw": "'./StructuredDataComponents/StructuredPublisher.js'"
-      }
-    },
-    {
-      "type": "ExportNamedDeclaration",
-      "start": 2036,
-      "end": 2125,
-      "loc": {
-        "start": {
-          "line": 27,
-          "column": 0
-        },
-        "end": {
-          "line": 27,
-          "column": 89
-        }
+        "value": "./exporters/pdfExporter",
+        "rawValue": "./exporters/pdfExporter",
+        "raw": "'./exporters/pdfExporter'"
       },
-      "declaration": null,
-      "specifiers": [
+      "leadingComments": [
         {
-          "type": "ExportSpecifier",
-          "start": 2045,
-          "end": 2070,
+          "type": "Block",
+          "value": "*\n * Exposes section export to pdf with print renderer function\n * @property {function} exportSectionToPdf\n ",
+          "start": 897,
+          "end": 1009,
           "loc": {
             "start": {
-              "line": 27,
-              "column": 9
+              "line": 32,
+              "column": 0
             },
             "end": {
-              "line": 27,
-              "column": 34
+              "line": 35,
+              "column": 3
             }
           },
-          "local": {
-            "type": "Identifier",
-            "start": 2045,
-            "end": 2052,
-            "loc": {
-              "start": {
-                "line": 27,
-                "column": 9
-              },
-              "end": {
-                "line": 27,
-                "column": 16
-              }
-            },
-            "name": "default"
-          },
-          "exported": {
-            "type": "Identifier",
-            "start": 2056,
-            "end": 2070,
-            "loc": {
-              "start": {
-                "line": 27,
-                "column": 20
-              },
-              "end": {
-                "line": 27,
-                "column": 34
-              }
-            },
-            "name": "StructuredSpan"
-          }
+          "range": [
+            897,
+            1009
+          ]
         }
-      ],
-      "source": {
-        "type": "Literal",
-        "start": 2078,
-        "end": 2124,
-        "loc": {
-          "start": {
-            "line": 27,
-            "column": 42
-          },
-          "end": {
-            "line": 27,
-            "column": 88
-          }
-        },
-        "value": "./StructuredDataComponents/StructuredSpan.js",
-        "rawValue": "./StructuredDataComponents/StructuredSpan.js",
-        "raw": "'./StructuredDataComponents/StructuredSpan.js'"
-      }
+      ]
     }
   ]
 }

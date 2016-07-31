@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">markdownConverter/index.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/peritext/peritext.git" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-markdownToJsAbstraction">markdownToJsAbstraction</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">markdownConverter/index.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * This module resolves markdown contents + peritext-specific assertions (notes, contextualizations, contextualizers)
+ * It returns a representation of a section&apos;s content as an object containing arrays of: DOM children as js representation, notes, contextualizations, contextualizers
+ * @module converters/markdownConverter
+ */
+import marked from &apos;marked&apos;;
+import {html2json} from &apos;html2json&apos;;
+import {XmlEntities} from &apos;html-entities&apos;;
+const entities = new XmlEntities();
+
+import {getMetaValue} from &apos;./../../utils/sectionUtils&apos;;
+import {parseBibContextualization, parseBibNestedValues} from &apos;./../bibTexConverter&apos;;
+
+// basic marked parser settings
+marked.setOptions({
+  renderer: new marked.Renderer(),
+  gfm: true,
+  tables: true,
+  breaks: false,
+  pedantic: false,
+  sanitize: true,
+  smartLists: true,
+  smartypants: false
+});
+
+const eatParamsObject = (str)=&gt; {
+  let index = 0;
+  let wrappingLevel = 0;
+  let paramsObject = &apos;&apos;;
+  let inObject = false;
+  let ch;
+  while (index &lt; str.length) {
+    ch = str.charAt(index);
+    if (ch === &apos;{&apos;) {
+      wrappingLevel++;
+    }else if (ch === &apos;}&apos;) {
+      wrappingLevel--;
+    }
+
+    if (!inObject &amp;&amp; wrappingLevel &gt; 0) {
+      inObject = true;
+      paramsObject += ch;
+    } else if (inObject &amp;&amp; wrappingLevel === 0) {
+      paramsObject += ch;
+      return paramsObject;
+    } else if (inObject) {
+      paramsObject += ch;
+      // not in object, character is neither a wrapper nor a whitespace, leave
+    } else if (!inObject &amp;&amp; ch.match(/([\s])/) === null) {
+      return undefined;
+    }
+    index++;
+  }
+  return undefined;
+};
+
+const parseParamsObject = (paramsObject, impliedResources, contextualizationCount, contextualizers)=&gt; {
+  /*
+   * analyse contextualizer statement
+  */
+  let overloading;
+  let contextualizerKey;
+  // case : explicit call to a contextualizer ==&gt; overload
+  if (paramsObject &amp;&amp; paramsObject.indexOf(&apos;@&apos;) === 1) {
+    contextualizerKey = paramsObject.match(/^\{(@[^,}]+)/)[1];
+    overloading = contextualizerKey;
+    let counter = 1;
+    let newKey = contextualizerKey + &apos;_&apos; + counter;
+    let unique = false;
+    // getting a unique citeKey for the overloaded contextualizer
+    while (!unique) {
+      unique = true;
+      contextualizers.forEach((cont) =&gt; {
+        if (cont.citeKey === newKey) {
+          unique = false;
+          counter++;
+          newKey = contextualizerKey + &apos;_&apos; + counter;
+        }
+      });
+    }
+    contextualizerKey = newKey;
+  // case : no explicit call to a contextualizer ==&gt; inline implicit contextualization, determine citeKey automatically
+  }else {
+    contextualizerKey = &apos;contextualizer_&apos; + contextualizationCount + 1;
+  }
+
+  let formattedParams;
+  if (paramsObject !== undefined) {
+    formattedParams = parseBibContextualization(paramsObject);
+    const emptyParams = JSON.stringify(formattedParams).length &lt;= 2;
+    // not empty = params present, so inline (implicit new contextualizer, or contextualizer overloading)
+    if (!emptyParams) {
+      formattedParams.describedInline = true;
+    // case : no additionnal params ==&gt; no parameters
+    } else {
+      formattedParams = {};
+    }
+  // case : no mention of a contextualizer fully implicit contextualizer (no contextualizer specified)
+  } else {
+    formattedParams = {};
+    formattedParams.describedInline = true;
+    formattedParams.fullyImplicit = true;
+  }
+  // case : a contextualizer has been mentionned, with additionnal contextualization params --&gt; contextualizer overloading
+  if (overloading) {
+    formattedParams.overloading = overloading;
+  }
+  formattedParams.citeKey = contextualizerKey;
+  return formattedParams;
+};
+
+const parseContextualizations = (section)=&gt; {
+  let replaced = section.contents;
+  const contextualizations = [];
+  const newContextualizers = section.contextualizers.slice();
+  const statementsRE = /(\!)?\[([^\]]*)\]\(([^\)]+)\)/g;
+  let match;
+  let type;
+  let resources;
+  let paramsObject;
+  let contextualizationCount = -1;
+
+  while ((match = statementsRE.exec(replaced)) !== null) {
+    /*
+     * retrieve data from markdown expressions
+     */
+    // hyperlink markdown syntax stands for inline contextualization
+    // image markdown syntax stands for block contextualization
+    // ()[] = inline, !()[] = block
+    type = match[1] ? &apos;block&apos; : &apos;inline&apos;;
+    // contents
+    // children = match[2];
+    // quoted resources
+    resources = match[3].split(&apos;,&apos;).map((resKey)=&gt; {
+      const key = resKey.substr(1);
+      return section.resources.find(res=&gt; {
+        return res.citeKey === key;
+      });
+    }).filter(res=&gt;{
+      return res !== undefined;
+    });
+
+    contextualizationCount ++;
+    // following parameters
+    paramsObject = eatParamsObject(replaced.substr(match.index + match[0].length));
+
+    // UPDATE TEXT
+    // delete paramsObject from text
+    if (paramsObject) {
+      replaced = replaced.replace(replaced.substring(match.index + match[0].length, match.index + match[0].length + paramsObject.length), &apos;&apos;);
+    }
+    // update reference in &lt;a&gt; link or &lt;image&gt;
+    replaced = replaced.replace(replaced.substring(match.index + match[0].indexOf(match[3]), match.index + match[0].indexOf(match[3]) + match[3].length), &apos;contextualization_&apos; + contextualizationCount);
+    // UPDATE DATA
+    const contextualizer = parseParamsObject(paramsObject, resources, contextualizationCount, newContextualizers);
+    if (contextualizer) {
+      newContextualizers.push(contextualizer);
+    }
+    contextualizations.push({
+      // &apos;matchIndex&apos;: match.index - matchDisplace,
+      &apos;citeKey&apos;: &apos;contextualization_&apos; + contextualizationCount,
+      contextualizer,
+      resources,
+      type
+    });
+  }
+  return {md: replaced, contextualizations, contextualizers: newContextualizers};
+};
+
+
+// this module does not use a regex-based method
+// because it must catch possible nested content-related &quot;{&quot; brackets symbols
+// e.g. : this is an {example inside brackets}
+const parseNotes = (md, sectionCiteKey)=&gt; {
+  const notes = [];
+  let noteNumber = 1;
+  let index = 0;
+  let displace = 0;
+  let beginIndex;
+  let nestingLevel = 0;
+  let ch;
+  let newMd = md;
+  let noteContent;
+  while (newMd.substr(displace).indexOf(&apos;[^]{&apos;) &gt; -1) {
+    index = displace + newMd.substring(displace).indexOf(&apos;[^]{&apos;) + 4;
+    beginIndex = index;
+    nestingLevel = 1;
+
+    while (index &lt; newMd.length &amp;&amp; nestingLevel &gt; 0) {
+      ch = newMd.charAt(index);
+      if (ch === &apos;{&apos;) {
+        nestingLevel++;
+      } else if (ch === &apos;}&apos;) {
+        nestingLevel--;
+      }
+      index++;
+    }
+
+    noteContent = newMd.substring(beginIndex, index - 1);
+    const id = sectionCiteKey + noteNumber;
+    const placeholder = `[footnote](note_${id})`;
+    const initialLength = index - beginIndex + 4;
+    const lengthDif = initialLength - placeholder.length;
+    newMd = newMd.replace(newMd.substring(beginIndex - 4, index), placeholder);
+    notes.push({
+      noteNumber,
+      contents: noteContent,
+      id
+    });
+    noteNumber++;
+    displace = index - lengthDif;
+  }
+  return {
+    notes,
+    newMd
+  };
+};
+
+let mapMdJsonToPJson = ()=&gt;{return undefined;};
+let representContents = ()=&gt;{return undefined;};
+
+mapMdJsonToPJson = (inputElement, contextualizations, blockIndex) =&gt;{
+  const element = Object.assign({}, inputElement);
+  element.blockIndex = blockIndex;
+  if (element.text) {
+    element.text = entities.decode(element.text);
+  }
+  if (element.tag === &apos;a&apos;) {
+    if (element.attr.href.indexOf(&apos;note_&apos;) === 0) {
+      element.tag = &apos;note&apos;;
+      element.target = element.attr.href.substr(5);
+    } else {
+      element.tag = &apos;inlineC&apos;;
+      const contextualizationCitekey = element.attr.href;
+      const contextualization = contextualizations.find(cont =&gt;{
+        return cont.citeKey === contextualizationCitekey;
+      });
+      contextualization.node = element;
+    }
+  } else if (element.tag === &apos;img&apos;) {
+    element.tag = &apos;blockC&apos;;
+    const contextualizationCitekey = element.attr.src;
+    const contextualization = contextualizations.find(cont =&gt;{
+      return cont.citeKey === contextualizationCitekey;
+    });
+    contextualization.node = element;
+    const contents = (element.attr &amp;&amp; element.attr.alt) ? element.attr.alt.join(&apos; &apos;) : &apos;&apos;;
+    element.child = [representContents(contents)[0]];
+  }
+  if (element.child) {
+    element.child = element.child.map((child)=&gt;{
+      return mapMdJsonToPJson(child, contextualizations, blockIndex);
+    });
+  }
+  return element;
+};
+
+representContents = (mdContent, contextualizations) =&gt;{
+  return html2json(marked(mdContent)).child.map((child, blockIndex)=&gt; {
+    return mapMdJsonToPJson(child, contextualizations, blockIndex);
+  });
+};
+
+/**
+ * Parses markdown contents in order to update section data with new contents (as a pseudo-DOM nested javascript object representation), notes, contextualizers and contextualizations
+ * @param {Object} section - the section to parse
+ * @param {Object} parameters - deprecated - rendering parameters (not used at this step)
+ * @param {function(error: error, results: {errors: array, section: Object})} callback - the resulting conversion errors and updated section
+ */
+export const markdownToJsAbstraction = (section, parameters, callback)=&gt; {
+  const errors = [];
+
+  const sectionCiteKey = getMetaValue(section.metadata, &apos;general&apos;, &apos;citeKey&apos;);
+
+  section.markdownContents = section.contents;
+  section.contextualizers = section.contextualizers.map(parseBibNestedValues);
+
+  const {
+    md,
+    contextualizers,
+    contextualizations
+  } = parseContextualizations(section);
+  const {
+    notes,
+    newMd
+  } = parseNotes(md, sectionCiteKey);
+
+  section.contextualizations = contextualizations.slice();
+  section.contextualizers = contextualizers.slice();
+  section.contents = representContents(newMd, section.contextualizations);
+  section.notes = notes.map(note =&gt;{
+    const contents = representContents(note.contents, section.contextualizations);
+    return Object.assign(note, {contents: contents[0].child});
+  });
+
+  callback(null, {errors, section});
+};
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.7)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

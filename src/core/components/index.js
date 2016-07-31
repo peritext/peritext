@@ -1,6 +1,8 @@
-/*
- * Components exports
+/**
+ * Components - generic components to be used in several places of the lib
+ * @module components
  */
+
 export { default as StaticBackCover } from './StaticComponents/StaticBackCover.js';
 export { default as StaticDocument } from './StaticComponents/StaticDocument.js';
 export { default as StaticEndNotes } from './StaticComponents/StaticEndNotes.js';

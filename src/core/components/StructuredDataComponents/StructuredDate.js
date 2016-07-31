@@ -1,8 +1,6 @@
 import React, {PropTypes} from 'react';
 import Radium from 'radium';
 
-// let styles = {};
-
 /**
  * dumb component for rendering the structured representation of a date
  */
@@ -11,6 +9,9 @@ export default class StructuredDate extends React.Component {
 
   /**
    * propTypes
+   * @property {number|string} value - the value of the date, as an absolute date number or as a string statement
+   * @property {string} property - the schema property to use for microformatting the element
+   * @property {string} modificator - the modificator statement to use for formatting the date
    */
   static propTypes = {
     value: PropTypes.oneOfType([
@@ -25,6 +26,12 @@ export default class StructuredDate extends React.Component {
     property: 'datePublished'
   };
 
+  /**
+   * Resolves date value against modificator statement
+   * @param {string|number} value - value of the date
+   * @param {string} modificator - modificator to be applied
+   * @return {Object} newVal - the modified value of the date
+  */
   setFinalValue(value, modificator) {
     if (typeof value === 'string' && modificator === 'year') {
       const match = value.match(/([\d]{2,4})/);

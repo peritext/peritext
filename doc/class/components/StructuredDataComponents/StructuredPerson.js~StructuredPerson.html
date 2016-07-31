@@ -60,13 +60,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import StructuredPerson from &apos;<span><a href="file/components/StructuredDataComponents/StructuredPerson.js.html#lineNumber12">peritext/components/StructuredDataComponents/StructuredPerson.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import StructuredPerson from &apos;<span><a href="file/components/StructuredDataComponents/StructuredPerson.js.html#lineNumber10">peritext/components/StructuredDataComponents/StructuredPerson.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/components/StructuredDataComponents/StructuredPerson.js.html#lineNumber12">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/components/StructuredDataComponents/StructuredPerson.js.html#lineNumber10">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -86,7 +86,8 @@
 
   
   
-  
+  <div class="description" data-ice="description"><p>dumb component for rendering the structured representation of a person</p>
+</div>
 
   
 
@@ -142,7 +143,7 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/components/StructuredDataComponents/StructuredPerson.js~StructuredPerson.html#instance-method-transformValues">transformValues</a></span></span><span data-ice="signature">(author: <span>*</span>, pattern: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
+           <span data-ice="name"><span><a href="class/components/StructuredDataComponents/StructuredPerson.js~StructuredPerson.html#instance-method-transformValues">transformValues</a></span></span><span data-ice="signature">(author: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, pattern: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
         </p>
       </div>
       <div>
@@ -254,7 +255,7 @@
     
     
     
-    <span data-ice="name">transformValues</span><span data-ice="signature">(author: <span>*</span>, pattern: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
+    <span data-ice="name">transformValues</span><span data-ice="signature">(author: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, pattern: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
     <span class="right-info">
       
       
@@ -280,15 +281,17 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">author</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>the person representation to transform</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">pattern</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>the pattern to use for transforming person representation</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -300,7 +303,8 @@
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
-        
+        <td class="return-desc" data-ice="returnDescription"><p>newAuthor - new author object</p>
+</td>
       </tr>
     </table>
     <div data-ice="returnProperties">

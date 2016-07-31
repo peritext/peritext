@@ -1,9 +1,8 @@
 import React, {PropTypes} from 'react';
-
+// let styles = {};
 import renderContents from './../../core/utils/componentsFactory';
 import Radium from 'radium';
 
-// let styles = {};
 
 /**
  * dumb static-oriented component for displaying a table
@@ -12,10 +11,12 @@ import Radium from 'radium';
 export default class StaticTable extends React.Component {
   /**
    * propTypes
-   * @property {string} schematype html schema type of the element
-   * @property {array} resources array of resources used
-   * @property {string} captionContent what to display as caption
-   * @property {number} figureNumber in static mode, the number of the figure
+   * @property {string} schematype - html schema type of the element
+   * @property {array} resources - array of resources used
+   * @property {string} captionContent - what to display as caption
+   * @property {number} figureNumber - in static mode, the number of the figure
+   * @property {object} data - the resource data to use
+   * @property {string} id - the id to use for identifying the contextualization
    */
   static propTypes = {
     schematype: PropTypes.string,

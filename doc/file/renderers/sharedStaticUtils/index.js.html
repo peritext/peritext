@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">renderers/sharedStaticUtils/index.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/peritext/peritext.git" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">renderToStaticHtml</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-renderSection">renderSection</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">sharedStaticUtils</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-composeRenderedSections">composeRenderedSections</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">renderers/sharedStaticUtils/index.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * Shared static rendering utils
+ * @module renderers/sharedStaticUtils
+ */
+
+import {computeReferences} from &apos;./../../core/utils/referenceUtils&apos;;
+import {getMetaValue} from &apos;./../../core/utils/sectionUtils&apos;;
+
+/**
+ * Resolves a sections&apos; list against rendering settings by modifying contents, adding output-related pseudo-sections, and updating css styles
+ * @param {array} sections - the sections to render
+ * @param {Object} settings - the specific rendering settings to use in order to produce the output
+ * @param {string} inputStyle - the css style data to use
+ * @param {array} messages - the intl messages to use for some sections localization (e.g. : translation of &quot;Table of contents&quot;)
+ */
+export const composeRenderedSections = (sections, settings, inputStyle, messages) =&gt;{
+  const renderedSections = sections.slice();
+  let style = inputStyle;
+  // transform regarding notes display settings
+  if (settings.notesPosition === &apos;footnotes&apos;) {
+    style += `.peritext-static-note-content-container
+            {
+                display: prince-footnote;
+                counter-increment: footnote;
+            }`;
+  } else if (settings.notesPosition === &apos;document-end&apos;) {
+    let noteNumber = 0;
+    const contents = sections.reduce((notes, section2) =&gt;{
+      return notes.concat(section2.notes.map(note =&gt;{
+        return Object.assign(note, {noteNumber: ++noteNumber});
+      }));
+    }, []);
+    renderedSections.push({
+      type: &apos;endnotes&apos;,
+      contents,
+      title: messages.end_notes,
+      id: &apos;peritext-end-notes&apos;
+    });
+  }
+
+  // handle figures
+  if (settings.figuresPosition === &apos;document-end&apos;) {
+    const figures = sections.reduce((figs, section3)=&gt;{
+      if (section3.figures) {
+        return figs.concat(section3.figures);
+      }
+      return figs;
+    }, []);
+    renderedSections.push({
+      type: &apos;endfigures&apos;,
+      contents: figures,
+      title: messages.end_figures,
+      id: &apos;peritext-end-figures&apos;
+    });
+  }
+
+  // build references/bibliography
+  if (settings.referenceScope === &apos;document&apos;) {
+    renderedSections.push({
+      type: &apos;references&apos;,
+      contents: computeReferences(sections, settings),
+      title: messages.references_title,
+      id: &apos;peritext-end-references&apos;
+    });
+  }
+  // handle glossary
+  if (settings.glossaryPosition !== &apos;none&apos;) {
+    // prepare glossary
+    const glossaryPointers = sections.reduce((results, thatSection)=&gt;{
+      const sectionCitekey = getMetaValue(thatSection.metadata, &apos;general&apos;, &apos;citeKey&apos;);
+      return results.concat(
+        thatSection.contextualizations
+        .filter((thatContextualization)=&gt; {
+          return thatContextualization.contextualizer.type === &apos;glossary&apos;;
+        })
+        .reduce((localResults, contextualization)=&gt; {
+          return localResults.concat({
+            mentionId: &apos;#peritext-content-entity-inline-&apos; + sectionCitekey + &apos;-&apos; + contextualization.citeKey,
+            entity: contextualization.resources[0].citeKey,
+            alias: contextualization.contextualizer.alias
+          });
+        }, []));
+    }, []);
+
+    const entitiesTypes = [&apos;person&apos;, &apos;place&apos;, &apos;subject&apos;, &apos;concept&apos;, &apos;organization&apos;, &apos;technology&apos;, &apos;artefact&apos;];
+
+    const glossaryData = sections.reduce((results, thatSection)=&gt;{
+      return results.concat(
+        thatSection.resources
+        .filter((thatResource)=&gt; {
+          return thatResource.inheritedVerticallyFrom === undefined
+                  &amp;&amp; entitiesTypes.indexOf(thatResource.bibType) &gt; -1;
+        })
+      );
+    }, []).map((glossaryEntry)=&gt; {
+      glossaryEntry.aliases = glossaryPointers.filter((pointer)=&gt; {
+        return pointer.entity === glossaryEntry.citeKey;
+      }).reduce((aliases, entry)=&gt; {
+        const alias = entry.alias || &apos;no-alias&apos;;
+        aliases[alias] = aliases[alias] ? aliases[alias].concat(entry) : [entry];
+        return aliases;
+      }, {});
+      return glossaryEntry;
+    }).sort((entry1, entry2)=&gt; {
+      return (entry1.name || entry1.lastname) &gt; (entry2.name || entry2.lastname) ? 1 : -1;
+    });
+
+    const glossary = {
+      type: &apos;glossary&apos;,
+      contents: glossaryData,
+      title: messages.glossary,
+      id: &apos;peritext-end-glossary&apos;
+    };
+    if (settings.glossaryPosition === &apos;begining&apos;) {
+      renderedSections.splice(0, 0, glossary);
+    } else {
+      renderedSections.push(glossary);
+    }
+  }
+
+  // handle table of figures
+  if (settings.figuresTablePosition !== &apos;none&apos;) {
+    // making figures table data
+    const figuresTableData = sections.reduce((figures, section4)=&gt; {
+      // 1. take numbered figures
+      const figuresL = section4.contextualizations.filter((cont)=&gt; {
+        return cont.figureNumber !== undefined;
+      })
+      // 2. filter uniques
+      .filter((figure, index, self) =&gt; self.findIndex((other) =&gt; {
+        return other.figureNumber === figure.figureNumber;
+      }) === index)
+      // 3. make table array
+      .map((cont)=&gt; {
+        return {
+          id: &apos;peritext-figure-&apos; + cont.figureId,
+          number: cont.figureNumber
+        };
+      });
+      return figures.concat(figuresL);
+    }, []);
+    const figuresTable = {
+      type: &apos;table-of-figures&apos;,
+      contents: figuresTableData,
+      title: messages.table_of_figures,
+      id: &apos;peritext-end-table-of-figures&apos;
+    };
+    if (settings.figuresTablePosition === &apos;begining&apos;) {
+      renderedSections.splice(0, 0, figuresTable);
+    } else {
+      renderedSections.push(figuresTable);
+    }
+  }
+
+  // handle toc
+  if (settings.contentsTablePosition !== &apos;none&apos;) {
+    const tocData = renderedSections.filter((sectio, index) =&gt;{
+      return index &gt; 0;
+    }).map((thisSection) =&gt; {
+      return {
+        id: thisSection.metadata ? getMetaValue(thisSection.metadata, &apos;general&apos;, &apos;citeKey&apos;) : thisSection.id,
+        title: thisSection.metadata ? getMetaValue(thisSection.metadata, &apos;general&apos;, &apos;title&apos;) : thisSection.title,
+        level: thisSection.metadata ? getMetaValue(thisSection.metadata, &apos;general&apos;, &apos;generalityLevel&apos;) : 0
+      };
+    });
+    const toc = {type: &apos;table-of-contents&apos;, contents: tocData};
+    if (settings.contentsTablePosition === &apos;begining&apos;) {
+      renderedSections.splice(0, 0, toc);
+    } else {
+      renderedSections.push(toc);
+    }
+  }
+  // handle cover
+  if (settings.showCovers === &apos;yes&apos;) {
+    renderedSections.splice(0, 0, {
+      type: &apos;front-cover&apos;,
+      metadata: sections[0].metadata
+    });
+    renderedSections.push({
+      type: &apos;back-cover&apos;,
+      metadata: sections[0].metadata
+    });
+  }
+  return {
+    renderedSections,
+    finalStyle: style
+  };
+};
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.7)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

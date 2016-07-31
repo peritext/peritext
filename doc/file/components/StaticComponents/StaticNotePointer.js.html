@@ -63,8 +63,6 @@
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React, {PropTypes} from &apos;react&apos;;
 import Radium from &apos;radium&apos;;
 
-// let styles = {};
-
 /**
  * dumb component for rendering the structured representation of a static note pointer
  */
@@ -73,6 +71,7 @@ export default class StaticNotePointer extends React.Component {
 
   /**
    * propTypes
+   * @property {Object} note - the note object to use in order to render the note pointer
    */
   static propTypes = {
     note: PropTypes.object,

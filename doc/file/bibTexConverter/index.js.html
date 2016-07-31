@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">bibTexConverter/index.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/peritext/peritext.git" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-parseBibAuthors">parseBibAuthors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-parseBibContextualization">parseBibContextualization</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-parseBibNestedValues">parseBibNestedValues</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-parseBibTexStr">parseBibTexStr</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-serializeBibTexObject">serializeBibTexObject</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">bibTexConverter/index.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * This module parses and serializes bibTex objects
+ * @module converters/bibTexConverter
+ */
+
+/**
+ * homemade bibTeX syntax parser (performance could be improved I guess)
+ * it needs a second pass to parse {} in values and analyze them against a model - that should be done elsewhere, as this converter just deals with syntax-to-object conversion
+ */
+class bibTexParser {
+  /**
+   * constructor
+   */
+  constructor() {
+    this.STATES = [&apos;bibType&apos;, &apos;citeKey&apos;, &apos;properties&apos;];
+  }
+
+  /**
+   * Adds a key+value prop to the resource&apos;s javascript representation object
+   * @param {object} obj - the resource representation
+   * @param {string} key - the key to populate
+   * @param {string} value - the value to set
+   * @return {object} newObj - the updated resource representation
+   */
+  addValue(obj, key, value) {
+    if (obj[key]) {
+
+      if (Array.isArray(obj[key])) {
+        obj[key].push(value);
+      }else obj[key] = [obj[key], value];
+
+    }else obj[key] = value;
+
+    return obj;
+  }
+
+  /**
+   * Consumes a string (stored in this.consumable) representation of a bibTeX expression
+   * @return {boolean} exit - a simple exit trigger (but internal props will have been mutated)
+   */
+  consume() {
+    const matchBibType = /^@([^{]+)/;
+    const matchCiteKey = /^{([^,]+),/;
+    const wrappers = [
+      [&apos;{&apos;, &apos;}&apos;],
+      [&apos;&quot;&apos;, &apos;&quot;&apos;],
+      [&quot;&apos;&quot;, &quot;&apos;&quot;]
+    ];
+    let match;
+    if (this.currentState === &apos;bibType&apos;) {
+      match = matchBibType.exec(this.consumable);
+      if (match) {
+        this.currentObject.bibType = match[1];
+        this.consumable = this.consumable.substr(match[1].length + 1);
+        this.currentState = this.STATES[1];
+        return true;
+      }
+      this.error = {
+        type: &apos;error&apos;,
+        preciseType: &apos;bibParsingError&apos;,
+        message: &apos;could not find bibType&apos;,
+        initialString: this.initialStr
+      };
+      return true;
+
+    }else if (this.currentState === &apos;citeKey&apos;) {
+      match = matchCiteKey.exec(this.consumable);
+      if (match) {
+        this.currentObject.citeKey = match[1];
+        this.consumable = this.consumable.substr(match[1].length + 2);
+        this.currentState = this.STATES[2];
+        return true;
+      }
+      this.error = {
+        type: &apos;error&apos;,
+        preciseType: &apos;bibParsingError&apos;,
+        message: &apos;could not find citekey&apos;,
+        initialString: this.initialStr
+      };
+      return true;
+
+    /*
+     * ``key = value`` structure
+     * value is always wrapped inside character couples that vary depending on bibtex implementation (&quot; { &apos;)
+     * possibility of nested wrapping (eg {Name {{S}urname}})
+     */
+    }else if (this.currentState === &apos;properties&apos;) {
+      const wrapped = [wrappers[0]];
+      let index = 0;
+      let mode = &apos;key&apos;;
+      let temp = &apos;&apos;;
+      let tempKey = &apos;&apos;;
+      let trespassing;
+      let character;
+      let entering;
+
+      while (wrapped.length &gt; 0) {
+
+        trespassing = index &gt; this.consumable.length - 1;
+        character = this.consumable.charAt(index);
+
+        if (trespassing) {
+          this.error = {
+            type: &apos;error&apos;,
+            preciseType: &apos;bibParsingError&apos;,
+            message: &apos;finished to parse bibtex string without finding closing character &apos; + wrapped[wrapped.length - 1][1],
+            initialString: this.initialStr
+          };
+          return true;
+        // end of wrapped expression - if matches with last recorded wrapper&apos;s closing character
+        }else if (character === wrapped[wrapped.length - 1][1]) {
+          wrapped.pop();
+          if (wrapped.length &gt; 1) {
+            temp += character;
+          }
+          index = 1;
+        // end of key specification, record tempkey and wait to have found value
+        }else if (mode === &apos;key&apos; &amp;&amp; character === &apos;=&apos;) {
+          tempKey = temp.trim();
+          temp = &apos;&apos;;
+          mode = &apos;value&apos;;
+          index = 1;
+        // end of value specification - add value and reboot temp
+        }else if (mode === &apos;value&apos; &amp;&amp; wrapped.length &lt; 2 &amp;&amp; character === &apos;,&apos;) {
+          this.addValue(this.currentObject, tempKey, temp.trim());
+          temp = &apos;&apos;;
+          mode = &apos;key&apos;;
+          index = 1;
+        // in the middle of some key or value = continue
+        }else if (mode === &apos;value&apos;) {
+          entering = false;
+          // catch wrapper char
+          wrappers.some((wrapper) =&gt; {
+            if (this.consumable.charAt(index) === wrapper[0]) {
+              entering = true;
+              return wrapped.push(wrapper);
+            }
+          });
+          if (!(entering &amp;&amp; wrapped.length &lt;= 2)) {
+            temp += character;
+          }
+          index = 1;
+        // default, by security
+        }else {
+          temp += character;
+          index = 1;
+        }
+        this.consumable = this.consumable.substr(index);
+      }
+      this.addValue(this.currentObject, tempKey.trim(), temp.trim());
+
+      // add if not empty
+      if (Object.keys(this.currentObject).length) {
+        this.results.push(Object.assign({}, this.currentObject));
+      }
+      this.currentObject = {};
+      this.consumable = this.consumable.substr(index).trim();
+      this.currentState = this.STATES[0];
+      return true;
+    }
+  }
+
+
+  /**
+   * Parses a bibTeX string and callbacks a javascript objet
+   * @param {string} str - the string to parse
+   * @param {function(error:error, results:Object)} callback
+   */
+  parse(str, callback) {
+    this.currentObject = {};
+    this.currentState = this.STATES[0];
+    this.results = [];
+    this.consumable = str.trim();
+    this.initialStr = str.trim();
+    this.error = null;
+    while (this.error === null &amp;&amp; this.consumable.trim().length &gt; 0) {
+      this.consume();
+    }
+    return callback(this.error, this.results);
+  }
+
+}
+
+const parser = new bibTexParser();
+
+const validateBibObject = function(bibObject) {
+  if (bibObject.citeKey === undefined) {
+    return {
+      type: &apos;error&apos;,
+      preciseType: &apos;bibObjectValidationError&apos;,
+      message: &apos;bibObject must have a citeKey property&apos;,
+      bibObject: bibObject
+    };
+  } else if (bibObject.bibType === undefined) {
+    return {
+      type: &apos;error&apos;,
+      preciseType: &apos;bibObjectValidationError&apos;,
+      message: &apos;bibObject must have a bibType property&apos;,
+      bibObject: bibObject
+    };
+  }
+
+  for (const key in bibObject) {
+    if (typeof bibObject[key] === &apos;object&apos; &amp;&amp; !Array.isArray(bibObject[key])) {
+      return {
+        type: &apos;error&apos;,
+        preciseType: &apos;bibObjectValidationError&apos;,
+        message: &apos;bibObject cannot contain nested objects&apos;,
+        bibObject: bibObject
+      };
+    }
+  }
+
+  return true;
+};
+
+/**
+ * Serializes a javascript object representing a resource or a contextualizer, to a bibTeX-formatted string
+ * @param {object} bibObject - the resource/contextualizer representation
+ * @return {function(error:error, bibStr: string)} callback - error and the bibTeX mention as a string
+ */
+export const serializeBibTexObject = (bibObject, callback) =&gt; {
+  const validated = validateBibObject(bibObject);
+  if (validated.type === &apos;error&apos;) {
+    return callback(validated, undefined);
+  }
+  let str = &apos;&apos;;
+  let val;
+  for (const key in bibObject) {
+    if (bibObject[key]) {
+      val = bibObject[key];
+      if (Array.isArray(val)) {
+        val.forEach((value)=&gt;{
+          str += &apos;\t&apos; + key + &apos; = {&apos; + value + &apos;},\n&apos;;
+        });
+        //  val = val.join(&apos;,&apos;);
+      }else if (key !== &apos;citeKey&apos; &amp;&amp; key !== &apos;bibType&apos;) {
+        str += &apos;\t&apos; + key + &apos; = {&apos; + val + &apos;},\n&apos;;
+      }
+    }
+  }
+  // removing the last coma
+  if (str.length &gt; 1) {
+    str = str.substr(0, str.length - 2);
+  }
+  return callback(null, `@${bibObject.bibType}{${bibObject.citeKey},
+    ${str}
+}`);
+};
+
+/**
+ * Parses a bibTeX string and returns an object
+ * @param {string} str - the bibTeX string to parse
+ * @return {function(error: error, result: Object)} callback - error and the resulting object
+ */
+export const parseBibTexStr = (str, callback) =&gt; {
+  if (typeof str === &apos;string&apos;) {
+    return parser.parse(str, callback);
+  }
+  return callback(new Error(&apos;must input a string&apos;), undefined);
+};
+
+/**
+Accepted inputs for authors and persons (to add in doc/spec):
+{Martin}, Julia; Coleman
+{Jakubowicz}, Andrew
+{Charalambos}, D. Aliprantis and Kim C. {Border}
+{Martin}, Julia; Coleman
+{Jakubowicz}, Andrew
+{Charalambos}, D. Aliprantis and Kim C. {Border}
+Maskin, Eric S.
+{Martin}, Julia; Coleman
+{Jakubowicz}, Andrew
+{Charalambos}, D. Aliprantis and Kim C. {Border}
+Maskin, Eric S.
+{Martin}, Julia; Coleman
+{Jakubowicz}, Andrew
+{Charalambos}, D. Aliprantis and Kim C. {Border}
+*/
+
+/**
+ * Parses a list of authors as they are formatted in bbiTeX statements
+ * @param {string} str - the bibTeX string to parse
+ * @return {array} authors - the javascript representation of authors as an array
+ */
+export const parseBibAuthors = (str) =&gt; {
+  const authors = str.split(/;|and|et/);
+  const additionalInfo = /\(([^)]*)?\)?\(?([^)]*)?\)?/;
+  let match;
+  return authors.filter((inputStr) =&gt;{
+    return inputStr.trim().length &gt; 0;
+  }).map((inputAuthorStr) =&gt;{
+    let workingStr = inputAuthorStr;
+    let authorStr = &apos;&apos;;
+    let firstName;
+    let lastName;
+    let role = &apos;author&apos;;
+    let information;
+    match = inputAuthorStr.match(additionalInfo);
+    if (match) {
+      workingStr = workingStr.replace(match[0], &apos;&apos;);
+      if (match[1]) {
+        role = match[1].trim();
+      }
+      if (match[2]) {
+        information = match[2];
+        information = information.trim();
+      }
+    }
+    const lastNameMatch = workingStr.match(/{([^}]*)}/);
+    if (lastNameMatch) {
+      lastName = lastNameMatch[1].trim();
+      authorStr = [workingStr.substr(0, lastNameMatch.index), workingStr.substr(lastNameMatch.index + lastNameMatch[0].length)].join(&apos;&apos;);
+      firstName = authorStr.replace(&apos;,&apos;, &apos;&apos;).trim();
+    } else {
+      let vals = workingStr.split(&apos;,&apos;);
+      if (vals.length &gt; 1) {
+        firstName = vals[1].trim();
+        lastName = vals[0].trim();
+      } else if (workingStr.trim().indexOf(&apos; &apos;) &gt; -1) {
+        vals = workingStr.trim().split(&apos; &apos;);
+        firstName = vals.shift().trim();
+        lastName = vals.join(&apos; &apos;).trim();
+      } else {
+        lastName = workingStr.trim();
+        firstName = &apos;&apos;;
+      }
+    }
+    const citeKey = (role + &apos;-&apos; + firstName + lastName).toLowerCase().replace(&apos; &apos;, &apos;-&apos;);
+    return {firstName, lastName, role, information, citeKey};
+  });
+};
+
+/**
+ * Parses a bibTeX-like contextualization statement given as string and returns an object
+ * @param {string} inputStr - the bibTeX string to parse
+ * @return {Object} contextualization - the contextualization object
+ */
+export const parseBibContextualization = (inputStr) =&gt; {
+  const bracketsRE = /([^=^,]+)=(?:{)([^}]*)(?:}),?/g;
+  const quoteRE = /([^=^,]+)=&quot;([^&quot;]*)&quot;,?/g;
+  const paramsObject = {};
+
+
+  const str = inputStr.substr(1, inputStr.length - 2).replace(/&amp;quot;/g, &apos;&quot;&apos;);
+  let match;
+  let key;
+  let expression;
+  let subObject;
+  let newObj;
+
+  while ((match = bracketsRE.exec(str)) !== null) {
+    key = match[1].trim();
+    expression = match[2].trim().split(&apos;,&apos;);
+    // simple
+    if (expression.length === 1) {
+      paramsObject[key] = expression[0];
+    // nested
+    } else {
+      subObject = {};
+
+      let isArray;
+
+      expression = expression.map((exp) =&gt;{
+        const split = exp.split(&apos;=&apos;);
+        if (split.length === 2) {
+          isArray = false;
+          return {
+            key: split[0],
+            value: split[1]
+          };
+        }
+        isArray = true;
+        return exp;
+      });
+
+      if (!isArray) {
+        subObject = expression.reduce((obj, exp)=&gt;{
+          obj[exp.key] = exp.value;
+          return obj;
+        }, subObject);
+      }
+
+      newObj = Object.assign({}, subObject);
+
+      if (paramsObject[key] === undefined) {
+        paramsObject[key] = newObj;
+      } else if (Array.isArray(paramsObject[key])) {
+        paramsObject[key].push(newObj);
+      } else paramsObject[key] = [paramsObject[key], newObj];
+    }
+
+  }
+
+  while ((match = quoteRE.exec(str)) !== null) {
+    key = match[1].trim();
+    expression = match[2].trim();
+    paramsObject[key] = expression;
+  }
+
+  return paramsObject;
+};
+
+
+const resolveNested = (subVal) =&gt; {
+  if (typeof subVal !== &apos;string&apos;) {
+    return subVal;
+  }
+  let expression = subVal.split(&apos;,&apos;);
+  let subObject;
+  let newObj;
+  // simple
+  if (expression.length === 1) {
+    return subVal;
+  // nested
+  }
+  subObject = {};
+  let isArray;
+  expression = expression.map((exp) =&gt;{
+    const split = exp.split(&apos;=&apos;);
+    if (split.length === 2) {
+      isArray = false;
+      return {
+        key: split[0],
+        value: split[1]
+      };
+    }
+    isArray = true;
+    return exp;
+  });
+
+  if (!isArray) {
+    subObject = expression.reduce((obj, exp)=&gt;{
+      obj[exp.key] = exp.value;
+      return obj;
+    }, subObject);
+  }
+
+  newObj = Object.assign({}, subObject);
+  return newObj;
+};
+
+/**
+ * Parses bibTeX nested values inside a bibObject
+ * @param {Object} bibObject - the object to parse
+ * @return {Object} newObject - the resulting updated object
+ */
+export const parseBibNestedValues = (bibObject) =&gt; {
+  const newObject = Object.assign({}, bibObject);
+  let subVal;
+  for (const index in newObject) {
+    if (newObject[index]) {
+      subVal = newObject[index];
+      if (Array.isArray(subVal)) {
+        newObject[index] = bibObject[index].map(resolveNested);
+      }else {
+        newObject[index] = resolveNested(newObject[index]);
+      }
+    }
+  }
+  return newObject;
+};
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.7)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

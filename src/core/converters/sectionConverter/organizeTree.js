@@ -1,8 +1,12 @@
+/**
+ * This module organizes relations between sections (order, inheritance, generality level)
+ * @module converter/sectionConverter/organizeTree
+ */
 import {map as asyncMap, waterfall} from 'async';
 
 import {getMetaValue, deleteMeta} from './../../utils/sectionUtils';
 
-const formatMetadata = function(metadataObj) {
+const formatMetadata = (metadataObj) =>{
   const output = [];
   let value;
   let keydetail;
@@ -23,10 +27,10 @@ const formatMetadata = function(metadataObj) {
   return output;
 };
 
-const flattenSections = function(tree, callback) {
+const flattenSections = (tree, callback) =>{
 
   if (tree.children) {
-    asyncMap(tree.children, flattenSections, function(err, children) {
+    asyncMap(tree.children, flattenSections, (err, children) =>{
       const newTree = Object.assign({}, tree);
       const newChildren = children.map((child)=>{
         return Object.assign({}, child[0], {parent: tree.metadata.citeKey});
@@ -57,13 +61,12 @@ const formatSection = (section) =>{
   };
 };
 
-const formatSections = function(sections, callback) {
+const formatSections = (sections, callback) =>{
   const formatted = sections.map(formatSection);
   return callback(null, formatted);
 };
 
-const makeRelations = function(inputSections, callback) {
-
+const makeRelations = (inputSections, callback) =>{
   // find parents and predecessors
   const sections = inputSections.map((inputSection) =>{
     const section = Object.assign({}, inputSection);
@@ -102,6 +105,13 @@ const makeRelations = function(inputSections, callback) {
   callback(null, sections);
 };
 
+/**
+ * Organizes relations betwwen sections
+ * @param {Object} params - the organization params
+ * @param {array} params.errors - the inherited parsing errors to pass along to next step
+ * @param {Object} params.validTree - the tree to process
+ * @param {function(error: error, results: {errors: array, sections: array})} callback - an updated list of parsing errors and updated sections
+ */
 export const organizeTree = ({errors, validTree}, callback) => {
 
   waterfall([

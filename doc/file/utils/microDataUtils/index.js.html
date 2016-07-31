@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">utils/microDataUtils/index.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/peritext/peritext.git" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">citationUtils</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/utils/citationUtils/citationModels.js~BlockCitationModel.html">BlockCitationModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/utils/citationUtils/citationModels.js~InlineCitationModel.html">InlineCitationModel</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">componentsFactory</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-renderContents">renderContents</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-jsToComponent">jsToComponent</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">microDataUtils</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-bibToSchema">bibToSchema</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-generateOpenUrl">generateOpenUrl</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">modelUtils</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getContextualizerModel">getContextualizerModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getResourceModel">getResourceModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-resolvePropAgainstType">resolvePropAgainstType</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-resolveSettings">resolveSettings</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-serializePropAgainstType">serializePropAgainstType</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">referenceUtils</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-computeReferences">computeReferences</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">sectionUtils</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-deleteMeta">deleteMeta</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-filterResources">filterResources</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-findByMetadata">findByMetadata</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getMetaValue">getMetaValue</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-hasMeta">hasMeta</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-hasResource">hasResource</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-metaStringToCouple">metaStringToCouple</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-sameMetaScope">sameMetaScope</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-setMetaValue">setMetaValue</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">utils/microDataUtils/index.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * Utils - Collection of utils for formatting scholarly citations in html+schema+RDFa+COiNS elements
+ * @module utils/microDataUtils
+ */
+
+/**
+ * Translates a peritext bibType to a schema.org Type
+ * @param {string} bib - the peritext bibType
+ * @return {string} SchemaType - the corresponding SchemaType
+ */
+export const bibToSchema = (bib) =&gt; {
+  switch (bib) {
+  case &apos;book&apos;:
+    return &apos;Book&apos;;
+  case &apos;article&apos;:
+    return &apos;ScholarlyArticle&apos;;
+  case &apos;booklet&apos;:
+    return &apos;CreativeWork&apos;;
+  case &apos;conference&apos;:
+    return &apos;Chapter&apos;;
+  case &apos;incollection&apos;:
+    return &apos;Chapter&apos;;
+  case &apos;inherits&apos;:
+    return &apos;Chapter&apos;;
+  case &apos;inbook&apos;:
+    return &apos;Chapter&apos;;
+  case &apos;mastersthesis&apos;:
+    return &apos;Thesis&apos;;
+  case &apos;phdthesis&apos;:
+    return &apos;Thesis&apos;;
+  case &apos;proceedings&apos;:
+    return &apos;Book&apos;;
+  case &apos;image&apos;:
+    return &apos;ImageObject&apos;;
+  case &apos;online&apos;:
+    return &apos;WebSite&apos;;
+  case &apos;vectorsImage&apos;:
+    return &apos;ImageObject&apos;;
+  case &apos;tabularData&apos;:
+    return &apos;Dataset&apos;;
+  case &apos;video&apos;:
+    return &apos;VideoObject&apos;;
+  case &apos;audio&apos;:
+    return &apos;AudioObject&apos;;
+  case &apos;person&apos;:
+    return &apos;Person&apos;;
+  case &apos;place&apos;:
+    return &apos;Place&apos;;
+  case &apos;organization&apos;:
+    return &apos;Organization&apos;;
+  // not very accurate
+  case &apos;artefact&apos;:
+    return &apos;Product&apos;;
+  // no schematype for these ones (too abstract)
+  case &apos;topic&apos;:
+  case &apos;concept&apos;:
+  case &apos;technology&apos;:
+    return &apos;Thing&apos;;
+  default:
+    return &apos;CreativeWork&apos;;
+  }
+};
+
+/*
+  Context Objects in Spans (COiNS) related functions
+*/
+
+const addPropToCOinSData = (key, value) =&gt; {
+  return {
+    key: key,
+    value: value
+  };
+};
+
+const urify = (key, value) =&gt; {
+  return key + &apos;=&apos; + encodeURIComponent(value);
+};
+
+const assembleUri = (infos) =&gt; {
+  const vals = [];
+  infos.forEach(function(info) {
+    vals.push(urify(info.key, info.value));
+  });
+  return vals.join(&apos;&amp;amp;&apos;);
+};
+
+const baseMap = {
+  &apos;rft.date&apos;: &apos;date&apos;,
+  &apos;rft.pages&apos;: &apos;pages&apos;,
+  &apos;rft.issn&apos;: &apos;ISSN&apos;,
+  &apos;rft.isbn&apos;: &apos;ISBN&apos;,
+  &apos;rft_id&apos;: &apos;url&apos;,
+  &apos;rft.place&apos;: &apos;address&apos;,
+  &apos;rft.pub&apos;: &apos;publisher&apos;
+};
+
+const journalMap = {
+  &apos;rft.atitle&apos;: &apos;title&apos;,
+  &apos;rft.jtitle&apos;: &apos;journal&apos;,
+  &apos;rft.volume&apos;: &apos;volume&apos;,
+  &apos;rft.issue&apos;: &apos;issue&apos;
+};
+
+const chapterMap = {
+  &apos;rft.atitle&apos;: &apos;title&apos;,
+  &apos;rft.btitle&apos;: &apos;booktitle&apos;
+};
+
+const translate = (data, item, map) =&gt; {
+  for (const key in map) {
+    if (item[map[key]]) {
+      data.push(addPropToCOinSData(key, item[map[key]]));
+    }
+  }
+  return data;
+};
+
+/**
+ * Generates an openUrl URI describing the resource, and aimed at being used in a ContextObjectInSpan (COinS)
+ * @param {Object} resource - the resource to describe with an openUrl
+ * @return {string} uri - the uri describing the resource
+ */
+export const generateOpenUrl = (resource) =&gt; {
+  let data = [];
+  data.push(addPropToCOinSData(&apos;ctx_ver&apos;, &apos;Z39.88-2004&apos;));
+
+  if (resource.author &amp;&amp; resource.author.length) {
+    resource.author.forEach(function(author) {
+      data.push(addPropToCOinSData(&apos;rft.au&apos;, author.lastName + &apos;, &apos; + author.firstName));
+    });
+  }
+  data = translate(data, resource, baseMap);
+  if (resource.bibType === &apos;journal&apos; || resource.bibType === &apos;article&apos;) {
+    data = translate(data, resource, journalMap);
+    data.push(addPropToCOinSData(&apos;rft.genre&apos;, &apos;article&apos;));
+    data.push(addPropToCOinSData(&apos;rft_val_fmt&apos;, &apos;info:ofi/fmt:kev:mtx:journal&apos;));
+  }else if (resource.bibType === &apos;proceedings&apos; || resource.bibType === &apos;conferencePaper&apos;) {
+    data = translate(data, resource, journalMap);
+    data.push(addPropToCOinSData(&apos;rft.genre&apos;, &apos;conference&apos;));
+    data.push(addPropToCOinSData(&apos;rft_val_fmt&apos;, &apos;info:ofi/fmt:kev:mtx:book&apos;));
+  }else if (resource.bibType === &apos;chapter&apos;) {
+    data = translate(data, resource, chapterMap);
+    data.push(addPropToCOinSData(&apos;rft.genre&apos;, &apos;bookitem&apos;));
+    data.push(addPropToCOinSData(&apos;rft_val_fmt&apos;, &apos;info:ofi/fmt:kev:mtx:book&apos;));
+  }else {
+    data.push(addPropToCOinSData(&apos;rft.genre&apos;, &apos;document&apos;));
+  }
+  return assembleUri(data);
+};
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.7)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

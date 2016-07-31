@@ -61,12 +61,9 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">components/StaticComponents/StaticFootnote.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React, {PropTypes} from &apos;react&apos;;
-
 import Radium from &apos;radium&apos;;
-
-import renderContents from &apos;./../../utils/componentsFactory&apos;;
-
 // let styles = {};
+import renderContents from &apos;./../../utils/componentsFactory&apos;;
 
 /**
  * dumb component for containing either a static or dynamic note, acting whether as a pointer or as a container
@@ -76,6 +73,7 @@ export default class StaticFootnote extends React.Component {
 
   /**
    * propTypes
+   * @property {Object} note - the note object to use in order to render the footnote
    */
   static propTypes = {
     note: PropTypes.object,

@@ -1,8 +1,17 @@
+/**
+ * Resolver dedicated to resolve  contextualization statements
+ * @module resolvers/resolveContextualizations
+ */
+
 import {getMetaValue} from './../../utils/sectionUtils';
 import {getResourceModel, getContextualizerModel, resolvePropAgainstType} from './../../utils/modelUtils';
 import * as contextualizers from './../../../contextualizers/';
 
- // I transform 1, 2, 3 incrementation into a, b, c
+/**
+ * Transforms 1, 2, 3 ordinally used number into a, b, c ordinally used letters
+ * @param {number} num - the number to transform
+ * @return {string} letter - the output letter
+ */
 export const numbersToLetters = (num) =>{
   const mod = num % 26;
   let pow = num / 26 | 0;
@@ -10,7 +19,14 @@ export const numbersToLetters = (num) =>{
   return pow ? numbersToLetters(pow) + out : out.toLowerCase();
 };
 
-// I resolve a contextualizer assertion against its model and context, and record errors
+/**
+ * Resolves a contextualizer object against its model and context, and records errors
+ * @param {object} contextualizer - the contextualizer to resolve
+ * @param {object} contextualization - the contextualization to use as a clue-giver if the contextualizer is implicit
+ * @param {object} section - the section to which the contextualizer belongs
+ * @param {object} models - the models to parse the contextualizer against
+ * @return {{err: error, contextualizer: Object}} result - parsing errors and final contextualizer
+ */
 const resolveContextualizer = (contextualizer, contextualization, section, models) =>{
   const err = [];
   let newContextualizer = Object.assign({}, contextualizer);
@@ -70,7 +86,13 @@ const resolveContextualizer = (contextualizer, contextualization, section, model
   return {err, finalContextualizer};
 };
 
-// I build formatted objects for contextualizers and contextualizations, and record related parsing and model-related errors
+/**
+ * Resolves contextualizations' contextualizer and resource, verifying that contextualization will be possible
+ * @param {object} contextualizer - the contextualizer to resolve
+ * @param {object} section - the section to resolve
+ * @param {object} models - the models to use to validate data
+ * @param {function(err: error, results: {errors: array, newSection: Object})} callback - callbacks updated section and possible errors as an array
+ */
 export const resolveBindings = ({section, models}, cb) =>{
   let errors = [];
   // find implicit contextualizers types
@@ -132,6 +154,12 @@ export const resolveBindings = ({section, models}, cb) =>{
   cb(null, {errors, section});
 };
 
+/**
+ * Resolves relations of recurrence, order, and similarity between contextualizations in a section
+ * @param {array} sections - the sections array to resolve
+ * @param {object} settings - the rendering settings to apply
+ * @return {array} newSections - the udpated sections
+ */
 export const resolveContextualizationsRelations = (sections, settings) =>{
   let opCitIndex;
   let sameResPrint;
@@ -192,7 +220,13 @@ export const resolveContextualizationsRelations = (sections, settings) =>{
   }, []);
 };
 
-// I 'reduce' contextualizations statements to produce a new rendering-specific section representation
+/**
+ * Resolves all the contextualizations of a section by updating its contents pseudo-DOM representation
+ * @param {object} section - the section to resolve
+ * @param {string} renderingMode - whether rendering is static or dynamic
+ * @param {object} settings - the rendering settings to take into account when resolving contextualizations
+ * @return {Object} newSection - the updated section
+ */
 export const resolveContextualizationsImplementation = (section, renderingMode, settings) =>{
   let contextualizer;
   const sectio = section.contextualizations.reduce((inputSection, contextualization) => {

@@ -3,7 +3,6 @@ import Radium from 'radium';
 
 import renderContents from './../../utils/componentsFactory';
 
-// let styles = {};
 
 /**
  * dumb component for rendering the structured representation of a static note
@@ -13,6 +12,7 @@ export default class StaticNote extends React.Component {
 
   /**
    * propTypes
+   * @property {Object} note - the note object to use in order to render the note content
    */
   static propTypes = {
     note: PropTypes.object,

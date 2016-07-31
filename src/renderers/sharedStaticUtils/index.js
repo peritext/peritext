@@ -1,6 +1,18 @@
+/**
+ * Shared static rendering utils
+ * @module renderers/sharedStaticUtils
+ */
+
 import {computeReferences} from './../../core/utils/referenceUtils';
 import {getMetaValue} from './../../core/utils/sectionUtils';
 
+/**
+ * Resolves a sections' list against rendering settings by modifying contents, adding output-related pseudo-sections, and updating css styles
+ * @param {array} sections - the sections to render
+ * @param {Object} settings - the specific rendering settings to use in order to produce the output
+ * @param {string} inputStyle - the css style data to use
+ * @param {array} messages - the intl messages to use for some sections localization (e.g. : translation of "Table of contents")
+ */
 export const composeRenderedSections = (sections, settings, inputStyle, messages) =>{
   const renderedSections = sections.slice();
   let style = inputStyle;

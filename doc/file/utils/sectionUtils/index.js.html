@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">utils/sectionUtils/index.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/peritext/peritext.git" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">citationUtils</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/utils/citationUtils/citationModels.js~BlockCitationModel.html">BlockCitationModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/utils/citationUtils/citationModels.js~InlineCitationModel.html">InlineCitationModel</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">componentsFactory</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-renderContents">renderContents</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-jsToComponent">jsToComponent</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">microDataUtils</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-bibToSchema">bibToSchema</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-generateOpenUrl">generateOpenUrl</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">modelUtils</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getContextualizerModel">getContextualizerModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getResourceModel">getResourceModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-resolvePropAgainstType">resolvePropAgainstType</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-resolveSettings">resolveSettings</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-serializePropAgainstType">serializePropAgainstType</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">referenceUtils</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-computeReferences">computeReferences</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">sectionUtils</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-deleteMeta">deleteMeta</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-filterResources">filterResources</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-findByMetadata">findByMetadata</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getMetaValue">getMetaValue</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-hasMeta">hasMeta</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-hasResource">hasResource</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-metaStringToCouple">metaStringToCouple</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-sameMetaScope">sameMetaScope</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-setMetaValue">setMetaValue</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">utils/sectionUtils/index.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * Utils - section metadata &amp; resources utils : access, filter, deletion, ...
+ * @module utils/sectionUtils
+ */
+
+/**
+ * Gets a value in metadata props array by its domain and key
+ * @param {array} metaList - the list of metadata objects in which looking for the value
+ * @param {string} domain - the domain of the prop, stored in its &quot;domain&quot; prop
+ * @param {string} key - the key of the prop, stored in its &quot;key&quot; prop
+ * @return {string} value - the value
+ */
+export const getMetaValue = (metaList, domain, key) =&gt;{
+  const prop = metaList.find((meta) =&gt;{
+    return meta.domain === domain &amp;&amp; meta.key === key;
+  });
+  if (prop) {
+    return prop.value;
+  }
+  return undefined;
+};
+
+/**
+ * Sets a value in metadata props array after localized it by its domain and key
+ * @param {array} metaList - the list of metadata objects in which looking for the value
+ * @param {string} domain - the domain of the prop, stored in its &quot;domain&quot; prop
+ * @param {string} key - the key of the prop, stored in its &quot;key&quot; prop
+ * @param {string} newValue - the new value to assign to the prop
+ * @return {array} newlist - the updated list
+ */
+export const setMetaValue = (metaList, domain, key, newValue) =&gt;{
+  const newMetaList = metaList.map((meta) =&gt;{
+    if (meta.domain === domain &amp;&amp; meta.key === key) {
+      meta.value = newValue;
+    }
+    return meta;
+  });
+  return newMetaList;
+};
+
+/**
+ * Checks if the value has a metadata property
+ * @param {array} metaList - the list of metadata objects in which looking for the value
+ * @param {string} domain - the domain of the prop, stored in its &quot;domain&quot; prop
+ * @param {string} key - the key of the prop, stored in its &quot;key&quot; prop
+ * @return {boolean} hasMeta - whether the prop is there
+ */
+export const hasMeta = (metaList, domain, key) =&gt;{
+  if (typeof domain === &apos;string&apos;) {
+    return getMetaValue(metaList, domain, key) !== undefined;
+  }else if (domain.domain) {
+    return getMetaValue(metaList, domain.domain, domain.key) !== undefined;
+  }
+  throw new Error(&apos;error in couple &apos; + domain + &apos;_&apos; + key + &apos;: hasMeta method needs either a domain+key pair or a metadata prop object&apos;);
+};
+
+/**
+ * Finds a specific section in a sections list through one of its metadata
+ * @param {array} sections - the sections array to search in
+ * @param {string} domain - the domain of the prop used to search the section, stored in its &quot;domain&quot; prop
+ * @param {string} key - the key of the prop used to search the section, stored in its &quot;key&quot; prop
+ * @return {Object} section - the resulting section
+ */
+export const findByMetadata = (sections, domain, key, value) =&gt;{
+  return sections.find((section) =&gt;{
+    const meta = getMetaValue(section.metadata, domain, key);
+    return meta === value;
+  });
+};
+
+/**
+ * Checks if two metadata props have the same scope (domain and key)
+ * @param {Object} meta1 - the first metadata prop
+ * @param {Object} meta1 - the second metadata prop
+ * @return {boolean} sameScope - whether the two props have the same scope
+ */
+export const sameMetaScope = (meta1, meta2) =&gt;{
+  return meta1.domain === meta2.domain &amp;&amp; meta1.key === meta2.key;
+};
+
+/**
+ * Delete a specific metadata prop
+ * @param {array} metaList - the list of metadata objects in which looking for the value
+ * @param {string} domain - the domain of the prop, stored in its &quot;domain&quot; prop
+ * @param {string} key - the key of the prop, stored in its &quot;key&quot; prop
+ * @return {array} updatedMetaList - the new metadata list, without the deleted prop
+ */
+export const deleteMeta = (metaList, domain, key) =&gt;{
+  return metaList.filter((meta)=&gt;{
+    return !(domain === meta.domain &amp;&amp; key === meta.key);
+  });
+};
+
+/**
+ * Converts a bibtex metadata expression (e.g. &quot;title&quot;, &quot;twitter_twitter&quot;) to an object prop
+ * @param {string} str - the bibtex metadata expression
+ * @return {Object} metadata - the metadata prop object, without value
+ */
+export const metaStringToCouple = (str) =&gt;{
+  const parts = str.split(&apos;_&apos;);
+  const domain = (parts.length &gt; 1) ? parts.shift() : &apos;general&apos;;
+  const key = parts.join(&apos;_&apos;);
+  return {domain, key};
+};
+
+/**
+ * Checks if a resource list contains a resource, by citeKey
+ * @param {array} resourcesList - the resources list in which looking for
+ * @param {Object} resource - the resource to look for
+ * @return {boolean} hasResource - whether resource is present in the list
+ */
+export const hasResource = (resourcesList, resource) =&gt;{
+  return resourcesList.find((res) =&gt;{
+    return resource.citeKey === res.citeKey;
+  }) !== undefined;
+};
+
+/**
+ * Filter resources that have a specific value
+ * @param {array} resourcesList - the list of resource sto filter
+ * @param {string} key - the key by which filtering the resources
+ * @param {string} value - the value by which filtering the resources
+ * @return {array} updatedResourceList - the filtered resources list
+ */
+export const filterResources = (resourcesList, key, value) =&gt;{
+  return resourcesList.filter((res) =&gt;{
+    return res[key] === value;
+  });
+};
+
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.7)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

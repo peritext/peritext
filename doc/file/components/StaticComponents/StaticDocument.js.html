@@ -63,7 +63,7 @@
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React, {PropTypes} from &apos;react&apos;;
 import Radium from &apos;radium&apos;;
 import { intlShape } from &apos;react-intl&apos;;
-
+// let styles = {};
 import {getMetaValue} from &apos;./../../utils/sectionUtils&apos;;
 import {bibToSchema} from &apos;./../../utils/microDataUtils&apos;;
 import {
@@ -79,7 +79,6 @@ import {
   StructuredMetadataPlaceholder
 } from &apos;./../index.js&apos;;
 
-// let styles = {};
 
 /**
  * dumb component for rendering the structured representation of a static document
@@ -89,6 +88,9 @@ class StaticDocument extends React.Component {
 
   /**
    * propTypes
+   * @property {Object} rootSection - the root/first/mother section of the document
+   * @property {array} sections - the list of rendering sections to include - warning -&gt; can include cover, table of contents, ... sections
+   * @property {Object} settings - the rendering settings to use
    */
   static propTypes = {
     rootSection: PropTypes.object,

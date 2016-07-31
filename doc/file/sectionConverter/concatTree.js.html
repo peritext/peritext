@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">sectionConverter/concatTree.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/peritext/peritext.git" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cleanNaiveTree">cleanNaiveTree</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-concatTree">concatTree</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-parseSection">parseSection</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-serializeSectionList">serializeSectionList</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-organizeTree">organizeTree</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-parseTreeResources">parseTreeResources</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-propagateData">propagateData</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">sectionConverter/concatTree.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * This module concatenates fsTree contents according to include statements and resolves cases in which several markdown files are in the same directory
+ * @module converter/sectionConverter/concatTree
+ */
+import {parseMarkdown as extractIncludes} from &apos;./../../converters/markdownIncludesParser&apos;;
+import {map as asyncMap, waterfall} from &apos;async&apos;;
+
+let resolveFileIncludes;
+
+// Extracts md includes and inline resources descriptions from a file object
+const populateElementWithIncludes = (child, params, callback) =&gt;{
+  extractIncludes(child.stringContents,
+    {
+      includeWrappingChars: params.templateWrappingCharacters,
+      resWrappingChars: params.inlineResourceDescriptionWrappingCharacters
+    }, function(err, {extracted, cleanStr}) {
+      if (!err) {
+        child.extracted = extracted;
+        child.stringContents = cleanStr;
+      }
+      callback(err, child);
+    });
+};
+
+
+// Produces a nested structure of the included files in a given file
+const include = (ex, file, mdFilesWithIncludes) =&gt;{
+  let fileIndex;
+  const fileToInclude = mdFilesWithIncludes
+      .find((otherFile, index)=&gt;{
+        if (otherFile.name === ex.statement) {
+          fileIndex = index;
+          return true;
+        }
+      });
+  if (fileToInclude !== undefined) {
+    const fileHasIncludes = fileToInclude
+                              .extracted
+                                .filter((rawExtracted)=&gt;{
+                                  return rawExtracted.type === &apos;includeStatement&apos;;
+                                }).length &gt; 0;
+    if (fileHasIncludes) {
+      resolveFileIncludes(fileToInclude, mdFilesWithIncludes);
+    }
+    file.includes.push(fileToInclude);
+    mdFilesWithIncludes.splice(fileIndex, 1);
+  }
+};
+
+// Monitors the nested including structure population process of a file
+const doResolveFilesWithIncludes = (file, mdFilesWithIncludes) =&gt;{
+  file.includes = [];
+  file.includeStatements = [];
+  for (let index = file.extracted.length - 1; index &gt;= 0; index--) {
+    const ex = file.extracted[index];
+    if (ex.type === &apos;includeStatement&apos;) {
+      include(ex, file, mdFilesWithIncludes);
+      file.extracted.splice(index, 1);
+      file.includeStatements.push(ex);
+    }
+  }
+};
+
+resolveFileIncludes = doResolveFilesWithIncludes;
+
+// Turns non nested file object into include-based nested file objects
+const nestIncludes = ({resourcesStr, mdFilesWithIncludes, params}, cb) =&gt;{
+
+  mdFilesWithIncludes.forEach((mdfile) =&gt;{
+    resolveFileIncludes(mdfile, mdFilesWithIncludes);
+  });
+  cb(null, {resourcesStr, mdFilesWithIncludes});
+};
+
+
+// Consumes the nested property &apos;include&apos; by populating its string contents with includes contents,
+// resolved recursively
+const buildFinalMdContent = (file) =&gt;{
+  let content = file.stringContents;
+  const hasIncludes = file.includes &amp;&amp; file.includes.length &amp;&amp; file.includes.length &gt; 0;
+  if (hasIncludes) {
+    file.includeStatements
+      .filter((ex)=&gt;{
+        return ex.type === &apos;includeStatement&apos;;
+      })
+      .forEach((ex)=&gt;{
+        const targetIncluded = file.includes.find((file2)=&gt;{
+          return file2.name === ex.statement;
+        });
+        const contentToInclude = buildFinalMdContent(targetIncluded);
+        content = [content.substr(0, ex.index), contentToInclude, content.substr(ex.index)].join(&apos;&apos;);
+      });
+  }
+
+  return content;
+};
+
+// Turns an array of nested file objects into one single string
+const resolveNestedIncludes = ({resourcesStr, mdFilesWithIncludes, params}, cb) =&gt;{
+  const contentStr = mdFilesWithIncludes
+                      .reduce((str, file) =&gt; {
+                        return str + buildFinalMdContent(file);
+                      }, &apos;&apos;);
+  cb(null, {contentStr, resourcesStr, params});
+};
+
+const concatCustomizers = (newTree) =&gt;{
+  return newTree.children
+      .filter((child) =&gt; {
+        return child.type === &apos;directory&apos; &amp;&amp; child.name.charAt(0) === &apos;_&apos;;
+      })
+      .map((child) =&gt; {
+        const contents = {};
+        child.children.forEach((subChild) =&gt;{
+          contents[subChild.name] = subChild.stringContents;
+        });
+        return {
+          type: child.name.substr(1),
+          contents
+        };
+      });
+};
+
+/**
+ * Turns a fsTree into a dumTree, that is to say a tree which presents .bib resources and .md files contents concatenated by folder (according to inner &apos;include&apos; statements and then automatically)
+ * @param {Object} tree - the fsTree to concatenate
+ * @param {Object} params - the language-related parameters
+ * @param {function(error: error, newTree: object)} callback - error and the concatenated tree
+ */
+export const concatTree = (tree, params, callback) =&gt;{
+  const newTree = Object.assign({}, tree);
+  // concat .bib res files
+  const resources = newTree.children
+                    .filter((child) =&gt; {
+                      return child.type === &apos;file&apos; &amp;&amp; child.extname === &apos;.bib&apos;;
+                    })
+                    .reduce((str, child) =&gt; {
+                      if (child.stringContents !== undefined) {
+                        return str + &apos;\n&apos; + child.stringContents;
+                      }
+                      return str;
+                    }, &apos;&apos;);
+
+  const mdContents = newTree.children
+                    .filter((child) =&gt; {
+                      return child.type === &apos;file&apos; &amp;&amp; child.extname === &apos;.md&apos;;
+                    });
+  const childrenDirs = newTree.children
+                    .filter((child) =&gt; {
+                      return child.type === &apos;directory&apos; &amp;&amp; child.name.charAt(0) !== &apos;_&apos;;
+                    });
+  const childrenCustomizers = concatCustomizers(newTree);
+  waterfall([
+    // extract md files elements includes statements
+    (cb) =&gt;{
+      asyncMap(mdContents, (child, cback) =&gt;{
+        populateElementWithIncludes(child, params, cback);
+      }, (err, mdFilesWithIncludes) =&gt;{
+        // concat extracted bibtex resources
+        const resourcesStr = mdFilesWithIncludes
+                      .reduce((str, mdFile) =&gt; {
+                        let newStr = str;
+                        mdFile.extracted
+                          .filter((ex)=&gt;{
+                            return ex.type === &apos;resourceStatement&apos;;
+                          }).forEach((ex)=&gt;{
+                            newStr += ex.statement;
+                          });
+                        return newStr;
+                      }, resources);
+        cb(null, {resourcesStr, mdFilesWithIncludes, params});
+      });
+    },
+    nestIncludes,
+    resolveNestedIncludes
+  ], (err, {resourcesStr, contentStr}) =&gt;{
+    newTree.resourcesStr = resourcesStr;
+    newTree.contentStr = contentStr;
+    if (childrenCustomizers.length &gt; 0) {
+      newTree.customizers = childrenCustomizers;
+    }
+    // recursively repeat dat stuff with children dirs
+    asyncMap(childrenDirs, (dir, cback) =&gt;{
+      concatTree(dir, params, cback);
+    }, (error, populatedDirs) =&gt;{
+      newTree.children = populatedDirs;
+      callback(error, newTree);
+    });
+  });
+};
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.7)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

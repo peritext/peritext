@@ -2,8 +2,6 @@ import React, {PropTypes} from 'react';
 import StructuredPerson from './../StructuredDataComponents/StructuredPerson.js';
 import Radium from 'radium';
 
-// let styles = {};
-
 /**
  * dumb component for cover page of a static publication of document
  */
@@ -21,6 +19,12 @@ export default class StaticFrontCover extends React.Component {
   static defaultProps = {
   };
 
+  /**
+   * Util for returning the value of a "general" type metadata
+   * @param {array} list - the list of metadata
+   * @param {string} key - the key of the metadata prop
+   * @return {string} value
+   */
   getGeneralProp(list, key) {
     const obj = list.find((meta) => {
       return meta.domain === 'general' && meta.key === key;

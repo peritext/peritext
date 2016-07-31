@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">utils/modelUtils/index.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/peritext/peritext.git" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">citationUtils</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/utils/citationUtils/citationModels.js~BlockCitationModel.html">BlockCitationModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/utils/citationUtils/citationModels.js~InlineCitationModel.html">InlineCitationModel</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">componentsFactory</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-renderContents">renderContents</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-jsToComponent">jsToComponent</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">microDataUtils</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-bibToSchema">bibToSchema</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-generateOpenUrl">generateOpenUrl</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">modelUtils</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getContextualizerModel">getContextualizerModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getResourceModel">getResourceModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-resolvePropAgainstType">resolvePropAgainstType</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-resolveSettings">resolveSettings</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-serializePropAgainstType">serializePropAgainstType</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">referenceUtils</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-computeReferences">computeReferences</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">sectionUtils</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-deleteMeta">deleteMeta</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-filterResources">filterResources</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-findByMetadata">findByMetadata</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getMetaValue">getMetaValue</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-hasMeta">hasMeta</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-hasResource">hasResource</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-metaStringToCouple">metaStringToCouple</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-sameMetaScope">sameMetaScope</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-setMetaValue">setMetaValue</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">utils/modelUtils/index.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * Utils - dedicated to everything that deals with models (composing, translating values, ...)
+ * @module utils/modelUtils
+ */
+import {parseBibAuthors} from &apos;./../../converters/bibTexConverter&apos;;
+
+/**
+ * Builds a model object from a specific bibType, composing it according to its inheritance dependencies, from more general models to the specific bibType
+ * @param {string} bibType - the bibType of the resource
+ * @param {Object} resourceModels - the models describing resources data
+ * @return {Object} model - the model corresponding to the input bibType
+ */
+export const getResourceModel = (bibType, resourceModels) =&gt;{
+  const model = resourceModels.individual[bibType];
+  if (model) {
+    // first set highestly specific props
+    let properties = model.properties;
+    let defaultContextualizer = model.defaultContextualizer;
+    let otherProps;
+    let existing;
+    // then parse related categories
+    model.categories.forEach((category) =&gt; {
+      otherProps = resourceModels.collective[category]
+                    .properties
+                    .filter((prop) =&gt;{
+                      existing = properties.find((property) =&gt;{
+                        return property.key === prop.key;
+                      });
+                      if (existing) {
+                        return false;
+                      }
+                      return true;
+                    });
+      properties = properties.concat(otherProps);
+
+      // inherit default contextualizer
+      if (resourceModels.collective[category].defaultContextualizer &amp;&amp; !defaultContextualizer) {
+        defaultContextualizer = resourceModels.collective[category].defaultContextualizer;
+      }
+    });
+    // then finally parse common props
+    otherProps = resourceModels.collective.common
+                    .properties
+                    .filter((prop) =&gt;{
+                      existing = properties.find((property) =&gt;{
+                        return property.key === prop.key;
+                      });
+                      if (existing) {
+                        return false;
+                      }
+                      return true;
+                    });
+    properties = properties.concat(otherProps);
+
+    return Object.assign({}, model, {properties: model.properties.concat(properties)}, {defaultContextualizer});
+  }
+  return undefined;
+};
+
+/**
+ * Build a model object from a specific bibType, composing it according to its inheritance dependencies, from more general models to the specific bibType
+ * @param {string} bibType - the bibType of the contextualizer
+ * @param {Object} contextualizerModels - the models describing contextualizer possible data
+ * @return {Object} model - the model corresponding to the input bibType
+ */
+export const getContextualizerModel = (bibType, contextualizerModels) =&gt;{
+  const model = contextualizerModels.individual[bibType];
+  if (model) {
+    // first set highestly specific props
+    let properties = model.properties;
+    let otherProps;
+    let existing;
+    // then parse related categories
+    model.categories.forEach((category) =&gt; {
+      otherProps = contextualizerModels.collective[category]
+                    .properties
+                    .filter((prop) =&gt;{
+                      existing = properties.find((property) =&gt;{
+                        return property.key === prop.key;
+                      });
+                      if (existing) {
+                        return false;
+                      }
+                      return true;
+                    });
+      properties = properties.concat(otherProps);
+
+    });
+
+    // then finally parse common props
+    otherProps = contextualizerModels.collective.common
+                    .properties
+                    .filter((prop) =&gt;{
+                      existing = properties.find((property) =&gt;{
+                        return property.key === prop.key;
+                      });
+                      if (existing) {
+                        return false;
+                      }
+                      return true;
+                    });
+    properties = properties.concat(otherProps);
+    return Object.assign({}, model, {properties});
+  }
+  return undefined;
+};
+
+/**
+ * Transforms a (possibly not primitive : array, object, bibAuthor) value to a string-friendly value, thanks to its model&apos;s type
+ * @param {Object} prop - the prop to serialize
+ * @param {string} valueType - the type of the value (&apos;string&apos;, &apos;stringArray&apos;, &apos;bibAuthor&apos;, ...)
+ * @param {Object} model - the model to parse the prop against
+ * @return {string} newValue - the serialized value
+ */
+export const serializePropAgainstType = (prop, valueType, model) =&gt; {
+  if (prop === undefined) {
+    return undefined;
+  }
+  switch (valueType) {
+  case &apos;string&apos;:
+    return prop;
+
+  case &apos;stringArray&apos;:
+    return prop.join(&apos;, &apos;);
+
+  case &apos;bibAuthorsArray&apos;:
+    return prop.map((author) =&gt;{
+      if (author.firstName) {
+        return author.firstName + &apos; {&apos; + author.lastName + &apos;}&apos;;
+      }
+      return author.lastName;
+    }).join(&apos;; &apos;);
+
+  case &apos;objectArray&apos; : {
+    if (model.children &amp;&amp; Array.isArray(prop)) {
+      const newProp = prop.map((obj)=&gt;{
+        if (typeof obj === &apos;object&apos;) {
+          const vals = Object.keys(obj).map((key)=&gt;{
+            if (obj[key] !== undefined) {
+              return key + &apos;=&apos; + obj[key];
+            }
+            return &apos;&apos;;
+          });
+          return vals.filter((part)=&gt;{return part.length;}).join(&apos;,&apos;);
+        }
+        return undefined;
+      });
+      return newProp;
+    }
+    break;
+  }
+
+  default:
+    return prop;
+  }
+
+};
+
+/**
+ * Transforms a string value to a complex and type-compliant value, thanks to its model&apos;s type
+ * @param {Object} prop - the prop to resolve
+ * @param {string} valueType - the type of the value (&apos;string&apos;, &apos;stringArray&apos;, &apos;bibAuthor&apos;, ...)
+ * @param {Object} model - the model to parse the prop against
+ * @return {string|array|number|Object} newValue - the resolved value
+ */
+export const resolvePropAgainstType = (prop, valueType, model) =&gt; {
+  if (prop === undefined) {
+    // looking for a default value if no value specified
+    if (model.default) {
+      return model.default;
+    }
+    return undefined;
+  // looking for restricted values
+  } else if (model.values) {
+    const validValue = model.values.find((value) =&gt; {
+      return value === prop;
+    });
+    // value not allowed
+    if (validValue === undefined) {
+      // look for default
+      if (model.default) {
+        return model.default;
+      }
+      // or return undefined
+      return undefined;
+    }
+  }
+  switch (valueType) {
+  case &apos;number&apos;:
+    return +prop;
+
+  case &apos;numberArray&apos;:
+    return prop.split(&apos;,&apos;).map((number)=&gt; {
+      return +number.trim();
+    });
+
+  case &apos;string&apos;:
+    /*
+    if (model.values) {
+      // nominal set of possible values
+      val = model.values.some((mval)=&gt;{
+        return mval === prop;
+      });
+      console.log(&apos;val : &apos;, val);
+      return val;
+    }
+    */
+    return prop;
+
+  case &apos;stringArray&apos;:
+    return prop.split(/,|;/).map((value)=&gt;{return value.trim();});
+
+  case &apos;bibAuthorsArray&apos;:
+    return parseBibAuthors(prop);
+
+  case &apos;objectArray&apos; : {
+    if (model.children &amp;&amp; Array.isArray(prop)) {
+      const newProp = prop.map((obj)=&gt;{
+        if (typeof obj === &apos;object&apos;) {
+          const newObj = model.children.reduce((thatObj, childModel) =&gt;{
+            thatObj[childModel.key] = resolvePropAgainstType(obj[childModel.key], childModel.valueType, childModel);
+            return thatObj;
+          }, {});
+          return newObj;
+        }
+        return undefined;
+      });
+      return newProp;
+    }
+  }
+
+  default:
+    return prop;
+  }
+};
+
+/**
+ * Populate rendering settings according to default bibtype-related settings
+ * @param {Object} settings - the settings provided as input
+ * @param {string} bibType - the bibType of the root section to render
+ * @param {Object} settingsModel - the model to use for populating the settings
+ * @return {Object} newSettings - the populated settings
+ */
+export const resolveSettings = (settings, bibType, settingsModel) =&gt;{
+  const typeModel = {};
+  for (const param in settingsModel) {
+    if (settingsModel[param].default[bibType]) {
+      typeModel[param] = settingsModel[param].default[bibType];
+    } else {
+      typeModel[param] = settingsModel[param].default.default;
+    }
+  }
+  return Object.assign(typeModel, settings);
+};
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.7)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

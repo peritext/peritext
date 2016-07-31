@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">connectors/filesystem/index.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/peritext/peritext.git" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">filesystem</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createFromPath">createFromPath</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-deleteFromPath">deleteFromPath</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getAssetUri">getAssetUri</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-readFromPath">readFromPath</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-updateFromPath">updateFromPath</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">connectors/filesystem/index.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * Filesystem connector
+ * @module connectors/filesystem
+ */
+
+import * as lib from &apos;./connector.js&apos;;
+import {readFile, readdir, lstatSync, mkdir, exists, writeFile, unlink} from &apos;fs&apos;;
+import {resolve, extname, basename, join as joinPath} from &apos;path&apos;;
+import {map as asyncMap, reduce as asyncReduce} from &apos;async&apos;;
+import removeFolderRecursively from &apos;rmdir&apos;;
+
+// I get meta information about an fs element
+const analyseElement = (fileName, absPath) =&gt;{
+  const path = joinPath(absPath, fileName);
+  return {
+    name: fileName,
+    path,
+    type: (lstatSync(path).isDirectory()) ? &apos;directory&apos; : &apos;file&apos;,
+    extname: extname(path)
+  };
+};
+
+// I get meta information about several fs elements
+const analyseContents = (filesList, absPath) =&gt;{
+  if (!filesList) {
+    return undefined;
+  }
+  return filesList.map((fileName) =&gt; {
+    return analyseElement(fileName, absPath);
+  });
+};
+
+
+// I recursively parse an fs element
+const parseElement = ({path = &apos;&apos;, element, parseFiles, depth, actualDepth, acceptedExtensions}, callback) =&gt;{
+  // file to parse
+  if (element.type === &apos;file&apos; &amp;&amp; parseFiles === true &amp;&amp; acceptedExtensions.indexOf(element.extname) &gt; -1) {
+    try {
+      readFile(path, &apos;utf8&apos;, function(err, str) {
+        if (err) {
+          return callback(err, undefined);
+        }
+        return callback(null, Object.assign({}, element, {stringContents: str}));
+      });
+    } catch (exception) {
+      callback(null, element);
+    }
+  // dir to parse
+  } else if (element.type === &apos;directory&apos; &amp;&amp; (actualDepth &lt; depth || depth === true)) {
+    readdir(element.path + &apos;/&apos;, function(err, files) {
+      const children = analyseContents(files, path)
+                      .filter((child)=&gt;{
+                        return child.type === &apos;directory&apos; || acceptedExtensions.indexOf(child.extname) &gt; -1;
+                      });
+      const newDepth = actualDepth + 1;
+      asyncMap(children, function(elem, colback) {
+        parseElement({element: elem, path: path + &apos;/&apos; + elem.name, parseFiles, depth, actualDepth: newDepth, acceptedExtensions}, colback);
+      }, function(error, otherChildren) {
+        return callback(error, Object.assign({}, element, {children: otherChildren}));
+      });
+    });
+  // default return element as it was input
+  } else {
+    return callback(null, Object.assign({}, element));
+  }
+};
+
+/**
+ * Reads a file from a certain path (cRud)
+ * @param {Object} requestParams - The object containing request parameters
+ * @param {array|string} requestParams.path - The detailed path (as a succession of &quot;folders&quot; or as a plain string) to attain the file
+ * @param {Object} requestParams.params - The connection parameters
+ * @param {string} requestParams.params.basePath - The path base to use in order to fetch files
+ * @param {number} requestParams.depth - if the target is a &quot;folder&quot; that contains other &quot;subfolders&quot;, specifies the parsing level
+ * @param {boolean} requestParams.parseFiles - Whether to parse files if the target is a &quot;folder&quot;
+ * @param {Array|string} obj.acceptedExtensions - The list of accepted files extensions (or &quot;*&quot;) if all must be accepted
+ * @param {function(error: error)} callback - returns error and a filesystem representation of the file metadata and contents
+ */
+export const readFromPath = ({
+    path = [],
+    params,
+    depth = 1,
+    parseFiles = false,
+    acceptedExtensions = [&apos;.md&apos;, &apos;.bib&apos;, &apos;.css&apos;, &apos;.js&apos;]
+  }, callback) =&gt;{
+  const resolvedPath = (Array.isArray(path)) ? path.join(&apos;/&apos;) : path;
+  const finalPath = resolve(params.basePath) + &apos;/&apos; + resolvedPath;
+  let element;
+  const name = basename(finalPath);
+
+  try {
+    element = {
+      name: name,
+      path: finalPath,
+      type: (lstatSync(finalPath).isDirectory()) ? &apos;directory&apos; : &apos;file&apos;,
+      extname: extname(name)
+    };
+  }catch (err) {
+    return callback(err, undefined);
+  }
+
+  if (element.type === &apos;directory&apos;) {
+    return parseElement({path: finalPath, element, parseFiles, depth, actualDepth: 0, acceptedExtensions}, callback);
+  } else if (acceptedExtensions === &apos;*&apos; || acceptedExtensions.indexOf(element.extname) &gt; -1) {
+    readFile(finalPath, &apos;utf8&apos;, (err, str) =&gt; {
+      if (err) {
+        return callback(err, undefined);
+      }
+      return callback(null, Object.assign({}, element, {stringContents: str}));
+    });
+  } else {
+    return callback(new Error(&apos;the file extension is not accepted&apos;), undefined);
+  }
+};
+
+/**
+ * Creates a file from a certain path and possibly some contents (Crud)
+ * @param {Object} requestParams - The object containing request parameters
+ * @param {array|string} requestParams.path - The detailed path (as a succession of &quot;folders&quot; or as a plain string) to attain the file
+ * @param {Object} requestParams.params - The connection parameters
+ * @param {string} requestParams.params.basePath - The path base to use in order to fetch files
+ * @param {string} requestParams.stringContents - the contents to be created
+ * @param {boolean} requestParams.overwrite - Whether to overwrite existing entity already present at path
+ * @param {function(error: error, returnedPath: string)} callback - returns error and the path of created entity
+ */
+export const createFromPath = ({path = &apos;&apos;, params, type = &apos;file&apos;, stringContents = &apos;&apos;, overwrite = false}, callback) =&gt;{
+  const resolvedPath = (Array.isArray(path)) ? path.join(&apos;/&apos;) : path;
+  const finalPath = resolve(params.basePath) + &apos;/&apos; + resolvedPath;
+  const pathSteps = finalPath.split(&apos;/&apos;).filter((thatPath)=&gt; {return thatPath.length &gt; 0;});
+  // first check-or-create path folders
+  const activePath = &apos;/&apos;;
+  asyncReduce(pathSteps, activePath, (inputMemo, pathStep, cback) =&gt;{
+    // case : not end of path, walking through
+    if (pathStep !== pathSteps[pathSteps.length - 1]) {
+      const memo = inputMemo + pathStep + &apos;/&apos;;
+      exists(memo, function(isThere) {
+        if (isThere) {
+          cback(null, memo);
+        }else {
+          mkdir(memo, function(err) {
+            cback(err, memo);
+          });
+        }
+      });
+    // case : end of path
+    } else {
+      cback(null, inputMemo + pathStep);
+    }
+
+  }, (err, result) =&gt;{
+    // check if element already exists
+    exists(finalPath, function(isThere) {
+      if ((isThere &amp;&amp; overwrite === true) || !isThere) {
+        if (type === &apos;file&apos;) {
+          writeFile(finalPath, stringContents, &apos;utf8&apos;, function(error) {
+            callback(error);
+          });
+        }else if (type === &apos;directory&apos;) {
+          mkdir(finalPath, function(error) {
+            callback(error);
+          });
+        }else {
+          callback(new Error(&apos;No element type matching&apos;));
+        }
+      }else {
+        callback(new Error(&apos;File/directory already exists and overwrite option is set to false&apos;));
+      }
+    });
+  });
+};
+
+/**
+ * Updates a file from a certain path and possibly some contents (crUd)
+ * @param {Object} requestParams - The object containing request parameters
+ * @param {array|string} requestParams.path - The detailed path (as a succession of &quot;folders&quot; or as a plain string) to attain the file
+ * @param {Object} requestParams.params - The connection parameters
+ * @param {string} requestParams.params.basePath - The path base to use in order to fetch files
+ * @param {string} requestParams.stringContents - the contents to be created
+ * @param {function(error: error)} callback - returns possible error
+ */
+export const updateFromPath = ({path = &apos;&apos;, params, stringContents = &apos;&apos;}, callback) =&gt; {
+  const resolvedPath = (Array.isArray(path)) ? path.join(&apos;/&apos;) : path;
+  const finalPath = resolve(params.basePath + &apos;/&apos; + resolvedPath);
+  exists(finalPath, (isThere) =&gt;{
+    if (isThere) {
+      const pathSteps = finalPath.split(&apos;/&apos;).filter((thatPath)=&gt; {return thatPath.length &gt; 0;});
+      const elementName = pathSteps.pop();
+      const element = analyseElement(elementName, &apos;/&apos; + pathSteps.join(&apos;/&apos;));
+      if (element.type === &apos;directory&apos;) {
+        callback(new Error(&apos;cannot update directories&apos;));
+      } else if (element.type === &apos;file&apos;) {
+        writeFile(finalPath, stringContents, (err) =&gt;{
+          callback(err);
+        });
+      }
+    }else {
+      callback(new Error(&apos;Path does not exists&apos;));
+    }
+  });
+};
+
+/**
+ * Deletes a file from a certain path and possibly some contents (cruD)
+ * @param {Object} requestParams - The object containing request parameters
+ * @param {array|string} requestParams.path - The detailed path (as a succession of &quot;folders&quot; or as a plain string) to attain the file
+ * @param {Object} requestParams.params - The connection parameters
+ * @param {string} requestParams.params.basePath - The path base to use in order to fetch files
+ * @param {function(error: error)} callback - returns potential errors
+ */
+export const deleteFromPath = ({path = &apos;&apos;, params}, callback) =&gt; {
+  const resolvedPath = (Array.isArray(path)) ? path.join(&apos;/&apos;) : path;
+  const finalPath = resolve(params.basePath) + &apos;/&apos; + resolvedPath;
+  exists(finalPath, function(isThere) {
+    if (isThere) {
+      const pathSteps = finalPath.split(&apos;/&apos;).filter((thatPath) =&gt; {return thatPath.length &gt; 0;});
+      const elementName = pathSteps.pop();
+      const element = analyseElement(elementName, &apos;/&apos; + pathSteps.join(&apos;/&apos;));
+      if (element.type === &apos;directory&apos;) {
+        removeFolderRecursively(finalPath, (err) =&gt;{
+          callback(err);
+        });
+      }else if (element.type === &apos;file&apos;) {
+        unlink(finalPath, (err) =&gt;{
+          callback(err);
+        });
+      }
+    }else {
+      callback(new Error(&apos;Path does not exists&apos;));
+    }
+  });
+};
+
+/**
+ * Gets the absolute uri of an asset
+ * @param {Object} requestParams - The object containing request parameters
+ * @param {array|string} requestParams.path - The detailed path (as a succession of &quot;folders&quot; or as a plain string) to attain the file
+ * @param {Object} requestParams.params - The connection parameters
+ * @param {string} requestParams.params.basePath - The path base to use in order to fetch files
+ * @param {function(error: error, finalPath: string)} callback - returns error and the asset&apos;s uri
+ */
+export const getAssetUri = ({path, params}, callback) =&gt; {
+  // WIP TODO QUESTION : should it check for resource availability ?
+  const resolvedPath = (Array.isArray(path)) ? path.join(&apos;/&apos;) : path;
+  const finalPath = resolve(params.basePath) + &apos;/&apos; + resolvedPath;
+  return callback(null, finalPath);
+};
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.7)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

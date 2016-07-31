@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">sectionConverter/cleanNaiveTree.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/peritext/peritext.git" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cleanNaiveTree">cleanNaiveTree</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-concatTree">concatTree</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-parseSection">parseSection</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-serializeSectionList">serializeSectionList</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-organizeTree">organizeTree</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-parseTreeResources">parseTreeResources</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-propagateData">propagateData</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">sectionConverter/cleanNaiveTree.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * This module cleans resources and metadata from a naive (resource concatenated) tree
+ * @module converter/sectionConverter/cleanNaiveTree
+ */
+
+import {map as asyncMap} from &apos;async&apos;;
+
+/**
+ * Resolves resource and metadata statements from a naive representation of a section
+ * @param {Object} params - the cleaning params
+ * @param {array} params.errors - the inherited parsing errors to pass along to the next step
+ * @param {Object} params.validTree - the tree to clean
+ * @param {Object} models - the models to parse the resources with
+ * @param {function(error: error, results: {errors: array, validTree: Object})} callback - the possible error, a list of parsing minor errors, and the resulting tree
+ */
+export const cleanNaiveTree = ({errors = [], validTree}, models, callback) =&gt;{
+  const contextualizers = [];
+  const naiveTree = Object.assign({}, validTree);
+  let metadata;
+  const hasResources = naiveTree &amp;&amp; naiveTree.resources;
+  if (hasResources) {
+    naiveTree.resources = naiveTree.resources.filter(function(res) {
+      // catch metadata
+      let validated;
+      // extract contextualizer descriptions
+      if (res.bibType === &apos;contextualizer&apos;) {
+        contextualizers.push(res);
+        return false;
+      }
+      for (const type in models.sectionTypeModels.acceptedTypes) {
+        if (res.bibType === &apos;peritext&apos; + type) {
+          metadata = res;
+          return false;
+        }
+      }
+
+      if (!validated) {
+        // verify that the resource type are known
+        for (const otherType in models.resourceModels.individual) {
+          if (res.bibType === otherType) {
+            return true;
+          }
+        }
+      }
+      // if not validated, record error and don&apos;t take resource
+      if (!validated) {
+        errors.push({
+          type: &apos;error&apos;,
+          preciseType: &apos;invalidResource&apos;,
+          resourceCiteKey: res.citeKey,
+          message: &apos;could not find resource type &apos; + res.bibType + &apos; for Resource ID &apos; + res.citeKey
+        });
+        return false;
+      }
+      return true;
+    });
+  }
+  if (metadata === undefined &amp;&amp; naiveTree.name.charAt(0) !== &apos;_&apos;) {
+    errors.push({
+      type: &apos;warning&apos;,
+      preciseType: &apos;metadataNotFound&apos;,
+      message: &apos;no metadata specified for the folder &apos; + naiveTree.name + &apos; so it was not taken into account&apos;
+    });
+    const newErrors = (errors.length &gt; 0) ? errors.reverse() : null;
+    return callback(null, {errors: newErrors, validTree: undefined});
+  }else if (naiveTree.children) {
+    return asyncMap(naiveTree.children, function(child, cb) {
+      cleanNaiveTree({validTree: child}, models, cb);
+    }, (err, results) =&gt;{
+      // filter valid children tree leaves
+      const children = results
+                      .filter((result)=&gt;{
+                        return result.validTree !== undefined;
+                      })
+                      .map((result) =&gt;{
+                        return result.validTree;
+                      });
+
+      const newErrors = results.reduce((theseErrors, result)=&gt;{
+        return theseErrors.concat(result.errors);
+      }, errors);
+      return callback(null, {errors: newErrors, validTree: Object.assign({}, naiveTree, {metadata}, {children}, {contextualizers})});
+    });
+  }
+  const newErrors = (errors.length &gt; 0) ? errors.reverse() : null;
+  return callback(null, {errors: newErrors, validTree: Object.assign({}, naiveTree, {metadata}, {contextualizers})});
+};
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.7)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
