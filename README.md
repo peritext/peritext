@@ -1,33 +1,37 @@
-[Hard WIP] Peritext - *a contextualization-oriented academic publishing engine*
+[WIP] Peritext - *a contextualization-oriented academic publishing engine*
 ==========
 
-Peritext is a library aimed at facilitating the making of media-rich, data-driven and multimodal academic publication projects.
+![Documentation coverage](https://raw.githubusercontent.com/peritext/peritext/master/doc/badge.svg)
+
+Peritext is a javascript/node library aimed at facilitating the making of media-rich, data-driven and multimodal academic publication projects.
 
 # The RCC model
 
 The core of the library is centered on manipulating a specific abstraction of academic documents, which I labeled the *Resource-Contexutalization-Contextualizer Model*.
 
-The *Resource Contextualization Contextualizer Model* is a way to model an academic document as something composed by ``contents``, ``resources`` and ``contextualizations``:
+The *Resource-Contextualization-Contextualizer Model* is a way to think of an academic document as something composed by ``contents``, ``resources``, ``contextualizations`` and ``contextualizers``:
 
-* ``Contents`` are the main titles, paragraphs, ... written by the author. They are written in ``markdown`` syntax
-* ``Resources`` are all the external resources mentionned by the author (whether they be images, videos, data, books, articles, persons, places, ...). They are written in ``bibTeX`` syntax
+* ``Contents`` are the main linear, textual, contents of a publication. These are sections, titles, paragraphs, ... written by the author and ordered in a specific sequence. In peritext, they come written in regular ``markdown`` syntax
+* ``Resources`` are **all the external resources mentionned by the author**. These can be bibliographical records (of books, articles, ...), medias (images, videos), data (as files, as url, ...), and even entities (persons, places, organization, concepts, ...). All the resources are described in the same logic, and written in ``bibTeX`` syntax
 * ``Contextualizations`` are statements written by the author about **how to contextualize a specific resource at a specific point of her text, in a specific way.** For example, the same *dataset* resource will be able to be *contextualized* by the author as a ``table``, a ``timeline``, a `map`, or a simple ``academic reference`` contextualization.
-* ``Contextualizers`` are reusable sets of parameters describing how to contextualize a resource. They can be reused along a given document, or taken as basis by specific contextualizations, to perform ``data travelling`` operations for instance.
+* ``Contextualizers`` are **sets of contextualization parameters** describing how to contextualize a resource. They can be explicit set and therefore reused along a given document ; or be taken as basis by specific contextualizations, to perform ``data travelling`` operations for instance ; or they can be totally implicit and infered from a specific contextualization statement.
 
 # Why is this model useful ?
 
-* it allows a great attention to the non-textual elements that compose a publication. Through **parametric illustrations** descriptions, the author describes very precisely how to present her resources
-* it **allows users to author high-quality documents accross several media**, while not avoiding to put a great attention into specific designs (through css styling)
+* it allows to **consistently handle all the kinds of "things" that populate nowadays' research argumentations** with a simple and extendable model
 * it **enforces a sense of rigourousness** by the author while referencing resources. Authors cannot mention something if they don't describe it first.
-* it **facilitates SEO and indexation**, as peritext outputs are highly enriched in ``dublincore``  & ``opengraph`` metadata, and ``RDFa`` microdata at the level of tiniest contents
+* it allows to **serve both sequential reading applications, and non-sequential relation-based reading applications** : you can use a peritext document representation to produce a "text" decorated with contextualizations, like a traditional print-like artifact. But you can also use it to display a resource list decorated with their textual "implementation" (like interactive glossaries, reference lists, tables of figures, ...), or a network of elements, and so on.
+* it allows to put a great attention to the non-textual elements that compose a publication. Contextualizers allow to build **parametric illustrations** descriptions that describe very precisely how to present her resources, and to perform "**data travelling**" argumentation by sequentially showing the same resources with different parameters.
+* it **allows users to author high-quality documents accross several media**, while not avoiding to put a great attention into specific designs (through css styling)
+* it **facilitates SEO and indexation**, as peritext outputs are highly enriched in ``dublincore``  & ``opengraph`` metadata, and ``schema`` and ``RDFa`` microdata at the level of tiniest elements.
 
 # What use cases is this model useful for ?
 
-* multi-supports publication: write once, publish everywhere
-* media-related or interview-related research publishing: quote timecoded specific portions of recorded media. Display subtitles/transcriptions if you have them. See media thumbnails in static outputs.
-* data-related research publishing: show your data through different angles. Discuss it, argument with it, travel inside it, make it live with your text.
-* web-related research publishing: quote tweets, webpages, search engine results. See the publication evolve with time.
-* design-related publishing: show your productions and process extensively, take care of your publication's design through fine-grained custom css, while staying inside academic standards.
+* **multi-supports** publication: write once, publish everywhere
+* **media-related or interview-related** research publishing: quote timecoded specific portions of recorded media. Display subtitles/transcriptions if you have them. See media thumbnails in static outputs.
+* **data-related** research publishing: show your data through different angles. Discuss it, argument with it, travel inside it, make it live through your textual argumentation.
+* **web-related** research publishing: quote tweets, webpages, search engine results. See the publication evolve with time for dynamic outputs.
+* **design-related** publishing: show your productions and process more comprehensively in academic publications. Take care of your publication's design through fine-grained custom css, while staying inside academic standards.
 
 ---
 
@@ -43,7 +47,7 @@ Outputs can be either files (in pdf, xml, html, ... formats) handled by ``export
 
 # Caution : Work In Progress
 
-Peritext is in its really early phase of existence : test coverage is quasi inexistant, most doc is missing, contextualization components are minimal, and exporters too. Use it at your own risk, but more than that, feel free to give a hand to the project if you wish !
+Peritext is in its really early phase of existence : some modules APIs are inconsistant/overcomplicated and should change a lot in the near future, test coverage is quasi inexistant, contextualization components are minimal, and exporters too. Use it at your own risk, but more than that, feel free to give a hand to the project if you wish !
 
 # Detailed description
 
@@ -83,7 +87,9 @@ Experience-related goals :
 
 Peritext is a technology built in the context of my Ph.D. in digital humanities, design & aesthetics, which deals with academic publishing in the humanities.
 
-The project comes as the amplification of a previous, very specific, multimodal article experiment, that I participated to as a designer, a developper and a researcher : http://modesofexistence.org/anomalies/ (source there : https://github.com/robindemourat/clues-anomaly-understanding ).
+On an intellectual plan, it is the continuation of a joint reflection conducted about the roles and acceptions of "context" in humanities' academic publishing situations. This reflection was summarized by a 2014 milestone's [conference communication](https://www.academia.edu/9062107/AIME_opening_the_context_of_a_Humanities_inquiry) that I co-authored with [Donato Ricci](http://www.medialab.sciences-po.fr/fr/people/donato-ricci/).
+
+On a practical plan, the project comes also as the amplification of a previous, very specific, multimodal article experiment, that I participated to as a designer, developper and researcher : http://modesofexistence.org/anomalies/ (source code is there : https://github.com/robindemourat/clues-anomaly-understanding ).
 
 In the frame of my Ph.D., this experiment became first the project of a generic flat-file application engine for generating multimodal publications. Then it became an even more generic technology, aimed at being used as client tool, or as a library in other applications, such as the one I am developping in order to publish my own Ph.D. in multimodal format.
 
