@@ -2,6 +2,10 @@ import React, {PropTypes} from 'react';
 // let styles = {};
 import Radium from 'radium';
 
+import {
+  StructuredPerson
+} from './../index.js';
+
 /**
  * dumb component for back cover page of a static publication of document
  */
@@ -46,6 +50,11 @@ export default class StaticBackCover extends React.Component {
         className="peritext-static-back-cover"
       >
         <h2>{this.getGeneralProp(this.props.metadata, 'title')}</h2>
+        <h3 className="peritext-static-authors">
+          {this.getGeneralProp(this.props.metadata, 'author').map((person) =>{
+            return <StructuredPerson key={person.citeKey} resource={person}/>;
+          })}
+        </h3>
         <p>
           {this.getGeneralProp(this.props.metadata, 'abstract')}
         </p>

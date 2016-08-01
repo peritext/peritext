@@ -59,21 +59,21 @@ class StaticDocument extends React.Component {
           {this.props.sections.map((section, index)=> {
             switch (section.type) {
             case 'table-of-contents':
-              return <StaticTableOfContents id={section.id} key={index} contents={section.contents} />;
+              return (section.contents.length) ? <StaticTableOfContents id={section.id} key={index} contents={section.contents} /> : '';
             case 'table-of-figures':
-              return <StaticTableOfFigures id={section.id} key={index} contents={section.contents} />;
+              return (section.contents.length) ? <StaticTableOfFigures id={section.id} key={index} contents={section.contents} /> : '';
             case 'front-cover':
               return <StaticFrontCover key={index} metadata={section.metadata} />;
             case 'back-cover':
               return <StaticBackCover key={index} metadata={section.metadata} />;
             case 'endnotes':
-              return <StaticEndNotes id={section.id} key={index} notes={section.contents} classSuffix="document-end" />;
+              return (section.contents.length) ? <StaticEndNotes id={section.id} key={index} notes={section.contents} classSuffix="document-end" /> : '';
             case 'endfigures':
-              return <StaticEndFigures id={section.id} key={index} contents={section.contents} classSuffix="document-end" />;
+              return (section.contents.length) ? <StaticEndFigures id={section.id} key={index} contents={section.contents} classSuffix="document-end" /> : '';
             case 'references':
-              return <StaticReferencesList id={section.id} key={index} references={section.contents} settings={this.props.settings} />;
+              return (section.contents.length) ? <StaticReferencesList id={section.id} key={index} references={section.contents} settings={this.props.settings} /> : '';
             case 'glossary':
-              return <StaticGlossary id={section.id} key={index} elements={section.contents} />;
+              return (section.contents.length) ? <StaticGlossary id={section.id} key={index} elements={section.contents} /> : '';
             case 'contents':
               return <StaticSection key={index} section={section} settings={this.props.settings} />;
             default:

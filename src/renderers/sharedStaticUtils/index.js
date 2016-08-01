@@ -30,12 +30,14 @@ export const composeRenderedSections = (sections, settings, inputStyle, messages
         return Object.assign(note, {noteNumber: ++noteNumber});
       }));
     }, []);
-    renderedSections.push({
-      type: 'endnotes',
-      contents,
-      title: messages.end_notes,
-      id: 'peritext-end-notes'
-    });
+    if (contents.length) {
+      renderedSections.push({
+        type: 'endnotes',
+        contents,
+        title: messages.end_notes,
+        id: 'peritext-end-notes'
+      });
+    }
   }
 
   // handle figures
@@ -46,22 +48,27 @@ export const composeRenderedSections = (sections, settings, inputStyle, messages
       }
       return figs;
     }, []);
-    renderedSections.push({
-      type: 'endfigures',
-      contents: figures,
-      title: messages.end_figures,
-      id: 'peritext-end-figures'
-    });
+    if (figures.length) {
+      renderedSections.push({
+        type: 'endfigures',
+        contents: figures,
+        title: messages.end_figures,
+        id: 'peritext-end-figures'
+      });
+    }
   }
 
   // build references/bibliography
   if (settings.referenceScope === 'document') {
-    renderedSections.push({
-      type: 'references',
-      contents: computeReferences(sections, settings),
-      title: messages.references_title,
-      id: 'peritext-end-references'
-    });
+    const refs = computeReferences(sections, settings);
+    if (refs.length) {
+      renderedSections.push({
+        type: 'references',
+        contents: refs,
+        title: messages.references_title,
+        id: 'peritext-end-references'
+      });
+    }
   }
   // handle glossary
   if (settings.glossaryPosition !== 'none') {
@@ -111,9 +118,9 @@ export const composeRenderedSections = (sections, settings, inputStyle, messages
       title: messages.glossary,
       id: 'peritext-end-glossary'
     };
-    if (settings.glossaryPosition === 'begining') {
+    if (settings.glossaryPosition === 'begining' && glossary.contents.length) {
       renderedSections.splice(0, 0, glossary);
-    } else {
+    } else if (glossary.contents.length) {
       renderedSections.push(glossary);
     }
   }
@@ -145,9 +152,9 @@ export const composeRenderedSections = (sections, settings, inputStyle, messages
       title: messages.table_of_figures,
       id: 'peritext-end-table-of-figures'
     };
-    if (settings.figuresTablePosition === 'begining') {
+    if (settings.figuresTablePosition === 'begining' && figuresTable.contents.length) {
       renderedSections.splice(0, 0, figuresTable);
-    } else {
+    } else if (figuresTable.contents.length) {
       renderedSections.push(figuresTable);
     }
   }
@@ -164,9 +171,9 @@ export const composeRenderedSections = (sections, settings, inputStyle, messages
       };
     });
     const toc = {type: 'table-of-contents', contents: tocData};
-    if (settings.contentsTablePosition === 'begining') {
+    if (settings.contentsTablePosition === 'begining' && toc.contents.length) {
       renderedSections.splice(0, 0, toc);
-    } else {
+    } else if (toc.contents.length) {
       renderedSections.push(toc);
     }
   }
