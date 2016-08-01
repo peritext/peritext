@@ -1,7 +1,7 @@
 [WIP] Peritext - *a contextualization-oriented academic publishing engine*
 ==========
 
-![Documentation coverage](https://rawgithub.com/peritext/peritext/master/doc/badge.svg)
+[![Build Status](https://travis-ci.org/peritext/peritext.svg?branch=master)](https://travis-ci.org/peritext/peritext) [![Documentation coverage](https://rawgithub.com/peritext/peritext/master/doc/badge.svg)](https://github.com/peritext/peritext/tree/master/doc) [![Coverage Status](https://coveralls.io/repos/github/peritext/peritext/badge.svg?branch=master)](https://coveralls.io/github/peritext/peritext?branch=master)
 
 Peritext is a javascript/node library aimed at facilitating the making of media-rich, data-driven and multimodal academic publication projects.
 
