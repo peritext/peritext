@@ -241,7 +241,7 @@ export const resolvePropAgainstType = (prop, valueType, model) => {
  * @param {Object} settingsModel - the model to use for populating the settings
  * @return {Object} newSettings - the populated settings
  */
-export const resolveSettings = (settings, bibType, settingsModel) =>{
+export const resolveSettings = (settings = {}, bibType, settingsModel) =>{
   const typeModel = {};
   for (const param in settingsModel) {
     if (settingsModel[param].default[bibType]) {

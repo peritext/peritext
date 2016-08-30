@@ -12,10 +12,11 @@ import {getMetaValue} from './../../core/utils/sectionUtils';
  * @param {Object} settings - the specific rendering settings to use in order to produce the output
  * @param {string} inputStyle - the css style data to use
  * @param {array} messages - the intl messages to use for some sections localization (e.g. : translation of "Table of contents")
+ * @return {Object} results - an object composed of an array of rendered sections and a string with the updated css styles
  */
-export const composeRenderedSections = (sections, settings, inputStyle, messages) =>{
+export const composeRenderedSections = (sections = [], settings = {}, inputStyle = '', messages = []) =>{
   const renderedSections = sections.slice();
-  let style = inputStyle;
+  let style = typeof inputStyle === 'string' ? inputStyle : '';
   // transform regarding notes display settings
   if (settings.notesPosition === 'footnotes') {
     style += `.peritext-static-note-content-container
