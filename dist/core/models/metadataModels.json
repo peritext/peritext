@@ -1,0 +1,563 @@
+{
+  "general" : {
+    "title" : {
+      "description" : "The title of the section",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<title>${value}</title>",
+      "propagatesTo" : ["dublincore_title", "opengraph_title", "twitter_title", "scholar_title"]
+    },
+    "bibType" : {
+      "description" : "The bibtex-like type of the section",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "propagatesTo" : []
+    },
+    "citeKey" : {
+      "description" : "The bibtex-like unique citekey identifier of the section",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "propagatesTo" : []
+    },
+    "coverimage" : {
+      "description" : "The cover image url of the section",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "propagatesTo" : []
+    },
+    "generalityLevel" : {
+      "description" : "The generality level of the section in the table of content (will be computed on top of the section's parent hierarchical level).",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "propagatesTo" : []
+    },
+    "abstract" : {
+      "description" : "The abstract of the section",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"description\" content=\"${value}\">",
+      "propagatesTo" : ["dublincore_description", "opengraph_description", "twitter_description", "scholar_abstract"]
+    },
+    "keywords" : {
+      "description" : "The keyword(s) used to describe the section",
+      "valueType" : "stringArray",
+      "unique" : false,
+      "headTemplate" : "<meta name=\"keywords\" content=\"${value}\">",
+      "propagatesTo" : ["dublincore_subject"]
+    },
+    "doi" : {
+      "description" : "The Digital Object Identifier used to identify the section",
+      "valueType" : "string",
+      "unique" : true,
+      "propagatesTo" : ["dublincore_identifier", "scholar_doi"]
+    },
+    "author" : {
+      "description" : "The author(s) of the section",
+      "valueType" : "bibAuthorsArray",
+      "unique" : false,
+      "headTemplate" : "<meta name=\"author\" content=\"${value:personsToString}\">",
+      "propagatesTo" : ["dublincore_creator", "scholar_author"]
+    },
+    "crossref" : {
+      "description" : "citeKey of a section or a resource to which this section would be affiliated",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "propagatesTo" : []
+    },
+    "date" : {
+      "description" : "The date of publication of the section",
+      "valueType" : "yyymmddDateString",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"${key}\" content=\"${value}\">",
+      "propagatesTo" : ["dublincore_date"]
+    },
+    "address" : {
+      "description" : "Usually the address of the publisher or other type of institution. For major publishing houses, van Leunen recommends omitting the information entirely. For small publishers, on the other hand, you can help the reader by giving the complete address.",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "propagatesTo" : []
+    },
+    "chapter" : {
+      "description" : "A chapter (or section or whatever) number",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "propagatesTo" : []
+    },
+    "edition" : {
+      "description" : "Name(s) of editor(s), typed as indicated in the LATEX book. If there is also an author field, then the editor field gives the editor of the book or collection in which the reference appears.",
+      "valueType" : "string",
+      "unique" : true,
+      "propagatesTo" : []
+    },
+    "howpublished" : {
+      "description" : "How something strange has been published. The first word should be capitalized.",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "propagatesTo" : []
+    },
+    "institution" : {
+      "description" : "The sponsoring institution of a technical report.",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "propagatesTo" : []
+    },
+    "journal" : {
+      "description" : "A journal\"s name",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "propagatesTo" : []
+    },
+    "organization" : {
+      "description" : "The organization that sponsors a conference or that publishes a manual",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "propagatesTo" : []
+    },
+    "pages" : {
+      "description" : "One or more page numbers or range of numbers, such as 42–111 or 7,41,73–97 or 43+ (the ‘+’ in this last example indicates pages following that don’t form a simple range).",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "propagatesTo" : []
+    },
+    "publisher" : {
+      "description" : "The publisher\"s name",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "propagatesTo" : ["dublincore_publisher"]
+    },
+    "school" : {
+      "description" : "The name of the school where a thesis was written.",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "propagatesTo" : []
+    },
+    "series" : {
+      "description" : "The name of a series or set of books. When citing an entire book, the title field gives its title and an optional series field gives the name of a series or multi-volume set in which the book is published.",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "propagatesTo" : []
+    },
+    "type" : {
+      "description" : "The type of a technical report for example, “Research Note”.",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "propagatesTo" : []
+    },
+    "volume" : {
+      "description" : "The volume of a journal or multi-volume book.",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "propagatesTo" : []
+    },
+    "language" : {
+      "description" : "The language",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta http-equiv=\"content-language\" content=\"${value}\">",
+      "propagatesTo" : ["dublincore_language", "scholar_language"]
+    },
+    "dissertationinstitution" : {
+      "description" : "The dissertation institution name (university name, for a Thesis)",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"citation_dissertation_institution\" content=\"${value}\">",
+      "propagatesTo" : []
+    },
+    "dissertationcomment" : {
+      "description" : "Additionnal information to the dissertation institution",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "propagatesTo" : []
+    },
+    "dissertationlab" : {
+      "description" : "The laboratory/research group that has hosted the dissertation preparation",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "propagatesTo" : []
+    },
+    "dissertationdoctoralschool" : {
+      "description" : "The doctoral school that has hosted the dissertation preparation",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "propagatesTo" : []
+    },
+    "dissertationdiscipline" : {
+      "description" : "The university discipline in which the dissertation is submitted",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "propagatesTo" : []
+    },
+    "dissertationjury" : {
+      "description" : "The member(s) of the jury evaluating the dissertation",
+      "valueType" : "bibAuthorsArray",
+      "unique" : false,
+      "headTemplate" : "",
+      "propagatesTo" : []
+    }
+  },
+  "scholar" : {
+    "author" : {
+      "description" : "The author(s) of the section",
+      "valueType" : "bibAuthorsArray",
+      "unique" : false,
+      "headTemplate" : "<meta name=\"citation_author\" content=\"${value:personsToString}\">",
+      "propagatesTo" : ["general_author", "dublincore_creator"]
+    },
+    "title" : {
+      "description" : "The title of the section",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"citation_title\" content=\"${value}\">",
+      "propagatesTo" : ["dublincore_title", "opengraph_title", "twitter_title", "general_title"]
+    },
+    "doi" : {
+      "description" : "The DOI of the section",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"citation_doi\" content=\"${value}\">",
+      "propagatesTo" : ["dublincore_identifier", "general_doi"]
+    },
+    "language" : {
+      "description" : "The language",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"citation_language\" content=\"${value}\">",
+      "propagatesTo" : ["general_language", "scholar_language"]
+    },
+    "abstract" : {
+      "description" : "The abstract of the section",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"citation_abstract\" content=\"${value}\">",
+      "propagatesTo" : ["general_abstract", "dublincore_description", "opengraph_description", "twitter_description"]
+    },
+    "publicationdate" : {
+      "description" : "The scholar official publication date",
+      "valueType" : "yyymmddDateString",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"citation_publication_date\" content=\"${value}\">",
+      "propagatesTo" : ["dublincore_date", "dublincore_dateissued", "scholar_plaindate"]
+    },
+    "plaindate" : {
+      "description" : "The scholar official publication date",
+      "valueType" : "yyymmddDateString",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"citation_publication_date\" content=\"${value}\">",
+      "propagatesTo" : ["dublincore_date", "dublincore_dateissued", "scholar_publicationdate"]
+    },
+    "onlinedate" : {
+      "description" : "The scholar online versio date",
+      "valueType" : "yyymmddDateString",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"citation_online_date\" content=\"${value}\">",
+      "propagatesTo" : []
+    },
+    "pdfurl" : {
+      "description" : "The pdf version\"s of the section",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"citation_pdf_url\" content=\"${value}\">",
+      "propagatesTo" : []
+    },
+    "conferencetitle" : {
+      "description" : "The conference title of the section",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"citation_conference_title\" content=\"${value}\">",
+      "propagatesTo" : []
+    },
+    "journaltitle" : {
+      "description" : "The journal title of the section",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"citation_journal_title\" content=\"${value}\">",
+      "propagatesTo" : []
+    },
+    "volume" : {
+      "description" : "The volume number of the section",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"citation_volume\" content=\"${value}\">",
+      "propagatesTo" : []
+    },
+    "issue" : {
+      "description" : "The issue number of the section",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"citation_issue\" content=\"${value}\">",
+      "propagatesTo" : []
+    },
+    "issn" : {
+      "description" : "The journal issn number of the section",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"citation_issn\" content=\"${value}\">",
+      "propagatesTo" : []
+    },
+    "isbn" : {
+      "description" : "The isbn of the section",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"citation_isbn\" content=\"${value}\">",
+      "propagatesTo" : []
+    },
+    "firstpage" : {
+      "description" : "The first page of the article",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"citation_firstpage\" content=\"${value}\">",
+      "propagatesTo" : []
+    },
+    "lastpage" : {
+      "description" : "The last page of the article",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"citation_lastpage\" content=\"${value}\">",
+      "propagatesTo" : []
+    },
+    "technicalreportinstitution" : {
+      "description" : "The institution that made the technical report.",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"citation_technical_report_institution\" content=\"${value}\">",
+      "propagatesTo" : []
+    },
+    "technicalreportnumber" : {
+      "description" : "The number of the technical report.",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"citation_technical_report_number\" content=\"${value}\">",
+      "propagatesTo" : []
+    }
+  },
+  "dublincore" : {
+    "title" : {
+      "description" : "The dublincore title",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"dc.${key}\" content=\"${value}\">",
+      "propagatesTo" : []
+    },
+    "creator" : {
+      "description" : "The dublincore creator(s)",
+      "valueType" : "stringArray",
+      "unique" : false,
+      "headTemplate" : "<meta name=\"dc.${key}\" content=\"${value}\">",
+      "propagatesTo" : ["general_author", "scholar_author"]
+    },
+    "subject" : {
+      "description" : "The dublincore subject(s)",
+      "valueType" : "stringArray",
+      "unique" : false,
+      "headTemplate" : "<meta name=\"dc.${key}\" content=\"${value}\">",
+      "propagatesTo" : []
+    },
+    "description" : {
+      "description" : "The dublincore description",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"dc.${key}\" content=\"${value}\">",
+      "propagatesTo" : ["general_abstract", "scholar_abstract", "twitter_description", "opengraph_description"]
+    },
+    "publisher" : {
+      "description" : "The dublincore publisher",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"dc.${key}\" content=\"${value}\">",
+      "propagatesTo" : []
+    },
+    "contributor" : {
+      "description" : "A dublincore conributor",
+      "valueType" : "stringArray",
+      "unique" : false,
+      "headTemplate" : "",
+      "propagatesTo" : []
+    },
+    "date" : {
+      "description" : "The dublincore date",
+      "valueType" : "yyymmddDateString",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"dc.${key}\" content=\"${value}\">",
+      "propagatesTo" : ["dublincore_dateissued", "scholar_plaindate", "scholar_publicationdate"]
+    },
+    "dateavailable" : {
+      "description" : "The date the resource became available",
+      "valueType" : "yyymmddDateString",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"dcterms.available\" content=\"${value}\">",
+      "propagatesTo" : []
+    },
+    "datecreated" : {
+      "description" : "The creation date of the resource",
+      "valueType" : "yyymmddDateString",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"dcterms.created\" content=\"${value}\">",
+      "propagatesTo" : []
+    },
+    "dateaccepted" : {
+      "description" : "The date the resource was accepted",
+      "valueType" : "yyymmddDateString",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"dcterms.dateAccepted\" content=\"${value}\">",
+      "propagatesTo" : []
+    },
+    "datesubmitted" : {
+      "description" : "The date the resource was submitted",
+      "valueType" : "yyymmddDateString",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"dcterms.submitted\" content=\"${value}\">",
+      "propagatesTo" : []
+    },
+    "dateissued" : {
+      "description" : "The publication date of a resource",
+      "valueType" : "yyymmddDateString",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"dcterms.issued\" content=\"${value}\">",
+      "propagatesTo" : []
+    },
+    "type" : {
+      "description" : "The dublincore type",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"dc.${key}\" content=\"${value}\">",
+      "propagatesTo" : []
+    },
+    "format" : {
+      "description" : "The dublincore format",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"dc.${key}\" content=\"${value}\">",
+      "propagatesTo" : []
+    },
+    "identifier" : {
+      "description" : "The dublincore identifier",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"dc.${key}\" content=\"${value}\">",
+      "propagatesTo" : ["general_doi", "scholar_doi"]
+    },
+    "source" : {
+      "description" : "The dublincore source",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"dc.${key}\" content=\"${value}\">",
+      "propagatesTo" : []
+    },
+    "language" : {
+      "description" : "The dublincore language",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"dc.${key}\" content=\"${value}\">",
+      "propagatesTo" : ["scholar_language", "general_language"]
+    },
+    "rights" : {
+      "description" : "The dublincore rights",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"dc.${key}\" content=\"${value}\">",
+      "propagatesTo" : []
+    }
+  },
+  "opengraph" : {
+    "title" : {
+      "description" : "The opengraph title",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta property=\"og:${key}\" content=\"${value}\">",
+      "propagatesTo" : []
+    },
+    "description" : {
+      "description" : "The opengraph description",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta property=\"og:${key}\" content=\"${value}\">",
+      "propagatesTo" : ["general_abstract", "scholar_abstract", "dublincore_description", "twitter_description"]
+    },
+    "type" : {
+      "description" : "The opengraph type",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta property=\"og:${key}\" content=\"${value}\">",
+      "propagatesTo" : []
+    },
+    "image" : {
+      "description" : "The opengraph image",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta property=\"og:${key}\" content=\"${value}\">",
+      "propagatesTo" : []
+    },
+    "url" : {
+      "description" : "The opengraph url",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta property=\"og:${key}\" content=\"${value}\">",
+      "propagatesTo" : []
+    }
+  },
+  "twitter" : {
+    "card" : {
+      "description" : "The twitter card",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"twitter:${key}\" content=\"${value}\">",
+      "propagatesTo" : []
+    },
+    "site" : {
+      "description" : "The twitter site",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"twitter:${key}\" content=\"${value}\">",
+      "propagatesTo" : []
+    },
+    "creator" : {
+      "description" : "The twitter creator (@)",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"twitter:${key}\" content=\"${value}\">",
+      "propagatesTo" : []
+    },
+    "description" : {
+      "description" : "The twitter description",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"twitter:${key}\" content=\"${value}\">",
+      "propagatesTo" : ["general_abstract", "scholar_abstract", "dublincore_description", "opengraph_description"]
+    },
+    "title" : {
+      "description" : "The twitter title",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"twitter:${key}\" content=\"${value}\">",
+      "propagatesTo" : []
+    },
+    "image" : {
+      "description" : "The twitter image url",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "<meta name=\"twitter:${key}\" content=\"${value}\">",
+      "propagatesTo" : []
+    }
+  }
+}

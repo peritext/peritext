@@ -1,0 +1,112 @@
+{
+  "notesPosition" : {
+    "description" : "Where to put notes in the document ?",
+    "valueType" : "string",
+    "values" : [
+      "footnotes",
+      "section-end",
+      "document-end"
+    ],
+    "default": {
+      "default": "footnotes"
+    }
+  },
+  "citationStyle" : {
+    "description" : "The style of bibliographic citations.",
+    "valueType" : "string",
+    "default": {
+      "default": "iso690fr"
+    }
+  },
+  "showCovers" : {
+    "description" : "Whether to show front and back covers during rendering.",
+    "valueType" : "string",
+    "default": {
+      "book": "yes",
+      "booklet": "yes",
+      "collection": "yes",
+      "manual": "yes",
+      "mastersthesis": "yes",
+      "phdthesis": "yes",
+      "proceedings": "yes",
+      "techreport": "yes",
+      "default": "no"
+    }
+  },
+  "referenceFilters" : {
+    "description" : "How to filter citations for the bibliography ?",
+    "valueType" : "string",
+    "default": {
+      "default": "has-title"
+    }
+  },
+  "referenceScope" : {
+    "description": "At what hierarchical level to render bibliograph.y.ies ?",
+    "valueType": "string",
+    "default": {
+      "book": "document",
+      "booklet": "document",
+      "manual": "document",
+      "mastersthesis": "document",
+      "phdthesis": "document",
+      "techreport": "document",
+      "default": "section"
+    },
+    "values": ["section", "document"]
+  },
+  "referenceSortBy" : {
+    "description": "How to order references ?",
+    "valueType": "string",
+    "default": {
+      "default": "authors"
+    },
+    "values" : [
+      "title",
+      "authors",
+      "year",
+      "type"
+    ]
+  },
+  "figuresPosition" : {
+    "description": "Where to put the figures in static outputs",
+    "valueType": "string",
+    "default": {
+      "default": "inline"
+    },
+    "values": ["inline", "section-end", "document-end"]
+  },
+  "contentsTablePosition" : {
+    "description": "Where to put the table of contents",
+    "valueType": "string",
+    "default": {
+      "default": "begining"
+    },
+    "values": ["begining", "end", "none"]
+  },
+  "figuresTablePosition" : {
+    "description": "Where to put the table of figures",
+    "valueType": "string",
+    "default": {
+      "article": "none",
+      "inproceedings": "none",
+      "inbook": "none",
+      "incollection": "none",
+      "inproceedings": "none",
+      "default": "end"
+    },
+    "values": ["begining", "end", "none"]
+  },
+  "glossaryPosition" : {
+    "description": "Where to put the glossary ?",
+    "valueType": "string",
+    "default": {
+      "article": "none",
+      "inproceedings": "none",
+      "inbook": "none",
+      "incollection": "none",
+      "inproceedings": "none",
+      "default": "end"
+    },
+    "values": ["begining", "end", "none"]
+  }
+}

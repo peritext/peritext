@@ -22,4 +22,8 @@ gulp.task('build', function(){
       ]
     }))
     .pipe(gulp.dest('dist'));
+  gulp.src([
+      'src/**/*.json'
+    ])
+    .pipe(gulp.dest('dist'));
 });
