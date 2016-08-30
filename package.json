@@ -20,7 +20,7 @@
     "publishing",
     "academic publishing",
     "multimodal publishing",
-    "context",
+    "contextualization",
     "data visualization",
     "resource contextualization"
   ],
@@ -28,8 +28,7 @@
   "scripts": {
     "autocommitadd": "git add doc translations/locales",
     "examples": "babel-node ./examples/index.js",
-    "uglify:dist": "uglifyjs _dist/**/*.js _dist/**/**/*.js > dist/peritext.min.js",
-    "build": "mkdirp dist && babel src --out-dir dist",
+    "build": "mkdirp dist && gulp build",
     "coverage": "nyc npm test && nyc check-coverage --lines 50 --functions 50 --branches 50 && nyc report --reporter=text-lcov | coveralls",
     "doc": "esdoc -c esdoc.json",
     "lint": "eslint src",
@@ -98,6 +97,8 @@
     "eslint-plugin-import": "^0.8.0",
     "eslint-plugin-react": "^5.1.1",
     "eslint-watch": "^2.1.10",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
     "istanbul": "^0.4.4",
     "mkdirp": "^0.5.1",
     "mocha": "^2.4.5",
@@ -107,9 +108,7 @@
     "precommit-hook": "^3.0.0",
     "react-addons-test-utils": "^15.1.0",
     "react-intl-translations-manager": "^3.1.0",
-    "style-loader": "^0.13.1",
-    "uglify-js": "^2.7.0",
-    "webpack": "^1.13.1"
+    "style-loader": "^0.13.1"
   },
   "dependencies": {
     "async": "^2.0.0-rc.1",

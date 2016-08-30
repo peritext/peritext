@@ -176,10 +176,11 @@ import {getMetaValue} from &apos;./../../core/utils/sectionUtils&apos;;
  * @param {Object} settings - the specific rendering settings to use in order to produce the output
  * @param {string} inputStyle - the css style data to use
  * @param {array} messages - the intl messages to use for some sections localization (e.g. : translation of &quot;Table of contents&quot;)
+ * @return {Object} results - an object composed of an array of rendered sections and a string with the updated css styles
  */
-export const composeRenderedSections = (sections, settings, inputStyle, messages) =&gt;{
+export const composeRenderedSections = (sections = [], settings = {}, inputStyle = &apos;&apos;, messages = []) =&gt;{
   const renderedSections = sections.slice();
-  let style = inputStyle;
+  let style = typeof inputStyle === &apos;string&apos; ? inputStyle : &apos;&apos;;
   // transform regarding notes display settings
   if (settings.notesPosition === &apos;footnotes&apos;) {
     style += `.peritext-static-note-content-container
@@ -194,12 +195,14 @@ export const composeRenderedSections = (sections, settings, inputStyle, messages
         return Object.assign(note, {noteNumber: ++noteNumber});
       }));
     }, []);
-    renderedSections.push({
-      type: &apos;endnotes&apos;,
-      contents,
-      title: messages.end_notes,
-      id: &apos;peritext-end-notes&apos;
-    });
+    if (contents.length) {
+      renderedSections.push({
+        type: &apos;endnotes&apos;,
+        contents,
+        title: messages.end_notes,
+        id: &apos;peritext-end-notes&apos;
+      });
+    }
   }
 
   // handle figures
@@ -210,22 +213,27 @@ export const composeRenderedSections = (sections, settings, inputStyle, messages
       }
       return figs;
     }, []);
-    renderedSections.push({
-      type: &apos;endfigures&apos;,
-      contents: figures,
-      title: messages.end_figures,
-      id: &apos;peritext-end-figures&apos;
-    });
+    if (figures.length) {
+      renderedSections.push({
+        type: &apos;endfigures&apos;,
+        contents: figures,
+        title: messages.end_figures,
+        id: &apos;peritext-end-figures&apos;
+      });
+    }
   }
 
   // build references/bibliography
   if (settings.referenceScope === &apos;document&apos;) {
-    renderedSections.push({
-      type: &apos;references&apos;,
-      contents: computeReferences(sections, settings),
-      title: messages.references_title,
-      id: &apos;peritext-end-references&apos;
-    });
+    const refs = computeReferences(sections, settings);
+    if (refs.length) {
+      renderedSections.push({
+        type: &apos;references&apos;,
+        contents: refs,
+        title: messages.references_title,
+        id: &apos;peritext-end-references&apos;
+      });
+    }
   }
   // handle glossary
   if (settings.glossaryPosition !== &apos;none&apos;) {
@@ -275,9 +283,9 @@ export const composeRenderedSections = (sections, settings, inputStyle, messages
       title: messages.glossary,
       id: &apos;peritext-end-glossary&apos;
     };
-    if (settings.glossaryPosition === &apos;begining&apos;) {
+    if (settings.glossaryPosition === &apos;begining&apos; &amp;&amp; glossary.contents.length) {
       renderedSections.splice(0, 0, glossary);
-    } else {
+    } else if (glossary.contents.length) {
       renderedSections.push(glossary);
     }
   }
@@ -309,9 +317,9 @@ export const composeRenderedSections = (sections, settings, inputStyle, messages
       title: messages.table_of_figures,
       id: &apos;peritext-end-table-of-figures&apos;
     };
-    if (settings.figuresTablePosition === &apos;begining&apos;) {
+    if (settings.figuresTablePosition === &apos;begining&apos; &amp;&amp; figuresTable.contents.length) {
       renderedSections.splice(0, 0, figuresTable);
-    } else {
+    } else if (figuresTable.contents.length) {
       renderedSections.push(figuresTable);
     }
   }
@@ -328,9 +336,9 @@ export const composeRenderedSections = (sections, settings, inputStyle, messages
       };
     });
     const toc = {type: &apos;table-of-contents&apos;, contents: tocData};
-    if (settings.contentsTablePosition === &apos;begining&apos;) {
+    if (settings.contentsTablePosition === &apos;begining&apos; &amp;&amp; toc.contents.length) {
       renderedSections.splice(0, 0, toc);
-    } else {
+    } else if (toc.contents.length) {
       renderedSections.push(toc);
     }
   }
