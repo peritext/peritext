@@ -1,68 +1,98 @@
 body
 {
-  font-family: 'callunaregular';
-  font-size : 12px;
+    font-family: 'callunaregular';
+    font-size: 12px;
 }
 
 
-h1,h2,h3,h4,h5,h6
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
 {
-  font-family: 'Cabin', 'callunaregular';
-  font-weight : 700;
+    font-family: 'Cabin', 'callunaregular';
+    font-weight: 700;
 }
 
 @page:first
 {
-  margin : 0;
-  page-break-after: always;
-  @bottom
-  {
-      content: none;
-  }
+    margin: 0;
+
+    page-break-after: always;
+    @bottom
+    {
+        content: none;
+    }
 }
 
 .peritext-static-front-cover-container
 {
-  page-break-after: always;
-  margin : 0;
-  font-family: Arial;
+    font-family: Arial;
+
+    margin: 0;
+
+    page-break-after: always;
 }
 
 @page.peritext-static-front-cover-container
 {
-  margin : 0;
-  font-family: Arial;
+    font-family: Arial;
+
+    margin: 0;
 }
 
 .peritext-static-front-cover-container
 {
-  page-break-after: always;
-  margin : 0;
-  font-family: Arial;
+    font-family: Arial;
+
+    margin: 0;
+
+    page-break-after: always;
 }
 
-.peritext-static-back-cover
+#peritext-static-back-cover
 {
-  page-break-before: always;
-  margin: 0;
-  padding: 0;
-  font-size : 2em;
-  background: yellow;
-  position: absolute;
-  left : 0;
-  top : 0;
-  width : 100%;
-  height : 100%;
+    font-size: 2em;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+    color : white;
+    page-break-before: always;
+    page: last_page;
+}
+
+@page last_page {
+  margin : 0;
+  background : brown;
+  padding : 2cm;
+  @bottom {
+    content : none;
+  }
+}
+
+.peritext-static-back-cover .peritext-static-authors
+{
+    font-style: italic;
 }
 
 #peritext-static-front-cover-image-container
 {
-  background-size:     cover;
-  background-repeat:   no-repeat;
-  background-position: center center;
-  /*height : 16cm;*/
-  height : 18.3cm;
-  /*width : 100%;*/
+    /*height : 16cm;*/
+    height: 18.3cm;
+
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    /*width : 100%;*/
 }
 
 .peritext-static-front-cover-part-top-left,
@@ -70,39 +100,45 @@ h1,h2,h3,h4,h5,h6
 .peritext-static-front-cover-part-bottom-left,
 .peritext-static-front-cover-part-bottom-right
 {
-  position: fixed;
-  width : 50%;
+    position: fixed;
+
+    width: 50%;
 }
 
 .peritext-static-front-cover-part-top-left,
 .peritext-static-front-cover-part-bottom-left
 {
-  left : .5cm;
-  text-align : right;
-  padding-right : 1.5cm;
-  width : 45%;
+    left: .5cm;
+
+    width: 45%;
+    padding-right: 1.5cm;
+
+    text-align: right;
 }
 
 .peritext-static-front-cover-part-top-right,
 .peritext-static-front-cover-part-bottom-right
 {
-  left : 1cm;
-  padding-left : 50%;
-  padding-right : 1cm;
+    left: 1cm;
+
+    padding-right: 1cm;
+    padding-left: 50%;
 }
 
 .peritext-static-front-cover-part-top-left,
 .peritext-static-front-cover-part-top-right
 {
-  bottom : 31.6%;
-  color : white;
-  padding-bottom : .8cm;
+    bottom: 31.6%;
+
+    padding-bottom: .8cm;
+
+    color: white;
 }
 
 .peritext-static-front-cover-part-bottom-left,
 .peritext-static-front-cover-part-bottom-right
 {
-  top : 68%;
+    top: 68%;
 }
 
 .peritext-static-front-cover-part-top-left h3,
@@ -112,28 +148,30 @@ h1,h2,h3,h4,h5,h6
 .peritext-static-front-cover-part-top-right h4,
 .peritext-static-front-cover-part-top-right p
 {
-  margin-top : 0;
-  margin-bottom : 0;
-  font-size : 12px;
+    font-size: 12px;
+
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .peritext-static-front-cover-part-top-right h1
 {
-  margin : 0;
-  padding : 0;
+    margin: 0;
+    padding: 0;
 }
 
-.peritext-static-front-cover-part-bottom-left h1{
-  margin : 0;
+.peritext-static-front-cover-part-bottom-left h1
+{
+    margin: 0;
 }
 
 .peritext-static-front-cover-date
 {
-  font-weight : 800;
+    font-weight: 800;
 }
 
 .peritext-static-front-cover-jury-member .peritext-structured-person-firstname,
 .peritext-static-front-cover-jury-member .peritext-structured-person-lastname
 {
-  font-weight : 800;
+    font-weight: 800;
 }
