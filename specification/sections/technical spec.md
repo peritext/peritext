@@ -61,7 +61,6 @@ Peritext is a library aiming at supporting the writing of contextualization-orie
 
 # Technological stack / package survey
 
-
 Parsers helpers
  :
 * marked
