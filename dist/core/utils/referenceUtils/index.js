@@ -6,15 +6,31 @@ Object.defineProperty(exports, "__esModule", {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
+/**
+ * Utils - dedicated to representing a reference/bibliography section
+ * @module utils/referenceUtils
+ */
+
 var bibliographicTypes = ['article', 'book', 'booklet', 'collection', 'conference', 'inbook', 'incollection', 'inproceedings', 'manual', 'mastersthesis', 'phdthesis', 'proceedings', 'techreport', 'unpublished'];
 
+/**
+ * Checks whether a given references belongs to a "traditional" bibliographical reference (journal article, book, ...)
+ * @param {string} bibType - the bibType of the resource
+ * @return {boolean} isBibliographical
+ */
 var isBibliographical = function isBibliographical(bibType) {
-  var isOk = bibliographicTypes.find(function (type) {
+  var bibliType = bibliographicTypes.find(function (type) {
     return bibType === type;
   });
-  return isOk !== undefined;
+  return bibliType !== undefined;
 };
 
+/**
+ * Filter and order a list of resources against bibliography settings
+ * @param {array} sections - the sections to handle for building the list
+ * @param {Object} settings - the rendering settings, among which are bibliography-making related settings
+ * @return {array} references - the resulting list
+ */
 var computeReferences = exports.computeReferences = function computeReferences(sections, settings) {
   if (settings.referenceScope === 'document') {
     var _ret = function () {

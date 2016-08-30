@@ -7,6 +7,8 @@ Object.defineProperty(exports, "__esModule", {
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _class;
+// let styles = {};
+
 
 var _react = require('react');
 
@@ -31,8 +33,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-// let styles = {};
 
 /**
  * dumb component for rendering the structured representation of a static document
@@ -59,6 +59,9 @@ var StaticDocument = (0, _radium2.default)(_class = function (_React$Component) 
 
     /**
      * propTypes
+     * @property {Object} rootSection - the root/first/mother section of the document
+     * @property {array} sections - the list of rendering sections to include - warning -> can include cover, table of contents, ... sections
+     * @property {Object} settings - the rendering settings to use
      */
     value: function render() {
       var _this2 = this;
@@ -78,21 +81,21 @@ var StaticDocument = (0, _radium2.default)(_class = function (_React$Component) 
         this.props.sections.map(function (section, index) {
           switch (section.type) {
             case 'table-of-contents':
-              return _react2.default.createElement(_index.StaticTableOfContents, { id: section.id, key: index, contents: section.contents });
+              return section.contents.length ? _react2.default.createElement(_index.StaticTableOfContents, { id: section.id, key: index, contents: section.contents }) : '';
             case 'table-of-figures':
-              return _react2.default.createElement(_index.StaticTableOfFigures, { id: section.id, key: index, contents: section.contents });
+              return section.contents.length ? _react2.default.createElement(_index.StaticTableOfFigures, { id: section.id, key: index, contents: section.contents }) : '';
             case 'front-cover':
               return _react2.default.createElement(_index.StaticFrontCover, { key: index, metadata: section.metadata });
             case 'back-cover':
               return _react2.default.createElement(_index.StaticBackCover, { key: index, metadata: section.metadata });
             case 'endnotes':
-              return _react2.default.createElement(_index.StaticEndNotes, { id: section.id, key: index, notes: section.contents, classSuffix: 'document-end' });
+              return section.contents.length ? _react2.default.createElement(_index.StaticEndNotes, { id: section.id, key: index, notes: section.contents, classSuffix: 'document-end' }) : '';
             case 'endfigures':
-              return _react2.default.createElement(_index.StaticEndFigures, { id: section.id, key: index, contents: section.contents, classSuffix: 'document-end' });
+              return section.contents.length ? _react2.default.createElement(_index.StaticEndFigures, { id: section.id, key: index, contents: section.contents, classSuffix: 'document-end' }) : '';
             case 'references':
-              return _react2.default.createElement(_index.StaticReferencesList, { id: section.id, key: index, references: section.contents, settings: _this2.props.settings });
+              return section.contents.length ? _react2.default.createElement(_index.StaticReferencesList, { id: section.id, key: index, references: section.contents, settings: _this2.props.settings }) : '';
             case 'glossary':
-              return _react2.default.createElement(_index.StaticGlossary, { id: section.id, key: index, elements: section.contents });
+              return section.contents.length ? _react2.default.createElement(_index.StaticGlossary, { id: section.id, key: index, elements: section.contents }) : '';
             case 'contents':
               return _react2.default.createElement(_index.StaticSection, { key: index, section: section, settings: _this2.props.settings });
             default:

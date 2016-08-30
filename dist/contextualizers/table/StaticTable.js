@@ -8,6 +8,8 @@ exports.default = undefined;
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _class;
+// let styles = {};
+
 
 var _react = require('react');
 
@@ -28,8 +30,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-// let styles = {};
 
 /**
  * dumb static-oriented component for displaying a table
@@ -55,10 +55,12 @@ var StaticTable = (0, _radium2.default)(_class = function (_React$Component) {
 
     /**
      * propTypes
-     * @property {string} schematype html schema type of the element
-     * @property {array} resources array of resources used
-     * @property {string} captionContent what to display as caption
-     * @property {number} figureNumber in static mode, the number of the figure
+     * @property {string} schematype - html schema type of the element
+     * @property {array} resources - array of resources used
+     * @property {string} captionContent - what to display as caption
+     * @property {number} figureNumber - in static mode, the number of the figure
+     * @property {object} data - the resource data to use
+     * @property {string} id - the id to use for identifying the contextualization
      */
     value: function render() {
       var headers = Object.keys(this.props.data.data[0]);

@@ -25,8 +25,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-// let styles = {};
-
 /**
  * dumb component for rendering the structured representation of a date
  */
@@ -45,7 +43,18 @@ var StructuredDate = (0, _radium2.default)(_class = function (_React$Component) 
 
 
     /**
+     * Resolves date value against modificator statement
+     * @param {string|number} value - value of the date
+     * @param {string} modificator - modificator to be applied
+     * @return {Object} newVal - the modified value of the date
+    */
+
+
+    /**
      * propTypes
+     * @property {number|string} value - the value of the date, as an absolute date number or as a string statement
+     * @property {string} property - the schema property to use for microformatting the element
+     * @property {string} modificator - the modificator statement to use for formatting the date
      */
     value: function setFinalValue(value, modificator) {
       if (typeof value === 'string' && modificator === 'year') {

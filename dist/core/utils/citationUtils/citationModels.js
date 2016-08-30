@@ -25,7 +25,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Utils - dedicated to create a super abstract class for producing citation style specific, citation components
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @module utils/citationModels
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
 
 /**
  * Virtual component class for rendering generic block citations
@@ -42,6 +46,12 @@ var BlockCitationModel = exports.BlockCitationModel = function (_React$Component
 
   _createClass(BlockCitationModel, [{
     key: 'getSchemaType',
+
+
+    /**
+     * Gets the schematype of the citation, from contextualization statement or from the resource bibType
+     * @return schemaType - the schematype of the citation
+    */
     value: function getSchemaType() {
       return this.props.schemaType || formatter.bibToSchema(this.props.resource.bibType);
     }
@@ -49,6 +59,15 @@ var BlockCitationModel = exports.BlockCitationModel = function (_React$Component
     /**
      * render
      * @return {ReactElement} markup
+     */
+
+    /**
+     * propTypes
+     * @property {object} resource - the resource to use for making the citation
+     * @property {object} contextualization - the details of contextualization (e.g. page)
+     * @property {boolean} ibid - immediately recurrent citation ?
+     * @property {boolean} opCit - not immediately recurent citation ?
+     * @property {string} schemaType - microformat type fo the item
      */
 
   }, {
@@ -70,18 +89,6 @@ var BlockCitationModel = exports.BlockCitationModel = function (_React$Component
         this.renderAdditionnal(this.props)
       );
     }
-  }], [{
-    key: 'defaultProps',
-    value: function defaultProps() {}
-    /**
-     * propTypes
-     * @property {object} resource the resource to use for making the citation
-     * @property {object} contextualization the details of contextualization (e.g. page)
-     * @property {boolean} ibid immediately recurrent citation ?
-     * @property {boolean} opCit not immediately recurent citation ?
-     * @property {string} schemaType microformat type fo the item
-     */
-
   }]);
 
   return BlockCitationModel;
@@ -111,6 +118,12 @@ var InlineCitationModel = exports.InlineCitationModel = function (_React$Compone
 
   _createClass(InlineCitationModel, [{
     key: 'getSchemaType',
+
+
+    /**
+     * Gets the schematype of the citation, from contextualization statement or from the resource bibType
+     * @return schemaType - the schematype of the citation
+    */
     value: function getSchemaType() {
       return this.props.schemaType || formatter.bibToSchema(this.props.resource.bibType);
     }
@@ -118,6 +131,15 @@ var InlineCitationModel = exports.InlineCitationModel = function (_React$Compone
     /**
      * render
      * @return {ReactElement} markup
+     */
+
+    /**
+     * propTypes
+     * @property {object} resource the resource to use for making the citation
+     * @property {object} contextualization the details of contextualization (e.g. page)
+     * @property {boolean} ibid immediately recurent citation ?
+     * @property {boolean} opCit not immediately recurent citation ?
+     * @property {string} schemaType microformat type fo the item
      */
 
   }, {
@@ -138,18 +160,6 @@ var InlineCitationModel = exports.InlineCitationModel = function (_React$Compone
         this.renderAdditionnal(this.props)
       );
     }
-  }], [{
-    key: 'defaultProps',
-    value: function defaultProps() {}
-    /**
-     * propTypes
-     * @property {object} resource the resource to use for making the citation
-     * @property {object} contextualization the details of contextualization (e.g. page)
-     * @property {boolean} ibid immediately recurent citation ?
-     * @property {boolean} opCit not immediately recurent citation ?
-     * @property {string} schemaType microformat type fo the item
-     */
-
   }]);
 
   return InlineCitationModel;

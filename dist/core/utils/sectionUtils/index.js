@@ -4,10 +4,17 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 /**
- * section metadata & resources utils : access, filter, deletion, ...
+ * Utils - section metadata & resources utils : access, filter, deletion, ...
+ * @module utils/sectionUtils
  */
 
-// section metadata access util
+/**
+ * Gets a value in metadata props array by its domain and key
+ * @param {array} metaList - the list of metadata objects in which looking for the value
+ * @param {string} domain - the domain of the prop, stored in its "domain" prop
+ * @param {string} key - the key of the prop, stored in its "key" prop
+ * @return {string} value - the value
+ */
 var getMetaValue = exports.getMetaValue = function getMetaValue(metaList, domain, key) {
   var prop = metaList.find(function (meta) {
     return meta.domain === domain && meta.key === key;
@@ -18,6 +25,14 @@ var getMetaValue = exports.getMetaValue = function getMetaValue(metaList, domain
   return undefined;
 };
 
+/**
+ * Sets a value in metadata props array after localized it by its domain and key
+ * @param {array} metaList - the list of metadata objects in which looking for the value
+ * @param {string} domain - the domain of the prop, stored in its "domain" prop
+ * @param {string} key - the key of the prop, stored in its "key" prop
+ * @param {string} newValue - the new value to assign to the prop
+ * @return {array} newlist - the updated list
+ */
 var setMetaValue = exports.setMetaValue = function setMetaValue(metaList, domain, key, newValue) {
   var newMetaList = metaList.map(function (meta) {
     if (meta.domain === domain && meta.key === key) {
@@ -28,6 +43,13 @@ var setMetaValue = exports.setMetaValue = function setMetaValue(metaList, domain
   return newMetaList;
 };
 
+/**
+ * Checks if the value has a metadata property
+ * @param {array} metaList - the list of metadata objects in which looking for the value
+ * @param {string} domain - the domain of the prop, stored in its "domain" prop
+ * @param {string} key - the key of the prop, stored in its "key" prop
+ * @return {boolean} hasMeta - whether the prop is there
+ */
 var hasMeta = exports.hasMeta = function hasMeta(metaList, domain, key) {
   if (typeof domain === 'string') {
     return getMetaValue(metaList, domain, key) !== undefined;
@@ -37,6 +59,13 @@ var hasMeta = exports.hasMeta = function hasMeta(metaList, domain, key) {
   throw new Error('error in couple ' + domain + '_' + key + ': hasMeta method needs either a domain+key pair or a metadata prop object');
 };
 
+/**
+ * Finds a specific section in a sections list through one of its metadata
+ * @param {array} sections - the sections array to search in
+ * @param {string} domain - the domain of the prop used to search the section, stored in its "domain" prop
+ * @param {string} key - the key of the prop used to search the section, stored in its "key" prop
+ * @return {Object} section - the resulting section
+ */
 var findByMetadata = exports.findByMetadata = function findByMetadata(sections, domain, key, value) {
   return sections.find(function (section) {
     var meta = getMetaValue(section.metadata, domain, key);
@@ -44,16 +73,34 @@ var findByMetadata = exports.findByMetadata = function findByMetadata(sections, 
   });
 };
 
+/**
+ * Checks if two metadata props have the same scope (domain and key)
+ * @param {Object} meta1 - the first metadata prop
+ * @param {Object} meta1 - the second metadata prop
+ * @return {boolean} sameScope - whether the two props have the same scope
+ */
 var sameMetaScope = exports.sameMetaScope = function sameMetaScope(meta1, meta2) {
   return meta1.domain === meta2.domain && meta1.key === meta2.key;
 };
 
+/**
+ * Delete a specific metadata prop
+ * @param {array} metaList - the list of metadata objects in which looking for the value
+ * @param {string} domain - the domain of the prop, stored in its "domain" prop
+ * @param {string} key - the key of the prop, stored in its "key" prop
+ * @return {array} updatedMetaList - the new metadata list, without the deleted prop
+ */
 var deleteMeta = exports.deleteMeta = function deleteMeta(metaList, domain, key) {
   return metaList.filter(function (meta) {
     return !(domain === meta.domain && key === meta.key);
   });
 };
 
+/**
+ * Converts a bibtex metadata expression (e.g. "title", "twitter_twitter") to an object prop
+ * @param {string} str - the bibtex metadata expression
+ * @return {Object} metadata - the metadata prop object, without value
+ */
 var metaStringToCouple = exports.metaStringToCouple = function metaStringToCouple(str) {
   var parts = str.split('_');
   var domain = parts.length > 1 ? parts.shift() : 'general';
@@ -61,12 +108,25 @@ var metaStringToCouple = exports.metaStringToCouple = function metaStringToCoupl
   return { domain: domain, key: key };
 };
 
+/**
+ * Checks if a resource list contains a resource, by citeKey
+ * @param {array} resourcesList - the resources list in which looking for
+ * @param {Object} resource - the resource to look for
+ * @return {boolean} hasResource - whether resource is present in the list
+ */
 var hasResource = exports.hasResource = function hasResource(resourcesList, resource) {
   return resourcesList.find(function (res) {
     return resource.citeKey === res.citeKey;
   }) !== undefined;
 };
 
+/**
+ * Filter resources that have a specific value
+ * @param {array} resourcesList - the list of resource sto filter
+ * @param {string} key - the key by which filtering the resources
+ * @param {string} value - the value by which filtering the resources
+ * @return {array} updatedResourceList - the filtered resources list
+ */
 var filterResources = exports.filterResources = function filterResources(resourcesList, key, value) {
   return resourcesList.filter(function (res) {
     return res[key] === value;

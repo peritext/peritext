@@ -29,8 +29,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-// let styles = {};
-
 /**
  * dumb component for cover page of a static publication of document
  */
@@ -46,6 +44,14 @@ var StaticFrontCover = (0, _radium2.default)(_class = function (_React$Component
 
   _createClass(StaticFrontCover, [{
     key: 'getGeneralProp',
+
+
+    /**
+     * Util for returning the value of a "general" type metadata
+     * @param {array} list - the list of metadata
+     * @param {string} key - the key of the metadata prop
+     * @return {string} value
+     */
 
 
     /**

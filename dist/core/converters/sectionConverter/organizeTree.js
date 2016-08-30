@@ -9,7 +9,11 @@ var _async = require('async');
 
 var _sectionUtils = require('./../../utils/sectionUtils');
 
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } } /**
+                                                                                                                                                                                                     * This module organizes relations between sections (order, inheritance, generality level)
+                                                                                                                                                                                                     * @module converter/sectionConverter/organizeTree
+                                                                                                                                                                                                     */
+
 
 var formatMetadata = function formatMetadata(metadataObj) {
   var output = [];
@@ -71,7 +75,6 @@ var formatSections = function formatSections(sections, callback) {
 };
 
 var makeRelations = function makeRelations(inputSections, callback) {
-
   // find parents and predecessors
   var sections = inputSections.map(function (inputSection) {
     var section = Object.assign({}, inputSection);
@@ -115,6 +118,13 @@ var makeRelations = function makeRelations(inputSections, callback) {
   callback(null, sections);
 };
 
+/**
+ * Organizes relations betwwen sections
+ * @param {Object} params - the organization params
+ * @param {array} params.errors - the inherited parsing errors to pass along to next step
+ * @param {Object} params.validTree - the tree to process
+ * @param {function(error: error, results: {errors: array, sections: array})} callback - an updated list of parsing errors and updated sections
+ */
 var organizeTree = exports.organizeTree = function organizeTree(_ref, callback) {
   var errors = _ref.errors;
   var validTree = _ref.validTree;

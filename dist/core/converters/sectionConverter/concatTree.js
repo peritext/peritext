@@ -9,13 +9,15 @@ var _markdownIncludesParser = require('./../../converters/markdownIncludesParser
 
 var _async = require('async');
 
+/**
+ * This module concatenates fsTree contents according to include statements and resolves cases in which several markdown files are in the same directory
+ * @module converter/sectionConverter/concatTree
+ */
+
+
 var resolveFileIncludes = void 0;
 
-/**
- * I extract md includes and inline resources descriptions from a file object
- * @child : a fsElement ({type, name, path, extname})
- * @params : local parsing params - for instance templates and includes syntax
- */
+// Extracts md includes and inline resources descriptions from a file object
 var populateElementWithIncludes = function populateElementWithIncludes(child, params, callback) {
   (0, _markdownIncludesParser.parseMarkdown)(child.stringContents, {
     includeWrappingChars: params.templateWrappingCharacters,
@@ -32,11 +34,7 @@ var populateElementWithIncludes = function populateElementWithIncludes(child, pa
   });
 };
 
-/**
- * I produce a nested structure of the included files in a given file
- * @ex : the include expression object
- * @file : the file to populate
- */
+// Produces a nested structure of the included files in a given file
 var include = function include(ex, file, mdFilesWithIncludes) {
   var fileIndex = void 0;
   var fileToInclude = mdFilesWithIncludes.find(function (otherFile, index) {
@@ -57,10 +55,8 @@ var include = function include(ex, file, mdFilesWithIncludes) {
   }
 };
 
-/**
- * I monitor the nested including structure population process of a file
- */
-resolveFileIncludes = function resolveFileIncludes(file, mdFilesWithIncludes) {
+// Monitors the nested including structure population process of a file
+var doResolveFilesWithIncludes = function doResolveFilesWithIncludes(file, mdFilesWithIncludes) {
   file.includes = [];
   file.includeStatements = [];
   for (var index = file.extracted.length - 1; index >= 0; index--) {
@@ -73,10 +69,9 @@ resolveFileIncludes = function resolveFileIncludes(file, mdFilesWithIncludes) {
   }
 };
 
-/**
- * I turn non nested file object into include-based nested file objects
- * @mdFilesWithIncludes : non nested file objects
- */
+resolveFileIncludes = doResolveFilesWithIncludes;
+
+// Turns non nested file object into include-based nested file objects
 var nestIncludes = function nestIncludes(_ref2, cb) {
   var resourcesStr = _ref2.resourcesStr;
   var mdFilesWithIncludes = _ref2.mdFilesWithIncludes;
@@ -89,11 +84,8 @@ var nestIncludes = function nestIncludes(_ref2, cb) {
   cb(null, { resourcesStr: resourcesStr, mdFilesWithIncludes: mdFilesWithIncludes });
 };
 
-/**
- * I consume the nested property 'include' by populating its string contents with includes contents,
- * resolved recursively
- * @file : the file
- */
+// Consumes the nested property 'include' by populating its string contents with includes contents,
+// resolved recursively
 var buildFinalMdContent = function buildFinalMdContent(file) {
   var content = file.stringContents;
   var hasIncludes = file.includes && file.includes.length && file.includes.length > 0;
@@ -112,10 +104,7 @@ var buildFinalMdContent = function buildFinalMdContent(file) {
   return content;
 };
 
-/**
- * I turn an array of nested file objects into one single string
- * @mdFilesWithIncludes : non nested file objects
- */
+// Turns an array of nested file objects into one single string
 var resolveNestedIncludes = function resolveNestedIncludes(_ref3, cb) {
   var resourcesStr = _ref3.resourcesStr;
   var mdFilesWithIncludes = _ref3.mdFilesWithIncludes;
@@ -143,9 +132,10 @@ var concatCustomizers = function concatCustomizers(newTree) {
 };
 
 /**
- * MAIN
- * I turn a fsTree into a dumTree, that is a tree which presents
- * .bib resources and .md files contents concatenated by folder (according to inner 'include' statements and then automatically)
+ * Turns a fsTree into a dumTree, that is to say a tree which presents .bib resources and .md files contents concatenated by folder (according to inner 'include' statements and then automatically)
+ * @param {Object} tree - the fsTree to concatenate
+ * @param {Object} params - the language-related parameters
+ * @param {function(error: error, newTree: object)} callback - error and the concatenated tree
  */
 var concatTree = exports.concatTree = function concatTree(tree, params, callback) {
   var newTree = Object.assign({}, tree);

@@ -4,7 +4,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; }; /**
+                                                                                                                                                                                                                                                   * Resolver dedicated to resolve @assets statements and @res statements
+                                                                                                                                                                                                                                                   * @module resolvers/resolveDataDependencies
+                                                                                                                                                                                                                                                   */
+
 
 exports.default = resolveDataDependencies;
 
@@ -13,6 +17,14 @@ var _async = require('async');
 var CsvConverter = require('csvtojson').Converter;
 var csvConverter = new CsvConverter({});
 
+/**
+ * Resolves interpolations ni metadata, resources, and contextualizations, and possibly fetches stores necessary data for rendering
+ * @param {array} inputSections - the sections to resolve
+ * @param {Object} assetsController - the assets controller module to use to communicate with assets
+ * @param {Object} assetsParams - the params to use for accessing the assets
+ * @param {boolean} resolveData - whether to fetch and store necessary data right away or to store methods for later lazy-loading
+ * @param {function(err: error, finalSections: array)} callback - callbacks a possible errors and the updated list of sections
+ */
 function resolveDataDependencies(inputSections, assetsController, assetsParams, resolveData, callback) {
   var res = void 0;
   var match = void 0;

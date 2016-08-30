@@ -29,8 +29,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-// let styles = {};
-
 /**
  * dumb component for rendering the structured representation of publisher information
  */
@@ -50,15 +48,17 @@ var StructuredPublisher = (0, _radium2.default)(_class = function (_React$Compon
 
     /**
      * updateHtml : transform pattern+resource props into a react element
+     * @param {object} resource - the resource to represent
+     * @param {string} pattern - the pattern to represent the resource with
      * @return {ReactElement} markup
      */
 
 
     /**
      * propTypes
-     * @property {object} resource the resource parsed for structuring data
-     * @property {string} pattern the pattern to apply for formatting thresource
-     * @property {string} property the microformat property to apply to the structured element
+     * @property {object} resource - the resource parsed for structuring data
+     * @property {string} pattern - the pattern to apply for formatting thresource
+     * @property {string} property - the microformat property to apply to the structured element
      */
     value: function updateHtml(resource, pattern) {
 

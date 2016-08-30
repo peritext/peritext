@@ -15,7 +15,11 @@ var contextualizers = _interopRequireWildcard(_contextualizers);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-// I transform 1, 2, 3 incrementation into a, b, c
+/**
+ * Transforms 1, 2, 3 ordinally used number into a, b, c ordinally used letters
+ * @param {number} num - the number to transform
+ * @return {string} letter - the output letter
+ */
 var numbersToLetters = exports.numbersToLetters = function numbersToLetters(num) {
   var mod = num % 26;
   var pow = num / 26 | 0;
@@ -23,7 +27,19 @@ var numbersToLetters = exports.numbersToLetters = function numbersToLetters(num)
   return pow ? numbersToLetters(pow) + out : out.toLowerCase();
 };
 
-// I resolve a contextualizer assertion against its model and context, and record errors
+/**
+ * Resolves a contextualizer object against its model and context, and records errors
+ * @param {object} contextualizer - the contextualizer to resolve
+ * @param {object} contextualization - the contextualization to use as a clue-giver if the contextualizer is implicit
+ * @param {object} section - the section to which the contextualizer belongs
+ * @param {object} models - the models to parse the contextualizer against
+ * @return {{err: error, contextualizer: Object}} result - parsing errors and final contextualizer
+ */
+/**
+ * Resolver dedicated to resolve  contextualization statements
+ * @module resolvers/resolveContextualizations
+ */
+
 var resolveContextualizer = function resolveContextualizer(contextualizer, contextualization, section, models) {
   var err = [];
   var newContextualizer = Object.assign({}, contextualizer);
@@ -85,7 +101,13 @@ var resolveContextualizer = function resolveContextualizer(contextualizer, conte
   return { err: err, finalContextualizer: finalContextualizer };
 };
 
-// I build formatted objects for contextualizers and contextualizations, and record related parsing and model-related errors
+/**
+ * Resolves contextualizations' contextualizer and resource, verifying that contextualization will be possible
+ * @param {object} contextualizer - the contextualizer to resolve
+ * @param {object} section - the section to resolve
+ * @param {object} models - the models to use to validate data
+ * @param {function(err: error, results: {errors: array, newSection: Object})} callback - callbacks updated section and possible errors as an array
+ */
 var resolveBindings = exports.resolveBindings = function resolveBindings(_ref, cb) {
   var section = _ref.section;
   var models = _ref.models;
@@ -155,6 +177,12 @@ var resolveBindings = exports.resolveBindings = function resolveBindings(_ref, c
   cb(null, { errors: errors, section: section });
 };
 
+/**
+ * Resolves relations of recurrence, order, and similarity between contextualizations in a section
+ * @param {array} sections - the sections array to resolve
+ * @param {object} settings - the rendering settings to apply
+ * @return {array} newSections - the udpated sections
+ */
 var resolveContextualizationsRelations = exports.resolveContextualizationsRelations = function resolveContextualizationsRelations(sections, settings) {
   var opCitIndex = void 0;
   var sameResPrint = void 0;
@@ -215,7 +243,13 @@ var resolveContextualizationsRelations = exports.resolveContextualizationsRelati
   }, []);
 };
 
-// I 'reduce' contextualizations statements to produce a new rendering-specific section representation
+/**
+ * Resolves all the contextualizations of a section by updating its contents pseudo-DOM representation
+ * @param {object} section - the section to resolve
+ * @param {string} renderingMode - whether rendering is static or dynamic
+ * @param {object} settings - the rendering settings to take into account when resolving contextualizations
+ * @return {Object} newSection - the updated section
+ */
 var resolveContextualizationsImplementation = exports.resolveContextualizationsImplementation = function resolveContextualizationsImplementation(section, renderingMode, settings) {
   var contextualizer = void 0;
   var sectio = section.contextualizations.reduce(function (inputSection, contextualization) {

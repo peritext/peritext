@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = exportSection;
+exports.exportSectionToPdf = undefined;
 
 var _path = require('path');
 
@@ -15,9 +15,10 @@ var _sectionUtils = require('./../../core/utils/sectionUtils');
 
 var _renderToStaticHtml = require('./../../renderers/renderToStaticHtml');
 
-var _renderToStaticHtml2 = _interopRequireDefault(_renderToStaticHtml);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+/**
+ * Prince PDF exporter
+ * @module exporters/pdfExporter
+ */
 
 /**
  * This module inputs a specific peritext section, including possibly its children sections
@@ -30,17 +31,31 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  */
 
 var Prince = require('prince');
-function exportSection(_ref, assetsController, assetsParams, finalCallback) {
+
+
+/**
+ * Exports a section representation to a pdf file
+ * @param {Object} params - The params of the export
+ * @param {Object} params.section - the (root) section to export
+ * @param {array} params.sectionList - the section context (if necessary)
+ * @param {Object} params.settings - the specific rendering settings to use in order to produce the output
+ * @param {boolean} params.includeChildren - whether to include section's children sections
+ * @param {string} params.destinationFolder - where to output the file
+ * @params {Object} assetsController - the module to use in order to communicate with assets
+ * @param {Object} assetsParams - the assets parameters to use while communicating with assetsController
+ * @param {function(err:error)} callback - the possible errors encountered during export
+ */
+var exportSectionToPdf = exports.exportSectionToPdf = function exportSectionToPdf(_ref, assetsController, assetsParams, finalCallback) {
   var section = _ref.section;
   var sectionList = _ref.sectionList;
   var settings = _ref.settings;
   var includeChildren = _ref.includeChildren;
-  var _ref$destinationFolde = _ref.destinationFolder;
-  var destinationFolder = _ref$destinationFolde === undefined ? './../../_temp/' : _ref$destinationFolde;
+  var destinationFolder = _ref.destinationFolder;
 
 
   var motherKey = (0, _sectionUtils.getMetaValue)(section.metadata, 'general', 'citeKey');
-  var path = (0, _path.resolve)(__dirname + destinationFolder);
+  var path = destinationFolder || (0, _path.resolve)(__dirname + './temp/');
+  console.log('path', path);
   (0, _async.waterfall)([
   // get or create destination folder
   function (existsCb) {
@@ -53,7 +68,7 @@ function exportSection(_ref, assetsController, assetsParams, finalCallback) {
   },
   // render the section to static html
   function (renderCb) {
-    (0, _renderToStaticHtml2.default)({ section: section, sectionList: sectionList, includeChildren: includeChildren, destinationFolder: destinationFolder }, assetsController, assetsParams, renderCb);
+    (0, _renderToStaticHtml.renderSection)({ section: section, sectionList: sectionList, includeChildren: includeChildren, destinationFolder: destinationFolder }, assetsController, assetsParams, renderCb);
   },
   // write the section to a static html file
   function (html, writeCb) {
@@ -72,5 +87,4 @@ function exportSection(_ref, assetsController, assetsParams, finalCallback) {
       return finalCallback(err);
     }
   });
-}
-module.exports = exports['default'];
+};

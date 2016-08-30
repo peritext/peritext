@@ -9,9 +9,27 @@ var _referenceUtils = require('./../../core/utils/referenceUtils');
 
 var _sectionUtils = require('./../../core/utils/sectionUtils');
 
-var composeRenderedSections = exports.composeRenderedSections = function composeRenderedSections(sections, settings, inputStyle, messages) {
+/**
+ * Resolves a sections' list against rendering settings by modifying contents, adding output-related pseudo-sections, and updating css styles
+ * @param {array} sections - the sections to render
+ * @param {Object} settings - the specific rendering settings to use in order to produce the output
+ * @param {string} inputStyle - the css style data to use
+ * @param {array} messages - the intl messages to use for some sections localization (e.g. : translation of "Table of contents")
+ * @return {Object} results - an object composed of an array of rendered sections and a string with the updated css styles
+ */
+/**
+ * Shared static rendering utils
+ * @module renderers/sharedStaticUtils
+ */
+
+var composeRenderedSections = exports.composeRenderedSections = function composeRenderedSections() {
+  var sections = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
+  var settings = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+  var inputStyle = arguments.length <= 2 || arguments[2] === undefined ? '' : arguments[2];
+  var messages = arguments.length <= 3 || arguments[3] === undefined ? [] : arguments[3];
+
   var renderedSections = sections.slice();
-  var style = inputStyle;
+  var style = typeof inputStyle === 'string' ? inputStyle : '';
   // transform regarding notes display settings
   if (settings.notesPosition === 'footnotes') {
     style += '.peritext-static-note-content-container\n            {\n                display: prince-footnote;\n                counter-increment: footnote;\n            }';
@@ -23,12 +41,14 @@ var composeRenderedSections = exports.composeRenderedSections = function compose
           return Object.assign(note, { noteNumber: ++noteNumber });
         }));
       }, []);
-      renderedSections.push({
-        type: 'endnotes',
-        contents: contents,
-        title: messages.end_notes,
-        id: 'peritext-end-notes'
-      });
+      if (contents.length) {
+        renderedSections.push({
+          type: 'endnotes',
+          contents: contents,
+          title: messages.end_notes,
+          id: 'peritext-end-notes'
+        });
+      }
     })();
   }
 
@@ -40,22 +60,27 @@ var composeRenderedSections = exports.composeRenderedSections = function compose
       }
       return figs;
     }, []);
-    renderedSections.push({
-      type: 'endfigures',
-      contents: figures,
-      title: messages.end_figures,
-      id: 'peritext-end-figures'
-    });
+    if (figures.length) {
+      renderedSections.push({
+        type: 'endfigures',
+        contents: figures,
+        title: messages.end_figures,
+        id: 'peritext-end-figures'
+      });
+    }
   }
 
   // build references/bibliography
   if (settings.referenceScope === 'document') {
-    renderedSections.push({
-      type: 'references',
-      contents: (0, _referenceUtils.computeReferences)(sections, settings),
-      title: messages.references_title,
-      id: 'peritext-end-references'
-    });
+    var refs = (0, _referenceUtils.computeReferences)(sections, settings);
+    if (refs.length) {
+      renderedSections.push({
+        type: 'references',
+        contents: refs,
+        title: messages.references_title,
+        id: 'peritext-end-references'
+      });
+    }
   }
   // handle glossary
   if (settings.glossaryPosition !== 'none') {
@@ -99,9 +124,9 @@ var composeRenderedSections = exports.composeRenderedSections = function compose
         title: messages.glossary,
         id: 'peritext-end-glossary'
       };
-      if (settings.glossaryPosition === 'begining') {
+      if (settings.glossaryPosition === 'begining' && glossary.contents.length) {
         renderedSections.splice(0, 0, glossary);
-      } else {
+      } else if (glossary.contents.length) {
         renderedSections.push(glossary);
       }
     })();
@@ -136,9 +161,9 @@ var composeRenderedSections = exports.composeRenderedSections = function compose
       title: messages.table_of_figures,
       id: 'peritext-end-table-of-figures'
     };
-    if (settings.figuresTablePosition === 'begining') {
+    if (settings.figuresTablePosition === 'begining' && figuresTable.contents.length) {
       renderedSections.splice(0, 0, figuresTable);
-    } else {
+    } else if (figuresTable.contents.length) {
       renderedSections.push(figuresTable);
     }
   }
@@ -155,9 +180,9 @@ var composeRenderedSections = exports.composeRenderedSections = function compose
       };
     });
     var toc = { type: 'table-of-contents', contents: tocData };
-    if (settings.contentsTablePosition === 'begining') {
+    if (settings.contentsTablePosition === 'begining' && toc.contents.length) {
       renderedSections.splice(0, 0, toc);
-    } else {
+    } else if (toc.contents.length) {
       renderedSections.push(toc);
     }
   }

@@ -3,12 +3,48 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.serializeHtmlMeta = undefined;
+/**
+ * Resolver dedicated to resolve metadata templates against their data
+ * @module resolvers/htmlMetaTemplateSerializer
+ */
 
-var _converter = require('./converter.js');
+// templates have two variables : ${key} and ${value}
+// if value is an array
+// modificators are specifed after commas
+// modificators : join(), personsToString
 
-var lib = _interopRequireWildcard(_converter);
+/**
+ * Consumes a metadata object against an html metadata node template
+ * @param {Object} metadata - the metadata object
+ * @param {string} template - the template to consumes
+ * @return {string} htmlMeta - the representation of the html metadata as string
+ */
+var serializeHtmlMeta = exports.serializeHtmlMeta = function serializeHtmlMeta(metadata, template) {
+  var transformationAction = template.match(/\${value:([^}]*)/);
+  var transformationArgument = void 0;
+  var value = void 0;
+  if (transformationAction) {
+    transformationAction = transformationAction[1];
+    if (transformationAction.indexOf('join(') === 0) {
+      try {
+        transformationArgument = transformationAction.match(/join\(([^\)]*)\)/)[1];
+      } catch (exception) {
+        transformationArgument = ', ';
+      }
+    }
+  }
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-var serializeHtmlMeta = exports.serializeHtmlMeta = lib.serializeHtmlMeta;
+  if (transformationAction === 'join' && Array.isArray(metadata.value)) {
+    value = metadata.value.join(transformationArgument);
+  } else if (transformationAction === 'personsToString' && Array.isArray(metadata.value)) {
+    var persons = metadata.value.map(function (person) {
+      return person.firstName ? person.firstName + ' ' + person.lastName : person.lastName;
+    });
+    value = persons.join(', ');
+  } else value = metadata.value;
+  var output = template;
+  while (output.indexOf('${value') > -1) {
+    output = output.replace('${key}', metadata.key).replace(/\${value:?([^}]*)?}/, value);
+  }
+  return output;
+};

@@ -25,8 +25,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-// let styles = {};
-
 /**
  * dumb generic component for rendering the structured representation of a property
  */
@@ -52,6 +50,9 @@ var StructuredSpan = (0, _radium2.default)(_class = function (_React$Component) 
 
     /**
      * propTypes
+     * @property {string|number} value - the value to put in the span
+     * @property {string} property - the schema property to microformat the span with
+     * @property {string} htmlClass - the class to apply to the span element
      */
     value: function render() {
       return _react2.default.createElement(

@@ -9,13 +9,11 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _class, _class2; /**
                       * iso690 bibliographic norm formatter (lang: fr)
+                      * @module referencers/iso690fr
+                      * @todo Not finished resourceType-to-citation mapping (documented properly only books and journal articles - setup a default presentation for others)
                       * Doc 1 : http://revues.refer.org/telechargement/fiche-bibliographie.pdf
                       * Doc 2 : https://www.mpl.ird.fr/documentation/download/FormBibliog.pdf
-                      * TODO 1 : Not finished resourceType-to-citation mapping (documented properly only books and journal articles - setup a default presentation for others)
-                      * TODO 2 : handle year numerotation - if several publications of the same author(s) are cited, they should be alphabetically numeroted in the order of bibliography
-                      * (this require to handle the ${bibliography} template feature first, then update code accordingly)
                       */
-
 
 var _react = require('react');
 
@@ -37,15 +35,20 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var renderAdditionnal = function renderAdditionnal(obj) {
-  var details = obj.contextualization.contextualizer;
+/**
+ * Renders additionnal citation information, such as pages mentions, translations, etc.
+ * @param {Object} propsObj - the React element props
+ * @return {ReactElement} markup
+ */
+var renderAdditionnal = function renderAdditionnal(propsObj) {
+  var details = propsObj.contextualization.contextualizer;
   if (!details) {
     return '';
   }
   return _react2.default.createElement(
     'span',
     { className: 'peritext-citation-details' },
-    details.page || details.pages || obj.resource.caption || obj.resource.note || obj.resource.translation || obj.resource.original ? ', ' : '',
+    details.page || details.pages || propsObj.resource.caption || propsObj.resource.note || propsObj.resource.translation || propsObj.resource.original ? ', ' : '',
     details.page ? _react2.default.createElement(
       'span',
       { className: 'peritext-citation-quote-pages' },
@@ -58,11 +61,11 @@ var renderAdditionnal = function renderAdditionnal(obj) {
       'pp. ',
       details.pages
     ) : '',
-    (details.page || details.pages) && obj.resource.caption ? ', ' : '',
-    obj.resource.caption ? _react2.default.createElement(_components.StructuredSpan, { htmlClass: 'peritext-citation-comment', property: 'comment', value: obj.resource.caption }) : '',
-    (details.page || details.pages) && obj.resource.note ? ', ' : '',
-    obj.resource.note ? _react2.default.createElement(_components.StructuredSpan, { htmlClass: 'peritext-citation-comment', property: 'comment', value: obj.resource.note }) : '',
-    obj.resource.translation ? _react2.default.createElement(
+    (details.page || details.pages) && propsObj.resource.caption ? ', ' : '',
+    propsObj.resource.caption ? _react2.default.createElement(_components.StructuredSpan, { htmlClass: 'peritext-citation-comment', property: 'comment', value: propsObj.resource.caption }) : '',
+    (details.page || details.pages) && propsObj.resource.note ? ', ' : '',
+    propsObj.resource.note ? _react2.default.createElement(_components.StructuredSpan, { htmlClass: 'peritext-citation-comment', property: 'comment', value: propsObj.resource.note }) : '',
+    propsObj.resource.translation ? _react2.default.createElement(
       'span',
       { className: 'peritext-citation-translation' },
       '. Traduction : ',
@@ -72,7 +75,7 @@ var renderAdditionnal = function renderAdditionnal(obj) {
         'details.translation'
       )
     ) : '',
-    obj.resource.translation ? _react2.default.createElement(
+    propsObj.resource.translation ? _react2.default.createElement(
       'span',
       { className: 'peritext-citation-original' },
       '. Citation originale : ',
@@ -92,6 +95,11 @@ var renderAdditionnal = function renderAdditionnal(obj) {
 var BlockCitation = exports.BlockCitation = (0, _radium2.default)(_class = function (_BlockCitationModel) {
   _inherits(BlockCitation, _BlockCitationModel);
 
+  /**
+   * constructor
+   * @param {object} props
+   */
+
   function BlockCitation() {
     _classCallCheck(this, BlockCitation);
 
@@ -101,8 +109,24 @@ var BlockCitation = exports.BlockCitation = (0, _radium2.default)(_class = funct
     return _this;
   }
 
+  /**
+   * propTypes
+   * @property {object} resource - the resource to build the citation with
+   * @property {object} contextualization - the contextualization to build the citation with
+   */
+
+  /**
+   * Renders additionnal citation information, such as pages mentions, translations, etc.
+   */
+
+
   _createClass(BlockCitation, [{
     key: 'renderAuthors',
+
+    /**
+     * Renders the representation of involved author (from resource), for long citations outputs
+     * @return {ReactElement} markup
+     */
     value: function renderAuthors() {
       var _this2 = this;
 
@@ -135,6 +159,12 @@ var BlockCitation = exports.BlockCitation = (0, _radium2.default)(_class = funct
       }
       return '';
     }
+
+    /**
+     * Renders the complete reference of a resource
+     * @return {ReactElement} markup
+     */
+
   }, {
     key: 'renderCompleteReference',
     value: function renderCompleteReference() {
@@ -211,6 +241,12 @@ var BlockCitation = exports.BlockCitation = (0, _radium2.default)(_class = funct
           );
       }
     }
+
+    /**
+     * Renders additionnal reference information (isbn, doi, url)
+     * @return {ReactElement} markup
+     */
+
   }, {
     key: 'renderReferenceDecoration',
     value: function renderReferenceDecoration() {
@@ -235,6 +271,12 @@ var BlockCitation = exports.BlockCitation = (0, _radium2.default)(_class = funct
         );
       }
     }
+
+    /**
+     * Renders final markup of the contextualization
+     * @return {ReactElement} markup
+     */
+
   }, {
     key: 'renderReference',
     value: function renderReference() {
@@ -269,8 +311,18 @@ var BlockCitation = exports.BlockCitation = (0, _radium2.default)(_class = funct
  */
 
 
+BlockCitation.propTypes = {
+  contextualization: _react.PropTypes.object,
+  resource: _react.PropTypes.object
+};
+
 var InlineCitation = exports.InlineCitation = (0, _radium2.default)(_class2 = function (_InlineCitationModel) {
   _inherits(InlineCitation, _InlineCitationModel);
+
+  /**
+   * constructor
+   * @param {object} props
+   */
 
   function InlineCitation() {
     _classCallCheck(this, InlineCitation);
@@ -281,8 +333,26 @@ var InlineCitation = exports.InlineCitation = (0, _radium2.default)(_class2 = fu
     return _this3;
   }
 
+  /**
+   * propTypes
+   * @property {object} resource - the resource to build the citation with
+   * @property {object} contextualization - the contextualization to build the citation with
+   */
+
+
+  /**
+   * Renders additionnal citation information, such as pages mentions, translations, etc.
+   */
+
+
   _createClass(InlineCitation, [{
     key: 'renderAuthors',
+
+
+    /**
+     * Renders the representation of involved author (from resource), for short citations outputs
+     * @return {ReactElement} markup
+     */
     value: function renderAuthors() {
       var _this4 = this;
 
@@ -307,6 +377,12 @@ var InlineCitation = exports.InlineCitation = (0, _radium2.default)(_class2 = fu
         )
       );
     }
+
+    /**
+     * Renders final markup of the contextualization
+     * @return {ReactElement} markup
+     */
+
   }, {
     key: 'renderReference',
     value: function renderReference() {
@@ -369,3 +445,8 @@ var InlineCitation = exports.InlineCitation = (0, _radium2.default)(_class2 = fu
 
   return InlineCitation;
 }(_citationModels.InlineCitationModel)) || _class2;
+
+InlineCitation.propTypes = {
+  contextualization: _react.PropTypes.object,
+  resource: _react.PropTypes.object
+};

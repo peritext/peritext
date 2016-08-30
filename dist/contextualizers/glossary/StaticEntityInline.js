@@ -58,6 +58,10 @@ var StaticEntityInline = (0, _radium2.default)(_class = function (_React$Compone
 
     /**
      * propTypes
+     * @property {object} entity - the entity resource to contextualize
+     * @property {string} sectionCiteKey - the host section citeKey (used for identifying the element)
+     * @property {object} contextualization - the contextualization object
+     * @property {array} contents - the pseudo-dom js representation of contextualization's pointer contents
      */
     value: function render() {
       var itemType = (0, _microDataUtils.bibToSchema)(this.props.entity.bibType);

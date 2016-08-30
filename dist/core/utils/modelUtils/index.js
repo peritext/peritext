@@ -6,12 +6,19 @@ Object.defineProperty(exports, "__esModule", {
 exports.resolveSettings = exports.resolvePropAgainstType = exports.serializePropAgainstType = exports.getContextualizerModel = exports.getResourceModel = undefined;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; }; /**
-                                                                                                                                                                                                                                                   * Dedicated to everything that deals with models (composing, translating values, ...)
+                                                                                                                                                                                                                                                   * Utils - dedicated to everything that deals with models (composing, translating values, ...)
+                                                                                                                                                                                                                                                   * @module utils/modelUtils
                                                                                                                                                                                                                                                    */
+
 
 var _bibTexConverter = require('./../../converters/bibTexConverter');
 
-// I build a model object from a specific bibType, composing it according to its inheritance dependencies, from more general models to the specific bibType
+/**
+ * Builds a model object from a specific bibType, composing it according to its inheritance dependencies, from more general models to the specific bibType
+ * @param {string} bibType - the bibType of the resource
+ * @param {Object} resourceModels - the models describing resources data
+ * @return {Object} model - the model corresponding to the input bibType
+ */
 var getResourceModel = exports.getResourceModel = function getResourceModel(bibType, resourceModels) {
   var model = resourceModels.individual[bibType];
   if (model) {
@@ -39,7 +46,6 @@ var getResourceModel = exports.getResourceModel = function getResourceModel(bibT
           defaultContextualizer = resourceModels.collective[category].defaultContextualizer;
         }
       });
-
       // then finally parse common props
       otherProps = resourceModels.collective.common.properties.filter(function (prop) {
         existing = properties.find(function (property) {
@@ -62,7 +68,12 @@ var getResourceModel = exports.getResourceModel = function getResourceModel(bibT
   return undefined;
 };
 
-// I build a model object from a specific bibType, composing it according to its inheritance dependencies, from more general models to the specific bibType
+/**
+ * Build a model object from a specific bibType, composing it according to its inheritance dependencies, from more general models to the specific bibType
+ * @param {string} bibType - the bibType of the contextualizer
+ * @param {Object} contextualizerModels - the models describing contextualizer possible data
+ * @return {Object} model - the model corresponding to the input bibType
+ */
 var getContextualizerModel = exports.getContextualizerModel = function getContextualizerModel(bibType, contextualizerModels) {
   var model = contextualizerModels.individual[bibType];
   if (model) {
@@ -106,7 +117,13 @@ var getContextualizerModel = exports.getContextualizerModel = function getContex
   return undefined;
 };
 
-// I turn a (possibly not primitive : array, object, bibAuthor) value to a string-friendly value, thanks to its model's type
+/**
+ * Transforms a (possibly not primitive : array, object, bibAuthor) value to a string-friendly value, thanks to its model's type
+ * @param {Object} prop - the prop to serialize
+ * @param {string} valueType - the type of the value ('string', 'stringArray', 'bibAuthor', ...)
+ * @param {Object} model - the model to parse the prop against
+ * @return {string} newValue - the serialized value
+ */
 var serializePropAgainstType = exports.serializePropAgainstType = function serializePropAgainstType(prop, valueType, model) {
   if (prop === undefined) {
     return undefined;
@@ -153,7 +170,13 @@ var serializePropAgainstType = exports.serializePropAgainstType = function seria
   }
 };
 
-// I turn a string value into another (possibly complex) value, thanks to its model's type
+/**
+ * Transforms a string value to a complex and type-compliant value, thanks to its model's type
+ * @param {Object} prop - the prop to resolve
+ * @param {string} valueType - the type of the value ('string', 'stringArray', 'bibAuthor', ...)
+ * @param {Object} model - the model to parse the prop against
+ * @return {string|array|number|Object} newValue - the resolved value
+ */
 var resolvePropAgainstType = exports.resolvePropAgainstType = function resolvePropAgainstType(prop, valueType, model) {
   if (prop === undefined) {
     // looking for a default value if no value specified
@@ -228,7 +251,18 @@ var resolvePropAgainstType = exports.resolvePropAgainstType = function resolvePr
   }
 };
 
-var resolveSettings = exports.resolveSettings = function resolveSettings(settings, bibType, settingsModel) {
+/**
+ * Populate rendering settings according to default bibtype-related settings
+ * @param {Object} settings - the settings provided as input
+ * @param {string} bibType - the bibType of the root section to render
+ * @param {Object} settingsModel - the model to use for populating the settings
+ * @return {Object} newSettings - the populated settings
+ */
+var resolveSettings = exports.resolveSettings = function resolveSettings() {
+  var settings = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+  var bibType = arguments[1];
+  var settingsModel = arguments[2];
+
   var typeModel = {};
   for (var param in settingsModel) {
     if (settingsModel[param].default[bibType]) {

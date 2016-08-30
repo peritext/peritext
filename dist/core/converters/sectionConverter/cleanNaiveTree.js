@@ -7,6 +7,14 @@ exports.cleanNaiveTree = undefined;
 
 var _async = require('async');
 
+/**
+ * Resolves resource and metadata statements from a naive representation of a section
+ * @param {Object} params - the cleaning params
+ * @param {array} params.errors - the inherited parsing errors to pass along to the next step
+ * @param {Object} params.validTree - the tree to clean
+ * @param {Object} models - the models to parse the resources with
+ * @param {function(error: error, results: {errors: array, validTree: Object})} callback - the possible error, a list of parsing minor errors, and the resulting tree
+ */
 var cleanNaiveTree = exports.cleanNaiveTree = function cleanNaiveTree(_ref, models, callback) {
   var _ref$errors = _ref.errors;
   var errors = _ref$errors === undefined ? [] : _ref$errors;
@@ -82,4 +90,5 @@ var cleanNaiveTree = exports.cleanNaiveTree = function cleanNaiveTree(_ref, mode
   return callback(null, { errors: newErrors, validTree: Object.assign({}, naiveTree, { metadata: metadata }, { contextualizers: contextualizers }) });
 }; /**
     * This module cleans resources and metadata from a naive (resource concatenated) tree
+    * @module converter/sectionConverter/cleanNaiveTree
     */

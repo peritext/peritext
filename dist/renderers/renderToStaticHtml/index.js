@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = renderSection;
+exports.renderSection = undefined;
 
 var _async = require('async');
 
@@ -39,7 +39,10 @@ var _components = require('./../../core/components');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var defaultStylesPath = './../../config/defaultStyles/';
+var defaultStylesPath = './../../config/defaultStyles/'; /**
+                                                          * Render to static html
+                                                          * @module renderers/renderToStaticHtml
+                                                          */
 
 var listChildren = function listChildren(sections, key) {
   var output = [];
@@ -80,7 +83,19 @@ var setSectionContents = function setSectionContents(section, settings) {
   });
 };
 
-function renderSection(_ref, assetsController, assetsParams, rendererCallback) {
+/**
+ * Renders a section representation as a string representation of an html page
+ * @param {Object} params - The params of the export
+ * @param {Object} params.section - the (root) section to export
+ * @param {array} params.sectionList - the section context (if necessary)
+ * @param {Object} params.settings - the specific rendering settings to use in order to produce the output
+ * @param {boolean} params.includeChildren - whether to include section's children sections
+ * @param {string} params.destinationFolder - where to output the file
+ * @params {Object} assetsController - the module to use in order to communicate with assets
+ * @param {Object} assetsParams - the assets parameters to use while communicating with assetsController
+ * @param {function(err:error, result:string)} rendererCallback - the possible errors encountered during rendering, and the resulting html data as a string
+ */
+var renderSection = exports.renderSection = function renderSection(_ref, assetsController, assetsParams, rendererCallback) {
   var section = _ref.section;
   var sectionList = _ref.sectionList;
   var _ref$settings = _ref.settings;
@@ -171,5 +186,4 @@ function renderSection(_ref, assetsController, assetsParams, rendererCallback) {
     var html = ('\n<!doctype:html>\n<html>\n  <head>\n    ' + metaHead + '\n    <style>\n      ' + finalStyle + '\n    </style>\n  </head>\n  <body>\n    ' + renderedContents + '\n   </body>\n</html>').replace(/itemscope=""/g, 'itemscope');
     cback(null, html);
   }], rendererCallback);
-}
-module.exports = exports['default'];
+};

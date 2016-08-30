@@ -29,8 +29,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-// let styles = {};
-
 /**
  * dumb component for rendering the structured representation of a person
  */
@@ -50,15 +48,17 @@ var StructuredPerson = (0, _radium2.default)(_class = function (_React$Component
 
     /**
      * transformValues modifies firstName and lastName according to pattern indications
-     * @return {Object}
+     * @param {Object} author - the person representation to transform
+     * @param {string} pattern - the pattern to use for transforming person representation
+     * @return {Object} newAuthor - new author object
      */
 
 
     /**
      * propTypes
-     * @property {object} resource the person object which may contain the following props : "lastName", "firstName", "role", and "information"
-     * @property {string} pattern the pattern to apply for formatting the person name to html, eg : " ${lastName:capitals}, ${firstName:initials}"
-     * @property {string} property the microformat property to apply to the structured element
+     * @property {object} resource - the person object which may contain the following props : "lastName", "firstName", "role", and "information"
+     * @property {string} pattern - the pattern to apply for formatting the person name to html, eg : " ${lastName:capitals}, ${firstName:initials}"
+     * @property {string} property - the microformat property to apply to the structured element
      */
     value: function transformValues(author, pattern) {
       var vals = Object.assign({}, author);

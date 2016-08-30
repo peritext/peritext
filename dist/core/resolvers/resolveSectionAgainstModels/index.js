@@ -11,6 +11,12 @@ var _sectionUtils = require('./../../utils/sectionUtils');
 
 var _htmlMetaTemplateSerializer = require('./../../resolvers/htmlMetaTemplateSerializer');
 
+/**
+ * Consumes and normalize the metadata of a section
+ * @param {Object} section - the section to resolve
+ * @param {Object} models - the models to use for resolution
+ * @param {function(err:error, result: {errors: array, section: Object})} callback - the resulting resolution errors and updated section
+ */
 var resolveSectionAgainstModels = exports.resolveSectionAgainstModels = function resolveSectionAgainstModels(section, models, callback) {
   var errors = [];
   // validate resources
@@ -100,4 +106,7 @@ var resolveSectionAgainstModels = exports.resolveSectionAgainstModels = function
     }
   }
   return callback(null, { errors: errors, section: section });
-};
+}; /**
+    * Resolver dedicated to resolve sections against metadata models
+    * @module resolvers/resolveSectionAgainstModels
+    */
