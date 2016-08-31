@@ -7,15 +7,31 @@ exports.getAssetUri = exports.deleteFromPath = exports.updateFromPath = exports.
 
 var _fs = require('fs');
 
+var _fs2 = _interopRequireDefault(_fs);
+
 var _path = require('path');
 
 var _async = require('async');
 
-var _rmdir = require('rmdir');
-
-var _rmdir2 = _interopRequireDefault(_rmdir);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// import removeFolderRecursively from 'rmdir';
+
+var removeFolderRecursively = function removeFolderRecursively(path) {
+  if (_fs2.default.existsSync(path)) {
+    _fs2.default.readdirSync(path).forEach(function (file, index) {
+      var curPath = path + "/" + file;
+      if (_fs2.default.lstatSync(curPath).isDirectory()) {
+        // recurse
+        removeFolderRecursively(curPath);
+      } else {
+        // delete file
+        _fs2.default.unlinkSync(curPath);
+      }
+    });
+    _fs2.default.rmdirSync(path);
+  }
+};
 
 // I get meta information about an fs element
 /**
@@ -266,9 +282,10 @@ var deleteFromPath = exports.deleteFromPath = function deleteFromPath(_ref5, cal
       var elementName = pathSteps.pop();
       var element = analyseElement(elementName, '/' + pathSteps.join('/'));
       if (element.type === 'directory') {
-        (0, _rmdir2.default)(finalPath, function (err) {
-          callback(err);
-        });
+        removeFolderRecursively(finalPath /*, (err) =>{
+                                          callback(err);
+                                          }*/);
+        callback(null);
       } else if (element.type === 'file') {
         (0, _fs.unlink)(finalPath, function (err) {
           callback(err);

@@ -6,7 +6,7 @@
 import {waterfall, map as asyncMap} from 'async';
 import {parseSection, serializeSectionList} from './../../converters/sectionConverter';
 import {diff} from 'deep-diff';
-
+import * as filesystem from './../../../connectors/filesystem';
 let connector;
 let connectorName;
 let tempConnectorName;
@@ -19,7 +19,11 @@ const updateConnector = (params) => {
   tempConnectorName = params.connector;
   if (tempConnectorName !== connectorName) {
     connectorName = tempConnectorName;
-    connector = require('./../../../connectors/' + params.connector);
+    if ( connectorName === 'filesystem' ) {
+      connector = filesystem;
+    }
+    // this method is better but does not work when integrating the lib with webpack
+    // connector = require('./../../../connectors/' + params.connector);
   }
 };
 

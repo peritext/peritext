@@ -11,11 +11,18 @@ var _sectionConverter = require('./../../converters/sectionConverter');
 
 var _deepDiff = require('deep-diff');
 
-var connector = void 0; /**
-                         * Contents controller - a set of pure functions for parsing and serializing fsTree representations to peritextSections representations
-                         * @module controllers/contentsController
-                         */
+var _filesystem = require('./../../../connectors/filesystem');
 
+var filesystem = _interopRequireWildcard(_filesystem);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+/**
+ * Contents controller - a set of pure functions for parsing and serializing fsTree representations to peritextSections representations
+ * @module controllers/contentsController
+ */
+
+var connector = void 0;
 var connectorName = void 0;
 var tempConnectorName = void 0;
 
@@ -27,7 +34,11 @@ var updateConnector = function updateConnector(params) {
   tempConnectorName = params.connector;
   if (tempConnectorName !== connectorName) {
     connectorName = tempConnectorName;
-    connector = require('./../../../connectors/' + params.connector);
+    if (connectorName === 'filesystem') {
+      connector = filesystem;
+    }
+    // this method is better but does not work when integrating the lib with webpack
+    // connector = require('./../../../connectors/' + params.connector);
   }
 };
 

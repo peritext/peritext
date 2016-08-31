@@ -167,7 +167,7 @@
  * @module connectors/filesystem
  */
 
-import {
+import fs, {
   readFile,
   readdir,
   lstatSync,
@@ -183,7 +183,22 @@ import {
   join as joinPath
 } from &apos;path&apos;;
 import {map as asyncMap, reduce as asyncReduce} from &apos;async&apos;;
-import removeFolderRecursively from &apos;rmdir&apos;;
+// import removeFolderRecursively from &apos;rmdir&apos;;
+
+const removeFolderRecursively = function(path) {
+  if ( fs.existsSync(path) ) {
+    fs.readdirSync(path).forEach(function(file, index) {
+      const curPath = path + &apos;/&apos; + file;
+      if (fs.lstatSync(curPath).isDirectory()) { // recurse
+        removeFolderRecursively(curPath);
+      } else {
+        // delete file
+        fs.unlinkSync(curPath);
+      }
+    });
+    fs.rmdirSync(path);
+  }
+};
 
 // I get meta information about an fs element
 const analyseElement = (fileName, absPath) =&gt;{
@@ -392,9 +407,12 @@ export const deleteFromPath = ({path = &apos;&apos;, params}, callback) =&gt; {
       const elementName = pathSteps.pop();
       const element = analyseElement(elementName, &apos;/&apos; + pathSteps.join(&apos;/&apos;));
       if (element.type === &apos;directory&apos;) {
-        removeFolderRecursively(finalPath, (err) =&gt;{
+        removeFolderRecursively(finalPath /*
+        , (err) =&gt;{
           callback(err);
-        });
+        }
+        */);
+        callback(null);
       }else if (element.type === &apos;file&apos;) {
         unlink(finalPath, (err) =&gt;{
           callback(err);
