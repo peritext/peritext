@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var strip = require('gulp-strip-comments');
 var babel = require('gulp-babel');
 
 gulp.task('build', function(){
@@ -25,5 +26,6 @@ gulp.task('build', function(){
   gulp.src([
       'src/**/*.json'
     ])
+    .pipe(strip())
     .pipe(gulp.dest('dist'));
 });
