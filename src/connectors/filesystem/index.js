@@ -21,13 +21,14 @@ import {
 import {map as asyncMap, reduce as asyncReduce} from 'async';
 // import removeFolderRecursively from 'rmdir';
 
-var removeFolderRecursively = function(path) {
-  if( fs.existsSync(path) ) {
-    fs.readdirSync(path).forEach(function(file,index){
-      var curPath = path + "/" + file;
-      if(fs.lstatSync(curPath).isDirectory()) { // recurse
+const removeFolderRecursively = function(path) {
+  if ( fs.existsSync(path) ) {
+    fs.readdirSync(path).forEach(function(file, index) {
+      const curPath = path + '/' + file;
+      if (fs.lstatSync(curPath).isDirectory()) { // recurse
         removeFolderRecursively(curPath);
-      } else { // delete file
+      } else {
+        // delete file
         fs.unlinkSync(curPath);
       }
     });
@@ -242,9 +243,11 @@ export const deleteFromPath = ({path = '', params}, callback) => {
       const elementName = pathSteps.pop();
       const element = analyseElement(elementName, '/' + pathSteps.join('/'));
       if (element.type === 'directory') {
-        removeFolderRecursively(finalPath/*, (err) =>{
+        removeFolderRecursively(finalPath /*
+        , (err) =>{
           callback(err);
-        }*/);
+        }
+        */);
         callback(null);
       }else if (element.type === 'file') {
         unlink(finalPath, (err) =>{

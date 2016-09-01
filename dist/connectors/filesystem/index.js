@@ -20,7 +20,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var removeFolderRecursively = function removeFolderRecursively(path) {
   if (_fs2.default.existsSync(path)) {
     _fs2.default.readdirSync(path).forEach(function (file, index) {
-      var curPath = path + "/" + file;
+      var curPath = path + '/' + file;
       if (_fs2.default.lstatSync(curPath).isDirectory()) {
         // recurse
         removeFolderRecursively(curPath);
@@ -282,9 +282,11 @@ var deleteFromPath = exports.deleteFromPath = function deleteFromPath(_ref5, cal
       var elementName = pathSteps.pop();
       var element = analyseElement(elementName, '/' + pathSteps.join('/'));
       if (element.type === 'directory') {
-        removeFolderRecursively(finalPath /*, (err) =>{
+        removeFolderRecursively(finalPath /*
+                                          , (err) =>{
                                           callback(err);
-                                          }*/);
+                                          }
+                                          */);
         callback(null);
       } else if (element.type === 'file') {
         (0, _fs.unlink)(finalPath, function (err) {
