@@ -7,8 +7,7 @@ import {
   defaultParameters,
   defaultModels
 } from './../../src';
-
-global.navigator = {userAgent: 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2454.85 Safari/537.36'};
+import {writeFileSync} from 'fs';
 
 export default function runExample() {
   const params = {
@@ -21,14 +20,14 @@ export default function runExample() {
   }
   const destinationFolder = resolve(__dirname + '/output');
   waterfall([
-    function(callback){
+    (callback)=>{
       contentsController.updateFromSource(params, defaultModels, defaultParameters, callback);
     }
-  ], function(err, results){
-    const sections = results.sections;
+  ], (err, results)=>{
+    writeFileSync(__dirname + '/output/serialized.json', JSON.stringify(results, null, 2));
+    // const sections = results.sections;
     exportSectionToPdf({
-      section: sections[0],
-      sectionList: sections,
+      document: results.document,
       destinationFolder
     }, assetsController, assetsParams , (err, success)=>{
       console.log('done with phd thesis, errors : ', err);

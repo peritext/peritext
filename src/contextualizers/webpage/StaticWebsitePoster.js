@@ -1,14 +1,11 @@
 import React, {PropTypes} from 'react';
 import {StaticImageFigure, StructuredHyperLink} from './../../core/components';
-import Radium from 'radium';
 
-// let styles = {};
 import renderContents from './../../core/utils/componentsFactory';
 
 /**
  * dumb static-oriented component for displaying a webpage poster image
  */
-@Radium
 export default class StructuredWebsitePoster extends React.Component {
 
   /**

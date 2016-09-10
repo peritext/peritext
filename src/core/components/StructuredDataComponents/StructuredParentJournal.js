@@ -2,15 +2,12 @@ import React, {PropTypes} from 'react';
 import reactStringReplace from 'react-string-replace';
 import {
   StructuredDate
-} from './../index.js';
-
-import Radium from 'radium';
+} from './../index';
 
 
 /**
  * dumb component for rendering the structured representation of parent journal information
  */
-@Radium
 export default class StructuredParentJournal extends React.Component {
 
   /**

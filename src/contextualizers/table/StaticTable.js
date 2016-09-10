@@ -1,13 +1,10 @@
 import React, {PropTypes} from 'react';
-// let styles = {};
 import renderContents from './../../core/utils/componentsFactory';
-import Radium from 'radium';
 
 
 /**
  * dumb static-oriented component for displaying a table
  */
-@Radium
 export default class StaticTable extends React.Component {
   /**
    * propTypes

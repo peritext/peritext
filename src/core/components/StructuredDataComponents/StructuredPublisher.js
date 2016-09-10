@@ -1,11 +1,9 @@
 import React, {PropTypes} from 'react';
 import reactStringReplace from 'react-string-replace';
-import Radium from 'radium';
 
 /**
  * dumb component for rendering the structured representation of publisher information
  */
-@Radium
 export default class StructuredPublisher extends React.Component {
 
   /**

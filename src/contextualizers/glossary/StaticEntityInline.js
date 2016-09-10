@@ -1,14 +1,11 @@
 import React, {PropTypes} from 'react';
-import Radium from 'radium';
 
 import {bibToSchema} from './../../core/utils/microDataUtils';
-// let styles = {};
 import renderContents from './../../core/utils/componentsFactory';
 
 /**
  * dumb component and placeholder for rendering the structured representation of an entity citation
  */
-@Radium
 export default class StaticEntityInline extends React.Component {
 
   /**
@@ -67,7 +64,7 @@ export default class StaticEntityInline extends React.Component {
             itemProp="name"
           >{this.props.entity.name}</span>
         }
-        <span>{renderContents(this.props.contents)}</span>
+        {<span>{renderContents(this.props.contents)}</span>}
       </a>
     );
   }

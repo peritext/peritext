@@ -1,12 +1,9 @@
 import React, {PropTypes} from 'react';
 import reactStringReplace from 'react-string-replace';
 
-import Radium from 'radium';
-
 /**
  * dumb component for rendering the structured representation of a person
  */
-@Radium
 export default class StructuredPerson extends React.Component {
 
   /**

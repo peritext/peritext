@@ -1,5 +1,4 @@
 import React, {PropTypes} from 'react';
-import Radium from 'radium';
 import { intlShape, defineMessages } from 'react-intl';
 
 // let styles = {};
@@ -15,7 +14,6 @@ const translate = defineMessages({
 /**
  * dumb component for rendering a static table of figures
  */
-@Radium
 class StaticReferencesList extends React.Component {
 
   /**

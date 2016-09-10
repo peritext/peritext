@@ -1,10 +1,8 @@
 import React, {PropTypes} from 'react';
-import Radium from 'radium';
 
 /**
  * dumb component for rendering the structured representation of a cite element
  */
-@Radium
 export default class StructuredCite extends React.Component {
 
   /**

@@ -23,32 +23,27 @@ import {
   mkdir
 } from 'fs';
 
-import {getMetaValue} from './../../core/utils/sectionUtils';
-import {renderSection} from './../../renderers/renderToStaticHtml';
+import {renderDocument} from './../../renderers/renderToStaticHtml';
 
 /**
  * Exports a section representation to a pdf file
  * @param {Object} params - The params of the export
- * @param {Object} params.section - the (root) section to export
- * @param {array} params.sectionList - the section context (if necessary)
+ * @param {Object} params.document - the document to export
  * @param {Object} params.settings - the specific rendering settings to use in order to produce the output
- * @param {boolean} params.includeChildren - whether to include section's children sections
  * @param {string} params.destinationFolder - where to output the file
  * @params {Object} assetsController - the module to use in order to communicate with assets
  * @param {Object} assetsParams - the assets parameters to use while communicating with assetsController
  * @param {function(err:error)} callback - the possible errors encountered during export
  */
 export const exportSectionToPdf = ({
-  section,
-  sectionList,
+  document,
   settings,
-  includeChildren,
   destinationFolder,
 }, assetsController, assetsParams, finalCallback) =>{
 
-  const motherKey = getMetaValue(section.metadata, 'general', 'citeKey');
+  const motherKey = document.metadata.general.citeKey.value;
   const path = destinationFolder || resolve(__dirname + './temp/');
-  console.log('path', path);
+  console.log('export to path: ', path);
   waterfall([
     // get or create destination folder
     (existsCb)=> {
@@ -61,7 +56,7 @@ export const exportSectionToPdf = ({
     },
     // render the section to static html
     (renderCb)=> {
-      renderSection({section, sectionList, includeChildren, destinationFolder}, assetsController, assetsParams, renderCb);
+      renderDocument({document, destinationFolder}, assetsController, assetsParams, renderCb);
     },
     // write the section to a static html file
     (html, writeCb)=> {

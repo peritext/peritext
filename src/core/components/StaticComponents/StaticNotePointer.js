@@ -1,10 +1,8 @@
 import React, {PropTypes} from 'react';
-import Radium from 'radium';
 
 /**
  * dumb component for rendering the structured representation of a static note pointer
  */
-@Radium
 export default class StaticNotePointer extends React.Component {
 
   /**

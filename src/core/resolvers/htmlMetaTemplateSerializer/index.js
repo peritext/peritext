@@ -14,7 +14,7 @@
  * @param {string} template - the template to consumes
  * @return {string} htmlMeta - the representation of the html metadata as string
  */
-export const serializeHtmlMeta = (metadata, template) => {
+export const serializeHtmlMeta = (metadata, key, template) => {
   let transformationAction = template.match(/\${value:([^}]*)/);
   let transformationArgument;
   let value;
@@ -39,7 +39,7 @@ export const serializeHtmlMeta = (metadata, template) => {
   }else value = metadata.value;
   let output = template;
   while (output.indexOf('${value') > -1) {
-    output = output.replace('${key}', metadata.key).replace(/\${value:?([^}]*)?}/, value);
+    output = output.replace('${key}', key).replace(/\${value:?([^}]*)?}/, value);
   }
   return output;
 };

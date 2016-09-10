@@ -3,21 +3,27 @@
  * @module converter/sectionConverter/parseTreeResources
  */
 import {parseBibTexStr} from './../../converters/bibTexConverter/';
-import {map as asyncMap} from 'async';
 
 /**
  * Converts dumbTree resources representations (as string) to js objects - recursively do the same for tree's children
  * @param {Object} dumbTree - a semi-parsed representation inbetween an fsTree and a more structured representation
- * @param {function(error: error, dumbTree: Object)} callback - the output representation
+ * @return {errors: Array, naiveTree: Object}  - the output representation
  */
-export const parseTreeResources = (dumbTree, callback) => {
-  if (dumbTree.resourcesStr) {
-    parseBibTexStr(dumbTree.resourcesStr, function(err, resources) {
-      if (dumbTree.children) {
-        asyncMap(dumbTree.children, parseTreeResources, function(error, children) {
-          callback(error, Object.assign({}, dumbTree, {resources}, {children}));
-        });
-      }
+export const parseTreeResources = (dumbTree) => {
+  const naiveTree = Object.assign({}, dumbTree);
+  const errors = [];
+  if (naiveTree.resourcesStr) {
+    parseBibTexStr(naiveTree.resourcesStr, function(err, resources) {
+      naiveTree.resources = resources;
     });
-  }else callback(null, Object.assign({}, dumbTree));
+  }
+  if (naiveTree.children) {
+    naiveTree.children = naiveTree.children.map(child => {
+      return parseTreeResources(child).naiveTree;
+    });
+  }
+  return {
+    naiveTree,
+    errors
+  };
 };

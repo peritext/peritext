@@ -4,12 +4,11 @@
  * @module converters/markdownConverter
  */
 import marked from 'marked';
+import {v4} from 'uuid';
 import {html2json} from 'html2json';
 import {XmlEntities} from 'html-entities';
 const entities = new XmlEntities();
-
-import {getMetaValue} from './../../utils/sectionUtils';
-import {parseBibContextualization, parseBibNestedValues} from './../bibTexConverter';
+import {parseBibContextualization} from './../bibTexConverter';
 
 // basic marked parser settings
 marked.setOptions({
@@ -54,35 +53,19 @@ const eatParamsObject = (str)=> {
   return undefined;
 };
 
-const parseParamsObject = (paramsObject, impliedResources, contextualizationCount, contextualizers)=> {
+const parseParamsObject = (paramsObject)=> {
   /*
    * analyse contextualizer statement
   */
   let overloading;
   let contextualizerKey;
-  // case : explicit call to a contextualizer ==> overload
+  // case : explicit call to a contextualizer ==> explicit contextualizer overload case
   if (paramsObject && paramsObject.indexOf('@') === 1) {
     contextualizerKey = paramsObject.match(/^\{(@[^,}]+)/)[1];
     overloading = contextualizerKey;
-    let counter = 1;
-    let newKey = contextualizerKey + '_' + counter;
-    let unique = false;
-    // getting a unique citeKey for the overloaded contextualizer
-    while (!unique) {
-      unique = true;
-      contextualizers.forEach((cont) => {
-        if (cont.citeKey === newKey) {
-          unique = false;
-          counter++;
-          newKey = contextualizerKey + '_' + counter;
-        }
-      });
-    }
-    contextualizerKey = newKey;
-  // case : no explicit call to a contextualizer ==> inline implicit contextualization, determine citeKey automatically
-  }else {
-    contextualizerKey = 'contextualizer_' + contextualizationCount + 1;
   }
+  // else case : no explicit call to a contextualizer ==> inline implicit contextualization, determine citeKey automatically
+  contextualizerKey = 'contextualization-' + v4();
 
   let formattedParams;
   if (paramsObject !== undefined) {
@@ -111,14 +94,14 @@ const parseParamsObject = (paramsObject, impliedResources, contextualizationCoun
 
 const parseContextualizations = (section)=> {
   let replaced = section.contents;
-  const contextualizations = [];
-  const newContextualizers = section.contextualizers.slice();
+  const contextualizations = {};
+  const newContextualizers = {};
+  const orderedContextualizations = [];
   const statementsRE = /(\!)?\[([^\]]*)\]\(([^\)]+)\)/g;
   let match;
   let type;
   let resources;
   let paramsObject;
-  let contextualizationCount = -1;
 
   while ((match = statementsRE.exec(replaced)) !== null) {
     /*
@@ -126,45 +109,35 @@ const parseContextualizations = (section)=> {
      */
     // hyperlink markdown syntax stands for inline contextualization
     // image markdown syntax stands for block contextualization
-    // ()[] = inline, !()[] = block
+    // ()[] => inline, !()[] => block
     type = match[1] ? 'block' : 'inline';
     // contents
-    // children = match[2];
     // quoted resources
-    resources = match[3].split(',').map((resKey)=> {
-      const key = resKey.substr(1);
-      return section.resources.find(res=> {
-        return res.citeKey === key;
-      });
-    }).filter(res=>{
-      return res !== undefined;
-    });
-
-    contextualizationCount ++;
+    resources = match[3].split(',').map(resKey => resKey.substr(1));
+    const contextualizationId = 'contextualization-' + v4();
     // following parameters
     paramsObject = eatParamsObject(replaced.substr(match.index + match[0].length));
-
     // UPDATE TEXT
     // delete paramsObject from text
     if (paramsObject) {
       replaced = replaced.replace(replaced.substring(match.index + match[0].length, match.index + match[0].length + paramsObject.length), '');
     }
     // update reference in <a> link or <image>
-    replaced = replaced.replace(replaced.substring(match.index + match[0].indexOf(match[3]), match.index + match[0].indexOf(match[3]) + match[3].length), 'contextualization_' + contextualizationCount);
+    replaced = replaced.replace(replaced.substring(match.index + match[0].indexOf(match[3]), match.index + match[0].indexOf(match[3]) + match[3].length), contextualizationId);
     // UPDATE DATA
-    const contextualizer = parseParamsObject(paramsObject, resources, contextualizationCount, newContextualizers);
+    const contextualizer = parseParamsObject(paramsObject);
     if (contextualizer) {
-      newContextualizers.push(contextualizer);
+      newContextualizers[contextualizer.citeKey] = contextualizer;
     }
-    contextualizations.push({
-      // 'matchIndex': match.index - matchDisplace,
-      'citeKey': 'contextualization_' + contextualizationCount,
-      contextualizer,
+    contextualizations[contextualizationId] = {
+      'citeKey': contextualizationId,
+      contextualizer: contextualizer.citeKey,
       resources,
       type
-    });
+    };
+    orderedContextualizations.push(contextualizationId);
   }
-  return {md: replaced, contextualizations, contextualizers: newContextualizers};
+  return {md: replaced, orderedContextualizations, contextualizations, contextualizers: newContextualizers};
 };
 
 
@@ -197,14 +170,14 @@ const parseNotes = (md, sectionCiteKey)=> {
     }
 
     noteContent = newMd.substring(beginIndex, index - 1);
-    const id = sectionCiteKey + noteNumber;
+    const id = 'note-' + sectionCiteKey + '-' + v4();// noteNumber;
     const placeholder = `[footnote](note_${id})`;
     const initialLength = index - beginIndex + 4;
     const lengthDif = initialLength - placeholder.length;
     newMd = newMd.replace(newMd.substring(beginIndex - 4, index), placeholder);
     notes.push({
       noteNumber,
-      contents: noteContent,
+      markdownContents: noteContent,
       id
     });
     noteNumber++;
@@ -215,13 +188,12 @@ const parseNotes = (md, sectionCiteKey)=> {
     newMd
   };
 };
-
+// for recursivity matter
 let mapMdJsonToPJson = ()=>{return undefined;};
 let representContents = ()=>{return undefined;};
 
-mapMdJsonToPJson = (inputElement, contextualizations, blockIndex) =>{
+mapMdJsonToPJson = (inputElement, contextualizations, elementPath) =>{
   const element = Object.assign({}, inputElement);
-  element.blockIndex = blockIndex;
   if (element.text) {
     element.text = entities.decode(element.text);
   }
@@ -229,35 +201,34 @@ mapMdJsonToPJson = (inputElement, contextualizations, blockIndex) =>{
     if (element.attr.href.indexOf('note_') === 0) {
       element.tag = 'note';
       element.target = element.attr.href.substr(5);
+    // case of an inline contextualization
     } else {
       element.tag = 'inlineC';
-      const contextualizationCitekey = element.attr.href;
-      const contextualization = contextualizations.find(cont =>{
-        return cont.citeKey === contextualizationCitekey;
-      });
-      contextualization.node = element;
+      const contextualizationCiteKey = element.attr.href;
+      const contextualization = contextualizations[contextualizationCiteKey];
+      contextualization.nodePath = elementPath;
     }
+  // case of a block contextualization
   } else if (element.tag === 'img') {
     element.tag = 'blockC';
-    const contextualizationCitekey = element.attr.src;
-    const contextualization = contextualizations.find(cont =>{
-      return cont.citeKey === contextualizationCitekey;
-    });
-    contextualization.node = element;
+    const contextualizationCiteKey = element.attr.src;
+    const contextualization = contextualizations[contextualizationCiteKey];
+    contextualization.nodePath = elementPath;
     const contents = (element.attr && element.attr.alt) ? element.attr.alt.join(' ') : '';
-    element.child = [representContents(contents)[0]];
+    element.child = [representContents(contents, contextualizations, elementPath)[0]];
+    delete element.attr;
   }
   if (element.child) {
-    element.child = element.child.map((child)=>{
-      return mapMdJsonToPJson(child, contextualizations, blockIndex);
+    element.child = element.child.map((child, elementIndex)=>{
+      return mapMdJsonToPJson(child, contextualizations, elementPath.concat(['child', elementIndex]));
     });
   }
   return element;
 };
 
-representContents = (mdContent, contextualizations) =>{
+representContents = (mdContent, contextualizations, elementPath) =>{
   return html2json(marked(mdContent)).child.map((child, blockIndex)=> {
-    return mapMdJsonToPJson(child, contextualizations, blockIndex);
+    return mapMdJsonToPJson(child, contextualizations, elementPath.concat(blockIndex));
   });
 };
 
@@ -265,33 +236,45 @@ representContents = (mdContent, contextualizations) =>{
  * Parses markdown contents in order to update section data with new contents (as a pseudo-DOM nested javascript object representation), notes, contextualizers and contextualizations
  * @param {Object} section - the section to parse
  * @param {Object} parameters - deprecated - rendering parameters (not used at this step)
- * @param {function(error: error, results: {errors: array, section: Object})} callback - the resulting conversion errors and updated section
+ * @return {errors: array, section: Object} - the resulting conversion errors and updated section
  */
-export const markdownToJsAbstraction = (section, parameters, callback)=> {
+export const markdownToJsAbstraction = (section, parameters)=> {
   const errors = [];
 
-  const sectionCiteKey = getMetaValue(section.metadata, 'general', 'citeKey');
-
+  const sectionCiteKey = section.metadata.general.citeKey.value;
+  // save original markdown expression of contents (for further possible serializing)
   section.markdownContents = section.contents;
-  section.contextualizers = section.contextualizers.map(parseBibNestedValues);
-
+  // first extract contextualizations statements
   const {
     md,
     contextualizers,
+    orderedContextualizations,
     contextualizations
   } = parseContextualizations(section);
+  // then extract notes statements
   const {
     notes,
     newMd
   } = parseNotes(md, sectionCiteKey);
+  section.contextualizations = orderedContextualizations;
+  // convert cleaned markdown contents to js representation
+  section.contents = representContents(newMd, contextualizations, [sectionCiteKey, 'contents']);
+  section.notes = notes.map((note, noteIndex) =>{
 
-  section.contextualizations = contextualizations.slice();
-  section.contextualizers = contextualizers.slice();
-  section.contents = representContents(newMd, section.contextualizations);
-  section.notes = notes.map(note =>{
-    const contents = representContents(note.contents, section.contextualizations);
-    return Object.assign(note, {contents: contents[0].child});
+    const contents = html2json(marked(note.markdownContents)).child.map((child, blockIndex)=> {
+      return mapMdJsonToPJson(child, contextualizations, [sectionCiteKey, 'notes', noteIndex]);
+    });
+    return Object.assign(note, {
+      child: [
+        // this is dirty, done for matching contextualization nodePath which is displaced otherwise
+        // other dirty solution : handle that in mapMdJsonToPJson with a path check
+        // (if in notes prop => decrement contextualization target)
+        { node: 'text',
+          text: ''
+        },
+        ...contents[0].child
+      ]
+    });
   });
-
-  callback(null, {errors, section});
+  return {errors, section, contextualizers, contextualizations};
 };

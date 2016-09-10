@@ -3,7 +3,7 @@ import {
   StructuredDate,
   StructuredSpan,
   StructuredPerson
-} from './../index.js';
+} from './../index';
 
 /**
  * dumb component for rendering the structured representation of a section
@@ -26,12 +26,23 @@ export default class StructuredMetadataPlaceholder extends React.Component {
    * @return {ReactElement} markup
    */
   render() {
+    const metadata = Object.keys(this.props.section.metadata).reduce((metas, domainKey) => {
+      return metas.concat(
+        Object.keys(this.props.section.metadata[domainKey]).map(propKey => {
+          return {
+            key: propKey,
+            domain: domainKey,
+            value: this.props.section.metadata[domainKey][propKey].value
+          };
+        }
+      ));
+    }, []);
     return (
       <div
         className="peritext-structured-metadata-placeholder-container"
         style={{visibility: 'hidden'}}
       >
-        {this.props.section.metadata.filter((prop) =>{
+        {metadata.filter((prop) =>{
           return prop.domain === 'general';
         }).map((meta) =>{
           switch (meta.key) {

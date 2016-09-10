@@ -1,9 +1,7 @@
 import React, {PropTypes} from 'react';
-import Radium from 'radium';
-import {StaticNoteContent} from './../index.js';
+import {StaticNoteContent} from './../index';
 import { intlShape, defineMessages } from 'react-intl';
 
-// let styles = {};
 
 const translate = defineMessages({
   endnotes: {
@@ -16,7 +14,6 @@ const translate = defineMessages({
 /**
  * dumb component for rendering the structured representation of a static section
  */
-@Radium
 class StaticEndNotes extends React.Component {
 
   /**

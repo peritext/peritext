@@ -2,27 +2,30 @@
  * Glossary contextualizer that resolve sections data according to contextualization+settings params
  * @module contextualizers/glossary
  */
+import { get as getByPath } from 'object-path';
 
-import StaticEntityInline from './StaticEntityInline.js';
-import StaticEntityBlock from './StaticEntityBlock.js';
-import {getMetaValue} from './../../core/utils/sectionUtils';
+import StaticEntityInline from './StaticEntityInline';
+import StaticEntityBlock from './StaticEntityBlock';
 
 /**
  * Handle an inline contextualization for static outputs
- * @param {Object} inputSection - The representation of the peritext section to update
+ * @param {Object} inputDocument - The representation of the peritext document to update
  * @param {Object} inputContextualization - The representation of the contextualization to resolve
  * @param {Object} settings - the specific rendering settings to use for resolving the contextualization
- * @return {Object} newSection - the updated representation of the peritext section in which the contextualization was made
+ * @return {Object} newDocument - the updated representation of the peritext document in which the contextualization was made
  */
-export const contextualizeInlineStatic = (inputSection, inputContextualization, settings) => {
-  const section = Object.assign({}, inputSection);
+export const contextualizeInlineStatic = (inputDocument, inputContextualization, settings) => {
+  const document = Object.assign({}, inputDocument);
   const contextualization = Object.assign({}, inputContextualization);
-  const node = contextualization.node;
-  const sectionCiteKey = getMetaValue(section.metadata, 'general', 'citeKey');
-  const entity = contextualization.resources[0];
+  const sectionCiteKey = contextualization.nodePath[0];
+  const path = ['sections', ...contextualization.nodePath.slice()];
+  const node = getByPath(document, path);
+  const entity = document.resources[contextualization.resources[0]];
   let contents = node.child;
   if (!contents || (contents[0] && contents[0].text.trim().length === 0)) {
-    contents = contextualization.contextualizer.alias || entity.name || entity.firstname + ' ' + entity.lastname;
+    contents = document.contextualizers[contextualization.contextualizer].alias
+              || entity.name
+              || entity.firstname + ' ' + entity.lastname;
     contents = [{
       node: 'text',
       text: contents
@@ -36,19 +39,21 @@ export const contextualizeInlineStatic = (inputSection, inputContextualization, 
   };
   node.special = true;
   node.tag = StaticEntityInline;
-  return Object.assign({}, inputSection);
+  return document;
 };
 
 /**
  * Handle a block contextualization for static outputs
- * @param {Object} inputSection - The representation of the peritext section to update
+ * @param {Object} inputDocument - The representation of the peritext document to update
  * @param {Object} inputContextualization - The representation of the contextualization to resolve
  * @param {Object} settings - the specific rendering settings to use for resolving the contextualization
- * @return {Object} newSection - the updated representation of the peritext section in which the contextualization was made
+ * @return {Object} newDocument - the updated representation of the peritext document in which the contextualization was made
  */
-export const contextualizeBlockStatic = (inputSection, inputContextualization, settings) => {
+export const contextualizeBlockStatic = (inputDocument, inputContextualization, settings) => {
+  const document = Object.assign({}, inputDocument);
   const contextualization = Object.assign({}, inputContextualization);
-  const node = contextualization.node;
+  const path = ['sections', ...contextualization.nodePath.slice()];
+  const node = getByPath(document, path);
   const entity = contextualization.resources[0];
   node.props = {
     entity,
@@ -57,27 +62,27 @@ export const contextualizeBlockStatic = (inputSection, inputContextualization, s
   };
   node.special = true;
   node.tag = StaticEntityBlock;
-  return Object.assign({}, inputSection);
+  return document;
 };
 
 /**
  * Handle an inline contextualization for dynamic outputs
- * @param {Object} inputSection - The representation of the peritext section to update
+ * @param {Object} inputDocument - The representation of the peritext document to update
  * @param {Object} inputContextualization - The representation of the contextualization to resolve
  * @param {Object} settings - the specific rendering settings to use for resolving the contextualization
- * @return {Object} newSection - the updated representation of the peritext section in which the contextualization was made
+ * @return {Object} newDocument - the updated representation of the peritext document in which the contextualization was made
  */
-export const contextualizeInlineDynamic = (section, contextualization, settings) => {
-  return section;
+export const contextualizeInlineDynamic = (inputDocument, contextualization, settings) => {
+  return inputDocument;
 };
 
 /**
  * Handle a block contextualization for dynamic outputs
- * @param {Object} inputSection - The representation of the peritext section to update
+ * @param {Object} inputDocument - The representation of the peritext document to update
  * @param {Object} inputContextualization - The representation of the contextualization to resolve
  * @param {Object} settings - the specific rendering settings to use for resolving the contextualization
- * @return {Object} newSection - the updated representation of the peritext section in which the contextualization was made
+ * @return {Object} newDocument - the updated representation of the peritext document in which the contextualization was made
  */
-export const contextualizeBlockDynamic = (section, contextualization, settings) => {
-  return section;
+export const contextualizeBlockDynamic = (inputDocument, contextualization, settings) => {
+  return inputDocument;
 };

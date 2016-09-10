@@ -1,12 +1,9 @@
 import React, {PropTypes} from 'react';
-import Radium from 'radium';
-// let styles = {};
 import renderContents from './../../utils/componentsFactory';
 
 /**
  * dumb component for containing either a static or dynamic note, acting whether as a pointer or as a container
  */
-@Radium
 export default class StaticFootnote extends React.Component {
 
   /**
@@ -28,10 +25,10 @@ export default class StaticFootnote extends React.Component {
     return (
       <sup
         className="peritext-static-note-content-container"
-        name={'peritext-static-note-content-' + this.props.note.target }
-        id={'peritext-static-note-content-' + this.props.note.target}
+        name={'peritext-static-note-content-' + this.props.note.id }
+        id={'peritext-static-note-content-' + this.props.note.id}
       >
-        {renderContents(this.props.note.contents)}
+        {renderContents(this.props.note.child)}
       </sup>);
   }
 }

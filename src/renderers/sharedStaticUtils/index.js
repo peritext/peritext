@@ -4,17 +4,17 @@
  */
 
 import {computeReferences} from './../../core/utils/referenceUtils';
-import {getMetaValue} from './../../core/utils/sectionUtils';
 
 /**
  * Resolves a sections' list against rendering settings by modifying contents, adding output-related pseudo-sections, and updating css styles
  * @param {array} sections - the sections to render
+ * @param {Object} document - the document reference
  * @param {Object} settings - the specific rendering settings to use in order to produce the output
  * @param {string} inputStyle - the css style data to use
  * @param {array} messages - the intl messages to use for some sections localization (e.g. : translation of "Table of contents")
  * @return {Object} results - an object composed of an array of rendered sections and a string with the updated css styles
  */
-export const composeRenderedSections = (sections = [], settings = {}, inputStyle = '', messages = []) =>{
+export const composeRenderedSections = (sections = [], document, settings = {}, inputStyle = '', messages = []) =>{
   const renderedSections = sections.slice();
   let style = typeof inputStyle === 'string' ? inputStyle : '';
   // transform regarding notes display settings
@@ -61,7 +61,7 @@ export const composeRenderedSections = (sections = [], settings = {}, inputStyle
 
   // build references/bibliography
   if (settings.referenceScope === 'document') {
-    const refs = computeReferences(sections, settings);
+    const refs = computeReferences(sections, document, settings);
     if (refs.length) {
       renderedSections.push({
         type: 'references',
@@ -75,32 +75,37 @@ export const composeRenderedSections = (sections = [], settings = {}, inputStyle
   if (settings.glossaryPosition !== 'none') {
     // prepare glossary
     const glossaryPointers = sections.reduce((results, thatSection)=>{
-      const sectionCitekey = getMetaValue(thatSection.metadata, 'general', 'citeKey');
+      const sectionCitekey = thatSection.metadata.general.citeKey.value;
       return results.concat(
         thatSection.contextualizations
         .filter((thatContextualization)=> {
-          return thatContextualization.contextualizer.type === 'glossary';
+          return document.contextualizations[thatContextualization].contextualizerType === 'glossary';
         })
-        .reduce((localResults, contextualization)=> {
+        .reduce((localResults, contextualizationKey)=> {
+          const contextualization = document.contextualizations[contextualizationKey];
           return localResults.concat({
             mentionId: '#peritext-content-entity-inline-' + sectionCitekey + '-' + contextualization.citeKey,
-            entity: contextualization.resources[0].citeKey,
-            alias: contextualization.contextualizer.alias
+            entity: document.resources[contextualization.resources[0]].citeKey,
+            alias: document.contextualizers[contextualization.contextualizer].alias
           });
         }, []));
     }, []);
 
     const entitiesTypes = ['person', 'place', 'subject', 'concept', 'organization', 'technology', 'artefact'];
 
-    const glossaryData = sections.reduce((results, thatSection)=>{
-      return results.concat(
-        thatSection.resources
-        .filter((thatResource)=> {
-          return thatResource.inheritedVerticallyFrom === undefined
-                  && entitiesTypes.indexOf(thatResource.bibType) > -1;
-        })
-      );
-    }, []).map((glossaryEntry)=> {
+    const glossaryResources = [];
+    for (const refKey in document.resources) {
+      if (document.resources[refKey]) {
+        const thatResource = document.resources[refKey];
+        if (thatResource.inheritedVerticallyFrom === undefined
+                  && entitiesTypes.indexOf(thatResource.bibType) > -1) {
+          glossaryResources.push(thatResource);
+        }
+      }
+    }
+
+    const glossaryData = glossaryResources.map((inputGlossaryEntry)=> {
+      const glossaryEntry = Object.assign({}, inputGlossaryEntry);
       glossaryEntry.aliases = glossaryPointers.filter((pointer)=> {
         return pointer.entity === glossaryEntry.citeKey;
       }).reduce((aliases, entry)=> {
@@ -132,8 +137,9 @@ export const composeRenderedSections = (sections = [], settings = {}, inputStyle
     const figuresTableData = sections.reduce((figures, section4)=> {
       // 1. take numbered figures
       const figuresL = section4.contextualizations.filter((cont)=> {
-        return cont.figureNumber !== undefined;
+        return document.contextualizations[cont].figureNumber !== undefined;
       })
+      .map(contKey => document.contextualizations[contKey])
       // 2. filter uniques
       .filter((figure, index, self) => self.findIndex((other) => {
         return other.figureNumber === figure.figureNumber;
@@ -160,15 +166,13 @@ export const composeRenderedSections = (sections = [], settings = {}, inputStyle
     }
   }
 
-  // handle toc
+  // handle table of contents
   if (settings.contentsTablePosition !== 'none') {
-    const tocData = renderedSections.filter((sectio, index) =>{
-      return index > 0;
-    }).map((thisSection) => {
+    const tocData = renderedSections.map((thisSection) => {
       return {
-        id: thisSection.metadata ? getMetaValue(thisSection.metadata, 'general', 'citeKey') : thisSection.id,
-        title: thisSection.metadata ? getMetaValue(thisSection.metadata, 'general', 'title') : thisSection.title,
-        level: thisSection.metadata ? getMetaValue(thisSection.metadata, 'general', 'generalityLevel') : 0
+        id: thisSection.metadata ? thisSection.metadata.general.citeKey.value : thisSection.id,
+        title: thisSection.metadata ? thisSection.metadata.general.title.value : thisSection.title,
+        level: thisSection.metadata ? thisSection.metadata.general.generalityLevel.value : 0
       };
     });
     const toc = {type: 'table-of-contents', contents: tocData};
@@ -182,11 +186,11 @@ export const composeRenderedSections = (sections = [], settings = {}, inputStyle
   if (settings.showCovers === 'yes') {
     renderedSections.splice(0, 0, {
       type: 'front-cover',
-      metadata: sections[0].metadata
+      metadata: document.metadata
     });
     renderedSections.push({
       type: 'back-cover',
-      metadata: sections[0].metadata
+      metadata: document.metadata
     });
   }
   return {

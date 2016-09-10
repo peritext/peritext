@@ -1,12 +1,9 @@
 import React, {PropTypes} from 'react';
-import Radium from 'radium';
-// let styles = {};
 import {bibToSchema} from './../../core/utils/microDataUtils';
 
 /**
  * dumb component and placeholder for rendering the structured representation of an entity long citation (in a glossary for example)
  */
-@Radium
 export default class StaticEntityBlock extends React.Component {
 
   /**

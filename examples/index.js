@@ -1,5 +1,5 @@
-import phdThesisExample from './phdThesis';
 import bookExample from './book';
+import thesisExample from './phdThesis';
 
-phdThesisExample();
 bookExample();
+thesisExample();

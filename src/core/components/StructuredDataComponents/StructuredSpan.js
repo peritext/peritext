@@ -1,10 +1,8 @@
 import React, {PropTypes} from 'react';
-import Radium from 'radium';
 
 /**
  * dumb generic component for rendering the structured representation of a property
  */
-@Radium
 export default class StructuredSpan extends React.Component {
 
   /**

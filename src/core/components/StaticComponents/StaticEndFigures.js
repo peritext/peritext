@@ -1,10 +1,7 @@
 import React, {PropTypes} from 'react';
-import Radium from 'radium';
 import { intlShape, defineMessages } from 'react-intl';
 
 import renderContents from './../../utils/componentsFactory';
-
-// let styles = {};
 
 const translate = defineMessages({
   endfigures: {
@@ -17,7 +14,6 @@ const translate = defineMessages({
 /**
  * dumb component for rendering the structured representation of a static section
  */
-@Radium
 class StaticEndFigures extends React.Component {
 
   /**

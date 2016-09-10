@@ -3,17 +3,15 @@
  * @module converter/sectionConverter/cleanNaiveTree
  */
 
-import {map as asyncMap} from 'async';
-
 /**
  * Resolves resource and metadata statements from a naive representation of a section
  * @param {Object} params - the cleaning params
  * @param {array} params.errors - the inherited parsing errors to pass along to the next step
  * @param {Object} params.validTree - the tree to clean
  * @param {Object} models - the models to parse the resources with
- * @param {function(error: error, results: {errors: array, validTree: Object})} callback - the possible error, a list of parsing minor errors, and the resulting tree
+ * @return {errors: array, validTree: Object} - the possible error, a list of parsing minor errors, and the resulting tree
  */
-export const cleanNaiveTree = ({errors = [], validTree}, models, callback) =>{
+export const cleanNaiveTree = ({errors = [], validTree}, models) =>{
   const contextualizers = [];
   const naiveTree = Object.assign({}, validTree);
   let metadata;
@@ -62,26 +60,43 @@ export const cleanNaiveTree = ({errors = [], validTree}, models, callback) =>{
       message: 'no metadata specified for the folder ' + naiveTree.name + ' so it was not taken into account'
     });
     const newErrors = (errors.length > 0) ? errors.reverse() : null;
-    return callback(null, {errors: newErrors, validTree: undefined});
+    return {
+      errors: newErrors,
+      validTree: undefined
+    };
   }else if (naiveTree.children) {
-    return asyncMap(naiveTree.children, function(child, cb) {
-      cleanNaiveTree({validTree: child}, models, cb);
-    }, (err, results) =>{
-      // filter valid children tree leaves
-      const children = results
-                      .filter((result)=>{
-                        return result.validTree !== undefined;
-                      })
-                      .map((result) =>{
-                        return result.validTree;
-                      });
-
-      const newErrors = results.reduce((theseErrors, result)=>{
-        return theseErrors.concat(result.errors);
-      }, errors);
-      return callback(null, {errors: newErrors, validTree: Object.assign({}, naiveTree, {metadata}, {children}, {contextualizers})});
+    naiveTree.children = naiveTree.children.map(child => {
+      return cleanNaiveTree({validTree: child}, models);
+    }).filter((result)=>{
+      return result.validTree !== undefined;
+    })
+    .map((result) =>{
+      return result.validTree;
     });
+    // return asyncMap(naiveTree.children, function(child, cb) {
+    //   cleanNaiveTree({validTree: child}, models, cb);
+    // }, (err, results) =>{
+    //   // filter valid children tree leaves
+    //   const children = results
+    //                   .filter((result)=>{
+    //                     return result.validTree !== undefined;
+    //                   })
+    //                   .map((result) =>{
+    //                     return result.validTree;
+    //                   });
+
+    //   const newErrors = results.reduce((theseErrors, result)=>{
+    //     return theseErrors.concat(result.errors);
+    //   }, errors);
+    //   return {
+    //     errors: newErrors,
+    //     validTree: Object.assign({}, naiveTree, {metadata}, {children}, {contextualizers})
+    //   };
+    // });
   }
   const newErrors = (errors.length > 0) ? errors.reverse() : null;
-  return callback(null, {errors: newErrors, validTree: Object.assign({}, naiveTree, {metadata}, {contextualizers})});
+  return {
+    errors: newErrors,
+    validTree: Object.assign({}, naiveTree, {metadata}, {contextualizers})
+  };
 };

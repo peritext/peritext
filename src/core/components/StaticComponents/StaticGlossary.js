@@ -1,8 +1,6 @@
 import React, {PropTypes} from 'react';
-import Radium from 'radium';
 import { intlShape, defineMessages } from 'react-intl';
-import StaticEntityBlock from './../../../contextualizers/glossary/StaticEntityBlock.js';
-// let styles = {};
+import StaticEntityBlock from './../../../contextualizers/glossary/StaticEntityBlock';
 
 const translate = defineMessages({
   glossary: {
@@ -15,7 +13,6 @@ const translate = defineMessages({
 /**
  * dumb component for rendering a static table of contents
  */
-@Radium
 class StaticGlossary extends React.Component {
 
   /**

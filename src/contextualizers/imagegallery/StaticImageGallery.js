@@ -1,14 +1,11 @@
 import React, {PropTypes} from 'react';
 import {StaticImageFigure} from './../../core/components';
-// let styles = {};
 
 import renderContents from './../../core/utils/componentsFactory';
-import Radium from 'radium';
 
 /**
  * dumb static-oriented component for displaying an image gallery
  */
-@Radium
 export default class StaticImageGallery extends React.Component {
   /**
    * propTypes

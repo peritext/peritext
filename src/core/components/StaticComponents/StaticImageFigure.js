@@ -1,10 +1,8 @@
 import React, {PropTypes} from 'react';
-import Radium from 'radium';
 
 /**
  * dumb component for displaying a simple structured image figure
  */
-@Radium
 export default class StaticImageFigure extends React.Component {
 
   /**

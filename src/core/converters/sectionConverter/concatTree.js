@@ -125,9 +125,9 @@ const concatCustomizers = (newTree) =>{
  * Turns a fsTree into a dumTree, that is to say a tree which presents .bib resources and .md files contents concatenated by folder (according to inner 'include' statements and then automatically)
  * @param {Object} tree - the fsTree to concatenate
  * @param {Object} params - the language-related parameters
- * @param {function(error: error, newTree: object)} callback - error and the concatenated tree
+ * @return {errors: Array, dumbTree: Object}  - error and the concatenated tree
  */
-export const concatTree = (tree, params, callback) =>{
+export const concatTree = (tree, params) =>{
   const newTree = Object.assign({}, tree);
   // concat .bib res files
   const resources = newTree.children
@@ -180,11 +180,9 @@ export const concatTree = (tree, params, callback) =>{
       newTree.customizers = childrenCustomizers;
     }
     // recursively repeat dat stuff with children dirs
-    asyncMap(childrenDirs, (dir, cback) =>{
-      concatTree(dir, params, cback);
-    }, (error, populatedDirs) =>{
-      newTree.children = populatedDirs;
-      callback(error, newTree);
+    newTree.children = childrenDirs.map(dir => {
+      return concatTree(dir, params).dumbTree;
     });
   });
+  return {dumbTree: newTree, errors: []};
 };

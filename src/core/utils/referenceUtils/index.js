@@ -35,16 +35,18 @@ const isBibliographical = (bibType) =>{
 /**
  * Filter and order a list of resources against bibliography settings
  * @param {array} sections - the sections to handle for building the list
+ * @param {Object} document - the reference to the overall document
  * @param {Object} settings - the rendering settings, among which are bibliography-making related settings
  * @return {array} references - the resulting list
  */
-export const computeReferences = (sections, settings) =>{
+export const computeReferences = (sections, document, settings) =>{
   if (settings.referenceScope === 'document') {
-    const references = sections.reduce((refs, section)=> {
-      return refs.concat(section.resources.filter((resource)=> {
-        return resource.inheritedVerticallyFrom === undefined;
-      }));
-    }, []);
+    const references = [];
+    for (const key in document.resources) {
+      if (document.resources[key]) {
+        references.push(document.resources[key]);
+      }
+    }
 
     // handle filters
     const filters = (settings.referenceFilters || []) && settings.referenceFilters.split(' ');
@@ -59,7 +61,7 @@ export const computeReferences = (sections, settings) =>{
           return isBibliographical(ref.bibType);
         });
       // todo : document filters
-      // todo : design new filters
+      // todo : design other filters
       default:
         return outputReferences;
       }

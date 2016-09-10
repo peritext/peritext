@@ -2,12 +2,9 @@
  * This module organizes relations between sections (order, inheritance, generality level)
  * @module converter/sectionConverter/organizeTree
  */
-import {map as asyncMap, waterfall} from 'async';
-
-import {getMetaValue, deleteMeta} from './../../utils/sectionUtils';
 
 const formatMetadata = (metadataObj) =>{
-  const output = [];
+  const output = {};
   let value;
   let keydetail;
   let domain;
@@ -17,28 +14,29 @@ const formatMetadata = (metadataObj) =>{
       keydetail = key.split('_');
       domain = (keydetail.length > 1) ? keydetail.shift() : 'general';
       key = keydetail.join('_');
-      output.push({
-        domain,
-        key,
+      if (output[domain] === undefined) {
+        output[domain] = {};
+      }
+      output[domain][key] = {
         value
-      });
+      };
     }
   }
   return output;
 };
 
-const flattenSections = (tree, callback) =>{
-
+const flattenSections = (tree) =>{
   if (tree.children) {
-    asyncMap(tree.children, flattenSections, (err, children) =>{
-      const newTree = Object.assign({}, tree);
-      const newChildren = children.map((child)=>{
-        return Object.assign({}, child[0], {parent: tree.metadata.citeKey});
-      });
-
-      return callback(null, [newTree, ...newChildren]);
+    const newChildren = tree.children.map(child=>{
+      return Object.assign({}, child, {parent: tree.metadata.citeKey});
     });
-  }else return callback(null, tree);
+    const newTree = Object.assign({}, tree);
+    return [
+      newTree,
+      ...newChildren
+    ];
+  }
+  return tree;
 };
 
 
@@ -61,39 +59,37 @@ const formatSection = (section) =>{
   };
 };
 
-const formatSections = (sections, callback) =>{
-  const formatted = sections.map(formatSection);
-  return callback(null, formatted);
+const formatSections = (sections) =>{
+  const formattedSections = sections.map(section => {
+    return formatSection(section);
+  });
+  return formattedSections;
 };
 
-const makeRelations = (inputSections, callback) =>{
+const makeRelations = (inputSections) =>{
   // find parents and predecessors
   const sections = inputSections.map((inputSection) =>{
     const section = Object.assign({}, inputSection);
-    const parent = getMetaValue(section.metadata, 'general', 'parent');
-    const after = getMetaValue(section.metadata, 'general', 'after');
-    if (parent) {
-      section.parent = parent;
-      section.metadata = deleteMeta(section.metadata, 'general', 'parent');
+    if (section.parent && section.metadata.general.parent === undefined) {
+      section.metadata.general.parent = {value: section.parent};
     }
-    if (after) {
-      section.after = after;
-      section.metadata = deleteMeta(section.metadata, 'general', 'after');
+    delete section.parent;
+    if (section.after && section.metadata.general.after === undefined) {
+      section.metadata.general.after = {value: section.after};
     }
+    delete section.after;
     return section;
   });
   // order sections
   for (let index = sections.length - 1; index >= 0; index--) {
     const section = sections[index];
-    if (section.after) {
+    if (section.metadata.general.after) {
       let indexAfter;
-      sections.some((sec, id) =>{
-        const citeKey = sec.metadata.find((meta)=>{
-          return meta.domain === 'general' && meta.key === 'citeKey';
-        }).value;
+      sections.some((section2, thatIndex) =>{
+        const citeKey = section2.metadata.general.citeKey.value;
 
-        if (section.after === citeKey) {
-          indexAfter = id;
+        if (section.metadata.general.after.value === citeKey) {
+          indexAfter = thatIndex;
           return true;
         }
       });
@@ -101,30 +97,40 @@ const makeRelations = (inputSections, callback) =>{
       sections.splice(index + 1, 1);
     }
   }
-
-  callback(null, sections);
+  const summary = sections.map(section => section.metadata.general.citeKey.value);
+  const orderedSections = sections.map((section, index) => {
+    if (index > 0 ) {
+      section.metadata.general.after = {
+        value: sections[index - 1].metadata.general.citeKey.value
+      };
+    } else {
+      delete section.metadata.general.after;
+    }
+    return section;
+  });
+  const outputSections = orderedSections.reduce((output, section) => {
+    return Object.assign(output, {[section.metadata.general.citeKey.value]: section});
+  }, {});
+  return {outputSections, summary};
 };
 
 /**
- * Organizes relations betwwen sections
+ * Organizes relations between sections
  * @param {Object} params - the organization params
  * @param {array} params.errors - the inherited parsing errors to pass along to next step
  * @param {Object} params.validTree - the tree to process
- * @param {function(error: error, results: {errors: array, sections: array})} callback - an updated list of parsing errors and updated sections
+ * @return {error: error, results: {errors: array, sections: array} - an updated list of parsing errors and updated sections
  */
-export const organizeTree = ({errors, validTree}, callback) => {
-
-  waterfall([
-    function(cb) {
-      flattenSections(validTree, cb);
+export const organizeTree = ({errors = [], validTree}) => {
+  const flatSections = flattenSections(validTree);
+  // console.log(flatSections);
+  const formattedSections = formatSections(flatSections);
+  const {outputSections: sections, summary} = makeRelations(formattedSections);
+  return {
+    document: {
+      sections,
+      summary
     },
-    function(sections, cb) {
-      formatSections(sections, cb);
-    },
-    function(sections, cb) {
-      makeRelations(sections, cb);
-    },
-  ], function(err, sections) {
-    callback(err, {sections, errors});
-  });
+    errors
+  };
 };

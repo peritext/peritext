@@ -1,43 +1,24 @@
 import React, {PropTypes} from 'react';
-// let styles = {};
-import Radium from 'radium';
 
 import {
   StructuredPerson
-} from './../index.js';
+} from './../index';
 
 /**
  * dumb component for back cover page of a static publication of document
  */
-@Radium
 export default class StaticBackCover extends React.Component {
 
   /**
    * propTypes
-   * @property {array} metadata - a section metadata to parse in order to fill cover template
+   * @property {Object} metadata - a section metadata to parse in order to fill cover template
    */
   static propTypes = {
-    metadata: PropTypes.array
+    metadata: PropTypes.object
   };
 
   static defaultProps = {
   };
-
-  /**
-   * Util for returning the value of a "general" type metadata
-   * @param {array} list - the list of metadata
-   * @param {string} key - the key of the metadata prop
-   * @return {string} value
-   */
-  getGeneralProp(list, key) {
-    const obj = list.find((meta) => {
-      return meta.domain === 'general' && meta.key === key;
-    });
-    if (obj) {
-      return obj.value;
-    }
-    return undefined;
-  }
 
   /**
    * render
@@ -49,14 +30,14 @@ export default class StaticBackCover extends React.Component {
         id="peritext-static-back-cover"
         className="peritext-static-back-cover"
       >
-        <h2>{this.getGeneralProp(this.props.metadata, 'title')}</h2>
+        <h2>{(this.props.metadata.general.title && this.props.metadata.general.title.value)}</h2>
         <h3 className="peritext-static-authors">
-          {this.getGeneralProp(this.props.metadata, 'author').map((person) =>{
+          {(this.props.metadata.general.author.value).map((person) =>{
             return <StructuredPerson key={person.citeKey} resource={person}/>;
           })}
         </h3>
         <p>
-          {this.getGeneralProp(this.props.metadata, 'abstract')}
+          {(this.props.metadata.general.abstract && this.props.metadata.general.abstract.value)}
         </p>
       </section>
     );

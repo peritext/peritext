@@ -4,18 +4,18 @@
  */
 
 import {waterfall, map as asyncMap} from 'async';
+
 import {concatTree} from './concatTree';
 import {parseTreeResources} from './parseTreeResources';
 import {organizeTree} from './organizeTree';
 import {propagateData} from './propagateData';
 import {cleanNaiveTree} from './cleanNaiveTree';
-import {validateResources} from './../../validators/sectionValidator';
 import {getResourceModel, serializePropAgainstType} from './../../utils/modelUtils';
-import {getMetaValue} from './../../utils/sectionUtils';
 import {resolveSectionAgainstModels} from './../../resolvers/resolveSectionAgainstModels';
+import {resolveResourcesAgainstModels} from './../../resolvers/resolveResourcesAgainstModels';
 import {resolveBindings} from './../../resolvers/resolveContextualizations';
 import {markdownToJsAbstraction} from './../markdownConverter';
-import {serializeBibTexObject} from './../../converters/bibTexConverter';
+import {serializeBibTexObject, parseBibNestedValues} from './../../converters/bibTexConverter';
 
 const concatSection = ({section, models}, callback) =>{
   const genuineMeta = section.metadata.filter((metadata)=>{
@@ -63,7 +63,6 @@ const concatSection = ({section, models}, callback) =>{
     return resource;
   });
 
-
   const contextualizers = section.contextualizers.filter((contextualizer)=>{
     return contextualizer && !contextualizer.describedInline;
   }).map((contextualizer)=>{
@@ -100,7 +99,7 @@ const concatSection = ({section, models}, callback) =>{
       markdownContent: section.markdownContents,
       bibResources: bibStr,
       customizers: section.customizers,
-      citeKey: getMetaValue(section.metadata, 'general', 'citeKey'),
+      citeKey: section.metadata.general.citeKey.value,
       root
     });
   });
@@ -183,88 +182,71 @@ export const serializeSectionList = ({sectionList, models, basePath}, callback) 
  * @param {Object} params.parameters - language-related parameters
  * @param {Object} params.parent - a possible existing parent section - to use for inheritance phases - suitable for partial document parsing/re-rendering use cases (like with an editor app)
  * @param {Object} params.models - models to use for parsing the data
- * @param {function(error:error, sections: array)} callback - provides an array containing the resources
+ * @param {function(error:error, results: Object)} callback - RCC representation of the contents and parsing errors list for UI
  */
 export const parseSection = ({tree, parameters, parent, models}, callback)=> {
-  waterfall([
-    // concat markdown, resources, styles, templates, components, and resolve includes, producing a clean 'dumb tree'
-    (cb) =>{
-      //  console.log(tree);
-      concatTree(tree, parameters, cb);
-    },
-      // parse bibtext to produce resources and metadata props, producing a 'naive tree' of sections
-    (dumbTree, cb) =>{
-      parseTreeResources(dumbTree, cb);
-    },
-    // validate and resolve metadata against their models for all sections
-    (naiveTree, cb) =>{
-      cleanNaiveTree({validTree: naiveTree}, models, cb);
-    },
-    // format objects, normalize metadata, and resolve organization statements
-    ({errors, validTree}, cb) =>{
-      organizeTree({errors, validTree}, cb);
-    },
-    // propagate resources, metadata and customizers vertically (from parents to children sections), metadata lateraly (from metadata models propagation data)
-    ({errors, sections}, cb) =>{
-      propagateData({errors, sections, models, parent}, cb);
-    },
-    // validate each resource against their models to produce errors and warnings from parsing
-    ({errors, sections}, cb) =>{
-
-      asyncMap(sections, (section, cback) =>{
-        validateResources(section, models, cback);
-      }, (err, results) =>{
-        const newSections = results.map((result)=>{
-          return result.section;
-        });
-        const newErrors = results.reduce((total, result) =>{
-          return errors.concat(result.errors);
-        }, errors);
-        cb(err, {errors: newErrors, sections: newSections});
-      });
-    },
-    // resolve section resources and metadata against their models
-    ({errors, sections}, cb) =>{
-      asyncMap(sections, (section, cback) =>{
-        resolveSectionAgainstModels(section, models, cback);
-      }, (err, results) =>{
-        const newSections = results.map((result)=>{
-          return result.section;
-        });
-        const newErrors = results.reduce((total, result) =>{
-          return errors.concat(result.errors);
-        }, errors);
-        cb(err, {errors: newErrors, sections: newSections});
-      });
-    },
-    // parse markdown contents and organize them as blocks lists, and parse+resolve contextualization objects
-    ({errors, sections}, cb) =>{
-      asyncMap(sections, (section, cback) =>{
-        markdownToJsAbstraction(section, parameters, cback);
-      }, (err, results) =>{
-        const newSections = results.map((result)=>{
-          return result.section;
-        });
-        const newErrors = results.reduce((total, result) =>{
-          return errors.concat(result.errors);
-        }, errors);
-        cb(err, {errors: newErrors, sections: newSections});
-      });
-    },
-    // resolve contextualizers statements with their models
-    ({errors, sections}, cb) =>{
-      asyncMap(sections, (section, cback) =>{
-        resolveBindings({section, models}, cback);
-      }, (err, results) =>{
-        const newSections = results.map((result)=>{
-          return result.section;
-        });
-        const newErrors = results.reduce((total, result) =>{
-          return errors.concat(result.errors);
-        }, errors);
-        cb(err, {errors: newErrors, sections: newSections});
-      });
+  // concat markdown, resources, styles, templates, components, and resolve includes, producing a clean 'dumb tree'
+  const {dumbTree, errors: dumbTreeErrors} = concatTree(tree, parameters);
+  // parse bibtext to produce resources and metadata props, producing a 'naive tree' of sections
+  const {naiveTree, errors: naiveTreeErrors} = parseTreeResources(dumbTree);
+  // validate and resolve metadata against their models for all sections
+  const {validTree, errors: validTreeErrors} = cleanNaiveTree({validTree: naiveTree}, models);
+  // bootstrap errors list
+  let errors = dumbTreeErrors.concat(naiveTreeErrors).concat(validTreeErrors);
+  // format objects, normalize metadata, and resolve organization statements
+  const {document: organizedDocument, errors: documentErrors} = organizeTree({errors, validTree});
+  // propagate resources, metadata and customizers vertically (from parents to children sections), metadata lateraly (from metadata models propagation data)
+  const {document: richDocument, errors: richErrors} = propagateData({errors: documentErrors, document: organizedDocument, models, parent});
+  // resolve data against their models
+  const {newResources, newErrors: resErrors} = resolveResourcesAgainstModels(richDocument.resources, models);
+  richDocument.resources = newResources;
+  errors = errors.concat(richErrors).concat(resErrors);
+  // resolve sections against models
+  for (const citeKey in richDocument.sections) {
+    if (richDocument.sections[citeKey]) {
+      const section = richDocument.sections[citeKey];
+      const { newErrors: sectionErrors, newSection } = resolveSectionAgainstModels(section, models);
+      errors = errors.concat(sectionErrors);
+      delete newSection.resources;
+      richDocument.sections[citeKey] = newSection;
     }
-    // all done - return a documentTree to use as data state in the app
-  ], callback);
+  }
+  // resolve contextualizers nested values
+  for (const citeKey in richDocument.contextualizers) {
+    if (richDocument.contextualizers[citeKey]) {
+      richDocument.contextualizers[citeKey] = parseBibNestedValues(richDocument.contextualizers[citeKey]);
+    }
+  }
+  // parse markdown contents and organize them as blocks lists, and parse+resolve contextualization objects
+  richDocument.contextualizations = {};
+  for (const citeKey in richDocument.sections) {
+    if (richDocument.sections[citeKey]) {
+      const {
+        errors: sectionErrors,
+        section,
+        contextualizations,
+        contextualizers
+      } = markdownToJsAbstraction(richDocument.sections[citeKey], parameters);
+      errors = errors.concat(sectionErrors);
+      richDocument.sections[citeKey] = section;
+      richDocument.contextualizers = Object.assign(richDocument.contextualizers, contextualizers);
+      richDocument.contextualizations = Object.assign(richDocument.contextualizations, contextualizations);
+    }
+  }
+  // resolve contextualizers statements against their models
+  const {
+    errors: globalErrors,
+    document: newDocument
+  } = resolveBindings({document: richDocument, models});
+  const document = newDocument;
+  errors = errors.concat(globalErrors).filter(error => error !== null);
+  // update summary and document metadata with root
+  document.metadata = Object.assign({}, document.sections[document.summary[0]].metadata);
+  document.customizers = document.sections[document.summary[0]].customizers;
+  document.forewords = document.sections[document.summary[0]];
+  document.summary = document.summary.slice(1);
+  callback(null, {
+    errors,
+    document
+  });
 };

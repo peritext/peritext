@@ -1,5 +1,4 @@
 import React, {PropTypes} from 'react';
-import Radium from 'radium';
 
 import renderContents from './../../utils/componentsFactory';
 
@@ -7,7 +6,6 @@ import renderContents from './../../utils/componentsFactory';
 /**
  * dumb component for rendering the structured representation of a static note
  */
-@Radium
 export default class StaticNote extends React.Component {
 
   /**
@@ -39,7 +37,7 @@ export default class StaticNote extends React.Component {
         >
           {this.props.note.noteNumber}
         </a>
-        {renderContents(this.props.note.contents)}
+        {renderContents(this.props.note.child)}
       </span>
     );
   }

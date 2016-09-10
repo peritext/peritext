@@ -16,7 +16,6 @@ import {
   StructuredPublisher,
   StructuredCite
 } from './../core/components/';
-import Radium from 'radium';
 
 /**
  * Renders additionnal citation information, such as pages mentions, translations, etc.
@@ -24,7 +23,7 @@ import Radium from 'radium';
  * @return {ReactElement} markup
  */
 const renderAdditionnal = (propsObj) =>{
-  const details = propsObj.contextualization.contextualizer;
+  const details = propsObj.contextualization;
   if (!details) {
     return '';
   }
@@ -68,7 +67,6 @@ const renderAdditionnal = (propsObj) =>{
 /**
  * Dumb component for rendering a iso690fr block citation
  */
-@Radium
 export class BlockCitation extends BlockCitationModel {
   /**
    * constructor
@@ -227,7 +225,6 @@ export class BlockCitation extends BlockCitationModel {
 /**
  * Dumb component for rendering a iso690fr inline citation
  */
-@Radium
 export class InlineCitation extends InlineCitationModel {
   /**
    * constructor

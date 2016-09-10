@@ -1,8 +1,5 @@
 import React, {PropTypes} from 'react';
-import Radium from 'radium';
 import { intlShape, defineMessages } from 'react-intl';
-
-// let styles = {};
 
 const translate = defineMessages({
   tableofcontents: {
@@ -15,7 +12,6 @@ const translate = defineMessages({
 /**
  * dumb component for rendering a static table of contents
  */
-@Radium
 class StaticTableOfContents extends React.Component {
 
   /**

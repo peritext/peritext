@@ -3,9 +3,15 @@
  * @module controllers/contentsController
  */
 
-import {waterfall, map as asyncMap} from 'async';
-import {parseSection, serializeSectionList} from './../../converters/sectionConverter';
-import {diff} from 'deep-diff';
+import {
+  waterfall,
+  map as asyncMap
+} from 'async';
+import {
+  parseSection,
+  serializeSectionList
+} from './../../converters/sectionConverter';
+import { diff } from 'deep-diff';
 import * as filesystem from './../../../connectors/filesystem';
 let connector;
 let connectorName;
@@ -22,7 +28,7 @@ const updateConnector = (params) => {
     if ( connectorName === 'filesystem' ) {
       connector = filesystem;
     }
-    // this method is better but does not work when integrating the lib with webpack
+    // this method is better but does not work when integrating the lib with webpack (to investigate)
     // connector = require('./../../../connectors/' + params.connector);
   }
 };
@@ -43,7 +49,10 @@ const applyDifference = (difference, params, connect, callback) => {
     break;
   // delete element
   case 'D':
-    connect.deleteFromPath({path: difference.lhs.path, params}, callback);
+    connect.deleteFromPath({
+      path: difference.lhs.path,
+      params
+    }, callback);
     break;
   // edit element
   case 'E':
@@ -59,14 +68,26 @@ const applyDifference = (difference, params, connect, callback) => {
       item = difference.item.rhs;
       waterfall([
         // create root
-        function(cb) {
-          connect.createFromPath({path: item.path, params, type: item.type, overwrite: true, stringContents: (item.stringContents || '')}, cb);
+        (cb)=> {
+          connect.createFromPath({
+            path: item.path,
+            params,
+            type: item.type,
+            overwrite: true,
+            stringContents: (item.stringContents || '')
+          }, cb);
         },
         // create children
-        function(cb) {
+        (cb)=> {
           if (item.children) {
-            asyncMap(item.children, function(child, cb2) {
-              connect.createFromPath({path: child.path, params, type: child.type, overwrite: true, stringContents: (child.stringContents || '')}, cb2);
+            asyncMap(item.children, (child, cb2)=> {
+              connect.createFromPath({
+                path: child.path,
+                params,
+                type: child.type,
+                overwrite: true,
+                stringContents: (child.stringContents || '')
+              }, cb2);
             }, cb);
           } else cb();
         }
@@ -75,19 +96,26 @@ const applyDifference = (difference, params, connect, callback) => {
 
     case 'D':
       item = difference.item.lhs;
-      connect.deleteFromPath({path: item.path, params}, callback);
+      connect.deleteFromPath({
+        path: item.path,
+        params
+      }, callback);
       break;
     case 'E':
       item = difference.item.rhs;
       waterfall([
         // create root
-        function(cb) {
-          connect.updateFromPath({path: item.path, params, stringContents: (item.stringContents || '')}, cb);
+        (cb)=> {
+          connect.updateFromPath({
+            path: item.path,
+            params,
+            stringContents: (item.stringContents || '')
+          }, cb);
         },
         // create children
-        function(cb) {
+        (cb)=> {
           if (item.children) {
-            asyncMap(item.children, function(child, cb2) {
+            asyncMap(item.children, (child, cb2)=> {
               connect.updateFromPath({path: child.path, params, stringContents: (child.stringContents || '')}, cb2);
             }, cb);
           } else cb();
@@ -115,16 +143,20 @@ const applyDifference = (difference, params, connect, callback) => {
 export const updateFromSource = (params, models, parameters, callback) => {
   updateConnector(params);
   waterfall([
-    function(cb) {
-      connector.readFromPath({params, path: [], depth: true, parseFiles: true}, function(err, results) {
+    (cb)=> {
+      connector.readFromPath({
+        params, path: [],
+        depth: true,
+        parseFiles: true
+      }, (err, results)=> {
         cb(err, results);
       });
     },
-    function(tree, cb) {
+    (tree, cb)=> {
       parseSection({tree, models, parameters}, cb);
     }
   ],
-  function(err, results) {
+  (err, results)=> {
     callback(err, results);
   });
 };
@@ -141,11 +173,15 @@ export const updateFromSource = (params, models, parameters, callback) => {
 */
 export const updateToSource = (params, sections, models, oldFsTree, callback) => {
   updateConnector(params);
-  serializeSectionList({sectionList: sections, models, basePath: params.basePath}, function(err, newFsTree) {
+  serializeSectionList({
+    sectionList: sections,
+    models,
+    basePath: params.basePath
+  }, (err, newFsTree)=> {
     const differences = diff(oldFsTree, newFsTree);
-    asyncMap(differences, function(difference, cb) {
+    asyncMap(differences, (difference, cb)=> {
       applyDifference(difference, params, connector, cb);
-    }, function(errors, res) {
+    }, (errors, res)=> {
       callback(errors, sections);
     });
   });

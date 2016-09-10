@@ -2,7 +2,7 @@
  * Set of citation style-specific components
  * @module referencers
  */
-import * as iso690frLib from './iso690fr.js';
+import * as iso690frLib from './iso690fr';
 
 /**
  * ISO 690 style citation - formatted in french language

@@ -1,21 +1,18 @@
 import React, {PropTypes} from 'react';
-import Radium from 'radium';
 
-import {getMetaValue} from './../../utils/sectionUtils';
 import {bibToSchema} from './../../utils/microDataUtils';
 
 import {
   StructuredMetadataPlaceholder,
   StaticEndNotes,
   StaticEndFigures
-} from './../index.js';
+} from './../index';
 
 import renderContents from './../../utils/componentsFactory';
 
 /**
  * dumb component for rendering the structured representation of a static section
  */
-@Radium
 export default class StaticSection extends React.Component {
 
   /**
@@ -36,12 +33,13 @@ export default class StaticSection extends React.Component {
    * @return {ReactElement} markup
    */
   render() {
-    const bibType = bibToSchema(getMetaValue(this.props.section.metadata, 'general', 'bibType'));
-    const citeKey = getMetaValue(this.props.section.metadata, 'general', 'citeKey');
+    const bibType = bibToSchema(this.props.section.metadata.general.bibType.value);
+    const citeKey = this.props.section.metadata.general.citeKey.value;
+    const generalityLevel = this.props.section.metadata.general.generalityLevel.value;
     return (
       <section
-        className={'peritext-static-section-container peritext-static-section-level-' + getMetaValue(this.props.section.metadata, 'general', 'generalityLevel')}
-        id={getMetaValue(this.props.section.metadata, 'general', 'citeKey')}
+        className={'peritext-static-section-container peritext-static-section-level-' + generalityLevel}
+        id={citeKey}
         itemScope
         itemType={'http://schema.org/' + bibType}
         typeof={bibType}

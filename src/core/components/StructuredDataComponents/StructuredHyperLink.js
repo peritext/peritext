@@ -1,13 +1,10 @@
 import React, {PropTypes} from 'react';
-import Radium from 'radium';
 
-// let styles = {};
 import renderContents from './../../utils/componentsFactory';
 
 /**
  * dumb component for displaying a structured simple hyperlink <a>
  */
-@Radium
 export default class StructuredHyperLink extends React.Component {
 
   /**

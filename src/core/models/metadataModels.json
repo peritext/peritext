@@ -35,6 +35,20 @@
       "headTemplate" : "",
       "propagatesTo" : []
     },
+    "after" : {
+      "description" : "The citeKey of the section preceding this one.",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "propagatesTo" : []
+    },
+    "parent" : {
+      "description" : "The citeKey of the section to which this one belongs.",
+      "valueType" : "string",
+      "unique" : true,
+      "headTemplate" : "",
+      "propagatesTo" : []
+    },
     "abstract" : {
       "description" : "The abstract of the section",
       "valueType" : "string",

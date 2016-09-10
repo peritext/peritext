@@ -91,6 +91,7 @@ export class InlineCitationModel extends React.Component {
    * @return {ReactElement} markup
    */
   render() {
+    // console.log(this.props);
     return (<span
       id={this.props.contextualization.citeKey}
       className="peritext-inline-citation"
