@@ -6,6 +6,7 @@ import {
   StaticEndNotes,
   StaticEndFigures,
   StaticFrontCover,
+  StaticForewords,
   StaticGlossary,
   StaticReferencesList,
   StaticSection,
@@ -77,6 +78,9 @@ class StaticDocument extends React.Component {
               return (section.contents.length) ? <StaticGlossary id={section.id} key={index} elements={section.contents} /> : '';
             case 'contents':
               return <StaticSection key={index} section={section} settings={this.props.settings} />;
+            case 'forewords':
+              return <StaticForewords key={index} section={section} settings={this.props.settings} />;
+              break;
             default:
               break;
             }

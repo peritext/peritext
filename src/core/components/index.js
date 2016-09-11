@@ -8,6 +8,7 @@ export { default as StaticDocument } from './StaticComponents/StaticDocument.js'
 export { default as StaticEndNotes } from './StaticComponents/StaticEndNotes.js';
 export { default as StaticEndFigures } from './StaticComponents/StaticEndFigures.js';
 export { default as StaticFootnote } from './StaticComponents/StaticFootnote.js';
+export { default as StaticForewords } from './StaticComponents/StaticForewords.js';
 export { default as StaticFrontCover } from './StaticComponents/StaticFrontCover.js';
 export { default as StaticGlossary } from './StaticComponents/StaticGlossary.js';
 export { default as StaticImageFigure } from './StaticComponents/StaticImageFigure.js';

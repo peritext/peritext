@@ -7,6 +7,7 @@ import * as assetsC from './core/controllers/assetsController';
 import * as contentsC from './core/controllers/contentsController';
 import * as models from './core/models';
 import * as parameters from './config/defaultParameters';
+import * as getters from './core/getters';
 
 /**
  * Exposes assets communication methods
@@ -34,3 +35,13 @@ export const defaultParameters = parameters;
  * @property {function} exportSectionToPdf
  */
 export {exportSectionToPdf} from './exporters/pdfExporter';
+
+export const packSection = getters.packSection;
+export const getSection = getters.getSection;
+export const getForewords = getters.getForewords;
+export const getTableOfSections = getters.getTableOfSections;
+export const getTableOfFigures = getters.getTableOfFigures;
+export const getResourceContextualizations = getters.getResourceContextualizations;
+export const getContextualizerContextualizations = getters.getContextualizerContextualizations;
+export const getGlossary = getters.getGlossary;
+

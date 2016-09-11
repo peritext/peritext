@@ -3,7 +3,15 @@
  * @module renderers/sharedStaticUtils
  */
 
-import {computeReferences} from './../../core/utils/referenceUtils';
+import {
+  computeReferences
+} from './../../core/utils/referenceUtils';
+import {
+  getGlossary,
+  getForewords,
+  getTableOfContents,
+  getTableOfFigures,
+} from './../../core/getters';
 
 /**
  * Resolves a sections' list against rendering settings by modifying contents, adding output-related pseudo-sections, and updating css styles
@@ -74,50 +82,7 @@ export const composeRenderedSections = (sections = [], document, settings = {}, 
   // handle glossary
   if (settings.glossaryPosition !== 'none') {
     // prepare glossary
-    const glossaryPointers = sections.reduce((results, thatSection)=>{
-      const sectionCitekey = thatSection.metadata.general.citeKey.value;
-      return results.concat(
-        thatSection.contextualizations
-        .filter((thatContextualization)=> {
-          return document.contextualizations[thatContextualization].contextualizerType === 'glossary';
-        })
-        .reduce((localResults, contextualizationKey)=> {
-          const contextualization = document.contextualizations[contextualizationKey];
-          return localResults.concat({
-            mentionId: '#peritext-content-entity-inline-' + sectionCitekey + '-' + contextualization.citeKey,
-            entity: document.resources[contextualization.resources[0]].citeKey,
-            alias: document.contextualizers[contextualization.contextualizer].alias
-          });
-        }, []));
-    }, []);
-
-    const entitiesTypes = ['person', 'place', 'subject', 'concept', 'organization', 'technology', 'artefact'];
-
-    const glossaryResources = [];
-    for (const refKey in document.resources) {
-      if (document.resources[refKey]) {
-        const thatResource = document.resources[refKey];
-        if (thatResource.inheritedVerticallyFrom === undefined
-                  && entitiesTypes.indexOf(thatResource.bibType) > -1) {
-          glossaryResources.push(thatResource);
-        }
-      }
-    }
-
-    const glossaryData = glossaryResources.map((inputGlossaryEntry)=> {
-      const glossaryEntry = Object.assign({}, inputGlossaryEntry);
-      glossaryEntry.aliases = glossaryPointers.filter((pointer)=> {
-        return pointer.entity === glossaryEntry.citeKey;
-      }).reduce((aliases, entry)=> {
-        const alias = entry.alias || 'no-alias';
-        aliases[alias] = aliases[alias] ? aliases[alias].concat(entry) : [entry];
-        return aliases;
-      }, {});
-      return glossaryEntry;
-    }).sort((entry1, entry2)=> {
-      return (entry1.name || entry1.lastname) > (entry2.name || entry2.lastname) ? 1 : -1;
-    });
-
+    const glossaryData = getGlossary(document);
     const glossary = {
       type: 'glossary',
       contents: glossaryData,
@@ -166,7 +131,7 @@ export const composeRenderedSections = (sections = [], document, settings = {}, 
     }
   }
 
-  // handle table of contents
+  // handle print table of contents
   if (settings.contentsTablePosition !== 'none') {
     const tocData = renderedSections.map((thisSection) => {
       return {
@@ -182,6 +147,8 @@ export const composeRenderedSections = (sections = [], document, settings = {}, 
       renderedSections.push(toc);
     }
   }
+  // handle forewords
+  renderedSections.splice(0, 0, Object.assign({}, document.forewords, {type: 'forewords'}));
   // handle cover
   if (settings.showCovers === 'yes') {
     renderedSections.splice(0, 0, {

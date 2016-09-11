@@ -49,7 +49,7 @@ export const contextualizeInlineStatic = (inputDocument, inputContextualization,
     };
     number = contextualization.figureNumber;
     if (settings.figuresPosition === 'inline') {
-      // insert block
+      // insert contextualization block (could be refactored as an util)
       section.contents = [
         ...section.contents.slice(0, nodeBlockIndex),
         figure,

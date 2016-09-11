@@ -11,12 +11,12 @@ const assetsParams = {
   basePath: base_assets_path
 };
 
-describe('assetsController:getAssetUri', function(){
+describe('assetsController:getAssetUri', ()=>{
 
-  it('should return the proper assets uri for fs connector', function(done) {
+  it('should return the proper assets uri for fs connector', (done)=>{
     const test = 'img.jpg';
     const expected = resolve(base_assets_path + '/' + test);
-    lib.getAssetUri(test, assetsParams, function(err, path) {
+    lib.getAssetUri(test, assetsParams, (err, path)=>{
       expect(err).to.be.null;
       expect(path).to.equal(expected);
       done();
