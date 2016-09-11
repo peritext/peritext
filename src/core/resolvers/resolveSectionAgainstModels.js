@@ -2,8 +2,8 @@
  * Resolver dedicated to resolve sections against metadata models
  * @module resolvers/resolveSectionAgainstModels
  */
-import {resolvePropAgainstType} from './../../utils/modelUtils';
-import {serializeHtmlMeta} from './../../resolvers/htmlMetaTemplateSerializer';
+import {resolvePropAgainstType} from '../utils/modelUtils';
+import {serializeHtmlMeta} from '../resolvers/htmlMetaTemplateSerializer';
 
 /**
  * Consumes and normalize the metadata of a section

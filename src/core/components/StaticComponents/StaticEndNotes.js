@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-import {StaticNoteContent} from './../index';
+import {StaticNoteContent} from '../index';
 import { intlShape, defineMessages } from 'react-intl';
 
 

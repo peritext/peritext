@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 
-import {bibToSchema} from './../../utils/microDataUtils';
+import {bibToSchema} from '../../utils/microDataUtils';
 
 import {
   StructuredMetadataPlaceholder,

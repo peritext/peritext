@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import { intlShape, defineMessages } from 'react-intl';
 
-import renderContents from './../../utils/componentsFactory';
+import renderContents from '../../utils/componentsFactory';
 
 const translate = defineMessages({
   endfigures: {

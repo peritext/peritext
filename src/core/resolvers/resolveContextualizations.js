@@ -3,8 +3,8 @@
  * @module resolvers/resolveContextualizations
  */
 
-import {getResourceModel, getContextualizerModel, resolvePropAgainstType} from './../../utils/modelUtils';
-import * as contextualizerLibs from './../../../contextualizers';
+import {getResourceModel, getContextualizerModel, resolvePropAgainstType} from '../utils/modelUtils';
+import * as contextualizerLibs from '../../contextualizers';
 /**
  * Transforms 1, 2, 3 ordinally used number into a, b, c ordinally used letters
  * @param {number} num - the number to transform

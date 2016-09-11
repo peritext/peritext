@@ -13,8 +13,8 @@ import {getResourceModel, serializePropAgainstType} from './../../utils/modelUti
 import {resolveSectionAgainstModels} from './../../resolvers/resolveSectionAgainstModels';
 import {resolveResourcesAgainstModels} from './../../resolvers/resolveResourcesAgainstModels';
 import {resolveBindings} from './../../resolvers/resolveContextualizations';
-import {markdownToJsAbstraction} from './../markdownConverter';
-import {serializeBibTexObject, parseBibNestedValues} from './../../converters/bibTexConverter';
+import {markdownToJsAbstraction} from '../markdownConverter';
+import {serializeBibTexObject, parseBibNestedValues} from '../bibTexConverter';
 
 const sectionListToFsTree = (inputSectionList, basePath) =>{
   const sectionList = inputSectionList.map((section)=>{

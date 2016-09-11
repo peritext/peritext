@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 
-import renderContents from './../../utils/componentsFactory';
+import renderContents from '../../utils/componentsFactory';
 
 
 /**

@@ -8,7 +8,7 @@ import {v4} from 'uuid';
 import {html2json} from 'html2json';
 import {XmlEntities} from 'html-entities';
 const entities = new XmlEntities();
-import {parseBibContextualization} from './../bibTexConverter';
+import {parseBibContextualization} from './bibTexConverter';
 
 // basic marked parser settings
 marked.setOptions({

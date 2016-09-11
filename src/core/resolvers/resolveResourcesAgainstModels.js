@@ -1,5 +1,5 @@
 
-import {getResourceModel, resolvePropAgainstType} from './../../utils/modelUtils';
+import {getResourceModel, resolvePropAgainstType} from '../utils/modelUtils';
 
 export const resolveResourcesAgainstModels = (resources, models)=> {
   const newResources = Object.assign({}, resources);

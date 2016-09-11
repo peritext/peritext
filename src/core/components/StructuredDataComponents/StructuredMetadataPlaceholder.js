@@ -3,7 +3,7 @@ import {
   StructuredDate,
   StructuredSpan,
   StructuredPerson
-} from './../index';
+} from '../index';
 
 /**
  * dumb component for rendering the structured representation of a section

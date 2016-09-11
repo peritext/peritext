@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import { intlShape, defineMessages } from 'react-intl';
-import StaticEntityBlock from './../../../contextualizers/glossary/StaticEntityBlock';
+import StaticEntityBlock from '../../../contextualizers/glossary/StaticEntityBlock';
 
 const translate = defineMessages({
   glossary: {

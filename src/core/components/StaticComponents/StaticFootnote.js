@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-import renderContents from './../../utils/componentsFactory';
+import renderContents from '../../utils/componentsFactory';
 
 /**
  * dumb component for containing either a static or dynamic note, acting whether as a pointer or as a container

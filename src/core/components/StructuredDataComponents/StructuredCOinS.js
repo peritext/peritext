@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-import {generateOpenUrl} from './../../utils/microDataUtils';
+import {generateOpenUrl} from '../../utils/microDataUtils';
 
 // let styles = {};
 

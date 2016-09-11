@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 import reactStringReplace from 'react-string-replace';
 import {
   StructuredDate
-} from './../index';
+} from '../index';
 
 
 /**

@@ -6,7 +6,7 @@ import React, {PropTypes} from 'react';
 import {
   StructuredCOinS
 } from './../../components';
-import * as formatter from './../microDataUtils/';
+import * as formatter from '../microDataUtils';
 
 /**
  * Virtual component class for rendering generic block citations

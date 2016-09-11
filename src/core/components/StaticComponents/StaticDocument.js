@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import { intlShape } from 'react-intl';
-import {bibToSchema} from './../../utils/microDataUtils';
+import {bibToSchema} from '../../utils/microDataUtils';
 import {
   StaticBackCover,
   StaticEndNotes,
@@ -13,7 +13,7 @@ import {
   StaticTableOfContents,
   StaticTableOfFigures,
   StructuredMetadataPlaceholder
-} from './../index';
+} from '../index';
 
 
 /**

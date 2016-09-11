@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-import StructuredPerson from './../StructuredDataComponents/StructuredPerson';
+import StructuredPerson from '../StructuredDataComponents/StructuredPerson';
 
 /**
  * dumb component for cover page of a static publication of document

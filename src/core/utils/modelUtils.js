@@ -2,7 +2,7 @@
  * Utils - dedicated to everything that deals with models (composing, translating values, ...)
  * @module utils/modelUtils
  */
-import {parseBibAuthors} from './../../converters/bibTexConverter';
+import {parseBibAuthors} from '../converters/bibTexConverter';
 
 /**
  * Builds a model object from a specific bibType, composing it according to its inheritance dependencies, from more general models to the specific bibType

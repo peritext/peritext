@@ -1,14 +1,14 @@
 import React, {PropTypes} from 'react';
 
-import {bibToSchema} from './../../utils/microDataUtils';
+import {bibToSchema} from '../../utils/microDataUtils';
 
 import {
   StructuredMetadataPlaceholder,
   StaticEndNotes,
   StaticEndFigures
-} from './../index';
+} from '../index';
 
-import renderContents from './../../utils/componentsFactory';
+import renderContents from '../../utils/componentsFactory';
 
 /**
  * dumb component for rendering the structured representation of a static section

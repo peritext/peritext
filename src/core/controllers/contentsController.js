@@ -11,9 +11,9 @@ import {
 import {
   parseSection,
   serializeDocument
-} from './../../converters/sectionConverter';
+} from '../converters/sectionConverter';
 import { diff } from 'deep-diff';
-import * as filesystem from './../../../connectors/filesystem';
+import * as filesystem from '../../connectors/filesystem';
 let connector;
 let connectorName;
 let tempConnectorName;

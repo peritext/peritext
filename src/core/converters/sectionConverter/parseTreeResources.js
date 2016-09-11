@@ -2,7 +2,7 @@
  * This module parses resources expressions in .bib files representations
  * @module converter/sectionConverter/parseTreeResources
  */
-import {parseBibTexStr} from './../../converters/bibTexConverter/';
+import {parseBibTexStr} from '../bibTexConverter';
 
 /**
  * Converts dumbTree resources representations (as string) to js objects - recursively do the same for tree's children

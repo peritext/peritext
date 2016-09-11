@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 
 import {
   StructuredPerson
-} from './../index';
+} from '../index';
 
 /**
  * dumb component for back cover page of a static publication of document
