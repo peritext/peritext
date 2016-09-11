@@ -1,9 +1,10 @@
 import {expect} from 'chai';
 
-import {composeRenderedSections} from './../../../src/renderers/sharedStaticUtils';
-import {sectionTypeModels, settingsModels} from './../../../src/core/models';
-import {resolveSettings} from './../../../src/core/utils/modelUtils';
+import {composeRenderedSections} from '../../../src/renderers/sharedStaticUtils';
+import {sectionTypeModels, settingsModels} from '../../../src/core/models';
+import {resolveSettings} from '../../../src/core/utils/modelUtils';
 
+/*
 const sectionTypes = Object.keys(sectionTypeModels.acceptedTypes);
 
 describe('shared static utils', ()=>{
@@ -120,3 +121,4 @@ describe('shared static utils', ()=>{
     });
   });
 });
+*/

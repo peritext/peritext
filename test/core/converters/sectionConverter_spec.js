@@ -2,18 +2,18 @@ import {expect} from 'chai';
 import {waterfall} from 'async';
 import {writeFile} from 'fs';
 
-import {parseSection, serializeSectionList} from './../../../src/core/converters/sectionConverter';
-import {createFromPath, updateFromPath, deleteFromPath, readFromPath} from './../../../src/connectors/filesystem';
-import defaultParameters from './../../../src/config/defaultParameters';
-import * as models from './../../../src/core/models/';
+import {parseSection, serializeSectionList} from '../../../src/core/converters/sectionConverter';
+import {createFromPath, updateFromPath, deleteFromPath, readFromPath} from '../../../src/connectors/filesystem';
+import defaultParameters from '../../../src/config/defaultParameters';
+import * as models from '../../../src/core/models/';
 
-import {sample_folder_path, crud_cobaye_path} from "./../../test_settings.json";
+import {sample_folder_path, crud_cobaye_path} from '../../test_settings.json';
 const base_path = __dirname + '/../../' + sample_folder_path;
 
 const params = {
   basePath: base_path
 }
-
+/*
 describe('sectionConverter:parser', function(){
   it('should parse sample content successfully', function(done){
     waterfall([
@@ -78,6 +78,7 @@ describe('sectionConverter:parser', function(){
       });
   });
 })
+*/
 
 /*
 describe('sectionConverter:serializer', function(){

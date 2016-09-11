@@ -42,7 +42,7 @@ export const exportSectionToPdf = ({
 }, assetsController, assetsParams, finalCallback) =>{
 
   const motherKey = document.metadata.general.citeKey.value;
-  const path = destinationFolder || resolve(__dirname + './temp/');
+  const path = destinationFolder || resolve(__dirname + '/temp/');
   console.log('export to path: ', path);
   waterfall([
     // get or create destination folder
