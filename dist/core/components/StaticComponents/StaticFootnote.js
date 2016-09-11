@@ -7,17 +7,9 @@ exports.default = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _class;
-// let styles = {};
-
-
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
-
-var _radium = require('radium');
-
-var _radium2 = _interopRequireDefault(_radium);
 
 var _componentsFactory = require('./../../utils/componentsFactory');
 
@@ -35,7 +27,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * dumb component for containing either a static or dynamic note, acting whether as a pointer or as a container
  */
 
-var StaticFootnote = (0, _radium2.default)(_class = function (_React$Component) {
+var StaticFootnote = function (_React$Component) {
   _inherits(StaticFootnote, _React$Component);
 
   function StaticFootnote() {
@@ -63,16 +55,16 @@ var StaticFootnote = (0, _radium2.default)(_class = function (_React$Component) 
         'sup',
         {
           className: 'peritext-static-note-content-container',
-          name: 'peritext-static-note-content-' + this.props.note.target,
-          id: 'peritext-static-note-content-' + this.props.note.target
+          name: 'peritext-static-note-content-' + this.props.note.id,
+          id: 'peritext-static-note-content-' + this.props.note.id
         },
-        (0, _componentsFactory2.default)(this.props.note.contents)
+        (0, _componentsFactory2.default)(this.props.note.child)
       );
     }
   }]);
 
   return StaticFootnote;
-}(_react2.default.Component)) || _class;
+}(_react2.default.Component);
 
 StaticFootnote.propTypes = {
   note: _react.PropTypes.object

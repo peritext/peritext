@@ -7,20 +7,11 @@ exports.default = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _class;
-
-// let styles = {};
-
-
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
 var _components = require('./../../core/components');
-
-var _radium = require('radium');
-
-var _radium2 = _interopRequireDefault(_radium);
 
 var _componentsFactory = require('./../../core/utils/componentsFactory');
 
@@ -38,7 +29,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * dumb static-oriented component for displaying a webpage poster image
  */
 
-var StructuredWebsitePoster = (0, _radium2.default)(_class = function (_React$Component) {
+var StructuredWebsitePoster = function (_React$Component) {
   _inherits(StructuredWebsitePoster, _React$Component);
 
   function StructuredWebsitePoster() {
@@ -112,7 +103,7 @@ var StructuredWebsitePoster = (0, _radium2.default)(_class = function (_React$Co
   }]);
 
   return StructuredWebsitePoster;
-}(_react2.default.Component)) || _class;
+}(_react2.default.Component);
 
 StructuredWebsitePoster.propTypes = {
   schematype: _react.PropTypes.string,

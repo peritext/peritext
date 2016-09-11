@@ -11,8 +11,6 @@ var _async = require('async');
 
 var _fs = require('fs');
 
-var _sectionUtils = require('./../../core/utils/sectionUtils');
-
 var _renderToStaticHtml = require('./../../renderers/renderToStaticHtml');
 
 /**
@@ -36,26 +34,22 @@ var Prince = require('prince');
 /**
  * Exports a section representation to a pdf file
  * @param {Object} params - The params of the export
- * @param {Object} params.section - the (root) section to export
- * @param {array} params.sectionList - the section context (if necessary)
+ * @param {Object} params.document - the document to export
  * @param {Object} params.settings - the specific rendering settings to use in order to produce the output
- * @param {boolean} params.includeChildren - whether to include section's children sections
  * @param {string} params.destinationFolder - where to output the file
  * @params {Object} assetsController - the module to use in order to communicate with assets
  * @param {Object} assetsParams - the assets parameters to use while communicating with assetsController
  * @param {function(err:error)} callback - the possible errors encountered during export
  */
 var exportSectionToPdf = exports.exportSectionToPdf = function exportSectionToPdf(_ref, assetsController, assetsParams, finalCallback) {
-  var section = _ref.section;
-  var sectionList = _ref.sectionList;
+  var document = _ref.document;
   var settings = _ref.settings;
-  var includeChildren = _ref.includeChildren;
   var destinationFolder = _ref.destinationFolder;
 
 
-  var motherKey = (0, _sectionUtils.getMetaValue)(section.metadata, 'general', 'citeKey');
+  var motherKey = document.metadata.general.citeKey.value;
   var path = destinationFolder || (0, _path.resolve)(__dirname + './temp/');
-  console.log('path', path);
+  console.log('export to path: ', path);
   (0, _async.waterfall)([
   // get or create destination folder
   function (existsCb) {
@@ -68,7 +62,7 @@ var exportSectionToPdf = exports.exportSectionToPdf = function exportSectionToPd
   },
   // render the section to static html
   function (renderCb) {
-    (0, _renderToStaticHtml.renderSection)({ section: section, sectionList: sectionList, includeChildren: includeChildren, destinationFolder: destinationFolder }, assetsController, assetsParams, renderCb);
+    (0, _renderToStaticHtml.renderDocument)({ document: document, destinationFolder: destinationFolder }, assetsController, assetsParams, renderCb);
   },
   // write the section to a static html file
   function (html, writeCb) {

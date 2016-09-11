@@ -7,7 +7,7 @@ import * as lib from './../../../src/core/controllers/contentsController';
 
 import * as models from './../../../src/core/models/'
 import defaultParameters from './../../../src/config/defaultParameters'
-import {sample_output_path, sample_folder_path, crud_cobaye_path} from "./../../test_settings.json";
+import {sample_output_path, sample_folder_path, crud_cobaye_path} from "./../../test_settings";
 const base_path = __dirname + '/../../' + sample_folder_path;
 const base_output = __dirname + '/../../' + sample_output_path;
 
@@ -23,8 +23,6 @@ const outputParams = {
 
 let params;
 
-
-
 describe('contentController:updateFromSource', function(){
   it('should update unfaulted data from source without processing errors', function(done){
     lib.updateFromSource(inputParams, models, defaultParameters, function(err, results){
@@ -35,11 +33,10 @@ describe('contentController:updateFromSource', function(){
   });
 });
 
-
 describe('contentController:updateToSource', function(){
   params = outputParams;
   it('should update unfaulted data from one source to another without breaking', function(done){
-    let inputFsTree, sections;
+    let inputFsTree, document;
     waterfall([
       //delete test folder
       function(cb){
@@ -67,15 +64,16 @@ describe('contentController:updateToSource', function(){
       //fill the data to update
       function(cb) {
         lib.updateFromSource(inputParams, models, defaultParameters, function(err, results){
-          sections = results.sections;
+          document = results.document;
           cb();
         });
       },
+      // update the data (fs tree changes)
       function(cb){
-        lib.updateToSource(outputParams, sections, models, inputFsTree, function(err, res){
-          cb(err, res);
+        lib.updateToSource(outputParams, document, models, inputFsTree, function(err, newFsTree){
+          cb(err, newFsTree);
         });
-      }
+      },
     ],
     function(err, results) {
       expect(err).to.be.null;
@@ -84,4 +82,3 @@ describe('contentController:updateToSource', function(){
     });
   });
 });
-

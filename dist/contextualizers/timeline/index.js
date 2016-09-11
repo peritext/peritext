@@ -13,41 +13,41 @@ Object.defineProperty(exports, "__esModule", {
  * @param {Object} inputSection - The representation of the peritext section to update
  * @param {Object} inputContextualization - The representation of the contextualization to resolve
  * @param {Object} settings - the specific rendering settings to use for resolving the contextualization
- * @return {Object} newSection - the updated representation of the peritext section in which the contextualization was made
+ * @return {Object} newDocument - the updated representation of the peritext document in which the contextualization was made
  */
-var contextualizeInlineStatic = exports.contextualizeInlineStatic = function contextualizeInlineStatic(section, contextualization, settings) {
-  return Object.assign({}, section);
+var contextualizeInlineStatic = exports.contextualizeInlineStatic = function contextualizeInlineStatic(inputDocument, contextualization, settings) {
+  return Object.assign({}, inputDocument);
 };
 
 /**
  * Handle a block contextualization for static outputs
- * @param {Object} inputSection - The representation of the peritext section to update
+ * @param {Object} inputDocument - The representation of the peritext document to update
  * @param {Object} inputContextualization - The representation of the contextualization to resolve
  * @param {Object} settings - the specific rendering settings to use for resolving the contextualization
- * @return {Object} newSection - the updated representation of the peritext section in which the contextualization was made
+ * @return {Object} newDocument - the updated representation of the peritext document in which the contextualization was made
  */
-var contextualizeBlockStatic = exports.contextualizeBlockStatic = function contextualizeBlockStatic(section, contextualization, settings) {
-  return Object.assign({}, section);
+var contextualizeBlockStatic = exports.contextualizeBlockStatic = function contextualizeBlockStatic(inputDocument, contextualization, settings) {
+  return Object.assign({}, inputDocument);
 };
 
 /**
  * Handle an inline contextualization for dynamic outputs
- * @param {Object} inputSection - The representation of the peritext section to update
+ * @param {Object} inputDocument - The representation of the peritext document to update
  * @param {Object} inputContextualization - The representation of the contextualization to resolve
  * @param {Object} settings - the specific rendering settings to use for resolving the contextualization
- * @return {Object} newSection - the updated representation of the peritext section in which the contextualization was made
+ * @return {Object} newDocument - the updated representation of the peritext document in which the contextualization was made
  */
-var contextualizeInlineDynamic = exports.contextualizeInlineDynamic = function contextualizeInlineDynamic(section, contextualization, settings) {
-  return Object.assign({}, section);
+var contextualizeInlineDynamic = exports.contextualizeInlineDynamic = function contextualizeInlineDynamic(inputDocument, contextualization, settings) {
+  return Object.assign({}, inputDocument);
 };
 
 /**
  * Handle a block contextualization for dynamic outputs
- * @param {Object} inputSection - The representation of the peritext section to update
+ * @param {Object} inputDocument - The representation of the peritext document to update
  * @param {Object} inputContextualization - The representation of the contextualization to resolve
  * @param {Object} settings - the specific rendering settings to use for resolving the contextualization
- * @return {Object} newSection - the updated representation of the peritext section in which the contextualization was made
+ * @return {Object} newDocument - the updated representation of the peritext document in which the contextualization was made
  */
-var contextualizeBlockDynamic = exports.contextualizeBlockDynamic = function contextualizeBlockDynamic(section, contextualization, settings) {
-  return Object.assign({}, section);
+var contextualizeBlockDynamic = exports.contextualizeBlockDynamic = function contextualizeBlockDynamic(inputDocument, contextualization, settings) {
+  return Object.assign({}, inputDocument);
 };

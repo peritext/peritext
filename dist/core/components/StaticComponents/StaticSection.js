@@ -7,21 +7,13 @@ exports.default = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _class;
-
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _radium = require('radium');
-
-var _radium2 = _interopRequireDefault(_radium);
-
-var _sectionUtils = require('./../../utils/sectionUtils');
-
 var _microDataUtils = require('./../../utils/microDataUtils');
 
-var _index = require('./../index.js');
+var _index = require('./../index');
 
 var _componentsFactory = require('./../../utils/componentsFactory');
 
@@ -39,7 +31,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * dumb component for rendering the structured representation of a static section
  */
 
-var StaticSection = (0, _radium2.default)(_class = function (_React$Component) {
+var StaticSection = function (_React$Component) {
   _inherits(StaticSection, _React$Component);
 
   function StaticSection() {
@@ -64,13 +56,14 @@ var StaticSection = (0, _radium2.default)(_class = function (_React$Component) {
      * @property {Object} settings - the settings to use for section rendering
      */
     value: function render() {
-      var bibType = (0, _microDataUtils.bibToSchema)((0, _sectionUtils.getMetaValue)(this.props.section.metadata, 'general', 'bibType'));
-      var citeKey = (0, _sectionUtils.getMetaValue)(this.props.section.metadata, 'general', 'citeKey');
+      var bibType = (0, _microDataUtils.bibToSchema)(this.props.section.metadata.general.bibType.value);
+      var citeKey = this.props.section.metadata.general.citeKey.value;
+      var generalityLevel = this.props.section.metadata.general.generalityLevel.value;
       return _react2.default.createElement(
         'section',
         {
-          className: 'peritext-static-section-container peritext-static-section-level-' + (0, _sectionUtils.getMetaValue)(this.props.section.metadata, 'general', 'generalityLevel'),
-          id: (0, _sectionUtils.getMetaValue)(this.props.section.metadata, 'general', 'citeKey'),
+          className: 'peritext-static-section-container peritext-static-section-level-' + generalityLevel,
+          id: citeKey,
           itemScope: true,
           itemType: 'http://schema.org/' + bibType,
           'typeof': bibType,
@@ -93,7 +86,7 @@ var StaticSection = (0, _radium2.default)(_class = function (_React$Component) {
   }]);
 
   return StaticSection;
-}(_react2.default.Component)) || _class;
+}(_react2.default.Component);
 
 StaticSection.propTypes = {
   section: _react.PropTypes.object,

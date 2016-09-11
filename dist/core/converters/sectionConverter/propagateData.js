@@ -11,48 +11,48 @@ var inheritMetadataFromParent = function inheritMetadataFromParent(section, sect
   if (parentMetadata === undefined) {
     return section;
   }
-  // inherit metadata props
-  // discriminated inedit propert
-  var inherited = parentMetadata.filter(function (pmeta) {
-    if ((0, _sectionUtils.hasMeta)(section.metadata, pmeta)) {
-      return false;
-    }
-    return true;
-  });
-
-  var parentKey = (0, _sectionUtils.getMetaValue)(parentMetadata, 'general', 'citeKey');
-  section.metadata = section.metadata.concat(inherited.map(function (meta) {
-    return Object.assign({}, meta, { inheritedVerticallyFrom: { domain: 'general', key: 'citeKey', value: parentKey } });
-  }));
-
   // set final bibType
-  var bibType = (0, _sectionUtils.getMetaValue)(section.metadata, 'general', 'bibType');
-  if (bibType === 'section') {
-    var parentBibType = (0, _sectionUtils.getMetaValue)(parentMetadata, 'general', 'bibType');
+  if (section.metadata.general.bibType.value === 'section') {
+    var parentBibType = parentMetadata.general.bibType.value;
     var parentModel = sectionTypeModels.acceptedTypes[parentBibType];
     if (parentModel) {
-      section.metadata = (0, _sectionUtils.setMetaValue)(section.metadata, 'general', 'bibType', parentModel.childrenType);
+      section.metadata.general.bibType = {
+        value: parentModel.childrenType,
+        inheritedVerticallyFrom: parentMetadata.general.citeKey.value
+      };
     }
   }
-
   // set hierarchical level (parent + 1 or parent + own level)
-  var parentLevel = (0, _sectionUtils.getMetaValue)(parentMetadata, 'general', 'generalityLevel');
-  var ownLevel = (0, _sectionUtils.getMetaValue)(section.metadata, 'general', 'generalityLevel');
+  var parentLevel = parentMetadata.general.generalityLevel;
+  var ownLevel = section.metadata.general.generalityLevel;
   if (parentLevel && ownLevel) {
-    section.metadata = (0, _sectionUtils.setMetaValue)(section.metadata, 'general', 'generalityLevel', parentLevel + ownLevel);
+    section.metadata.general.generalityLevel.value = +parentLevel.value + ownLevel.value;
   } else if (parentLevel) {
-    section.metadata.push({
-      domain: 'general',
-      key: 'generalityLevel',
-      value: parentLevel + 1
-    });
+    section.metadata.general.generalityLevel = { value: +parentLevel.value + 1 };
   } else {
-    section.metadata.push({
-      domain: 'general',
-      key: 'generalityLevel',
-      value: 1
-    });
+    section.metadata.general.generalityLevel = { value: parentLevel.value };
   }
+  // inherit the rest
+  for (var domain in parentMetadata) {
+    if (parentMetadata[domain]) {
+      for (var key in parentMetadata[domain]) {
+        if (parentMetadata[domain][key]) {
+          // inherit if property does not exist in child
+          if (section.metadata[domain] === undefined || section.metadata[domain][key] === undefined) {
+            if (section.metadata[domain] === undefined) {
+              section.metadata[domain] = {};
+            }
+            section.metadata[domain][key] = {
+              value: parentMetadata[domain][key].value,
+              inheritedVerticallyFrom: parentMetadata.general.citeKey.value
+            };
+          }
+        }
+      }
+    }
+  }
+  // mark metadata as done
+  section.metadataInherited = true;
   return section;
 }; /**
     * This module handles metadata propagation within and between sections
@@ -60,83 +60,20 @@ var inheritMetadataFromParent = function inheritMetadataFromParent(section, sect
     */
 
 
-var doInheritMetadataFromParent = function doInheritMetadataFromParent(section, sectionTypeModels, sections) {
-  if (section.parent && !section.metadataInherited) {
-
+var doInheritMetadataFromParent = function doInheritMetadataFromParent(inputSection, sectionTypeModels, sections) {
+  var section = Object.assign({}, inputSection);
+  var parent = section.metadata.general.parent;
+  if (parent && !section.metadataInherited) {
     section.metadataInherited = true;
-
-    var parent = (0, _sectionUtils.findByMetadata)(sections, 'general', 'citeKey', section.parent);
+    parent = sections[parent.value];
     // first, make your parent inherit from its parent
     if (!parent.metadataInherited) {
-      parent = doInheritMetadataFromParent(section, sectionTypeModels, sections);
+      parent = doInheritMetadataFromParent(parent, sectionTypeModels, sections);
     }
     // then inherit yourself from your parent
-    return inheritMetadataFromParent(section, sectionTypeModels, sections, parent.metadata);
+    section = inheritMetadataFromParent(section, sectionTypeModels, sections, parent.metadata);
   }
-  // if(getMetaValue(section.metadata, 'general', 'citeKey') === 'mybook'){
-  //   console.log(section.metadata);
-  // }
   section.metadataInherited = true;
-  return section;
-};
-
-var inheritResourcesFromParent = function inheritResourcesFromParent(section, sections, parentResources, parentKey) {
-  if (parentResources === undefined) {
-    return section;
-  }
-
-  // inherit meta props - take anything that you don't already have
-  var inherited = parentResources.filter(function (presource) {
-    return !(0, _sectionUtils.hasResource)(section.resources, presource);
-  });
-  section.resources = section.resources.concat(inherited.map(function (meta) {
-    return Object.assign({}, meta, { inheritedVerticallyFrom: parentKey });
-  }));
-  return section;
-};
-
-var doInheritResourcesFromParent = function doInheritResourcesFromParent(section, sections) {
-  if (section.parent && !section.resourcesInherited) {
-    section.resourcesInherited = true;
-    var parent = (0, _sectionUtils.findByMetadata)(sections, 'general', 'citeKey', section.parent);
-    // first, make your parent inherit from its parent
-    if (!parent.resourcesInherited) {
-      parent = doInheritResourcesFromParent(section, sections);
-    }
-    // then inherit yourself from your parent
-    return inheritResourcesFromParent(section, sections, parent.resources, (0, _sectionUtils.getMetaValue)(parent.metadata, 'general', 'citeKey'));
-  }
-  section.resourcesInherited = true;
-  return section;
-};
-
-var inheritContextualizersFromParent = function inheritContextualizersFromParent(section, sections, parentContextualizers, parentKey) {
-  if (parentContextualizers === undefined) {
-    return section;
-  }
-  // inherit context props - take anything that you don't already have
-  var inherited = parentContextualizers.filter(function (presource) {
-    return !(0, _sectionUtils.hasResource)(section.contextualizers, presource);
-  });
-
-  section.contextualizers = section.contextualizers.concat(inherited.map(function (meta) {
-    return Object.assign({}, meta, { inheritedVerticallyFrom: parentKey });
-  }));
-  return section;
-};
-
-var doInheritContextualizersFromParent = function doInheritContextualizersFromParent(section, sections) {
-  if (section.parent && !section.contextualizersInherited) {
-    section.contextualizersInherited = true;
-    var parent = (0, _sectionUtils.findByMetadata)(sections, 'general', 'citeKey', section.parent);
-    // first, make your parent inherit from its parent
-    if (!parent.contextualizersInherited) {
-      parent = doInheritResourcesFromParent(section, sections);
-    }
-    // then inherit yourself from your parent
-    return inheritContextualizersFromParent(section, sections, parent.contextualizers, (0, _sectionUtils.getMetaValue)(parent.metadata, 'general', 'citeKey'));
-  }
-  section.contextualizersInherited = true;
   return section;
 };
 
@@ -165,37 +102,56 @@ var inheritCustomizersFromParent = function inheritCustomizersFromParent(section
   return section;
 };
 
-var doInheritCustomizersFromParent = function doInheritCustomizersFromParent(section, sections) {
-  if (section.parent && !section.customizersInherited) {
-    section.customizersInherited = true;
-    var parent = (0, _sectionUtils.findByMetadata)(sections, 'general', 'citeKey', section.parent);
+var doInheritCustomizersFromParent = function doInheritCustomizersFromParent(inputSection, sections) {
+  var section = Object.assign({}, inputSection);
+  var parent = section.metadata.general.parent;
+  if (parent && !section.customizersInherited) {
+    parent = sections[parent.value];
     // first, make your parent inherit from its parent
     if (!parent.customizersInherited) {
-      parent = doInheritCustomizersFromParent(section, sections);
+      parent = doInheritCustomizersFromParent(parent, sections);
     }
     // then inherit yourself from your parent
-    return inheritCustomizersFromParent(section, sections, parent.customizers, (0, _sectionUtils.getMetaValue)(parent.metadata, 'general', 'citeKey'));
+    section = inheritCustomizersFromParent(section, sections, parent.customizers, parent.metadata.general.citeKey.value);
   }
   section.customizersInherited = true;
   return section;
 };
 
 var populateLaterally = function populateLaterally(section, models) {
-  var toInclude = [];
-
-  section.metadata.forEach(function (meta) {
-    var model = models[meta.domain][meta.key];
-    if (model) {
-      var spreaded = model.propagatesTo.map(_sectionUtils.metaStringToCouple);
-      spreaded.forEach(function (sp) {
-        var existantProp = (0, _sectionUtils.hasMeta)(section.metadata, sp);
-        if (!existantProp) {
-          toInclude.push(Object.assign({}, sp, { value: meta.value }, { inheritedHorizontallyFrom: { domain: meta.domain, key: meta.key } }));
+  var _loop = function _loop(domain) {
+    if (section.metadata[domain]) {
+      var _loop2 = function _loop2(key) {
+        if (section.metadata[domain][key]) {
+          var model = models[domain][key];
+          if (model) {
+            var spreaded = model.propagatesTo.map(_sectionUtils.metaStringToCouple);
+            spreaded.forEach(function (sp) {
+              if (section.metadata[sp.domain] === undefined) {
+                section.metadata[sp.domain] = {};
+              }
+              if (section.metadata[sp.domain][sp.key] === undefined) {
+                section.metadata[sp.domain][sp.key] = {
+                  value: section.metadata[domain][key].value,
+                  inheritedHorizontallyFrom: { domain: domain, key: key }
+                };
+              }
+            });
+          }
         }
-      });
+      };
+
+      for (var key in section.metadata[domain]) {
+        _loop2(key);
+      }
     }
-  });
-  section.metadata = section.metadata.concat(toInclude);
+  };
+
+  // const toInclude = [];
+  for (var domain in section.metadata) {
+    _loop(domain);
+  }
+
   return section;
 };
 
@@ -203,96 +159,87 @@ var populateLaterally = function populateLaterally(section, models) {
  * Populate the metadatas of a list of sections, by applying propagation from parents or inbetween metadata values (e.g. : from twitter domain to open graph domain)
  * @param {Object} params - the params of propagation
  * @param {array} params.errors - the list of errors possibly inherited from previous steps
- * @param {array} params.sections - the list of sections to transform
+ * @param {Object} params.document - the document in its current shape (sections litteral object + sumamry)
  * @param {Object} params.models - the models to parse the sections with
  * @param {Object} params.parent - if specified, sections that don't have a parent will all be considered as children of this one (but it won't be parsed itself)
- * @param {function(error: error, result: {errors: array, sections: array})} callback - the new transformation errors and updated sections
+ * @return {errors: array, document: Object} - the new transformation errors and updated document representation
  */
-var propagateData = exports.propagateData = function propagateData(_ref, callback) {
+var propagateData = exports.propagateData = function propagateData(_ref) {
   var errors = _ref.errors;
-  var sections = _ref.sections;
+  var inputDocument = _ref.document;
   var models = _ref.models;
-  var parent = _ref.parent;
 
-  var noParents = sections.filter(function (section) {
-    return !section.parent;
-  });
-  if (parent) {
-    (function () {
-      // inherit metadata from args
-      var inheritedMetadata = parent.metadata;
-      var inheritedResources = parent.resources;
-      var inheritedContextualizations = parent.contextualizers;
-      var parentKey = (0, _sectionUtils.getMetaValue)(inheritedMetadata, 'general', 'citeKey');
 
-      noParents = noParents.map(function (inputSection) {
-        var section = Object.assign({}, inputSection);
-        section.metadataInherited = true;
-        section.resourcesInherited = true;
-        section.contextualizersInherited = true;
-        section = inheritResourcesFromParent(section, sections, inheritedResources, parentKey);
-        section = inheritContextualizersFromParent(section, sections, inheritedContextualizations, parentKey);
-        section = inheritMetadataFromParent(section, models.sectionTypeModels, sections, inheritedMetadata);
-        return section;
-      });
-      // inherit resources from arguments
-    })();
-  } else {
-      noParents.forEach(function (section) {
-        // hierarchical level bootstrapping
-        section.metadata.push({
-          domain: 'general',
-          key: 'generalityLevel',
-          value: 1
-        });
+  var document = Object.assign({}, inputDocument);
+  document.resources = {};
+  document.contextualizers = {};
+
+  for (var key in document.sections) {
+    if (document.sections[key]) {
+      var section = document.sections[key];
+      // catch root and desactivate inheritance for this one
+      if (section.metadata.general.parent === undefined) {
+        section.metadata.general.generalityLevel = { value: 1 };
         section.resourcesInherited = true;
         section.metadataInherited = true;
         section.customizersInherited = true;
         section.contextualizersInherited = true;
+      }
+      // clean bibType
+      var newBibType = section.metadata.general.bibType.value;
+      newBibType = newBibType ? newBibType.split('peritext') : [];
+      newBibType = newBibType.length > 1 ? newBibType[1] : newBibType[0];
+      section.metadata.general.bibType.value = newBibType;
+      // add resources to general resources list
+      section.resources.forEach(function (resource) {
+        if (document.resources[resource.citeKey]) {
+          errors.push({
+            type: 'error',
+            preciseType: 'redundantResource',
+            resourceCiteKey: resource.citeKey,
+            message: 'Resource ' + resource.bibType + ' is described more than once'
+          });
+        }
+        document.resources[resource.citeKey] = resource;
       });
+      // add contextualizers to general resources list
+      section.contextualizers.forEach(function (contextualizer) {
+        if (document.contextualizers[contextualizer.citeKey]) {
+          errors.push({
+            type: 'error',
+            preciseType: 'redundantContextualizer',
+            resourceCiteKey: contextualizer.citeKey,
+            message: 'Contextualizer ' + contextualizer.bibType + ' is described more than once'
+          });
+        }
+        document.contextualizers[contextualizer.citeKey] = contextualizer;
+      });
+      delete section.contextualizers;
     }
-  var outputSections = [].concat(sections);
-  // clean bibType
-  outputSections = sections.map(function (section) {
-    var newBibType = (0, _sectionUtils.getMetaValue)(section.metadata, 'general', 'bibType');
-    newBibType = newBibType ? newBibType.split('peritext') : [];
-    newBibType = newBibType.length > 1 ? newBibType[1] : newBibType[0];
-    section.metadata = (0, _sectionUtils.setMetaValue)(section.metadata, 'general', 'bibType', newBibType);
-    return section;
-  });
-
-  // inherit metadata from parents to children
-  outputSections = sections.map(function (section) {
-    return doInheritMetadataFromParent(section, models.sectionTypeModels, sections);
-  });
-
-  // inherit resources from parents to children
-  outputSections = sections.map(function (section) {
-    return doInheritResourcesFromParent(section, sections);
-  });
-
-  // inherit contextualizers from parents to children
-  outputSections = sections.map(function (section) {
-    return doInheritContextualizersFromParent(section, sections);
-  });
-
-  // inherit customizers form parents to children
-  outputSections = sections.map(function (section) {
-    return doInheritCustomizersFromParent(section, sections);
-  });
-
-  // inherit metadata laterally, from one property to another
-  outputSections = sections.map(function (section) {
-    return populateLaterally(section, models.metadataModels);
-  });
+  }
+  // vertical inheritance process
+  // -> fill with parent metadata, append parent customizers
+  for (var keyVert in document.sections) {
+    if (document.sections[keyVert]) {
+      document.sections[keyVert] = doInheritMetadataFromParent(document.sections[keyVert], models.sectionTypeModels, document.sections);
+      document.sections[keyVert] = doInheritCustomizersFromParent(document.sections[keyVert], document.sections);
+    }
+  }
+  // lateral inheritance process
+  // e.g. twitter ==> dublincore
+  for (var keyLat in document.sections) {
+    if (document.sections[keyLat]) {
+      document.sections[keyLat] = populateLaterally(document.sections[keyLat], models.metadataModels);
+    }
+  }
 
   // cleaning control properties
-  outputSections.forEach(function (section) {
-    delete section.metadataInherited;
-    delete section.customizersInherited;
-    delete section.resourcesInherited;
-    delete section.contextualizersInherited;
-  });
-
-  callback(null, { errors: errors, sections: outputSections });
+  for (var keyClean in document.sections) {
+    if (document.sections[keyClean]) {
+      var _section = document.sections[keyClean];
+      delete _section.metadataInherited;
+      delete _section.customizersInherited;
+    }
+  }
+  return { errors: errors, document: document };
 };

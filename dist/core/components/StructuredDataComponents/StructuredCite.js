@@ -7,15 +7,9 @@ exports.default = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _class;
-
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
-
-var _radium = require('radium');
-
-var _radium2 = _interopRequireDefault(_radium);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29,7 +23,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * dumb component for rendering the structured representation of a cite element
  */
 
-var StructuredCite = (0, _radium2.default)(_class = function (_React$Component) {
+var StructuredCite = function (_React$Component) {
   _inherits(StructuredCite, _React$Component);
 
   function StructuredCite() {
@@ -67,7 +61,7 @@ var StructuredCite = (0, _radium2.default)(_class = function (_React$Component) 
   }]);
 
   return StructuredCite;
-}(_react2.default.Component)) || _class;
+}(_react2.default.Component);
 
 StructuredCite.propTypes = {
   value: _react.PropTypes.string,

@@ -7,26 +7,21 @@ exports.composeRenderedSections = undefined;
 
 var _referenceUtils = require('./../../core/utils/referenceUtils');
 
-var _sectionUtils = require('./../../core/utils/sectionUtils');
-
 /**
  * Resolves a sections' list against rendering settings by modifying contents, adding output-related pseudo-sections, and updating css styles
  * @param {array} sections - the sections to render
+ * @param {Object} document - the document reference
  * @param {Object} settings - the specific rendering settings to use in order to produce the output
  * @param {string} inputStyle - the css style data to use
  * @param {array} messages - the intl messages to use for some sections localization (e.g. : translation of "Table of contents")
  * @return {Object} results - an object composed of an array of rendered sections and a string with the updated css styles
  */
-/**
- * Shared static rendering utils
- * @module renderers/sharedStaticUtils
- */
-
 var composeRenderedSections = exports.composeRenderedSections = function composeRenderedSections() {
   var sections = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
-  var settings = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
-  var inputStyle = arguments.length <= 2 || arguments[2] === undefined ? '' : arguments[2];
-  var messages = arguments.length <= 3 || arguments[3] === undefined ? [] : arguments[3];
+  var document = arguments[1];
+  var settings = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
+  var inputStyle = arguments.length <= 3 || arguments[3] === undefined ? '' : arguments[3];
+  var messages = arguments.length <= 4 || arguments[4] === undefined ? [] : arguments[4];
 
   var renderedSections = sections.slice();
   var style = typeof inputStyle === 'string' ? inputStyle : '';
@@ -72,7 +67,7 @@ var composeRenderedSections = exports.composeRenderedSections = function compose
 
   // build references/bibliography
   if (settings.referenceScope === 'document') {
-    var refs = (0, _referenceUtils.computeReferences)(sections, settings);
+    var refs = (0, _referenceUtils.computeReferences)(sections, document, settings);
     if (refs.length) {
       renderedSections.push({
         type: 'references',
@@ -87,25 +82,33 @@ var composeRenderedSections = exports.composeRenderedSections = function compose
     (function () {
       // prepare glossary
       var glossaryPointers = sections.reduce(function (results, thatSection) {
-        var sectionCitekey = (0, _sectionUtils.getMetaValue)(thatSection.metadata, 'general', 'citeKey');
+        var sectionCitekey = thatSection.metadata.general.citeKey.value;
         return results.concat(thatSection.contextualizations.filter(function (thatContextualization) {
-          return thatContextualization.contextualizer.type === 'glossary';
-        }).reduce(function (localResults, contextualization) {
+          return document.contextualizations[thatContextualization].contextualizerType === 'glossary';
+        }).reduce(function (localResults, contextualizationKey) {
+          var contextualization = document.contextualizations[contextualizationKey];
           return localResults.concat({
             mentionId: '#peritext-content-entity-inline-' + sectionCitekey + '-' + contextualization.citeKey,
-            entity: contextualization.resources[0].citeKey,
-            alias: contextualization.contextualizer.alias
+            entity: document.resources[contextualization.resources[0]].citeKey,
+            alias: document.contextualizers[contextualization.contextualizer].alias
           });
         }, []));
       }, []);
 
       var entitiesTypes = ['person', 'place', 'subject', 'concept', 'organization', 'technology', 'artefact'];
 
-      var glossaryData = sections.reduce(function (results, thatSection) {
-        return results.concat(thatSection.resources.filter(function (thatResource) {
-          return thatResource.inheritedVerticallyFrom === undefined && entitiesTypes.indexOf(thatResource.bibType) > -1;
-        }));
-      }, []).map(function (glossaryEntry) {
+      var glossaryResources = [];
+      for (var refKey in document.resources) {
+        if (document.resources[refKey]) {
+          var thatResource = document.resources[refKey];
+          if (thatResource.inheritedVerticallyFrom === undefined && entitiesTypes.indexOf(thatResource.bibType) > -1) {
+            glossaryResources.push(thatResource);
+          }
+        }
+      }
+
+      var glossaryData = glossaryResources.map(function (inputGlossaryEntry) {
+        var glossaryEntry = Object.assign({}, inputGlossaryEntry);
         glossaryEntry.aliases = glossaryPointers.filter(function (pointer) {
           return pointer.entity === glossaryEntry.citeKey;
         }).reduce(function (aliases, entry) {
@@ -138,7 +141,9 @@ var composeRenderedSections = exports.composeRenderedSections = function compose
     var figuresTableData = sections.reduce(function (figures, section4) {
       // 1. take numbered figures
       var figuresL = section4.contextualizations.filter(function (cont) {
-        return cont.figureNumber !== undefined;
+        return document.contextualizations[cont].figureNumber !== undefined;
+      }).map(function (contKey) {
+        return document.contextualizations[contKey];
       })
       // 2. filter uniques
       .filter(function (figure, index, self) {
@@ -168,15 +173,13 @@ var composeRenderedSections = exports.composeRenderedSections = function compose
     }
   }
 
-  // handle toc
+  // handle table of contents
   if (settings.contentsTablePosition !== 'none') {
-    var tocData = renderedSections.filter(function (sectio, index) {
-      return index > 0;
-    }).map(function (thisSection) {
+    var tocData = renderedSections.map(function (thisSection) {
       return {
-        id: thisSection.metadata ? (0, _sectionUtils.getMetaValue)(thisSection.metadata, 'general', 'citeKey') : thisSection.id,
-        title: thisSection.metadata ? (0, _sectionUtils.getMetaValue)(thisSection.metadata, 'general', 'title') : thisSection.title,
-        level: thisSection.metadata ? (0, _sectionUtils.getMetaValue)(thisSection.metadata, 'general', 'generalityLevel') : 0
+        id: thisSection.metadata ? thisSection.metadata.general.citeKey.value : thisSection.id,
+        title: thisSection.metadata ? thisSection.metadata.general.title.value : thisSection.title,
+        level: thisSection.metadata ? thisSection.metadata.general.generalityLevel.value : 0
       };
     });
     var toc = { type: 'table-of-contents', contents: tocData };
@@ -190,15 +193,18 @@ var composeRenderedSections = exports.composeRenderedSections = function compose
   if (settings.showCovers === 'yes') {
     renderedSections.splice(0, 0, {
       type: 'front-cover',
-      metadata: sections[0].metadata
+      metadata: document.metadata
     });
     renderedSections.push({
       type: 'back-cover',
-      metadata: sections[0].metadata
+      metadata: document.metadata
     });
   }
   return {
     renderedSections: renderedSections,
     finalStyle: style
   };
-};
+}; /**
+    * Shared static rendering utils
+    * @module renderers/sharedStaticUtils
+    */

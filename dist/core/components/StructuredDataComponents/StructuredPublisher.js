@@ -7,8 +7,6 @@ exports.default = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _class;
-
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -16,10 +14,6 @@ var _react2 = _interopRequireDefault(_react);
 var _reactStringReplace = require('react-string-replace');
 
 var _reactStringReplace2 = _interopRequireDefault(_reactStringReplace);
-
-var _radium = require('radium');
-
-var _radium2 = _interopRequireDefault(_radium);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -33,7 +27,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * dumb component for rendering the structured representation of publisher information
  */
 
-var StructuredPublisher = (0, _radium2.default)(_class = function (_React$Component) {
+var StructuredPublisher = function (_React$Component) {
   _inherits(StructuredPublisher, _React$Component);
 
   function StructuredPublisher() {
@@ -106,7 +100,7 @@ var StructuredPublisher = (0, _radium2.default)(_class = function (_React$Compon
   }]);
 
   return StructuredPublisher;
-}(_react2.default.Component)) || _class;
+}(_react2.default.Component);
 
 StructuredPublisher.propTypes = {
   resource: _react.PropTypes.object,

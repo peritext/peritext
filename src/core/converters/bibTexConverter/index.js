@@ -217,12 +217,12 @@ const validateBibObject = function(bibObject) {
 /**
  * Serializes a javascript object representing a resource or a contextualizer, to a bibTeX-formatted string
  * @param {object} bibObject - the resource/contextualizer representation
- * @return {function(error:error, bibStr: string)} callback - error and the bibTeX mention as a string
+ * @return {string} bibStr - the bibTeX mention as a string
  */
-export const serializeBibTexObject = (bibObject, callback) => {
+export const serializeBibTexObject = (bibObject) => {
   const validated = validateBibObject(bibObject);
   if (validated.type === 'error') {
-    return callback(validated, undefined);
+    return validated;
   }
   let str = '';
   let val;
@@ -243,9 +243,9 @@ export const serializeBibTexObject = (bibObject, callback) => {
   if (str.length > 1) {
     str = str.substr(0, str.length - 2);
   }
-  return callback(null, `@${bibObject.bibType}{${bibObject.citeKey},
+  return `@${bibObject.bibType}{${bibObject.citeKey},
     ${str}
-}`);
+}`;
 };
 
 /**

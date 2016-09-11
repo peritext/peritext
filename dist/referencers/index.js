@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.iso690fr = undefined;
 
-var _iso690fr = require('./iso690fr.js');
+var _iso690fr = require('./iso690fr');
 
 var iso690frLib = _interopRequireWildcard(_iso690fr);
 

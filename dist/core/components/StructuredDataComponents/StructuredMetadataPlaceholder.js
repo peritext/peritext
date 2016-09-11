@@ -11,7 +11,7 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _index = require('./../index.js');
+var _index = require('./../index');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -49,13 +49,24 @@ var StructuredMetadataPlaceholder = function (_React$Component) {
      * @property {Object} section - section to represent with metadata
      */
     value: function render() {
+      var _this2 = this;
+
+      var metadata = Object.keys(this.props.section.metadata).reduce(function (metas, domainKey) {
+        return metas.concat(Object.keys(_this2.props.section.metadata[domainKey]).map(function (propKey) {
+          return {
+            key: propKey,
+            domain: domainKey,
+            value: _this2.props.section.metadata[domainKey][propKey].value
+          };
+        }));
+      }, []);
       return _react2.default.createElement(
         'div',
         {
           className: 'peritext-structured-metadata-placeholder-container',
           style: { visibility: 'hidden' }
         },
-        this.props.section.metadata.filter(function (prop) {
+        metadata.filter(function (prop) {
           return prop.domain === 'general';
         }).map(function (meta) {
           switch (meta.key) {

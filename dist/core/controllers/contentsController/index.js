@@ -37,7 +37,7 @@ var updateConnector = function updateConnector(params) {
     if (connectorName === 'filesystem') {
       connector = filesystem;
     }
-    // this method is better but does not work when integrating the lib with webpack
+    // this method is better but does not work when integrating the lib with webpack (to investigate)
     // connector = require('./../../../connectors/' + params.connector);
   }
 };
@@ -58,7 +58,10 @@ var applyDifference = function applyDifference(difference, params, connect, call
       break;
     // delete element
     case 'D':
-      connect.deleteFromPath({ path: difference.lhs.path, params: params }, callback);
+      connect.deleteFromPath({
+        path: difference.lhs.path,
+        params: params
+      }, callback);
       break;
     // edit element
     case 'E':
@@ -75,13 +78,25 @@ var applyDifference = function applyDifference(difference, params, connect, call
           (0, _async.waterfall)([
           // create root
           function (cb) {
-            connect.createFromPath({ path: item.path, params: params, type: item.type, overwrite: true, stringContents: item.stringContents || '' }, cb);
+            connect.createFromPath({
+              path: item.path,
+              params: params,
+              type: item.type,
+              overwrite: true,
+              stringContents: item.stringContents || ''
+            }, cb);
           },
           // create children
           function (cb) {
             if (item.children) {
               (0, _async.map)(item.children, function (child, cb2) {
-                connect.createFromPath({ path: child.path, params: params, type: child.type, overwrite: true, stringContents: child.stringContents || '' }, cb2);
+                connect.createFromPath({
+                  path: child.path,
+                  params: params,
+                  type: child.type,
+                  overwrite: true,
+                  stringContents: child.stringContents || ''
+                }, cb2);
               }, cb);
             } else cb();
           }], callback);
@@ -89,14 +104,21 @@ var applyDifference = function applyDifference(difference, params, connect, call
 
         case 'D':
           item = difference.item.lhs;
-          connect.deleteFromPath({ path: item.path, params: params }, callback);
+          connect.deleteFromPath({
+            path: item.path,
+            params: params
+          }, callback);
           break;
         case 'E':
           item = difference.item.rhs;
           (0, _async.waterfall)([
           // create root
           function (cb) {
-            connect.updateFromPath({ path: item.path, params: params, stringContents: item.stringContents || '' }, cb);
+            connect.updateFromPath({
+              path: item.path,
+              params: params,
+              stringContents: item.stringContents || ''
+            }, cb);
           },
           // create children
           function (cb) {
@@ -128,7 +150,11 @@ var applyDifference = function applyDifference(difference, params, connect, call
 var updateFromSource = exports.updateFromSource = function updateFromSource(params, models, parameters, callback) {
   updateConnector(params);
   (0, _async.waterfall)([function (cb) {
-    connector.readFromPath({ params: params, path: [], depth: true, parseFiles: true }, function (err, results) {
+    connector.readFromPath({
+      params: params, path: [],
+      depth: true,
+      parseFiles: true
+    }, function (err, results) {
       cb(err, results);
     });
   }, function (tree, cb) {
@@ -143,14 +169,20 @@ var updateFromSource = exports.updateFromSource = function updateFromSource(para
 * then makes a diff list with deep-diff
 * then monitor source tree updating (with C.U.D. operations) accordingly
 * @param {Object} params - connection params
-* @param {array} sections - the peritext sections to serialize
+* @param {array} document - the peritext document to serialize
 * @param {Object} models - peritext models to use
 * @param {Object} oldFsTree - the previous fsTree representation to compare with the new
 * @param {function(serializingErrors: error, sections:array)} callback - errors and input sections
 */
-var updateToSource = exports.updateToSource = function updateToSource(params, sections, models, oldFsTree, callback) {
+var updateToSource = exports.updateToSource = function updateToSource(params, document, models, oldFsTree, callback) {
   updateConnector(params);
-  (0, _sectionConverter.serializeSectionList)({ sectionList: sections, models: models, basePath: params.basePath }, function (err, newFsTree) {
+  (0, _sectionConverter.serializeSectionList)({
+    sectionList: Object.keys[document.sections].map(function (key) {
+      return document.sections[key];
+    }),
+    models: models,
+    basePath: params.basePath
+  }, function (err, newFsTree) {
     var differences = (0, _deepDiff.diff)(oldFsTree, newFsTree);
     (0, _async.map)(differences, function (difference, cb) {
       applyDifference(difference, params, connector, cb);

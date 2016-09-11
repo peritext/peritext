@@ -7,7 +7,6 @@ import fs, {
   readFile,
   readdir,
   lstatSync,
-  mkdir,
   exists,
   writeFile,
   unlink
@@ -18,7 +17,10 @@ import {
   basename,
   join as joinPath
 } from 'path';
-import {map as asyncMap, reduce as asyncReduce} from 'async';
+import {
+  map as asyncMap
+} from 'async';
+import mkdirp from 'mkdirp';
 // import removeFolderRecursively from 'rmdir';
 
 const removeFolderRecursively = function(path) {
@@ -155,43 +157,25 @@ export const createFromPath = ({path = '', params, type = 'file', stringContents
   const finalPath = resolve(params.basePath) + '/' + resolvedPath;
   const pathSteps = finalPath.split('/').filter((thatPath)=> {return thatPath.length > 0;});
   // first check-or-create path folders
-  const activePath = '/';
-  asyncReduce(pathSteps, activePath, (inputMemo, pathStep, cback) =>{
-    // case : not end of path, walking through
-    if (pathStep !== pathSteps[pathSteps.length - 1]) {
-      const memo = inputMemo + pathStep + '/';
-      exists(memo, function(isThere) {
-        if (isThere) {
-          cback(null, memo);
-        }else {
-          mkdir(memo, function(err) {
-            cback(err, memo);
-          });
-        }
-      });
-    // case : end of path
-    } else {
-      cback(null, inputMemo + pathStep);
-    }
-
-  }, (err, result) =>{
-    // check if element already exists
-    exists(finalPath, function(isThere) {
-      if ((isThere && overwrite === true) || !isThere) {
-        if (type === 'file') {
-          writeFile(finalPath, stringContents, 'utf8', function(error) {
-            callback(error);
-          });
-        }else if (type === 'directory') {
-          mkdir(finalPath, function(error) {
-            callback(error);
-          });
-        }else {
-          callback(new Error('No element type matching'));
-        }
-      }else {
-        callback(new Error('File/directory already exists and overwrite option is set to false'));
+  let folderPath = type === 'file' ? pathSteps.slice(0, pathSteps.length - 1) : pathSteps.slice();
+  folderPath = '/' + folderPath.join('/');
+  if (type === 'file') {
+    return exists(finalPath, (isThere)=> {
+      // either file is not there or we don't care overwriting
+      if (overwrite || !isThere) {
+        writeFile(finalPath, stringContents, 'utf8');
+        return callback(null);
+      // file is there and overwrite set to false
       }
+      return callback(new Error('File/directory already exists and overwrite option is set to false'));
+    });
+  }
+  return exists(folderPath, (isThere)=> {
+    if (isThere) {
+      return callback(null);
+    }
+    return mkdirp(folderPath, (err)=>{
+      return callback(err);
     });
   });
 };

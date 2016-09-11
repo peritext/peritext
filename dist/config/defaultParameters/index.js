@@ -3,5 +3,5 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = require('./defaultParameters.json');
+exports.default = require('./defaultParameters');
 module.exports = exports['default'];

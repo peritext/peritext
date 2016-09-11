@@ -1,9 +1,8 @@
 /**
- * This module converts an fsTree flatfile abstraction to a documentTree peritext document abstraction
+ * This module converts an fsTree flatfile abstraction to a peritext document representation
+ * And it converts aperitext document representation to an fsTree flatfile abstraction
  * @module converters/sectionConverter
  */
-
-import {waterfall, map as asyncMap} from 'async';
 
 import {concatTree} from './concatTree';
 import {parseTreeResources} from './parseTreeResources';
@@ -17,98 +16,10 @@ import {resolveBindings} from './../../resolvers/resolveContextualizations';
 import {markdownToJsAbstraction} from './../markdownConverter';
 import {serializeBibTexObject, parseBibNestedValues} from './../../converters/bibTexConverter';
 
-const concatSection = ({section, models}, callback) =>{
-  const genuineMeta = section.metadata.filter((metadata)=>{
-    return !metadata.inheritedVerticallyFrom && !metadata.inheritedHorizontallyFrom;
-  });
-  const metadata = genuineMeta.reduce((obj, thatMetadata)=>{
-    const key = (thatMetadata.domain === 'general') ? thatMetadata.key : thatMetadata.domain + '_' + thatMetadata.key;
-    const model = models.metadataModels[thatMetadata.domain][thatMetadata.key];
-    if (model) {
-      obj[key] = serializePropAgainstType(thatMetadata.value, model.valueType, model);
-    } else obj[key] = thatMetadata.value;
-    return obj;
-  }, {});
-  metadata.bibType = 'peritext' + metadata.bibType;
-  let root;
-  if (section.parent) {
-    metadata.parent = section.parent;
-  }else {
-    root = true;
-  }
-
-  if (section.after) {
-    metadata.after = section.after;
-  }
-
-  const resources = section.resources.filter((resource)=>{
-    return !resource.inheritedVerticallyFrom;
-  }).map((resource) =>{
-    const modelList = getResourceModel(resource.bibType, models.resourceModels);
-    if (modelList) {
-      let model;
-      return Object.keys(resource).reduce((obj, key) =>{
-        if (resource[key] !== undefined) {
-          model = modelList.properties.find((thatModel)=>{
-            return thatModel.key === key;
-          });
-          if (model) {
-            obj[key] = serializePropAgainstType(resource[key], model.valueType, model);
-          } else obj[key] = resource[key];
-        }
-
-        return obj;
-      }, {});
-    }
-    return resource;
-  });
-
-  const contextualizers = section.contextualizers.filter((contextualizer)=>{
-    return contextualizer && !contextualizer.describedInline;
-  }).map((contextualizer)=>{
-    const modelList = getResourceModel(contextualizer.type, models.contextualizerModels);
-    if (modelList) {
-      let model;
-      const cont = Object.keys(contextualizer).reduce((obj, key) =>{
-        if (contextualizer[key] !== undefined) {
-          model = modelList.properties.find((thatModel)=>{
-            return thatModel.key === key;
-          });
-
-          if (model) {
-            obj[key] = serializePropAgainstType(contextualizer[key], model.valueType, model);
-          } else obj[key] = contextualizer[key];
-        }
-        return obj;
-      }, {});
-      cont.bibType = 'contextualizer';
-      return cont;
-    }
-    contextualizer.bibType = 'contextualizer';
-    return contextualizer;
-  });
-
-  const bibResources = [metadata].concat(resources).concat(contextualizers);
-
-  asyncMap(bibResources, serializeBibTexObject, (err, inputBibStr) =>{
-    let bibStr;
-    if (inputBibStr) {
-      bibStr = inputBibStr.join('\n\n');
-    }
-    callback(err, {
-      markdownContent: section.markdownContents,
-      bibResources: bibStr,
-      customizers: section.customizers,
-      citeKey: section.metadata.general.citeKey.value,
-      root
-    });
-  });
-};
-
-const sectionListToFsTree = (inputSectionList, basePath, callback) =>{
+const sectionListToFsTree = (inputSectionList, basePath) =>{
   const sectionList = inputSectionList.map((section)=>{
     const folderTitle = section.citeKey;
-    const relPath = (section.root) ? '' : '/' + folderTitle;
+    const relPath = (section.root) ? '' : folderTitle;
     const children = [
       {
         type: 'file',
@@ -146,7 +57,36 @@ const sectionListToFsTree = (inputSectionList, basePath, callback) =>{
   delete root.root;
   root.children = root.children.concat(children);
   root.name = basePath.split('/').pop();
-  callback(null, root);
+  return root;
+};
+
+const serializeMetadata = (metadata, models) => {
+  const obj = {};
+  Object.keys(metadata).forEach(domain => {
+    Object.keys(metadata[domain]).forEach(gKey => {
+      const prop = metadata[domain][gKey];
+      if (gKey === 'bibType' || !prop.inheritedVerticallyFrom && !prop.inheritedHorizontallyFrom) {
+        // format prop name like twitter_title
+        const key = domain === 'general' ? gKey : domain + '_' + gKey;
+        const model = models.metadataModels[domain][gKey];
+        if (model) {
+          obj[key] = serializePropAgainstType(prop.value, model.valueType, model);
+        } else obj[key] = prop.value;
+      }
+    });
+  });
+  obj.bibType = 'peritext' + obj.bibType;
+  return serializeBibTexObject(obj);
+};
+
+const concatSection = (section, models) =>{
+  const metadataStr = serializeMetadata(section.metadata, models);
+  return {
+    markdownContent: section.markdownContents,
+    bibResources: metadataStr,
+    customizers: section.customizers,
+    citeKey: section.metadata.general.citeKey.value
+  };
 };
 
 // from documentSectionsList to fsTree
@@ -156,22 +96,72 @@ const sectionListToFsTree = (inputSectionList, basePath, callback) =>{
  * @param {array} param.sectionList - the list of sections to serialize
  * @param {Object} param.models - the models to use for serializing
  * @param {string} param.basePath - the path to use as basis for determining serializing output paths
- * @param {function(error:error, fsTree: Object)} callback - provides the filesystem representation of the data
+ * @return {Object} - returns the filesystem representation of the data
  */
-export const serializeSectionList = ({sectionList, models, basePath}, callback) =>{
-  waterfall([
-    (cb) =>{
-      asyncMap(sectionList, (section, callbck) =>{
-        concatSection({section, models}, callbck);
-      }, (err, concatSections) =>{
-        cb(err, concatSections);
-      });
-    },
-    (sections, cb) =>{
-      sectionListToFsTree(sections, basePath, cb);
-    }
-    // all done - return a fsTree
-  ], callback);
+export const serializeDocument = ({document, models, basePath}, callback) =>{
+  const sections = Object.keys(document.sections).map(key => document.sections[key]);
+  // collect resources and prepare for serialization
+  const resources = Object.keys(document.resources)
+    .map(key => document.resources[key])
+    .filter((resource)=>{
+      return !resource.inheritedVerticallyFrom;
+    })
+    .map((resource) =>{
+      const modelList = getResourceModel(resource.bibType, models.resourceModels);
+      if (modelList) {
+        let model;
+        return Object.keys(resource).reduce((obj, key) =>{
+          if (resource[key] !== undefined) {
+            model = modelList.properties.find((thatModel)=>{
+              return thatModel.key === key;
+            });
+            if (model) {
+              obj[key] = serializePropAgainstType(resource[key], model.valueType, model);
+            } else obj[key] = resource[key];
+          }
+
+          return obj;
+        }, {});
+      }
+      return resource;
+    });
+  // collect contextualizers and prepare for serialization
+  const contextualizers = Object.keys(document.contextualizers)
+    .map(key => document.contextualizers[key])
+    .filter((contextualizer)=>{
+      return contextualizer && !contextualizer.describedInline;
+    }).map((contextualizer)=>{
+      const modelList = getResourceModel(contextualizer.type, models.contextualizerModels);
+      if (modelList) {
+        let model;
+        const cont = Object.keys(contextualizer).reduce((obj, key) =>{
+          if (contextualizer[key] !== undefined) {
+            model = modelList.properties.find((thatModel)=>{
+              return thatModel.key === key;
+            });
+
+            if (model) {
+              obj[key] = serializePropAgainstType(contextualizer[key], model.valueType, model);
+            } else obj[key] = contextualizer[key];
+          }
+          return obj;
+        }, {});
+        cont.bibType = 'contextualizer';
+        return cont;
+      }
+      contextualizer.bibType = 'contextualizer';
+      return contextualizer;
+    });
+  // merge resources and contextualizers in a collection of entities to be rendered as bibTeX
+  const bibResources = resources.concat(contextualizers).map(serializeBibTexObject);
+  // const globalMetadata = serializeMetadata(document.metadata, models);
+  const fsSections = sections.map(section => {
+    return concatSection(section, models);
+  });
+  // adding resources and contextualizers to first section / root
+  fsSections[0].bibResources += bibResources.join('\n\n');
+  fsSections[0].root = true;
+  return sectionListToFsTree(fsSections, basePath);
 };
 
 // from fsTree (returned by any connector) to a documentSectionsList usable in app

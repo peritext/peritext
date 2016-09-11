@@ -7,8 +7,6 @@ exports.default = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _class;
-
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -17,11 +15,7 @@ var _reactStringReplace = require('react-string-replace');
 
 var _reactStringReplace2 = _interopRequireDefault(_reactStringReplace);
 
-var _index = require('./../index.js');
-
-var _radium = require('radium');
-
-var _radium2 = _interopRequireDefault(_radium);
+var _index = require('./../index');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -35,7 +29,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * dumb component for rendering the structured representation of parent journal information
  */
 
-var StructuredParentJournal = (0, _radium2.default)(_class = function (_React$Component) {
+var StructuredParentJournal = function (_React$Component) {
   _inherits(StructuredParentJournal, _React$Component);
 
   function StructuredParentJournal() {
@@ -178,7 +172,7 @@ var StructuredParentJournal = (0, _radium2.default)(_class = function (_React$Co
   }]);
 
   return StructuredParentJournal;
-}(_react2.default.Component)) || _class;
+}(_react2.default.Component);
 
 StructuredParentJournal.propTypes = {
   resource: _react.PropTypes.object,

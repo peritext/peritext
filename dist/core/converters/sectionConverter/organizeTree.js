@@ -3,20 +3,18 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.organizeTree = undefined;
 
-var _async = require('async');
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var _sectionUtils = require('./../../utils/sectionUtils');
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } } /**
-                                                                                                                                                                                                     * This module organizes relations between sections (order, inheritance, generality level)
-                                                                                                                                                                                                     * @module converter/sectionConverter/organizeTree
-                                                                                                                                                                                                     */
-
+/**
+ * This module organizes relations between sections (order, inheritance, generality level)
+ * @module converter/sectionConverter/organizeTree
+ */
 
 var formatMetadata = function formatMetadata(metadataObj) {
-  var output = [];
+  var output = {};
   var value = void 0;
   var keydetail = void 0;
   var domain = void 0;
@@ -26,28 +24,26 @@ var formatMetadata = function formatMetadata(metadataObj) {
       keydetail = key.split('_');
       domain = keydetail.length > 1 ? keydetail.shift() : 'general';
       key = keydetail.join('_');
-      output.push({
-        domain: domain,
-        key: key,
+      if (output[domain] === undefined) {
+        output[domain] = {};
+      }
+      output[domain][key] = {
         value: value
-      });
+      };
     }
   }
   return output;
 };
 
-var flattenSections = function flattenSections(tree, callback) {
-
+var flattenSections = function flattenSections(tree) {
   if (tree.children) {
-    (0, _async.map)(tree.children, flattenSections, function (err, children) {
-      var newTree = Object.assign({}, tree);
-      var newChildren = children.map(function (child) {
-        return Object.assign({}, child[0], { parent: tree.metadata.citeKey });
-      });
-
-      return callback(null, [newTree].concat(_toConsumableArray(newChildren)));
+    var newChildren = tree.children.map(function (child) {
+      return Object.assign({}, child, { parent: tree.metadata.citeKey });
     });
-  } else return callback(null, tree);
+    var newTree = Object.assign({}, tree);
+    return [newTree].concat(_toConsumableArray(newChildren));
+  }
+  return tree;
 };
 
 var formatSection = function formatSection(section) {
@@ -69,40 +65,38 @@ var formatSection = function formatSection(section) {
   };
 };
 
-var formatSections = function formatSections(sections, callback) {
-  var formatted = sections.map(formatSection);
-  return callback(null, formatted);
+var formatSections = function formatSections(sections) {
+  var formattedSections = sections.map(function (section) {
+    return formatSection(section);
+  });
+  return formattedSections;
 };
 
-var makeRelations = function makeRelations(inputSections, callback) {
+var makeRelations = function makeRelations(inputSections) {
   // find parents and predecessors
   var sections = inputSections.map(function (inputSection) {
     var section = Object.assign({}, inputSection);
-    var parent = (0, _sectionUtils.getMetaValue)(section.metadata, 'general', 'parent');
-    var after = (0, _sectionUtils.getMetaValue)(section.metadata, 'general', 'after');
-    if (parent) {
-      section.parent = parent;
-      section.metadata = (0, _sectionUtils.deleteMeta)(section.metadata, 'general', 'parent');
+    if (section.parent && section.metadata.general.parent === undefined) {
+      section.metadata.general.parent = { value: section.parent };
     }
-    if (after) {
-      section.after = after;
-      section.metadata = (0, _sectionUtils.deleteMeta)(section.metadata, 'general', 'after');
+    delete section.parent;
+    if (section.after && section.metadata.general.after === undefined) {
+      section.metadata.general.after = { value: section.after };
     }
+    delete section.after;
     return section;
   });
   // order sections
 
   var _loop = function _loop(index) {
     var section = sections[index];
-    if (section.after) {
+    if (section.metadata.general.after) {
       var indexAfter = void 0;
-      sections.some(function (sec, id) {
-        var citeKey = sec.metadata.find(function (meta) {
-          return meta.domain === 'general' && meta.key === 'citeKey';
-        }).value;
+      sections.some(function (section2, thatIndex) {
+        var citeKey = section2.metadata.general.citeKey.value;
 
-        if (section.after === citeKey) {
-          indexAfter = id;
+        if (section.metadata.general.after.value === citeKey) {
+          indexAfter = thatIndex;
           return true;
         }
       });
@@ -114,29 +108,51 @@ var makeRelations = function makeRelations(inputSections, callback) {
   for (var index = sections.length - 1; index >= 0; index--) {
     _loop(index);
   }
-
-  callback(null, sections);
+  var summary = sections.map(function (section) {
+    return section.metadata.general.citeKey.value;
+  });
+  var orderedSections = sections.map(function (section, index) {
+    if (index > 0) {
+      section.metadata.general.after = {
+        value: sections[index - 1].metadata.general.citeKey.value
+      };
+    } else {
+      delete section.metadata.general.after;
+    }
+    return section;
+  });
+  var outputSections = orderedSections.reduce(function (output, section) {
+    return Object.assign(output, _defineProperty({}, section.metadata.general.citeKey.value, section));
+  }, {});
+  return { outputSections: outputSections, summary: summary };
 };
 
 /**
- * Organizes relations betwwen sections
+ * Organizes relations between sections
  * @param {Object} params - the organization params
  * @param {array} params.errors - the inherited parsing errors to pass along to next step
  * @param {Object} params.validTree - the tree to process
- * @param {function(error: error, results: {errors: array, sections: array})} callback - an updated list of parsing errors and updated sections
+ * @return {error: error, results: {errors: array, sections: array} - an updated list of parsing errors and updated sections
  */
-var organizeTree = exports.organizeTree = function organizeTree(_ref, callback) {
-  var errors = _ref.errors;
+var organizeTree = exports.organizeTree = function organizeTree(_ref) {
+  var _ref$errors = _ref.errors;
+  var errors = _ref$errors === undefined ? [] : _ref$errors;
   var validTree = _ref.validTree;
 
+  var flatSections = flattenSections(validTree);
+  // console.log(flatSections);
+  var formattedSections = formatSections(flatSections);
 
-  (0, _async.waterfall)([function (cb) {
-    flattenSections(validTree, cb);
-  }, function (sections, cb) {
-    formatSections(sections, cb);
-  }, function (sections, cb) {
-    makeRelations(sections, cb);
-  }], function (err, sections) {
-    callback(err, { sections: sections, errors: errors });
-  });
+  var _makeRelations = makeRelations(formattedSections);
+
+  var sections = _makeRelations.outputSections;
+  var summary = _makeRelations.summary;
+
+  return {
+    document: {
+      sections: sections,
+      summary: summary
+    },
+    errors: errors
+  };
 };

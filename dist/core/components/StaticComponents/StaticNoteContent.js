@@ -7,15 +7,9 @@ exports.default = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _class;
-
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
-
-var _radium = require('radium');
-
-var _radium2 = _interopRequireDefault(_radium);
 
 var _componentsFactory = require('./../../utils/componentsFactory');
 
@@ -33,7 +27,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * dumb component for rendering the structured representation of a static note
  */
 
-var StaticNote = (0, _radium2.default)(_class = function (_React$Component) {
+var StaticNote = function (_React$Component) {
   _inherits(StaticNote, _React$Component);
 
   function StaticNote() {
@@ -73,13 +67,13 @@ var StaticNote = (0, _radium2.default)(_class = function (_React$Component) {
           },
           this.props.note.noteNumber
         ),
-        (0, _componentsFactory2.default)(this.props.note.contents)
+        (0, _componentsFactory2.default)(this.props.note.child)
       );
     }
   }]);
 
   return StaticNote;
-}(_react2.default.Component)) || _class;
+}(_react2.default.Component);
 
 StaticNote.propTypes = {
   note: _react.PropTypes.object

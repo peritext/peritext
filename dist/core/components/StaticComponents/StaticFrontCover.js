@@ -7,19 +7,13 @@ exports.default = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _class;
-
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _StructuredPerson = require('./../StructuredDataComponents/StructuredPerson.js');
+var _StructuredPerson = require('./../StructuredDataComponents/StructuredPerson');
 
 var _StructuredPerson2 = _interopRequireDefault(_StructuredPerson);
-
-var _radium = require('radium');
-
-var _radium2 = _interopRequireDefault(_radium);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -33,7 +27,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * dumb component for cover page of a static publication of document
  */
 
-var StaticFrontCover = (0, _radium2.default)(_class = function (_React$Component) {
+var StaticFrontCover = function (_React$Component) {
   _inherits(StaticFrontCover, _React$Component);
 
   function StaticFrontCover() {
@@ -43,38 +37,19 @@ var StaticFrontCover = (0, _radium2.default)(_class = function (_React$Component
   }
 
   _createClass(StaticFrontCover, [{
-    key: 'getGeneralProp',
+    key: 'render',
 
-
-    /**
-     * Util for returning the value of a "general" type metadata
-     * @param {array} list - the list of metadata
-     * @param {string} key - the key of the metadata prop
-     * @return {string} value
-     */
-
-
-    /**
-     * propTypes
-     * @property {array} metadata a section metadata to parse in order to fill cover template
-     */
-    value: function getGeneralProp(list, key) {
-      var obj = list.find(function (meta) {
-        return meta.domain === 'general' && meta.key === key;
-      });
-      if (obj) {
-        return obj.value;
-      }
-      return undefined;
-    }
 
     /**
      * render
      * @return {ReactElement} markup
      */
 
-  }, {
-    key: 'render',
+
+    /**
+     * propTypes
+     * @property {Object} metadata a section metadata to parse in order to fill cover template
+     */
     value: function render() {
       return _react2.default.createElement(
         'section',
@@ -83,7 +58,7 @@ var StaticFrontCover = (0, _radium2.default)(_class = function (_React$Component
           className: 'peritext-static-front-cover-container'
         },
         _react2.default.createElement('div', {
-          style: { backgroundImage: 'url(' + this.getGeneralProp(this.props.metadata, 'coverimage') + ')' },
+          style: { backgroundImage: 'url(' + (this.props.metadata.general.coverimage && this.props.metadata.general.coverimage.value) + ')' },
           id: 'peritext-static-front-cover-image-container'
         }),
         _react2.default.createElement(
@@ -98,7 +73,7 @@ var StaticFrontCover = (0, _radium2.default)(_class = function (_React$Component
               'h3',
               { className: 'peritext-static-front-cover-dissertationinstitution' },
               'Thèse / ',
-              this.getGeneralProp(this.props.metadata, 'dissertationinstitution')
+              this.props.metadata.general.dissertationinstitution && this.props.metadata.general.dissertationinstitution.value
             ),
             _react2.default.createElement(
               'p',
@@ -108,13 +83,13 @@ var StaticFrontCover = (0, _radium2.default)(_class = function (_React$Component
             _react2.default.createElement(
               'h4',
               { className: 'peritext-static-front-cover-dissertationcomment' },
-              this.getGeneralProp(this.props.metadata, 'dissertationcomment')
+              this.props.metadata.general.dissertationcomment && this.props.metadata.general.dissertationcomment.value
             ),
             _react2.default.createElement(
               'p',
               { className: 'peritext-static-front-cover-dissertationdoctoralschool' },
               'École doctorale ',
-              this.getGeneralProp(this.props.metadata, 'dissertationdoctoralschool')
+              this.props.metadata.general.dissertationdoctoralschool && this.props.metadata.general.dissertationdoctoralschool.value
             ),
             _react2.default.createElement(
               'p',
@@ -123,7 +98,7 @@ var StaticFrontCover = (0, _radium2.default)(_class = function (_React$Component
               _react2.default.createElement(
                 'span',
                 null,
-                this.getGeneralProp(this.props.metadata, 'dissertationdiscipline')
+                this.props.metadata.general.dissertationdiscipline && this.props.metadata.general.dissertationdiscipline.value
               )
             )
           ),
@@ -138,14 +113,14 @@ var StaticFrontCover = (0, _radium2.default)(_class = function (_React$Component
             _react2.default.createElement(
               'h1',
               { className: 'peritext-static-authors' },
-              this.getGeneralProp(this.props.metadata, 'author').map(function (person) {
+              this.props.metadata.general.author.value.map(function (person) {
                 return _react2.default.createElement(_StructuredPerson2.default, { key: person.citeKey, resource: person });
               })
             ),
             _react2.default.createElement(
               'p',
               { className: 'peritext-static-front-cover-dissertationlab' },
-              this.getGeneralProp(this.props.metadata, 'dissertationlab')
+              this.props.metadata.general.dissertationlab && this.props.metadata.general.dissertationlab.value
             )
           ),
           _react2.default.createElement(
@@ -154,7 +129,7 @@ var StaticFrontCover = (0, _radium2.default)(_class = function (_React$Component
             _react2.default.createElement(
               'h1',
               null,
-              this.getGeneralProp(this.props.metadata, 'title')
+              this.props.metadata.general.title && this.props.metadata.general.title.value
             )
           ),
           _react2.default.createElement(
@@ -164,14 +139,14 @@ var StaticFrontCover = (0, _radium2.default)(_class = function (_React$Component
               'p',
               { className: 'peritext-static-front-cover-date' },
               'Thèse soutenue le ',
-              this.getGeneralProp(this.props.metadata, 'date')
+              this.props.metadata.general.date && this.props.metadata.general.date.value
             ),
             _react2.default.createElement(
               'p',
               null,
               'devant le jury composé de :'
             ),
-            this.getGeneralProp(this.props.metadata, 'dissertationjury').map(function (person) {
+            this.props.metadata.general.dissertationjury.value.map(function (person) {
               return _react2.default.createElement(
                 'p',
                 { key: person.citeKey, className: 'peritext-static-front-cover-jury-member' },
@@ -185,10 +160,10 @@ var StaticFrontCover = (0, _radium2.default)(_class = function (_React$Component
   }]);
 
   return StaticFrontCover;
-}(_react2.default.Component)) || _class;
+}(_react2.default.Component);
 
 StaticFrontCover.propTypes = {
-  metadata: _react.PropTypes.array
+  metadata: _react.PropTypes.object
 };
 StaticFrontCover.defaultProps = {};
 exports.default = StaticFrontCover;

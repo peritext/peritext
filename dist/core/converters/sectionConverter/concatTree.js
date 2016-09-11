@@ -135,9 +135,9 @@ var concatCustomizers = function concatCustomizers(newTree) {
  * Turns a fsTree into a dumTree, that is to say a tree which presents .bib resources and .md files contents concatenated by folder (according to inner 'include' statements and then automatically)
  * @param {Object} tree - the fsTree to concatenate
  * @param {Object} params - the language-related parameters
- * @param {function(error: error, newTree: object)} callback - error and the concatenated tree
+ * @return {errors: Array, dumbTree: Object}  - error and the concatenated tree
  */
-var concatTree = exports.concatTree = function concatTree(tree, params, callback) {
+var concatTree = exports.concatTree = function concatTree(tree, params) {
   var newTree = Object.assign({}, tree);
   // concat .bib res files
   var resources = newTree.children.filter(function (child) {
@@ -184,11 +184,9 @@ var concatTree = exports.concatTree = function concatTree(tree, params, callback
       newTree.customizers = childrenCustomizers;
     }
     // recursively repeat dat stuff with children dirs
-    (0, _async.map)(childrenDirs, function (dir, cback) {
-      concatTree(dir, params, cback);
-    }, function (error, populatedDirs) {
-      newTree.children = populatedDirs;
-      callback(error, newTree);
+    newTree.children = childrenDirs.map(function (dir) {
+      return concatTree(dir, params).dumbTree;
     });
   });
+  return { dumbTree: newTree, errors: [] };
 };

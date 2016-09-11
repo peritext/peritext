@@ -6,15 +6,9 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _class;
-
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
-
-var _radium = require('radium');
-
-var _radium2 = _interopRequireDefault(_radium);
 
 var _reactIntl = require('react-intl');
 
@@ -40,7 +34,7 @@ var translate = (0, _reactIntl.defineMessages)({
  * dumb component for rendering a static table of figures
  */
 
-var StaticReferencesList = (0, _radium2.default)(_class = function (_React$Component) {
+var StaticReferencesList = function (_React$Component) {
   _inherits(StaticReferencesList, _React$Component);
 
   function StaticReferencesList() {
@@ -90,7 +84,7 @@ var StaticReferencesList = (0, _radium2.default)(_class = function (_React$Compo
   }]);
 
   return StaticReferencesList;
-}(_react2.default.Component)) || _class;
+}(_react2.default.Component);
 
 StaticReferencesList.propTypes = {
   references: _react.PropTypes.array,

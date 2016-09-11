@@ -12,23 +12,21 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var _async = require('async');
 
-var _concatTree = require('./concatTree');
+var _concatTree2 = require('./concatTree');
 
-var _parseTreeResources = require('./parseTreeResources');
+var _parseTreeResources2 = require('./parseTreeResources');
 
-var _organizeTree = require('./organizeTree');
+var _organizeTree2 = require('./organizeTree');
 
-var _propagateData = require('./propagateData');
+var _propagateData2 = require('./propagateData');
 
-var _cleanNaiveTree = require('./cleanNaiveTree');
-
-var _sectionValidator = require('./../../validators/sectionValidator');
+var _cleanNaiveTree2 = require('./cleanNaiveTree');
 
 var _modelUtils = require('./../../utils/modelUtils');
 
-var _sectionUtils = require('./../../utils/sectionUtils');
-
 var _resolveSectionAgainstModels = require('./../../resolvers/resolveSectionAgainstModels');
+
+var _resolveResourcesAgainstModels = require('./../../resolvers/resolveResourcesAgainstModels');
 
 var _resolveContextualizations = require('./../../resolvers/resolveContextualizations');
 
@@ -133,7 +131,7 @@ var concatSection = function concatSection(_ref, callback) {
       markdownContent: section.markdownContents,
       bibResources: bibStr,
       customizers: section.customizers,
-      citeKey: (0, _sectionUtils.getMetaValue)(section.metadata, 'general', 'citeKey'),
+      citeKey: section.metadata.general.citeKey.value,
       root: root
     });
   });
@@ -216,7 +214,7 @@ var serializeSectionList = exports.serializeSectionList = function serializeSect
  * @param {Object} params.parameters - language-related parameters
  * @param {Object} params.parent - a possible existing parent section - to use for inheritance phases - suitable for partial document parsing/re-rendering use cases (like with an editor app)
  * @param {Object} params.models - models to use for parsing the data
- * @param {function(error:error, sections: array)} callback - provides an array containing the resources
+ * @param {function(error:error, results: Object)} callback - RCC representation of the contents and parsing errors list for UI
  */
 var parseSection = exports.parseSection = function parseSection(_ref3, callback) {
   var tree = _ref3.tree;
@@ -224,103 +222,104 @@ var parseSection = exports.parseSection = function parseSection(_ref3, callback)
   var parent = _ref3.parent;
   var models = _ref3.models;
 
-  (0, _async.waterfall)([
   // concat markdown, resources, styles, templates, components, and resolve includes, producing a clean 'dumb tree'
-  function (cb) {
-    //  console.log(tree);
-    (0, _concatTree.concatTree)(tree, parameters, cb);
-  },
+
+  var _concatTree = (0, _concatTree2.concatTree)(tree, parameters);
+
+  var dumbTree = _concatTree.dumbTree;
+  var dumbTreeErrors = _concatTree.errors;
   // parse bibtext to produce resources and metadata props, producing a 'naive tree' of sections
-  function (dumbTree, cb) {
-    (0, _parseTreeResources.parseTreeResources)(dumbTree, cb);
-  },
+
+  var _parseTreeResources = (0, _parseTreeResources2.parseTreeResources)(dumbTree);
+
+  var naiveTree = _parseTreeResources.naiveTree;
+  var naiveTreeErrors = _parseTreeResources.errors;
   // validate and resolve metadata against their models for all sections
-  function (naiveTree, cb) {
-    (0, _cleanNaiveTree.cleanNaiveTree)({ validTree: naiveTree }, models, cb);
-  },
+
+  var _cleanNaiveTree = (0, _cleanNaiveTree2.cleanNaiveTree)({ validTree: naiveTree }, models);
+
+  var validTree = _cleanNaiveTree.validTree;
+  var validTreeErrors = _cleanNaiveTree.errors;
+  // bootstrap errors list
+
+  var errors = dumbTreeErrors.concat(naiveTreeErrors).concat(validTreeErrors);
   // format objects, normalize metadata, and resolve organization statements
-  function (_ref4, cb) {
-    var errors = _ref4.errors;
-    var validTree = _ref4.validTree;
 
-    (0, _organizeTree.organizeTree)({ errors: errors, validTree: validTree }, cb);
-  },
+  var _organizeTree = (0, _organizeTree2.organizeTree)({ errors: errors, validTree: validTree });
+
+  var organizedDocument = _organizeTree.document;
+  var documentErrors = _organizeTree.errors;
   // propagate resources, metadata and customizers vertically (from parents to children sections), metadata lateraly (from metadata models propagation data)
-  function (_ref5, cb) {
-    var errors = _ref5.errors;
-    var sections = _ref5.sections;
 
-    (0, _propagateData.propagateData)({ errors: errors, sections: sections, models: models, parent: parent }, cb);
-  },
-  // validate each resource against their models to produce errors and warnings from parsing
-  function (_ref6, cb) {
-    var errors = _ref6.errors;
-    var sections = _ref6.sections;
+  var _propagateData = (0, _propagateData2.propagateData)({ errors: documentErrors, document: organizedDocument, models: models, parent: parent });
 
+  var richDocument = _propagateData.document;
+  var richErrors = _propagateData.errors;
+  // resolve data against their models
 
-    (0, _async.map)(sections, function (section, cback) {
-      (0, _sectionValidator.validateResources)(section, models, cback);
-    }, function (err, results) {
-      var newSections = results.map(function (result) {
-        return result.section;
-      });
-      var newErrors = results.reduce(function (total, result) {
-        return errors.concat(result.errors);
-      }, errors);
-      cb(err, { errors: newErrors, sections: newSections });
-    });
-  },
-  // resolve section resources and metadata against their models
-  function (_ref7, cb) {
-    var errors = _ref7.errors;
-    var sections = _ref7.sections;
+  var _resolveResourcesAgai = (0, _resolveResourcesAgainstModels.resolveResourcesAgainstModels)(richDocument.resources, models);
 
-    (0, _async.map)(sections, function (section, cback) {
-      (0, _resolveSectionAgainstModels.resolveSectionAgainstModels)(section, models, cback);
-    }, function (err, results) {
-      var newSections = results.map(function (result) {
-        return result.section;
-      });
-      var newErrors = results.reduce(function (total, result) {
-        return errors.concat(result.errors);
-      }, errors);
-      cb(err, { errors: newErrors, sections: newSections });
-    });
-  },
-  // parse markdown contents and organize them as blocks lists, and parse+resolve contextualization objects
-  function (_ref8, cb) {
-    var errors = _ref8.errors;
-    var sections = _ref8.sections;
+  var newResources = _resolveResourcesAgai.newResources;
+  var resErrors = _resolveResourcesAgai.newErrors;
 
-    (0, _async.map)(sections, function (section, cback) {
-      (0, _markdownConverter.markdownToJsAbstraction)(section, parameters, cback);
-    }, function (err, results) {
-      var newSections = results.map(function (result) {
-        return result.section;
-      });
-      var newErrors = results.reduce(function (total, result) {
-        return errors.concat(result.errors);
-      }, errors);
-      cb(err, { errors: newErrors, sections: newSections });
-    });
-  },
-  // resolve contextualizers statements with their models
-  function (_ref9, cb) {
-    var errors = _ref9.errors;
-    var sections = _ref9.sections;
+  richDocument.resources = newResources;
+  errors = errors.concat(richErrors).concat(resErrors);
+  // resolve sections against models
+  for (var citeKey in richDocument.sections) {
+    if (richDocument.sections[citeKey]) {
+      var section = richDocument.sections[citeKey];
 
-    (0, _async.map)(sections, function (section, cback) {
-      (0, _resolveContextualizations.resolveBindings)({ section: section, models: models }, cback);
-    }, function (err, results) {
-      var newSections = results.map(function (result) {
-        return result.section;
-      });
-      var newErrors = results.reduce(function (total, result) {
-        return errors.concat(result.errors);
-      }, errors);
-      cb(err, { errors: newErrors, sections: newSections });
-    });
+      var _resolveSectionAgains = (0, _resolveSectionAgainstModels.resolveSectionAgainstModels)(section, models);
+
+      var sectionErrors = _resolveSectionAgains.newErrors;
+      var newSection = _resolveSectionAgains.newSection;
+
+      errors = errors.concat(sectionErrors);
+      delete newSection.resources;
+      richDocument.sections[citeKey] = newSection;
+    }
   }
-  // all done - return a documentTree to use as data state in the app
-  ], callback);
+  // resolve contextualizers nested values
+  for (var _citeKey in richDocument.contextualizers) {
+    if (richDocument.contextualizers[_citeKey]) {
+      richDocument.contextualizers[_citeKey] = (0, _bibTexConverter.parseBibNestedValues)(richDocument.contextualizers[_citeKey]);
+    }
+  }
+  // parse markdown contents and organize them as blocks lists, and parse+resolve contextualization objects
+  richDocument.contextualizations = {};
+  for (var _citeKey2 in richDocument.sections) {
+    if (richDocument.sections[_citeKey2]) {
+      var _markdownToJsAbstract = (0, _markdownConverter.markdownToJsAbstraction)(richDocument.sections[_citeKey2], parameters);
+
+      var _sectionErrors = _markdownToJsAbstract.errors;
+      var _section = _markdownToJsAbstract.section;
+      var contextualizations = _markdownToJsAbstract.contextualizations;
+      var contextualizers = _markdownToJsAbstract.contextualizers;
+
+      errors = errors.concat(_sectionErrors);
+      richDocument.sections[_citeKey2] = _section;
+      richDocument.contextualizers = Object.assign(richDocument.contextualizers, contextualizers);
+      richDocument.contextualizations = Object.assign(richDocument.contextualizations, contextualizations);
+    }
+  }
+  // resolve contextualizers statements against their models
+
+  var _resolveBindings = (0, _resolveContextualizations.resolveBindings)({ document: richDocument, models: models });
+
+  var globalErrors = _resolveBindings.errors;
+  var newDocument = _resolveBindings.document;
+
+  var document = newDocument;
+  errors = errors.concat(globalErrors).filter(function (error) {
+    return error !== null;
+  });
+  // update summary and document metadata with root
+  document.metadata = Object.assign({}, document.sections[document.summary[0]].metadata);
+  document.customizers = document.sections[document.summary[0]].customizers;
+  document.forewords = document.sections[document.summary[0]];
+  document.summary = document.summary.slice(1);
+  callback(null, {
+    errors: errors,
+    document: document
+  });
 };

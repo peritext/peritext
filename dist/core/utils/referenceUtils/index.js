@@ -28,17 +28,19 @@ var isBibliographical = function isBibliographical(bibType) {
 /**
  * Filter and order a list of resources against bibliography settings
  * @param {array} sections - the sections to handle for building the list
+ * @param {Object} document - the reference to the overall document
  * @param {Object} settings - the rendering settings, among which are bibliography-making related settings
  * @return {array} references - the resulting list
  */
-var computeReferences = exports.computeReferences = function computeReferences(sections, settings) {
+var computeReferences = exports.computeReferences = function computeReferences(sections, document, settings) {
   if (settings.referenceScope === 'document') {
     var _ret = function () {
-      var references = sections.reduce(function (refs, section) {
-        return refs.concat(section.resources.filter(function (resource) {
-          return resource.inheritedVerticallyFrom === undefined;
-        }));
-      }, []);
+      var references = [];
+      for (var key in document.resources) {
+        if (document.resources[key]) {
+          references.push(document.resources[key]);
+        }
+      }
 
       // handle filters
       var filters = (settings.referenceFilters || []) && settings.referenceFilters.split(' ');
@@ -53,7 +55,7 @@ var computeReferences = exports.computeReferences = function computeReferences(s
               return isBibliographical(ref.bibType);
             });
           // todo : document filters
-          // todo : design new filters
+          // todo : design other filters
           default:
             return outputReferences;
         }

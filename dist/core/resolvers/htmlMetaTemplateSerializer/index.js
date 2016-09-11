@@ -19,7 +19,7 @@ Object.defineProperty(exports, "__esModule", {
  * @param {string} template - the template to consumes
  * @return {string} htmlMeta - the representation of the html metadata as string
  */
-var serializeHtmlMeta = exports.serializeHtmlMeta = function serializeHtmlMeta(metadata, template) {
+var serializeHtmlMeta = exports.serializeHtmlMeta = function serializeHtmlMeta(metadata, key, template) {
   var transformationAction = template.match(/\${value:([^}]*)/);
   var transformationArgument = void 0;
   var value = void 0;
@@ -44,7 +44,7 @@ var serializeHtmlMeta = exports.serializeHtmlMeta = function serializeHtmlMeta(m
   } else value = metadata.value;
   var output = template;
   while (output.indexOf('${value') > -1) {
-    output = output.replace('${key}', metadata.key).replace(/\${value:?([^}]*)?}/, value);
+    output = output.replace('${key}', key).replace(/\${value:?([^}]*)?}/, value);
   }
   return output;
 };

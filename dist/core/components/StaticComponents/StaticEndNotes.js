@@ -6,17 +6,11 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _class;
-
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _radium = require('radium');
-
-var _radium2 = _interopRequireDefault(_radium);
-
-var _index = require('./../index.js');
+var _index = require('./../index');
 
 var _reactIntl = require('react-intl');
 
@@ -27,8 +21,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-// let styles = {};
 
 var translate = (0, _reactIntl.defineMessages)({
   endnotes: {
@@ -42,7 +34,7 @@ var translate = (0, _reactIntl.defineMessages)({
  * dumb component for rendering the structured representation of a static section
  */
 
-var StaticEndNotes = (0, _radium2.default)(_class = function (_React$Component) {
+var StaticEndNotes = function (_React$Component) {
   _inherits(StaticEndNotes, _React$Component);
 
   function StaticEndNotes() {
@@ -90,7 +82,7 @@ var StaticEndNotes = (0, _radium2.default)(_class = function (_React$Component) 
   }]);
 
   return StaticEndNotes;
-}(_react2.default.Component)) || _class;
+}(_react2.default.Component);
 
 StaticEndNotes.propTypes = {
   notes: _react.PropTypes.array,

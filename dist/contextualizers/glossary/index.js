@@ -5,34 +5,41 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.contextualizeBlockDynamic = exports.contextualizeInlineDynamic = exports.contextualizeBlockStatic = exports.contextualizeInlineStatic = undefined;
 
-var _StaticEntityInline = require('./StaticEntityInline.js');
+var _objectPath = require('object-path');
+
+var _StaticEntityInline = require('./StaticEntityInline');
 
 var _StaticEntityInline2 = _interopRequireDefault(_StaticEntityInline);
 
-var _StaticEntityBlock = require('./StaticEntityBlock.js');
+var _StaticEntityBlock = require('./StaticEntityBlock');
 
 var _StaticEntityBlock2 = _interopRequireDefault(_StaticEntityBlock);
 
-var _sectionUtils = require('./../../core/utils/sectionUtils');
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } } /**
+                                                                                                                                                                                                     * Glossary contextualizer that resolve sections data according to contextualization+settings params
+                                                                                                                                                                                                     * @module contextualizers/glossary
+                                                                                                                                                                                                     */
+
 
 /**
  * Handle an inline contextualization for static outputs
- * @param {Object} inputSection - The representation of the peritext section to update
+ * @param {Object} inputDocument - The representation of the peritext document to update
  * @param {Object} inputContextualization - The representation of the contextualization to resolve
  * @param {Object} settings - the specific rendering settings to use for resolving the contextualization
- * @return {Object} newSection - the updated representation of the peritext section in which the contextualization was made
+ * @return {Object} newDocument - the updated representation of the peritext document in which the contextualization was made
  */
-var contextualizeInlineStatic = exports.contextualizeInlineStatic = function contextualizeInlineStatic(inputSection, inputContextualization, settings) {
-  var section = Object.assign({}, inputSection);
+var contextualizeInlineStatic = exports.contextualizeInlineStatic = function contextualizeInlineStatic(inputDocument, inputContextualization, settings) {
+  var document = Object.assign({}, inputDocument);
   var contextualization = Object.assign({}, inputContextualization);
-  var node = contextualization.node;
-  var sectionCiteKey = (0, _sectionUtils.getMetaValue)(section.metadata, 'general', 'citeKey');
-  var entity = contextualization.resources[0];
+  var sectionCiteKey = contextualization.nodePath[0];
+  var path = ['sections'].concat(_toConsumableArray(contextualization.nodePath.slice()));
+  var node = (0, _objectPath.get)(document, path);
+  var entity = document.resources[contextualization.resources[0]];
   var contents = node.child;
   if (!contents || contents[0] && contents[0].text.trim().length === 0) {
-    contents = contextualization.contextualizer.alias || entity.name || entity.firstname + ' ' + entity.lastname;
+    contents = document.contextualizers[contextualization.contextualizer].alias || entity.name || entity.firstname + ' ' + entity.lastname;
     contents = [{
       node: 'text',
       text: contents
@@ -46,24 +53,21 @@ var contextualizeInlineStatic = exports.contextualizeInlineStatic = function con
   };
   node.special = true;
   node.tag = _StaticEntityInline2.default;
-  return Object.assign({}, inputSection);
+  return document;
 };
 
 /**
  * Handle a block contextualization for static outputs
- * @param {Object} inputSection - The representation of the peritext section to update
+ * @param {Object} inputDocument - The representation of the peritext document to update
  * @param {Object} inputContextualization - The representation of the contextualization to resolve
  * @param {Object} settings - the specific rendering settings to use for resolving the contextualization
- * @return {Object} newSection - the updated representation of the peritext section in which the contextualization was made
+ * @return {Object} newDocument - the updated representation of the peritext document in which the contextualization was made
  */
-/**
- * Glossary contextualizer that resolve sections data according to contextualization+settings params
- * @module contextualizers/glossary
- */
-
-var contextualizeBlockStatic = exports.contextualizeBlockStatic = function contextualizeBlockStatic(inputSection, inputContextualization, settings) {
+var contextualizeBlockStatic = exports.contextualizeBlockStatic = function contextualizeBlockStatic(inputDocument, inputContextualization, settings) {
+  var document = Object.assign({}, inputDocument);
   var contextualization = Object.assign({}, inputContextualization);
-  var node = contextualization.node;
+  var path = ['sections'].concat(_toConsumableArray(contextualization.nodePath.slice()));
+  var node = (0, _objectPath.get)(document, path);
   var entity = contextualization.resources[0];
   node.props = {
     entity: entity,
@@ -72,27 +76,27 @@ var contextualizeBlockStatic = exports.contextualizeBlockStatic = function conte
   };
   node.special = true;
   node.tag = _StaticEntityBlock2.default;
-  return Object.assign({}, inputSection);
+  return document;
 };
 
 /**
  * Handle an inline contextualization for dynamic outputs
- * @param {Object} inputSection - The representation of the peritext section to update
+ * @param {Object} inputDocument - The representation of the peritext document to update
  * @param {Object} inputContextualization - The representation of the contextualization to resolve
  * @param {Object} settings - the specific rendering settings to use for resolving the contextualization
- * @return {Object} newSection - the updated representation of the peritext section in which the contextualization was made
+ * @return {Object} newDocument - the updated representation of the peritext document in which the contextualization was made
  */
-var contextualizeInlineDynamic = exports.contextualizeInlineDynamic = function contextualizeInlineDynamic(section, contextualization, settings) {
-  return section;
+var contextualizeInlineDynamic = exports.contextualizeInlineDynamic = function contextualizeInlineDynamic(inputDocument, contextualization, settings) {
+  return inputDocument;
 };
 
 /**
  * Handle a block contextualization for dynamic outputs
- * @param {Object} inputSection - The representation of the peritext section to update
+ * @param {Object} inputDocument - The representation of the peritext document to update
  * @param {Object} inputContextualization - The representation of the contextualization to resolve
  * @param {Object} settings - the specific rendering settings to use for resolving the contextualization
- * @return {Object} newSection - the updated representation of the peritext section in which the contextualization was made
+ * @return {Object} newDocument - the updated representation of the peritext document in which the contextualization was made
  */
-var contextualizeBlockDynamic = exports.contextualizeBlockDynamic = function contextualizeBlockDynamic(section, contextualization, settings) {
-  return section;
+var contextualizeBlockDynamic = exports.contextualizeBlockDynamic = function contextualizeBlockDynamic(inputDocument, contextualization, settings) {
+  return inputDocument;
 };

@@ -145,6 +145,7 @@ var InlineCitationModel = exports.InlineCitationModel = function (_React$Compone
   }, {
     key: 'render',
     value: function render() {
+      // console.log(this.props);
       return _react2.default.createElement(
         'span',
         {

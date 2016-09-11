@@ -7,19 +7,11 @@ exports.default = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _class;
-// let styles = {};
-
-
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _radium = require('radium');
-
-var _radium2 = _interopRequireDefault(_radium);
-
-var _index = require('./../index.js');
+var _index = require('./../index');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -33,7 +25,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * dumb component for back cover page of a static publication of document
  */
 
-var StaticBackCover = (0, _radium2.default)(_class = function (_React$Component) {
+var StaticBackCover = function (_React$Component) {
   _inherits(StaticBackCover, _React$Component);
 
   function StaticBackCover() {
@@ -43,38 +35,19 @@ var StaticBackCover = (0, _radium2.default)(_class = function (_React$Component)
   }
 
   _createClass(StaticBackCover, [{
-    key: 'getGeneralProp',
+    key: 'render',
 
-
-    /**
-     * Util for returning the value of a "general" type metadata
-     * @param {array} list - the list of metadata
-     * @param {string} key - the key of the metadata prop
-     * @return {string} value
-     */
-
-
-    /**
-     * propTypes
-     * @property {array} metadata - a section metadata to parse in order to fill cover template
-     */
-    value: function getGeneralProp(list, key) {
-      var obj = list.find(function (meta) {
-        return meta.domain === 'general' && meta.key === key;
-      });
-      if (obj) {
-        return obj.value;
-      }
-      return undefined;
-    }
 
     /**
      * render
      * @return {ReactElement} markup
      */
 
-  }, {
-    key: 'render',
+
+    /**
+     * propTypes
+     * @property {Object} metadata - a section metadata to parse in order to fill cover template
+     */
     value: function render() {
       return _react2.default.createElement(
         'section',
@@ -85,29 +58,29 @@ var StaticBackCover = (0, _radium2.default)(_class = function (_React$Component)
         _react2.default.createElement(
           'h2',
           null,
-          this.getGeneralProp(this.props.metadata, 'title')
+          this.props.metadata.general.title && this.props.metadata.general.title.value
         ),
         _react2.default.createElement(
           'h3',
           { className: 'peritext-static-authors' },
-          this.getGeneralProp(this.props.metadata, 'author').map(function (person) {
+          this.props.metadata.general.author.value.map(function (person) {
             return _react2.default.createElement(_index.StructuredPerson, { key: person.citeKey, resource: person });
           })
         ),
         _react2.default.createElement(
           'p',
           null,
-          this.getGeneralProp(this.props.metadata, 'abstract')
+          this.props.metadata.general.abstract && this.props.metadata.general.abstract.value
         )
       );
     }
   }]);
 
   return StaticBackCover;
-}(_react2.default.Component)) || _class;
+}(_react2.default.Component);
 
 StaticBackCover.propTypes = {
-  metadata: _react.PropTypes.array
+  metadata: _react.PropTypes.object
 };
 StaticBackCover.defaultProps = {};
 exports.default = StaticBackCover;

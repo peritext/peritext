@@ -3,9 +3,10 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.cleanNaiveTree = undefined;
-
-var _async = require('async');
+/**
+ * This module cleans resources and metadata from a naive (resource concatenated) tree
+ * @module converter/sectionConverter/cleanNaiveTree
+ */
 
 /**
  * Resolves resource and metadata statements from a naive representation of a section
@@ -13,9 +14,9 @@ var _async = require('async');
  * @param {array} params.errors - the inherited parsing errors to pass along to the next step
  * @param {Object} params.validTree - the tree to clean
  * @param {Object} models - the models to parse the resources with
- * @param {function(error: error, results: {errors: array, validTree: Object})} callback - the possible error, a list of parsing minor errors, and the resulting tree
+ * @return {errors: array, validTree: Object} - the possible error, a list of parsing minor errors, and the resulting tree
  */
-var cleanNaiveTree = exports.cleanNaiveTree = function cleanNaiveTree(_ref, models, callback) {
+var cleanNaiveTree = exports.cleanNaiveTree = function cleanNaiveTree(_ref, models) {
   var _ref$errors = _ref.errors;
   var errors = _ref$errors === undefined ? [] : _ref$errors;
   var validTree = _ref.validTree;
@@ -68,27 +69,42 @@ var cleanNaiveTree = exports.cleanNaiveTree = function cleanNaiveTree(_ref, mode
       message: 'no metadata specified for the folder ' + naiveTree.name + ' so it was not taken into account'
     });
     var _newErrors = errors.length > 0 ? errors.reverse() : null;
-    return callback(null, { errors: _newErrors, validTree: undefined });
+    return {
+      errors: _newErrors,
+      validTree: undefined
+    };
   } else if (naiveTree.children) {
-    return (0, _async.map)(naiveTree.children, function (child, cb) {
-      cleanNaiveTree({ validTree: child }, models, cb);
-    }, function (err, results) {
-      // filter valid children tree leaves
-      var children = results.filter(function (result) {
-        return result.validTree !== undefined;
-      }).map(function (result) {
-        return result.validTree;
-      });
-
-      var newErrors = results.reduce(function (theseErrors, result) {
-        return theseErrors.concat(result.errors);
-      }, errors);
-      return callback(null, { errors: newErrors, validTree: Object.assign({}, naiveTree, { metadata: metadata }, { children: children }, { contextualizers: contextualizers }) });
+    naiveTree.children = naiveTree.children.map(function (child) {
+      return cleanNaiveTree({ validTree: child }, models);
+    }).filter(function (result) {
+      return result.validTree !== undefined;
+    }).map(function (result) {
+      return result.validTree;
     });
+    // return asyncMap(naiveTree.children, function(child, cb) {
+    //   cleanNaiveTree({validTree: child}, models, cb);
+    // }, (err, results) =>{
+    //   // filter valid children tree leaves
+    //   const children = results
+    //                   .filter((result)=>{
+    //                     return result.validTree !== undefined;
+    //                   })
+    //                   .map((result) =>{
+    //                     return result.validTree;
+    //                   });
+
+    //   const newErrors = results.reduce((theseErrors, result)=>{
+    //     return theseErrors.concat(result.errors);
+    //   }, errors);
+    //   return {
+    //     errors: newErrors,
+    //     validTree: Object.assign({}, naiveTree, {metadata}, {children}, {contextualizers})
+    //   };
+    // });
   }
   var newErrors = errors.length > 0 ? errors.reverse() : null;
-  return callback(null, { errors: newErrors, validTree: Object.assign({}, naiveTree, { metadata: metadata }, { contextualizers: contextualizers }) });
-}; /**
-    * This module cleans resources and metadata from a naive (resource concatenated) tree
-    * @module converter/sectionConverter/cleanNaiveTree
-    */
+  return {
+    errors: newErrors,
+    validTree: Object.assign({}, naiveTree, { metadata: metadata }, { contextualizers: contextualizers })
+  };
+};

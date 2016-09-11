@@ -7,14 +7,6 @@ exports.InlineCitation = exports.BlockCitation = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _class, _class2; /**
-                      * iso690 bibliographic norm formatter (lang: fr)
-                      * @module referencers/iso690fr
-                      * @todo Not finished resourceType-to-citation mapping (documented properly only books and journal articles - setup a default presentation for others)
-                      * Doc 1 : http://revues.refer.org/telechargement/fiche-bibliographie.pdf
-                      * Doc 2 : https://www.mpl.ird.fr/documentation/download/FormBibliog.pdf
-                      */
-
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -23,17 +15,19 @@ var _citationModels = require('./../core/utils/citationUtils/citationModels.js')
 
 var _components = require('./../core/components/');
 
-var _radium = require('radium');
-
-var _radium2 = _interopRequireDefault(_radium);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * iso690 bibliographic norm formatter (lang: fr)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @module referencers/iso690fr
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @todo Not finished resourceType-to-citation mapping (documented properly only books and journal articles - setup a default presentation for others)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Doc 1 : http://revues.refer.org/telechargement/fiche-bibliographie.pdf
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Doc 2 : https://www.mpl.ird.fr/documentation/download/FormBibliog.pdf
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 
 /**
  * Renders additionnal citation information, such as pages mentions, translations, etc.
@@ -41,7 +35,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * @return {ReactElement} markup
  */
 var renderAdditionnal = function renderAdditionnal(propsObj) {
-  var details = propsObj.contextualization.contextualizer;
+  var details = propsObj.contextualization;
   if (!details) {
     return '';
   }
@@ -92,7 +86,7 @@ var renderAdditionnal = function renderAdditionnal(propsObj) {
  * Dumb component for rendering a iso690fr block citation
  */
 
-var BlockCitation = exports.BlockCitation = (0, _radium2.default)(_class = function (_BlockCitationModel) {
+var BlockCitation = exports.BlockCitation = function (_BlockCitationModel) {
   _inherits(BlockCitation, _BlockCitationModel);
 
   /**
@@ -304,7 +298,7 @@ var BlockCitation = exports.BlockCitation = (0, _radium2.default)(_class = funct
   }]);
 
   return BlockCitation;
-}(_citationModels.BlockCitationModel)) || _class;
+}(_citationModels.BlockCitationModel);
 
 /**
  * Dumb component for rendering a iso690fr inline citation
@@ -316,7 +310,7 @@ BlockCitation.propTypes = {
   resource: _react.PropTypes.object
 };
 
-var InlineCitation = exports.InlineCitation = (0, _radium2.default)(_class2 = function (_InlineCitationModel) {
+var InlineCitation = exports.InlineCitation = function (_InlineCitationModel) {
   _inherits(InlineCitation, _InlineCitationModel);
 
   /**
@@ -444,7 +438,7 @@ var InlineCitation = exports.InlineCitation = (0, _radium2.default)(_class2 = fu
   }]);
 
   return InlineCitation;
-}(_citationModels.InlineCitationModel)) || _class2;
+}(_citationModels.InlineCitationModel);
 
 InlineCitation.propTypes = {
   contextualization: _react.PropTypes.object,
