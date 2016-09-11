@@ -22,6 +22,22 @@ export default class StaticFrontCover extends React.Component {
    * @return {ReactElement} markup
    */
   render() {
+    const bibType = this.props.metadata.general.bibType.value;
+    if (bibType !== 'peritextphdthesis') {
+      return (
+        <section
+        id="peritext-static-front-cover"
+        className="peritext-static-front-cover-container"
+        >
+          <h1>{this.props.metadata.general.title && this.props.metadata.general.title.value}</h1>
+          <h2 className="peritext-static-authors">
+            {this.props.metadata.general.author.value.map((person) =>{
+              return <StructuredPerson key={person.citeKey} resource={person}/>;
+            })}
+          </h2>
+        </section>
+        )
+    }
     return (
       <section
         id="peritext-static-front-cover"

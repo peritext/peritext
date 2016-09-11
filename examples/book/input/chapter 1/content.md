@@ -1,17 +1,4 @@
-# This is part one
-
-
-I want to deal with [a table representation](@temporal_data) there.
-
-But I can also display the same resource as a timeline :
-
-![A reference to a timeline should display here when timeline is ready](@temporal_data){@cool_timeline}
-
-
-
-![Another view on the timeline](@temporal_data){@cool_timeline,
-    startat="2012-21-01"
-}
+# Chapter one
 
 I am inline referencing to an [image](@image_test_1).
 
