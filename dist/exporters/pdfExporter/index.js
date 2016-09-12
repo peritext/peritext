@@ -48,7 +48,7 @@ var exportSectionToPdf = exports.exportSectionToPdf = function exportSectionToPd
 
 
   var motherKey = document.metadata.general.citeKey.value;
-  var path = destinationFolder || (0, _path.resolve)(__dirname + './temp/');
+  var path = destinationFolder || (0, _path.resolve)(__dirname + '/temp/');
   console.log('export to path: ', path);
   (0, _async.waterfall)([
   // get or create destination folder

@@ -65,7 +65,7 @@ var contextualizeInlineStatic = exports.contextualizeInlineStatic = function con
     number = contextualization.figureNumber;
     if (settings.figuresPosition === 'inline') {
       (function () {
-        // insert block
+        // insert contextualization block (could be refactored as an util)
         section.contents = [].concat(_toConsumableArray(section.contents.slice(0, nodeBlockIndex)), [figure], _toConsumableArray(section.contents.slice(nodeBlockIndex)));
         var newNodePath = [sectionCiteKey, 'contents', nodeBlockIndex + 1];
         document.contextualizations[contextualization.citeKey].nodePath = newNodePath;

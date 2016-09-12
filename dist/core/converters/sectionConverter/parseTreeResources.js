@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.parseTreeResources = undefined;
 
-var _bibTexConverter = require('./../../converters/bibTexConverter/');
+var _bibTexConverter = require('../bibTexConverter');
 
 /**
  * Converts dumbTree resources representations (as string) to js objects - recursively do the same for tree's children

@@ -7,6 +7,8 @@ exports.composeRenderedSections = undefined;
 
 var _referenceUtils = require('./../../core/utils/referenceUtils');
 
+var _getters = require('./../../core/getters');
+
 /**
  * Resolves a sections' list against rendering settings by modifying contents, adding output-related pseudo-sections, and updating css styles
  * @param {array} sections - the sections to render
@@ -16,6 +18,11 @@ var _referenceUtils = require('./../../core/utils/referenceUtils');
  * @param {array} messages - the intl messages to use for some sections localization (e.g. : translation of "Table of contents")
  * @return {Object} results - an object composed of an array of rendered sections and a string with the updated css styles
  */
+/**
+ * Shared static rendering utils
+ * @module renderers/sharedStaticUtils
+ */
+
 var composeRenderedSections = exports.composeRenderedSections = function composeRenderedSections() {
   var sections = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
   var document = arguments[1];
@@ -79,60 +86,19 @@ var composeRenderedSections = exports.composeRenderedSections = function compose
   }
   // handle glossary
   if (settings.glossaryPosition !== 'none') {
-    (function () {
-      // prepare glossary
-      var glossaryPointers = sections.reduce(function (results, thatSection) {
-        var sectionCitekey = thatSection.metadata.general.citeKey.value;
-        return results.concat(thatSection.contextualizations.filter(function (thatContextualization) {
-          return document.contextualizations[thatContextualization].contextualizerType === 'glossary';
-        }).reduce(function (localResults, contextualizationKey) {
-          var contextualization = document.contextualizations[contextualizationKey];
-          return localResults.concat({
-            mentionId: '#peritext-content-entity-inline-' + sectionCitekey + '-' + contextualization.citeKey,
-            entity: document.resources[contextualization.resources[0]].citeKey,
-            alias: document.contextualizers[contextualization.contextualizer].alias
-          });
-        }, []));
-      }, []);
-
-      var entitiesTypes = ['person', 'place', 'subject', 'concept', 'organization', 'technology', 'artefact'];
-
-      var glossaryResources = [];
-      for (var refKey in document.resources) {
-        if (document.resources[refKey]) {
-          var thatResource = document.resources[refKey];
-          if (thatResource.inheritedVerticallyFrom === undefined && entitiesTypes.indexOf(thatResource.bibType) > -1) {
-            glossaryResources.push(thatResource);
-          }
-        }
-      }
-
-      var glossaryData = glossaryResources.map(function (inputGlossaryEntry) {
-        var glossaryEntry = Object.assign({}, inputGlossaryEntry);
-        glossaryEntry.aliases = glossaryPointers.filter(function (pointer) {
-          return pointer.entity === glossaryEntry.citeKey;
-        }).reduce(function (aliases, entry) {
-          var alias = entry.alias || 'no-alias';
-          aliases[alias] = aliases[alias] ? aliases[alias].concat(entry) : [entry];
-          return aliases;
-        }, {});
-        return glossaryEntry;
-      }).sort(function (entry1, entry2) {
-        return (entry1.name || entry1.lastname) > (entry2.name || entry2.lastname) ? 1 : -1;
-      });
-
-      var glossary = {
-        type: 'glossary',
-        contents: glossaryData,
-        title: messages.glossary,
-        id: 'peritext-end-glossary'
-      };
-      if (settings.glossaryPosition === 'begining' && glossary.contents.length) {
-        renderedSections.splice(0, 0, glossary);
-      } else if (glossary.contents.length) {
-        renderedSections.push(glossary);
-      }
-    })();
+    // prepare glossary
+    var glossaryData = (0, _getters.getGlossary)(document);
+    var glossary = {
+      type: 'glossary',
+      contents: glossaryData,
+      title: messages.glossary,
+      id: 'peritext-end-glossary'
+    };
+    if (settings.glossaryPosition === 'begining' && glossary.contents.length) {
+      renderedSections.splice(0, 0, glossary);
+    } else if (glossary.contents.length) {
+      renderedSections.push(glossary);
+    }
   }
 
   // handle table of figures
@@ -173,7 +139,7 @@ var composeRenderedSections = exports.composeRenderedSections = function compose
     }
   }
 
-  // handle table of contents
+  // handle print table of contents
   if (settings.contentsTablePosition !== 'none') {
     var tocData = renderedSections.map(function (thisSection) {
       return {
@@ -189,6 +155,8 @@ var composeRenderedSections = exports.composeRenderedSections = function compose
       renderedSections.push(toc);
     }
   }
+  // handle forewords
+  renderedSections.splice(0, 0, Object.assign({}, document.forewords, { type: 'forewords' }));
   // handle cover
   if (settings.showCovers === 'yes') {
     renderedSections.splice(0, 0, {
@@ -204,7 +172,4 @@ var composeRenderedSections = exports.composeRenderedSections = function compose
     renderedSections: renderedSections,
     finalStyle: style
   };
-}; /**
-    * Shared static rendering utils
-    * @module renderers/sharedStaticUtils
-    */
+};

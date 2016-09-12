@@ -12,7 +12,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactIntl = require('react-intl');
 
-var _componentsFactory = require('./../../utils/componentsFactory');
+var _componentsFactory = require('../../utils/componentsFactory');
 
 var _componentsFactory2 = _interopRequireDefault(_componentsFactory);
 

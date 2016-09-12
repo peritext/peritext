@@ -11,7 +11,7 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _microDataUtils = require('./../../utils/microDataUtils');
+var _microDataUtils = require('../../utils/microDataUtils');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

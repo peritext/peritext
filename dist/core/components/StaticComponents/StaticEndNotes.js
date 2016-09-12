@@ -10,7 +10,7 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _index = require('./../index');
+var _index = require('../index');
 
 var _reactIntl = require('react-intl');
 

@@ -13,9 +13,18 @@ var _path = require('path');
 
 var _async = require('async');
 
+var _mkdirp = require('mkdirp');
+
+var _mkdirp2 = _interopRequireDefault(_mkdirp);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // import removeFolderRecursively from 'rmdir';
+
+/**
+ * Filesystem connector
+ * @module connectors/filesystem
+ */
 
 var removeFolderRecursively = function removeFolderRecursively(path) {
   if (_fs2.default.existsSync(path)) {
@@ -34,11 +43,6 @@ var removeFolderRecursively = function removeFolderRecursively(path) {
 };
 
 // I get meta information about an fs element
-/**
- * Filesystem connector
- * @module connectors/filesystem
- */
-
 var analyseElement = function analyseElement(fileName, absPath) {
   var path = (0, _path.join)(absPath, fileName);
   return {
@@ -179,44 +183,25 @@ var createFromPath = exports.createFromPath = function createFromPath(_ref3, cal
     return thatPath.length > 0;
   });
   // first check-or-create path folders
-  var activePath = '/';
-  (0, _async.reduce)(pathSteps, activePath, function (inputMemo, pathStep, cback) {
-    // case : not end of path, walking through
-    if (pathStep !== pathSteps[pathSteps.length - 1]) {
-      (function () {
-        var memo = inputMemo + pathStep + '/';
-        (0, _fs.exists)(memo, function (isThere) {
-          if (isThere) {
-            cback(null, memo);
-          } else {
-            (0, _fs.mkdir)(memo, function (err) {
-              cback(err, memo);
-            });
-          }
-        });
-        // case : end of path
-      })();
-    } else {
-        cback(null, inputMemo + pathStep);
+  var folderPath = type === 'file' ? pathSteps.slice(0, pathSteps.length - 1) : pathSteps.slice();
+  folderPath = '/' + folderPath.join('/');
+  if (type === 'file') {
+    return (0, _fs.exists)(finalPath, function (isThere) {
+      // either file is not there or we don't care overwriting
+      if (overwrite || !isThere) {
+        (0, _fs.writeFile)(finalPath, stringContents, 'utf8');
+        return callback(null);
+        // file is there and overwrite set to false
       }
-  }, function (err, result) {
-    // check if element already exists
-    (0, _fs.exists)(finalPath, function (isThere) {
-      if (isThere && overwrite === true || !isThere) {
-        if (type === 'file') {
-          (0, _fs.writeFile)(finalPath, stringContents, 'utf8', function (error) {
-            callback(error);
-          });
-        } else if (type === 'directory') {
-          (0, _fs.mkdir)(finalPath, function (error) {
-            callback(error);
-          });
-        } else {
-          callback(new Error('No element type matching'));
-        }
-      } else {
-        callback(new Error('File/directory already exists and overwrite option is set to false'));
-      }
+      return callback(new Error('File/directory already exists and overwrite option is set to false'));
+    });
+  }
+  return (0, _fs.exists)(folderPath, function (isThere) {
+    if (isThere) {
+      return callback(null);
+    }
+    return (0, _mkdirp2.default)(folderPath, function (err) {
+      return callback(err);
     });
   });
 };

@@ -23,7 +23,7 @@ export default class StaticFrontCover extends React.Component {
    */
   render() {
     const bibType = this.props.metadata.general.bibType.value;
-    if (bibType !== 'peritextphdthesis') {
+    if (bibType !== 'phdthesis') {
       return (
         <section
         id="peritext-static-front-cover"

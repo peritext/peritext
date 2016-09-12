@@ -15,7 +15,7 @@ var _reactStringReplace = require('react-string-replace');
 
 var _reactStringReplace2 = _interopRequireDefault(_reactStringReplace);
 
-var _index = require('./../index');
+var _index = require('../index');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

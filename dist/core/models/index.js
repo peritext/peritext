@@ -11,20 +11,20 @@ Object.defineProperty(exports, "__esModule", {
 /**
  * models of peritext sections metadata
  */
-var metadataModels = exports.metadataModels = require('./metadataModels.json');
+var metadataModels = exports.metadataModels = require('./metadataModels');
 /**
  * models of peritext resources
  */
-var resourceModels = exports.resourceModels = require('./resourceModels.json');
+var resourceModels = exports.resourceModels = require('./resourceModels');
 /**
  * models of possible peritext sections bibType and their inheritance rules
  */
-var sectionTypeModels = exports.sectionTypeModels = require('./sectionTypeModels.json');
+var sectionTypeModels = exports.sectionTypeModels = require('./sectionTypeModels');
 /**
  * models of peritext contextualizers
  */
-var contextualizerModels = exports.contextualizerModels = require('./contextualizerModels.json');
+var contextualizerModels = exports.contextualizerModels = require('./contextualizerModels');
 /**
  * models of peritext (possible, and default) rendering settings
  */
-var settingsModels = exports.settingsModels = require('./settingsModels.json');
+var settingsModels = exports.settingsModels = require('./settingsModels');

@@ -11,7 +11,7 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _StructuredPerson = require('./../StructuredDataComponents/StructuredPerson');
+var _StructuredPerson = require('../StructuredDataComponents/StructuredPerson');
 
 var _StructuredPerson2 = _interopRequireDefault(_StructuredPerson);
 
@@ -51,6 +51,28 @@ var StaticFrontCover = function (_React$Component) {
      * @property {Object} metadata a section metadata to parse in order to fill cover template
      */
     value: function render() {
+      var bibType = this.props.metadata.general.bibType.value;
+      if (bibType !== 'peritextphdthesis') {
+        return _react2.default.createElement(
+          'section',
+          {
+            id: 'peritext-static-front-cover',
+            className: 'peritext-static-front-cover-container'
+          },
+          _react2.default.createElement(
+            'h1',
+            null,
+            this.props.metadata.general.title && this.props.metadata.general.title.value
+          ),
+          _react2.default.createElement(
+            'h2',
+            { className: 'peritext-static-authors' },
+            this.props.metadata.general.author.value.map(function (person) {
+              return _react2.default.createElement(_StructuredPerson2.default, { key: person.citeKey, resource: person });
+            })
+          )
+        );
+      }
       return _react2.default.createElement(
         'section',
         {

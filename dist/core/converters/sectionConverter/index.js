@@ -3,14 +3,13 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.parseSection = exports.serializeSectionList = undefined;
+exports.parseSection = exports.serializeDocument = undefined;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; }; /**
-                                                                                                                                                                                                                                                   * This module converts an fsTree flatfile abstraction to a documentTree peritext document abstraction
+                                                                                                                                                                                                                                                   * This module converts an fsTree flatfile abstraction to a peritext document representation
+                                                                                                                                                                                                                                                   * And it converts aperitext document representation to an fsTree flatfile abstraction
                                                                                                                                                                                                                                                    * @module converters/sectionConverter
                                                                                                                                                                                                                                                    */
-
-var _async = require('async');
 
 var _concatTree2 = require('./concatTree');
 
@@ -30,117 +29,14 @@ var _resolveResourcesAgainstModels = require('./../../resolvers/resolveResources
 
 var _resolveContextualizations = require('./../../resolvers/resolveContextualizations');
 
-var _markdownConverter = require('./../markdownConverter');
+var _markdownConverter = require('../markdownConverter');
 
-var _bibTexConverter = require('./../../converters/bibTexConverter');
+var _bibTexConverter = require('../bibTexConverter');
 
-var concatSection = function concatSection(_ref, callback) {
-  var section = _ref.section;
-  var models = _ref.models;
-
-  var genuineMeta = section.metadata.filter(function (metadata) {
-    return !metadata.inheritedVerticallyFrom && !metadata.inheritedHorizontallyFrom;
-  });
-  var metadata = genuineMeta.reduce(function (obj, thatMetadata) {
-    var key = thatMetadata.domain === 'general' ? thatMetadata.key : thatMetadata.domain + '_' + thatMetadata.key;
-    var model = models.metadataModels[thatMetadata.domain][thatMetadata.key];
-    if (model) {
-      obj[key] = (0, _modelUtils.serializePropAgainstType)(thatMetadata.value, model.valueType, model);
-    } else obj[key] = thatMetadata.value;
-    return obj;
-  }, {});
-  metadata.bibType = 'peritext' + metadata.bibType;
-  var root = void 0;
-  if (section.parent) {
-    metadata.parent = section.parent;
-  } else {
-    root = true;
-  }
-
-  if (section.after) {
-    metadata.after = section.after;
-  }
-
-  var resources = section.resources.filter(function (resource) {
-    return !resource.inheritedVerticallyFrom;
-  }).map(function (resource) {
-    var modelList = (0, _modelUtils.getResourceModel)(resource.bibType, models.resourceModels);
-    if (modelList) {
-      var _ret = function () {
-        var model = void 0;
-        return {
-          v: Object.keys(resource).reduce(function (obj, key) {
-            if (resource[key] !== undefined) {
-              model = modelList.properties.find(function (thatModel) {
-                return thatModel.key === key;
-              });
-              if (model) {
-                obj[key] = (0, _modelUtils.serializePropAgainstType)(resource[key], model.valueType, model);
-              } else obj[key] = resource[key];
-            }
-
-            return obj;
-          }, {})
-        };
-      }();
-
-      if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
-    }
-    return resource;
-  });
-
-  var contextualizers = section.contextualizers.filter(function (contextualizer) {
-    return contextualizer && !contextualizer.describedInline;
-  }).map(function (contextualizer) {
-    var modelList = (0, _modelUtils.getResourceModel)(contextualizer.type, models.contextualizerModels);
-    if (modelList) {
-      var _ret2 = function () {
-        var model = void 0;
-        var cont = Object.keys(contextualizer).reduce(function (obj, key) {
-          if (contextualizer[key] !== undefined) {
-            model = modelList.properties.find(function (thatModel) {
-              return thatModel.key === key;
-            });
-
-            if (model) {
-              obj[key] = (0, _modelUtils.serializePropAgainstType)(contextualizer[key], model.valueType, model);
-            } else obj[key] = contextualizer[key];
-          }
-          return obj;
-        }, {});
-        cont.bibType = 'contextualizer';
-        return {
-          v: cont
-        };
-      }();
-
-      if ((typeof _ret2 === 'undefined' ? 'undefined' : _typeof(_ret2)) === "object") return _ret2.v;
-    }
-    contextualizer.bibType = 'contextualizer';
-    return contextualizer;
-  });
-
-  var bibResources = [metadata].concat(resources).concat(contextualizers);
-
-  (0, _async.map)(bibResources, _bibTexConverter.serializeBibTexObject, function (err, inputBibStr) {
-    var bibStr = void 0;
-    if (inputBibStr) {
-      bibStr = inputBibStr.join('\n\n');
-    }
-    callback(err, {
-      markdownContent: section.markdownContents,
-      bibResources: bibStr,
-      customizers: section.customizers,
-      citeKey: section.metadata.general.citeKey.value,
-      root: root
-    });
-  });
-};
-
-var sectionListToFsTree = function sectionListToFsTree(inputSectionList, basePath, callback) {
+var sectionListToFsTree = function sectionListToFsTree(inputSectionList, basePath) {
   var sectionList = inputSectionList.map(function (section) {
     var folderTitle = section.citeKey;
-    var relPath = section.root ? '' : '/' + folderTitle;
+    var relPath = section.root ? '' : folderTitle;
     var children = [{
       type: 'file',
       extname: '.md',
@@ -176,7 +72,36 @@ var sectionListToFsTree = function sectionListToFsTree(inputSectionList, basePat
   delete root.root;
   root.children = root.children.concat(children);
   root.name = basePath.split('/').pop();
-  callback(null, root);
+  return root;
+};
+
+var serializeMetadata = function serializeMetadata(metadata, models) {
+  var obj = {};
+  Object.keys(metadata).forEach(function (domain) {
+    Object.keys(metadata[domain]).forEach(function (gKey) {
+      var prop = metadata[domain][gKey];
+      if (gKey === 'bibType' || !prop.inheritedVerticallyFrom && !prop.inheritedHorizontallyFrom) {
+        // format prop name like twitter_title
+        var key = domain === 'general' ? gKey : domain + '_' + gKey;
+        var model = models.metadataModels[domain][gKey];
+        if (model) {
+          obj[key] = (0, _modelUtils.serializePropAgainstType)(prop.value, model.valueType, model);
+        } else obj[key] = prop.value;
+      }
+    });
+  });
+  obj.bibType = 'peritext' + obj.bibType;
+  return (0, _bibTexConverter.serializeBibTexObject)(obj);
+};
+
+var concatSection = function concatSection(section, models) {
+  var metadataStr = serializeMetadata(section.metadata, models);
+  return {
+    markdownContent: section.markdownContents,
+    bibResources: metadataStr,
+    customizers: section.customizers,
+    citeKey: section.metadata.general.citeKey.value
+  };
 };
 
 // from documentSectionsList to fsTree
@@ -186,24 +111,89 @@ var sectionListToFsTree = function sectionListToFsTree(inputSectionList, basePat
  * @param {array} param.sectionList - the list of sections to serialize
  * @param {Object} param.models - the models to use for serializing
  * @param {string} param.basePath - the path to use as basis for determining serializing output paths
- * @param {function(error:error, fsTree: Object)} callback - provides the filesystem representation of the data
+ * @return {Object} - returns the filesystem representation of the data
  */
-var serializeSectionList = exports.serializeSectionList = function serializeSectionList(_ref2, callback) {
-  var sectionList = _ref2.sectionList;
-  var models = _ref2.models;
-  var basePath = _ref2.basePath;
+var serializeDocument = exports.serializeDocument = function serializeDocument(_ref, callback) {
+  var document = _ref.document;
+  var models = _ref.models;
+  var basePath = _ref.basePath;
 
-  (0, _async.waterfall)([function (cb) {
-    (0, _async.map)(sectionList, function (section, callbck) {
-      concatSection({ section: section, models: models }, callbck);
-    }, function (err, concatSections) {
-      cb(err, concatSections);
-    });
-  }, function (sections, cb) {
-    sectionListToFsTree(sections, basePath, cb);
-  }
-  // all done - return a fsTree
-  ], callback);
+  var sections = Object.keys(document.sections).map(function (key) {
+    return document.sections[key];
+  });
+  // collect resources and prepare for serialization
+  var resources = Object.keys(document.resources).map(function (key) {
+    return document.resources[key];
+  }).filter(function (resource) {
+    return !resource.inheritedVerticallyFrom;
+  }).map(function (resource) {
+    var modelList = (0, _modelUtils.getResourceModel)(resource.bibType, models.resourceModels);
+    if (modelList) {
+      var _ret = function () {
+        var model = void 0;
+        return {
+          v: Object.keys(resource).reduce(function (obj, key) {
+            if (resource[key] !== undefined) {
+              model = modelList.properties.find(function (thatModel) {
+                return thatModel.key === key;
+              });
+              if (model) {
+                obj[key] = (0, _modelUtils.serializePropAgainstType)(resource[key], model.valueType, model);
+              } else obj[key] = resource[key];
+            }
+
+            return obj;
+          }, {})
+        };
+      }();
+
+      if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
+    }
+    return resource;
+  });
+  // collect contextualizers and prepare for serialization
+  var contextualizers = Object.keys(document.contextualizers).map(function (key) {
+    return document.contextualizers[key];
+  }).filter(function (contextualizer) {
+    return contextualizer && !contextualizer.describedInline;
+  }).map(function (contextualizer) {
+    var modelList = (0, _modelUtils.getResourceModel)(contextualizer.type, models.contextualizerModels);
+    if (modelList) {
+      var _ret2 = function () {
+        var model = void 0;
+        var cont = Object.keys(contextualizer).reduce(function (obj, key) {
+          if (contextualizer[key] !== undefined) {
+            model = modelList.properties.find(function (thatModel) {
+              return thatModel.key === key;
+            });
+
+            if (model) {
+              obj[key] = (0, _modelUtils.serializePropAgainstType)(contextualizer[key], model.valueType, model);
+            } else obj[key] = contextualizer[key];
+          }
+          return obj;
+        }, {});
+        cont.bibType = 'contextualizer';
+        return {
+          v: cont
+        };
+      }();
+
+      if ((typeof _ret2 === 'undefined' ? 'undefined' : _typeof(_ret2)) === "object") return _ret2.v;
+    }
+    contextualizer.bibType = 'contextualizer';
+    return contextualizer;
+  });
+  // merge resources and contextualizers in a collection of entities to be rendered as bibTeX
+  var bibResources = resources.concat(contextualizers).map(_bibTexConverter.serializeBibTexObject);
+  // const globalMetadata = serializeMetadata(document.metadata, models);
+  var fsSections = sections.map(function (section) {
+    return concatSection(section, models);
+  });
+  // adding resources and contextualizers to first section / root
+  fsSections[0].bibResources += bibResources.join('\n\n');
+  fsSections[0].root = true;
+  return sectionListToFsTree(fsSections, basePath);
 };
 
 // from fsTree (returned by any connector) to a documentSectionsList usable in app
@@ -216,11 +206,11 @@ var serializeSectionList = exports.serializeSectionList = function serializeSect
  * @param {Object} params.models - models to use for parsing the data
  * @param {function(error:error, results: Object)} callback - RCC representation of the contents and parsing errors list for UI
  */
-var parseSection = exports.parseSection = function parseSection(_ref3, callback) {
-  var tree = _ref3.tree;
-  var parameters = _ref3.parameters;
-  var parent = _ref3.parent;
-  var models = _ref3.models;
+var parseSection = exports.parseSection = function parseSection(_ref2, callback) {
+  var tree = _ref2.tree;
+  var parameters = _ref2.parameters;
+  var parent = _ref2.parent;
+  var models = _ref2.models;
 
   // concat markdown, resources, styles, templates, components, and resolve includes, producing a clean 'dumb tree'
 

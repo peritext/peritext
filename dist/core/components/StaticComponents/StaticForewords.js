@@ -11,6 +11,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _microDataUtils = require('../../utils/microDataUtils');
+
+var _index = require('../index');
+
 var _componentsFactory = require('../../utils/componentsFactory');
 
 var _componentsFactory2 = _interopRequireDefault(_componentsFactory);
@@ -24,19 +28,19 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /**
- * dumb component for containing either a static or dynamic note, acting whether as a pointer or as a container
+ * dumb component for rendering the structured representation of a static section
  */
 
-var StaticFootnote = function (_React$Component) {
-  _inherits(StaticFootnote, _React$Component);
+var StaticForewords = function (_React$Component) {
+  _inherits(StaticForewords, _React$Component);
 
-  function StaticFootnote() {
-    _classCallCheck(this, StaticFootnote);
+  function StaticForewords() {
+    _classCallCheck(this, StaticForewords);
 
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(StaticFootnote).apply(this, arguments));
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(StaticForewords).apply(this, arguments));
   }
 
-  _createClass(StaticFootnote, [{
+  _createClass(StaticForewords, [{
     key: 'render',
 
 
@@ -48,27 +52,46 @@ var StaticFootnote = function (_React$Component) {
 
     /**
      * propTypes
-     * @property {Object} note - the note object to use in order to render the footnote
+     * @property {Object} section - the section to render
+     * @property {Object} settings - the settings to use for section rendering
      */
     value: function render() {
+      var bibType = (0, _microDataUtils.bibToSchema)(this.props.section.metadata.general.bibType.value);
+      var citeKey = this.props.section.metadata.general.citeKey.value;
+      var generalityLevel = this.props.section.metadata.general.generalityLevel.value;
       return _react2.default.createElement(
-        'sup',
+        'section',
         {
-          className: 'peritext-static-note-content-container',
-          name: 'peritext-static-note-content-' + this.props.note.id,
-          id: 'peritext-static-note-content-' + this.props.note.id
+          className: 'peritext-static-section-container peritext-static-forewords-container',
+          id: citeKey,
+          itemScope: true,
+          itemType: 'http://schema.org/' + bibType,
+          'typeof': bibType,
+          resource: '#' + citeKey,
+          itemProp: 'hasPart',
+          property: 'hasPart'
         },
-        (0, _componentsFactory2.default)(this.props.note.child)
+        _react2.default.createElement(_index.StructuredMetadataPlaceholder, { section: this.props.section }),
+        (0, _componentsFactory2.default)(this.props.section.contents),
+        this.props.settings.figuresPosition === 'section-end' && this.props.section.figures ? _react2.default.createElement(_index.StaticEndFigures, {
+          contents: this.props.section.figures,
+          classSuffix: 'section-end'
+        }) : '',
+        this.props.settings.notesPosition === 'section-end' && this.props.section.notes.length ? _react2.default.createElement(_index.StaticEndNotes, {
+          classSuffix: 'section-end',
+          notes: this.props.section.notes
+        }) : ''
       );
     }
   }]);
 
-  return StaticFootnote;
+  return StaticForewords;
 }(_react2.default.Component);
 
-StaticFootnote.propTypes = {
-  note: _react.PropTypes.object
+StaticForewords.propTypes = {
+  section: _react.PropTypes.object,
+  settings: _react.PropTypes.object
 };
-StaticFootnote.defaultProps = {};
-exports.default = StaticFootnote;
+StaticForewords.defaultProps = {};
+exports.default = StaticForewords;
 module.exports = exports['default'];

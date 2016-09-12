@@ -6,21 +6,11 @@ Peritext documentation | technical reflections | WIP
 
 Modularity of the data parsing model and data access:
 
-* peritext is purposed to be source-agnostic, and not indispensable for source reviewing (data should be easily readable without using peritext)
+* peritext is purposed to be source-agnostic, and not indispensable for source data reviewing (data should be easily readable without using peritext)
 * data access, data management and data processing should be separated
-* data models (for metadata, markdown, referencing) should be encoded in separate data files (.csv, .json) from the code
+* data models (for metadata, markdown, referencing) should be encoded in separate and modifiable data files (.csv, .json) from the code
 * external resources transactions (zotero, google spreadsheet ...) should be clearly separated from the core of the engine
-
-Flatfile-to-rich-document process:
-
-* metadata and encoding models must be separed from the scripts
-* document parsers should be lazy and process only the necessary data for a given query
-* document parsers should not perform several times the same operations on files
-
-SEO and indexability:
-
-* app must be isomorphic/universal (all views rendered as html server-side)
-* html schema props must be used whenever possible
+* document representation should be serializable
 
 Social:
 
@@ -35,6 +25,7 @@ Scalability and project evolution:
 * it should be test-driven from scratch
 * it should be easily scalable (library, collection, ...) later on
 * it should be able to welcome a further possible editing back-office interface
+* it should be able to use a mongodb database instead of flatfile contents as entrypoint
 * it should be easily convertible into a SaaS platform
 
 # Global rationale
@@ -49,6 +40,7 @@ Peritext is a library aiming at supporting the writing of contextualization-orie
     - ``resolvers`` which resolve data against models
     - ``validators`` which are modules aimed at verifying that everything is ok with the contents provided by users, and to throw meaningfull errors and warning if necessary
     - ``utils`` used along the app
+    - ``getters`` allow to work with document representations
 * a first set of "plugins" called ``connectors`` allow to read & update a flatfile-representable data source according to the ``fsTree`` model
 * a second set of "plugins" called ``renderers`` convert ``peritextDocuments`` to actionable representation (epub-oriented json, html, xml, ...)
 * a third set of "plugins" called ``exporters`` wrap a renderer and output a specific file format (``pdf``, ``epub``, ``zip``)
@@ -65,14 +57,11 @@ Parsers helpers
  :
 * marked
 * zotero-bib-parser and bib-parser for ... bib parsing
-* https://www.npmjs.com/package/bibtex-parse-js
-* citeproc-js : https://github.com/juris-m/citeproc-js - transforms json citations to html through csl files : "+" > compatibility | "-" > does not allow to structure data or to customize rendering
 
 Outputs : 
 
 Pdf :
 * pdfkit : http://pdfkit.org/
-* phantomjs > pdf : http://www.feedhenry.com/server-side-pdf-generation-node-js/
 * **phantomjs-pdf** -> https://www.npmjs.com/package/phantomjs-pdf
 * **wkhtmltopdf** -> https://www.npmjs.com/package/wkhtmltopdf
 * example with heroku impl : https://github.com/gr2m/wkhtmltopdf-node-heorku
@@ -164,6 +153,71 @@ Then, they are called inside the document through what I chose to call 'countext
 * data/media can be inserted inside the document, used to produce a visualization, displayed in rough form as aside figure
 * entities can be used to generate a glossary, or just to enrich the semanticity of a page ...
 
+# Document javascript representation
+
+```js
+{
+  metadata: {
+
+  },
+  sections: {
+    mysection_id_1 : {
+      data: {
+        notes: [],
+        contents: []
+      },
+      metadata: {
+        general: {
+          title: {
+            value: 'my title'
+          }
+        },
+        twitter: {
+          title: {
+            value: 'my title',
+            inheritedLatteralyFrom: 'general'
+          }
+        },
+        dublincore: {
+          title: {
+            value: 'my title',
+            inheritedLatteralyFrom: 'general'
+          }
+        }
+      }
+    },
+    mysection_id_2 : {
+      // ...
+    }
+  },
+  summary: [
+    'mysection_id_1',
+    'mysection_id_2'
+  ],
+  resources: {
+    resource_1_id: {
+
+    }
+  },
+  contextualizations: {
+    contextualization_1_id: {
+      metadata: {
+
+      },
+      data: {
+
+      }
+    }
+  }
+}
+```
+
+# library API
+
+* get the bibliography and the contexts of citation of each document
+* get all the figures for the whole document/a given section
+* get the table of content (ordered list of title+slug+hierarchy level)
+
 # Modules
 
 Peritext modules could be categorised as following :
@@ -173,7 +227,6 @@ Peritext modules could be categorised as following :
 * the ``contextualizers`` plugins handle a specific contextualizer and how to handle it in static/block, static/inline, dynamic/block and dynamic/inline forms
 * the ``renderers`` plugins render a ``peritextSectionsArray`` to a specific data format
 * the ``exporters`` plugins produce a file in a specific format (pdf, epub, ...)
-
 
 # Parsers
 
@@ -209,89 +262,6 @@ From a peritextSectionsList, outputs allow to render the document or a section o
 
 This is where document customizers (e.g. : css styles) are resolved, citation style is applied, and contextualizations are resolved to add content in the body (html code, footnotes, plain svg, dynamic React components calls, ...).
 
-# Data-source transactions middlewares
-
-Should all provide with two simple methods :
-* list the contents of a folder
-* get the string content of a text file
-
-# UI routes and permalinks
-
-```
-rooturl/lectio/section/:sectionCiteKey?
-```
-
---> will serve the root section, a particular document or a 404 screen
-
-```
-rooturl/lectio/glossary/:sectionCiteKey?
-```
-
-```
-rooturl/lectio/figures/:sectionCiteKey?
-```
-
-```
-rooturl/lectio/social/:sectionCiteKey?
-```
-
-
-# Forseen external API endpoints
-
-## Get document data (root or part)
-
-```
-GET root/api/document/:documentCiteKey?
-```
-
-| parameter | description |
-| --------- | ----------- |
-| filter | coma-separated content type filters |
-
-'filter' parameter - should allow for getting just a part of data (values coma separated) :
-
-* metadata:just metadata
-* html:just html content
-* md:just initial md content
-* figures:just figures
-* glossary:just glossary elements
-* references:just bibliographical references
-
-## Get document summary
-
-```
-GET root/api/summary/
-```
-
-## Get glossary
-
-```
-GET root/api/glossary/
-```
-
-## Get figures list
-
-```
-GET root/api/figures/
-```
-
-## Get references list
-
-```
-GET root/api/references/
-```
-
-## Global search
-
-```
-GET root/api/search/
-```
-
-| parameter | description |
-| -------- | -------- |
-| query | query to perform |
-| filter | coma-separated filters |
-
 # Components and modules planning
 
 ## Sources middlewares
@@ -309,64 +279,6 @@ Public fonctions :
 ### Assets API controller
 
 ### Annotations API controller
-
-## "Read mode" interface structure
-
-Grounding on [first interface](http://modesofexistence.org/anomalies) and rapid prototyping/wireframing of the new reader (https://marvelapp.com/5212b6g)
-
-React components hierarchy :
-
-```
-- content wrapper
-    - menu toggle
-    
-    - content container (scrllable)
-        + content container
-            + (loop) content blocks
-        + sidenotes container
-            + (loop) sidenotes
-        + comments markers container
-            + (loop) comments markers
-- navbar
-    - table of contents
-    - views related links fixed bottom
-        - search block
-- aside column
-    - fixed header
-    - body (scrollable)
-    - fixed footer
-```
-
-## Application state
-
-```
-{
-    navigation : {},//for routing
-    data : {//data is composed of "sectionObject" objects - they all have the same recursive structure
-            metadata : [{
-                    domain : string,
-                    key : string,
-                    vertically_inherited : sectionObjectReference|undefined,
-                    laterally_inherited : metadataObjectReference|undefined,
-                }],
-            contents : [
-                {}, //ordered list of elements to be displayed as primary content
-                //technically they are all html blocks (possibly containing onclick and onscroll aside triggers)
-                {
-                    html : '<html>',
-                    contextualizations : []//list of references to resources
-                }
-            ],
-            resources : [], //resources used in the section
-            contextualizations : []//the contextualizations lirary of the section
-        },
-    config : {
-        assetsSource : {}, // metadata about sources (source type, user id, api key, root)
-        contentSource : {},
-        annotationSource : {}
-    }
-}
-```
 
 # Webschema & metadata
 

@@ -13,7 +13,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _components = require('./../../components');
 
-var _microDataUtils = require('./../microDataUtils/');
+var _microDataUtils = require('../microDataUtils');
 
 var formatter = _interopRequireWildcard(_microDataUtils);
 

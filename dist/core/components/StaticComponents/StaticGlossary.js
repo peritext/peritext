@@ -12,7 +12,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactIntl = require('react-intl');
 
-var _StaticEntityBlock = require('./../../../contextualizers/glossary/StaticEntityBlock');
+var _StaticEntityBlock = require('../../../contextualizers/glossary/StaticEntityBlock');
 
 var _StaticEntityBlock2 = _interopRequireDefault(_StaticEntityBlock);
 

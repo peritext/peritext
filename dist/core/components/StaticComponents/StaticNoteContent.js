@@ -11,7 +11,7 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _componentsFactory = require('./../../utils/componentsFactory');
+var _componentsFactory = require('../../utils/componentsFactory');
 
 var _componentsFactory2 = _interopRequireDefault(_componentsFactory);
 

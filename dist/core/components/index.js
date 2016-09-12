@@ -49,6 +49,15 @@ Object.defineProperty(exports, 'StaticFootnote', {
   }
 });
 
+var _StaticForewords = require('./StaticComponents/StaticForewords.js');
+
+Object.defineProperty(exports, 'StaticForewords', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_StaticForewords).default;
+  }
+});
+
 var _StaticFrontCover = require('./StaticComponents/StaticFrontCover.js');
 
 Object.defineProperty(exports, 'StaticFrontCover', {

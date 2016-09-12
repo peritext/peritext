@@ -12,9 +12,9 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactIntl = require('react-intl');
 
-var _microDataUtils = require('./../../utils/microDataUtils');
+var _microDataUtils = require('../../utils/microDataUtils');
 
-var _index = require('./../index');
+var _index = require('../index');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -93,6 +93,9 @@ var StaticDocument = function (_React$Component) {
               return section.contents.length ? _react2.default.createElement(_index.StaticGlossary, { id: section.id, key: index, elements: section.contents }) : '';
             case 'contents':
               return _react2.default.createElement(_index.StaticSection, { key: index, section: section, settings: _this2.props.settings });
+            case 'forewords':
+              return _react2.default.createElement(_index.StaticForewords, { key: index, section: section, settings: _this2.props.settings });
+              break;
             default:
               break;
           }
