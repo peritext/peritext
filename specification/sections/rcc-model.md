@@ -1,7 +1,7 @@
 Peritext documentation | The resource-contextualizer-contextualization | WIP
 ====
 
-![Peritext resource model in one image](https://raw.githubusercontent.com/robindemourat/peritext/master/specification/assets/peritext-context.png)
+![Peritext document model in one image](https://raw.githubusercontent.com/robindemourat/peritext/master/specification/assets/peritext-document-model.png)
 
 
 The RCC model is a way to reason about digital scholarly argumentation through an homogen and still flexible document model.

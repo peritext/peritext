@@ -47,10 +47,6 @@ Peritext is a library aiming at supporting the writing of contextualization-orie
 * a fourth set of "plugins" called ``contextualizers`` deals with contextualizations and how to transform and render a specific contextualization type (``webpage``, ``timeline``, ``imagegallery``, ``citation``, ...)
 * a fifth set of "plugins" called ``referencers`` deals with the rendering of academic references
 
-# [web plugin] Global app architecture : redux architecture
-
-![Peritext architecture](https://raw.githubusercontent.com/robindemourat/peritext/master/specification/assets/peritext-architecture.png)
-
 # Technological stack / package survey
 
 Parsers helpers
