@@ -1,1 +1,1 @@
-export default require('./defaultParameters');
+export default require('./defaultParameters.json');
