@@ -30,10 +30,10 @@ var contextualizeInlineStatic = exports.contextualizeInlineStatic = function con
 
   var document = Object.assign({}, inputDocument);
   var contextualization = Object.assign({}, inputContextualization);
-  var sectionCiteKey = contextualization.nodePath[0];
+  var sectionId = contextualization.nodePath[0];
   var path = ['sections'].concat(_toConsumableArray(contextualization.nodePath.slice()));
   var node = (0, _objectPath.get)(document, path);
-  var section = document.sections[sectionCiteKey];
+  var section = document.sections[sectionId];
 
   var nodeBlockIndex = path[3];
   var figureId = void 0;
@@ -41,7 +41,7 @@ var contextualizeInlineStatic = exports.contextualizeInlineStatic = function con
   var contents = node.child;
   // if figure is not there yet, add it
   if (!contextualization.sectionOpCit) {
-    figureId = sectionCiteKey + '-' + contextualization.citeKey;
+    figureId = sectionId + '-' + contextualization.id;
     contextualization.figureId = figureId;
     document.figuresCount = document.figuresCount ? document.figuresCount + 1 : 1;
     contextualization.figureNumber = document.figuresCount;
@@ -67,8 +67,8 @@ var contextualizeInlineStatic = exports.contextualizeInlineStatic = function con
       (function () {
         // insert contextualization block (could be refactored as an util)
         section.contents = [].concat(_toConsumableArray(section.contents.slice(0, nodeBlockIndex)), [figure], _toConsumableArray(section.contents.slice(nodeBlockIndex)));
-        var newNodePath = [sectionCiteKey, 'contents', nodeBlockIndex + 1];
-        document.contextualizations[contextualization.citeKey].nodePath = newNodePath;
+        var newNodePath = [sectionId, 'contents', nodeBlockIndex + 1];
+        document.contextualizations[contextualization.id].nodePath = newNodePath;
         // update contextualizations that target subsequent contents blocks
         Object.keys(document.contextualizations).map(function (key) {
           return document.contextualizations[key];
@@ -82,8 +82,8 @@ var contextualizeInlineStatic = exports.contextualizeInlineStatic = function con
       section.figures = section.figures ? section.figures.concat(figure) : [figure];
     }
   } else {
-    figureId = sectionCiteKey + '-' + contextualization.precursorCiteKey;
-    number = document.contextualizations[contextualization.precursorCiteKey].figureNumber;
+    figureId = sectionId + '-' + contextualization.precursorId;
+    number = document.contextualizations[contextualization.precursorId].figureNumber;
   }
   var displayId = '#peritext-figure-' + figureId;
   var newContents = [].concat(_toConsumableArray(contents.slice()), [{
@@ -105,7 +105,7 @@ var contextualizeInlineStatic = exports.contextualizeInlineStatic = function con
   }]);
   node.tag = 'span';
   node.child = newContents;
-  document.contextualizations[contextualization.citeKey] = contextualization;
+  document.contextualizations[contextualization.id] = contextualization;
   return document;
 };
 
@@ -119,16 +119,16 @@ var contextualizeInlineStatic = exports.contextualizeInlineStatic = function con
 var contextualizeBlockStatic = exports.contextualizeBlockStatic = function contextualizeBlockStatic(inputDocument, inputContextualization, settings) {
   var document = Object.assign({}, inputDocument);
   var contextualization = Object.assign({}, inputContextualization);
-  var sectionCiteKey = contextualization.nodePath[0];
+  var sectionId = contextualization.nodePath[0];
   var path = ['sections'].concat(_toConsumableArray(contextualization.nodePath.slice()));
   var node = (0, _objectPath.get)(document, path);
-  var section = document.sections[sectionCiteKey];
+  var section = document.sections[sectionId];
 
   var nodeBlockIndex = path[3];
 
   var figureId = void 0;
   document.figuresCount = document.figuresCount ? document.figuresCount + 1 : 1;
-  figureId = sectionCiteKey + '-' + contextualization.citeKey;
+  figureId = sectionId + '-' + contextualization.id;
   contextualization.figureId = figureId;
   contextualization.figureNumber = document.figuresCount;
   var figure = {
@@ -149,7 +149,7 @@ var contextualizeBlockStatic = exports.contextualizeBlockStatic = function conte
   } else {
     section.figures = section.figures ? section.figures.concat(figure) : [figure];
   }
-  document.contextualizations[contextualization.citeKey] = contextualization;
+  document.contextualizations[contextualization.id] = contextualization;
   return document;
 };
 

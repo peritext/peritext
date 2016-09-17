@@ -57,19 +57,21 @@ var StaticSection = function (_React$Component) {
      */
     value: function render() {
       var bibType = (0, _microDataUtils.bibToSchema)(this.props.section.metadata.general.bibType.value);
-      var citeKey = this.props.section.metadata.general.citeKey.value;
+      var id = this.props.section.metadata.general.id.value;
+      var title = this.props.section.metadata.general.title.value;
       var generalityLevel = this.props.section.metadata.general.generalityLevel.value;
       return _react2.default.createElement(
         'section',
         {
           className: 'peritext-static-section-container peritext-static-section-level-' + generalityLevel,
-          id: citeKey,
+          id: id,
           itemScope: true,
           itemType: 'http://schema.org/' + bibType,
           'typeof': bibType,
-          resource: '#' + citeKey,
+          resource: '#' + id,
           itemProp: 'hasPart',
-          property: 'hasPart'
+          property: 'hasPart',
+          title: title
         },
         _react2.default.createElement(_index.StructuredMetadataPlaceholder, { section: this.props.section }),
         (0, _componentsFactory2.default)(this.props.section.contents),

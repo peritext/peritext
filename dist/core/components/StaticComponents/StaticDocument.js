@@ -57,7 +57,7 @@ var StaticDocument = function (_React$Component) {
       var _this2 = this;
 
       var bibType = (0, _microDataUtils.bibToSchema)(this.props.document.metadata.general.bibType.value);
-      var citeKey = this.props.document.metadata.general.citeKey.value;
+      var id = this.props.document.metadata.general.id.value;
       return _react2.default.createElement(
         'section',
         {
@@ -65,7 +65,7 @@ var StaticDocument = function (_React$Component) {
           itemType: 'http://schema.org/' + bibType,
           'typeof': bibType,
           vocab: 'http://schema.org/',
-          resource: '#' + citeKey
+          resource: '#' + id
         },
         _react2.default.createElement(_index.StructuredMetadataPlaceholder, { section: this.props.document }),
         this.props.sections.map(function (section, index) {
@@ -76,6 +76,7 @@ var StaticDocument = function (_React$Component) {
 
             case 'table-of-figures':
               return section.contents.length ? _react2.default.createElement(_index.StaticTableOfFigures, { id: section.id, key: index, contents: section.contents }) : '';
+
             case 'front-cover':
               return _react2.default.createElement(_index.StaticFrontCover, { key: index, metadata: section.metadata });
 
@@ -84,18 +85,22 @@ var StaticDocument = function (_React$Component) {
 
             case 'endnotes':
               return section.contents.length ? _react2.default.createElement(_index.StaticEndNotes, { id: section.id, key: index, notes: section.contents, classSuffix: 'document-end' }) : '';
+
             case 'endfigures':
               return section.contents.length ? _react2.default.createElement(_index.StaticEndFigures, { id: section.id, key: index, contents: section.contents, classSuffix: 'document-end' }) : '';
 
             case 'references':
               return section.contents.length ? _react2.default.createElement(_index.StaticReferencesList, { id: section.id, key: index, references: section.contents, settings: _this2.props.settings }) : '';
+
             case 'glossary':
               return section.contents.length ? _react2.default.createElement(_index.StaticGlossary, { id: section.id, key: index, elements: section.contents }) : '';
+
             case 'contents':
               return _react2.default.createElement(_index.StaticSection, { key: index, section: section, settings: _this2.props.settings });
+
             case 'forewords':
               return _react2.default.createElement(_index.StaticForewords, { key: index, section: section, settings: _this2.props.settings });
-              break;
+
             default:
               break;
           }

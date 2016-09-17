@@ -33,7 +33,7 @@ export default class StaticBackCover extends React.Component {
         <h2>{(this.props.metadata.general.title && this.props.metadata.general.title.value)}</h2>
         <h3 className="peritext-static-authors">
           {(this.props.metadata.general.author.value).map((person) =>{
-            return <StructuredPerson key={person.citeKey} resource={person}/>;
+            return <StructuredPerson key={person.id} resource={person}/>;
           })}
         </h3>
         <p>

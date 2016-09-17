@@ -11,13 +11,13 @@ export default class StaticEntityInline extends React.Component {
   /**
    * propTypes
    * @property {object} entity - the entity resource to contextualize
-   * @property {string} sectionCiteKey - the host section citeKey (used for identifying the element)
+   * @property {string} sectionId - the host section id (used for identifying the element)
    * @property {object} contextualization - the contextualization object
    * @property {array} contents - the pseudo-dom js representation of contextualization's pointer contents
    */
   static propTypes = {
     entity: PropTypes.object,
-    sectionCiteKey: PropTypes.string,
+    sectionId: PropTypes.string,
     contextualization: PropTypes.object,
     contents: PropTypes.array
   };
@@ -34,15 +34,15 @@ export default class StaticEntityInline extends React.Component {
     return (
       <a
         className="peritext-static-entity-container-inline"
-        name={'peritext-content-entity-inline-' + this.props.sectionCiteKey + '-' + this.props.contextualization.citeKey}
-        id={'peritext-static-entity-inline-' + this.props.sectionCiteKey + '-' + this.props.contextualization.citeKey}
-        href={'#peritext-static-entity-block-' + this.props.entity.citeKey}
+        name={'peritext-content-entity-inline-' + this.props.sectionId + '-' + this.props.contextualization.id}
+        id={'peritext-static-entity-inline-' + this.props.sectionId + '-' + this.props.contextualization.id}
+        href={'#peritext-static-entity-block-' + this.props.entity.id}
         itemProp="mentions"
         value="mentions"
         itemScope
         itemType={'http://schema.org/' + itemType}
         typeof={itemType}
-        resource={this.props.entity.citeKey}
+        resource={this.props.entity.id}
       >
         {itemType === 'Person' ?
           [<span

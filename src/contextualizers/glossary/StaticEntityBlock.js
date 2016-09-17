@@ -55,14 +55,14 @@ export default class StaticEntityBlock extends React.Component {
     return (
       <section
         className="peritext-static-entity-block-container"
-        name={'peritext-static-entity-block-' + this.props.entity.citeKey}
-        id={'peritext-static-entity-block-' + this.props.entity.citeKey}
+        name={'peritext-static-entity-block-' + this.props.entity.id}
+        id={'peritext-static-entity-block-' + this.props.entity.id}
         itemProp="mentions"
         value="mentions"
         itemScope
         itemType={'http://schema.org/' + itemType}
         typeof={itemType}
-        resource={this.props.entity.citeKey}
+        resource={this.props.entity.id}
       >
         <h5
           className="peritext-static-entity-block-name">

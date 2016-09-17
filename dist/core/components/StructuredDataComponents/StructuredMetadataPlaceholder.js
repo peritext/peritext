@@ -79,7 +79,7 @@ var StructuredMetadataPlaceholder = function (_React$Component) {
                 'span',
                 { key: meta.key },
                 meta.value.map(function (author) {
-                  return _react2.default.createElement(_index.StructuredPerson, { resource: author, key: author.citeKey });
+                  return _react2.default.createElement(_index.StructuredPerson, { resource: author, key: author.id });
                 })
               );
             // TODO : continue along with other metadata-to-schema conversions

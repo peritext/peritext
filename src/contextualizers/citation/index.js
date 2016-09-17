@@ -37,7 +37,7 @@ export const contextualizeInlineStatic = (inputDocument, inputContextualization,
     const quote = {
       attr: {
         class: 'peritext-quote-container',
-        id: contextualization.citeKey
+        id: contextualization.id
       },
       node: 'element',
       tag: 'q',

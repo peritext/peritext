@@ -33,7 +33,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 var contextualizeInlineStatic = exports.contextualizeInlineStatic = function contextualizeInlineStatic(inputDocument, inputContextualization, settings) {
   var document = Object.assign({}, inputDocument);
   var contextualization = Object.assign({}, inputContextualization);
-  var sectionCiteKey = contextualization.nodePath[0];
+  var sectionId = contextualization.nodePath[0];
   var path = ['sections'].concat(_toConsumableArray(contextualization.nodePath.slice()));
   var node = (0, _objectPath.get)(document, path);
   var entity = document.resources[contextualization.resources[0]];
@@ -49,7 +49,7 @@ var contextualizeInlineStatic = exports.contextualizeInlineStatic = function con
     contextualization: contextualization,
     entity: entity,
     contents: contents,
-    sectionCiteKey: sectionCiteKey
+    sectionId: sectionId
   };
   node.special = true;
   node.tag = _StaticEntityInline2.default;

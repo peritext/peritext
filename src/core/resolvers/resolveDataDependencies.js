@@ -118,7 +118,7 @@ export default function resolveDataDependencies(
     // waterfall callback for all sections
     ], (errs, sectio)=> {
       // fill document section keys with updated sections
-      document.sections[sectio.metadata.general.citeKey.value] = sectio;
+      document.sections[sectio.metadata.general.id.value] = sectio;
       allSectionsCallback(errs);
     });
   // sections final callback
@@ -186,7 +186,7 @@ export default function resolveDataDependencies(
                           target: 'data',
                           path: dataPath
                         };
-                        const defined = data[res.citeKey];
+                        const defined = data[res.id];
                         if (!defined) {
                           const accessor = res.data || res.url;
                           if (('' + accessor).indexOf('@assets/') === 0) {
@@ -197,7 +197,7 @@ export default function resolveDataDependencies(
                               acceptedExtensions: '*'
                             };
                             toResolve.read = assetsController.getReader(assetsParams);
-                            data[res.citeKey] = toResolve;
+                            data[res.id] = toResolve;
                           } else {
                             console.log('unhandled data accessor (1) : ', accessor);
                           }
@@ -251,7 +251,7 @@ export default function resolveDataDependencies(
                       target: 'data',
                       path: dataPath
                     };
-                    const defined = data[res.citeKey];
+                    const defined = data[res.id];
                     if (!defined) {
                       const accessor = res.data || res.url;
                       if (('' + accessor).indexOf('@assets/') === 0) {
@@ -262,7 +262,7 @@ export default function resolveDataDependencies(
                           acceptedExtensions: '*'
                         };
                         toResolve.read = assetsController.getReader(assetsParams);
-                        data[res.citeKey] = toResolve;
+                        data[res.id] = toResolve;
                       } else {
                         console.log('unhandled data accessor (2) : ', accessor);
                       }
@@ -290,13 +290,13 @@ export default function resolveDataDependencies(
             // pass contextualizer's resolved values to contextualization object
             newContextualizer.contextualizerType = newContextualizer.type;
             delete newContextualizer.type;// contextualization has a type also
-            delete newContextualizer.citeKey;
+            delete newContextualizer.id;
             const newContextualization = Object.assign(contextualization, newContextualizer);
             contextualizationCallback(err1, newContextualization);
           });
         }, (contextualizationsError, finalContextualizations)=> {
           finalContextualizations.forEach(contextualization => {
-            document.contextualizations[contextualization.citeKey] = contextualization;
+            document.contextualizations[contextualization.id] = contextualization;
           });
           contextualizationsCallback(contextualizationsError);
         });
@@ -305,7 +305,7 @@ export default function resolveDataDependencies(
         // resources resolution
         asyncMap(resources, (resource, resourceCallback)=>{
           const resolvedResource = {
-            key: resource.citeKey,
+            key: resource.id,
             data: resource
           };
           const props = [];

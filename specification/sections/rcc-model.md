@@ -55,7 +55,7 @@ Example of several resources inside a ``.bib`` file :
 
 ### Resource identification
 
-Ressources are identifed with their bibText citekey preceded by ``@``.
+Ressources are identifed with their bibText id preceded by ``@``.
 
 For instance, for the resource :
 ```
@@ -146,7 +146,7 @@ There are several ways contextualizers can be described :
 
 ### Explicit reusable contextualizers in bib files
 
-Contextualizers can be specified in ``.bib`` files as ``@contextualizer`` objects (and therefore used several times). They are written in plain bibTeX syntax, and must be provided a citeKey.
+Contextualizers can be specified in ``.bib`` files as ``@contextualizer`` objects (and therefore used several times). They are written in plain bibTeX syntax, and must be provided a id.
 
 Example :
 
@@ -173,7 +173,7 @@ Overloaded contextualizers are contextualizers created as modified copies of exp
 
 This syntax is particularly aimed at enabling authors to "travel" inside a resource through their text, through a series of contextualizers overload.These typically cover argumentations in which the author provides a "journey" through a resource's contextualization, such as a map, timeline or a book.
 
-In this case, contextualizer's citeKey is called, and then followed with overloading parameters.
+In this case, contextualizer's id is called, and then followed with overloading parameters.
 
 Let's say we have the following ``.bib`` content :
 
@@ -232,7 +232,7 @@ Will provoke the instanciation of the implicit contextualizer :
 
 ```js
 {
-    citeKey : "implicitContextualizer1",
+    id : "implicitContextualizer1",
     type : "citation"
 }
 ```
@@ -246,7 +246,7 @@ Contextualizers can be specified on-the-fly just after a contextualization asser
 
 On-the-fly contextualizers are un-named contextualizers that just attach some extra info to the default contextualization params.
 
-On-the-fly have **no explicit citeKey** even if they are given one by Peritext engine. All the default params are applied if not specified otherwise.
+On-the-fly have **no explicit id** even if they are given one by Peritext engine. All the default params are applied if not specified otherwise.
 
 Example of an on-the-fly contextualizer, specified inline in ``content.md`` just after the contextualization assertion : 
 

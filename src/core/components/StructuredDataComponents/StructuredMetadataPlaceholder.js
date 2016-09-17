@@ -55,7 +55,7 @@ export default class StructuredMetadataPlaceholder extends React.Component {
               <span key={meta.key}>
                 {
                   meta.value.map((author)=> {
-                    return <StructuredPerson resource={author} key={author.citeKey} />;
+                    return <StructuredPerson resource={author} key={author.id} />;
                   })
                 }
               </span>

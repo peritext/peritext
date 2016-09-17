@@ -133,7 +133,7 @@ var BlockCitation = exports.BlockCitation = function (_BlockCitationModel) {
           this.props.resource.author.map(function (author, index) {
             return _react2.default.createElement(
               'span',
-              { key: author.citeKey },
+              { key: author.id },
               _react2.default.createElement(_components.StructuredPerson, { resource: author, pattern: pattern, property: 'author' }),
               index < _this2.props.resource.author.length - 1 ? ' et ' : ''
             );
@@ -354,7 +354,7 @@ var InlineCitation = exports.InlineCitation = function (_InlineCitationModel) {
         return this.props.resource.author.map(function (author, index) {
           return _react2.default.createElement(
             'span',
-            { key: author.citeKey, className: 'peritext-citation-authors' },
+            { key: author.id, className: 'peritext-citation-authors' },
             _react2.default.createElement(_components.StructuredPerson, { resource: author, pattern: '${lastName:capitals}', property: 'author' }),
             index < _this4.props.resource.author.length - 1 ? ' et ' : ''
           );

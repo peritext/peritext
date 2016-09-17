@@ -26,8 +26,8 @@ var packSection = function packSection(document, section) {
   return Object.assign({}, section, { contextualizations: contextualizations }, { contextualizers: contextualizers }, { resources: resources });
 };
 
-var getSection = exports.getSection = function getSection(document, citeKey) {
-  var section = document.sections[citeKey];
+var getSection = exports.getSection = function getSection(document, id) {
+  var section = document.sections[id];
   return packSection(document, section);
 };
 
@@ -40,7 +40,7 @@ var getTableOfSections = exports.getTableOfSections = function getTableOfSection
   return document.summary.map(function (sectionKey) {
     var metadata = document.sections[sectionKey].metadata;
     return {
-      citeKey: metadata.general.citeKey.value,
+      id: metadata.general.id.value,
       generalityLevel: metadata.general.generalityLevel.value,
       title: metadata.general.title.value,
       parent: metadata.general.parent ? metadata.general.parent.value : undefined
@@ -61,19 +61,19 @@ var getTableOfFigures = exports.getTableOfFigures = function getTableOfFigures(d
   });
 };
 
-var getResourceContextualizations = exports.getResourceContextualizations = function getResourceContextualizations(document, resourceCiteKey) {
+var getResourceContextualizations = exports.getResourceContextualizations = function getResourceContextualizations(document, resourceId) {
   return Object.keys(document.contextualizations).map(function (key) {
     return document.contextualizations[key];
   }).filter(function (contextualization) {
-    return contextualization.resources.indexOf(resourceCiteKey) > -1;
+    return contextualization.resources.indexOf(resourceId) > -1;
   });
 };
 
-var getContextualizerContextualizations = exports.getContextualizerContextualizations = function getContextualizerContextualizations(document, contextualizerCiteKey) {
+var getContextualizerContextualizations = exports.getContextualizerContextualizations = function getContextualizerContextualizations(document, contextualizerId) {
   return Object.keys(document.contextualizations).map(function (key) {
     return document.contextualizations[key];
   }).filter(function (contextualization) {
-    return contextualization.contextualizer === contextualizerCiteKey;
+    return contextualization.contextualizer === contextualizerId;
   });
 };
 
@@ -84,14 +84,14 @@ var getGlossary = exports.getGlossary = function getGlossary(document) {
   });
   // prepare glossary
   var glossaryPointers = sections.reduce(function (results, thatSection) {
-    var sectionCitekey = thatSection.metadata.general.citeKey.value;
+    var sectionCitekey = thatSection.metadata.general.id.value;
     return results.concat(thatSection.contextualizations.filter(function (thatContextualization) {
       return document.contextualizations[thatContextualization].contextualizerType === 'glossary';
     }).reduce(function (localResults, contextualizationKey) {
       var contextualization = document.contextualizations[contextualizationKey];
       return localResults.concat({
-        mentionId: '#peritext-content-entity-inline-' + sectionCitekey + '-' + contextualization.citeKey,
-        entity: document.resources[contextualization.resources[0]].citeKey,
+        mentionId: '#peritext-content-entity-inline-' + sectionCitekey + '-' + contextualization.id,
+        entity: document.resources[contextualization.resources[0]].id,
         alias: document.contextualizers[contextualization.contextualizer].alias
       });
     }, []));
@@ -108,7 +108,7 @@ var getGlossary = exports.getGlossary = function getGlossary(document) {
   var glossaryData = glossaryResources.map(function (inputGlossaryEntry) {
     var glossaryEntry = Object.assign({}, inputGlossaryEntry);
     glossaryEntry.aliases = glossaryPointers.filter(function (pointer) {
-      return pointer.entity === glossaryEntry.citeKey;
+      return pointer.entity === glossaryEntry.id;
     }).reduce(function (aliases, entry) {
       var alias = entry.alias || 'no-alias';
       aliases[alias] = aliases[alias] ? aliases[alias].concat(entry) : [entry];

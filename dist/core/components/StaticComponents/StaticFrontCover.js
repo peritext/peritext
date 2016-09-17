@@ -68,7 +68,7 @@ var StaticFrontCover = function (_React$Component) {
             'h2',
             { className: 'peritext-static-authors' },
             this.props.metadata.general.author.value.map(function (person) {
-              return _react2.default.createElement(_StructuredPerson2.default, { key: person.citeKey, resource: person });
+              return _react2.default.createElement(_StructuredPerson2.default, { key: person.id, resource: person });
             })
           )
         );
@@ -136,7 +136,7 @@ var StaticFrontCover = function (_React$Component) {
               'h1',
               { className: 'peritext-static-authors' },
               this.props.metadata.general.author.value.map(function (person) {
-                return _react2.default.createElement(_StructuredPerson2.default, { key: person.citeKey, resource: person });
+                return _react2.default.createElement(_StructuredPerson2.default, { key: person.id, resource: person });
               })
             ),
             _react2.default.createElement(
@@ -171,7 +171,7 @@ var StaticFrontCover = function (_React$Component) {
             this.props.metadata.general.dissertationjury.value.map(function (person) {
               return _react2.default.createElement(
                 'p',
-                { key: person.citeKey, className: 'peritext-static-front-cover-jury-member' },
+                { key: person.id, className: 'peritext-static-front-cover-jury-member' },
                 _react2.default.createElement(_StructuredPerson2.default, { resource: person, pattern: '${firstName} ${lastName:capitals} ${information} / ${role}' })
               );
             })

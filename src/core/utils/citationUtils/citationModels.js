@@ -43,7 +43,7 @@ export class BlockCitationModel extends React.Component {
   render() {
     return (
       <p
-      id={this.props.contextualization.citeKey}
+      id={this.props.contextualization.id}
       className="peritext-block-citation"
       itemProp="citation"
       property="citation"
@@ -93,7 +93,7 @@ export class InlineCitationModel extends React.Component {
   render() {
     // console.log(this.props);
     return (<span
-      id={this.props.contextualization.citeKey}
+      id={this.props.contextualization.id}
       className="peritext-inline-citation"
       itemProp="citation"
       property="citation"

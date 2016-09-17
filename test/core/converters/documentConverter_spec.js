@@ -59,14 +59,14 @@ describe('documentConverter:parser', function(){
 
             expect(number).to.equal(1);
           });
-          //verifying citekeys, first listing all citekeyed objects (resources and contextualizers)
-          const citeKeyed = section.resources.concat(section.contextualizers);
-          citeKeyed.forEach((obj)=>{
-            expect(obj).to.have.property('citeKey');
+          //verifying ids, first listing all ided objects (resources and contextualizers)
+          const ided = section.resources.concat(section.contextualizers);
+          ided.forEach((obj)=>{
+            expect(obj).to.have.property('id');
             number = 0;
-            citeKeyed.forEach((obj2)=>{
+            ided.forEach((obj2)=>{
               // console.log(obj, obj2);
-              if(obj && obj2 && obj.citeKey === obj2.citeKey){
+              if(obj && obj2 && obj.id === obj2.id){
                 number++;
               }
             });

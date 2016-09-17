@@ -28,7 +28,8 @@ var bibTexParser = function () {
   function bibTexParser() {
     _classCallCheck(this, bibTexParser);
 
-    this.STATES = ['bibType', 'citeKey', 'properties'];
+    this.STATES = ['bibType', 'id', 'properties'];
+    this.testing = false;
   }
 
   /**
@@ -64,8 +65,13 @@ var bibTexParser = function () {
       var _this = this;
 
       var matchBibType = /^@([^{]+)/;
-      var matchCiteKey = /^{([^,]+),/;
-      var wrappers = [['{', '}'], ['"', '"'], ["'", "'"]];
+      var matchId = /^{([^,]+),/;
+      var wrappers = [['{', '}'], ['"', '"']];
+
+      if (this.testing) {
+        console.log('current state: ', this.currentState);
+      }
+
       var match = void 0;
       if (this.currentState === 'bibType') {
         match = matchBibType.exec(this.consumable);
@@ -82,10 +88,10 @@ var bibTexParser = function () {
           initialString: this.initialStr
         };
         return true;
-      } else if (this.currentState === 'citeKey') {
-        match = matchCiteKey.exec(this.consumable);
+      } else if (this.currentState === 'id') {
+        match = matchId.exec(this.consumable);
         if (match) {
-          this.currentObject.citeKey = match[1];
+          this.currentObject.id = match[1];
           this.consumable = this.consumable.substr(match[1].length + 2);
           this.currentState = this.STATES[2];
           return true;
@@ -114,10 +120,20 @@ var bibTexParser = function () {
             var character = void 0;
             var entering = void 0;
 
+            if (_this.testing) {
+              console.log('initial parser mode: ', mode, ' || stored wrapped pairs : ', wrapped);
+            }
+
             while (wrapped.length > 0) {
 
               trespassing = index > _this.consumable.length - 1;
               character = _this.consumable.charAt(index);
+              if (_this.testing) {
+                console.log('===\nNEW PARSING STATE \n===');
+                console.log('actual char', character);
+                console.log('actual mode: ', mode);
+                console.log('actual wrapped pairs: ', wrapped);
+              }
 
               if (trespassing) {
                 _this.error = {
@@ -126,6 +142,7 @@ var bibTexParser = function () {
                   message: 'finished to parse bibtex string without finding closing character ' + wrapped[wrapped.length - 1][1],
                   initialString: _this.initialStr
                 };
+                if (_this.testing) console.log('trespassing');
                 return {
                   v: true
                 };
@@ -136,14 +153,17 @@ var bibTexParser = function () {
                     temp += character;
                   }
                   index = 1;
+                  if (_this.testing) console.log('poped a wrapping level');
                   // end of key specification, record tempkey and wait to have found value
                 } else if (mode === 'key' && character === '=') {
                     tempKey = temp.trim();
+                    if (_this.testing) console.log('encountered a = in key mode, storing key ', tempKey);
                     temp = '';
                     mode = 'value';
                     index = 1;
                     // end of value specification - add value and reboot temp
                   } else if (mode === 'value' && wrapped.length < 2 && character === ',') {
+                      if (_this.testing) console.log('end of line, storing prop');
                       _this.addValue(_this.currentObject, tempKey, temp.trim());
                       temp = '';
                       mode = 'key';
@@ -161,13 +181,17 @@ var bibTexParser = function () {
                         if (!(entering && wrapped.length <= 2)) {
                           temp += character;
                         }
+                        if (_this.testing) console.log('continuing in value ', temp);
                         index = 1;
                         // default, by security
                       } else {
+                          if (_this.testing) console.log('default exit doing nothing');
+                          // if(this.testing)console.log('current string: ', this. consumable.substr(index));
                           temp += character;
                           index = 1;
                         }
               _this.consumable = _this.consumable.substr(index);
+              if (_this.testing) console.log(_this.currentObject);
             }
             _this.addValue(_this.currentObject, tempKey.trim(), temp.trim());
 
@@ -214,12 +238,24 @@ var bibTexParser = function () {
 
 var parser = new bibTexParser();
 
+/**
+ * Parses a bibTeX string and returns an object
+ * @param {string} str - the bibTeX string to parse
+ * @return {function(error: error, result: Object)} callback - error and the resulting object
+ */
+var parseBibTexStr = exports.parseBibTexStr = function parseBibTexStr(str, callback) {
+  if (typeof str === 'string') {
+    return parser.parse(str, callback);
+  }
+  return callback(new Error('must input a string'), undefined);
+};
+
 var validateBibObject = function validateBibObject(bibObject) {
-  if (bibObject.citeKey === undefined) {
+  if (bibObject.id === undefined) {
     return {
       type: 'error',
       preciseType: 'bibObjectValidationError',
-      message: 'bibObject must have a citeKey property',
+      message: 'bibObject must have a id property',
       bibObject: bibObject
     };
   } else if (bibObject.bibType === undefined) {
@@ -266,7 +302,7 @@ var serializeBibTexObject = exports.serializeBibTexObject = function serializeBi
           str += '\t' + key + ' = {' + value + '},\n';
         });
         //  val = val.join(',');
-      } else if (key !== 'citeKey' && key !== 'bibType') {
+      } else if (key !== 'id' && key !== 'bibType') {
           str += '\t' + key + ' = {' + val + '},\n';
         }
     }
@@ -279,19 +315,7 @@ var serializeBibTexObject = exports.serializeBibTexObject = function serializeBi
   if (str.length > 1) {
     str = str.substr(0, str.length - 2);
   }
-  return '@' + bibObject.bibType + '{' + bibObject.citeKey + ',\n    ' + str + '\n}';
-};
-
-/**
- * Parses a bibTeX string and returns an object
- * @param {string} str - the bibTeX string to parse
- * @return {function(error: error, result: Object)} callback - error and the resulting object
- */
-var parseBibTexStr = exports.parseBibTexStr = function parseBibTexStr(str, callback) {
-  if (typeof str === 'string') {
-    return parser.parse(str, callback);
-  }
-  return callback(new Error('must input a string'), undefined);
+  return '@' + bibObject.bibType + '{' + bibObject.id + ',\n    ' + str + '\n}';
 };
 
 /**
@@ -360,8 +384,8 @@ var parseBibAuthors = exports.parseBibAuthors = function parseBibAuthors(str) {
         firstName = '';
       }
     }
-    var citeKey = (role + '-' + firstName + lastName).toLowerCase().replace(' ', '-');
-    return { firstName: firstName, lastName: lastName, role: role, information: information, citeKey: citeKey };
+    var id = (role + '-' + firstName + lastName).toLowerCase().replace(' ', '-');
+    return { firstName: firstName, lastName: lastName, role: role, information: information, id: id };
   });
 };
 

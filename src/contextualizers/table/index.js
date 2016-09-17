@@ -16,10 +16,10 @@ import StaticTable from './StaticTable';
 export const contextualizeInlineStatic = (inputDocument, inputContextualization, settings) => {
   const document = Object.assign({}, inputDocument);
   const contextualization = Object.assign({}, inputContextualization);
-  const sectionCiteKey = contextualization.nodePath[0];
+  const sectionId = contextualization.nodePath[0];
   const path = ['sections', ...contextualization.nodePath.slice()];
   const node = getByPath(document, path);
-  const section = document.sections[sectionCiteKey];
+  const section = document.sections[sectionId];
   const data = document.data[contextualization.resources[0]];
   const nodeBlockIndex = path[3];
   let figureId;
@@ -27,7 +27,7 @@ export const contextualizeInlineStatic = (inputDocument, inputContextualization,
   const contents = node.child;
   // if figure is not there yet, add it
   if (!contextualization.sectionOpCit) {
-    figureId = sectionCiteKey + '-' + contextualization.citeKey;
+    figureId = sectionId + '-' + contextualization.id;
     contextualization.figureId = figureId;
     document.figuresCount = document.figuresCount ? document.figuresCount + 1 : 1;
     contextualization.figureNumber = document.figuresCount;
@@ -55,8 +55,8 @@ export const contextualizeInlineStatic = (inputDocument, inputContextualization,
         figure,
         ...section.contents.slice(nodeBlockIndex)
       ];
-      const newNodePath = [sectionCiteKey, 'contents', nodeBlockIndex + 1];
-      document.contextualizations[contextualization.citeKey].nodePath = newNodePath;
+      const newNodePath = [sectionId, 'contents', nodeBlockIndex + 1];
+      document.contextualizations[contextualization.id].nodePath = newNodePath;
       // update contextualizations that target subsequent contents blocks
       Object
       .keys(document.contextualizations)
@@ -72,8 +72,8 @@ export const contextualizeInlineStatic = (inputDocument, inputContextualization,
       section.figures = section.figures ? section.figures.concat(figure) : [figure];
     }
   } else {
-    figureId = sectionCiteKey + '-' + contextualization.precursorCiteKey;
-    number = document.contextualizations[contextualization.precursorCiteKey].figureNumber;
+    figureId = sectionId + '-' + contextualization.precursorId;
+    number = document.contextualizations[contextualization.precursorId].figureNumber;
   }
   const displayId = '#peritext-figure-' + figureId;
   const newContents = [
@@ -102,7 +102,7 @@ export const contextualizeInlineStatic = (inputDocument, inputContextualization,
   ];
   node.tag = 'span';
   node.child = newContents;
-  document.contextualizations[contextualization.citeKey] = contextualization;
+  document.contextualizations[contextualization.id] = contextualization;
   return document;
 };
 

@@ -28,7 +28,7 @@ const formatMetadata = (metadataObj) =>{
 const flattenSections = (tree) =>{
   if (tree.children) {
     const newChildren = tree.children.map(child=>{
-      return Object.assign({}, child, {parent: tree.metadata.citeKey});
+      return Object.assign({}, child, {parent: tree.metadata.id});
     });
     const newTree = Object.assign({}, tree);
     return [
@@ -99,36 +99,36 @@ const makeRelations = (inputSections) =>{
   const hasNoAfter = sections.filter(section => section.metadata.general.after === undefined);
   sections = [...hasNoAfter, ...hasAfter];
   console.log('after and no after:' );
-  console.log(sections.map(section=>section.metadata.general.citeKey.value));
+  console.log(sections.map(section=>section.metadata.general.id.value));
   // resolve after statements
   for (let index = sections.length - 1; index >= 0; index--) {
     const section = sections[index];
-    // console.log('parsing ', section.metadata.general.citeKey.value, index);
+    // console.log('parsing ', section.metadata.general.id.value, index);
     if (section.metadata.general.after && section.metadata.general.parent) {
       let indexAfter;
       sections.some((section2, thatIndex) =>{
-        const citeKey = section2.metadata.general.citeKey.value;
-        if (section.metadata.general.after.value === citeKey) {
+        const id = section2.metadata.general.id.value;
+        if (section.metadata.general.after.value === id) {
           indexAfter = thatIndex;
           return true;
         }
       });
       if (indexAfter !== undefined && index !== indexAfter + 1) {
-        console.log('put ', section.metadata.general.citeKey.value, index, ' after ', section.metadata.general.after.value, indexAfter);
+        console.log('put ', section.metadata.general.id.value, index, ' after ', section.metadata.general.after.value, indexAfter);
         sections = moveInArray(sections, index, indexAfter + 1);
       } else if (indexAfter === undefined) {
-        console.error(section.metadata.general.citeKey.value,
+        console.error(section.metadata.general.id.value,
           ' is supposed to be after ',
           section.metadata.general.after.value,
           ' but this section does not exist');
       }
     }
   }
-  const summary = sections.map(section => section.metadata.general.citeKey.value);
+  const summary = sections.map(section => section.metadata.general.id.value);
   const orderedSections = sections.map((section, index) => {
     if (index > 0 ) {
       section.metadata.general.after = {
-        value: sections[index - 1].metadata.general.citeKey.value
+        value: sections[index - 1].metadata.general.id.value
       };
     } else {
       delete section.metadata.general.after;
@@ -136,7 +136,7 @@ const makeRelations = (inputSections) =>{
     return section;
   });
   const outputSections = orderedSections.reduce((output, section) => {
-    return Object.assign(output, {[section.metadata.general.citeKey.value]: section});
+    return Object.assign(output, {[section.metadata.general.id.value]: section});
   }, {});
   return {outputSections, summary};
 };

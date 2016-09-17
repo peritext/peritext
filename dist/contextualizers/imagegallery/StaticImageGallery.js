@@ -72,7 +72,7 @@ var StaticImageGallery = function (_React$Component) {
           'div',
           { className: 'peritext-static-image-gallery-figures-wrapper' },
           this.props.resources.map(function (resource) {
-            return _react2.default.createElement(_components.StaticImageFigure, { resource: resource, key: resource.citeKey });
+            return _react2.default.createElement(_components.StaticImageFigure, { resource: resource, key: resource.id });
           })
         ),
         _react2.default.createElement(

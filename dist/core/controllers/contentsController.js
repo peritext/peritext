@@ -7,7 +7,7 @@ exports.updateToSource = exports.updateFromSource = undefined;
 
 var _async = require('async');
 
-var _sectionConverter = require('../converters/sectionConverter');
+var _documentConverter = require('../converters/documentConverter');
 
 var _deepDiff = require('deep-diff');
 
@@ -160,7 +160,7 @@ var updateFromSource = exports.updateFromSource = function updateFromSource(para
       cb(err, results);
     });
   }, function (tree, cb) {
-    (0, _sectionConverter.parseSection)({ tree: tree, models: models, parameters: parameters }, cb);
+    (0, _documentConverter.parseDocument)({ tree: tree, models: models, parameters: parameters }, cb);
   }], function (err, results) {
     callback(err, results);
   });
@@ -178,7 +178,7 @@ var updateFromSource = exports.updateFromSource = function updateFromSource(para
 */
 var updateToSource = exports.updateToSource = function updateToSource(params, document, models, oldFsTree, callback) {
   updateConnector(params);
-  var newFsTree = (0, _sectionConverter.serializeDocument)({
+  var newFsTree = (0, _documentConverter.serializeDocument)({
     document: document,
     models: models,
     basePath: params.basePath

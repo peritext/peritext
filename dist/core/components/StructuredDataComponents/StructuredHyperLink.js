@@ -64,7 +64,7 @@ var StructuredHyperLink = function (_React$Component) {
           itemProp: this.props.property,
           itemType: 'http://schema.org/' + this.props.schematype,
           'typeof': this.props.schematype,
-          resource: '#' + this.props.resource.citeKey,
+          resource: '#' + this.props.resource.id,
           href: this.props.resource.url
         },
         _react2.default.createElement(

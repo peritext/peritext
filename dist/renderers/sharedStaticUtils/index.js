@@ -126,6 +126,7 @@ var composeRenderedSections = exports.composeRenderedSections = function compose
       });
       return figures.concat(figuresL);
     }, []);
+
     var figuresTable = {
       type: 'table-of-figures',
       contents: figuresTableData,
@@ -143,7 +144,7 @@ var composeRenderedSections = exports.composeRenderedSections = function compose
   if (settings.contentsTablePosition !== 'none') {
     var tocData = renderedSections.map(function (thisSection) {
       return {
-        id: thisSection.metadata ? thisSection.metadata.general.citeKey.value : thisSection.id,
+        id: thisSection.metadata ? thisSection.metadata.general.id.value : thisSection.id,
         title: thisSection.metadata ? thisSection.metadata.general.title.value : thisSection.title,
         level: thisSection.metadata ? thisSection.metadata.general.generalityLevel.value : 0
       };

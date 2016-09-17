@@ -23,7 +23,7 @@ var resolveSectionAgainstModels = exports.resolveSectionAgainstModels = function
   var errors = [];
 
   // validate metadata
-  var sectionCiteKey = section.metadata.general.citeKey.value;
+  var sectionId = section.metadata.general.id.value;
   for (var domain in section.metadata) {
     if (section.metadata[domain]) {
       for (var key in section.metadata[domain]) {
@@ -38,8 +38,8 @@ var resolveSectionAgainstModels = exports.resolveSectionAgainstModels = function
                 errors.push({
                   type: 'error',
                   preciseType: 'invalidMetadata',
-                  sectionCiteKey: sectionCiteKey,
-                  message: key + ' value was set more than once for section ' + sectionCiteKey
+                  sectionId: sectionId,
+                  message: key + ' value was set more than once for section ' + sectionId
                 });
                 metadata.value = metadata.value[0];
               }
@@ -62,8 +62,8 @@ var resolveSectionAgainstModels = exports.resolveSectionAgainstModels = function
               errors.push({
                 type: 'warning',
                 preciseType: 'invalidMetadata',
-                sectionCiteKey: sectionCiteKey,
-                message: domain + ' metadata property ' + key + ' is invalid in section ' + sectionCiteKey
+                sectionId: sectionId,
+                message: domain + ' metadata property ' + key + ' is invalid in section ' + sectionId
               });
             }
           })();

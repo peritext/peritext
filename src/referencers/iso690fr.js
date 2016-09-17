@@ -100,7 +100,7 @@ export class BlockCitation extends BlockCitationModel {
       return (<span className="peritext-citation-authors">
           {this.props.resource.author.map((author, index) => {
             return (
-                <span key={author.citeKey}>
+                <span key={author.id}>
                   <StructuredPerson resource={author} pattern={pattern} property="author" />
                   {(index < this.props.resource.author.length - 1) ? ' et ' : ''}
                 </span>
@@ -257,7 +257,7 @@ export class InlineCitation extends InlineCitationModel {
     if (this.props.resource.author.length <= 2) {
       return this.props.resource.author.map((author, index) => {
         return (
-          <span key={author.citeKey} className="peritext-citation-authors">
+          <span key={author.id} className="peritext-citation-authors">
             <StructuredPerson resource={author} pattern="${lastName:capitals}" property="author" />
             {(index < this.props.resource.author.length - 1) ? ' et ' : ''}
           </span>

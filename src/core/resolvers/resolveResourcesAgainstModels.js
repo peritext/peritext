@@ -16,7 +16,7 @@ export const resolveResourcesAgainstModels = (resources, models)=> {
             newErrors.push({
               type: 'error',
               preciseType: 'invalidResource',
-              message: 'property ' + key + ' is required in resource ' + resource.citeKey + '(bibType: ' + resource.bibType + ') and not present'
+              message: 'property ' + key + ' is required in resource ' + resource.id + '(bibType: ' + resource.bibType + ') and not present'
             });
           } else if (resource[key]) {
             resolvedResource[key] = resolvePropAgainstType(resource[key], propModel.valueType, propModel);
@@ -29,7 +29,7 @@ export const resolveResourcesAgainstModels = (resources, models)=> {
         newErrors.push({
           type: 'error',
           preciseType: 'invalidResource',
-          message: 'Could not find suitable data model for resource ' + resource.citeKey
+          message: 'Could not find suitable data model for resource ' + resource.id
         });
       }
     }

@@ -43,7 +43,7 @@ const resolveContextualizer = (contextualizer, contextualization, contextualizer
       err.push({
         type: 'error',
         preciseType: 'invalidContextualizer',
-        message: 'overloading reference error: contextualizer ' + newContextualizer.citeKey + ' should overload ' + overload + ' but the original contextualizer does not exist'
+        message: 'overloading reference error: contextualizer ' + newContextualizer.id + ' should overload ' + overload + ' but the original contextualizer does not exist'
       });
     }
   }
@@ -56,7 +56,7 @@ const resolveContextualizer = (contextualizer, contextualization, contextualizer
         err.push({
           type: 'error',
           preciseType: 'invalidContextualizer',
-          message: 'contextualizer ' + newContextualizer.citeKey + ' (' + newContextualizer.type + ') does not provide a valid resource'
+          message: 'contextualizer ' + newContextualizer.id + ' (' + newContextualizer.type + ') does not provide a valid resource'
         });
         return {err, undefined};
       }
@@ -74,7 +74,7 @@ const resolveContextualizer = (contextualizer, contextualization, contextualizer
       err.push({
         type: 'error',
         preciseType: 'invalidContextualizer',
-        message: 'contextualizer ' + newContextualizer.citeKey + ' (' + newContextualizer.type + ') does not provide required type ' + thatModel.key
+        message: 'contextualizer ' + newContextualizer.id + ' (' + newContextualizer.type + ') does not provide required type ' + thatModel.key
       });
     }
     return obj;
@@ -92,25 +92,25 @@ const resolveContextualizer = (contextualizer, contextualization, contextualizer
 export const resolveBindings = ({document, models}) =>{
   let errors = [];
   // find implicit contextualizers types
-  for (const citeKey in document.contextualizations) {
-    if (document.contextualizations[citeKey]) {
-      const contextualization = document.contextualizations[citeKey];
+  for (const id in document.contextualizations) {
+    if (document.contextualizations[id]) {
+      const contextualization = document.contextualizations[id];
       // resolve contextualizer (in case of overloading)
       const {err, finalContextualizer} = resolveContextualizer(document.contextualizers[contextualization.contextualizer], contextualization, document.contextualizers, document.resources, models);
       if (err.length) {
         errors = errors.concat(err);
       } else {
-        contextualization.contextualizer = finalContextualizer.citeKey;
-        document.contextualizers[finalContextualizer.citeKey] = finalContextualizer;
+        contextualization.contextualizer = finalContextualizer.id;
+        document.contextualizers[finalContextualizer.id] = finalContextualizer;
       }
       // verify that contextualization has an existing contextualizer
       if (document.contextualizers[contextualization.contextualizer] === undefined) {
         errors.push({
           type: 'error',
           preciseType: 'invalidContextualization',
-          message: 'contextualizer was not found for contextualization ' + contextualization.citeKey
+          message: 'contextualizer was not found for contextualization ' + contextualization.id
         });
-        delete document.contextualizations[contextualization.citeKey];
+        delete document.contextualizations[contextualization.id];
       // verify that contextualization uses valid resources (they exist and their type is compatible with contextualizer)
       } else {
         let toKeep = true;
@@ -145,7 +145,7 @@ export const resolveBindings = ({document, models}) =>{
           }
         });
         if (toKeep === false) {
-          delete document.contextualizations[contextualization.citeKey];
+          delete document.contextualizations[contextualization.id];
         }
       }
     }
@@ -198,7 +198,7 @@ export const resolveContextualizationsRelations = (inputDocument, settings) =>{
                 return oKey2;
               }
             });
-            contextualization.precursorCiteKey = document.contextualizations[oContKey].citeKey;
+            contextualization.precursorId = document.contextualizations[oContKey].id;
             sameResPrint = true;
           }
         }
@@ -269,7 +269,7 @@ export const resolveContextualizationsRelations = (inputDocument, settings) =>{
  */
 export const resolveContextualizationImplementation = (contextualization, document, renderingMode, settings) =>{
   let contextualizer;
-  // console.log('resolving ', contextualization.citeKey);
+  // console.log('resolving ', contextualization.id);
   contextualizer = contextualizerLibs[contextualization.contextualizerType];
   if (contextualizer === undefined) {
     console.log('no contextualizer function was found for type ', contextualization.contextualizerType);

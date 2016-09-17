@@ -34,15 +34,15 @@ export default class StaticForewords extends React.Component {
    */
   render() {
     const bibType = bibToSchema(this.props.section.metadata.general.bibType.value);
-    const citeKey = this.props.section.metadata.general.citeKey.value;
+    const id = this.props.section.metadata.general.id.value;
     return (
       <section
         className={'peritext-static-section-container peritext-static-forewords-container'}
-        id={citeKey}
+        id={id}
         itemScope
         itemType={'http://schema.org/' + bibType}
         typeof={bibType}
-        resource={'#' + citeKey}
+        resource={'#' + id}
         itemProp="hasPart"
         property="hasPart"
       >

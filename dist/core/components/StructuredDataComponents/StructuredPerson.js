@@ -158,7 +158,7 @@ var StructuredPerson = function (_React$Component) {
           itemType: 'http://schema.org/Person',
           property: this.props.property,
           'typeof': 'Person',
-          resource: this.props.resource.citeKey
+          resource: this.props.resource.id
         },
         this.updateHtml()
       );

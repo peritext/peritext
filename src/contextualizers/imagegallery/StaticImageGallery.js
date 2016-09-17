@@ -46,7 +46,7 @@ export default class StaticImageGallery extends React.Component {
             >
               <div className="peritext-static-image-gallery-figures-wrapper">
                 {this.props.resources.map((resource)=>{
-                  return <StaticImageFigure resource={resource} key={resource.citeKey} />;
+                  return <StaticImageFigure resource={resource} key={resource.id} />;
                 })}
               </div>
               <figcaption

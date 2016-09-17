@@ -42,14 +42,14 @@ class StaticDocument extends React.Component {
    */
   render() {
     const bibType = bibToSchema(this.props.document.metadata.general.bibType.value);
-    const citeKey = this.props.document.metadata.general.citeKey.value;
+    const id = this.props.document.metadata.general.id.value;
     return (
         <section
           itemScope
           itemType={'http://schema.org/' + bibType}
           typeof={bibType}
           vocab="http://schema.org/"
-          resource={'#' + citeKey}
+          resource={'#' + id}
         >
           {<StructuredMetadataPlaceholder section={this.props.document} />}
 

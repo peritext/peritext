@@ -142,8 +142,8 @@ var renderDocument = exports.renderDocument = function renderDocument(_ref, asse
     // resolve contextualizations js representation according to settings
     renderedDocument.figuresCount = 0;
 
-    renderedDocument = Object.keys(renderedDocument.contextualizations).reduce(function (doc, contCiteKey) {
-      return (0, _resolveContextualizations.resolveContextualizationImplementation)(doc.contextualizations[contCiteKey], doc, 'static', finalSettings);
+    renderedDocument = Object.keys(renderedDocument.contextualizations).reduce(function (doc, contId) {
+      return (0, _resolveContextualizations.resolveContextualizationImplementation)(doc.contextualizations[contId], doc, 'static', finalSettings);
     }, renderedDocument);
 
     // transform input js abstraction of contents to a js abstraction specific to rendering settings

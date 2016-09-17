@@ -98,7 +98,7 @@ Concerning peritext metadata, a peritext section metadata will always be recogni
 @peritextincollection{mycollection} //metadata, because it begins with "peritext"
 ```
 
-The second just after the opening bracket (eg ``incollection``) would describe a ``cite_key`` in regular BibTeX : **in Peritext the citeKey is central, and should be also used as the slug of this section, usable to reference it in other content sections or for other purposes** - slug is an internal metadata. **All citeKeys should be unique along a whole document**.
+The second just after the opening bracket (eg ``incollection``) would describe a ``cite_key`` in regular BibTeX : **in Peritext the id is crucial, and should be also used as the slug of this section, usable to reference it in other content sections or for other purposes** - slug is an internal metadata. **All ids should be unique along a whole document**.
 
 Then follows a collection of key+value pairs, that Peritext respects but also extends for its own purposes.
 
@@ -190,9 +190,9 @@ Maskin, Eric S.
 {Charalambos}, D. Aliprantis and Kim C. {Border}
 ```
 
-### citeKey property
+### id property
 
-The citeKey of metadata object should be unique. To decide for app logic :
+The id of metadata object should be unique. Todo-> decide for app logic :
 
 * throw error 
 * throw warning and overwrite choice 

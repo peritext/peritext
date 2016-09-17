@@ -8,61 +8,61 @@
     {
       "type": "error",
       "preciseType": "invalidMetadata",
-      "sectionCiteKey": "mybook",
+      "sectionid": "mybook",
       "message": "title value was set more than once for section mybook"
     },
     {
       "type": "warning",
       "preciseType": "invalidMetadata",
-      "sectionCiteKey": "mybook",
+      "sectionid": "mybook",
       "message": "general metadata property test is invalid in section mybook"
     },
     {
       "type": "error",
       "preciseType": "invalidMetadata",
-      "sectionCiteKey": "mybook",
+      "sectionid": "mybook",
       "message": "title value was set more than once for section mybook"
     },
     {
       "type": "error",
       "preciseType": "invalidMetadata",
-      "sectionCiteKey": "mybook",
+      "sectionid": "mybook",
       "message": "title value was set more than once for section mybook"
     },
     {
       "type": "error",
       "preciseType": "invalidMetadata",
-      "sectionCiteKey": "mybook",
+      "sectionid": "mybook",
       "message": "title value was set more than once for section mybook"
     },
     {
       "type": "error",
       "preciseType": "invalidMetadata",
-      "sectionCiteKey": "mybook",
+      "sectionid": "mybook",
       "message": "title value was set more than once for section mybook"
     },
     {
       "type": "warning",
       "preciseType": "invalidMetadata",
-      "sectionCiteKey": "partie_1",
+      "sectionid": "partie_1",
       "message": "general metadata property subject is invalid in section partie_1"
     },
     {
       "type": "warning",
       "preciseType": "invalidMetadata",
-      "sectionCiteKey": "partie_1",
+      "sectionid": "partie_1",
       "message": "general metadata property test is invalid in section partie_1"
     },
     {
       "type": "warning",
       "preciseType": "invalidMetadata",
-      "sectionCiteKey": "partie_2",
+      "sectionid": "partie_2",
       "message": "general metadata property test is invalid in section partie_2"
     },
     {
       "type": "warning",
       "preciseType": "invalidMetadata",
-      "sectionCiteKey": "partie_2_2",
+      "sectionid": "partie_2_2",
       "message": "general metadata property test is invalid in section partie_2_2"
     }
   ],
@@ -164,7 +164,7 @@
             "bibType": {
               "value": "phdthesis"
             },
-            "citeKey": {
+            "id": {
               "value": "mybook"
             },
             "title": {
@@ -177,7 +177,7 @@
                   "firstName": "Robin",
                   "lastName": "De Mourat",
                   "role": "author",
-                  "citeKey": "author-robinde-mourat"
+                  "id": "author-robinde-mourat"
                 }
               ],
               "htmlHead": "<meta name=\"author\" content=\"Robin De Mourat\">"
@@ -189,7 +189,7 @@
                   "lastName": "Thély",
                   "role": "directeur de thèse",
                   "information": "Professeur, Université Rennes 2",
-                  "citeKey": "directeur-de thèse-nicolasthély"
+                  "id": "directeur-de thèse-nicolasthély"
                 }
               ]
             },
@@ -345,7 +345,7 @@
                   "firstName": "Robin",
                   "lastName": "De Mourat",
                   "role": "author",
-                  "citeKey": "author-robinde-mourat"
+                  "id": "author-robinde-mourat"
                 }
               ],
               "inheritedHorizontallyFrom": {
@@ -1197,7 +1197,7 @@
               "value": "incollection",
               "inheritedVerticallyFrom": "mybook"
             },
-            "citeKey": {
+            "id": {
               "value": "partie_1"
             },
             "title": {
@@ -1222,7 +1222,7 @@
                   "firstName": "Robin",
                   "lastName": "De Mourat",
                   "role": "author",
-                  "citeKey": "author-robinde-mourat"
+                  "id": "author-robinde-mourat"
                 }
               ],
               "inheritedVerticallyFrom": "mybook",
@@ -1235,7 +1235,7 @@
                   "lastName": "Thély",
                   "role": "directeur de thèse",
                   "information": "Professeur, Université Rennes 2",
-                  "citeKey": "directeur-de thèse-nicolasthély"
+                  "id": "directeur-de thèse-nicolasthély"
                 }
               ],
               "inheritedVerticallyFrom": "mybook"
@@ -1400,7 +1400,7 @@
                   "firstName": "Robin",
                   "lastName": "De Mourat",
                   "role": "author",
-                  "citeKey": "author-robinde-mourat"
+                  "id": "author-robinde-mourat"
                 }
               ],
               "inheritedHorizontallyFrom": {
@@ -2233,7 +2233,7 @@
               "value": "incollection",
               "inheritedVerticallyFrom": "mybook"
             },
-            "citeKey": {
+            "id": {
               "value": "partie_2"
             },
             "title": {
@@ -2249,13 +2249,13 @@
                   "firstName": "Viviane",
                   "lastName": "Westwood",
                   "role": "author",
-                  "citeKey": "author-vivianewestwood"
+                  "id": "author-vivianewestwood"
                 },
                 {
                   "firstName": "Francis",
                   "lastName": "Lalane",
                   "role": "author",
-                  "citeKey": "author-francislalane"
+                  "id": "author-francislalane"
                 }
               ],
               "htmlHead": "<meta name=\"author\" content=\"Viviane Westwood, Francis Lalane\">"
@@ -2273,7 +2273,7 @@
                   "lastName": "Thély",
                   "role": "directeur de thèse",
                   "information": "Professeur, Université Rennes 2",
-                  "citeKey": "directeur-de thèse-nicolasthély"
+                  "id": "directeur-de thèse-nicolasthély"
                 }
               ],
               "inheritedVerticallyFrom": "mybook"
@@ -2439,13 +2439,13 @@
                   "firstName": "Viviane",
                   "lastName": "Westwood",
                   "role": "author",
-                  "citeKey": "author-vivianewestwood"
+                  "id": "author-vivianewestwood"
                 },
                 {
                   "firstName": "Francis",
                   "lastName": "Lalane",
                   "role": "author",
-                  "citeKey": "author-francislalane"
+                  "id": "author-francislalane"
                 }
               ],
               "inheritedHorizontallyFrom": {
@@ -2714,7 +2714,7 @@
               "value": "inherits",
               "inheritedVerticallyFrom": "partie_2"
             },
-            "citeKey": {
+            "id": {
               "value": "partie_2_2"
             },
             "title": {
@@ -2740,13 +2740,13 @@
                   "firstName": "Viviane",
                   "lastName": "Westwood",
                   "role": "author",
-                  "citeKey": "author-vivianewestwood"
+                  "id": "author-vivianewestwood"
                 },
                 {
                   "firstName": "Francis",
                   "lastName": "Lalane",
                   "role": "author",
-                  "citeKey": "author-francislalane"
+                  "id": "author-francislalane"
                 }
               ],
               "inheritedVerticallyFrom": "partie_2",
@@ -2759,7 +2759,7 @@
                   "lastName": "Thély",
                   "role": "directeur de thèse",
                   "information": "Professeur, Université Rennes 2",
-                  "citeKey": "directeur-de thèse-nicolasthély"
+                  "id": "directeur-de thèse-nicolasthély"
                 }
               ],
               "inheritedVerticallyFrom": "partie_2"
@@ -2920,13 +2920,13 @@
                   "firstName": "Viviane",
                   "lastName": "Westwood",
                   "role": "author",
-                  "citeKey": "author-vivianewestwood"
+                  "id": "author-vivianewestwood"
                 },
                 {
                   "firstName": "Francis",
                   "lastName": "Lalane",
                   "role": "author",
-                  "citeKey": "author-francislalane"
+                  "id": "author-francislalane"
                 }
               ],
               "inheritedHorizontallyFrom": {
@@ -2998,13 +2998,13 @@
         "firstname": "Anthony",
         "lastname": "Grafton",
         "bibType": "person",
-        "citeKey": "anthony_grafton",
+        "id": "anthony_grafton",
         "description": "Henry Putnam University Professor of History"
       },
       "materiality": {
         "name": "Materiality",
         "bibType": "concept",
-        "citeKey": "materiality",
+        "id": "materiality",
         "description": "When we read literature and look at images on pages or screens, we are usually trying to extract information from words, symbols and figures. We don’t often think about the physical processes involved in this or even the material objects with which we are interacting: we seem to see through the paper pages and the illuminated computer screens, barely registering differences between media as we work out the messages being transmitted through them. Yet the material properties of different media have all sorts of subtle effects on our reading and viewing experiences. For example, the way that the cover of a book feels or looks can determine whether we pick it up and enjoy reading it, and the brightness and speed of electronic images can determine whether we stay on one site or click our way to another."
       },
       "martin_change_2002": {
@@ -3018,20 +3018,20 @@
             "firstName": "Julia",
             "lastName": "Martin",
             "role": "author",
-            "citeKey": "author-juliamartin"
+            "id": "author-juliamartin"
           },
           {
             "firstName": "Nicolas",
             "lastName": "Coleman",
             "role": "author",
-            "citeKey": "author-nicolascoleman"
+            "id": "author-nicolascoleman"
           }
         ],
         "year": 2002,
         "month": "april",
         "issn": "1080-2711",
         "bibType": "article",
-        "citeKey": "martin_change_2002",
+        "id": "martin_change_2002",
         "doi": "10.3998/3336451.0007.301",
         "url": "http://hdl.handle.net/2027/spo.3336451.0007.301"
       },
@@ -3046,27 +3046,27 @@
             "firstName": "Julia",
             "lastName": "Martin",
             "role": "author",
-            "citeKey": "author-juliamartin"
+            "id": "author-juliamartin"
           },
           {
             "firstName": "Nicolas",
             "lastName": "Coleman",
             "role": "author",
-            "citeKey": "author-nicolascoleman"
+            "id": "author-nicolascoleman"
           }
         ],
         "year": 2002,
         "month": "april",
         "issn": "1080-2711",
         "bibType": "article",
-        "citeKey": "martin_change_2002b",
+        "id": "martin_change_2002b",
         "doi": "10.3998/3336451.0007.301",
         "url": "http://hdl.handle.net/2027/spo.3336451.0007.301"
       },
       "temporal_data": {
         "url": "@assets/timeline_data.csv",
         "bibType": "tabularData",
-        "citeKey": "temporal_data",
+        "id": "temporal_data",
         "title": "cool data"
       },
       "jakubowicz_bridging": {
@@ -3076,11 +3076,11 @@
             "firstName": "Andrew",
             "lastName": "Jakubowicz",
             "role": "author",
-            "citeKey": "author-andrewjakubowicz"
+            "id": "author-andrewjakubowicz"
           }
         ],
         "bibType": "misc",
-        "citeKey": "jakubowicz_bridging",
+        "id": "jakubowicz_bridging",
         "url": "http://www.webology.org/2007/v4n1/a38.html",
         "keywords": [
           "Australia",
@@ -3099,7 +3099,7 @@
         "imageurl": "@assets/imagetest1.jpg",
         "url": "http://payload.cargocollective.com/1/0/9226/235006/PULSE_6.jpg",
         "bibType": "image",
-        "citeKey": "image_test_1",
+        "id": "image_test_1",
         "title": "installation: pulse",
         "schematype": "CreativeWork"
       },
@@ -3107,7 +3107,7 @@
         "imageurl": "@assets/imagetest2.jpg",
         "url": "http://payload.cargocollective.com/1/0/9226/235006/PULSE_5.jpg",
         "bibType": "image",
-        "citeKey": "image_test_2",
+        "id": "image_test_2",
         "title": "installation: pulse",
         "schematype": "CreativeWork"
       },
@@ -3115,7 +3115,7 @@
         "posterurl": "@assets/screenshot.png",
         "url": "https://medium.com/@sxywu/on-d3-react-and-a-little-bit-of-flux-88a226f328f3#.4z6m379fa",
         "bibType": "online",
-        "citeKey": "website_test",
+        "id": "website_test",
         "title": "D3 and react tutorial"
       },
       "ab94": {
@@ -3128,23 +3128,23 @@
             "firstName": "D. Aliprantis",
             "lastName": "Charalambos",
             "role": "author",
-            "citeKey": "author-d.-aliprantischaralambos"
+            "id": "author-d.-aliprantischaralambos"
           },
           {
             "firstName": "Kim C.",
             "lastName": "Border",
             "role": "author",
-            "citeKey": "author-kim-c.border"
+            "id": "author-kim-c.border"
           }
         ],
         "year": 1994,
         "bibType": "book",
-        "citeKey": "ab94"
+        "id": "ab94"
       },
       "my_interview": {
         "url": "https://www.youtube.com/watch?v=dX3k_QDnzHE&list=RDEMKE7uLtY3Y63qMHubgnxcew&index=14",
         "bibType": "video",
-        "citeKey": "my_interview"
+        "id": "my_interview"
       },
       "m85": {
         "booktitle": "Social Goals and Social Organization",
@@ -3157,7 +3157,7 @@
             "firstName": "Eric S.",
             "lastName": "Maskin",
             "role": "author",
-            "citeKey": "author-eric-s.maskin"
+            "id": "author-eric-s.maskin"
           }
         ],
         "editor": [
@@ -3165,28 +3165,28 @@
             "firstName": "Leonid",
             "lastName": "Hurwicz",
             "role": "author",
-            "citeKey": "author-leonidhurwicz"
+            "id": "author-leonidhurwicz"
           },
           {
             "firstName": "David",
             "lastName": "Schmeidler",
             "role": "author",
-            "citeKey": "author-davidschmeidler"
+            "id": "author-davidschmeidler"
           },
           {
             "firstName": "Hugo",
             "lastName": "Sonnenschein",
             "role": "author",
-            "citeKey": "author-hugosonnenschein"
+            "id": "author-hugosonnenschein"
           }
         ],
         "year": 1985,
         "bibType": "incollection",
-        "citeKey": "m85"
+        "id": "m85"
       },
       "image_book": {
         "bibType": "image",
-        "citeKey": "image_book",
+        "id": "image_book",
         "title": "The first book image",
         "description": "image of the first book"
       }
@@ -3194,7 +3194,7 @@
     "contextualizers": {
       "cool_timeline": {
         "bibType": "contextualizer",
-        "citeKey": "cool_timeline",
+        "id": "cool_timeline",
         "type": "timeline",
         "title": "My cool timeline",
         "layer": [
@@ -3212,7 +3212,7 @@
       "contextualization-2c2156ff-3d51-4e7a-9146-d26e418eaedc": {
         "data": "@res.data",
         "title": "@res.title",
-        "citeKey": "contextualization-2c2156ff-3d51-4e7a-9146-d26e418eaedc",
+        "id": "contextualization-2c2156ff-3d51-4e7a-9146-d26e418eaedc",
         "type": "table",
         "describedInline": true,
         "outputmode": "all"
@@ -3232,7 +3232,7 @@
           }
         ],
         "title": "My cool timeline",
-        "citeKey": "contextualization-cddaf4f3-8ac5-415f-a984-80fcaa98cbb5",
+        "id": "contextualization-cddaf4f3-8ac5-415f-a984-80fcaa98cbb5",
         "type": "timeline",
         "overloading": "@cool_timeline",
         "outputmode": "all"
@@ -3253,7 +3253,7 @@
           }
         ],
         "title": "My cool timeline",
-        "citeKey": "contextualization-c8609df9-e147-44ac-b9f4-8bb432429039",
+        "id": "contextualization-c8609df9-e147-44ac-b9f4-8bb432429039",
         "type": "timeline",
         "describedInline": true,
         "overloading": "@cool_timeline",
@@ -3261,35 +3261,35 @@
       },
       "contextualization-3a7eee10-538b-4ad1-81ef-0378b596452c": {
         "title": "@res.title",
-        "citeKey": "contextualization-3a7eee10-538b-4ad1-81ef-0378b596452c",
+        "id": "contextualization-3a7eee10-538b-4ad1-81ef-0378b596452c",
         "type": "imagegallery",
         "describedInline": true,
         "outputmode": "all"
       },
       "contextualization-1f7a4602-9486-4f47-9f46-d2b9129c0483": {
         "title": "@res.title",
-        "citeKey": "contextualization-1f7a4602-9486-4f47-9f46-d2b9129c0483",
+        "id": "contextualization-1f7a4602-9486-4f47-9f46-d2b9129c0483",
         "type": "imagegallery",
         "describedInline": true,
         "outputmode": "all"
       },
       "contextualization-b761757b-c5ab-4f3c-b099-69e5847decfb": {
         "title": "@res.title",
-        "citeKey": "contextualization-b761757b-c5ab-4f3c-b099-69e5847decfb",
+        "id": "contextualization-b761757b-c5ab-4f3c-b099-69e5847decfb",
         "type": "imagegallery",
         "describedInline": true,
         "outputmode": "all"
       },
       "contextualization-a9beb9ee-9e44-4598-8650-e9edc5aff122": {
         "title": "@res.title",
-        "citeKey": "contextualization-a9beb9ee-9e44-4598-8650-e9edc5aff122",
+        "id": "contextualization-a9beb9ee-9e44-4598-8650-e9edc5aff122",
         "type": "webpage",
         "describedInline": true,
         "outputmode": "all"
       },
       "contextualization-f79ae05d-5c31-4e63-820c-a6114b4f6555": {
         "title": "@res.title",
-        "citeKey": "contextualization-f79ae05d-5c31-4e63-820c-a6114b4f6555",
+        "id": "contextualization-f79ae05d-5c31-4e63-820c-a6114b4f6555",
         "type": "webpage",
         "describedInline": true,
         "outputmode": "all"
@@ -3303,7 +3303,7 @@
           "labels": "@res.data.labels"
         },
         "title": "My title",
-        "citeKey": "contextualization-4e372527-50d1-497a-a364-7a7f173646de",
+        "id": "contextualization-4e372527-50d1-497a-a364-7a7f173646de",
         "type": "timeline",
         "describedInline": true,
         "outputmode": "all"
@@ -3313,14 +3313,14 @@
         "date": "@res.date",
         "author": "@res.author",
         "title": "@res.title",
-        "citeKey": "contextualization-f3882b9c-0e0c-4111-8d0c-034070b35bd3",
+        "id": "contextualization-f3882b9c-0e0c-4111-8d0c-034070b35bd3",
         "type": "citation",
         "describedInline": true,
         "outputmode": "all"
       },
       "contextualization-bf703901-cc2f-446f-b0d7-8818da7d7cd5": {
         "title": "@res.title",
-        "citeKey": "contextualization-bf703901-cc2f-446f-b0d7-8818da7d7cd5",
+        "id": "contextualization-bf703901-cc2f-446f-b0d7-8818da7d7cd5",
         "type": "imagegallery",
         "describedInline": true,
         "outputmode": "all"
@@ -3331,7 +3331,7 @@
         "date": "@res.date",
         "author": "@res.author",
         "title": "@res.title",
-        "citeKey": "contextualization-c1b34d79-3acd-4120-b08b-ac958e31d12e",
+        "id": "contextualization-c1b34d79-3acd-4120-b08b-ac958e31d12e",
         "type": "citation",
         "describedInline": true,
         "outputmode": "all"
@@ -3342,7 +3342,7 @@
         "date": "@res.date",
         "author": "@res.author",
         "title": "@res.title",
-        "citeKey": "contextualization-88f34bba-0d45-4903-9b60-050e3031823d",
+        "id": "contextualization-88f34bba-0d45-4903-9b60-050e3031823d",
         "type": "citation",
         "describedInline": true,
         "outputmode": "all"
@@ -3353,7 +3353,7 @@
         "date": "@res.date",
         "author": "@res.author",
         "title": "@res.title",
-        "citeKey": "contextualization-96dfaa02-93a9-4f47-af85-b2c371fe44ce",
+        "id": "contextualization-96dfaa02-93a9-4f47-af85-b2c371fe44ce",
         "type": "citation",
         "describedInline": true,
         "outputmode": "all"
@@ -3364,7 +3364,7 @@
         "date": "@res.date",
         "author": "@res.author",
         "title": "@res.title",
-        "citeKey": "contextualization-833300aa-6d68-42ef-9da7-bcee8086248f",
+        "id": "contextualization-833300aa-6d68-42ef-9da7-bcee8086248f",
         "type": "citation",
         "describedInline": true,
         "outputmode": "all"
@@ -3374,7 +3374,7 @@
         "date": "@res.date",
         "author": "@res.author",
         "title": "@res.title",
-        "citeKey": "contextualization-f7cdac2f-a299-4f16-8594-4b36623cc2d3",
+        "id": "contextualization-f7cdac2f-a299-4f16-8594-4b36623cc2d3",
         "type": "citation",
         "describedInline": true,
         "outputmode": "all"
@@ -3393,7 +3393,7 @@
           }
         ],
         "title": "@res.title",
-        "citeKey": "contextualization-05950e43-0dd5-4888-af2e-0cac084744cc",
+        "id": "contextualization-05950e43-0dd5-4888-af2e-0cac084744cc",
         "type": "timeline",
         "describedInline": true,
         "outputmode": "all"
@@ -3402,7 +3402,7 @@
         "title": "@res.name",
         "alias": "",
         "showdescription": "yes",
-        "citeKey": "contextualization-b095f163-404f-4493-b061-25540a801512",
+        "id": "contextualization-b095f163-404f-4493-b061-25540a801512",
         "type": "glossary",
         "describedInline": true,
         "outputmode": "all"
@@ -3411,7 +3411,7 @@
         "title": "@res.name",
         "alias": "materiality of things",
         "showdescription": "yes",
-        "citeKey": "contextualization-9ea26aeb-6ea9-474a-8d18-2c85a020eaa5",
+        "id": "contextualization-9ea26aeb-6ea9-474a-8d18-2c85a020eaa5",
         "type": "glossary",
         "describedInline": true,
         "outputmode": "all"
@@ -3419,7 +3419,7 @@
       "contextualization-5129b256-914d-4430-802c-98dd5f777aee": {
         "title": "@res.name",
         "showdescription": "yes",
-        "citeKey": "contextualization-5129b256-914d-4430-802c-98dd5f777aee",
+        "id": "contextualization-5129b256-914d-4430-802c-98dd5f777aee",
         "type": "glossary",
         "describedInline": true,
         "outputmode": "all"
@@ -3428,7 +3428,7 @@
         "title": "@res.name",
         "alias": "Materiality of computers",
         "showdescription": "yes",
-        "citeKey": "contextualization-8fb61115-642f-4850-a8ce-a7cf48ea063e",
+        "id": "contextualization-8fb61115-642f-4850-a8ce-a7cf48ea063e",
         "type": "glossary",
         "describedInline": true,
         "outputmode": "all"
@@ -3436,7 +3436,7 @@
       "contextualization-2c82df8e-77e8-4bd3-aec0-36664fdfa1bc": {
         "title": "@res.name",
         "showdescription": "yes",
-        "citeKey": "contextualization-2c82df8e-77e8-4bd3-aec0-36664fdfa1bc",
+        "id": "contextualization-2c82df8e-77e8-4bd3-aec0-36664fdfa1bc",
         "type": "glossary",
         "describedInline": true,
         "outputmode": "all"
@@ -3444,7 +3444,7 @@
       "contextualization-7ec5ce44-ee27-45d6-8a96-bce41dffa8e8": {
         "title": "@res.name",
         "showdescription": "yes",
-        "citeKey": "contextualization-7ec5ce44-ee27-45d6-8a96-bce41dffa8e8",
+        "id": "contextualization-7ec5ce44-ee27-45d6-8a96-bce41dffa8e8",
         "type": "glossary",
         "describedInline": true,
         "outputmode": "all"
@@ -3452,7 +3452,7 @@
       "contextualization-4e9e1df5-974c-47e5-8eb5-bf91c214321c": {
         "title": "@res.name",
         "showdescription": "yes",
-        "citeKey": "contextualization-4e9e1df5-974c-47e5-8eb5-bf91c214321c",
+        "id": "contextualization-4e9e1df5-974c-47e5-8eb5-bf91c214321c",
         "type": "glossary",
         "describedInline": true,
         "outputmode": "all"
@@ -3460,7 +3460,7 @@
     },
     "contextualizations": {
       "contextualization-29ee34b1-0e62-4f22-8475-e1a6ca0368b9": {
-        "citeKey": "contextualization-29ee34b1-0e62-4f22-8475-e1a6ca0368b9",
+        "id": "contextualization-29ee34b1-0e62-4f22-8475-e1a6ca0368b9",
         "contextualizer": "contextualization-2c2156ff-3d51-4e7a-9146-d26e418eaedc",
         "resources": [
           "temporal_data"
@@ -3475,7 +3475,7 @@
         ]
       },
       "contextualization-74af41e4-d1c7-4726-bffb-2910ffdcae62": {
-        "citeKey": "contextualization-74af41e4-d1c7-4726-bffb-2910ffdcae62",
+        "id": "contextualization-74af41e4-d1c7-4726-bffb-2910ffdcae62",
         "contextualizer": "contextualization-cddaf4f3-8ac5-415f-a984-80fcaa98cbb5",
         "resources": [
           "temporal_data"
@@ -3490,7 +3490,7 @@
         ]
       },
       "contextualization-5eba01cd-fe94-4c6f-bc3d-11b07298bfef": {
-        "citeKey": "contextualization-5eba01cd-fe94-4c6f-bc3d-11b07298bfef",
+        "id": "contextualization-5eba01cd-fe94-4c6f-bc3d-11b07298bfef",
         "contextualizer": "contextualization-c8609df9-e147-44ac-b9f4-8bb432429039",
         "resources": [
           "temporal_data"
@@ -3505,7 +3505,7 @@
         ]
       },
       "contextualization-a49aec00-d3bb-474f-950a-5e55ed8c3f67": {
-        "citeKey": "contextualization-a49aec00-d3bb-474f-950a-5e55ed8c3f67",
+        "id": "contextualization-a49aec00-d3bb-474f-950a-5e55ed8c3f67",
         "contextualizer": "contextualization-3a7eee10-538b-4ad1-81ef-0378b596452c",
         "resources": [
           "image_test_1"
@@ -3520,7 +3520,7 @@
         ]
       },
       "contextualization-14d0a839-ce15-4f18-b7a8-6aa1360d55fd": {
-        "citeKey": "contextualization-14d0a839-ce15-4f18-b7a8-6aa1360d55fd",
+        "id": "contextualization-14d0a839-ce15-4f18-b7a8-6aa1360d55fd",
         "contextualizer": "contextualization-1f7a4602-9486-4f47-9f46-d2b9129c0483",
         "resources": [
           "image_test_1"
@@ -3535,7 +3535,7 @@
         ]
       },
       "contextualization-85df709f-c862-4a34-acfd-a7076f019d69": {
-        "citeKey": "contextualization-85df709f-c862-4a34-acfd-a7076f019d69",
+        "id": "contextualization-85df709f-c862-4a34-acfd-a7076f019d69",
         "contextualizer": "contextualization-b761757b-c5ab-4f3c-b099-69e5847decfb",
         "resources": [
           "image_test_1",
@@ -3551,7 +3551,7 @@
         ]
       },
       "contextualization-b70933ee-8003-46b7-a44b-1307718ca373": {
-        "citeKey": "contextualization-b70933ee-8003-46b7-a44b-1307718ca373",
+        "id": "contextualization-b70933ee-8003-46b7-a44b-1307718ca373",
         "contextualizer": "contextualization-a9beb9ee-9e44-4598-8650-e9edc5aff122",
         "resources": [
           "website_test"
@@ -3566,7 +3566,7 @@
         ]
       },
       "contextualization-56da523d-bc26-41cd-a69c-bfc57c7851b4": {
-        "citeKey": "contextualization-56da523d-bc26-41cd-a69c-bfc57c7851b4",
+        "id": "contextualization-56da523d-bc26-41cd-a69c-bfc57c7851b4",
         "contextualizer": "contextualization-f79ae05d-5c31-4e63-820c-a6114b4f6555",
         "resources": [
           "website_test"
@@ -3581,7 +3581,7 @@
         ]
       },
       "contextualization-f8760306-f107-429f-a9cf-654449d44583": {
-        "citeKey": "contextualization-f8760306-f107-429f-a9cf-654449d44583",
+        "id": "contextualization-f8760306-f107-429f-a9cf-654449d44583",
         "contextualizer": "contextualization-4e372527-50d1-497a-a364-7a7f173646de",
         "resources": [
           "temporal_data"
@@ -3596,7 +3596,7 @@
         ]
       },
       "contextualization-82df6eba-cbee-4ec0-be71-9a41b8da0255": {
-        "citeKey": "contextualization-82df6eba-cbee-4ec0-be71-9a41b8da0255",
+        "id": "contextualization-82df6eba-cbee-4ec0-be71-9a41b8da0255",
         "contextualizer": "contextualization-f3882b9c-0e0c-4111-8d0c-034070b35bd3",
         "resources": [
           "ab94"
@@ -3611,7 +3611,7 @@
         ]
       },
       "contextualization-b2c468f4-5b97-4304-960c-f0fd21cfad1e": {
-        "citeKey": "contextualization-b2c468f4-5b97-4304-960c-f0fd21cfad1e",
+        "id": "contextualization-b2c468f4-5b97-4304-960c-f0fd21cfad1e",
         "contextualizer": "contextualization-bf703901-cc2f-446f-b0d7-8818da7d7cd5",
         "resources": [
           "image_test_1",
@@ -3627,7 +3627,7 @@
         ]
       },
       "contextualization-08935c34-a2ec-4c0a-bbe8-2f26e7f9146a": {
-        "citeKey": "contextualization-08935c34-a2ec-4c0a-bbe8-2f26e7f9146a",
+        "id": "contextualization-08935c34-a2ec-4c0a-bbe8-2f26e7f9146a",
         "contextualizer": "contextualization-c1b34d79-3acd-4120-b08b-ac958e31d12e",
         "resources": [
           "ab94"
@@ -3642,7 +3642,7 @@
         ]
       },
       "contextualization-49cbf66e-f8ae-40cd-97ca-25cb912e7cd3": {
-        "citeKey": "contextualization-49cbf66e-f8ae-40cd-97ca-25cb912e7cd3",
+        "id": "contextualization-49cbf66e-f8ae-40cd-97ca-25cb912e7cd3",
         "contextualizer": "contextualization-88f34bba-0d45-4903-9b60-050e3031823d",
         "resources": [
           "martin_change_2002"
@@ -3657,7 +3657,7 @@
         ]
       },
       "contextualization-a7d387ab-f556-49c1-9ed9-03f4389043f7": {
-        "citeKey": "contextualization-a7d387ab-f556-49c1-9ed9-03f4389043f7",
+        "id": "contextualization-a7d387ab-f556-49c1-9ed9-03f4389043f7",
         "contextualizer": "contextualization-96dfaa02-93a9-4f47-af85-b2c371fe44ce",
         "resources": [
           "martin_change_2002b"
@@ -3672,7 +3672,7 @@
         ]
       },
       "contextualization-4ebca471-d5fb-4f93-8031-6a90f0173dfe": {
-        "citeKey": "contextualization-4ebca471-d5fb-4f93-8031-6a90f0173dfe",
+        "id": "contextualization-4ebca471-d5fb-4f93-8031-6a90f0173dfe",
         "contextualizer": "contextualization-833300aa-6d68-42ef-9da7-bcee8086248f",
         "resources": [
           "martin_change_2002"
@@ -3687,7 +3687,7 @@
         ]
       },
       "contextualization-7e73ed58-427b-4b64-ad4c-662a1d1c41d1": {
-        "citeKey": "contextualization-7e73ed58-427b-4b64-ad4c-662a1d1c41d1",
+        "id": "contextualization-7e73ed58-427b-4b64-ad4c-662a1d1c41d1",
         "contextualizer": "contextualization-f7cdac2f-a299-4f16-8594-4b36623cc2d3",
         "resources": [
           "martin_change_2002"
@@ -3702,7 +3702,7 @@
         ]
       },
       "contextualization-82b9dd3a-14a0-46bb-9bf3-883fcac95ea0": {
-        "citeKey": "contextualization-82b9dd3a-14a0-46bb-9bf3-883fcac95ea0",
+        "id": "contextualization-82b9dd3a-14a0-46bb-9bf3-883fcac95ea0",
         "contextualizer": "contextualization-05950e43-0dd5-4888-af2e-0cac084744cc",
         "resources": [
           "temporal_data"
@@ -3717,7 +3717,7 @@
         ]
       },
       "contextualization-fc20cdf0-8b1a-42c5-8a97-d1c46765db0a": {
-        "citeKey": "contextualization-fc20cdf0-8b1a-42c5-8a97-d1c46765db0a",
+        "id": "contextualization-fc20cdf0-8b1a-42c5-8a97-d1c46765db0a",
         "contextualizer": "contextualization-b095f163-404f-4493-b061-25540a801512",
         "resources": [
           "materiality"
@@ -3732,7 +3732,7 @@
         ]
       },
       "contextualization-a4c8d26a-ca3b-495c-bd61-80ac31a35d4a": {
-        "citeKey": "contextualization-a4c8d26a-ca3b-495c-bd61-80ac31a35d4a",
+        "id": "contextualization-a4c8d26a-ca3b-495c-bd61-80ac31a35d4a",
         "contextualizer": "contextualization-9ea26aeb-6ea9-474a-8d18-2c85a020eaa5",
         "resources": [
           "materiality"
@@ -3747,7 +3747,7 @@
         ]
       },
       "contextualization-024a2732-8baf-4a57-89c1-4a277f816c3a": {
-        "citeKey": "contextualization-024a2732-8baf-4a57-89c1-4a277f816c3a",
+        "id": "contextualization-024a2732-8baf-4a57-89c1-4a277f816c3a",
         "contextualizer": "contextualization-5129b256-914d-4430-802c-98dd5f777aee",
         "resources": [
           "materiality"
@@ -3762,7 +3762,7 @@
         ]
       },
       "contextualization-f4cb6509-fd50-4caa-be6c-33bf9471b727": {
-        "citeKey": "contextualization-f4cb6509-fd50-4caa-be6c-33bf9471b727",
+        "id": "contextualization-f4cb6509-fd50-4caa-be6c-33bf9471b727",
         "contextualizer": "contextualization-8fb61115-642f-4850-a8ce-a7cf48ea063e",
         "resources": [
           "materiality"
@@ -3777,7 +3777,7 @@
         ]
       },
       "contextualization-a598bbd6-b885-459f-9147-d5f8cab4558b": {
-        "citeKey": "contextualization-a598bbd6-b885-459f-9147-d5f8cab4558b",
+        "id": "contextualization-a598bbd6-b885-459f-9147-d5f8cab4558b",
         "contextualizer": "contextualization-2c82df8e-77e8-4bd3-aec0-36664fdfa1bc",
         "resources": [
           "anthony_grafton"
@@ -3792,7 +3792,7 @@
         ]
       },
       "contextualization-42f202bc-3b3d-4611-b366-85e7e93dfe33": {
-        "citeKey": "contextualization-42f202bc-3b3d-4611-b366-85e7e93dfe33",
+        "id": "contextualization-42f202bc-3b3d-4611-b366-85e7e93dfe33",
         "contextualizer": "contextualization-7ec5ce44-ee27-45d6-8a96-bce41dffa8e8",
         "resources": [
           "anthony_grafton"
@@ -3807,7 +3807,7 @@
         ]
       },
       "contextualization-455f14e6-b35a-45d9-92e3-0e4cf57e4ff6": {
-        "citeKey": "contextualization-455f14e6-b35a-45d9-92e3-0e4cf57e4ff6",
+        "id": "contextualization-455f14e6-b35a-45d9-92e3-0e4cf57e4ff6",
         "contextualizer": "contextualization-4e9e1df5-974c-47e5-8eb5-bf91c214321c",
         "resources": [
           "materiality"
@@ -3827,7 +3827,7 @@
         "bibType": {
           "value": "phdthesis"
         },
-        "citeKey": {
+        "id": {
           "value": "mybook"
         },
         "title": {
@@ -3840,7 +3840,7 @@
               "firstName": "Robin",
               "lastName": "De Mourat",
               "role": "author",
-              "citeKey": "author-robinde-mourat"
+              "id": "author-robinde-mourat"
             }
           ],
           "htmlHead": "<meta name=\"author\" content=\"Robin De Mourat\">"
@@ -3852,7 +3852,7 @@
               "lastName": "Thély",
               "role": "directeur de thèse",
               "information": "Professeur, Université Rennes 2",
-              "citeKey": "directeur-de thèse-nicolasthély"
+              "id": "directeur-de thèse-nicolasthély"
             }
           ]
         },
@@ -4008,7 +4008,7 @@
               "firstName": "Robin",
               "lastName": "De Mourat",
               "role": "author",
-              "citeKey": "author-robinde-mourat"
+              "id": "author-robinde-mourat"
             }
           ],
           "inheritedHorizontallyFrom": {
@@ -4141,7 +4141,7 @@
           "bibType": {
             "value": "phdthesis"
           },
-          "citeKey": {
+          "id": {
             "value": "mybook"
           },
           "title": {
@@ -4154,7 +4154,7 @@
                 "firstName": "Robin",
                 "lastName": "De Mourat",
                 "role": "author",
-                "citeKey": "author-robinde-mourat"
+                "id": "author-robinde-mourat"
               }
             ],
             "htmlHead": "<meta name=\"author\" content=\"Robin De Mourat\">"
@@ -4166,7 +4166,7 @@
                 "lastName": "Thély",
                 "role": "directeur de thèse",
                 "information": "Professeur, Université Rennes 2",
-                "citeKey": "directeur-de thèse-nicolasthély"
+                "id": "directeur-de thèse-nicolasthély"
               }
             ]
           },
@@ -4322,7 +4322,7 @@
                 "firstName": "Robin",
                 "lastName": "De Mourat",
                 "role": "author",
-                "citeKey": "author-robinde-mourat"
+                "id": "author-robinde-mourat"
               }
             ],
             "inheritedHorizontallyFrom": {

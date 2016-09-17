@@ -1,17 +1,20 @@
-/**
- * This module handles metadata propagation within and between sections
- * @module converter/documentConverter/propagateData
- */
-import {metaStringToCouple} from './../../utils/sectionUtils';
+'use strict';
 
-const inheritMetadataFromParent = (section, sectionTypeModels, sections, parentMetadata) => {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.propagateData = undefined;
+
+var _sectionUtils = require('./../../utils/sectionUtils');
+
+var inheritMetadataFromParent = function inheritMetadataFromParent(section, sectionTypeModels, sections, parentMetadata) {
   if (parentMetadata === undefined) {
     return section;
   }
   // set final bibType
   if (section.metadata.general.bibType.value === 'section') {
-    const parentBibType = parentMetadata.general.bibType.value;
-    const parentModel = sectionTypeModels.acceptedTypes[parentBibType];
+    var parentBibType = parentMetadata.general.bibType.value;
+    var parentModel = sectionTypeModels.acceptedTypes[parentBibType];
     if (parentModel) {
       section.metadata.general.bibType = {
         value: parentModel.childrenType,
@@ -20,19 +23,19 @@ const inheritMetadataFromParent = (section, sectionTypeModels, sections, parentM
     }
   }
   // set hierarchical level (parent + 1 or parent + own level)
-  const parentLevel = parentMetadata.general.generalityLevel;
-  const ownLevel = section.metadata.general.generalityLevel;
+  var parentLevel = parentMetadata.general.generalityLevel;
+  var ownLevel = section.metadata.general.generalityLevel;
   if (parentLevel && ownLevel) {
     section.metadata.general.generalityLevel.value = +parentLevel.value + ownLevel.value;
   } else if (parentLevel) {
-    section.metadata.general.generalityLevel = {value: +parentLevel.value + 1};
+    section.metadata.general.generalityLevel = { value: +parentLevel.value + 1 };
   } else {
-    section.metadata.general.generalityLevel = {value: parentLevel.value};
+    section.metadata.general.generalityLevel = { value: parentLevel.value };
   }
   // inherit the rest
-  for (const domain in parentMetadata) {
+  for (var domain in parentMetadata) {
     if (parentMetadata[domain]) {
-      for (const key in parentMetadata[domain]) {
+      for (var key in parentMetadata[domain]) {
         if (parentMetadata[domain][key]) {
           // inherit if property does not exist in child
           if (section.metadata[domain] === undefined || section.metadata[domain][key] === undefined) {
@@ -51,12 +54,15 @@ const inheritMetadataFromParent = (section, sectionTypeModels, sections, parentM
   // mark metadata as done
   section.metadataInherited = true;
   return section;
-};
+}; /**
+    * This module handles metadata propagation within and between sections
+    * @module converter/documentConverter/propagateData
+    */
 
 
-const doInheritMetadataFromParent = (inputSection, sectionTypeModels, sections) => {
-  let section = Object.assign({}, inputSection);
-  let parent = section.metadata.general.parent;
+var doInheritMetadataFromParent = function doInheritMetadataFromParent(inputSection, sectionTypeModels, sections) {
+  var section = Object.assign({}, inputSection);
+  var parent = section.metadata.general.parent;
   if (parent && !section.metadataInherited) {
     section.metadataInherited = true;
     parent = sections[parent.value];
@@ -71,20 +77,19 @@ const doInheritMetadataFromParent = (inputSection, sectionTypeModels, sections) 
   return section;
 };
 
-
-const inheritCustomizersFromParent = (section, sections, parentCustomizers, parentKey) => {
+var inheritCustomizersFromParent = function inheritCustomizersFromParent(section, sections, parentCustomizers, parentKey) {
   if (parentCustomizers === undefined) {
     return section;
-  }else if (section.customizers === undefined) {
+  } else if (section.customizers === undefined) {
     section.customizers = Object.assign({}, parentCustomizers);
-  }else {
-    for (const index in section.customizers) {
+  } else {
+    for (var index in section.customizers) {
       if (parentCustomizers[index] !== undefined) {
         // if customizer is a string (e.g. : css data) append child data after parent data
         if (typeof section.customizers[index] === 'string') {
           section.customizers[index] = parentCustomizers[index] + '\n\n\n' + section.customizers[index];
-        }else {
-          for (const jindex in parentCustomizers[index]) {
+        } else {
+          for (var jindex in parentCustomizers[index]) {
             // add customizer from parent (e.g. : template) if not defined in child
             if (section.customizers[index][jindex] === undefined) {
               section.customizers[index][jindex] = parentCustomizers[index][jindex];
@@ -97,9 +102,9 @@ const inheritCustomizersFromParent = (section, sections, parentCustomizers, pare
   return section;
 };
 
-const doInheritCustomizersFromParent = (inputSection, sections) => {
-  let section = Object.assign({}, inputSection);
-  let parent = section.metadata.general.parent;
+var doInheritCustomizersFromParent = function doInheritCustomizersFromParent(inputSection, sections) {
+  var section = Object.assign({}, inputSection);
+  var parent = section.metadata.general.parent;
   if (parent && !section.customizersInherited) {
     parent = sections[parent.value];
     // first, make your parent inherit from its parent
@@ -113,30 +118,38 @@ const doInheritCustomizersFromParent = (inputSection, sections) => {
   return section;
 };
 
-const populateLaterally = (section, models) => {
-  // const toInclude = [];
-  for (const domain in section.metadata) {
+var populateLaterally = function populateLaterally(section, models) {
+  var _loop = function _loop(domain) {
     if (section.metadata[domain]) {
-      for (const key in section.metadata[domain]) {
+      var _loop2 = function _loop2(key) {
         if (section.metadata[domain][key]) {
-          const model = models[domain][key];
+          var model = models[domain][key];
           if (model) {
-            const spreaded = model.propagatesTo.map(metaStringToCouple);
-            spreaded.forEach(sp => {
+            var spreaded = model.propagatesTo.map(_sectionUtils.metaStringToCouple);
+            spreaded.forEach(function (sp) {
               if (section.metadata[sp.domain] === undefined) {
                 section.metadata[sp.domain] = {};
               }
               if (section.metadata[sp.domain][sp.key] === undefined) {
                 section.metadata[sp.domain][sp.key] = {
                   value: section.metadata[domain][key].value,
-                  inheritedHorizontallyFrom: {domain, key}
+                  inheritedHorizontallyFrom: { domain: domain, key: key }
                 };
               }
             });
           }
         }
+      };
+
+      for (var key in section.metadata[domain]) {
+        _loop2(key);
       }
     }
+  };
+
+  // const toInclude = [];
+  for (var domain in section.metadata) {
+    _loop(domain);
   }
 
   return section;
@@ -151,34 +164,34 @@ const populateLaterally = (section, models) => {
  * @param {Object} params.parent - if specified, sections that don't have a parent will all be considered as children of this one (but it won't be parsed itself)
  * @return {errors: array, document: Object} - the new transformation errors and updated document representation
  */
-export const propagateData = ({
-  errors,
-  document: inputDocument,
-  models
-}) => {
+var propagateData = exports.propagateData = function propagateData(_ref) {
+  var errors = _ref.errors;
+  var inputDocument = _ref.document;
+  var models = _ref.models;
 
-  const document = Object.assign({}, inputDocument);
+
+  var document = Object.assign({}, inputDocument);
   document.resources = {};
   document.contextualizers = {};
 
-  for (const key in document.sections) {
+  for (var key in document.sections) {
     if (document.sections[key]) {
-      const section = document.sections[key];
+      var section = document.sections[key];
       // catch root and desactivate inheritance for this one
       if (section.metadata.general.parent === undefined) {
-        section.metadata.general.generalityLevel = {value: 1};
+        section.metadata.general.generalityLevel = { value: 1 };
         section.resourcesInherited = true;
         section.metadataInherited = true;
         section.customizersInherited = true;
         section.contextualizersInherited = true;
       }
       // clean bibType
-      let newBibType = section.metadata.general.bibType.value;
+      var newBibType = section.metadata.general.bibType.value;
       newBibType = newBibType ? newBibType.split('peritext') : [];
       newBibType = newBibType.length > 1 ? newBibType[1] : newBibType[0];
       section.metadata.general.bibType.value = newBibType;
       // add resources to general resources list
-      section.resources.forEach(resource => {
+      section.resources.forEach(function (resource) {
         if (document.resources[resource.id]) {
           errors.push({
             type: 'error',
@@ -190,7 +203,7 @@ export const propagateData = ({
         document.resources[resource.id] = resource;
       });
       // add contextualizers to general resources list
-      section.contextualizers.forEach(contextualizer => {
+      section.contextualizers.forEach(function (contextualizer) {
         if (document.contextualizers[contextualizer.id]) {
           errors.push({
             type: 'error',
@@ -206,7 +219,7 @@ export const propagateData = ({
   }
   // vertical inheritance process
   // -> fill with parent metadata, append parent customizers
-  for (const keyVert in document.sections) {
+  for (var keyVert in document.sections) {
     if (document.sections[keyVert]) {
       document.sections[keyVert] = doInheritMetadataFromParent(document.sections[keyVert], models.sectionTypeModels, document.sections);
       document.sections[keyVert] = doInheritCustomizersFromParent(document.sections[keyVert], document.sections);
@@ -214,19 +227,19 @@ export const propagateData = ({
   }
   // lateral inheritance process
   // e.g. twitter ==> dublincore
-  for (const keyLat in document.sections) {
+  for (var keyLat in document.sections) {
     if (document.sections[keyLat]) {
       document.sections[keyLat] = populateLaterally(document.sections[keyLat], models.metadataModels);
     }
   }
 
   // cleaning control properties
-  for (const keyClean in document.sections) {
+  for (var keyClean in document.sections) {
     if (document.sections[keyClean]) {
-      const section = document.sections[keyClean];
-      delete section.metadataInherited;
-      delete section.customizersInherited;
+      var _section = document.sections[keyClean];
+      delete _section.metadataInherited;
+      delete _section.customizersInherited;
     }
   }
-  return {errors, document};
+  return { errors: errors, document: document };
 };

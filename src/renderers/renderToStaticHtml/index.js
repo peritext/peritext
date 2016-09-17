@@ -123,8 +123,8 @@ export const renderDocument = ({
       // resolve contextualizations js representation according to settings
       renderedDocument.figuresCount = 0;
 
-      renderedDocument = Object.keys(renderedDocument.contextualizations).reduce((doc, contCiteKey)=>{
-        return resolveContextualizationImplementation(doc.contextualizations[contCiteKey], doc, 'static', finalSettings);
+      renderedDocument = Object.keys(renderedDocument.contextualizations).reduce((doc, contId)=>{
+        return resolveContextualizationImplementation(doc.contextualizations[contId], doc, 'static', finalSettings);
       }, renderedDocument);
 
       // transform input js abstraction of contents to a js abstraction specific to rendering settings

@@ -101,7 +101,7 @@ const invalidSyntaxes = [
 ]
 
 const serializationInput = {
-  citeKey : 'in_collection',
+  id : 'in_collection',
   bibType : 'incollection',
   author : ['Peter Farindon', 'Jimmy Hendrix'],
   keywords : ['test1', 'test2'],
@@ -159,7 +159,7 @@ describe('bibtext parser', function(){
 });
 
 describe('bibtext serializer', function(){
-  it('should throw an error if no bibType or citeKey specified in argument object', function(done){
+  it('should throw an error if no bibType or id specified in argument object', function(done){
     const bibObj = {};
 
     serializeBibTexObject(bibObj, function(err, result){
@@ -177,7 +177,7 @@ describe('bibtext serializer', function(){
 
   it('should throw an error if input object is complex (contains object properties)', function(done){
     const bibObject = {
-      citeKey : 'test',
+      id : 'test',
       array : ['1','2'],
       bibType : 'test',
       'nested' : {

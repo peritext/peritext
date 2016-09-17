@@ -57,17 +57,16 @@ var StaticForewords = function (_React$Component) {
      */
     value: function render() {
       var bibType = (0, _microDataUtils.bibToSchema)(this.props.section.metadata.general.bibType.value);
-      var citeKey = this.props.section.metadata.general.citeKey.value;
-      var generalityLevel = this.props.section.metadata.general.generalityLevel.value;
+      var id = this.props.section.metadata.general.id.value;
       return _react2.default.createElement(
         'section',
         {
           className: 'peritext-static-section-container peritext-static-forewords-container',
-          id: citeKey,
+          id: id,
           itemScope: true,
           itemType: 'http://schema.org/' + bibType,
           'typeof': bibType,
-          resource: '#' + citeKey,
+          resource: '#' + id,
           itemProp: 'hasPart',
           property: 'hasPart'
         },

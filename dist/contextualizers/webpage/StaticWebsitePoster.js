@@ -72,7 +72,7 @@ var StructuredWebsitePoster = function (_React$Component) {
           itemProp: 'citation',
           itemType: 'http://schema.org/' + this.props.schematype,
           'typeof': this.props.schematype,
-          resource: '#' + this.props.resource.citeKey,
+          resource: '#' + this.props.resource.id,
           id: 'peritext-figure-' + this.props.id
         },
         _react2.default.createElement(

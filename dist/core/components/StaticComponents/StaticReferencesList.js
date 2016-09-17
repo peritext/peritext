@@ -76,7 +76,7 @@ var StaticReferencesList = function (_React$Component) {
           'section',
           { className: 'peritext-static-references-list-items-container' },
           this.props.references.map(function (reference) {
-            return _react2.default.createElement(BlockCitation, { key: reference.citeKey, resource: reference, contextualization: {} });
+            return _react2.default.createElement(BlockCitation, { key: reference.id, resource: reference, contextualization: {} });
           })
         )
       );

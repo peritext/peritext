@@ -15,7 +15,7 @@ export const resolveSectionAgainstModels = (section, models) => {
   const errors = [];
 
   // validate metadata
-  const sectionCiteKey = section.metadata.general.citeKey.value;
+  const sectionId = section.metadata.general.id.value;
   for (const domain in section.metadata) {
     if (section.metadata[domain]) {
       for (const key in section.metadata[domain]) {
@@ -29,8 +29,8 @@ export const resolveSectionAgainstModels = (section, models) => {
               errors.push({
                 type: 'error',
                 preciseType: 'invalidMetadata',
-                sectionCiteKey,
-                message: key + ' value was set more than once for section ' + sectionCiteKey
+                sectionId,
+                message: key + ' value was set more than once for section ' + sectionId
               });
               metadata.value = metadata.value[0];
             }
@@ -55,8 +55,8 @@ export const resolveSectionAgainstModels = (section, models) => {
             errors.push({
               type: 'warning',
               preciseType: 'invalidMetadata',
-              sectionCiteKey,
-              message: domain + ' metadata property ' + key + ' is invalid in section ' + sectionCiteKey
+              sectionId,
+              message: domain + ' metadata property ' + key + ' is invalid in section ' + sectionId
             });
           }
         }

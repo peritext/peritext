@@ -18,7 +18,7 @@ import {serializeBibTexObject, parseBibNestedValues} from '../bibTexConverter';
 
 const sectionListToFsTree = (inputSectionList, basePath) =>{
   const sectionList = inputSectionList.map((section)=>{
-    const folderTitle = section.citeKey;
+    const folderTitle = section.id;
     const relPath = (section.root) ? '' : folderTitle;
     const children = [
       {
@@ -39,7 +39,7 @@ const sectionListToFsTree = (inputSectionList, basePath) =>{
     ];
     const folder = {
       type: 'directory',
-      name: section.citeKey,
+      name: section.id,
       extname: '',
       path: relPath + '/',
       root: section.root,
@@ -85,7 +85,7 @@ const concatSection = (section, models) =>{
     markdownContent: section.markdownContents,
     bibResources: metadataStr,
     customizers: section.customizers,
-    citeKey: section.metadata.general.citeKey.value
+    id: section.metadata.general.id.value
   };
 };
 
@@ -192,33 +192,33 @@ export const parseDocument = ({tree, parameters, parent, models}, callback)=> {
   richDocument.resources = newResources;
   errors = errors.concat(richErrors).concat(resErrors);
   // resolve sections against models
-  for (const citeKey in richDocument.sections) {
-    if (richDocument.sections[citeKey]) {
-      const section = richDocument.sections[citeKey];
+  for (const id in richDocument.sections) {
+    if (richDocument.sections[id]) {
+      const section = richDocument.sections[id];
       const { newErrors: sectionErrors, newSection } = resolveSectionAgainstModels(section, models);
       errors = errors.concat(sectionErrors);
       delete newSection.resources;
-      richDocument.sections[citeKey] = newSection;
+      richDocument.sections[id] = newSection;
     }
   }
   // resolve contextualizers nested values
-  for (const citeKey in richDocument.contextualizers) {
-    if (richDocument.contextualizers[citeKey]) {
-      richDocument.contextualizers[citeKey] = parseBibNestedValues(richDocument.contextualizers[citeKey]);
+  for (const id in richDocument.contextualizers) {
+    if (richDocument.contextualizers[id]) {
+      richDocument.contextualizers[id] = parseBibNestedValues(richDocument.contextualizers[id]);
     }
   }
   // parse markdown contents and organize them as blocks lists, and parse+resolve contextualization objects
   richDocument.contextualizations = {};
-  for (const citeKey in richDocument.sections) {
-    if (richDocument.sections[citeKey]) {
+  for (const id in richDocument.sections) {
+    if (richDocument.sections[id]) {
       const {
         errors: sectionErrors,
         section,
         contextualizations,
         contextualizers
-      } = markdownToJsAbstraction(richDocument.sections[citeKey], parameters);
+      } = markdownToJsAbstraction(richDocument.sections[id], parameters);
       errors = errors.concat(sectionErrors);
-      richDocument.sections[citeKey] = section;
+      richDocument.sections[id] = section;
       richDocument.contextualizers = Object.assign(richDocument.contextualizers, contextualizers);
       richDocument.contextualizations = Object.assign(richDocument.contextualizations, contextualizations);
     }

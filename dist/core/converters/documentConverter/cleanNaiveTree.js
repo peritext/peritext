@@ -1,8 +1,15 @@
-/**
- * This module cleans resources and metadata from a naive (resource concatenated) tree
- * @module converter/documentConverter/cleanNaiveTree
- */
-import slug from 'slug';
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.cleanNaiveTree = undefined;
+
+var _slug = require('slug');
+
+var _slug2 = _interopRequireDefault(_slug);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * Resolves resource and metadata statements from a naive representation of a section
@@ -12,22 +19,26 @@ import slug from 'slug';
  * @param {Object} models - the models to parse the resources with
  * @return {errors: array, validTree: Object} - the possible error, a list of parsing minor errors, and the resulting tree
  */
-export const cleanNaiveTree = ({errors = [], validTree}, models) =>{
-  const contextualizers = [];
-  const naiveTree = Object.assign({}, validTree);
-  let metadata;
-  const hasResources = naiveTree && naiveTree.resources;
+var cleanNaiveTree = exports.cleanNaiveTree = function cleanNaiveTree(_ref, models) {
+  var _ref$errors = _ref.errors;
+  var errors = _ref$errors === undefined ? [] : _ref$errors;
+  var validTree = _ref.validTree;
+
+  var contextualizers = [];
+  var naiveTree = Object.assign({}, validTree);
+  var metadata = void 0;
+  var hasResources = naiveTree && naiveTree.resources;
   // has it a resource file
   if (hasResources) {
-    naiveTree.resources = naiveTree.resources.filter(function(res) {
+    naiveTree.resources = naiveTree.resources.filter(function (res) {
       // catch metadata
-      let validated;
+      var validated = void 0;
       // extract contextualizer descriptions
       if (res.bibType === 'contextualizer') {
         contextualizers.push(res);
         return false;
       }
-      for (const type in models.sectionTypeModels.acceptedTypes) {
+      for (var type in models.sectionTypeModels.acceptedTypes) {
         if (res.bibType === 'peritext' + type) {
           metadata = res;
           return false;
@@ -36,7 +47,7 @@ export const cleanNaiveTree = ({errors = [], validTree}, models) =>{
 
       if (!validated) {
         // verify that the resource type are known
-        for (const otherType in models.resourceModels.individual) {
+        for (var otherType in models.resourceModels.individual) {
           if (res.bibType === otherType) {
             return true;
           }
@@ -65,22 +76,24 @@ export const cleanNaiveTree = ({errors = [], validTree}, models) =>{
     // bootstrap a minimal metadata
     metadata = {
       bibType: 'peritextinherits',
-      id: slug(naiveTree.name.toLowerCase()),
+      id: (0, _slug2.default)(naiveTree.name.toLowerCase()),
       title: naiveTree.name
     };
-  }else if (naiveTree.children) {
-    naiveTree.children = naiveTree.children.map(child => {
-      return cleanNaiveTree({validTree: child}, models);
-    }).filter((result)=>{
+  } else if (naiveTree.children) {
+    naiveTree.children = naiveTree.children.map(function (child) {
+      return cleanNaiveTree({ validTree: child }, models);
+    }).filter(function (result) {
       return result.validTree !== undefined;
-    })
-    .map((result) =>{
+    }).map(function (result) {
       return result.validTree;
     });
   }
-  const newErrors = (errors.length > 0) ? errors.reverse() : null;
+  var newErrors = errors.length > 0 ? errors.reverse() : null;
   return {
     errors: newErrors,
-    validTree: Object.assign({}, naiveTree, {metadata}, {contextualizers})
+    validTree: Object.assign({}, naiveTree, { metadata: metadata }, { contextualizers: contextualizers })
   };
-};
+}; /**
+    * This module cleans resources and metadata from a naive (resource concatenated) tree
+    * @module converter/documentConverter/cleanNaiveTree
+    */

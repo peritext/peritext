@@ -100,7 +100,7 @@ The *RCC document representation* js object looks like that :
   'resources': { // resources involved in the whole document
     'resource1': {
       'bibType': 'book',
-      'citeKey': 'resource1',
+      'id': 'resource1',
       /*...*/
     },
     /*...*/
@@ -108,7 +108,7 @@ The *RCC document representation* js object looks like that :
   'contextualizations': { // contextualizations involved in the whole document
     'cont1': {
       'bibType': 'contextualization',
-      'citeKey': 'cont1',
+      'id': 'cont1',
       'resources': ['resource1'],
       /*...*/
     }

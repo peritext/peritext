@@ -14,7 +14,7 @@
       "headTemplate" : "",
       "propagatesTo" : []
     },
-    "citeKey" : {
+    "id" : {
       "description" : "The bibtex-like unique citekey identifier of the section",
       "valueType" : "string",
       "unique" : true,
@@ -36,14 +36,14 @@
       "propagatesTo" : []
     },
     "after" : {
-      "description" : "The citeKey of the section preceding this one.",
+      "description" : "The id of the section preceding this one.",
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "",
       "propagatesTo" : []
     },
     "parent" : {
-      "description" : "The citeKey of the section to which this one belongs.",
+      "description" : "The id of the section to which this one belongs.",
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "",
@@ -77,7 +77,7 @@
       "propagatesTo" : ["dublincore_creator", "scholar_author"]
     },
     "crossref" : {
-      "description" : "citeKey of a section or a resource to which this section would be affiliated",
+      "description" : "id of a section or a resource to which this section would be affiliated",
       "valueType" : "string",
       "unique" : true,
       "headTemplate" : "",

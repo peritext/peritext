@@ -23,8 +23,8 @@ const packSection = (document, section) => {
   );
 };
 
-export const getSection = (document, citeKey) => {
-  const section = document.sections[citeKey];
+export const getSection = (document, id) => {
+  const section = document.sections[id];
   return packSection(document, section);
 };
 
@@ -38,10 +38,10 @@ export const getTableOfSections = (document) =>
   document.summary.map(sectionKey =>{
     const metadata = document.sections[sectionKey].metadata;
     return {
-      citeKey: metadata.general.citeKey.value,
+      id: metadata.general.id.value,
       generalityLevel: metadata.general.generalityLevel.value,
       title: metadata.general.title.value,
-      parent: metadata.general.parent ? metadata.general.parent.value : undefined,
+      parent: metadata.general.parent ? metadata.general.parent.value : undefined
     };
   });
 
@@ -54,18 +54,18 @@ export const getTableOfFigures = (document) =>
     figureNumber: contextualization.figureNumber
   }));
 
-export const getResourceContextualizations = (document, resourceCiteKey) =>
+export const getResourceContextualizations = (document, resourceId) =>
   Object.keys(document.contextualizations)
     .map(key => document.contextualizations[key])
     .filter(contextualization =>
-      contextualization.resources.indexOf(resourceCiteKey) > -1
+      contextualization.resources.indexOf(resourceId) > -1
     );
 
-export const getContextualizerContextualizations = (document, contextualizerCiteKey) =>
+export const getContextualizerContextualizations = (document, contextualizerId) =>
   Object.keys(document.contextualizations)
     .map(key => document.contextualizations[key])
     .filter(contextualization =>
-      contextualization.contextualizer === contextualizerCiteKey
+      contextualization.contextualizer === contextualizerId
     );
 
 export const getGlossary = (document) => {
@@ -73,7 +73,7 @@ export const getGlossary = (document) => {
   const sections = Object.keys(document.sections).map(key => document.sections[key]);
   // prepare glossary
   const glossaryPointers = sections.reduce((results, thatSection)=>{
-    const sectionCitekey = thatSection.metadata.general.citeKey.value;
+    const sectionCitekey = thatSection.metadata.general.id.value;
     return results.concat(
       thatSection.contextualizations
       .filter((thatContextualization)=> {
@@ -82,8 +82,8 @@ export const getGlossary = (document) => {
       .reduce((localResults, contextualizationKey)=> {
         const contextualization = document.contextualizations[contextualizationKey];
         return localResults.concat({
-          mentionId: '#peritext-content-entity-inline-' + sectionCitekey + '-' + contextualization.citeKey,
-          entity: document.resources[contextualization.resources[0]].citeKey,
+          mentionId: '#peritext-content-entity-inline-' + sectionCitekey + '-' + contextualization.id,
+          entity: document.resources[contextualization.resources[0]].id,
           alias: document.contextualizers[contextualization.contextualizer].alias
         });
       }, []));
@@ -103,7 +103,7 @@ export const getGlossary = (document) => {
   const glossaryData = glossaryResources.map((inputGlossaryEntry)=> {
     const glossaryEntry = Object.assign({}, inputGlossaryEntry);
     glossaryEntry.aliases = glossaryPointers.filter((pointer)=> {
-      return pointer.entity === glossaryEntry.citeKey;
+      return pointer.entity === glossaryEntry.id;
     }).reduce((aliases, entry)=> {
       const alias = entry.alias || 'no-alias';
       aliases[alias] = aliases[alias] ? aliases[alias].concat(entry) : [entry];

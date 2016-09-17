@@ -53,7 +53,7 @@ describe('getters:getTableOfSections', ()=>{
     expect(tableOfSections).to.be.an('array');
     tableOfSections.forEach(item => {
       expect(item).to.be.an('object');
-      expect(item).to.have.property('citeKey');
+      expect(item).to.have.property('id');
       expect(item).to.have.property('generalityLevel');
       expect(item).to.have.property('title');
     })
@@ -86,7 +86,7 @@ describe('getters:getGlossary', ()=>{
     const glossary = getGlossary(document);
     expect(glossary).to.be.an('array');
     glossary.forEach(entry=> {
-      expect(entry).to.have.property('citeKey');
+      expect(entry).to.have.property('id');
       expect(entry).to.have.property('aliases');
     })
     done();

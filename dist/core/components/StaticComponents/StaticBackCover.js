@@ -53,7 +53,7 @@ var StaticBackCover = function (_React$Component) {
         'section',
         {
           id: 'peritext-static-back-cover',
-          className: 'peritext-static-back-cover'
+          className: 'peritext-static-back-cover-container'
         },
         _react2.default.createElement(
           'h2',
@@ -64,7 +64,7 @@ var StaticBackCover = function (_React$Component) {
           'h3',
           { className: 'peritext-static-authors' },
           this.props.metadata.general.author.value.map(function (person) {
-            return _react2.default.createElement(_index.StructuredPerson, { key: person.citeKey, resource: person });
+            return _react2.default.createElement(_index.StructuredPerson, { key: person.id, resource: person });
           })
         ),
         _react2.default.createElement(

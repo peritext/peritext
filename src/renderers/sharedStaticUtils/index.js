@@ -8,9 +8,6 @@ import {
 } from './../../core/utils/referenceUtils';
 import {
   getGlossary,
-  getForewords,
-  getTableOfContents,
-  getTableOfFigures,
 } from './../../core/getters';
 
 /**
@@ -118,6 +115,7 @@ export const composeRenderedSections = (sections = [], document, settings = {}, 
       });
       return figures.concat(figuresL);
     }, []);
+
     const figuresTable = {
       type: 'table-of-figures',
       contents: figuresTableData,
@@ -135,7 +133,7 @@ export const composeRenderedSections = (sections = [], document, settings = {}, 
   if (settings.contentsTablePosition !== 'none') {
     const tocData = renderedSections.map((thisSection) => {
       return {
-        id: thisSection.metadata ? thisSection.metadata.general.citeKey.value : thisSection.id,
+        id: thisSection.metadata ? thisSection.metadata.general.id.value : thisSection.id,
         title: thisSection.metadata ? thisSection.metadata.general.title.value : thisSection.title,
         level: thisSection.metadata ? thisSection.metadata.general.generalityLevel.value : 0
       };

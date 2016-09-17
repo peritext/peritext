@@ -32,7 +32,7 @@ export default class StaticFrontCover extends React.Component {
           <h1>{this.props.metadata.general.title && this.props.metadata.general.title.value}</h1>
           <h2 className="peritext-static-authors">
             {this.props.metadata.general.author.value.map((person) =>{
-              return <StructuredPerson key={person.citeKey} resource={person}/>;
+              return <StructuredPerson key={person.id} resource={person}/>;
             })}
           </h2>
         </section>
@@ -76,7 +76,7 @@ export default class StaticFrontCover extends React.Component {
             </p>
             <h1 className="peritext-static-authors">
               {this.props.metadata.general.author.value.map((person) =>{
-                return <StructuredPerson key={person.citeKey} resource={person}/>;
+                return <StructuredPerson key={person.id} resource={person}/>;
               })}
             </h1>
             <p className="peritext-static-front-cover-dissertationlab">
@@ -100,7 +100,7 @@ export default class StaticFrontCover extends React.Component {
             {
               (this.props.metadata.general.dissertationjury.value).map((person) =>{
                 return (
-                    <p key={person.citeKey} className="peritext-static-front-cover-jury-member">
+                    <p key={person.id} className="peritext-static-front-cover-jury-member">
                       <StructuredPerson resource={person} pattern="${firstName} ${lastName:capitals} ${information} / ${role}"/>
                     </p>
                   );

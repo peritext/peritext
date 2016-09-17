@@ -17,7 +17,7 @@ import StaticEntityBlock from './StaticEntityBlock';
 export const contextualizeInlineStatic = (inputDocument, inputContextualization, settings) => {
   const document = Object.assign({}, inputDocument);
   const contextualization = Object.assign({}, inputContextualization);
-  const sectionCiteKey = contextualization.nodePath[0];
+  const sectionId = contextualization.nodePath[0];
   const path = ['sections', ...contextualization.nodePath.slice()];
   const node = getByPath(document, path);
   const entity = document.resources[contextualization.resources[0]];
@@ -35,7 +35,7 @@ export const contextualizeInlineStatic = (inputDocument, inputContextualization,
     contextualization,
     entity,
     contents,
-    sectionCiteKey
+    sectionId
   };
   node.special = true;
   node.tag = StaticEntityInline;

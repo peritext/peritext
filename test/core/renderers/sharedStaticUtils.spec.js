@@ -31,7 +31,7 @@ describe('shared static utils', ()=>{
           metadata: [
             {
               domain: 'global',
-              key: 'citeKey',
+              key: 'id',
               value: 'mock'
             },
             {

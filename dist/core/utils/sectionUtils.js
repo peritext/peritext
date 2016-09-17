@@ -121,7 +121,7 @@ var metaStringToCouple = exports.metaStringToCouple = function metaStringToCoupl
 };
 
 /**
- * Checks if a resource list contains a resource, by citeKey
+ * Checks if a resource list contains a resource, by id
  * @param {array} resourcesList - the resources list in which looking for
  * @param {Object} resource - the resource to look for
  * @return {boolean} hasResource - whether resource is present in the list
@@ -129,7 +129,7 @@ var metaStringToCouple = exports.metaStringToCouple = function metaStringToCoupl
 /*
 export const hasResource = (resourcesList, resource) =>{
  return resourcesList.find((res) =>{
-   return resource.citeKey === res.citeKey;
+   return resource.id === res.id;
  }) !== undefined;
 };
 */

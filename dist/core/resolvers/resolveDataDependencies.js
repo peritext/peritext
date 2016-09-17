@@ -126,7 +126,7 @@ function resolveDataDependencies(inputDocument, assetsController, assetsParams, 
     // waterfall callback for all sections
     ], function (errs, sectio) {
       // fill document section keys with updated sections
-      document.sections[sectio.metadata.general.citeKey.value] = sectio;
+      document.sections[sectio.metadata.general.id.value] = sectio;
       allSectionsCallback(errs);
     });
     // sections final callback
@@ -197,7 +197,7 @@ function resolveDataDependencies(inputDocument, assetsController, assetsParams, 
                           target: 'data',
                           path: dataPath
                         };
-                        var defined = data[res.citeKey];
+                        var defined = data[res.id];
                         if (!defined) {
                           var accessor = res.data || res.url;
                           if (('' + accessor).indexOf('@assets/') === 0) {
@@ -208,7 +208,7 @@ function resolveDataDependencies(inputDocument, assetsController, assetsParams, 
                               acceptedExtensions: '*'
                             };
                             toResolve.read = assetsController.getReader(assetsParams);
-                            data[res.citeKey] = toResolve;
+                            data[res.id] = toResolve;
                           } else {
                             console.log('unhandled data accessor (1) : ', accessor);
                           }
@@ -262,7 +262,7 @@ function resolveDataDependencies(inputDocument, assetsController, assetsParams, 
                       target: 'data',
                       path: dataPath
                     };
-                    var defined = data[res.citeKey];
+                    var defined = data[res.id];
                     if (!defined) {
                       var accessor = res.data || res.url;
                       if (('' + accessor).indexOf('@assets/') === 0) {
@@ -273,7 +273,7 @@ function resolveDataDependencies(inputDocument, assetsController, assetsParams, 
                           acceptedExtensions: '*'
                         };
                         toResolve.read = assetsController.getReader(assetsParams);
-                        data[res.citeKey] = toResolve;
+                        data[res.id] = toResolve;
                       } else {
                         console.log('unhandled data accessor (2) : ', accessor);
                       }
@@ -301,13 +301,13 @@ function resolveDataDependencies(inputDocument, assetsController, assetsParams, 
           // pass contextualizer's resolved values to contextualization object
           newContextualizer.contextualizerType = newContextualizer.type;
           delete newContextualizer.type; // contextualization has a type also
-          delete newContextualizer.citeKey;
+          delete newContextualizer.id;
           var newContextualization = Object.assign(contextualization, newContextualizer);
           contextualizationCallback(err1, newContextualization);
         });
       }, function (contextualizationsError, finalContextualizations) {
         finalContextualizations.forEach(function (contextualization) {
-          document.contextualizations[contextualization.citeKey] = contextualization;
+          document.contextualizations[contextualization.id] = contextualization;
         });
         contextualizationsCallback(contextualizationsError);
       });
@@ -315,7 +315,7 @@ function resolveDataDependencies(inputDocument, assetsController, assetsParams, 
       // resources resolution
       (0, _async.map)(resources, function (resource, resourceCallback) {
         var resolvedResource = {
-          key: resource.citeKey,
+          key: resource.id,
           data: resource
         };
         var props = [];

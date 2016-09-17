@@ -41,7 +41,7 @@ export const exportSectionToPdf = ({
   destinationFolder,
 }, assetsController, assetsParams, finalCallback) =>{
 
-  const motherKey = document.metadata.general.citeKey.value;
+  const motherKey = document.metadata.general.id.value;
   const path = destinationFolder || resolve(__dirname + '/temp/');
   console.log('export to path: ', path);
   waterfall([

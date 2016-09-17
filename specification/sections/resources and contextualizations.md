@@ -84,7 +84,7 @@ However, it is also possible to provide some params to specify more precisely ho
 
 There are two ways to describe a contextualizer :
 * **inline contextualizer description** : the contextualizer is described directly in the markdown file, just at the location in which it is used
-* **separate contextualizer description** : contextualizer is described separately as a bib resource, and called in the contextualization through its citekey
+* **separate contextualizer description** : contextualizer is described separately as a bib resource, and called in the contextualization through its id
 
 ```
 // Separate description of a contextualization :
@@ -143,7 +143,7 @@ Contextualization resources+type combo should all correspond a default params ob
 ## Accessing resource properties
 
 For a lot of cases, contextualization will need to specify what parts of the resource data should be used.
-This is done by calling the resource citeKey followed by javascript object-like access properties :
+This is done by calling the resource id followed by javascript object-like access properties :
 
 ```
 

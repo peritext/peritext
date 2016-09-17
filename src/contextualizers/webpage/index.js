@@ -18,10 +18,10 @@
  export const contextualizeInlineStatic = (inputDocument, inputContextualization, settings) => {
    const document = Object.assign({}, inputDocument);
    const contextualization = Object.assign({}, inputContextualization);
-   const sectionCiteKey = contextualization.nodePath[0];
+   const sectionId = contextualization.nodePath[0];
    const path = ['sections', ...contextualization.nodePath.slice()];
    const node = getByPath(document, path);
-   const section = document.sections[sectionCiteKey];
+   const section = document.sections[sectionId];
 
    const link = {
      node: 'element',
@@ -36,7 +36,7 @@
      }
    };
    const noteNumber = section.notes.length + 1;
-   const noteId = sectionCiteKey + '-' + noteNumber;
+   const noteId = sectionId + '-' + noteNumber;
    section.notes.push({
      noteNumber,
      child: [link],
@@ -64,12 +64,12 @@
  export const contextualizeBlockStatic = (inputDocument, inputContextualization, settings) => {
    const document = Object.assign({}, inputDocument);
    const contextualization = Object.assign({}, inputContextualization);
-   const sectionCiteKey = contextualization.nodePath[0];
+   const sectionId = contextualization.nodePath[0];
    const path = ['sections', ...contextualization.nodePath.slice()];
    const node = getByPath(document, path);
-   const section = document.sections[sectionCiteKey];
+   const section = document.sections[sectionId];
    let figureId;
-   figureId = sectionCiteKey + '-' + contextualization.citeKey;
+   figureId = sectionId + '-' + contextualization.id;
    document.figuresCount = document.figuresCount ? document.figuresCount + 1 : 1;
    contextualization.figureId = figureId;
    contextualization.figureNumber = document.figuresCount;
@@ -93,7 +93,7 @@
    } else {
      section.figures = section.figures ? section.figures.concat(figure) : [figure];
    }
-   document.contextualizations[contextualization.citeKey] = contextualization;
+   document.contextualizations[contextualization.id] = contextualization;
    return document;
  };
 

@@ -76,7 +76,7 @@ var BlockCitationModel = exports.BlockCitationModel = function (_React$Component
       return _react2.default.createElement(
         'p',
         {
-          id: this.props.contextualization.citeKey,
+          id: this.props.contextualization.id,
           className: 'peritext-block-citation',
           itemProp: 'citation',
           property: 'citation',
@@ -149,7 +149,7 @@ var InlineCitationModel = exports.InlineCitationModel = function (_React$Compone
       return _react2.default.createElement(
         'span',
         {
-          id: this.props.contextualization.citeKey,
+          id: this.props.contextualization.id,
           className: 'peritext-inline-citation',
           itemProp: 'citation',
           property: 'citation',

@@ -12,7 +12,7 @@ class bibTexParser {
    * constructor
    */
   constructor() {
-    this.STATES = ['bibType', 'citeKey', 'properties'];
+    this.STATES = ['bibType', 'id', 'properties'];
     this.testing = false;
   }
 
@@ -41,7 +41,7 @@ class bibTexParser {
    */
   consume() {
     const matchBibType = /^@([^{]+)/;
-    const matchCiteKey = /^{([^,]+),/;
+    const matchId = /^{([^,]+),/;
     const wrappers = [
       ['{', '}'],
       ['"', '"']
@@ -68,10 +68,10 @@ class bibTexParser {
       };
       return true;
 
-    } else if (this.currentState === 'citeKey') {
-      match = matchCiteKey.exec(this.consumable);
+    } else if (this.currentState === 'id') {
+      match = matchId.exec(this.consumable);
       if (match) {
-        this.currentObject.citeKey = match[1];
+        this.currentObject.id = match[1];
         this.consumable = this.consumable.substr(match[1].length + 2);
         this.currentState = this.STATES[2];
         return true;
@@ -221,11 +221,11 @@ export const parseBibTexStr = (str, callback) => {
 };
 
 const validateBibObject = function(bibObject) {
-  if (bibObject.citeKey === undefined) {
+  if (bibObject.id === undefined) {
     return {
       type: 'error',
       preciseType: 'bibObjectValidationError',
-      message: 'bibObject must have a citeKey property',
+      message: 'bibObject must have a id property',
       bibObject: bibObject
     };
   } else if (bibObject.bibType === undefined) {
@@ -271,7 +271,7 @@ export const serializeBibTexObject = (bibObject) => {
           str += '\t' + key + ' = {' + value + '},\n';
         });
         //  val = val.join(',');
-      }else if (key !== 'citeKey' && key !== 'bibType') {
+      }else if (key !== 'id' && key !== 'bibType') {
         str += '\t' + key + ' = {' + val + '},\n';
       }
     }
@@ -280,7 +280,7 @@ export const serializeBibTexObject = (bibObject) => {
   if (str.length > 1) {
     str = str.substr(0, str.length - 2);
   }
-  return `@${bibObject.bibType}{${bibObject.citeKey},
+  return `@${bibObject.bibType}{${bibObject.id},
     ${str}
 }`;
 };
@@ -351,8 +351,8 @@ export const parseBibAuthors = (str) => {
         firstName = '';
       }
     }
-    const citeKey = (role + '-' + firstName + lastName).toLowerCase().replace(' ', '-');
-    return {firstName, lastName, role, information, citeKey};
+    const id = (role + '-' + firstName + lastName).toLowerCase().replace(' ', '-');
+    return {firstName, lastName, role, information, id};
   });
 };
 
