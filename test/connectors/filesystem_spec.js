@@ -1,3 +1,4 @@
+/*
 import {expect} from 'chai';
 import {waterfall} from 'async';
 import {resolve} from 'path';
@@ -265,3 +266,4 @@ describe('filesystem:getAssetUri', function() {
     });
   });
 })
+*/
