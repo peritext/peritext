@@ -1,6 +1,6 @@
 /**
  * This module parses resources expressions in .bib files representations
- * @module converter/sectionConverter/parseTreeResources
+ * @module converter/documentConverter/parseTreeResources
  */
 import {parseBibTexStr} from '../bibTexConverter';
 

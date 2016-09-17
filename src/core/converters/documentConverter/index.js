@@ -1,7 +1,7 @@
 /**
  * This module converts an fsTree flatfile abstraction to a peritext document representation
  * And it converts aperitext document representation to an fsTree flatfile abstraction
- * @module converters/sectionConverter
+ * @module converters/documentConverter
  */
 
 import {concatTree} from './concatTree';
@@ -174,7 +174,7 @@ export const serializeDocument = ({document, models, basePath}, callback) =>{
  * @param {Object} params.models - models to use for parsing the data
  * @param {function(error:error, results: Object)} callback - RCC representation of the contents and parsing errors list for UI
  */
-export const parseSection = ({tree, parameters, parent, models}, callback)=> {
+export const parseDocument = ({tree, parameters, parent, models}, callback)=> {
   // concat markdown, resources, styles, templates, components, and resolve includes, producing a clean 'dumb tree'
   const {dumbTree, errors: dumbTreeErrors} = concatTree(tree, parameters);
   // parse bibtext to produce resources and metadata props, producing a 'naive tree' of sections

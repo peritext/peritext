@@ -1,6 +1,6 @@
 /**
  * This module cleans resources and metadata from a naive (resource concatenated) tree
- * @module converter/sectionConverter/cleanNaiveTree
+ * @module converter/documentConverter/cleanNaiveTree
  */
 import slug from 'slug';
 
@@ -65,7 +65,8 @@ export const cleanNaiveTree = ({errors = [], validTree}, models) =>{
     // bootstrap a minimal metadata
     metadata = {
       bibType: 'peritextinherits',
-      citeKey: slug(naiveTree.name.toLowerCase())
+      citeKey: slug(naiveTree.name.toLowerCase()),
+      title: naiveTree.name
     };
   }else if (naiveTree.children) {
     naiveTree.children = naiveTree.children.map(child => {

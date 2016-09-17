@@ -1,6 +1,6 @@
 /**
  * This module concatenates fsTree contents according to include statements and resolves cases in which several markdown files are in the same directory
- * @module converter/sectionConverter/concatTree
+ * @module converter/documentConverter/concatTree
  */
 import {parseMarkdown as extractIncludes} from './../../converters/markdownIncludesParser';
 import {map as asyncMap, waterfall} from 'async';

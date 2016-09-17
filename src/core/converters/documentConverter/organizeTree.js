@@ -1,6 +1,6 @@
 /**
  * This module organizes relations between sections (order, inheritance, generality level)
- * @module converter/sectionConverter/organizeTree
+ * @module converter/documentConverter/organizeTree
  */
 
 const formatMetadata = (metadataObj) =>{
@@ -66,9 +66,21 @@ const formatSections = (sections) =>{
   return formattedSections;
 };
 
+const moveInArray = (inputArray, old_index, new_index)=> {
+  const array = [...inputArray];
+  if (new_index >= array.length) {
+    var k = new_index - array.length;
+    while ((k--) + 1) {
+        array.push(undefined);
+    }
+  }
+  array.splice(new_index, 0, array.splice(old_index, 1)[0]);
+  return array;
+};
+
 const makeRelations = (inputSections) =>{
   // find parents and predecessors
-  const sections = inputSections.map((inputSection) =>{
+  let sections = inputSections.map((inputSection) =>{
     const section = Object.assign({}, inputSection);
     // todo : clean the two ways of defining parents (at object root or in metadata)
     if (section.parent && section.metadata.general.parent === undefined) {
@@ -82,22 +94,29 @@ const makeRelations = (inputSections) =>{
     return section;
   });
   // order sections
+  // move the "no-after" sections to the begining of array
+  const hasAfter = sections.filter(section => section.metadata.general.after);
+  const hasNoAfter = sections.filter(section => section.metadata.general.after === undefined);
+  sections = [...hasNoAfter, ...hasAfter];
+  console.log('after and no after:' );
+  console.log(sections.map(section=>section.metadata.general.citeKey.value));
+  // resolve after statements
   for (let index = sections.length - 1; index >= 0; index--) {
     const section = sections[index];
+    // console.log('parsing ', section.metadata.general.citeKey.value, index);
     if (section.metadata.general.after && section.metadata.general.parent) {
       let indexAfter;
       sections.some((section2, thatIndex) =>{
         const citeKey = section2.metadata.general.citeKey.value;
-
         if (section.metadata.general.after.value === citeKey) {
           indexAfter = thatIndex;
           return true;
         }
       });
-      if (indexAfter !== undefined) {
-        sections.splice(indexAfter + 1, 0, section);
-        sections.splice(index + 1, 1);
-      } else {
+      if (indexAfter !== undefined && index !== indexAfter + 1) {
+        console.log('put ', section.metadata.general.citeKey.value, index, ' after ', section.metadata.general.after.value, indexAfter);
+        sections = moveInArray(sections, index, indexAfter + 1);
+      } else if (indexAfter === undefined) {
         console.error(section.metadata.general.citeKey.value,
           ' is supposed to be after ',
           section.metadata.general.after.value,

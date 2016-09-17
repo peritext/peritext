@@ -1,6 +1,6 @@
 /**
  * This module handles metadata propagation within and between sections
- * @module converter/sectionConverter/propagateData
+ * @module converter/documentConverter/propagateData
  */
 import {metaStringToCouple} from './../../utils/sectionUtils';
 
