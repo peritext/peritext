@@ -36,7 +36,7 @@ export default class StaticFrontCover extends React.Component {
             })}
           </h2>
         </section>
-        )
+        );
     }
     return (
       <section

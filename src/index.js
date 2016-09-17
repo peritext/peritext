@@ -7,6 +7,7 @@ import * as assetsC from './core/controllers/assetsController';
 import * as contentsC from './core/controllers/contentsController';
 import * as models from './core/models';
 import * as parameters from './config/defaultParameters';
+import componentsFactory from './core/utils/componentsFactory';
 import * as getters from './core/getters';
 
 /**
@@ -36,6 +37,8 @@ export const defaultParameters = parameters;
  */
 export {exportSectionToPdf} from './exporters/pdfExporter';
 
+export const renderContents = componentsFactory;
+
 export const packSection = getters.packSection;
 export const getSection = getters.getSection;
 export const getForewords = getters.getForewords;
@@ -44,4 +47,4 @@ export const getTableOfFigures = getters.getTableOfFigures;
 export const getResourceContextualizations = getters.getResourceContextualizations;
 export const getContextualizerContextualizations = getters.getContextualizerContextualizations;
 export const getGlossary = getters.getGlossary;
-
+export const getDocumentMetadata = getters.getDocumentMetadata;
