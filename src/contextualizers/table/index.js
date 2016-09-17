@@ -24,7 +24,7 @@ export const contextualizeInlineStatic = (inputDocument, inputContextualization,
   const nodeBlockIndex = path[3];
   let figureId;
   let number;
-  const contents = node.child;
+  const contents = node.children;
   // if figure is not there yet, add it
   if (!contextualization.sectionOpCit) {
     figureId = sectionId + '-' + contextualization.id;
@@ -88,7 +88,7 @@ export const contextualizeInlineStatic = (inputDocument, inputContextualization,
       attr: {
         href: displayId
       },
-      child: [
+      children: [
         {
           node: 'text',
           text: 'figure ' + number
@@ -101,7 +101,7 @@ export const contextualizeInlineStatic = (inputDocument, inputContextualization,
     }
   ];
   node.tag = 'span';
-  node.child = newContents;
+  node.children = newContents;
   document.contextualizations[contextualization.id] = contextualization;
   return document;
 };

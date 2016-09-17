@@ -238,7 +238,8 @@ _mapMdJsonToPJson = function mapMdJsonToPJson(inputElement, contextualizations, 
       var _contextualizationId = element.attr.src;
       var _contextualization = contextualizations[_contextualizationId];
       _contextualization.nodePath = elementPath;
-      var contents = element.attr && element.attr.alt ? element.attr.alt.join(' ') : '';
+      var contents = element.attr && element.attr.alt ? element.attr.alt : '';
+      contents = contents.join !== undefined ? contents.join(' ') : contents;
       element.child = [representContents(contents, contextualizations, elementPath)[0]];
       delete element.attr;
     }

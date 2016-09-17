@@ -37,7 +37,7 @@ export default class StaticNote extends React.Component {
         >
           {this.props.note.noteNumber}
         </a>
-        {renderContents(this.props.note.child)}
+        {renderContents(this.props.note.children)}
       </span>
     );
   }

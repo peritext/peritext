@@ -21,7 +21,7 @@ export const contextualizeInlineStatic = (inputDocument, inputContextualization,
   const path = ['sections', ...contextualization.nodePath.slice()];
   const node = getByPath(document, path);
   const entity = document.resources[contextualization.resources[0]];
-  let contents = node.child;
+  let contents = node.children;
   if (!contents || (contents[0] && contents[0].text.trim().length === 0)) {
     contents = document.contextualizers[contextualization.contextualizer].alias
               || entity.name

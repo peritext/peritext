@@ -28,7 +28,7 @@ export default class StaticFootnote extends React.Component {
         name={'peritext-static-note-content-' + this.props.note.id }
         id={'peritext-static-note-content-' + this.props.note.id}
       >
-        {renderContents(this.props.note.child)}
+        {renderContents(this.props.note.children)}
       </sup>);
   }
 }

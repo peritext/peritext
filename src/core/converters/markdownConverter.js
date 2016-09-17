@@ -216,13 +216,14 @@ mapMdJsonToPJson = (inputElement, contextualizations, elementPath) =>{
     contextualization.nodePath = elementPath;
     let contents = (element.attr && element.attr.alt) ? element.attr.alt : '';
     contents = contents.join !== undefined ? contents.join(' ') : contents;
-    element.child = [representContents(contents, contextualizations, elementPath)[0]];
+    element.children = [representContents(contents, contextualizations, elementPath)[0]];
     delete element.attr;
   }
   if (element.child) {
-    element.child = element.child.map((child, elementIndex)=>{
-      return mapMdJsonToPJson(child, contextualizations, elementPath.concat(['child', elementIndex]));
+    element.children = element.child.map((child, elementIndex)=>{
+      return mapMdJsonToPJson(child, contextualizations, elementPath.concat(['children', elementIndex]));
     });
+    delete element.child;
   }
   return element;
 };
@@ -261,19 +262,18 @@ export const markdownToJsAbstraction = (section, parameters)=> {
   // convert cleaned markdown contents to js representation
   section.contents = representContents(newMd, contextualizations, [sectionId, 'contents']);
   section.notes = notes.map((note, noteIndex) =>{
-
     const contents = html2json(marked(note.markdownContents)).child.map((child, blockIndex)=> {
       return mapMdJsonToPJson(child, contextualizations, [sectionId, 'notes', noteIndex]);
     });
     return Object.assign(note, {
-      child: [
+      children: [
         // this is dirty, done for matching contextualization nodePath which is displaced otherwise
         // other dirty solution : handle that in mapMdJsonToPJson with a path check
         // (if in notes prop => decrement contextualization target)
         { node: 'text',
           text: ''
         },
-        ...contents[0].child
+        ...contents[0].children
       ]
     });
   });

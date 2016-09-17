@@ -135,42 +135,52 @@ var resolveBindings = exports.resolveBindings = function resolveBindings(_ref) {
           delete document.contextualizations[contextualization.id];
           // verify that contextualization uses valid resources (they exist and their type is compatible with contextualizer)
         } else {
-            (function () {
-              var toKeep = true;
-              var contextualizer = document.contextualizers[contextualization.contextualizer];
-              var acceptedResourceTypes = (0, _modelUtils.getContextualizerModel)(contextualizer.type, models.contextualizerModels).acceptedResourceTypes;
-              contextualization.resources.some(function (resKey) {
-                var res = document.resources[resKey];
-                // resource exists, check if it is accepted for the contextualizerType
-                if (res !== undefined) {
-                  var accepted = false;
-                  acceptedResourceTypes.some(function (type) {
-                    if (type === '*' || type === res.bibType) {
-                      accepted = true;
-                      return true;
+            var toKeep = true;
+            var contextualizer = document.contextualizers[contextualization.contextualizer];
+            var contextualizerModel = (0, _modelUtils.getContextualizerModel)(contextualizer.type, models.contextualizerModels);
+            if (contextualizerModel === undefined) {
+              errors.push({
+                type: 'error',
+                preciseType: 'invalidContextualization',
+                message: 'No contextualizer model found for ' + contextualization.contextualizer
+              });
+              toKeep = false;
+            } else {
+              (function () {
+                var acceptedResourceTypes = contextualizerModel.acceptedResourceTypes;
+                contextualization.resources.some(function (resKey) {
+                  var res = document.resources[resKey];
+                  // resource exists, check if it is accepted for the contextualizerType
+                  if (res !== undefined) {
+                    var accepted = false;
+                    acceptedResourceTypes.some(function (type) {
+                      if (type === '*' || type === res.bibType) {
+                        accepted = true;
+                        return true;
+                      }
+                    });
+                    if (!accepted) {
+                      toKeep = false;
+                      errors.push({
+                        type: 'error',
+                        preciseType: 'invalidContextualization',
+                        message: 'resource ' + resKey + ' was asked in a contextualization but is not handled by the contextualizer ' + contextualization.contextualizer
+                      });
                     }
-                  });
-                  if (!accepted) {
+                  } else {
                     toKeep = false;
                     errors.push({
                       type: 'error',
                       preciseType: 'invalidContextualization',
-                      message: 'resource ' + resKey + ' was asked in a contextualization but is not handled by the contextualizer ' + contextualization.contextualizer
+                      message: 'resource ' + resKey + ' was asked in a contextualization but was not found'
                     });
                   }
-                } else {
-                  toKeep = false;
-                  errors.push({
-                    type: 'error',
-                    preciseType: 'invalidContextualization',
-                    message: 'resource ' + resKey + ' was asked in a contextualization but was not found'
-                  });
-                }
-              });
-              if (toKeep === false) {
-                delete document.contextualizations[contextualization.id];
-              }
-            })();
+                });
+              })();
+            }
+            if (toKeep === false) {
+              delete document.contextualizations[contextualization.id];
+            }
           }
       })();
     }

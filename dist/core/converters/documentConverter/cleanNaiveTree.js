@@ -65,7 +65,7 @@ var cleanNaiveTree = exports.cleanNaiveTree = function cleanNaiveTree(_ref, mode
       }
       return true;
     });
-  }
+  } else naiveTree.resources = [];
   // populate automatic metadata
   if (metadata === undefined && naiveTree.name.charAt(0) !== '_') {
     errors.push({
@@ -79,7 +79,9 @@ var cleanNaiveTree = exports.cleanNaiveTree = function cleanNaiveTree(_ref, mode
       id: (0, _slug2.default)(naiveTree.name.toLowerCase()),
       title: naiveTree.name
     };
-  } else if (naiveTree.children) {
+  }
+  // parse children if present
+  if (naiveTree.children && naiveTree.name.charAt(0) !== '_') {
     naiveTree.children = naiveTree.children.map(function (child) {
       return cleanNaiveTree({ validTree: child }, models);
     }).filter(function (result) {

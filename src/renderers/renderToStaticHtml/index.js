@@ -40,8 +40,8 @@ const resolveNode = (inputNode, section, settings) =>{
     }
     node.special = true;
   }
-  if (node.child) {
-    node.child = node.child.map(child =>{
+  if (node.children) {
+    node.children = node.children.map(child =>{
       return resolveNode(child, section, settings);
     });
   }

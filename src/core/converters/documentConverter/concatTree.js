@@ -106,10 +106,10 @@ const resolveNestedIncludes = ({resourcesStr, mdFilesWithIncludes, params}, cb) 
 
 const concatCustomizers = (newTree) =>{
   return newTree.children
-      .filter((child) => {
+      .filter(child => {
         return child.type === 'directory' && child.name.charAt(0) === '_';
       })
-      .map((child) => {
+      .map(child => {
         const contents = {};
         child.children.forEach((subChild) =>{
           contents[subChild.name] = subChild.stringContents;
@@ -131,7 +131,7 @@ export const concatTree = (tree, params) =>{
   const newTree = Object.assign({}, tree);
   // concat .bib res files
   const resources = newTree.children
-                    .filter((child) => {
+                    .filter(child => {
                       return child.type === 'file' && child.extname === '.bib';
                     })
                     .reduce((str, child) => {
@@ -142,11 +142,11 @@ export const concatTree = (tree, params) =>{
                     }, '');
 
   const mdContents = newTree.children
-                    .filter((child) => {
+                    .filter(child => {
                       return child.type === 'file' && child.extname === '.md';
                     });
   const childrenDirs = newTree.children
-                    .filter((child) => {
+                    .filter(child => {
                       return child.type === 'directory' && child.name.charAt(0) !== '_';
                     });
   const childrenCustomizers = concatCustomizers(newTree);

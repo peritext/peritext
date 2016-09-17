@@ -39,11 +39,11 @@
    const noteId = sectionId + '-' + noteNumber;
    section.notes.push({
      noteNumber,
-     child: [link],
+     children: [link],
      id: noteId
    });
-   node.child = [
-     ...node.child,
+   node.children = [
+     ...node.children,
      {
        element: 'node',
        tag: 'note',
@@ -73,7 +73,7 @@
    document.figuresCount = document.figuresCount ? document.figuresCount + 1 : 1;
    contextualization.figureId = figureId;
    contextualization.figureNumber = document.figuresCount;
-   const captionContent = node.child && node.child[0] && node.child[0].child || undefined;
+   const captionContent = node.children && node.children[0] && node.children[0].children || undefined;
    const figure = {
      node: 'element',
      special: true,

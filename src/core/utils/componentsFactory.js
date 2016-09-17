@@ -22,7 +22,7 @@ export const jsToComponent = (node, index)=> {
   // plain string tag name
   const Tag = node.tag;
   return (<Tag key={index} id={node.attr && node.attr.id} href={node.attr && node.attr.href}>
-    {node.child && node.child.map(jsToComponent)}
+    {node.children && node.children.map(jsToComponent)}
   </Tag>);
 };
 

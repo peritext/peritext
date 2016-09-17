@@ -108,10 +108,6 @@ var makeRelations = function makeRelations(inputSections) {
     return section.metadata.general.after === undefined;
   });
   sections = [].concat(_toConsumableArray(hasNoAfter), _toConsumableArray(hasAfter));
-  console.log('after and no after:');
-  console.log(sections.map(function (section) {
-    return section.metadata.general.id.value;
-  }));
   // resolve after statements
 
   var _loop = function _loop(index) {
@@ -127,7 +123,7 @@ var makeRelations = function makeRelations(inputSections) {
         }
       });
       if (indexAfter !== undefined && index !== indexAfter + 1) {
-        console.log('put ', section.metadata.general.id.value, index, ' after ', section.metadata.general.after.value, indexAfter);
+        // console.log('put ', section.metadata.general.id.value, index, ' after ', section.metadata.general.after.value, indexAfter);
         sections = moveInArray(sections, index, indexAfter + 1);
       } else if (indexAfter === undefined) {
         console.error(section.metadata.general.id.value, ' is supposed to be after ', section.metadata.general.after.value, ' but this section does not exist');
