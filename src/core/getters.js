@@ -1,6 +1,8 @@
 
 export const getDocument = (document) => Object.assign({}, document);
 
+export const getDocumentMetadata = (document) => Object.assign({}, document.metadata);
+
 const packSection = (document, section) => {
   const contextualizations = section.contextualizations.map(key =>
     document.contextualizations[key]
@@ -19,17 +21,17 @@ const packSection = (document, section) => {
     {contextualizers},
     {resources}
   );
-}
+};
 
 export const getSection = (document, citeKey) => {
   const section = document.sections[citeKey];
   return packSection(document, section);
-}
+};
 
 export const getForewords = (document) => {
   const section = document.forewords;
   return packSection(document, section);
-}
+};
 
 
 export const getTableOfSections = (document) =>
@@ -40,7 +42,7 @@ export const getTableOfSections = (document) =>
       generalityLevel: metadata.general.generalityLevel.value,
       title: metadata.general.title.value,
       parent: metadata.general.parent ? metadata.general.parent.value : undefined,
-    }
+    };
   });
 
 export const getTableOfFigures = (document) =>
@@ -57,14 +59,14 @@ export const getResourceContextualizations = (document, resourceCiteKey) =>
     .map(key => document.contextualizations[key])
     .filter(contextualization =>
       contextualization.resources.indexOf(resourceCiteKey) > -1
-    )
+    );
 
 export const getContextualizerContextualizations = (document, contextualizerCiteKey) =>
   Object.keys(document.contextualizations)
     .map(key => document.contextualizations[key])
     .filter(contextualization =>
       contextualization.contextualizer === contextualizerCiteKey
-    )
+    );
 
 export const getGlossary = (document) => {
   const entitiesTypes = ['person', 'place', 'subject', 'concept', 'organization', 'technology', 'artefact'];
@@ -112,4 +114,4 @@ export const getGlossary = (document) => {
     return (entry1.name || entry1.lastname) > (entry2.name || entry2.lastname) ? 1 : -1;
   });
   return glossaryData;
-}
+};
