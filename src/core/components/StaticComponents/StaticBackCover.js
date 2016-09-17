@@ -28,7 +28,7 @@ export default class StaticBackCover extends React.Component {
     return (
       <section
         id="peritext-static-back-cover"
-        className="peritext-static-back-cover"
+        className="peritext-static-back-cover-container"
       >
         <h2>{(this.props.metadata.general.title && this.props.metadata.general.title.value)}</h2>
         <h3 className="peritext-static-authors">

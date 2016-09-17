@@ -4,12 +4,6 @@
     counter-increment: footnote;
 }*/
 
-.peritext-contents-print-placeholder
-{
-    page-break-after: always;
-    page: placeholder;
-}
-
 img
 {
     width: 9999em;
@@ -99,7 +93,8 @@ img
     content: leader('.') target-counter(attr(href), page);
 }
 
-.peritext-static-glossary-container .peritext-static-entity-block-page-pointer::after{
+.peritext-static-glossary-container .peritext-static-entity-block-page-pointer::after
+{
     content: target-counter(attr(href), page);
 }
 
@@ -107,51 +102,76 @@ img
 .peritext-static-end-notes-document-end,
 .peritext-static-references-list-container
 {
-  page-break-before: always;
-  page-break-after: always;
+    page-break-before: always;
+    page-break-after: always;
 }
 
 .peritext-static-entity-inline-container
 {
-  text-decoration: none;
-  font-weight : 800;
-  color: inherit;
+    font-weight: 800;
+
+    text-decoration: none;
+
+    color: inherit;
+}
+
+*
+{
+    prince-bookmark-label: none;
 }
 
 .peritext-static-section-container
 {
-  prince-bookmark-label: attr(title);
+    prince-bookmark-label: attr(title);
 }
 
 .peritext-static-section-level-1
 {
-  prince-bookmark-level: 1;
+    prince-bookmark-level: 1;
 }
 .peritext-static-section-level-2
 {
-  prince-bookmark-level: 2;
+    prince-bookmark-level: 2;
 }
 .peritext-static-section-level-3
 {
-  prince-bookmark-level: 3;
+    prince-bookmark-level: 3;
 }
 .peritext-static-section-level-4
 {
-  prince-bookmark-level: 4;
+    prince-bookmark-level: 4;
 }
 .peritext-static-section-level-5
 {
-  prince-bookmark-level: 5;
+    prince-bookmark-level: 5;
 }
 .peritext-static-section-level-6
 {
-  prince-bookmark-level: 6;
+    prince-bookmark-level: 6;
 }
 .peritext-static-section-level-7
 {
-  prince-bookmark-level: 7;
+    prince-bookmark-level: 7;
 }
 .peritext-static-section-level-8
 {
-  prince-bookmark-level: 8;
+    prince-bookmark-level: 8;
+}
+
+.peritext-static-front-cover-container
+{
+    page-break-after:always;
+    page-break-before:never;
+}
+
+
+.peritext-static-back-cover-container
+{
+    page: back-cover;
+    page-break-before:always;
+}
+
+.peritext-static-table-of-contents
+{
+  page: table-of-contents;
 }

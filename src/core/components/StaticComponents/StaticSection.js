@@ -35,6 +35,7 @@ export default class StaticSection extends React.Component {
   render() {
     const bibType = bibToSchema(this.props.section.metadata.general.bibType.value);
     const citeKey = this.props.section.metadata.general.citeKey.value;
+    const title = this.props.section.metadata.general.title.value;
     const generalityLevel = this.props.section.metadata.general.generalityLevel.value;
     return (
       <section
@@ -46,6 +47,7 @@ export default class StaticSection extends React.Component {
         resource={'#' + citeKey}
         itemProp="hasPart"
         property="hasPart"
+        title={title}
       >
         <StructuredMetadataPlaceholder section={this.props.section} />
         {renderContents(this.props.section.contents)}
