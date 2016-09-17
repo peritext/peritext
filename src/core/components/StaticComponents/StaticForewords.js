@@ -35,7 +35,6 @@ export default class StaticForewords extends React.Component {
   render() {
     const bibType = bibToSchema(this.props.section.metadata.general.bibType.value);
     const citeKey = this.props.section.metadata.general.citeKey.value;
-    const generalityLevel = this.props.section.metadata.general.generalityLevel.value;
     return (
       <section
         className={'peritext-static-section-container peritext-static-forewords-container'}

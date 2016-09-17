@@ -99,7 +99,7 @@ class bibTexParser {
       let character;
       let entering;
 
-      if(this.testing){
+      if (this.testing) {
         console.log('initial parser mode: ', mode, ' || stored wrapped pairs : ', wrapped);
       }
 
@@ -107,7 +107,7 @@ class bibTexParser {
 
         trespassing = index > this.consumable.length - 1;
         character = this.consumable.charAt(index);
-        if(this.testing){
+        if (this.testing) {
           console.log('===\nNEW PARSING STATE \n===');
           console.log('actual char', character);
           console.log('actual mode: ', mode);
@@ -121,7 +121,7 @@ class bibTexParser {
             message: 'finished to parse bibtex string without finding closing character ' + wrapped[wrapped.length - 1][1],
             initialString: this.initialStr
           };
-          if(this.testing)console.log('trespassing');
+          if (this.testing)console.log('trespassing');
           return true;
         // end of wrapped expression - if matches with last recorded wrapper's closing character
         } else if (character === wrapped[wrapped.length - 1][1]) {
@@ -130,17 +130,17 @@ class bibTexParser {
             temp += character;
           }
           index = 1;
-          if(this.testing)console.log('poped a wrapping level');
+          if (this.testing)console.log('poped a wrapping level');
         // end of key specification, record tempkey and wait to have found value
         } else if (mode === 'key' && character === '=') {
           tempKey = temp.trim();
-          if(this.testing)console.log('encountered a = in key mode, storing key ', tempKey);
+          if (this.testing)console.log('encountered a = in key mode, storing key ', tempKey);
           temp = '';
           mode = 'value';
           index = 1;
         // end of value specification - add value and reboot temp
         }else if (mode === 'value' && wrapped.length < 2 && character === ',') {
-          if(this.testing)console.log('end of line, storing prop');
+          if (this.testing)console.log('end of line, storing prop');
           this.addValue(this.currentObject, tempKey, temp.trim());
           temp = '';
           mode = 'key';
@@ -158,17 +158,17 @@ class bibTexParser {
           if (!(entering && wrapped.length <= 2)) {
             temp += character;
           }
-          if(this.testing)console.log('continuing in value ', temp);
+          if (this.testing)console.log('continuing in value ', temp);
           index = 1;
         // default, by security
         } else {
-          if(this.testing)console.log('default exit doing nothing');
+          if (this.testing)console.log('default exit doing nothing');
           // if(this.testing)console.log('current string: ', this. consumable.substr(index));
           temp += character;
           index = 1;
         }
         this.consumable = this.consumable.substr(index);
-        if(this.testing)console.log(this.currentObject);
+        if (this.testing)console.log(this.currentObject);
 
       }
       this.addValue(this.currentObject, tempKey.trim(), temp.trim());

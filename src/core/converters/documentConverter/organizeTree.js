@@ -66,15 +66,15 @@ const formatSections = (sections) =>{
   return formattedSections;
 };
 
-const moveInArray = (inputArray, old_index, new_index)=> {
+const moveInArray = (inputArray, oldIndex, newIndex)=> {
   const array = [...inputArray];
-  if (new_index >= array.length) {
-    var k = new_index - array.length;
-    while ((k--) + 1) {
-        array.push(undefined);
+  if (newIndex >= array.length) {
+    let toFill = newIndex - array.length;
+    while ((toFill--) + 1) {
+      array.push(undefined);
     }
   }
-  array.splice(new_index, 0, array.splice(old_index, 1)[0]);
+  array.splice(newIndex, 0, array.splice(oldIndex, 1)[0]);
   return array;
 };
 

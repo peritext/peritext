@@ -100,9 +100,12 @@ export const contextualizeBlockStatic = (inputDocument, inputContextualization, 
  * @param {Object} settings - the specific rendering settings to use for resolving the contextualization
  * @return {Object} newDocument - the updated representation of the peritext document in which the contextualization was made
  */
-export const contextualizeInlineDynamic = contextualizeInlineStatic;/*(inputDocument, contextualization, settings) => {
+export const contextualizeInlineDynamic = contextualizeInlineStatic;
+/*
+(inputDocument, contextualization, settings) => {
   return inputDocument;
-}*/
+}
+*/
 
 /**
  * Handle an block contextualization for dynamic outputs
@@ -111,7 +114,9 @@ export const contextualizeInlineDynamic = contextualizeInlineStatic;/*(inputDocu
  * @param {Object} settings - the specific rendering settings to use for resolving the contextualization
  * @return {Object} newDocument - the updated representation of the peritext document in which the contextualization was made
  */
-export const contextualizeBlockDynamic = contextualizeBlockStatic;/* (inputDocument, contextualization, settings) => {
+export const contextualizeBlockDynamic = contextualizeBlockStatic;
+/*
+(inputDocument, contextualization, settings) => {
   return inputDocument;
 };
 */
