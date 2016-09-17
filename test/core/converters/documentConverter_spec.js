@@ -2,7 +2,7 @@ import {expect} from 'chai';
 import {waterfall} from 'async';
 import {writeFile} from 'fs';
 
-import {parseSection, serializeSectionList} from '../../../src/core/converters/sectionConverter';
+import {parseSection, serializeSectionList} from '../../../src/core/converters/documentConverter';
 import {createFromPath, updateFromPath, deleteFromPath, readFromPath} from '../../../src/connectors/filesystem';
 import defaultParameters from '../../../src/config/defaultParameters';
 import * as models from '../../../src/core/models/';
@@ -14,7 +14,7 @@ const params = {
   basePath: base_path
 }
 /*
-describe('sectionConverter:parser', function(){
+describe('documentConverter:parser', function(){
   it('should parse sample content successfully', function(done){
     waterfall([
         function(callback){
@@ -81,7 +81,7 @@ describe('sectionConverter:parser', function(){
 */
 
 /*
-describe('sectionConverter:serializer', function(){
+describe('documentConverter:serializer', function(){
   it('should serialize without errors, inconsistancies or undefined values', function(done){
     let parsedFsTree;
     waterfall([

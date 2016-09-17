@@ -6,7 +6,7 @@ import {exportSectionToPdf} from '../../src';
 import * as assetsController from './../../src/core/controllers/assetsController';
 import * as models from '../../src/core/models/';
 
-// import {parseSection} from '../../src/core/converters/sectionConverter';
+// import {parseSection} from '../../src/core/converters/documentConverter';
 // import {readFromPath} from '../../src/connectors/filesystem';
 import defaultParameters from '../../src/config/defaultParameters';
 

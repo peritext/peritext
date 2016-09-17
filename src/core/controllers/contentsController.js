@@ -9,9 +9,9 @@ import {
   ensureAsync
 } from 'async';
 import {
-  parseSection,
+  parseDocument,
   serializeDocument
-} from '../converters/sectionConverter';
+} from '../converters/documentConverter';
 import { diff } from 'deep-diff';
 import * as filesystem from '../../connectors/filesystem';
 let connector;
@@ -158,7 +158,7 @@ export const updateFromSource = (params, models, parameters, callback) => {
       });
     },
     (tree, cb)=> {
-      parseSection({tree, models, parameters}, cb);
+      parseDocument({tree, models, parameters}, cb);
     }
   ],
   (err, results)=> {

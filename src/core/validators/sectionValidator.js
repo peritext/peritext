@@ -1,5 +1,5 @@
 /**
  * Section-related validation functions
- * @todo lighten sectionConverter by putting more utils there
+ * @todo lighten documentConverter by putting more utils there
  * @module validators/sectionValidator
  */
