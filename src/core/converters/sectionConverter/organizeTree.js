@@ -70,6 +70,7 @@ const makeRelations = (inputSections) =>{
   // find parents and predecessors
   const sections = inputSections.map((inputSection) =>{
     const section = Object.assign({}, inputSection);
+    // todo : clean the two ways of defining parents (at object root or in metadata)
     if (section.parent && section.metadata.general.parent === undefined) {
       section.metadata.general.parent = {value: section.parent};
     }
@@ -83,7 +84,7 @@ const makeRelations = (inputSections) =>{
   // order sections
   for (let index = sections.length - 1; index >= 0; index--) {
     const section = sections[index];
-    if (section.metadata.general.after) {
+    if (section.metadata.general.after && section.metadata.general.parent) {
       let indexAfter;
       sections.some((section2, thatIndex) =>{
         const citeKey = section2.metadata.general.citeKey.value;
@@ -93,8 +94,15 @@ const makeRelations = (inputSections) =>{
           return true;
         }
       });
-      sections.splice(indexAfter + 1, 0, section);
-      sections.splice(index + 1, 1);
+      if (indexAfter !== undefined) {
+        sections.splice(indexAfter + 1, 0, section);
+        sections.splice(index + 1, 1);
+      } else {
+        console.error(section.metadata.general.citeKey.value,
+          ' is supposed to be after ',
+          section.metadata.general.after.value,
+          ' but this section does not exist');
+      }
     }
   }
   const summary = sections.map(section => section.metadata.general.citeKey.value);
@@ -123,7 +131,6 @@ const makeRelations = (inputSections) =>{
  */
 export const organizeTree = ({errors = [], validTree}) => {
   const flatSections = flattenSections(validTree);
-  // console.log(flatSections);
   const formattedSections = formatSections(flatSections);
   const {outputSections: sections, summary} = makeRelations(formattedSections);
   return {

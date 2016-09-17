@@ -13,6 +13,7 @@ class bibTexParser {
    */
   constructor() {
     this.STATES = ['bibType', 'citeKey', 'properties'];
+    this.testing = false;
   }
 
   /**
@@ -43,9 +44,13 @@ class bibTexParser {
     const matchCiteKey = /^{([^,]+),/;
     const wrappers = [
       ['{', '}'],
-      ['"', '"'],
-      ["'", "'"]
+      ['"', '"']
     ];
+
+    if (this.testing) {
+      console.log('current state: ', this.currentState);
+    }
+
     let match;
     if (this.currentState === 'bibType') {
       match = matchBibType.exec(this.consumable);
@@ -63,7 +68,7 @@ class bibTexParser {
       };
       return true;
 
-    }else if (this.currentState === 'citeKey') {
+    } else if (this.currentState === 'citeKey') {
       match = matchCiteKey.exec(this.consumable);
       if (match) {
         this.currentObject.citeKey = match[1];
@@ -94,10 +99,20 @@ class bibTexParser {
       let character;
       let entering;
 
+      if(this.testing){
+        console.log('initial parser mode: ', mode, ' || stored wrapped pairs : ', wrapped);
+      }
+
       while (wrapped.length > 0) {
 
         trespassing = index > this.consumable.length - 1;
         character = this.consumable.charAt(index);
+        if(this.testing){
+          console.log('===\nNEW PARSING STATE \n===');
+          console.log('actual char', character);
+          console.log('actual mode: ', mode);
+          console.log('actual wrapped pairs: ', wrapped);
+        }
 
         if (trespassing) {
           this.error = {
@@ -106,28 +121,32 @@ class bibTexParser {
             message: 'finished to parse bibtex string without finding closing character ' + wrapped[wrapped.length - 1][1],
             initialString: this.initialStr
           };
+          if(this.testing)console.log('trespassing');
           return true;
         // end of wrapped expression - if matches with last recorded wrapper's closing character
-        }else if (character === wrapped[wrapped.length - 1][1]) {
+        } else if (character === wrapped[wrapped.length - 1][1]) {
           wrapped.pop();
           if (wrapped.length > 1) {
             temp += character;
           }
           index = 1;
+          if(this.testing)console.log('poped a wrapping level');
         // end of key specification, record tempkey and wait to have found value
-        }else if (mode === 'key' && character === '=') {
+        } else if (mode === 'key' && character === '=') {
           tempKey = temp.trim();
+          if(this.testing)console.log('encountered a = in key mode, storing key ', tempKey);
           temp = '';
           mode = 'value';
           index = 1;
         // end of value specification - add value and reboot temp
         }else if (mode === 'value' && wrapped.length < 2 && character === ',') {
+          if(this.testing)console.log('end of line, storing prop');
           this.addValue(this.currentObject, tempKey, temp.trim());
           temp = '';
           mode = 'key';
           index = 1;
         // in the middle of some key or value = continue
-        }else if (mode === 'value') {
+        } else if (mode === 'value') {
           entering = false;
           // catch wrapper char
           wrappers.some((wrapper) => {
@@ -139,13 +158,18 @@ class bibTexParser {
           if (!(entering && wrapped.length <= 2)) {
             temp += character;
           }
+          if(this.testing)console.log('continuing in value ', temp);
           index = 1;
         // default, by security
-        }else {
+        } else {
+          if(this.testing)console.log('default exit doing nothing');
+          // if(this.testing)console.log('current string: ', this. consumable.substr(index));
           temp += character;
           index = 1;
         }
         this.consumable = this.consumable.substr(index);
+        if(this.testing)console.log(this.currentObject);
+
       }
       this.addValue(this.currentObject, tempKey.trim(), temp.trim());
 
@@ -182,6 +206,19 @@ class bibTexParser {
 }
 
 const parser = new bibTexParser();
+
+
+/**
+ * Parses a bibTeX string and returns an object
+ * @param {string} str - the bibTeX string to parse
+ * @return {function(error: error, result: Object)} callback - error and the resulting object
+ */
+export const parseBibTexStr = (str, callback) => {
+  if (typeof str === 'string') {
+    return parser.parse(str, callback);
+  }
+  return callback(new Error('must input a string'), undefined);
+};
 
 const validateBibObject = function(bibObject) {
   if (bibObject.citeKey === undefined) {
@@ -246,18 +283,6 @@ export const serializeBibTexObject = (bibObject) => {
   return `@${bibObject.bibType}{${bibObject.citeKey},
     ${str}
 }`;
-};
-
-/**
- * Parses a bibTeX string and returns an object
- * @param {string} str - the bibTeX string to parse
- * @return {function(error: error, result: Object)} callback - error and the resulting object
- */
-export const parseBibTexStr = (str, callback) => {
-  if (typeof str === 'string') {
-    return parser.parse(str, callback);
-  }
-  return callback(new Error('must input a string'), undefined);
 };
 
 /**
