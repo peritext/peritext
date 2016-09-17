@@ -52,7 +52,7 @@ var StaticFrontCover = function (_React$Component) {
      */
     value: function render() {
       var bibType = this.props.metadata.general.bibType.value;
-      if (bibType !== 'peritextphdthesis') {
+      if (bibType !== 'phdthesis') {
         return _react2.default.createElement(
           'section',
           {

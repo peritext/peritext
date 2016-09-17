@@ -102,9 +102,9 @@ var contextualizeBlockStatic = exports.contextualizeBlockStatic = function conte
  * @param {Object} settings - the specific rendering settings to use for resolving the contextualization
  * @return {Object} newDocument - the updated representation of the peritext document in which the contextualization was made
  */
-var contextualizeInlineDynamic = exports.contextualizeInlineDynamic = function contextualizeInlineDynamic(inputDocument, contextualization, settings) {
-  return inputDocument;
-};
+var contextualizeInlineDynamic = exports.contextualizeInlineDynamic = contextualizeInlineStatic; /*(inputDocument, contextualization, settings) => {
+                                                                                                 return inputDocument;
+                                                                                                 }*/
 
 /**
  * Handle an block contextualization for dynamic outputs
@@ -113,6 +113,7 @@ var contextualizeInlineDynamic = exports.contextualizeInlineDynamic = function c
  * @param {Object} settings - the specific rendering settings to use for resolving the contextualization
  * @return {Object} newDocument - the updated representation of the peritext document in which the contextualization was made
  */
-var contextualizeBlockDynamic = exports.contextualizeBlockDynamic = function contextualizeBlockDynamic(inputDocument, contextualization, settings) {
-  return inputDocument;
-};
+var contextualizeBlockDynamic = exports.contextualizeBlockDynamic = contextualizeBlockStatic; /* (inputDocument, contextualization, settings) => {
+                                                                                              return inputDocument;
+                                                                                              };
+                                                                                              */

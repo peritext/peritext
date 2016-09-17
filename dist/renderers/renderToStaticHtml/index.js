@@ -126,17 +126,16 @@ var renderDocument = exports.renderDocument = function renderDocument(_ref, asse
     // prepare translations
     var lang = renderedDocument.metadata.general.language ? renderedDocument.metadata.general.language.value : 'en';
     var messages = require('./../../../translations/locales/' + lang + '.json');
-    // build metadata (todo : check if react-based helmet lib could cover "rare" metadata props like dublincore ones)
+    // build metadata (todo : check if react-based helmet lib could cover all metadata props like dublincore ones)
     var metaHead = '<meta name="generator" content="peritext"/>';
-    for (var domain in document.metadata) {
-      if (renderedDocument.metadata[domain]) {
-        for (var key in renderedDocument.metadata[domain]) {
-          if (renderedDocument.metadata[domain][key] && renderedDocument.metadata[domain][key].htmlHead) {
-            metaHead += renderedDocument.metadata[domain][key].htmlHead;
-          }
+    Object.keys(document.metadata).forEach(function (domain) {
+      Object.keys(document.metadata[domain]).forEach(function (key) {
+        if (renderedDocument.metadata[domain][key] && renderedDocument.metadata[domain][key].htmlHead) {
+          metaHead += renderedDocument.metadata[domain][key].htmlHead;
         }
-      }
-    }
+      });
+    });
+
     // order contextualizations (ibid/opCit, ...)
     renderedDocument = (0, _resolveContextualizations.resolveContextualizationsRelations)(renderedDocument, finalSettings);
 

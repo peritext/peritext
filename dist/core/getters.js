@@ -7,6 +7,10 @@ var getDocument = exports.getDocument = function getDocument(document) {
   return Object.assign({}, document);
 };
 
+var getDocumentMetadata = exports.getDocumentMetadata = function getDocumentMetadata(document) {
+  return Object.assign({}, document.metadata);
+};
+
 var packSection = function packSection(document, section) {
   var contextualizations = section.contextualizations.map(function (key) {
     return document.contextualizations[key];
