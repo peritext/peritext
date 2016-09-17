@@ -54,7 +54,7 @@ export const cleanNaiveTree = ({errors = [], validTree}, models) =>{
       }
       return true;
     });
-  }
+  } else naiveTree.resources = [];
   // populate automatic metadata
   if (metadata === undefined && naiveTree.name.charAt(0) !== '_') {
     errors.push({
@@ -68,7 +68,9 @@ export const cleanNaiveTree = ({errors = [], validTree}, models) =>{
       id: slug(naiveTree.name.toLowerCase()),
       title: naiveTree.name
     };
-  }else if (naiveTree.children) {
+  }
+  // parse children if present
+  if (naiveTree.children && naiveTree.name.charAt(0) !== '_') {
     naiveTree.children = naiveTree.children.map(child => {
       return cleanNaiveTree({validTree: child}, models);
     }).filter((result)=>{

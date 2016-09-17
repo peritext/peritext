@@ -214,7 +214,8 @@ mapMdJsonToPJson = (inputElement, contextualizations, elementPath) =>{
     const contextualizationId = element.attr.src;
     const contextualization = contextualizations[contextualizationId];
     contextualization.nodePath = elementPath;
-    const contents = (element.attr && element.attr.alt) ? element.attr.alt.join(' ') : '';
+    let contents = (element.attr && element.attr.alt) ? element.attr.alt : '';
+    contents = contents.join !== undefined ? contents.join(' ') : contents;
     element.child = [representContents(contents, contextualizations, elementPath)[0]];
     delete element.attr;
   }

@@ -98,8 +98,6 @@ const makeRelations = (inputSections) =>{
   const hasAfter = sections.filter(section => section.metadata.general.after);
   const hasNoAfter = sections.filter(section => section.metadata.general.after === undefined);
   sections = [...hasNoAfter, ...hasAfter];
-  console.log('after and no after:' );
-  console.log(sections.map(section=>section.metadata.general.id.value));
   // resolve after statements
   for (let index = sections.length - 1; index >= 0; index--) {
     const section = sections[index];
@@ -114,7 +112,7 @@ const makeRelations = (inputSections) =>{
         }
       });
       if (indexAfter !== undefined && index !== indexAfter + 1) {
-        console.log('put ', section.metadata.general.id.value, index, ' after ', section.metadata.general.after.value, indexAfter);
+        // console.log('put ', section.metadata.general.id.value, index, ' after ', section.metadata.general.after.value, indexAfter);
         sections = moveInArray(sections, index, indexAfter + 1);
       } else if (indexAfter === undefined) {
         console.error(section.metadata.general.id.value,
