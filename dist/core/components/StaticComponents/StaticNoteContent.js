@@ -67,7 +67,7 @@ var StaticNote = function (_React$Component) {
           },
           this.props.note.noteNumber
         ),
-        (0, _componentsFactory2.default)(this.props.note.child)
+        (0, _componentsFactory2.default)(this.props.note.children)
       );
     }
   }]);

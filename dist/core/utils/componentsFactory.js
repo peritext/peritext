@@ -39,7 +39,7 @@ var jsToComponent = exports.jsToComponent = function jsToComponent(node, index) 
   return _react2.default.createElement(
     Tag,
     { key: index, id: node.attr && node.attr.id, href: node.attr && node.attr.href },
-    node.child && node.child.map(jsToComponent)
+    node.children && node.children.map(jsToComponent)
   );
 };
 

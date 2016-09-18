@@ -3,11 +3,13 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.composeRenderedSections = undefined;
+exports.setDynamicSectionContents = exports.setStaticSectionContents = exports.composeRenderedSections = undefined;
 
 var _referenceUtils = require('./../../core/utils/referenceUtils');
 
 var _getters = require('./../../core/getters');
+
+var _components = require('./../../core/components');
 
 /**
  * Resolves a sections' list against rendering settings by modifying contents, adding output-related pseudo-sections, and updating css styles
@@ -18,11 +20,6 @@ var _getters = require('./../../core/getters');
  * @param {array} messages - the intl messages to use for some sections localization (e.g. : translation of "Table of contents")
  * @return {Object} results - an object composed of an array of rendered sections and a string with the updated css styles
  */
-/**
- * Shared static rendering utils
- * @module renderers/sharedStaticUtils
- */
-
 var composeRenderedSections = exports.composeRenderedSections = function composeRenderedSections() {
   var sections = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
   var document = arguments[1];
@@ -173,4 +170,59 @@ var composeRenderedSections = exports.composeRenderedSections = function compose
     renderedSections: renderedSections,
     finalStyle: style
   };
+}; /**
+    * Shared static rendering utils
+    * @module renderers/sharedStaticUtils
+    */
+
+var resolveStaticNode = function resolveStaticNode(inputNode, section, settings) {
+  var node = Object.assign({}, inputNode);
+  if (node.tag === 'note') {
+    var note = section.notes.find(function (thatNote) {
+      return thatNote.id === node.target;
+    });
+    node.props = { note: note };
+    if (settings.notesPosition === 'footnotes') {
+      node.tag = _components.StaticFootnote;
+    } else {
+      node.tag = _components.StaticNotePointer;
+    }
+    node.special = true;
+  }
+  if (node.children) {
+    node.children = node.children.map(function (child) {
+      return resolveStaticNode(child, section, settings);
+    });
+  }
+  return node;
+};
+
+var setStaticSectionContents = exports.setStaticSectionContents = function setStaticSectionContents(section, key, settings) {
+  return section[key].map(function (node) {
+    return resolveStaticNode(node, section, settings);
+  });
+};
+
+var resolveDynamicNode = function resolveDynamicNode(inputNode, section, settings) {
+  var node = Object.assign({}, inputNode);
+  if (node.tag === 'note') {
+    var note = section.notes.find(function (thatNote) {
+      return thatNote.id === node.target;
+    });
+    node.props = { note: note };
+    node.tag = _components.StaticNotePointer;
+    node.special = true;
+  }
+  if (node.children) {
+    node.children = node.children.map(function (child) {
+      return resolveDynamicNode(child, section, settings);
+    });
+  }
+  return node;
+};
+
+var setDynamicSectionContents = exports.setDynamicSectionContents = function setDynamicSectionContents(section, key, settings) {
+  return section[key].map(function (node) {
+    return resolveDynamicNode(node, section, settings);
+  });
 };

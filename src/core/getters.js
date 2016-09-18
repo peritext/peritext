@@ -33,7 +33,6 @@ export const getForewords = (document) => {
   return packSection(document, section);
 };
 
-
 export const getTableOfSections = (document) =>
   document.summary.map(sectionKey =>{
     const metadata = document.sections[sectionKey].metadata;

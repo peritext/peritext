@@ -15,10 +15,6 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _server = require('react-dom/server');
-
-var _server2 = _interopRequireDefault(_server);
-
 var _reactIntl = require('react-intl');
 
 var _resolveDataDependencies = require('./../../core/resolvers/resolveDataDependencies');
@@ -37,16 +33,11 @@ var _components = require('./../../core/components');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/**
- * Render to static html
- * @module renderers/renderToStaticHtml
- */
-
 var defaultStylesPath = './../../config/defaultStyles/';
 
 /**
  * Renders a section representation as a string representation of an html page
- * @param {Object} params - The params of the render
+ * @param {Object} params - The params of the rendering
  * @param {Object} params.document - the document to render
  * @param {Object} params.settings - the specific rendering settings to use in order to produce the output
  * @param {string} params.destinationFolder - where to output the file
@@ -54,6 +45,11 @@ var defaultStylesPath = './../../config/defaultStyles/';
  * @param {Object} assetsParams - the assets parameters to use while communicating with assetsController
  * @param {function(err:error, result:string)} rendererCallback - the possible errors encountered during rendering, and the resulting html data as a string
  */
+/**
+ * Render to dynamic html
+ * @module renderers/renderToDynamicHtml
+ */
+
 var renderDocument = exports.renderDocument = function renderDocument(_ref, assetsController, assetsParams, rendererCallback) {
   var document = _ref.document;
   var _ref$settings = _ref.settings;
@@ -66,37 +62,30 @@ var renderDocument = exports.renderDocument = function renderDocument(_ref, asse
 
   (0, _async.waterfall)([
   // load default css rules
-  function (cback) {
-    (0, _fs.readFile)((0, _path.resolve)(__dirname + defaultStylesPath + 'global.css'), function (err, contents) {
+  /*(cback) =>{
+    readFile(resolve(__dirname + defaultStylesPath + 'global.css'), (err, contents)=> {
       if (!err) {
         style += contents;
       }
       cback(err);
     });
-    // load default @paged-related css rules
-  }, function (cback) {
-    (0, _fs.readFile)((0, _path.resolve)(__dirname + defaultStylesPath + 'page.css'), function (err, contents) {
-      if (!err) {
-        style += contents;
-      }
-      cback(err);
-    });
-  }, function (depCallback) {
-    (0, _resolveDataDependencies2.default)(document, assetsController, assetsParams, true, depCallback);
-    // build html code
-  }, function (inputDocument, cback) {
+  // load default @paged-related css rules
+  },*/
+  /*(depCallback) =>{
+    resolveDataDependencies(document, assetsController, assetsParams, true, depCallback);
+  // build html code
+  },*/function ( /*inputDocument*/document, cback) {
     var renderedDocument = Object.assign({}, inputDocument);
     // build final css code (default + user-generated customizers)
-    var cssCustomizers = renderedDocument.customizers && renderedDocument.customizers.styles;
+    /*const cssCustomizers = renderedDocument.customizers && renderedDocument.customizers.styles;
     if (cssCustomizers !== undefined) {
-      for (var name in cssCustomizers) {
+      for (const name in cssCustomizers) {
         if (name !== 'screen.css') {
           style += '\n\n' + cssCustomizers[name];
         }
       }
-    }
-    // build metadata (todo : check if react-based helmet lib could cover all metadata props like dublincore ones)
-    var metaHead = '<meta name="generator" content="peritext"/>';
+    }*/
+    var metaHead = '';
     Object.keys(document.metadata).forEach(function (domain) {
       Object.keys(document.metadata[domain]).forEach(function (key) {
         if (renderedDocument.metadata[domain][key] && renderedDocument.metadata[domain][key].htmlHead) {
@@ -104,41 +93,26 @@ var renderDocument = exports.renderDocument = function renderDocument(_ref, asse
         }
       });
     });
+    renderedDocument.metaHead = metaHead;
 
     // order contextualizations (ibid/opCit, ...)
     renderedDocument = (0, _resolveContextualizations.resolveContextualizationsRelations)(renderedDocument, finalSettings);
 
-    // resolve contextualizations js representation according to settings
-    renderedDocument.figuresCount = 0;
-
     renderedDocument = Object.keys(renderedDocument.contextualizations).reduce(function (doc, contId) {
-      return (0, _resolveContextualizations.resolveContextualizationImplementation)(doc.contextualizations[contId], doc, 'static', finalSettings);
+      return (0, _resolveContextualizations.resolveContextualizationImplementation)(doc.contextualizations[contId], doc, 'dynamic', finalSettings);
     }, renderedDocument);
 
     // transform input js abstraction of contents to a js abstraction specific to rendering settings
     var sections = renderedDocument.summary.map(function (sectionKey) {
       var section1 = renderedDocument.sections[sectionKey];
-      var contents = (0, _sharedStaticUtils.setStaticSectionContents)(section1, 'contents', finalSettings);
+      var contents = (0, _sharedStaticUtils.setDynamicSectionContents)(section1, 'contents', finalSettings);
       return Object.assign({}, section1, { contents: contents }, { type: 'contents' });
     });
 
-    // prepare translations
-    var lang = renderedDocument.metadata.general.language ? renderedDocument.metadata.general.language.value : 'en';
-    var messages = require('./../../../translations/locales/' + lang + '.json');
-    // render sections
+    sections.forEach(function (section) {
+      renderedDocument.sections[section.metadata.general.id.value] = section;
+    });
 
-    var _composeRenderedSecti = (0, _sharedStaticUtils.composeRenderedSections)(sections, renderedDocument, finalSettings, style, messages);
-
-    var renderedSections = _composeRenderedSecti.renderedSections;
-    var finalStyle = _composeRenderedSecti.finalStyle;
-    // render document
-
-    var renderedContents = _server2.default.renderToStaticMarkup(_react2.default.createElement(
-      _reactIntl.IntlProvider,
-      { locale: lang, messages: messages },
-      _react2.default.createElement(_components.StaticDocument, { document: renderedDocument, sections: renderedSections, settings: finalSettings })
-    ));
-    var html = ('\n<!doctype:html>\n<html>\n  <head>\n    ' + metaHead + '\n    <style>\n      ' + finalStyle + '\n    </style>\n  </head>\n  <body>\n    ' + renderedContents + '\n   </body>\n</html>').replace(/itemscope=""/g, 'itemscope');
-    cback(null, html);
+    cback(null, renderedDocument);
   }], rendererCallback);
 };

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.exportSectionToPdf = undefined;
+exports.exportDocumentToPdf = undefined;
 
 var _path = require('path');
 
@@ -32,7 +32,7 @@ var Prince = require('prince');
 
 
 /**
- * Exports a section representation to a pdf file
+ * Exports a section representation of a peritext document to a pdf file
  * @param {Object} params - The params of the export
  * @param {Object} params.document - the document to export
  * @param {Object} params.settings - the specific rendering settings to use in order to produce the output
@@ -41,7 +41,7 @@ var Prince = require('prince');
  * @param {Object} assetsParams - the assets parameters to use while communicating with assetsController
  * @param {function(err:error)} callback - the possible errors encountered during export
  */
-var exportSectionToPdf = exports.exportSectionToPdf = function exportSectionToPdf(_ref, assetsController, assetsParams, finalCallback) {
+var exportDocumentToPdf = exports.exportDocumentToPdf = function exportDocumentToPdf(_ref, assetsController, assetsParams, finalCallback) {
   var document = _ref.document;
   var settings = _ref.settings;
   var destinationFolder = _ref.destinationFolder;

@@ -1,13 +1,12 @@
 /**
- * Render to static html
- * @module renderers/renderToStaticHtml
+ * Render to dynamic html
+ * @module renderers/renderToDynamicHtml
  */
 
 import {waterfall} from 'async';
 import {readFile} from 'fs';
 import {resolve} from 'path';
 import React from 'react';
-import ReactDOMServer from 'react-dom/server';
 import {IntlProvider} from 'react-intl';
 
 import resolveDataDependencies from './../../core/resolvers/resolveDataDependencies';
@@ -18,8 +17,7 @@ import {
   resolveContextualizationsRelations
 } from './../../core/resolvers/resolveContextualizations';
 import {
-  composeRenderedSections,
-  setStaticSectionContents
+  setDynamicSectionContents
 } from './../sharedStaticUtils';
 import {
   StaticDocument
@@ -29,7 +27,7 @@ const defaultStylesPath = './../../config/defaultStyles/';
 
 /**
  * Renders a section representation as a string representation of an html page
- * @param {Object} params - The params of the render
+ * @param {Object} params - The params of the rendering
  * @param {Object} params.document - the document to render
  * @param {Object} params.settings - the specific rendering settings to use in order to produce the output
  * @param {string} params.destinationFolder - where to output the file
@@ -48,7 +46,7 @@ export const renderDocument = ({
 
   waterfall([
     // load default css rules
-    (cback) =>{
+    /*(cback) =>{
       readFile(resolve(__dirname + defaultStylesPath + 'global.css'), (err, contents)=> {
         if (!err) {
           style += contents;
@@ -56,29 +54,22 @@ export const renderDocument = ({
         cback(err);
       });
     // load default @paged-related css rules
-    }, (cback) =>{
-      readFile(resolve(__dirname + defaultStylesPath + 'page.css'), (err, contents)=> {
-        if (!err) {
-          style += contents;
-        }
-        cback(err);
-      });
-    }, (depCallback) =>{
+    },*/
+    /*(depCallback) =>{
       resolveDataDependencies(document, assetsController, assetsParams, true, depCallback);
     // build html code
-    }, (inputDocument, cback) =>{
+    },*/ (/*inputDocument*/document, cback) =>{
       let renderedDocument = Object.assign({}, inputDocument);
       // build final css code (default + user-generated customizers)
-      const cssCustomizers = renderedDocument.customizers && renderedDocument.customizers.styles;
+      /*const cssCustomizers = renderedDocument.customizers && renderedDocument.customizers.styles;
       if (cssCustomizers !== undefined) {
         for (const name in cssCustomizers) {
           if (name !== 'screen.css') {
             style += '\n\n' + cssCustomizers[name];
           }
         }
-      }
-      // build metadata (todo : check if react-based helmet lib could cover all metadata props like dublincore ones)
-      let metaHead = '<meta name="generator" content="peritext"/>';
+      }*/
+      let metaHead = '';
       Object.keys(document.metadata).forEach(domain => {
         Object.keys(document.metadata[domain]).forEach(key => {
           if (renderedDocument.metadata[domain][key] && renderedDocument.metadata[domain][key].htmlHead) {
@@ -86,48 +77,27 @@ export const renderDocument = ({
           }
         });
       });
+      renderedDocument.metaHead = metaHead;
 
       // order contextualizations (ibid/opCit, ...)
       renderedDocument = resolveContextualizationsRelations(renderedDocument, finalSettings);
 
-      // resolve contextualizations js representation according to settings
-      renderedDocument.figuresCount = 0;
-
       renderedDocument = Object.keys(renderedDocument.contextualizations).reduce((doc, contId)=>{
-        return resolveContextualizationImplementation(doc.contextualizations[contId], doc, 'static', finalSettings);
+        return resolveContextualizationImplementation(doc.contextualizations[contId], doc, 'dynamic', finalSettings);
       }, renderedDocument);
 
       // transform input js abstraction of contents to a js abstraction specific to rendering settings
       const sections = renderedDocument.summary.map(sectionKey => {
         const section1 = renderedDocument.sections[sectionKey];
-        const contents = setStaticSectionContents(section1, 'contents', finalSettings);
+        const contents = setDynamicSectionContents(section1, 'contents', finalSettings);
         return Object.assign({}, section1, {contents}, {type: 'contents'});
       });
 
-      // prepare translations
-      const lang = renderedDocument.metadata.general.language ? renderedDocument.metadata.general.language.value : 'en';
-      const messages = require('./../../../translations/locales/' + lang + '.json');
-      // render sections
-      const {renderedSections, finalStyle} = composeRenderedSections(sections, renderedDocument, finalSettings, style, messages);
-      // render document
-      const renderedContents = ReactDOMServer.renderToStaticMarkup(
-        <IntlProvider locale={lang} messages={messages}>
-          <StaticDocument document={renderedDocument} sections={renderedSections} settings={finalSettings} />
-        </IntlProvider>);
-      const html = `
-<!doctype:html>
-<html>
-  <head>
-    ${metaHead}
-    <style>
-      ${finalStyle}
-    </style>
-  </head>
-  <body>
-    ${renderedContents}
-   </body>
-</html>`.replace(/itemscope=""/g, 'itemscope');
-      cback(null, html);
+      sections.forEach(section => {
+        renderedDocument.sections[section.metadata.general.id.value] = section;
+      });
+
+      cback(null, renderedDocument);
     }
   ], rendererCallback);
 };

@@ -35,7 +35,9 @@ export const defaultParameters = parameters;
  * Exposes section export to pdf with print renderer function
  * @property {function} exportSectionToPdf
  */
-export {exportSectionToPdf} from './exporters/pdfExporter';
+export { exportDocumentToPdf } from './exporters/pdfExporter';
+
+export { renderDocument as renderToDynamicDocument } from './renderers/renderToDynamicHtml';
 
 export const renderContents = componentsFactory;
 

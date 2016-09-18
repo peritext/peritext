@@ -33,14 +33,14 @@ var contextualizeInlineStatic = exports.contextualizeInlineStatic = function con
     opCit: contextualization.sectionOpCit
   };
   // citation text --> wrap in span > q + citation
-  if (node.child) {
+  if (node.children) {
     var citation = {
       node: 'element',
       special: true,
       tag: formatter.InlineCitation,
       props: props
     };
-    var child = node.child.slice();
+    var children = node.children.slice();
     var quote = {
       attr: {
         class: 'peritext-quote-container',
@@ -48,11 +48,11 @@ var contextualizeInlineStatic = exports.contextualizeInlineStatic = function con
       },
       node: 'element',
       tag: 'q',
-      child: child
+      children: children
     };
     node.node = 'element';
     node.tag = 'span';
-    node.child = [quote, {
+    node.children = [quote, {
       node: 'text',
       text: ' ('
     }, citation, {

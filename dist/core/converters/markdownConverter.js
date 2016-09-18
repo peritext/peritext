@@ -240,13 +240,14 @@ _mapMdJsonToPJson = function mapMdJsonToPJson(inputElement, contextualizations, 
       _contextualization.nodePath = elementPath;
       var contents = element.attr && element.attr.alt ? element.attr.alt : '';
       contents = contents.join !== undefined ? contents.join(' ') : contents;
-      element.child = [representContents(contents, contextualizations, elementPath)[0]];
+      element.children = [representContents(contents, contextualizations, elementPath)[0]];
       delete element.attr;
     }
   if (element.child) {
-    element.child = element.child.map(function (child, elementIndex) {
-      return _mapMdJsonToPJson(child, contextualizations, elementPath.concat(['child', elementIndex]));
+    element.children = element.child.map(function (child, elementIndex) {
+      return _mapMdJsonToPJson(child, contextualizations, elementPath.concat(['children', elementIndex]));
     });
+    delete element.child;
   }
   return element;
 };
@@ -288,18 +289,17 @@ var markdownToJsAbstraction = exports.markdownToJsAbstraction = function markdow
   // convert cleaned markdown contents to js representation
   section.contents = representContents(newMd, contextualizations, [sectionId, 'contents']);
   section.notes = notes.map(function (note, noteIndex) {
-
     var contents = (0, _html2json.html2json)((0, _marked2.default)(note.markdownContents)).child.map(function (child, blockIndex) {
       return _mapMdJsonToPJson(child, contextualizations, [sectionId, 'notes', noteIndex]);
     });
     return Object.assign(note, {
-      child: [
+      children: [
       // this is dirty, done for matching contextualization nodePath which is displaced otherwise
       // other dirty solution : handle that in mapMdJsonToPJson with a path check
       // (if in notes prop => decrement contextualization target)
       { node: 'text',
         text: ''
-      }].concat(_toConsumableArray(contents[0].child))
+      }].concat(_toConsumableArray(contents[0].children))
     });
   });
   return { errors: errors, section: section, contextualizers: contextualizers, contextualizations: contextualizations };

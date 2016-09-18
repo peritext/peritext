@@ -37,7 +37,7 @@ var contextualizeInlineStatic = exports.contextualizeInlineStatic = function con
   var nodeBlockIndex = path[3];
   var figureId = void 0;
   var number = void 0;
-  var contents = node.child;
+  var contents = node.children;
   // if figure is not there yet, add it
   if (!contextualization.sectionOpCit) {
     figureId = sectionId + '-' + contextualization.id;
@@ -95,7 +95,7 @@ var contextualizeInlineStatic = exports.contextualizeInlineStatic = function con
     attr: {
       href: displayId
     },
-    child: [{
+    children: [{
       node: 'text',
       text: 'figure ' + number
     }]
@@ -104,7 +104,7 @@ var contextualizeInlineStatic = exports.contextualizeInlineStatic = function con
     text: ') '
   }]);
   node.tag = 'span';
-  node.child = newContents;
+  node.children = newContents;
   document.contextualizations[contextualization.id] = contextualization;
   return document;
 };

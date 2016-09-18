@@ -51,10 +51,10 @@ var contextualizeInlineStatic = exports.contextualizeInlineStatic = function con
   var noteId = sectionId + '-' + noteNumber;
   section.notes.push({
     noteNumber: noteNumber,
-    child: [link],
+    children: [link],
     id: noteId
   });
-  node.child = [].concat(_toConsumableArray(node.child), [{
+  node.children = [].concat(_toConsumableArray(node.children), [{
     element: 'node',
     tag: 'note',
     target: noteId
@@ -82,7 +82,7 @@ var contextualizeBlockStatic = exports.contextualizeBlockStatic = function conte
   document.figuresCount = document.figuresCount ? document.figuresCount + 1 : 1;
   contextualization.figureId = figureId;
   contextualization.figureNumber = document.figuresCount;
-  var captionContent = node.child && node.child[0] && node.child[0].child || undefined;
+  var captionContent = node.children && node.children[0] && node.children[0].children || undefined;
   var figure = {
     node: 'element',
     special: true,

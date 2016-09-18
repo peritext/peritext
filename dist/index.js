@@ -3,14 +3,23 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getDocumentMetadata = exports.getGlossary = exports.getContextualizerContextualizations = exports.getResourceContextualizations = exports.getTableOfFigures = exports.getTableOfSections = exports.getForewords = exports.getSection = exports.packSection = exports.renderContents = exports.exportSectionToPdf = exports.defaultParameters = exports.defaultModels = exports.contentsController = exports.assetsController = undefined;
+exports.getDocumentMetadata = exports.getGlossary = exports.getContextualizerContextualizations = exports.getResourceContextualizations = exports.getTableOfFigures = exports.getTableOfSections = exports.getForewords = exports.getSection = exports.packSection = exports.renderContents = exports.renderToDynamicDocument = exports.exportDocumentToPdf = exports.defaultParameters = exports.defaultModels = exports.contentsController = exports.assetsController = undefined;
 
 var _pdfExporter = require('./exporters/pdfExporter');
 
-Object.defineProperty(exports, 'exportSectionToPdf', {
+Object.defineProperty(exports, 'exportDocumentToPdf', {
   enumerable: true,
   get: function get() {
-    return _pdfExporter.exportSectionToPdf;
+    return _pdfExporter.exportDocumentToPdf;
+  }
+});
+
+var _renderToDynamicHtml = require('./renderers/renderToDynamicHtml');
+
+Object.defineProperty(exports, 'renderToDynamicDocument', {
+  enumerable: true,
+  get: function get() {
+    return _renderToDynamicHtml.renderDocument;
   }
 });
 

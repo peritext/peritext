@@ -58,7 +58,7 @@ var StaticFootnote = function (_React$Component) {
           name: 'peritext-static-note-content-' + this.props.note.id,
           id: 'peritext-static-note-content-' + this.props.note.id
         },
-        (0, _componentsFactory2.default)(this.props.note.child)
+        (0, _componentsFactory2.default)(this.props.note.children)
       );
     }
   }]);

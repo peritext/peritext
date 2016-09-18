@@ -37,7 +37,7 @@ var contextualizeInlineStatic = exports.contextualizeInlineStatic = function con
   var path = ['sections'].concat(_toConsumableArray(contextualization.nodePath.slice()));
   var node = (0, _objectPath.get)(document, path);
   var entity = document.resources[contextualization.resources[0]];
-  var contents = node.child;
+  var contents = node.children;
   if (!contents || contents[0] && contents[0].text.trim().length === 0) {
     contents = document.contextualizers[contextualization.contextualizer].alias || entity.name || entity.firstname + ' ' + entity.lastname;
     contents = [{

@@ -9,6 +9,10 @@ import {
 import {
   getGlossary,
 } from './../../core/getters';
+import {
+  StaticFootnote,
+  StaticNotePointer
+} from './../../core/components';
 
 /**
  * Resolves a sections' list against rendering settings by modifying contents, adding output-related pseudo-sections, and updating css styles
@@ -162,4 +166,57 @@ export const composeRenderedSections = (sections = [], document, settings = {}, 
     renderedSections,
     finalStyle: style
   };
+};
+
+
+const resolveStaticNode = (inputNode, section, settings) =>{
+  const node = Object.assign({}, inputNode);
+  if (node.tag === 'note') {
+    const note = section.notes.find(thatNote =>{
+      return thatNote.id === node.target;
+    });
+    node.props = {note};
+    if (settings.notesPosition === 'footnotes') {
+      node.tag = StaticFootnote;
+    } else {
+      node.tag = StaticNotePointer;
+    }
+    node.special = true;
+  }
+  if (node.children) {
+    node.children = node.children.map(child =>{
+      return resolveStaticNode(child, section, settings);
+    });
+  }
+  return node;
+};
+
+export const setStaticSectionContents = (section, key, settings) =>{
+  return section[key].map(node => {
+    return resolveStaticNode(node, section, settings);
+  });
+};
+
+const resolveDynamicNode = (inputNode, section, settings) =>{
+  const node = Object.assign({}, inputNode);
+  if (node.tag === 'note') {
+    const note = section.notes.find(thatNote =>{
+      return thatNote.id === node.target;
+    });
+    node.props = {note};
+    node.tag = StaticNotePointer;
+    node.special = true;
+  }
+  if (node.children) {
+    node.children = node.children.map(child =>{
+      return resolveDynamicNode(child, section, settings);
+    });
+  }
+  return node;
+};
+
+export const setDynamicSectionContents = (section, key, settings) =>{
+  return section[key].map(node => {
+    return resolveDynamicNode(node, section, settings);
+  });
 };
