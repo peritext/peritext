@@ -3,7 +3,7 @@ import {resolve} from 'path';
 import {
   contentsController,
   assetsController,
-  exportSectionToPdf,
+  exportDocumentToPdf,
   defaultParameters,
   defaultModels
 } from './../../src';
@@ -26,7 +26,7 @@ export default function runExample() {
   ], (err, results)=>{
     writeFileSync(__dirname + '/output/serialized.json', JSON.stringify(results, null, 2));
     // const sections = results.sections;
-    exportSectionToPdf({
+    exportDocumentToPdf({
       document: results.document,
       destinationFolder
     }, assetsController, assetsParams , (err, success)=>{

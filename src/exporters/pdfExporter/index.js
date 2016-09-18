@@ -26,7 +26,7 @@ import {
 import {renderDocument} from './../../renderers/renderToStaticHtml';
 
 /**
- * Exports a section representation to a pdf file
+ * Exports a section representation of a peritext document to a pdf file
  * @param {Object} params - The params of the export
  * @param {Object} params.document - the document to export
  * @param {Object} params.settings - the specific rendering settings to use in order to produce the output
@@ -35,7 +35,7 @@ import {renderDocument} from './../../renderers/renderToStaticHtml';
  * @param {Object} assetsParams - the assets parameters to use while communicating with assetsController
  * @param {function(err:error)} callback - the possible errors encountered during export
  */
-export const exportSectionToPdf = ({
+export const exportDocumentToPdf = ({
   document,
   settings,
   destinationFolder,
