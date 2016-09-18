@@ -138,7 +138,7 @@ For instance, for the `webpage` contextualizer plugin, inputting a document whic
 * for print-like outputs, in a document in which a website's screenshot figure representation has been added, 
 * for web-like outputs, in a document in which an iframe figure representation has been added
 
-Please note that at this point though, document representation is still a plain javascript object representation.
+Please note that at this point, document representation is still a plain javascript object representation but it is no more serializable as React components are stored along the tree.
 
 ## (output-specific rcc document representation <-> outputs) renderers, exporters and lib. getters/setters
 
