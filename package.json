@@ -39,8 +39,8 @@
     "test": "mocha --compilers js:babel-core/register --recursive",
     "test:watch": "npm run test -- --watch",
     "validate": "npm ls",
-    "post-install": "npm run build",
-    "pre-publish" : "npm run build"
+    "postinstall": "npm run build",
+    "prepublish" : "npm run build"
   },
   "pre-commit": [
     "lint",
