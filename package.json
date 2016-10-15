@@ -24,11 +24,11 @@
     "data visualization",
     "resource contextualization"
   ],
-  "main": "./dist/peritext.js",
+  "main": "./build/peritext.js",
   "scripts": {
     "autocommitadd": "git add doc translations/locales",
     "examples": "babel-node ./examples/index.js",
-    "build": "mkdirp dist && gulp build",
+    "build": "mkdirp build && gulp build",
     "coverage": "nyc npm test && nyc check-coverage --lines 10 --functions 10 --branches 10 && nyc report --reporter=text-lcov | coveralls",
     "doc": "esdoc -c esdoc.json",
     "lint": "eslint src",
@@ -38,7 +38,9 @@
     "prepublish": "npm run build",
     "test": "mocha --compilers js:babel-core/register --recursive",
     "test:watch": "npm run test -- --watch",
-    "validate": "npm ls"
+    "validate": "npm ls",
+    "post-install": "npm run build",
+    "pre-publish" : "npm run build"
   },
   "pre-commit": [
     "lint",

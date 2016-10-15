@@ -22,10 +22,10 @@ gulp.task('build', function(){
         ]
       ]
     }))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('build'));
   gulp.src([
       'src/**/*.json'
     ])
     .pipe(strip())
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('build'));
 });
