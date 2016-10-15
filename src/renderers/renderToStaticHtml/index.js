@@ -20,7 +20,7 @@ import {
 import {
   composeRenderedSections,
   setStaticSectionContents
-} from './../sharedStaticUtils';
+} from './../renderingUtils';
 import {
   StaticDocument
 } from './../../core/components';

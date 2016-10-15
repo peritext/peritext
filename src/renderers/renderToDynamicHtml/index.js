@@ -1,5 +1,5 @@
 /**
- * Render to dynamic html
+ * Render a document to dynamic html
  * @module renderers/renderToDynamicHtml
  */
 
@@ -18,7 +18,7 @@ import {
 } from './../../core/resolvers/resolveContextualizations';
 import {
   setDynamicSectionContents
-} from './../sharedStaticUtils';
+} from './../renderingUtils';
 /*
 import {
   StaticDocument
@@ -59,16 +59,15 @@ export const renderDocument = ({
     // load default @paged-related css rules
     },
     */
-    /*
     (depCallback) =>{
-      resolveDataDependencies(document, assetsController, assetsParams, true, depCallback);
-    // build html code
+      resolveDataDependencies(document, assetsController, assetsParams, false, depCallback);
     },
-    */ (// inputDocument,
+    // build html code
+    (inputDocument,
       cback) =>{
       let renderedDocument = Object.assign({}, document); // inputDocument
       // build final css code (default + user-generated customizers)
-      /*
+
       const cssCustomizers = renderedDocument.customizers && renderedDocument.customizers.styles;
       if (cssCustomizers !== undefined) {
         for (const name in cssCustomizers) {
@@ -77,7 +76,9 @@ export const renderDocument = ({
           }
         }
       }
-      */
+      // build metadata html head at document level
+      // todo : check if react-helmet renders dublincore metadata properly
+      // (reason why I don't use it at first)
       let metaHead = '';
       Object.keys(document.metadata).forEach(domain => {
         Object.keys(document.metadata[domain]).forEach(key => {
