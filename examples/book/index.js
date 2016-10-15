@@ -6,7 +6,7 @@ import {
   exportDocumentToPdf,
   defaultParameters,
   defaultModels
-} from './../../src';
+} from './../../src/peritext';
 import {writeFileSync} from 'fs';
 
 export default function runExample() {
