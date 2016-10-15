@@ -42,7 +42,9 @@ export { exportDocumentToPdf } from './exporters/pdfExporter';
  */
 export {
   renderDocument as renderToDynamicDocument,
-  renderObjectMetadata
+  renderObjectMetadata,
+  resolveContextualizationsRelations,
+  renderSection
 } from './renderers/renderToDynamicHtml';
 
 export const renderContents = componentsFactory;

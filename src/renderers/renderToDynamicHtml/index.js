@@ -112,6 +112,15 @@ export const renderDocument = ({
   ], rendererCallback);
 };
 
+export function resolveContextualizationsRelations(document, settings) {
+  const finalSettings = resolveSettings(settings, document.metadata.general.bibType.value, settingsModels);
+  return resolveContextualizationsRelations(renderedDocument, finalSettings);
+}
+
+export function renderSection (section, settings) {
+  return setDynamicSectionContents(section, 'contents', finalSettings);
+}
+
 export function renderObjectMetadata (document) {
   return Object.keys(document.metadata).forEach(domain => {
         Object.keys(document.metadata[domain]).forEach(key => {
