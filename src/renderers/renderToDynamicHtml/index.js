@@ -87,7 +87,7 @@ export const renderDocument = ({
           }
         });
       });
-      renderedDocument.metaHead = metaHead;
+      renderedDocument.metaHead = renderObjectMetadata(document);
 
       // order contextualizations (ibid/opCit, ...)
       renderedDocument = resolveContextualizationsRelations(renderedDocument, finalSettings);
@@ -111,3 +111,13 @@ export const renderDocument = ({
     }
   ], rendererCallback);
 };
+
+export function renderObjectMetadata (document) {
+  return Object.keys(document.metadata).forEach(domain => {
+        Object.keys(document.metadata[domain]).forEach(key => {
+          if (renderedDocument.metadata[domain][key] && renderedDocument.metadata[domain][key].htmlHead) {
+            metaHead += renderedDocument.metadata[domain][key].htmlHead;
+          }
+        });
+      }).join('\n');
+}

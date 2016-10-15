@@ -36,8 +36,14 @@ export const defaultParameters = parameters;
  * @property {function} exportSectionToPdf
  */
 export { exportDocumentToPdf } from './exporters/pdfExporter';
-
-export { renderDocument as renderToDynamicDocument } from './renderers/renderToDynamicHtml';
+/**
+ * Exposes dynqmic rendering modules
+ * @property {function} exportSectionToPdf
+ */
+export {
+  renderDocument as renderToDynamicDocument,
+  renderObjectMetadata
+} from './renderers/renderToDynamicHtml';
 
 export const renderContents = componentsFactory;
 
