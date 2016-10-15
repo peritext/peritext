@@ -4,12 +4,12 @@
  */
 
 import {waterfall} from 'async';
-import {readFile} from 'fs';
-import {resolve} from 'path';
-import React from 'react';
-import {IntlProvider} from 'react-intl';
+// import {readFile} from 'fs';
+// import {resolve} from 'path';
+// import React from 'react';
+// import {IntlProvider} from 'react-intl';
 
-import resolveDataDependencies from './../../core/resolvers/resolveDataDependencies';
+// import resolveDataDependencies from './../../core/resolvers/resolveDataDependencies';
 import {resolveSettings} from './../../core/utils/modelUtils';
 import {settingsModels} from './../../core/models';
 import {
@@ -19,11 +19,13 @@ import {
 import {
   setDynamicSectionContents
 } from './../sharedStaticUtils';
+/*
 import {
   StaticDocument
 } from './../../core/components';
+*/
 
-const defaultStylesPath = './../../config/defaultStyles/';
+// const defaultStylesPath = './../../config/defaultStyles/';
 
 /**
  * Renders a section representation as a string representation of an html page
@@ -42,11 +44,12 @@ export const renderDocument = ({
 
   // populate rendering params with defaults if needed
   const finalSettings = resolveSettings(settings, document.metadata.general.bibType.value, settingsModels);
-  let style = '';
+  // let style = '';
 
   waterfall([
     // load default css rules
-    /*(cback) =>{
+    /*
+    (cback) =>{
       readFile(resolve(__dirname + defaultStylesPath + 'global.css'), (err, contents)=> {
         if (!err) {
           style += contents;
@@ -54,21 +57,27 @@ export const renderDocument = ({
         cback(err);
       });
     // load default @paged-related css rules
-    },*/
-    /*(depCallback) =>{
+    },
+    */
+    /*
+    (depCallback) =>{
       resolveDataDependencies(document, assetsController, assetsParams, true, depCallback);
     // build html code
-    },*/ (/*inputDocument*/document, cback) =>{
-      let renderedDocument = Object.assign({}, inputDocument);
+    },
+    */ (// inputDocument,
+      cback) =>{
+      let renderedDocument = Object.assign({}, document); // inputDocument
       // build final css code (default + user-generated customizers)
-      /*const cssCustomizers = renderedDocument.customizers && renderedDocument.customizers.styles;
+      /*
+      const cssCustomizers = renderedDocument.customizers && renderedDocument.customizers.styles;
       if (cssCustomizers !== undefined) {
         for (const name in cssCustomizers) {
           if (name !== 'screen.css') {
             style += '\n\n' + cssCustomizers[name];
           }
         }
-      }*/
+      }
+      */
       let metaHead = '';
       Object.keys(document.metadata).forEach(domain => {
         Object.keys(document.metadata[domain]).forEach(key => {
