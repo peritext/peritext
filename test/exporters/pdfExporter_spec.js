@@ -1,7 +1,7 @@
 import {expect} from 'chai';
 import {waterfall} from 'async';
 const cobaye = require('../_sample_content/parsing_output.json');
-import {exportSectionToPdf} from '../../src';
+import {exportSectionToPdf} from '../../src/peritext';
 
 import * as assetsController from './../../src/core/controllers/assetsController';
 import * as models from '../../src/core/models/';
