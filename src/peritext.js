@@ -43,7 +43,7 @@ export { exportDocumentToPdf } from './exporters/pdfExporter';
 export {
   renderDocument as renderToDynamicDocument,
   renderObjectMetadata,
-  resolveContextualizationsRelations,
+  resolveDocumentContextualizationsRelations,
   renderSection
 } from './renderers/renderToDynamicHtml';
 

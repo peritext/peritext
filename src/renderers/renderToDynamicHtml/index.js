@@ -112,21 +112,21 @@ export const renderDocument = ({
   ], rendererCallback);
 };
 
-export function resolveContextualizationsRelations(document, settings) {
+export function resolveDocumentContextualizationsRelations(document, settings=[]) {
   const finalSettings = resolveSettings(settings, document.metadata.general.bibType.value, settingsModels);
   return resolveContextualizationsRelations(renderedDocument, finalSettings);
 }
 
 export function renderSection (section, settings) {
-  return setDynamicSectionContents(section, 'contents', finalSettings);
+  return setDynamicSectionContents(section, 'contents', settings);
 }
 
 export function renderObjectMetadata (document) {
-  return Object.keys(document.metadata).forEach(domain => {
-        Object.keys(document.metadata[domain]).forEach(key => {
+  return Object.keys(document.metadata).map(domain => {
+        Object.keys(document.metadata[domain]).map(key => {
           if (renderedDocument.metadata[domain][key] && renderedDocument.metadata[domain][key].htmlHead) {
             metaHead += renderedDocument.metadata[domain][key].htmlHead;
           }
-        });
+        }).join('\n');
       }).join('\n');
 }
