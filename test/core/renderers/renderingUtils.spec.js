@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 
-import {composeRenderedSections} from '../../../src/renderers/sharedStaticUtils';
+import {composeRenderedSections} from '../../../src/renderers/renderingUtils';
 import {sectionTypeModels, settingsModels} from '../../../src/core/models';
 import {resolveSettings} from '../../../src/core/utils/modelUtils';
 
