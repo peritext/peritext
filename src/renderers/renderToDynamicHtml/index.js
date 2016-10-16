@@ -114,7 +114,7 @@ export const renderDocument = ({
 
 export function resolveDocumentContextualizationsRelations(document, settings=[]) {
   const finalSettings = resolveSettings(settings, document.metadata.general.bibType.value, settingsModels);
-  return resolveContextualizationsRelations(renderedDocument, finalSettings);
+  return resolveContextualizationsRelations(document, finalSettings);
 }
 
 export function renderSection (section, settings) {
