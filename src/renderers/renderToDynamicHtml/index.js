@@ -129,6 +129,10 @@ export function resolveDocumentContextualizationsRelations(document, settings = 
   return resolveContextualizationsRelations(document, finalSettings);
 }
 
-export function renderSection(section, settings) {
-  return setDynamicSectionContents(section, 'contents', settings);
+export function renderSectionContents(section, settings) {
+  return Object.assign(section, {
+    contents: setDynamicSectionContents(section, 'contents', settings)
+  }, {
+    notes: setDynamicSectionContents(section, 'notes', settings)
+  });
 }

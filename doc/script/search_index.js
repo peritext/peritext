@@ -708,9 +708,9 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "peritext/src/renderers/rendertodynamichtml/index.js~rendersection",
-    "function/index.html#static-function-renderSection",
-    "<span>renderSection</span> <span class=\"search-result-import-path\">peritext/src/renderers/renderToDynamicHtml/index.js</span>",
+    "peritext/src/renderers/rendertodynamichtml/index.js~rendersectioncontents",
+    "function/index.html#static-function-renderSectionContents",
+    "<span>renderSectionContents</span> <span class=\"search-result-import-path\">peritext/src/renderers/renderToDynamicHtml/index.js</span>",
     "function"
   ],
   [

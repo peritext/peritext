@@ -44,7 +44,7 @@ export {
   renderDocument as renderToDynamicDocument,
   renderObjectMetadata,
   resolveDocumentContextualizationsRelations,
-  renderSection
+  renderSectionContents
 } from './renderers/renderToDynamicHtml';
 
 export const renderContents = componentsFactory;
