@@ -4,17 +4,24 @@ export const getDocument = (document) => Object.assign({}, document);
 export const getDocumentMetadata = (document) => Object.assign({}, document.metadata);
 
 const packSection = (document, section) => {
-  const contextualizations = section.contextualizations.map(key =>
+  const mappedContextualizations = section.contextualizations.map(key =>
     document.contextualizations[key]
   );
-  const contextualizers = contextualizations.map(cont =>
+
+  const contextualizations = mappedContextualizations.reduce((total, item) =>
+    Object.assign(total, {[item.id]: item}), {});
+
+  const contextualizers = mappedContextualizations.map(cont =>
     document.contextualizers[cont.contextualizer]
-  );
-  const resources = contextualizations.reduce((res, contextualization) => {
+  ).reduce((total, item) =>
+    Object.assign(total, {[item.id]: item}), {});
+  const resources = mappedContextualizations.reduce((res, contextualization) => {
     return res.concat(contextualization.resources.map((resKey)=>{
       return document.resources[resKey];
     }));
-  }, []);
+  }, []).reduce((total, item) =>
+      Object.assign(total, {[item.id]: item}), {});
+
   return Object.assign({},
     section,
     {contextualizations},
