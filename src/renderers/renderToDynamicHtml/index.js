@@ -109,15 +109,15 @@ export const renderDocument = ({
       }, renderedDocument);
 
       // transform input js abstraction of contents to a js abstraction specific to rendering settings
-      const sections = renderedDocument.summary.map(sectionKey => {
-        const section1 = renderedDocument.sections[sectionKey];
-        const contents = setDynamicSectionContents(section1, 'contents', finalSettings);
-        return Object.assign({}, section1, {contents}, {type: 'contents'});
-      });
+      // const sections = renderedDocument.summary.map(sectionKey => {
+      //   const section1 = renderedDocument.sections[sectionKey];
+      //   const contents = setDynamicSectionContents(section1, 'contents', finalSettings);
+      //   return Object.assign({}, section1, {contents}, {type: 'contents'});
+      // });
 
-      sections.forEach(section => {
-        renderedDocument.sections[section.metadata.general.id.value] = section;
-      });
+      // sections.forEach(section => {
+      //   renderedDocument.sections[section.metadata.general.id.value] = section;
+      // });
 
       cback(null, renderedDocument);
     }
