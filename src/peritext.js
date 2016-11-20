@@ -61,4 +61,4 @@ export const getDocumentMetadata = getters.getDocumentMetadata;
 
 export {computeReferences} from './core/utils/referenceUtils';
 
-export resolveContextualizationImplementation from './core/resolves/resolveContextualizations';
+export {resolveContextualizationImplementation} from './core/resolvers/resolveContextualizations';
