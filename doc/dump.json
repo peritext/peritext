@@ -7677,7 +7677,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "/**\n * Utils - dedicated to consuming peritext contents' pseudo-dom representations by returning React markup\n * @module utils/modelUtils\n */\nimport React from 'react';\n\n/**\n * Consumes a peritext content's pseudo-dom node (described as a js object) and returns a react component\n * @param {Object} node - the pseudo-dom node\n * @param {number} index - the index of the node (used for providing react keys)\n * @return {ReactElement} markup describing the node\n */\nexport const jsToComponent = (node, index)=> {\n  if (node.node === 'text') {\n    return node.text;\n  }\n  if (node.special) {\n    // Component class stored as referenced object\n    const Component = node.tag;\n    return <Component key={index} {...node.props} />;\n  }\n  // plain string tag name\n  const Tag = node.tag;\n  return (<Tag key={index} id={node.attr && node.attr.id} href={node.attr && node.attr.href}>\n    {node.children && node.children.map(jsToComponent)}\n  </Tag>);\n};\n\n/**\n * Consumes a peritext content's pseudo-dom nodes list to produce react markup\n * @param {Object} contents - the pseudo-dom nodes array\n * @return {ReactElement|string} markup or string contents\n */\nexport default function renderContents(contents) {\n  if (Array.isArray(contents)) {\n    return contents.map(jsToComponent);\n  } else if (typeof contents === 'string') {\n    return contents;\n  }\n  return '';\n}\n"
+    "content": "/**\n * Utils - dedicated to consuming peritext contents' pseudo-dom representations by returning React markup\n * @module utils/modelUtils\n */\nimport React from 'react';\n\n/**\n * Consumes a peritext content's pseudo-dom node (described as a js object) and returns a react component\n * @param {Object} node - the pseudo-dom node\n * @param {number} index - the index of the node (used for providing react keys)\n * @return {ReactElement} markup describing the node\n */\nexport const jsToComponent = (node, index)=> {\n  if (node.node === 'text') {\n    return node.text;\n  }\n  if (node.special && node.tag) {\n    // Component class stored as referenced object\n    const Component = node.tag;\n    return <Component key={index} {...node.props} />;\n  }\n  // plain string tag name\n  if (node.tag) {\n    const Tag = node.tag;\n    return (<Tag key={index} id={node.attr && node.attr.id} href={node.attr && node.attr.href}>\n      {node.children && node.children.map(jsToComponent)}\n    </Tag>);\n  }\n  // if no react tag to use, render harmless empty string\n  return '';\n};\n\n/**\n * Consumes a peritext content's pseudo-dom nodes list to produce react markup\n * @param {Object} contents - the pseudo-dom nodes array\n * @return {ReactElement|string} markup or string contents\n */\nexport default function renderContents(contents) {\n  if (Array.isArray(contents)) {\n    return contents.map(jsToComponent);\n  } else if (typeof contents === 'string') {\n    return contents;\n  }\n  return '';\n}\n"
   },
   {
     "__docId__": 280,
@@ -7742,7 +7742,7 @@
     "importPath": "peritext/src/core/utils/componentsFactory.js",
     "importStyle": "renderContents",
     "description": "Consumes a peritext content's pseudo-dom nodes list to produce react markup",
-    "lineNumber": 34,
+    "lineNumber": 38,
     "params": [
       {
         "nullable": null,

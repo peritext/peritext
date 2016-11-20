@@ -196,16 +196,20 @@ export const jsToComponent = (node, index)=&gt; {
   if (node.node === &apos;text&apos;) {
     return node.text;
   }
-  if (node.special) {
+  if (node.special &amp;&amp; node.tag) {
     // Component class stored as referenced object
     const Component = node.tag;
     return &lt;Component key={index} {...node.props} /&gt;;
   }
   // plain string tag name
-  const Tag = node.tag;
-  return (&lt;Tag key={index} id={node.attr &amp;&amp; node.attr.id} href={node.attr &amp;&amp; node.attr.href}&gt;
-    {node.children &amp;&amp; node.children.map(jsToComponent)}
-  &lt;/Tag&gt;);
+  if (node.tag) {
+    const Tag = node.tag;
+    return (&lt;Tag key={index} id={node.attr &amp;&amp; node.attr.id} href={node.attr &amp;&amp; node.attr.href}&gt;
+      {node.children &amp;&amp; node.children.map(jsToComponent)}
+    &lt;/Tag&gt;);
+  }
+  // if no react tag to use, render harmless empty string
+  return &apos;&apos;;
 };
 
 /**

@@ -14,16 +14,20 @@ export const jsToComponent = (node, index)=> {
   if (node.node === 'text') {
     return node.text;
   }
-  if (node.special) {
+  if (node.special && node.tag) {
     // Component class stored as referenced object
     const Component = node.tag;
     return <Component key={index} {...node.props} />;
   }
   // plain string tag name
-  const Tag = node.tag;
-  return (<Tag key={index} id={node.attr && node.attr.id} href={node.attr && node.attr.href}>
-    {node.children && node.children.map(jsToComponent)}
-  </Tag>);
+  if (node.tag) {
+    const Tag = node.tag;
+    return (<Tag key={index} id={node.attr && node.attr.id} href={node.attr && node.attr.href}>
+      {node.children && node.children.map(jsToComponent)}
+    </Tag>);
+  }
+  // if no react tag to use, render harmless empty string
+  return '';
 };
 
 /**
