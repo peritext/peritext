@@ -1,6 +1,6 @@
 {
   "name": "peritext",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Peritext is a multimodal publishing library built around the notion of resource contextualization.",
   "repository": {
     "type": "git",
@@ -29,7 +29,7 @@
     "autocommitadd": "git add doc translations/locales",
     "examples": "babel-node ./examples/index.js",
     "build": "mkdirp build && gulp build",
-    "coverage": "nyc npm test && nyc check-coverage --lines 10 --functions 10 --branches 10 && nyc report --reporter=text-lcov | coveralls",
+    "coverage": "nyc npm test && nyc check-coverage --lines 0 --functions 0 --branches 0 && nyc report --reporter=text-lcov | coveralls",
     "doc": "esdoc -c esdoc.json",
     "lint": "eslint src",
     "lint:fix": "eslint --config .eslintrc --fix src",

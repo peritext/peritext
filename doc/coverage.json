@@ -1,7 +1,7 @@
 {
-  "coverage": "100%",
-  "expectCount": 173,
-  "actualCount": 173,
+  "coverage": "86.84%",
+  "expectCount": 190,
+  "actualCount": 165,
   "files": {
     "src/referencers/iso690fr.js": {
       "expectCount": 10,
@@ -14,8 +14,8 @@
       "undocumentLines": []
     },
     "src/core/components/StaticComponents/StaticBackCover.js": {
-      "expectCount": 3,
-      "actualCount": 3,
+      "expectCount": 2,
+      "actualCount": 2,
       "undocumentLines": []
     },
     "src/core/components/StaticComponents/StaticDocument.js": {
@@ -48,9 +48,14 @@
       "actualCount": 2,
       "undocumentLines": []
     },
+    "src/core/components/StaticComponents/StaticForewords.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
     "src/core/components/StaticComponents/StaticFrontCover.js": {
-      "expectCount": 3,
-      "actualCount": 3,
+      "expectCount": 2,
+      "actualCount": 2,
       "undocumentLines": []
     },
     "src/core/components/StaticComponents/StaticGlossary.js": {
@@ -153,12 +158,23 @@
       "actualCount": 2,
       "undocumentLines": []
     },
-    "src/index.js": {
-      "expectCount": 4,
+    "src/peritext.js": {
+      "expectCount": 14,
       "actualCount": 4,
-      "undocumentLines": []
+      "undocumentLines": [
+        58,
+        60,
+        54,
+        59,
+        57,
+        53,
+        56,
+        55,
+        52,
+        50
+      ]
     },
-    "src/core/utils/microDataUtils/index.js": {
+    "src/core/utils/microDataUtils.js": {
       "expectCount": 2,
       "actualCount": 2,
       "undocumentLines": []
@@ -168,22 +184,25 @@
       "actualCount": 6,
       "undocumentLines": []
     },
-    "src/core/converters/sectionConverter/cleanNaiveTree.js": {
+    "src/core/converters/documentConverter/cleanNaiveTree.js": {
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []
     },
-    "src/renderers/sharedStaticUtils/index.js": {
+    "src/renderers/renderingUtils/index.js": {
+      "expectCount": 3,
+      "actualCount": 1,
+      "undocumentLines": [
+        217,
+        193
+      ]
+    },
+    "src/core/utils/referenceUtils.js": {
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []
     },
-    "src/core/utils/referenceUtils/index.js": {
-      "expectCount": 1,
-      "actualCount": 1,
-      "undocumentLines": []
-    },
-    "src/core/converters/sectionConverter/concatTree.js": {
+    "src/core/converters/documentConverter/concatTree.js": {
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []
@@ -193,12 +212,7 @@
       "actualCount": 4,
       "undocumentLines": []
     },
-    "src/contextualizers/citation/index.js": {
-      "expectCount": 4,
-      "actualCount": 4,
-      "undocumentLines": []
-    },
-    "src/contextualizers/table/index.js": {
+    "src/contextualizers/glossary/index.js": {
       "expectCount": 4,
       "actualCount": 4,
       "undocumentLines": []
@@ -208,7 +222,12 @@
       "actualCount": 4,
       "undocumentLines": []
     },
-    "src/contextualizers/glossary/index.js": {
+    "src/contextualizers/table/index.js": {
+      "expectCount": 4,
+      "actualCount": 4,
+      "undocumentLines": []
+    },
+    "src/contextualizers/citation/index.js": {
       "expectCount": 4,
       "actualCount": 4,
       "undocumentLines": []
@@ -228,22 +247,32 @@
       "actualCount": 5,
       "undocumentLines": []
     },
-    "src/core/utils/sectionUtils/index.js": {
-      "expectCount": 9,
-      "actualCount": 9,
-      "undocumentLines": []
-    },
     "src/exporters/pdfExporter/index.js": {
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []
     },
-    "src/core/controllers/assetsController/index.js": {
+    "src/core/controllers/assetsController.js": {
       "expectCount": 2,
       "actualCount": 2,
       "undocumentLines": []
     },
-    "src/core/utils/modelUtils/index.js": {
+    "src/core/getters.js": {
+      "expectCount": 9,
+      "actualCount": 0,
+      "undocumentLines": [
+        63,
+        2,
+        4,
+        31,
+        70,
+        56,
+        26,
+        47,
+        36
+      ]
+    },
+    "src/core/utils/modelUtils.js": {
       "expectCount": 5,
       "actualCount": 5,
       "undocumentLines": []
@@ -253,79 +282,95 @@
       "actualCount": 1,
       "undocumentLines": []
     },
-    "src/core/utils/componentsFactory/index.js": {
+    "src/core/utils/componentsFactory.js": {
       "expectCount": 2,
       "actualCount": 2,
       "undocumentLines": []
     },
-    "src/core/converters/markdownConverter/index.js": {
+    "src/core/converters/markdownConverter.js": {
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []
     },
-    "src/core/resolvers/resolveContextualizations/index.js": {
+    "src/core/utils/sectionUtils.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/core/resolvers/resolveContextualizations.js": {
       "expectCount": 4,
       "actualCount": 4,
       "undocumentLines": []
     },
-    "src/core/converters/sectionConverter/organizeTree.js": {
+    "src/core/converters/documentConverter/organizeTree.js": {
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []
     },
-    "src/core/converters/bibTexConverter/index.js": {
+    "src/core/converters/bibTexConverter.js": {
       "expectCount": 5,
       "actualCount": 5,
       "undocumentLines": []
     },
-    "src/core/converters/markdownIncludesParser/index.js": {
-      "expectCount": 1,
-      "actualCount": 1,
-      "undocumentLines": []
-    },
-    "src/core/converters/sectionConverter/index.js": {
+    "src/core/converters/documentConverter/index.js": {
       "expectCount": 2,
       "actualCount": 2,
       "undocumentLines": []
     },
-    "src/core/converters/sectionConverter/parseTreeResources.js": {
+    "src/core/converters/markdownIncludesParser.js": {
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []
     },
-    "src/core/converters/sectionConverter/propagateData.js": {
+    "src/core/converters/documentConverter/parseTreeResources.js": {
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []
+    },
+    "src/core/converters/documentConverter/propagateData.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/renderers/renderToDynamicHtml/index.js": {
+      "expectCount": 4,
+      "actualCount": 1,
+      "undocumentLines": [
+        30,
+        132,
+        127
+      ]
     },
     "src/renderers/renderToStaticHtml/index.js": {
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []
     },
-    "src/core/resolvers/resolveDataDependencies/index.js": {
+    "src/core/resolvers/resolveDataDependencies.js": {
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []
     },
-    "src/core/resolvers/resolveSectionAgainstModels/index.js": {
+    "src/core/resolvers/resolveResourcesAgainstModels.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        4
+      ]
+    },
+    "src/core/resolvers/resolveSectionAgainstModels.js": {
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []
     },
-    "src/core/resolvers/htmlMetaTemplateSerializer/index.js": {
+    "src/core/resolvers/htmlMetaTemplateSerializer.js": {
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []
     },
-    "src/core/controllers/contentsController/index.js": {
+    "src/core/controllers/contentsController.js": {
       "expectCount": 2,
       "actualCount": 2,
-      "undocumentLines": []
-    },
-    "src/core/validators/sectionValidator/index.js": {
-      "expectCount": 1,
-      "actualCount": 1,
       "undocumentLines": []
     }
   }

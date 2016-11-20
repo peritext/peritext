@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">src/core/converters/markdownConverter.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/peritext/peritext.git" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-assetsController">assetsController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contentsController">contentsController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-defaultModels">defaultModels</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-defaultParameters">defaultParameters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getContextualizerContextualizations">getContextualizerContextualizations</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getDocumentMetadata">getDocumentMetadata</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getForewords">getForewords</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getGlossary">getGlossary</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getResourceContextualizations">getResourceContextualizations</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getSection">getSection</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getTableOfFigures">getTableOfFigures</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getTableOfSections">getTableOfSections</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-packSection">packSection</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-renderContents">renderContents</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">connectors/filesystem</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createFromPath">createFromPath</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-deleteFromPath">deleteFromPath</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getAssetUri">getAssetUri</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-readFromPath">readFromPath</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-updateFromPath">updateFromPath</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">contextualizers</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-citation">citation</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-glossary">glossary</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-imagegallery">imagegallery</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-table">table</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-timeline">timeline</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-webpage">webpage</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">contextualizers/citation</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockDynamic">contextualizeBlockDynamic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockStatic">contextualizeBlockStatic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineDynamic">contextualizeInlineDynamic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineStatic">contextualizeInlineStatic</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">contextualizers/glossary</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/contextualizers/glossary/StaticEntityBlock.js~StaticEntityBlock.html">StaticEntityBlock</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/contextualizers/glossary/StaticEntityInline.js~StaticEntityInline.html">StaticEntityInline</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockDynamic">contextualizeBlockDynamic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockStatic">contextualizeBlockStatic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineDynamic">contextualizeInlineDynamic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineStatic">contextualizeInlineStatic</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">contextualizers/imagegallery</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/contextualizers/imagegallery/StaticImageGallery.js~StaticImageGallery.html">StaticImageGallery</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockDynamic">contextualizeBlockDynamic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockStatic">contextualizeBlockStatic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineDynamic">contextualizeInlineDynamic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineStatic">contextualizeInlineStatic</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">contextualizers/table</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/contextualizers/table/StaticTable.js~StaticTable.html">StaticTable</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockDynamic">contextualizeBlockDynamic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockStatic">contextualizeBlockStatic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineDynamic">contextualizeInlineDynamic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineStatic">contextualizeInlineStatic</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">contextualizers/timeline</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockDynamic">contextualizeBlockDynamic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockStatic">contextualizeBlockStatic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineDynamic">contextualizeInlineDynamic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineStatic">contextualizeInlineStatic</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">contextualizers/webpage</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/contextualizers/webpage/StaticWebsitePoster.js~StructuredWebsitePoster.html">StructuredWebsitePoster</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockDynamic">contextualizeBlockDynamic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockStatic">contextualizeBlockStatic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineDynamic">contextualizeInlineDynamic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineStatic">contextualizeInlineStatic</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getContextualizerContextualizations">getContextualizerContextualizations</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getDocument">getDocument</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getDocumentMetadata">getDocumentMetadata</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getForewords">getForewords</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getGlossary">getGlossary</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getResourceContextualizations">getResourceContextualizations</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getSection">getSection</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getTableOfFigures">getTableOfFigures</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getTableOfSections">getTableOfSections</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core/components/StaticComponents</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticBackCover.js~StaticBackCover.html">StaticBackCover</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticDocument.js~StaticDocument.html">StaticDocument</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticEndFigures.js~StaticEndFigures.html">StaticEndFigures</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticEndNotes.js~StaticEndNotes.html">StaticEndNotes</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticFootnote.js~StaticFootnote.html">StaticFootnote</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticForewords.js~StaticForewords.html">StaticForewords</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticFrontCover.js~StaticFrontCover.html">StaticFrontCover</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticGlossary.js~StaticGlossary.html">StaticGlossary</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticImageFigure.js~StaticImageFigure.html">StaticImageFigure</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticNoteContent.js~StaticNote.html">StaticNote</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticNotePointer.js~StaticNotePointer.html">StaticNotePointer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticReferencesList.js~StaticReferencesList.html">StaticReferencesList</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticSection.js~StaticSection.html">StaticSection</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticTableOfContents.js~StaticTableOfContents.html">StaticTableOfContents</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticTableOfFigures.js~StaticTableOfFigures.html">StaticTableOfFigures</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core/components/StructuredDataComponents</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StructuredDataComponents/StructuredCOinS.js~StructuredCOinS.html">StructuredCOinS</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StructuredDataComponents/StructuredCite.js~StructuredCite.html">StructuredCite</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StructuredDataComponents/StructuredDate.js~StructuredDate.html">StructuredDate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StructuredDataComponents/StructuredHyperLink.js~StructuredHyperLink.html">StructuredHyperLink</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StructuredDataComponents/StructuredMetadataPlaceholder.js~StructuredMetadataPlaceholder.html">StructuredMetadataPlaceholder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StructuredDataComponents/StructuredParentJournal.js~StructuredParentJournal.html">StructuredParentJournal</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StructuredDataComponents/StructuredPerson.js~StructuredPerson.html">StructuredPerson</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StructuredDataComponents/StructuredPublisher.js~StructuredPublisher.html">StructuredPublisher</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StructuredDataComponents/StructuredSpan.js~StructuredSpan.html">StructuredSpan</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core/controllers</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getAssetUri">getAssetUri</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getReader">getReader</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-updateFromSource">updateFromSource</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-updateToSource">updateToSource</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core/converters</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-parseBibAuthors">parseBibAuthors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-parseBibContextualization">parseBibContextualization</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-parseBibNestedValues">parseBibNestedValues</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-parseBibTexStr">parseBibTexStr</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-serializeBibTexObject">serializeBibTexObject</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-markdownToJsAbstraction">markdownToJsAbstraction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-parseMarkdown">parseMarkdown</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core/converters/documentConverter</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-cleanNaiveTree">cleanNaiveTree</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-concatTree">concatTree</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-parseDocument">parseDocument</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-serializeDocument">serializeDocument</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-organizeTree">organizeTree</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-parseTreeResources">parseTreeResources</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-propagateData">propagateData</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core/models</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizerModels">contextualizerModels</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-metadataModels">metadataModels</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-resourceModels">resourceModels</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-sectionTypeModels">sectionTypeModels</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-settingsModels">settingsModels</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core/resolvers</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-resolveDataDependencies">resolveDataDependencies</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-serializeHtmlMeta">serializeHtmlMeta</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-numbersToLetters">numbersToLetters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-resolveBindings">resolveBindings</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-resolveContextualizationImplementation">resolveContextualizationImplementation</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-resolveContextualizationsRelations">resolveContextualizationsRelations</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-resolveResourcesAgainstModels">resolveResourcesAgainstModels</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-resolveSectionAgainstModels">resolveSectionAgainstModels</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core/utils</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-renderContents">renderContents</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-jsToComponent">jsToComponent</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-bibToSchema">bibToSchema</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-generateOpenUrl">generateOpenUrl</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getContextualizerModel">getContextualizerModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getResourceModel">getResourceModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-resolvePropAgainstType">resolvePropAgainstType</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-resolveSettings">resolveSettings</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-serializePropAgainstType">serializePropAgainstType</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-computeReferences">computeReferences</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-metaStringToCouple">metaStringToCouple</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core/utils/citationUtils</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/utils/citationUtils/citationModels.js~BlockCitationModel.html">BlockCitationModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/utils/citationUtils/citationModels.js~InlineCitationModel.html">InlineCitationModel</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">exporters/pdfExporter</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-exportDocumentToPdf">exportDocumentToPdf</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">referencers</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/referencers/iso690fr.js~BlockCitation.html">BlockCitation</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/referencers/iso690fr.js~InlineCitation.html">InlineCitation</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-iso690fr">iso690fr</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">renderers/renderToDynamicHtml</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-renderObjectMetadata">renderObjectMetadata</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-renderSection">renderSection</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-resolveDocumentContextualizationsRelations">resolveDocumentContextualizationsRelations</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-renderDocument">renderDocument</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">renderers/renderToStaticHtml</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-renderDocument">renderDocument</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">renderers/renderingUtils</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-composeRenderedSections">composeRenderedSections</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-setDynamicSectionContents">setDynamicSectionContents</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-setStaticSectionContents">setStaticSectionContents</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/core/converters/markdownConverter.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * This module resolves markdown contents + peritext-specific assertions (notes, contextualizations, contextualizers)
+ * It returns a representation of a section&apos;s content as an object containing arrays of: DOM children as js representation, notes, contextualizations, contextualizers
+ * @module converters/markdownConverter
+ */
+import marked from &apos;marked&apos;;
+import {v4} from &apos;uuid&apos;;
+import {html2json} from &apos;html2json&apos;;
+import {XmlEntities} from &apos;html-entities&apos;;
+const entities = new XmlEntities();
+import {parseBibContextualization} from &apos;./bibTexConverter&apos;;
+
+// basic marked parser settings
+marked.setOptions({
+  renderer: new marked.Renderer(),
+  gfm: true,
+  tables: true,
+  breaks: false,
+  pedantic: false,
+  sanitize: true,
+  smartLists: true,
+  smartypants: false
+});
+
+const eatParamsObject = (str)=&gt; {
+  let index = 0;
+  let wrappingLevel = 0;
+  let paramsObject = &apos;&apos;;
+  let inObject = false;
+  let ch;
+  while (index &lt; str.length) {
+    ch = str.charAt(index);
+    if (ch === &apos;{&apos;) {
+      wrappingLevel++;
+    }else if (ch === &apos;}&apos;) {
+      wrappingLevel--;
+    }
+
+    if (!inObject &amp;&amp; wrappingLevel &gt; 0) {
+      inObject = true;
+      paramsObject += ch;
+    } else if (inObject &amp;&amp; wrappingLevel === 0) {
+      paramsObject += ch;
+      return paramsObject;
+    } else if (inObject) {
+      paramsObject += ch;
+      // not in object, character is neither a wrapper nor a whitespace, leave
+    } else if (!inObject &amp;&amp; ch.match(/([\s])/) === null) {
+      return undefined;
+    }
+    index++;
+  }
+  return undefined;
+};
+
+const parseParamsObject = (paramsObject)=&gt; {
+  /*
+   * analyse contextualizer statement
+  */
+  let overloading;
+  let contextualizerKey;
+  // case : explicit call to a contextualizer ==&gt; explicit contextualizer overload case
+  if (paramsObject &amp;&amp; paramsObject.indexOf(&apos;@&apos;) === 1) {
+    contextualizerKey = paramsObject.match(/^\{(@[^,}]+)/)[1];
+    overloading = contextualizerKey;
+  }
+  // else case : no explicit call to a contextualizer ==&gt; inline implicit contextualization, determine id automatically
+  contextualizerKey = &apos;contextualization-&apos; + v4();
+
+  let formattedParams;
+  if (paramsObject !== undefined) {
+    formattedParams = parseBibContextualization(paramsObject);
+    const emptyParams = JSON.stringify(formattedParams).length &lt;= 2;
+    // not empty = params present, so inline (implicit new contextualizer, or contextualizer overloading)
+    if (!emptyParams) {
+      formattedParams.describedInline = true;
+    // case : no additionnal params ==&gt; no parameters
+    } else {
+      formattedParams = {};
+    }
+  // case : no mention of a contextualizer fully implicit contextualizer (no contextualizer specified)
+  } else {
+    formattedParams = {};
+    formattedParams.describedInline = true;
+    formattedParams.fullyImplicit = true;
+  }
+  // case : a contextualizer has been mentionned, with additionnal contextualization params --&gt; contextualizer overloading
+  if (overloading) {
+    formattedParams.overloading = overloading;
+  }
+  formattedParams.id = contextualizerKey;
+  return formattedParams;
+};
+
+const parseContextualizations = (section)=&gt; {
+  let replaced = section.contents;
+  const contextualizations = {};
+  const newContextualizers = {};
+  const orderedContextualizations = [];
+  const statementsRE = /(\!)?\[([^\]]*)\]\(([^\)]+)\)/g;
+  let match;
+  let type;
+  let resources;
+  let paramsObject;
+
+  while ((match = statementsRE.exec(replaced)) !== null) {
+    /*
+     * retrieve data from markdown expressions
+     */
+    // hyperlink markdown syntax stands for inline contextualization
+    // image markdown syntax stands for block contextualization
+    // ()[] =&gt; inline, !()[] =&gt; block
+    type = match[1] ? &apos;block&apos; : &apos;inline&apos;;
+    // contents
+    // quoted resources
+    resources = match[3].split(&apos;,&apos;).map(resKey =&gt; resKey.substr(1));
+    const contextualizationId = &apos;contextualization-&apos; + v4();
+    // following parameters
+    paramsObject = eatParamsObject(replaced.substr(match.index + match[0].length));
+    // UPDATE TEXT
+    // delete paramsObject from text
+    if (paramsObject) {
+      replaced = replaced.replace(replaced.substring(match.index + match[0].length, match.index + match[0].length + paramsObject.length), &apos;&apos;);
+    }
+    // update reference in &lt;a&gt; link or &lt;image&gt;
+    replaced = replaced.replace(replaced.substring(match.index + match[0].indexOf(match[3]), match.index + match[0].indexOf(match[3]) + match[3].length), contextualizationId);
+    // UPDATE DATA
+    const contextualizer = parseParamsObject(paramsObject);
+    if (contextualizer) {
+      newContextualizers[contextualizer.id] = contextualizer;
+    }
+    contextualizations[contextualizationId] = {
+      &apos;id&apos;: contextualizationId,
+      contextualizer: contextualizer.id,
+      resources,
+      type
+    };
+    orderedContextualizations.push(contextualizationId);
+  }
+  return {md: replaced, orderedContextualizations, contextualizations, contextualizers: newContextualizers};
+};
+
+
+// this module does not use a regex-based method
+// because it must catch possible nested content-related &quot;{&quot; brackets symbols
+// e.g. : this is an {example inside brackets}
+const parseNotes = (md, sectionId)=&gt; {
+  const notes = [];
+  let noteNumber = 1;
+  let index = 0;
+  let displace = 0;
+  let beginIndex;
+  let nestingLevel = 0;
+  let ch;
+  let newMd = md;
+  let noteContent;
+  while (newMd.substr(displace).indexOf(&apos;[^]{&apos;) &gt; -1) {
+    index = displace + newMd.substring(displace).indexOf(&apos;[^]{&apos;) + 4;
+    beginIndex = index;
+    nestingLevel = 1;
+
+    while (index &lt; newMd.length &amp;&amp; nestingLevel &gt; 0) {
+      ch = newMd.charAt(index);
+      if (ch === &apos;{&apos;) {
+        nestingLevel++;
+      } else if (ch === &apos;}&apos;) {
+        nestingLevel--;
+      }
+      index++;
+    }
+
+    noteContent = newMd.substring(beginIndex, index - 1);
+    const id = &apos;note-&apos; + sectionId + &apos;-&apos; + v4();// noteNumber;
+    const placeholder = `[footnote](note_${id})`;
+    const initialLength = index - beginIndex + 4;
+    const lengthDif = initialLength - placeholder.length;
+    newMd = newMd.replace(newMd.substring(beginIndex - 4, index), placeholder);
+    notes.push({
+      noteNumber,
+      markdownContents: noteContent,
+      id
+    });
+    noteNumber++;
+    displace = index - lengthDif;
+  }
+  return {
+    notes,
+    newMd
+  };
+};
+// for recursivity matter
+let mapMdJsonToPJson = ()=&gt;{return undefined;};
+let representContents = ()=&gt;{return undefined;};
+
+mapMdJsonToPJson = (inputElement, contextualizations, elementPath) =&gt;{
+  const element = Object.assign({}, inputElement);
+  if (element.text) {
+    element.text = entities.decode(element.text);
+  }
+  if (element.tag === &apos;a&apos;) {
+    if (element.attr.href.indexOf(&apos;note_&apos;) === 0) {
+      element.tag = &apos;note&apos;;
+      element.target = element.attr.href.substr(5);
+    // case of an inline contextualization
+    } else {
+      element.tag = &apos;inlineC&apos;;
+      const contextualizationId = element.attr.href;
+      const contextualization = contextualizations[contextualizationId];
+      contextualization.nodePath = elementPath;
+    }
+  // case of a block contextualization
+  } else if (element.tag === &apos;img&apos;) {
+    element.tag = &apos;blockC&apos;;
+    const contextualizationId = element.attr.src;
+    const contextualization = contextualizations[contextualizationId];
+    contextualization.nodePath = elementPath;
+    let contents = (element.attr &amp;&amp; element.attr.alt) ? element.attr.alt : &apos;&apos;;
+    contents = contents.join !== undefined ? contents.join(&apos; &apos;) : contents;
+    element.children = [representContents(contents, contextualizations, elementPath)[0]];
+    delete element.attr;
+  }
+  if (element.child) {
+    element.children = element.child.map((child, elementIndex)=&gt;{
+      return mapMdJsonToPJson(child, contextualizations, elementPath.concat([&apos;children&apos;, elementIndex]));
+    });
+    delete element.child;
+  }
+  return element;
+};
+
+representContents = (mdContent, contextualizations, elementPath) =&gt;{
+  return html2json(marked(mdContent)).child.map((child, blockIndex)=&gt; {
+    return mapMdJsonToPJson(child, contextualizations, elementPath.concat(blockIndex));
+  });
+};
+
+/**
+ * Parses markdown contents in order to update section data with new contents (as a pseudo-DOM nested javascript object representation), notes, contextualizers and contextualizations
+ * @param {Object} section - the section to parse
+ * @param {Object} parameters - deprecated - rendering parameters (not used at this step)
+ * @return {errors: array, section: Object} - the resulting conversion errors and updated section
+ */
+export const markdownToJsAbstraction = (section, parameters)=&gt; {
+  const errors = [];
+
+  const sectionId = section.metadata.general.id.value;
+  // save original markdown expression of contents (for further possible serializing)
+  section.markdownContents = section.contents;
+  // first extract contextualizations statements
+  const {
+    md,
+    contextualizers,
+    orderedContextualizations,
+    contextualizations
+  } = parseContextualizations(section);
+  // then extract notes statements
+  const {
+    notes,
+    newMd
+  } = parseNotes(md, sectionId);
+  section.contextualizations = orderedContextualizations;
+  // convert cleaned markdown contents to js representation
+  section.contents = representContents(newMd, contextualizations, [sectionId, &apos;contents&apos;]);
+  section.notes = notes.map((note, noteIndex) =&gt;{
+    const contents = html2json(marked(note.markdownContents)).child.map((child, blockIndex)=&gt; {
+      return mapMdJsonToPJson(child, contextualizations, [sectionId, &apos;notes&apos;, noteIndex]);
+    });
+    return Object.assign(note, {
+      children: [
+        // this is dirty, done for matching contextualization nodePath which is displaced otherwise
+        // other dirty solution : handle that in mapMdJsonToPJson with a path check
+        // (if in notes prop =&gt; decrement contextualization target)
+        { node: &apos;text&apos;,
+          text: &apos;&apos;
+        },
+        ...contents[0].children
+      ]
+    });
+  });
+  return {errors, section, contextualizers, contextualizations};
+};
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.7)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

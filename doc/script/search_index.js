@@ -66,6 +66,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "peritext/src/core/components/staticcomponents/staticforewords.js~staticforewords",
+    "class/src/core/components/StaticComponents/StaticForewords.js~StaticForewords.html",
+    "<span>StaticForewords</span> <span class=\"search-result-import-path\">peritext/src/core/components/StaticComponents/StaticForewords.js</span>",
+    "class"
+  ],
+  [
     "peritext/src/core/components/staticcomponents/staticfrontcover.js~staticfrontcover",
     "class/src/core/components/StaticComponents/StaticFrontCover.js~StaticFrontCover.html",
     "<span>StaticFrontCover</span> <span class=\"search-result-import-path\">peritext/src/core/components/StaticComponents/StaticFrontCover.js</span>",
@@ -192,15 +198,15 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
-    "peritext/src/index.js~assetscontroller",
+    "peritext/src/peritext.js~assetscontroller",
     "variable/index.html#static-variable-assetsController",
-    "<span>assetsController</span> <span class=\"search-result-import-path\">peritext/src/index.js</span>",
+    "<span>assetsController</span> <span class=\"search-result-import-path\">peritext/src/peritext.js</span>",
     "variable"
   ],
   [
-    "peritext/src/core/utils/microdatautils/index.js~bibtoschema",
+    "peritext/src/core/utils/microdatautils.js~bibtoschema",
     "variable/index.html#static-variable-bibToSchema",
-    "<span>bibToSchema</span> <span class=\"search-result-import-path\">peritext/src/core/utils/microDataUtils/index.js</span>",
+    "<span>bibToSchema</span> <span class=\"search-result-import-path\">peritext/src/core/utils/microDataUtils.js</span>",
     "variable"
   ],
   [
@@ -210,33 +216,33 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "peritext/src/core/converters/sectionconverter/cleannaivetree.js~cleannaivetree",
+    "peritext/src/core/converters/documentconverter/cleannaivetree.js~cleannaivetree",
     "variable/index.html#static-variable-cleanNaiveTree",
-    "<span>cleanNaiveTree</span> <span class=\"search-result-import-path\">peritext/src/core/converters/sectionConverter/cleanNaiveTree.js</span>",
+    "<span>cleanNaiveTree</span> <span class=\"search-result-import-path\">peritext/src/core/converters/documentConverter/cleanNaiveTree.js</span>",
     "variable"
   ],
   [
-    "peritext/src/renderers/sharedstaticutils/index.js~composerenderedsections",
+    "peritext/src/renderers/renderingutils/index.js~composerenderedsections",
     "variable/index.html#static-variable-composeRenderedSections",
-    "<span>composeRenderedSections</span> <span class=\"search-result-import-path\">peritext/src/renderers/sharedStaticUtils/index.js</span>",
+    "<span>composeRenderedSections</span> <span class=\"search-result-import-path\">peritext/src/renderers/renderingUtils/index.js</span>",
     "variable"
   ],
   [
-    "peritext/src/core/utils/referenceutils/index.js~computereferences",
+    "peritext/src/core/utils/referenceutils.js~computereferences",
     "variable/index.html#static-variable-computeReferences",
-    "<span>computeReferences</span> <span class=\"search-result-import-path\">peritext/src/core/utils/referenceUtils/index.js</span>",
+    "<span>computeReferences</span> <span class=\"search-result-import-path\">peritext/src/core/utils/referenceUtils.js</span>",
     "variable"
   ],
   [
-    "peritext/src/core/converters/sectionconverter/concattree.js~concattree",
+    "peritext/src/core/converters/documentconverter/concattree.js~concattree",
     "variable/index.html#static-variable-concatTree",
-    "<span>concatTree</span> <span class=\"search-result-import-path\">peritext/src/core/converters/sectionConverter/concatTree.js</span>",
+    "<span>concatTree</span> <span class=\"search-result-import-path\">peritext/src/core/converters/documentConverter/concatTree.js</span>",
     "variable"
   ],
   [
-    "peritext/src/index.js~contentscontroller",
+    "peritext/src/peritext.js~contentscontroller",
     "variable/index.html#static-variable-contentsController",
-    "<span>contentsController</span> <span class=\"search-result-import-path\">peritext/src/index.js</span>",
+    "<span>contentsController</span> <span class=\"search-result-import-path\">peritext/src/peritext.js</span>",
     "variable"
   ],
   [
@@ -396,15 +402,15 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "peritext/src/index.js~defaultmodels",
+    "peritext/src/peritext.js~defaultmodels",
     "variable/index.html#static-variable-defaultModels",
-    "<span>defaultModels</span> <span class=\"search-result-import-path\">peritext/src/index.js</span>",
+    "<span>defaultModels</span> <span class=\"search-result-import-path\">peritext/src/peritext.js</span>",
     "variable"
   ],
   [
-    "peritext/src/index.js~defaultparameters",
+    "peritext/src/peritext.js~defaultparameters",
     "variable/index.html#static-variable-defaultParameters",
-    "<span>defaultParameters</span> <span class=\"search-result-import-path\">peritext/src/index.js</span>",
+    "<span>defaultParameters</span> <span class=\"search-result-import-path\">peritext/src/peritext.js</span>",
     "variable"
   ],
   [
@@ -414,33 +420,15 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "peritext/src/core/utils/sectionutils/index.js~deletemeta",
-    "variable/index.html#static-variable-deleteMeta",
-    "<span>deleteMeta</span> <span class=\"search-result-import-path\">peritext/src/core/utils/sectionUtils/index.js</span>",
+    "peritext/src/exporters/pdfexporter/index.js~exportdocumenttopdf",
+    "variable/index.html#static-variable-exportDocumentToPdf",
+    "<span>exportDocumentToPdf</span> <span class=\"search-result-import-path\">peritext/src/exporters/pdfExporter/index.js</span>",
     "variable"
   ],
   [
-    "peritext/src/exporters/pdfexporter/index.js~exportsectiontopdf",
-    "variable/index.html#static-variable-exportSectionToPdf",
-    "<span>exportSectionToPdf</span> <span class=\"search-result-import-path\">peritext/src/exporters/pdfExporter/index.js</span>",
-    "variable"
-  ],
-  [
-    "peritext/src/core/utils/sectionutils/index.js~filterresources",
-    "variable/index.html#static-variable-filterResources",
-    "<span>filterResources</span> <span class=\"search-result-import-path\">peritext/src/core/utils/sectionUtils/index.js</span>",
-    "variable"
-  ],
-  [
-    "peritext/src/core/utils/sectionutils/index.js~findbymetadata",
-    "variable/index.html#static-variable-findByMetadata",
-    "<span>findByMetadata</span> <span class=\"search-result-import-path\">peritext/src/core/utils/sectionUtils/index.js</span>",
-    "variable"
-  ],
-  [
-    "peritext/src/core/utils/microdatautils/index.js~generateopenurl",
+    "peritext/src/core/utils/microdatautils.js~generateopenurl",
     "variable/index.html#static-variable-generateOpenUrl",
-    "<span>generateOpenUrl</span> <span class=\"search-result-import-path\">peritext/src/core/utils/microDataUtils/index.js</span>",
+    "<span>generateOpenUrl</span> <span class=\"search-result-import-path\">peritext/src/core/utils/microDataUtils.js</span>",
     "variable"
   ],
   [
@@ -450,51 +438,135 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "peritext/src/core/controllers/assetscontroller/index.js~getasseturi",
+    "peritext/src/core/controllers/assetscontroller.js~getasseturi",
     "variable/index.html#static-variable-getAssetUri",
-    "<span>getAssetUri</span> <span class=\"search-result-import-path\">peritext/src/core/controllers/assetsController/index.js</span>",
+    "<span>getAssetUri</span> <span class=\"search-result-import-path\">peritext/src/core/controllers/assetsController.js</span>",
     "variable"
   ],
   [
-    "peritext/src/core/utils/modelutils/index.js~getcontextualizermodel",
+    "peritext/src/core/getters.js~getcontextualizercontextualizations",
+    "variable/index.html#static-variable-getContextualizerContextualizations",
+    "<span>getContextualizerContextualizations</span> <span class=\"search-result-import-path\">peritext/src/core/getters.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/peritext.js~getcontextualizercontextualizations",
+    "variable/index.html#static-variable-getContextualizerContextualizations",
+    "<span>getContextualizerContextualizations</span> <span class=\"search-result-import-path\">peritext/src/peritext.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/utils/modelutils.js~getcontextualizermodel",
     "variable/index.html#static-variable-getContextualizerModel",
-    "<span>getContextualizerModel</span> <span class=\"search-result-import-path\">peritext/src/core/utils/modelUtils/index.js</span>",
+    "<span>getContextualizerModel</span> <span class=\"search-result-import-path\">peritext/src/core/utils/modelUtils.js</span>",
     "variable"
   ],
   [
-    "peritext/src/core/utils/sectionutils/index.js~getmetavalue",
-    "variable/index.html#static-variable-getMetaValue",
-    "<span>getMetaValue</span> <span class=\"search-result-import-path\">peritext/src/core/utils/sectionUtils/index.js</span>",
+    "peritext/src/core/getters.js~getdocument",
+    "variable/index.html#static-variable-getDocument",
+    "<span>getDocument</span> <span class=\"search-result-import-path\">peritext/src/core/getters.js</span>",
     "variable"
   ],
   [
-    "peritext/src/core/controllers/assetscontroller/index.js~getreader",
+    "peritext/src/core/getters.js~getdocumentmetadata",
+    "variable/index.html#static-variable-getDocumentMetadata",
+    "<span>getDocumentMetadata</span> <span class=\"search-result-import-path\">peritext/src/core/getters.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/peritext.js~getdocumentmetadata",
+    "variable/index.html#static-variable-getDocumentMetadata",
+    "<span>getDocumentMetadata</span> <span class=\"search-result-import-path\">peritext/src/peritext.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/getters.js~getforewords",
+    "variable/index.html#static-variable-getForewords",
+    "<span>getForewords</span> <span class=\"search-result-import-path\">peritext/src/core/getters.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/peritext.js~getforewords",
+    "variable/index.html#static-variable-getForewords",
+    "<span>getForewords</span> <span class=\"search-result-import-path\">peritext/src/peritext.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/getters.js~getglossary",
+    "variable/index.html#static-variable-getGlossary",
+    "<span>getGlossary</span> <span class=\"search-result-import-path\">peritext/src/core/getters.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/peritext.js~getglossary",
+    "variable/index.html#static-variable-getGlossary",
+    "<span>getGlossary</span> <span class=\"search-result-import-path\">peritext/src/peritext.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/controllers/assetscontroller.js~getreader",
     "variable/index.html#static-variable-getReader",
-    "<span>getReader</span> <span class=\"search-result-import-path\">peritext/src/core/controllers/assetsController/index.js</span>",
+    "<span>getReader</span> <span class=\"search-result-import-path\">peritext/src/core/controllers/assetsController.js</span>",
     "variable"
   ],
   [
-    "peritext/src/core/utils/modelutils/index.js~getresourcemodel",
+    "peritext/src/core/getters.js~getresourcecontextualizations",
+    "variable/index.html#static-variable-getResourceContextualizations",
+    "<span>getResourceContextualizations</span> <span class=\"search-result-import-path\">peritext/src/core/getters.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/peritext.js~getresourcecontextualizations",
+    "variable/index.html#static-variable-getResourceContextualizations",
+    "<span>getResourceContextualizations</span> <span class=\"search-result-import-path\">peritext/src/peritext.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/utils/modelutils.js~getresourcemodel",
     "variable/index.html#static-variable-getResourceModel",
-    "<span>getResourceModel</span> <span class=\"search-result-import-path\">peritext/src/core/utils/modelUtils/index.js</span>",
+    "<span>getResourceModel</span> <span class=\"search-result-import-path\">peritext/src/core/utils/modelUtils.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/getters.js~getsection",
+    "variable/index.html#static-variable-getSection",
+    "<span>getSection</span> <span class=\"search-result-import-path\">peritext/src/core/getters.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/peritext.js~getsection",
+    "variable/index.html#static-variable-getSection",
+    "<span>getSection</span> <span class=\"search-result-import-path\">peritext/src/peritext.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/getters.js~gettableoffigures",
+    "variable/index.html#static-variable-getTableOfFigures",
+    "<span>getTableOfFigures</span> <span class=\"search-result-import-path\">peritext/src/core/getters.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/peritext.js~gettableoffigures",
+    "variable/index.html#static-variable-getTableOfFigures",
+    "<span>getTableOfFigures</span> <span class=\"search-result-import-path\">peritext/src/peritext.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/getters.js~gettableofsections",
+    "variable/index.html#static-variable-getTableOfSections",
+    "<span>getTableOfSections</span> <span class=\"search-result-import-path\">peritext/src/core/getters.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/peritext.js~gettableofsections",
+    "variable/index.html#static-variable-getTableOfSections",
+    "<span>getTableOfSections</span> <span class=\"search-result-import-path\">peritext/src/peritext.js</span>",
     "variable"
   ],
   [
     "peritext/src/contextualizers/index.js~glossary",
     "variable/index.html#static-variable-glossary",
     "<span>glossary</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/index.js</span>",
-    "variable"
-  ],
-  [
-    "peritext/src/core/utils/sectionutils/index.js~hasmeta",
-    "variable/index.html#static-variable-hasMeta",
-    "<span>hasMeta</span> <span class=\"search-result-import-path\">peritext/src/core/utils/sectionUtils/index.js</span>",
-    "variable"
-  ],
-  [
-    "peritext/src/core/utils/sectionutils/index.js~hasresource",
-    "variable/index.html#static-variable-hasResource",
-    "<span>hasResource</span> <span class=\"search-result-import-path\">peritext/src/core/utils/sectionUtils/index.js</span>",
     "variable"
   ],
   [
@@ -510,21 +582,21 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "peritext/src/core/utils/componentsfactory/index.js~jstocomponent",
+    "peritext/src/core/utils/componentsfactory.js~jstocomponent",
     "variable/index.html#static-variable-jsToComponent",
-    "<span>jsToComponent</span> <span class=\"search-result-import-path\">peritext/src/core/utils/componentsFactory/index.js</span>",
+    "<span>jsToComponent</span> <span class=\"search-result-import-path\">peritext/src/core/utils/componentsFactory.js</span>",
     "variable"
   ],
   [
-    "peritext/src/core/converters/markdownconverter/index.js~markdowntojsabstraction",
+    "peritext/src/core/converters/markdownconverter.js~markdowntojsabstraction",
     "variable/index.html#static-variable-markdownToJsAbstraction",
-    "<span>markdownToJsAbstraction</span> <span class=\"search-result-import-path\">peritext/src/core/converters/markdownConverter/index.js</span>",
+    "<span>markdownToJsAbstraction</span> <span class=\"search-result-import-path\">peritext/src/core/converters/markdownConverter.js</span>",
     "variable"
   ],
   [
-    "peritext/src/core/utils/sectionutils/index.js~metastringtocouple",
+    "peritext/src/core/utils/sectionutils.js~metastringtocouple",
     "variable/index.html#static-variable-metaStringToCouple",
-    "<span>metaStringToCouple</span> <span class=\"search-result-import-path\">peritext/src/core/utils/sectionUtils/index.js</span>",
+    "<span>metaStringToCouple</span> <span class=\"search-result-import-path\">peritext/src/core/utils/sectionUtils.js</span>",
     "variable"
   ],
   [
@@ -534,63 +606,69 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "peritext/src/core/resolvers/resolvecontextualizations/index.js~numberstoletters",
+    "peritext/src/core/resolvers/resolvecontextualizations.js~numberstoletters",
     "variable/index.html#static-variable-numbersToLetters",
-    "<span>numbersToLetters</span> <span class=\"search-result-import-path\">peritext/src/core/resolvers/resolveContextualizations/index.js</span>",
+    "<span>numbersToLetters</span> <span class=\"search-result-import-path\">peritext/src/core/resolvers/resolveContextualizations.js</span>",
     "variable"
   ],
   [
-    "peritext/src/core/converters/sectionconverter/organizetree.js~organizetree",
+    "peritext/src/core/converters/documentconverter/organizetree.js~organizetree",
     "variable/index.html#static-variable-organizeTree",
-    "<span>organizeTree</span> <span class=\"search-result-import-path\">peritext/src/core/converters/sectionConverter/organizeTree.js</span>",
+    "<span>organizeTree</span> <span class=\"search-result-import-path\">peritext/src/core/converters/documentConverter/organizeTree.js</span>",
     "variable"
   ],
   [
-    "peritext/src/core/converters/bibtexconverter/index.js~parsebibauthors",
+    "peritext/src/peritext.js~packsection",
+    "variable/index.html#static-variable-packSection",
+    "<span>packSection</span> <span class=\"search-result-import-path\">peritext/src/peritext.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/converters/bibtexconverter.js~parsebibauthors",
     "variable/index.html#static-variable-parseBibAuthors",
-    "<span>parseBibAuthors</span> <span class=\"search-result-import-path\">peritext/src/core/converters/bibTexConverter/index.js</span>",
+    "<span>parseBibAuthors</span> <span class=\"search-result-import-path\">peritext/src/core/converters/bibTexConverter.js</span>",
     "variable"
   ],
   [
-    "peritext/src/core/converters/bibtexconverter/index.js~parsebibcontextualization",
+    "peritext/src/core/converters/bibtexconverter.js~parsebibcontextualization",
     "variable/index.html#static-variable-parseBibContextualization",
-    "<span>parseBibContextualization</span> <span class=\"search-result-import-path\">peritext/src/core/converters/bibTexConverter/index.js</span>",
+    "<span>parseBibContextualization</span> <span class=\"search-result-import-path\">peritext/src/core/converters/bibTexConverter.js</span>",
     "variable"
   ],
   [
-    "peritext/src/core/converters/bibtexconverter/index.js~parsebibnestedvalues",
+    "peritext/src/core/converters/bibtexconverter.js~parsebibnestedvalues",
     "variable/index.html#static-variable-parseBibNestedValues",
-    "<span>parseBibNestedValues</span> <span class=\"search-result-import-path\">peritext/src/core/converters/bibTexConverter/index.js</span>",
+    "<span>parseBibNestedValues</span> <span class=\"search-result-import-path\">peritext/src/core/converters/bibTexConverter.js</span>",
     "variable"
   ],
   [
-    "peritext/src/core/converters/bibtexconverter/index.js~parsebibtexstr",
+    "peritext/src/core/converters/bibtexconverter.js~parsebibtexstr",
     "variable/index.html#static-variable-parseBibTexStr",
-    "<span>parseBibTexStr</span> <span class=\"search-result-import-path\">peritext/src/core/converters/bibTexConverter/index.js</span>",
+    "<span>parseBibTexStr</span> <span class=\"search-result-import-path\">peritext/src/core/converters/bibTexConverter.js</span>",
     "variable"
   ],
   [
-    "peritext/src/core/converters/markdownincludesparser/index.js~parsemarkdown",
+    "peritext/src/core/converters/documentconverter/index.js~parsedocument",
+    "variable/index.html#static-variable-parseDocument",
+    "<span>parseDocument</span> <span class=\"search-result-import-path\">peritext/src/core/converters/documentConverter/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/converters/markdownincludesparser.js~parsemarkdown",
     "variable/index.html#static-variable-parseMarkdown",
-    "<span>parseMarkdown</span> <span class=\"search-result-import-path\">peritext/src/core/converters/markdownIncludesParser/index.js</span>",
+    "<span>parseMarkdown</span> <span class=\"search-result-import-path\">peritext/src/core/converters/markdownIncludesParser.js</span>",
     "variable"
   ],
   [
-    "peritext/src/core/converters/sectionconverter/index.js~parsesection",
-    "variable/index.html#static-variable-parseSection",
-    "<span>parseSection</span> <span class=\"search-result-import-path\">peritext/src/core/converters/sectionConverter/index.js</span>",
-    "variable"
-  ],
-  [
-    "peritext/src/core/converters/sectionconverter/parsetreeresources.js~parsetreeresources",
+    "peritext/src/core/converters/documentconverter/parsetreeresources.js~parsetreeresources",
     "variable/index.html#static-variable-parseTreeResources",
-    "<span>parseTreeResources</span> <span class=\"search-result-import-path\">peritext/src/core/converters/sectionConverter/parseTreeResources.js</span>",
+    "<span>parseTreeResources</span> <span class=\"search-result-import-path\">peritext/src/core/converters/documentConverter/parseTreeResources.js</span>",
     "variable"
   ],
   [
-    "peritext/src/core/converters/sectionconverter/propagatedata.js~propagatedata",
+    "peritext/src/core/converters/documentconverter/propagatedata.js~propagatedata",
     "variable/index.html#static-variable-propagateData",
-    "<span>propagateData</span> <span class=\"search-result-import-path\">peritext/src/core/converters/sectionConverter/propagateData.js</span>",
+    "<span>propagateData</span> <span class=\"search-result-import-path\">peritext/src/core/converters/documentConverter/propagateData.js</span>",
     "variable"
   ],
   [
@@ -600,57 +678,93 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "peritext/src/core/utils/componentsfactory/index.js~rendercontents",
+    "peritext/src/core/utils/componentsfactory.js~rendercontents",
     "function/index.html#static-function-renderContents",
-    "<span>renderContents</span> <span class=\"search-result-import-path\">peritext/src/core/utils/componentsFactory/index.js</span>",
+    "<span>renderContents</span> <span class=\"search-result-import-path\">peritext/src/core/utils/componentsFactory.js</span>",
     "function"
   ],
   [
-    "peritext/src/renderers/rendertostatichtml/index.js~rendersection",
-    "variable/index.html#static-variable-renderSection",
-    "<span>renderSection</span> <span class=\"search-result-import-path\">peritext/src/renderers/renderToStaticHtml/index.js</span>",
+    "peritext/src/peritext.js~rendercontents",
+    "variable/index.html#static-variable-renderContents",
+    "<span>renderContents</span> <span class=\"search-result-import-path\">peritext/src/peritext.js</span>",
     "variable"
   ],
   [
-    "peritext/src/core/resolvers/resolvecontextualizations/index.js~resolvebindings",
+    "peritext/src/renderers/rendertodynamichtml/index.js~renderdocument",
+    "variable/index.html#static-variable-renderDocument",
+    "<span>renderDocument</span> <span class=\"search-result-import-path\">peritext/src/renderers/renderToDynamicHtml/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/renderers/rendertostatichtml/index.js~renderdocument",
+    "variable/index.html#static-variable-renderDocument",
+    "<span>renderDocument</span> <span class=\"search-result-import-path\">peritext/src/renderers/renderToStaticHtml/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/renderers/rendertodynamichtml/index.js~renderobjectmetadata",
+    "function/index.html#static-function-renderObjectMetadata",
+    "<span>renderObjectMetadata</span> <span class=\"search-result-import-path\">peritext/src/renderers/renderToDynamicHtml/index.js</span>",
+    "function"
+  ],
+  [
+    "peritext/src/renderers/rendertodynamichtml/index.js~rendersection",
+    "function/index.html#static-function-renderSection",
+    "<span>renderSection</span> <span class=\"search-result-import-path\">peritext/src/renderers/renderToDynamicHtml/index.js</span>",
+    "function"
+  ],
+  [
+    "peritext/src/core/resolvers/resolvecontextualizations.js~resolvebindings",
     "variable/index.html#static-variable-resolveBindings",
-    "<span>resolveBindings</span> <span class=\"search-result-import-path\">peritext/src/core/resolvers/resolveContextualizations/index.js</span>",
+    "<span>resolveBindings</span> <span class=\"search-result-import-path\">peritext/src/core/resolvers/resolveContextualizations.js</span>",
     "variable"
   ],
   [
-    "peritext/src/core/resolvers/resolvecontextualizations/index.js~resolvecontextualizationsimplementation",
-    "variable/index.html#static-variable-resolveContextualizationsImplementation",
-    "<span>resolveContextualizationsImplementation</span> <span class=\"search-result-import-path\">peritext/src/core/resolvers/resolveContextualizations/index.js</span>",
+    "peritext/src/core/resolvers/resolvecontextualizations.js~resolvecontextualizationimplementation",
+    "variable/index.html#static-variable-resolveContextualizationImplementation",
+    "<span>resolveContextualizationImplementation</span> <span class=\"search-result-import-path\">peritext/src/core/resolvers/resolveContextualizations.js</span>",
     "variable"
   ],
   [
-    "peritext/src/core/resolvers/resolvecontextualizations/index.js~resolvecontextualizationsrelations",
+    "peritext/src/core/resolvers/resolvecontextualizations.js~resolvecontextualizationsrelations",
     "variable/index.html#static-variable-resolveContextualizationsRelations",
-    "<span>resolveContextualizationsRelations</span> <span class=\"search-result-import-path\">peritext/src/core/resolvers/resolveContextualizations/index.js</span>",
+    "<span>resolveContextualizationsRelations</span> <span class=\"search-result-import-path\">peritext/src/core/resolvers/resolveContextualizations.js</span>",
     "variable"
   ],
   [
-    "peritext/src/core/resolvers/resolvedatadependencies/index.js~resolvedatadependencies",
+    "peritext/src/core/resolvers/resolvedatadependencies.js~resolvedatadependencies",
     "function/index.html#static-function-resolveDataDependencies",
-    "<span>resolveDataDependencies</span> <span class=\"search-result-import-path\">peritext/src/core/resolvers/resolveDataDependencies/index.js</span>",
+    "<span>resolveDataDependencies</span> <span class=\"search-result-import-path\">peritext/src/core/resolvers/resolveDataDependencies.js</span>",
     "function"
   ],
   [
-    "peritext/src/core/utils/modelutils/index.js~resolvepropagainsttype",
+    "peritext/src/renderers/rendertodynamichtml/index.js~resolvedocumentcontextualizationsrelations",
+    "function/index.html#static-function-resolveDocumentContextualizationsRelations",
+    "<span>resolveDocumentContextualizationsRelations</span> <span class=\"search-result-import-path\">peritext/src/renderers/renderToDynamicHtml/index.js</span>",
+    "function"
+  ],
+  [
+    "peritext/src/core/utils/modelutils.js~resolvepropagainsttype",
     "variable/index.html#static-variable-resolvePropAgainstType",
-    "<span>resolvePropAgainstType</span> <span class=\"search-result-import-path\">peritext/src/core/utils/modelUtils/index.js</span>",
+    "<span>resolvePropAgainstType</span> <span class=\"search-result-import-path\">peritext/src/core/utils/modelUtils.js</span>",
     "variable"
   ],
   [
-    "peritext/src/core/resolvers/resolvesectionagainstmodels/index.js~resolvesectionagainstmodels",
+    "peritext/src/core/resolvers/resolveresourcesagainstmodels.js~resolveresourcesagainstmodels",
+    "variable/index.html#static-variable-resolveResourcesAgainstModels",
+    "<span>resolveResourcesAgainstModels</span> <span class=\"search-result-import-path\">peritext/src/core/resolvers/resolveResourcesAgainstModels.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/resolvers/resolvesectionagainstmodels.js~resolvesectionagainstmodels",
     "variable/index.html#static-variable-resolveSectionAgainstModels",
-    "<span>resolveSectionAgainstModels</span> <span class=\"search-result-import-path\">peritext/src/core/resolvers/resolveSectionAgainstModels/index.js</span>",
+    "<span>resolveSectionAgainstModels</span> <span class=\"search-result-import-path\">peritext/src/core/resolvers/resolveSectionAgainstModels.js</span>",
     "variable"
   ],
   [
-    "peritext/src/core/utils/modelutils/index.js~resolvesettings",
+    "peritext/src/core/utils/modelutils.js~resolvesettings",
     "variable/index.html#static-variable-resolveSettings",
-    "<span>resolveSettings</span> <span class=\"search-result-import-path\">peritext/src/core/utils/modelUtils/index.js</span>",
+    "<span>resolveSettings</span> <span class=\"search-result-import-path\">peritext/src/core/utils/modelUtils.js</span>",
     "variable"
   ],
   [
@@ -660,45 +774,45 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "peritext/src/core/utils/sectionutils/index.js~samemetascope",
-    "variable/index.html#static-variable-sameMetaScope",
-    "<span>sameMetaScope</span> <span class=\"search-result-import-path\">peritext/src/core/utils/sectionUtils/index.js</span>",
-    "variable"
-  ],
-  [
     "peritext/src/core/models/index.js~sectiontypemodels",
     "variable/index.html#static-variable-sectionTypeModels",
     "<span>sectionTypeModels</span> <span class=\"search-result-import-path\">peritext/src/core/models/index.js</span>",
     "variable"
   ],
   [
-    "peritext/src/core/converters/bibtexconverter/index.js~serializebibtexobject",
+    "peritext/src/core/converters/bibtexconverter.js~serializebibtexobject",
     "variable/index.html#static-variable-serializeBibTexObject",
-    "<span>serializeBibTexObject</span> <span class=\"search-result-import-path\">peritext/src/core/converters/bibTexConverter/index.js</span>",
+    "<span>serializeBibTexObject</span> <span class=\"search-result-import-path\">peritext/src/core/converters/bibTexConverter.js</span>",
     "variable"
   ],
   [
-    "peritext/src/core/resolvers/htmlmetatemplateserializer/index.js~serializehtmlmeta",
+    "peritext/src/core/converters/documentconverter/index.js~serializedocument",
+    "variable/index.html#static-variable-serializeDocument",
+    "<span>serializeDocument</span> <span class=\"search-result-import-path\">peritext/src/core/converters/documentConverter/index.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/resolvers/htmlmetatemplateserializer.js~serializehtmlmeta",
     "variable/index.html#static-variable-serializeHtmlMeta",
-    "<span>serializeHtmlMeta</span> <span class=\"search-result-import-path\">peritext/src/core/resolvers/htmlMetaTemplateSerializer/index.js</span>",
+    "<span>serializeHtmlMeta</span> <span class=\"search-result-import-path\">peritext/src/core/resolvers/htmlMetaTemplateSerializer.js</span>",
     "variable"
   ],
   [
-    "peritext/src/core/utils/modelutils/index.js~serializepropagainsttype",
+    "peritext/src/core/utils/modelutils.js~serializepropagainsttype",
     "variable/index.html#static-variable-serializePropAgainstType",
-    "<span>serializePropAgainstType</span> <span class=\"search-result-import-path\">peritext/src/core/utils/modelUtils/index.js</span>",
+    "<span>serializePropAgainstType</span> <span class=\"search-result-import-path\">peritext/src/core/utils/modelUtils.js</span>",
     "variable"
   ],
   [
-    "peritext/src/core/converters/sectionconverter/index.js~serializesectionlist",
-    "variable/index.html#static-variable-serializeSectionList",
-    "<span>serializeSectionList</span> <span class=\"search-result-import-path\">peritext/src/core/converters/sectionConverter/index.js</span>",
+    "peritext/src/renderers/renderingutils/index.js~setdynamicsectioncontents",
+    "variable/index.html#static-variable-setDynamicSectionContents",
+    "<span>setDynamicSectionContents</span> <span class=\"search-result-import-path\">peritext/src/renderers/renderingUtils/index.js</span>",
     "variable"
   ],
   [
-    "peritext/src/core/utils/sectionutils/index.js~setmetavalue",
-    "variable/index.html#static-variable-setMetaValue",
-    "<span>setMetaValue</span> <span class=\"search-result-import-path\">peritext/src/core/utils/sectionUtils/index.js</span>",
+    "peritext/src/renderers/renderingutils/index.js~setstaticsectioncontents",
+    "variable/index.html#static-variable-setStaticSectionContents",
+    "<span>setStaticSectionContents</span> <span class=\"search-result-import-path\">peritext/src/renderers/renderingUtils/index.js</span>",
     "variable"
   ],
   [
@@ -726,21 +840,15 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "peritext/src/core/controllers/contentscontroller/index.js~updatefromsource",
+    "peritext/src/core/controllers/contentscontroller.js~updatefromsource",
     "variable/index.html#static-variable-updateFromSource",
-    "<span>updateFromSource</span> <span class=\"search-result-import-path\">peritext/src/core/controllers/contentsController/index.js</span>",
+    "<span>updateFromSource</span> <span class=\"search-result-import-path\">peritext/src/core/controllers/contentsController.js</span>",
     "variable"
   ],
   [
-    "peritext/src/core/controllers/contentscontroller/index.js~updatetosource",
+    "peritext/src/core/controllers/contentscontroller.js~updatetosource",
     "variable/index.html#static-variable-updateToSource",
-    "<span>updateToSource</span> <span class=\"search-result-import-path\">peritext/src/core/controllers/contentsController/index.js</span>",
-    "variable"
-  ],
-  [
-    "peritext/src/core/validators/sectionvalidator/index.js~validateresources",
-    "variable/index.html#static-variable-validateResources",
-    "<span>validateResources</span> <span class=\"search-result-import-path\">peritext/src/core/validators/sectionValidator/index.js</span>",
+    "<span>updateToSource</span> <span class=\"search-result-import-path\">peritext/src/core/controllers/contentsController.js</span>",
     "variable"
   ],
   [
@@ -1206,12 +1314,6 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/core/components/staticcomponents/staticbackcover.js~staticbackcover#getgeneralprop",
-    "class/src/core/components/StaticComponents/StaticBackCover.js~StaticBackCover.html#instance-method-getGeneralProp",
-    "src/core/components/StaticComponents/StaticBackCover.js~StaticBackCover#getGeneralProp",
-    "method"
-  ],
-  [
     "src/core/components/staticcomponents/staticbackcover.js~staticbackcover#render",
     "class/src/core/components/StaticComponents/StaticBackCover.js~StaticBackCover.html#instance-method-render",
     "src/core/components/StaticComponents/StaticBackCover.js~StaticBackCover#render",
@@ -1266,16 +1368,22 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/core/components/staticcomponents/staticforewords.js",
+    "file/src/core/components/StaticComponents/StaticForewords.js.html",
+    "src/core/components/StaticComponents/StaticForewords.js",
+    "file"
+  ],
+  [
+    "src/core/components/staticcomponents/staticforewords.js~staticforewords#render",
+    "class/src/core/components/StaticComponents/StaticForewords.js~StaticForewords.html#instance-method-render",
+    "src/core/components/StaticComponents/StaticForewords.js~StaticForewords#render",
+    "method"
+  ],
+  [
     "src/core/components/staticcomponents/staticfrontcover.js",
     "file/src/core/components/StaticComponents/StaticFrontCover.js.html",
     "src/core/components/StaticComponents/StaticFrontCover.js",
     "file"
-  ],
-  [
-    "src/core/components/staticcomponents/staticfrontcover.js~staticfrontcover#getgeneralprop",
-    "class/src/core/components/StaticComponents/StaticFrontCover.js~StaticFrontCover.html#instance-method-getGeneralProp",
-    "src/core/components/StaticComponents/StaticFrontCover.js~StaticFrontCover#getGeneralProp",
-    "method"
   ],
   [
     "src/core/components/staticcomponents/staticfrontcover.js~staticfrontcover#render",
@@ -1524,75 +1632,81 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/core/controllers/annotationscontroller/index.js",
-    "file/src/core/controllers/annotationsController/index.js.html",
-    "src/core/controllers/annotationsController/index.js",
+    "src/core/controllers/annotationscontroller.js",
+    "file/src/core/controllers/annotationsController.js.html",
+    "src/core/controllers/annotationsController.js",
     "file"
   ],
   [
-    "src/core/controllers/assetscontroller/index.js",
-    "file/src/core/controllers/assetsController/index.js.html",
-    "src/core/controllers/assetsController/index.js",
+    "src/core/controllers/assetscontroller.js",
+    "file/src/core/controllers/assetsController.js.html",
+    "src/core/controllers/assetsController.js",
     "file"
   ],
   [
-    "src/core/controllers/contentscontroller/index.js",
-    "file/src/core/controllers/contentsController/index.js.html",
-    "src/core/controllers/contentsController/index.js",
+    "src/core/controllers/contentscontroller.js",
+    "file/src/core/controllers/contentsController.js.html",
+    "src/core/controllers/contentsController.js",
     "file"
   ],
   [
-    "src/core/converters/bibtexconverter/index.js",
-    "file/src/core/converters/bibTexConverter/index.js.html",
-    "src/core/converters/bibTexConverter/index.js",
+    "src/core/converters/bibtexconverter.js",
+    "file/src/core/converters/bibTexConverter.js.html",
+    "src/core/converters/bibTexConverter.js",
     "file"
   ],
   [
-    "src/core/converters/markdownconverter/index.js",
-    "file/src/core/converters/markdownConverter/index.js.html",
-    "src/core/converters/markdownConverter/index.js",
+    "src/core/converters/documentconverter/cleannaivetree.js",
+    "file/src/core/converters/documentConverter/cleanNaiveTree.js.html",
+    "src/core/converters/documentConverter/cleanNaiveTree.js",
     "file"
   ],
   [
-    "src/core/converters/markdownincludesparser/index.js",
-    "file/src/core/converters/markdownIncludesParser/index.js.html",
-    "src/core/converters/markdownIncludesParser/index.js",
+    "src/core/converters/documentconverter/concattree.js",
+    "file/src/core/converters/documentConverter/concatTree.js.html",
+    "src/core/converters/documentConverter/concatTree.js",
     "file"
   ],
   [
-    "src/core/converters/sectionconverter/cleannaivetree.js",
-    "file/src/core/converters/sectionConverter/cleanNaiveTree.js.html",
-    "src/core/converters/sectionConverter/cleanNaiveTree.js",
+    "src/core/converters/documentconverter/index.js",
+    "file/src/core/converters/documentConverter/index.js.html",
+    "src/core/converters/documentConverter/index.js",
     "file"
   ],
   [
-    "src/core/converters/sectionconverter/concattree.js",
-    "file/src/core/converters/sectionConverter/concatTree.js.html",
-    "src/core/converters/sectionConverter/concatTree.js",
+    "src/core/converters/documentconverter/organizetree.js",
+    "file/src/core/converters/documentConverter/organizeTree.js.html",
+    "src/core/converters/documentConverter/organizeTree.js",
     "file"
   ],
   [
-    "src/core/converters/sectionconverter/index.js",
-    "file/src/core/converters/sectionConverter/index.js.html",
-    "src/core/converters/sectionConverter/index.js",
+    "src/core/converters/documentconverter/parsetreeresources.js",
+    "file/src/core/converters/documentConverter/parseTreeResources.js.html",
+    "src/core/converters/documentConverter/parseTreeResources.js",
     "file"
   ],
   [
-    "src/core/converters/sectionconverter/organizetree.js",
-    "file/src/core/converters/sectionConverter/organizeTree.js.html",
-    "src/core/converters/sectionConverter/organizeTree.js",
+    "src/core/converters/documentconverter/propagatedata.js",
+    "file/src/core/converters/documentConverter/propagateData.js.html",
+    "src/core/converters/documentConverter/propagateData.js",
     "file"
   ],
   [
-    "src/core/converters/sectionconverter/parsetreeresources.js",
-    "file/src/core/converters/sectionConverter/parseTreeResources.js.html",
-    "src/core/converters/sectionConverter/parseTreeResources.js",
+    "src/core/converters/markdownconverter.js",
+    "file/src/core/converters/markdownConverter.js.html",
+    "src/core/converters/markdownConverter.js",
     "file"
   ],
   [
-    "src/core/converters/sectionconverter/propagatedata.js",
-    "file/src/core/converters/sectionConverter/propagateData.js.html",
-    "src/core/converters/sectionConverter/propagateData.js",
+    "src/core/converters/markdownincludesparser.js",
+    "file/src/core/converters/markdownIncludesParser.js.html",
+    "src/core/converters/markdownIncludesParser.js",
+    "file"
+  ],
+  [
+    "src/core/getters.js",
+    "file/src/core/getters.js.html",
+    "src/core/getters.js",
     "file"
   ],
   [
@@ -1602,27 +1716,33 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/core/resolvers/htmlmetatemplateserializer/index.js",
-    "file/src/core/resolvers/htmlMetaTemplateSerializer/index.js.html",
-    "src/core/resolvers/htmlMetaTemplateSerializer/index.js",
+    "src/core/resolvers/htmlmetatemplateserializer.js",
+    "file/src/core/resolvers/htmlMetaTemplateSerializer.js.html",
+    "src/core/resolvers/htmlMetaTemplateSerializer.js",
     "file"
   ],
   [
-    "src/core/resolvers/resolvecontextualizations/index.js",
-    "file/src/core/resolvers/resolveContextualizations/index.js.html",
-    "src/core/resolvers/resolveContextualizations/index.js",
+    "src/core/resolvers/resolvecontextualizations.js",
+    "file/src/core/resolvers/resolveContextualizations.js.html",
+    "src/core/resolvers/resolveContextualizations.js",
     "file"
   ],
   [
-    "src/core/resolvers/resolvedatadependencies/index.js",
-    "file/src/core/resolvers/resolveDataDependencies/index.js.html",
-    "src/core/resolvers/resolveDataDependencies/index.js",
+    "src/core/resolvers/resolvedatadependencies.js",
+    "file/src/core/resolvers/resolveDataDependencies.js.html",
+    "src/core/resolvers/resolveDataDependencies.js",
     "file"
   ],
   [
-    "src/core/resolvers/resolvesectionagainstmodels/index.js",
-    "file/src/core/resolvers/resolveSectionAgainstModels/index.js.html",
-    "src/core/resolvers/resolveSectionAgainstModels/index.js",
+    "src/core/resolvers/resolveresourcesagainstmodels.js",
+    "file/src/core/resolvers/resolveResourcesAgainstModels.js.html",
+    "src/core/resolvers/resolveResourcesAgainstModels.js",
+    "file"
+  ],
+  [
+    "src/core/resolvers/resolvesectionagainstmodels.js",
+    "file/src/core/resolvers/resolveSectionAgainstModels.js.html",
+    "src/core/resolvers/resolveSectionAgainstModels.js",
     "file"
   ],
   [
@@ -1656,33 +1776,33 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/core/utils/componentsfactory/index.js",
-    "file/src/core/utils/componentsFactory/index.js.html",
-    "src/core/utils/componentsFactory/index.js",
+    "src/core/utils/componentsfactory.js",
+    "file/src/core/utils/componentsFactory.js.html",
+    "src/core/utils/componentsFactory.js",
     "file"
   ],
   [
-    "src/core/utils/microdatautils/index.js",
-    "file/src/core/utils/microDataUtils/index.js.html",
-    "src/core/utils/microDataUtils/index.js",
+    "src/core/utils/microdatautils.js",
+    "file/src/core/utils/microDataUtils.js.html",
+    "src/core/utils/microDataUtils.js",
     "file"
   ],
   [
-    "src/core/utils/modelutils/index.js",
-    "file/src/core/utils/modelUtils/index.js.html",
-    "src/core/utils/modelUtils/index.js",
+    "src/core/utils/modelutils.js",
+    "file/src/core/utils/modelUtils.js.html",
+    "src/core/utils/modelUtils.js",
     "file"
   ],
   [
-    "src/core/utils/referenceutils/index.js",
-    "file/src/core/utils/referenceUtils/index.js.html",
-    "src/core/utils/referenceUtils/index.js",
+    "src/core/utils/referenceutils.js",
+    "file/src/core/utils/referenceUtils.js.html",
+    "src/core/utils/referenceUtils.js",
     "file"
   ],
   [
-    "src/core/utils/sectionutils/index.js",
-    "file/src/core/utils/sectionUtils/index.js.html",
-    "src/core/utils/sectionUtils/index.js",
+    "src/core/utils/sectionutils.js",
+    "file/src/core/utils/sectionUtils.js.html",
+    "src/core/utils/sectionUtils.js",
     "file"
   ],
   [
@@ -1692,9 +1812,9 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/core/validators/sectionvalidator/index.js",
-    "file/src/core/validators/sectionValidator/index.js.html",
-    "src/core/validators/sectionValidator/index.js",
+    "src/core/validators/sectionvalidator.js",
+    "file/src/core/validators/sectionValidator.js.html",
+    "src/core/validators/sectionValidator.js",
     "file"
   ],
   [
@@ -1710,9 +1830,9 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/index.js",
-    "file/src/index.js.html",
-    "src/index.js",
+    "src/peritext.js",
+    "file/src/peritext.js.html",
+    "src/peritext.js",
     "file"
   ],
   [
@@ -1782,15 +1902,21 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/renderers/rendertodynamichtml/index.js",
+    "file/src/renderers/renderToDynamicHtml/index.js.html",
+    "src/renderers/renderToDynamicHtml/index.js",
+    "file"
+  ],
+  [
     "src/renderers/rendertostatichtml/index.js",
     "file/src/renderers/renderToStaticHtml/index.js.html",
     "src/renderers/renderToStaticHtml/index.js",
     "file"
   ],
   [
-    "src/renderers/sharedstaticutils/index.js",
-    "file/src/renderers/sharedStaticUtils/index.js.html",
-    "src/renderers/sharedStaticUtils/index.js",
+    "src/renderers/renderingutils/index.js",
+    "file/src/renderers/renderingUtils/index.js.html",
+    "src/renderers/renderingUtils/index.js",
     "file"
   ]
 ]
