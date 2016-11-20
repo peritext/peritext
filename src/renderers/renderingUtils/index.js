@@ -168,7 +168,6 @@ export const composeRenderedSections = (sections = [], document, settings = {}, 
   };
 };
 
-
 const resolveStaticNode = (inputNode, section, settings) =>{
   const node = Object.assign({}, inputNode);
   if (node.tag === 'note') {

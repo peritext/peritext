@@ -58,3 +58,5 @@ export const getResourceContextualizations = getters.getResourceContextualizatio
 export const getContextualizerContextualizations = getters.getContextualizerContextualizations;
 export const getGlossary = getters.getGlossary;
 export const getDocumentMetadata = getters.getDocumentMetadata;
+
+export {computeReferences} from './core/utils/referenceUtils';

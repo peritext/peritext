@@ -9,7 +9,7 @@ import {waterfall} from 'async';
 // import React from 'react';
 // import {IntlProvider} from 'react-intl';
 
-// import resolveDataDependencies from './../../core/resolvers/resolveDataDependencies';
+import resolveDataDependencies from './../../core/resolvers/resolveDataDependencies';
 import {resolveSettings} from './../../core/utils/modelUtils';
 import {settingsModels} from './../../core/models';
 import {
@@ -26,6 +26,18 @@ import {
 */
 
 // const defaultStylesPath = './../../config/defaultStyles/';
+
+export function renderObjectMetadata(document, inputMetaHead) {
+  let metaHead = inputMetaHead;
+  return Object.keys(document.metadata).map(domain => {
+    return Object.keys(document.metadata[domain]).map(key => {
+      if (document.metadata[domain][key] && document.metadata[domain][key].htmlHead) {
+        metaHead += document.metadata[domain][key].htmlHead;
+      }
+    }).join('\n');
+  }).join('\n');
+}
+
 
 /**
  * Renders a section representation as a string representation of an html page
@@ -67,7 +79,7 @@ export const renderDocument = ({
       cback) =>{
       let renderedDocument = Object.assign({}, document); // inputDocument
       // build final css code (default + user-generated customizers)
-
+      let style = '';
       const cssCustomizers = renderedDocument.customizers && renderedDocument.customizers.styles;
       if (cssCustomizers !== undefined) {
         for (const name in cssCustomizers) {
@@ -87,7 +99,7 @@ export const renderDocument = ({
           }
         });
       });
-      renderedDocument.metaHead = renderObjectMetadata(document);
+      renderedDocument.metaHead = renderObjectMetadata(document, metaHead);
 
       // order contextualizations (ibid/opCit, ...)
       renderedDocument = resolveContextualizationsRelations(renderedDocument, finalSettings);
@@ -112,21 +124,11 @@ export const renderDocument = ({
   ], rendererCallback);
 };
 
-export function resolveDocumentContextualizationsRelations(document, settings=[]) {
+export function resolveDocumentContextualizationsRelations(document, settings = []) {
   const finalSettings = resolveSettings(settings, document.metadata.general.bibType.value, settingsModels);
   return resolveContextualizationsRelations(document, finalSettings);
 }
 
-export function renderSection (section, settings) {
+export function renderSection(section, settings) {
   return setDynamicSectionContents(section, 'contents', settings);
-}
-
-export function renderObjectMetadata (document) {
-  return Object.keys(document.metadata).map(domain => {
-        Object.keys(document.metadata[domain]).map(key => {
-          if (renderedDocument.metadata[domain][key] && renderedDocument.metadata[domain][key].htmlHead) {
-            metaHead += renderedDocument.metadata[domain][key].htmlHead;
-          }
-        }).join('\n');
-      }).join('\n');
 }

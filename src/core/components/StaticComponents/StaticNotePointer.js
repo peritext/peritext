@@ -10,7 +10,7 @@ export default class StaticNotePointer extends React.Component {
    * @property {Object} note - the note object to use in order to render the note pointer
    */
   static propTypes = {
-    note: PropTypes.object,
+    note: PropTypes.object
   };
 
   static defaultProps = {

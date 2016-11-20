@@ -70,7 +70,7 @@ export const getContextualizerContextualizations = (document, contextualizerId) 
 export const getGlossary = (document) => {
   const entitiesTypes = ['person', 'place', 'subject', 'concept', 'organization', 'technology', 'artefact'];
   const sections = Object.keys(document.sections).map(key => document.sections[key]);
-  // prepare glossary
+  // get all glossary contextualizations
   const glossaryPointers = sections.reduce((results, thatSection)=>{
     const sectionCitekey = thatSection.metadata.general.id.value;
     return results.concat(
@@ -80,14 +80,16 @@ export const getGlossary = (document) => {
       })
       .reduce((localResults, contextualizationKey)=> {
         const contextualization = document.contextualizations[contextualizationKey];
+        const targetBlockPath = contextualization.nodePath.slice(0, 3);
         return localResults.concat({
           mentionId: '#peritext-content-entity-inline-' + sectionCitekey + '-' + contextualization.id,
           entity: document.resources[contextualization.resources[0]].id,
-          alias: document.contextualizers[contextualization.contextualizer].alias
+          alias: document.contextualizers[contextualization.contextualizer].alias,
+          targetBlockPath
         });
       }, []));
   }, []);
-
+  // regroup related resources
   const glossaryResources = [];
   Object.keys(document.resources)
   .map(refKey => {
@@ -98,9 +100,10 @@ export const getGlossary = (document) => {
       glossaryResources.push(thatResource);
     }
   });
-
+  // reduce to have a one-entry-per-entity glossary
   const glossaryData = glossaryResources.map((inputGlossaryEntry)=> {
     const glossaryEntry = Object.assign({}, inputGlossaryEntry);
+    // retroup resources
     glossaryEntry.aliases = glossaryPointers.filter((pointer)=> {
       return pointer.entity === glossaryEntry.id;
     }).reduce((aliases, entry)=> {

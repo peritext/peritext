@@ -67,9 +67,19 @@ export const computeReferences = (sections, document, settings) =>{
       }
     }, references);
 
+    // retrieve related contextualizations
+    const improvedReferences = filteredReferences.map((reference) => {
+      const contextualizations = Object.keys(document.contextualizations)
+                                  .map(key => document.contextualizations[key])
+                                  .filter(contextualization =>
+                                    contextualization.resources.indexOf(reference.id) > -1
+                                  );
+      return Object.assign(reference, {contextualizations});
+    });
+
     // order references
     const order = settings.referenceSortBy;
-    const sortedReferences = filteredReferences.sort((ref1, ref2)=> {
+    const sortedReferences = improvedReferences.sort((ref1, ref2)=> {
       switch (order) {
       case 'title':
         return (ref1.title && ref1.title.toLowerCase()) > (ref2.title && ref2.title.toLowerCase()) ? 1 : -1;

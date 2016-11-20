@@ -232,7 +232,6 @@ export const resolveContextualizationsRelations = (inputDocument, settings) =>{
         }
 
         // todo ibid document
-
         // citation specifics
         if (document.contextualizers[contextualization.contextualizer].type === 'citation') {
           // same authors but different work in year - section scale
