@@ -5,7 +5,8 @@ import {
   assetsController,
   exportDocumentToPdf,
   defaultParameters,
-  defaultModels
+  defaultModels,
+  renderToDynamicDocument
 } from './../../src/peritext';
 import {writeFileSync} from 'fs';
 
@@ -24,8 +25,7 @@ export default function runExample() {
       contentsController.updateFromSource(params, defaultModels, defaultParameters, callback);
     }
   ], (err, results)=>{
-    writeFileSync(__dirname + '/output/serialized.json', JSON.stringify(results, null, 2));
-    // const sections = results.sections;
+    const sections = results.sections;
     exportDocumentToPdf({
       document: results.document,
       destinationFolder
