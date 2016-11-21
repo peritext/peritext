@@ -57,7 +57,8 @@ export const getTableOfFigures = (document) =>
   .filter(contextualization => contextualization.figureId)
   .map(contextualization => ({
     figureId: contextualization.figureId,
-    figureNumber: contextualization.figureNumber
+    figureNumber: contextualization.figureNumber,
+    contextualization
   }));
 
 export const getResourceContextualizations = (document, resourceId) =>
