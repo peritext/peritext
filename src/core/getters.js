@@ -112,10 +112,11 @@ export const getGlossary = (document, preRenderContexts = true) => {
         }
         return localResults.concat({
           mentionId: '#peritext-content-entity-inline-' + sectionCitekey + '-' + contextualization.id,
-          contextualizationId: contextualization.id,
+          id: contextualization.id,
           entity: document.resources[contextualization.resources[0]].id,
           alias: document.contextualizers[contextualization.contextualizer].alias,
           targetBlockPath,
+          nodePath: contextualization.nodePath,
           context
         });
       }, []));
