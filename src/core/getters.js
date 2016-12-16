@@ -82,7 +82,7 @@ export const getContextualizerContextualizations = (document, contextualizerId) 
       contextualization.contextualizer === contextualizerId
     );
 
-export const getGlossary = (document) => {
+export const getGlossary = (document, preRenderContexts = true) => {
   const entitiesTypes = ['person', 'place', 'subject', 'concept', 'organization', 'technology', 'artefact'];
   const sections = Object.keys(document.sections).map(key => document.sections[key]);
   // get all glossary contextualizations
@@ -96,11 +96,26 @@ export const getGlossary = (document) => {
       .reduce((localResults, contextualizationKey)=> {
         const contextualization = document.contextualizations[contextualizationKey];
         const targetBlockPath = contextualization.nodePath.slice(0, 3);
+        let context;
+        if (preRenderContexts) {
+          const sectionId = contextualization.nodePath[0];
+          const contentCategory = contextualization.nodePath[1];
+          const blockNumber = contextualization.nodePath[2];
+          const contextBlock = document.sections[sectionId][contentCategory][blockNumber];
+          const previousBlock = (blockNumber > 0) ? document.sections[sectionId][contentCategory][blockNumber - 1] : undefined;
+          const nextBlock = (blockNumber < document.sections[sectionId][contentCategory].length - 1) ? document.sections[sectionId][contentCategory][blockNumber + 1] : undefined;
+          context = {
+            previousBlock,
+            contextBlock,
+            nextBlock
+          };
+        }
         return localResults.concat({
           mentionId: '#peritext-content-entity-inline-' + sectionCitekey + '-' + contextualization.id,
           entity: document.resources[contextualization.resources[0]].id,
           alias: document.contextualizers[contextualization.contextualizer].alias,
-          targetBlockPath
+          targetBlockPath,
+          context
         });
       }, []));
   }, []);
