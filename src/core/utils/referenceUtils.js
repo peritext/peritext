@@ -38,7 +38,7 @@ const isBibliographical = (bibType) =>{
  * @param {Object} settings - the rendering settings, among which are bibliography-making related settings
  * @return {array} references - the resulting list
  */
-export const computeReferences = (document, settings, preRenderContexts = false) =>{
+export const computeReferences = (document, settings, preRenderContexts = true) =>{
   if (settings.referenceScope === 'document') {
     const references = [];
     for (const key in document.resources) {
