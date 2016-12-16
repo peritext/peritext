@@ -4,7 +4,7 @@
  */
 import { get as getByPath } from 'object-path';
 
-import StaticTable from './StaticTable';
+// import StaticTable from './StaticTable';
 
 /**
  * Handle an inline contextualization for static outputs
@@ -35,7 +35,7 @@ export const contextualizeInlineStatic = (inputDocument, inputContextualization,
     const figure = {
       node: 'element',
       special: true,
-      tag: StaticTable,
+      tag: 'StaticTable',
       props: {
         resources: contextualization.resources.map(key => document.resources[key]),
         data,

@@ -5,8 +5,8 @@
 
  import { get as getByPath } from 'object-path';
 
- import {StructuredHyperLink} from './../../core/components';
- import StaticWebsitePoster from './StaticWebsitePoster.js';
+ // import {StructuredHyperLink} from './../../core/components';
+ // import StaticWebsitePoster from './StaticWebsitePoster.js';
 
 /**
  * Handle an inline contextualization for static outputs
@@ -25,7 +25,7 @@
 
    const link = {
      node: 'element',
-     tag: StructuredHyperLink,
+     tag: 'StructuredHyperLink',
      special: true,
      props: {
        resource: document.resources[contextualization.resources[0]],
@@ -77,7 +77,7 @@
    const figure = {
      node: 'element',
      special: true,
-     tag: StaticWebsitePoster,
+     tag: 'StaticWebsitePoster',
      props: {
        imageKey: 'posterurl',
        resource: document.resources[contextualization.resources[0]],

@@ -4,8 +4,8 @@
  */
 import { get as getByPath } from 'object-path';
 
-import StaticEntityInline from './StaticEntityInline';
-import StaticEntityBlock from './StaticEntityBlock';
+// import StaticEntityInline from './StaticEntityInline';
+// import StaticEntityBlock from './StaticEntityBlock';
 
 /**
  * Handle an inline contextualization for static outputs
@@ -38,7 +38,7 @@ export const contextualizeInlineStatic = (inputDocument, inputContextualization,
     sectionId
   };
   node.special = true;
-  node.tag = StaticEntityInline;
+  node.tag = 'StaticEntityInline';
   return document;
 };
 
@@ -61,7 +61,7 @@ export const contextualizeBlockStatic = (inputDocument, inputContextualization, 
     settings
   };
   node.special = true;
-  node.tag = StaticEntityBlock;
+  node.tag = 'StaticEntityBlock';
   return document;
 };
 

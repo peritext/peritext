@@ -4,7 +4,7 @@
  */
 import { get as getByPath } from 'object-path';
 
-import StaticImageGallery from './StaticImageGallery';
+// import StaticImageGallery from './StaticImageGallery';
 
 /**
  * Handle an inline contextualization for static outputs
@@ -36,7 +36,7 @@ export const contextualizeInlineStatic = (inputDocument, inputContextualization,
     const figure = {
       node: 'element',
       special: true,
-      tag: StaticImageGallery,
+      tag: 'StaticImageGallery',
       props: {
         resources: contextualization.resources.map(key => document.resources[key]),
         captionContent: [{
@@ -131,7 +131,7 @@ export const contextualizeBlockStatic = (inputDocument, inputContextualization, 
   const figure = {
     node: 'element',
     special: true,
-    tag: StaticImageGallery,
+    tag: 'StaticImageGallery',
     props: {
       resources: contextualization.resources.map(key => document.resources[key]),
       captionContent: node.children[0].children,

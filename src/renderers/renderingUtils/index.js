@@ -176,9 +176,9 @@ const resolveStaticNode = (inputNode, section, settings) =>{
     });
     node.props = {note};
     if (settings.notesPosition === 'footnotes') {
-      node.tag = StaticFootnote;
+      node.tag = 'StaticFootnote';
     } else {
-      node.tag = StaticNotePointer;
+      node.tag = 'StaticNotePointer';
     }
     node.special = true;
   }
@@ -200,7 +200,7 @@ const resolveDynamicNode = (inputNode, section, settings) =>{
       return thatNote.id === node.target;
     });
     node.props = {note};
-    node.tag = StaticNotePointer;
+    node.tag = 'StaticNotePointer';
     node.special = true;
   }
   if (node.children) {
