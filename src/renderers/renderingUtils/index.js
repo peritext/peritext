@@ -70,7 +70,7 @@ export const composeRenderedSections = (sections = [], document, settings = {}, 
 
   // build references/bibliography
   if (settings.referenceScope === 'document') {
-    const refs = computeReferences(sections, document, settings);
+    const refs = computeReferences(document, settings);
     if (refs.length) {
       renderedSections.push({
         type: 'references',
@@ -190,11 +190,8 @@ const resolveStaticNode = (inputNode, section, settings) =>{
   return node;
 };
 
-export const setStaticSectionContents = (section, key, settings) =>{
-  return section[key].map(node => {
-    return resolveStaticNode(node, section, settings);
-  });
-};
+export const setStaticSectionContents = (section, key, settings) =>
+  section[key].map(node => resolveStaticNode(node, section, settings));
 
 const resolveDynamicNode = (inputNode, section, settings) =>{
   const node = Object.assign({}, inputNode);
@@ -214,8 +211,5 @@ const resolveDynamicNode = (inputNode, section, settings) =>{
   return node;
 };
 
-export const setDynamicSectionContents = (section, key, settings) =>{
-  return section[key].map(node => {
-    return resolveDynamicNode(node, section, settings);
-  });
-};
+export const setDynamicSectionContents = (section, key, settings) =>
+  section[key].map(node => resolveDynamicNode(node, section, settings));

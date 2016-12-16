@@ -35,11 +35,10 @@ const isBibliographical = (bibType) =>{
 /**
  * Filter and order a list of resources against bibliography settings
  * @param {array} sections - the sections to handle for building the list
- * @param {Object} document - the reference to the overall document
  * @param {Object} settings - the rendering settings, among which are bibliography-making related settings
  * @return {array} references - the resulting list
  */
-export const computeReferences = (sections, document, settings) =>{
+export const computeReferences = (document, settings, preRenderContexts = false) =>{
   if (settings.referenceScope === 'document') {
     const references = [];
     for (const key in document.resources) {
@@ -47,7 +46,6 @@ export const computeReferences = (sections, document, settings) =>{
         references.push(document.resources[key]);
       }
     }
-
     // handle filters
     const filters = (settings.referenceFilters || []) && settings.referenceFilters.split(' ');
     const filteredReferences = filters.reduce((outputReferences, filter)=> {
@@ -73,7 +71,26 @@ export const computeReferences = (sections, document, settings) =>{
                                   .map(key => document.contextualizations[key])
                                   .filter(contextualization =>
                                     contextualization.resources.indexOf(reference.id) > -1
-                                  );
+                                  )
+                                  .map(contextualization => {
+                                    // render contextualization content if asked (containing block, + former and previous)
+                                    if (preRenderContexts) {
+                                      const sectionId = contextualization.nodePath[0];
+                                      const contentCategory = contextualization.nodePath[1];
+                                      const blockNumber = contextualization.nodePath[2];
+                                      const contextBlock = document.sections[sectionId][contentCategory][blockNumber];
+                                      const previousBlock = (blockNumber > 0) ? document.sections[sectionId][contentCategory][blockNumber - 1] : undefined;
+                                      const nextBlock = (blockNumber < document.sections[sectionId][contentCategory].length - 1) ? document.sections[sectionId][contentCategory][blockNumber + 1] : undefined;
+                                      return Object.assign({}, contextualization, {
+                                        context: {
+                                          previousBlock,
+                                          contextBlock,
+                                          nextBlock
+                                        }
+                                      });
+                                    }
+                                    return contextualization;
+                                  });
       return Object.assign(reference, {contextualizations});
     });
 

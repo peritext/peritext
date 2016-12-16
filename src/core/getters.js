@@ -1,3 +1,7 @@
+import {
+  computeReferences
+} from './utils/referenceUtils';
+
 
 export const getDocument = (document) => Object.assign({}, document);
 
@@ -50,6 +54,9 @@ export const getTableOfSections = (document) =>
       parent: metadata.general.parent ? metadata.general.parent.value : undefined
     };
   });
+
+export const getDocumentBibliography = (document, settings, preRenderContexts) =>
+  computeReferences(document, settings, preRenderContexts);
 
 export const getTableOfFigures = (document) =>
   Object.keys(document.contextualizations)
