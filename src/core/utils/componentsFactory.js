@@ -19,7 +19,6 @@ export const jsToComponent = (node, index)=> {
     // Component class stored as referenced object
     // const Component = node.tag;
     const Component = components[node.tag];
-    console.log(typeof Component, node.tag);
     return <Component key={index} {...node.props} />;
   }
   // plain string tag name (p, span, ...)

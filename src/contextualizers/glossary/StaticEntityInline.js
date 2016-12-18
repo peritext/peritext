@@ -34,7 +34,7 @@ export default class StaticEntityInline extends React.Component {
     return (
       <a
         className="peritext-static-entity-container-inline"
-        name={'peritext-content-entity-inline-' + this.props.sectionId + '-' + this.props.contextualization.id}
+        name={'peritext-static-entity-inline-' + this.props.sectionId + '-' + this.props.contextualization.id}
         id={'peritext-static-entity-inline-' + this.props.sectionId + '-' + this.props.contextualization.id}
         href={'#peritext-static-entity-block-' + this.props.entity.id}
         itemProp="mentions"
