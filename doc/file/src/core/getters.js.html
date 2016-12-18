@@ -33,6 +33,7 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-assetsController">assetsController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-components">components</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contentsController">contentsController</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-defaultModels">defaultModels</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-defaultParameters">defaultParameters</a></span></span></li>
@@ -88,6 +89,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineStatic">contextualizeInlineStatic</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getContextualizerContextualizations">getContextualizerContextualizations</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getDocument">getDocument</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getDocumentBibliography">getDocumentBibliography</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getDocumentMetadata">getDocumentMetadata</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getForewords">getForewords</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getGlossary">getGlossary</a></span></span></li>
@@ -180,7 +182,11 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/core/getters.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import {
+  computeReferences
+} from &apos;./utils/referenceUtils&apos;;
+
+
 export const getDocument = (document) =&gt; Object.assign({}, document);
 
 export const getDocumentMetadata = (document) =&gt; Object.assign({}, document.metadata);
@@ -233,6 +239,9 @@ export const getTableOfSections = (document) =&gt;
     };
   });
 
+export const getDocumentBibliography = (document, settings, preRenderContexts) =&gt;
+  computeReferences(document, settings, preRenderContexts);
+
 export const getTableOfFigures = (document) =&gt;
   Object.keys(document.contextualizations)
   .map(key =&gt; document.contextualizations[key])
@@ -257,7 +266,7 @@ export const getContextualizerContextualizations = (document, contextualizerId) 
       contextualization.contextualizer === contextualizerId
     );
 
-export const getGlossary = (document) =&gt; {
+export const getGlossary = (document, preRenderContexts = true) =&gt; {
   const entitiesTypes = [&apos;person&apos;, &apos;place&apos;, &apos;subject&apos;, &apos;concept&apos;, &apos;organization&apos;, &apos;technology&apos;, &apos;artefact&apos;];
   const sections = Object.keys(document.sections).map(key =&gt; document.sections[key]);
   // get all glossary contextualizations
@@ -271,11 +280,28 @@ export const getGlossary = (document) =&gt; {
       .reduce((localResults, contextualizationKey)=&gt; {
         const contextualization = document.contextualizations[contextualizationKey];
         const targetBlockPath = contextualization.nodePath.slice(0, 3);
+        let context;
+        if (preRenderContexts) {
+          const sectionId = contextualization.nodePath[0];
+          const contentCategory = contextualization.nodePath[1];
+          const blockNumber = contextualization.nodePath[2];
+          const contextBlock = document.sections[sectionId][contentCategory][blockNumber];
+          const previousBlock = (blockNumber &gt; 0) ? document.sections[sectionId][contentCategory][blockNumber - 1] : undefined;
+          const nextBlock = (blockNumber &lt; document.sections[sectionId][contentCategory].length - 1) ? document.sections[sectionId][contentCategory][blockNumber + 1] : undefined;
+          context = {
+            previousBlock,
+            contextBlock,
+            nextBlock
+          };
+        }
         return localResults.concat({
-          mentionId: &apos;#peritext-content-entity-inline-&apos; + sectionCitekey + &apos;-&apos; + contextualization.id,
+          mentionId: &apos;#peritext-static-entity-inline-&apos; + sectionCitekey + &apos;-&apos; + contextualization.id,
+          id: contextualization.id,
           entity: document.resources[contextualization.resources[0]].id,
           alias: document.contextualizers[contextualization.contextualizer].alias,
-          targetBlockPath
+          targetBlockPath,
+          nodePath: contextualization.nodePath,
+          context
         });
       }, []));
   }, []);

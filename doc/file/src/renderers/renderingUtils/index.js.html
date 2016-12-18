@@ -33,6 +33,7 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-assetsController">assetsController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-components">components</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contentsController">contentsController</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-defaultModels">defaultModels</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-defaultParameters">defaultParameters</a></span></span></li>
@@ -88,6 +89,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineStatic">contextualizeInlineStatic</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getContextualizerContextualizations">getContextualizerContextualizations</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getDocument">getDocument</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getDocumentBibliography">getDocumentBibliography</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getDocumentMetadata">getDocumentMetadata</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getForewords">getForewords</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getGlossary">getGlossary</a></span></span></li>
@@ -252,7 +254,7 @@ export const composeRenderedSections = (sections = [], document, settings = {}, 
 
   // build references/bibliography
   if (settings.referenceScope === &apos;document&apos;) {
-    const refs = computeReferences(sections, document, settings);
+    const refs = computeReferences(document, settings);
     if (refs.length) {
       renderedSections.push({
         type: &apos;references&apos;,
@@ -358,9 +360,9 @@ const resolveStaticNode = (inputNode, section, settings) =&gt;{
     });
     node.props = {note};
     if (settings.notesPosition === &apos;footnotes&apos;) {
-      node.tag = StaticFootnote;
+      node.tag = &apos;StaticFootnote&apos;;
     } else {
-      node.tag = StaticNotePointer;
+      node.tag = &apos;StaticNotePointer&apos;;
     }
     node.special = true;
   }
@@ -372,11 +374,8 @@ const resolveStaticNode = (inputNode, section, settings) =&gt;{
   return node;
 };
 
-export const setStaticSectionContents = (section, key, settings) =&gt;{
-  return section[key].map(node =&gt; {
-    return resolveStaticNode(node, section, settings);
-  });
-};
+export const setStaticSectionContents = (section, key, settings) =&gt;
+  section[key].map(node =&gt; resolveStaticNode(node, section, settings));
 
 const resolveDynamicNode = (inputNode, section, settings) =&gt;{
   const node = Object.assign({}, inputNode);
@@ -385,7 +384,7 @@ const resolveDynamicNode = (inputNode, section, settings) =&gt;{
       return thatNote.id === node.target;
     });
     node.props = {note};
-    node.tag = StaticNotePointer;
+    node.tag = &apos;StaticNotePointer&apos;;
     node.special = true;
   }
   if (node.children) {
@@ -396,11 +395,8 @@ const resolveDynamicNode = (inputNode, section, settings) =&gt;{
   return node;
 };
 
-export const setDynamicSectionContents = (section, key, settings) =&gt;{
-  return section[key].map(node =&gt; {
-    return resolveDynamicNode(node, section, settings);
-  });
-};
+export const setDynamicSectionContents = (section, key, settings) =&gt;
+  section[key].map(node =&gt; resolveDynamicNode(node, section, settings));
 </code></pre>
 
 </div>

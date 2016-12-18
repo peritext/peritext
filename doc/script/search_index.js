@@ -222,6 +222,12 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
+    "peritext/src/peritext.js~components",
+    "variable/index.html#static-variable-components",
+    "<span>components</span> <span class=\"search-result-import-path\">peritext/src/peritext.js</span>",
+    "variable"
+  ],
+  [
     "peritext/src/renderers/renderingutils/index.js~composerenderedsections",
     "variable/index.html#static-variable-composeRenderedSections",
     "<span>composeRenderedSections</span> <span class=\"search-result-import-path\">peritext/src/renderers/renderingUtils/index.js</span>",
@@ -465,6 +471,12 @@ window.esdocSearchIndex = [
     "peritext/src/core/getters.js~getdocument",
     "variable/index.html#static-variable-getDocument",
     "<span>getDocument</span> <span class=\"search-result-import-path\">peritext/src/core/getters.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/getters.js~getdocumentbibliography",
+    "variable/index.html#static-variable-getDocumentBibliography",
+    "<span>getDocumentBibliography</span> <span class=\"search-result-import-path\">peritext/src/core/getters.js</span>",
     "variable"
   ],
   [

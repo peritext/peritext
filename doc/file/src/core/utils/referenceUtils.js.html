@@ -33,6 +33,7 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-assetsController">assetsController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-components">components</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contentsController">contentsController</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-defaultModels">defaultModels</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-defaultParameters">defaultParameters</a></span></span></li>
@@ -88,6 +89,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineStatic">contextualizeInlineStatic</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getContextualizerContextualizations">getContextualizerContextualizations</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getDocument">getDocument</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getDocumentBibliography">getDocumentBibliography</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getDocumentMetadata">getDocumentMetadata</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getForewords">getForewords</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getGlossary">getGlossary</a></span></span></li>
@@ -217,11 +219,10 @@ const isBibliographical = (bibType) =&gt;{
 /**
  * Filter and order a list of resources against bibliography settings
  * @param {array} sections - the sections to handle for building the list
- * @param {Object} document - the reference to the overall document
  * @param {Object} settings - the rendering settings, among which are bibliography-making related settings
  * @return {array} references - the resulting list
  */
-export const computeReferences = (sections, document, settings) =&gt;{
+export const computeReferences = (document, settings, preRenderContexts = true) =&gt;{
   if (settings.referenceScope === &apos;document&apos;) {
     const references = [];
     for (const key in document.resources) {
@@ -229,7 +230,6 @@ export const computeReferences = (sections, document, settings) =&gt;{
         references.push(document.resources[key]);
       }
     }
-
     // handle filters
     const filters = (settings.referenceFilters || []) &amp;&amp; settings.referenceFilters.split(&apos; &apos;);
     const filteredReferences = filters.reduce((outputReferences, filter)=&gt; {
@@ -255,7 +255,26 @@ export const computeReferences = (sections, document, settings) =&gt;{
                                   .map(key =&gt; document.contextualizations[key])
                                   .filter(contextualization =&gt;
                                     contextualization.resources.indexOf(reference.id) &gt; -1
-                                  );
+                                  )
+                                  .map(contextualization =&gt; {
+                                    // render contextualization content if asked (containing block, + former and previous)
+                                    if (preRenderContexts) {
+                                      const sectionId = contextualization.nodePath[0];
+                                      const contentCategory = contextualization.nodePath[1];
+                                      const blockNumber = contextualization.nodePath[2];
+                                      const contextBlock = document.sections[sectionId][contentCategory][blockNumber];
+                                      const previousBlock = (blockNumber &gt; 0) ? document.sections[sectionId][contentCategory][blockNumber - 1] : undefined;
+                                      const nextBlock = (blockNumber &lt; document.sections[sectionId][contentCategory].length - 1) ? document.sections[sectionId][contentCategory][blockNumber + 1] : undefined;
+                                      return Object.assign({}, contextualization, {
+                                        context: {
+                                          previousBlock,
+                                          contextBlock,
+                                          nextBlock
+                                        }
+                                      });
+                                    }
+                                    return contextualization;
+                                  });
       return Object.assign(reference, {contextualizations});
     });
 

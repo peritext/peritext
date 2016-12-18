@@ -33,6 +33,7 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-assetsController">assetsController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-components">components</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contentsController">contentsController</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-defaultModels">defaultModels</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-defaultParameters">defaultParameters</a></span></span></li>
@@ -88,6 +89,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineStatic">contextualizeInlineStatic</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getContextualizerContextualizations">getContextualizerContextualizations</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getDocument">getDocument</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getDocumentBibliography">getDocumentBibliography</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getDocumentMetadata">getDocumentMetadata</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getForewords">getForewords</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getGlossary">getGlossary</a></span></span></li>
@@ -195,7 +197,7 @@ import { get as getByPath } from &apos;object-path&apos;;
  * @return {Object} newDocument - the updated representation of the peritext document in which the contextualization was made
  */
 export const contextualizeInlineStatic = (inputDocument, inputContextualization, settings) =&gt; {
-  const formatter = require(&apos;./../../referencers/&apos; + settings.citationStyle + &apos;.js&apos;);
+  // const formatter = require(&apos;./../../referencers/&apos; + settings.citationStyle + &apos;.js&apos;);
   const document = Object.assign({}, inputDocument);
   const contextualization = Object.assign({}, inputContextualization);
   const path = [&apos;sections&apos;, ...contextualization.nodePath.slice()];
@@ -212,7 +214,7 @@ export const contextualizeInlineStatic = (inputDocument, inputContextualization,
     const citation = {
       node: &apos;element&apos;,
       special: true,
-      tag: formatter.InlineCitation,
+      tag: &apos;InlineCitation&apos; + settings.citationStyle, // formatter.InlineCitation,
       props
     };
     const children = node.children.slice();
@@ -242,7 +244,7 @@ export const contextualizeInlineStatic = (inputDocument, inputContextualization,
   } else {
     node.special = true;
     node.node = &apos;element&apos;;
-    node.tag = formatter.InlineCitation;
+    node.tag = &apos;InlineCitation&apos; + settings.citationStyle; // formatter.InlineCitation;
     node.props = props;
   }
   return document;
@@ -256,7 +258,7 @@ export const contextualizeInlineStatic = (inputDocument, inputContextualization,
  * @return {Object} newDocument - the updated representation of the peritext document in which the contextualization was made
  */
 export const contextualizeBlockStatic = (inputDocument, inputContextualization, settings) =&gt; {
-  const formatter = require(&apos;./../../referencers/&apos; + settings.citationStyle + &apos;.js&apos;);
+  // const formatter = require(&apos;./../../referencers/&apos; + settings.citationStyle + &apos;.js&apos;);
   const document = Object.assign({}, inputDocument);
   const contextualization = Object.assign({}, inputContextualization);
   const path = [&apos;sections&apos;, ...contextualization.nodePath.slice()];
@@ -269,7 +271,7 @@ export const contextualizeBlockStatic = (inputDocument, inputContextualization, 
     opCit: contextualization.sectionOpCit
   };
   node.special = true;
-  node.tag = formatter.BlockCitation;
+  node.tag = &apos;BlockCitation&apos; + settings.citationStyle; // formatter.BlockCitation;
   node.props = props;
 
   return document;
