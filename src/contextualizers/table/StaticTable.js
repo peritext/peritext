@@ -34,6 +34,9 @@ export default class StaticTable extends React.Component {
    * @return {ReactElement} markup
    */
   render() {
+    if (!this.props.data || !this.props.data.data || !this.props.data.data.length) {
+        return '';
+    }
     const headers = Object.keys(this.props.data.data[0]);
     const objects = this.props.data.data;
     return (
