@@ -24,7 +24,7 @@ export const jsToComponent = (node, index)=> {
   // plain string tag name (p, span, ...)
   if (node.tag) {
     const Tag = node.tag;
-    return (<Tag key={index} id={node.attr && node.attr.id} href={node.attr && node.attr.href}>
+    return (<Tag key={index} className={node.attr && node.attr.className} id={node.attr && node.attr.id} href={node.attr && node.attr.href}>
       {node.children && node.children.map(jsToComponent)}
     </Tag>);
   }

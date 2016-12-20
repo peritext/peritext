@@ -209,6 +209,7 @@ mapMdJsonToPJson = (inputElement, contextualizations, elementPath) =>{
       element.tag = 'inlineC';
       const contextualizationId = element.attr.href;
       element.attr.id = contextualizationId;
+      element.attr.className = 'peritext-inline-contextualization';
       const contextualization = contextualizations[contextualizationId];
       contextualization.nodePath = elementPath;
     }
@@ -216,6 +217,7 @@ mapMdJsonToPJson = (inputElement, contextualizations, elementPath) =>{
   } else if (element.tag === 'img') {
     element.tag = 'blockC';
     const contextualizationId = element.attr.src;
+      element.attr.className = 'peritext-block-contextualization';
     const contextualization = contextualizations[contextualizationId];
     contextualization.nodePath = elementPath;
     let contents = (element.attr && element.attr.alt) ? element.attr.alt : '';
