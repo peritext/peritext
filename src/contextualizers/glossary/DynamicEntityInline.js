@@ -33,7 +33,7 @@ export default class DynamicEntityInline extends React.Component {
     const itemType = bibToSchema(this.props.entity.bibType);
     return (
       <span
-        className="peritext-static-entity-container-inline peritext-inline-contextualization"
+        className="peritext-dynamic-entity-container-inline peritext-inline-contextualization"
         name={this.props.contextualization.id}
         id={this.props.contextualization.id}
         itemProp="mentions"

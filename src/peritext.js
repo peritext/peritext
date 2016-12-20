@@ -68,6 +68,7 @@ import * as coreComponents from './core/components';
 import StaticTable from './contextualizers/table/StaticTable';
 import StaticEntityBlock from './contextualizers/glossary/StaticEntityBlock';
 import StaticEntityInline from './contextualizers/glossary/StaticEntityInline';
+import DynamicEntityInline from './contextualizers/glossary/DynamicEntityInline';
 import StaticImageGallery from './contextualizers/imagegallery/StaticImageGallery';
 import StaticWebsitePoster from './contextualizers/webpage/StaticWebsitePoster';
 
@@ -81,6 +82,7 @@ export const components = Object.assign({}, coreComponents, {
   StaticTable,
   StaticEntityBlock,
   StaticEntityInline,
+  DynamicEntityInline,
   StaticImageGallery,
   StaticWebsitePoster,
   BlockCitationiso690fr,
