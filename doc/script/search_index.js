@@ -630,6 +630,12 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
+    "peritext/src/core/getters.js~packsection",
+    "variable/index.html#static-variable-packSection",
+    "<span>packSection</span> <span class=\"search-result-import-path\">peritext/src/core/getters.js</span>",
+    "variable"
+  ],
+  [
     "peritext/src/peritext.js~packsection",
     "variable/index.html#static-variable-packSection",
     "<span>packSection</span> <span class=\"search-result-import-path\">peritext/src/peritext.js</span>",

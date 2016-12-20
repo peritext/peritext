@@ -97,6 +97,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getSection">getSection</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getTableOfFigures">getTableOfFigures</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getTableOfSections">getTableOfSections</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-packSection">packSection</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core/components/StaticComponents</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticBackCover.js~StaticBackCover.html">StaticBackCover</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticDocument.js~StaticDocument.html">StaticDocument</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticEndFigures.js~StaticEndFigures.html">StaticEndFigures</a></span></span></li>
@@ -462,6 +463,32 @@
       <div>
         
         
+        <div data-ice="description"><p>Handle a block contextualization for dynamic outputs</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockDynamic">contextualizeBlockDynamic</a></span></span><span data-ice="signature">(inputDocument: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, inputContextualization: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, settings: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>: <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
         <div data-ice="description"><p>Handle an block contextualization for dynamic outputs</p>
 </div>
       </div>
@@ -560,32 +587,6 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockDynamic">contextualizeBlockDynamic</a></span></span><span data-ice="signature">(inputDocument: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, inputContextualization: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, settings: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>: <span>*</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>Handle a block contextualization for dynamic outputs</p>
-</div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
            <span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockStatic">contextualizeBlockStatic</a></span></span><span data-ice="signature">(inputDocument: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, inputContextualization: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, settings: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>: <span>*</span></span>
         </p>
       </div>
@@ -898,7 +899,7 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineStatic">contextualizeInlineStatic</a></span></span><span data-ice="signature">(inputDocument: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, inputContextualization: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, settings: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>: <span>*</span></span>
+           <span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineStatic">contextualizeInlineStatic</a></span></span><span data-ice="signature">(inputSection: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, inputContextualization: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, settings: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>: <span>*</span></span>
         </p>
       </div>
       <div>
@@ -924,7 +925,7 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineStatic">contextualizeInlineStatic</a></span></span><span data-ice="signature">(inputSection: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, inputContextualization: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, settings: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>: <span>*</span></span>
+           <span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineStatic">contextualizeInlineStatic</a></span></span><span data-ice="signature">(inputDocument: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, inputContextualization: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, settings: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>: <span>*</span></span>
         </p>
       </div>
       <div>
@@ -1236,13 +1237,13 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="variable/index.html#static-variable-getAssetUri">getAssetUri</a></span></span><span data-ice="signature">(requestParams: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, callback: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(error: <span>error</span>, finalPath: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>)</span></span>): <span>*</span></span>
+           <span data-ice="name"><span><a href="variable/index.html#static-variable-getAssetUri">getAssetUri</a></span></span><span data-ice="signature">(path: <span>array</span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, params: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(connectorError: <span>error</span>, uri: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>)</span></span>: <span>*</span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Gets the absolute uri of an asset</p>
+        <div data-ice="description"><p>Provides the URI of a specific assets file from connector</p>
 </div>
       </div>
     </td>
@@ -1262,13 +1263,13 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="variable/index.html#static-variable-getAssetUri">getAssetUri</a></span></span><span data-ice="signature">(path: <span>array</span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, params: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(connectorError: <span>error</span>, uri: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>)</span></span>: <span>*</span></span>
+           <span data-ice="name"><span><a href="variable/index.html#static-variable-getAssetUri">getAssetUri</a></span></span><span data-ice="signature">(requestParams: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, callback: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(error: <span>error</span>, finalPath: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>)</span></span>): <span>*</span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Provides the URI of a specific assets file from connector</p>
+        <div data-ice="description"><p>Gets the absolute uri of an asset</p>
 </div>
       </div>
     </td>
@@ -2032,6 +2033,31 @@
         
         <div data-ice="description"><p>Organizes relations between sections</p>
 </div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="variable/index.html#static-variable-packSection">packSection</a></span></span><span data-ice="signature">: <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
       </div>
     </td>
     <td>
@@ -3416,11 +3442,63 @@ then monitor source tree updating (with C.U.D.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/contextualizers/imagegallery/index.js.html#lineNumber169">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/contextualizers/timeline/index.js.html#lineNumber46">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {contextualizeBlockDynamic} from &apos;<span><a href="file/src/contextualizers/imagegallery/index.js.html#lineNumber169">peritext/src/contextualizers/imagegallery/index.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {contextualizeBlockDynamic} from &apos;<span><a href="file/src/contextualizers/timeline/index.js.html#lineNumber46">peritext/src/contextualizers/timeline/index.js</a></span>&apos;</code></pre></div>
+  
+  
+  <div data-ice="description"><p>Handle a block contextualization for dynamic outputs</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>newDocument - the updated representation of the peritext document in which the contextualization was made</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-variable-contextualizeBlockDynamic">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">contextualizeBlockDynamic</span><span data-ice="signature">(inputDocument: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, inputContextualization: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, settings: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>: <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/contextualizers/glossary/index.js.html#lineNumber87">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {contextualizeBlockDynamic} from &apos;<span><a href="file/src/contextualizers/glossary/index.js.html#lineNumber87">peritext/src/contextualizers/glossary/index.js</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>Handle a block contextualization for dynamic outputs</p>
@@ -3476,58 +3554,6 @@ then monitor source tree updating (with C.U.D.</p>
   
   
   <div data-ice="description"><p>Handle an block contextualization for dynamic outputs</p>
-</div>
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  <div class="return-params" data-ice="returnParams">
-    <h4>Return:</h4>
-    <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>newDocument - the updated representation of the peritext document in which the contextualization was made</p>
-</td>
-      </tr>
-    </table>
-    <div data-ice="returnProperties">
-</div>
-  </div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-variable-contextualizeBlockDynamic">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    <span data-ice="name">contextualizeBlockDynamic</span><span data-ice="signature">(inputDocument: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, inputContextualization: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, settings: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>: <span>*</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/contextualizers/timeline/index.js.html#lineNumber46">source</a></span></span>
-    </span>
-  </h3>
-
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {contextualizeBlockDynamic} from &apos;<span><a href="file/src/contextualizers/timeline/index.js.html#lineNumber46">peritext/src/contextualizers/timeline/index.js</a></span>&apos;</code></pre></div>
-  
-  
-  <div data-ice="description"><p>Handle a block contextualization for dynamic outputs</p>
 </div>
 
   
@@ -3676,66 +3702,14 @@ then monitor source tree updating (with C.U.D.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/contextualizers/glossary/index.js.html#lineNumber87">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/contextualizers/imagegallery/index.js.html#lineNumber169">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {contextualizeBlockDynamic} from &apos;<span><a href="file/src/contextualizers/glossary/index.js.html#lineNumber87">peritext/src/contextualizers/glossary/index.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {contextualizeBlockDynamic} from &apos;<span><a href="file/src/contextualizers/imagegallery/index.js.html#lineNumber169">peritext/src/contextualizers/imagegallery/index.js</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>Handle a block contextualization for dynamic outputs</p>
-</div>
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  <div class="return-params" data-ice="returnParams">
-    <h4>Return:</h4>
-    <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>newDocument - the updated representation of the peritext document in which the contextualization was made</p>
-</td>
-      </tr>
-    </table>
-    <div data-ice="returnProperties">
-</div>
-  </div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-variable-contextualizeBlockStatic">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    <span data-ice="name">contextualizeBlockStatic</span><span data-ice="signature">(inputDocument: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, inputContextualization: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, settings: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>: <span>*</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/contextualizers/table/index.js.html#lineNumber116">source</a></span></span>
-    </span>
-  </h3>
-
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {contextualizeBlockStatic} from &apos;<span><a href="file/src/contextualizers/table/index.js.html#lineNumber116">peritext/src/contextualizers/table/index.js</a></span>&apos;</code></pre></div>
-  
-  
-  <div data-ice="description"><p>Handle a block contextualization for static outputs</p>
 </div>
 
   
@@ -3832,11 +3806,11 @@ then monitor source tree updating (with C.U.D.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/contextualizers/timeline/index.js.html#lineNumber24">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/contextualizers/citation/index.js.html#lineNumber76">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {contextualizeBlockStatic} from &apos;<span><a href="file/src/contextualizers/timeline/index.js.html#lineNumber24">peritext/src/contextualizers/timeline/index.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {contextualizeBlockStatic} from &apos;<span><a href="file/src/contextualizers/citation/index.js.html#lineNumber76">peritext/src/contextualizers/citation/index.js</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>Handle a block contextualization for static outputs</p>
@@ -3936,6 +3910,58 @@ then monitor source tree updating (with C.U.D.</p>
     <span class="right-info">
       
       
+      <span data-ice="source"><span><a href="file/src/contextualizers/table/index.js.html#lineNumber116">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {contextualizeBlockStatic} from &apos;<span><a href="file/src/contextualizers/table/index.js.html#lineNumber116">peritext/src/contextualizers/table/index.js</a></span>&apos;</code></pre></div>
+  
+  
+  <div data-ice="description"><p>Handle a block contextualization for static outputs</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>newDocument - the updated representation of the peritext document in which the contextualization was made</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-variable-contextualizeBlockStatic">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">contextualizeBlockStatic</span><span data-ice="signature">(inputDocument: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, inputContextualization: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, settings: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>: <span>*</span></span>
+    <span class="right-info">
+      
+      
       <span data-ice="source"><span><a href="file/src/contextualizers/webpage/index.js.html#lineNumber64">source</a></span></span>
     </span>
   </h3>
@@ -3988,14 +4014,118 @@ then monitor source tree updating (with C.U.D.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/contextualizers/citation/index.js.html#lineNumber76">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/contextualizers/timeline/index.js.html#lineNumber24">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {contextualizeBlockStatic} from &apos;<span><a href="file/src/contextualizers/citation/index.js.html#lineNumber76">peritext/src/contextualizers/citation/index.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {contextualizeBlockStatic} from &apos;<span><a href="file/src/contextualizers/timeline/index.js.html#lineNumber24">peritext/src/contextualizers/timeline/index.js</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>Handle a block contextualization for static outputs</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>newDocument - the updated representation of the peritext document in which the contextualization was made</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-variable-contextualizeInlineDynamic">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">contextualizeInlineDynamic</span><span data-ice="signature">(inputDocument: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, inputContextualization: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, settings: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>: <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/contextualizers/imagegallery/index.js.html#lineNumber158">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {contextualizeInlineDynamic} from &apos;<span><a href="file/src/contextualizers/imagegallery/index.js.html#lineNumber158">peritext/src/contextualizers/imagegallery/index.js</a></span>&apos;</code></pre></div>
+  
+  
+  <div data-ice="description"><p>Handle an inline contextualization for dynamic outputs</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>newDocument - the updated representation of the peritext document in which the contextualization was made</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-variable-contextualizeInlineDynamic">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">contextualizeInlineDynamic</span><span data-ice="signature">(inputDocument: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, inputContextualization: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, settings: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>: <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/contextualizers/table/index.js.html#lineNumber127">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {contextualizeInlineDynamic} from &apos;<span><a href="file/src/contextualizers/table/index.js.html#lineNumber127">peritext/src/contextualizers/table/index.js</a></span>&apos;</code></pre></div>
+  
+  
+  <div data-ice="description"><p>Handle an inline contextualization for dynamic outputs</p>
 </div>
 
   
@@ -4196,110 +4326,6 @@ then monitor source tree updating (with C.U.D.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/contextualizers/imagegallery/index.js.html#lineNumber158">source</a></span></span>
-    </span>
-  </h3>
-
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {contextualizeInlineDynamic} from &apos;<span><a href="file/src/contextualizers/imagegallery/index.js.html#lineNumber158">peritext/src/contextualizers/imagegallery/index.js</a></span>&apos;</code></pre></div>
-  
-  
-  <div data-ice="description"><p>Handle an inline contextualization for dynamic outputs</p>
-</div>
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  <div class="return-params" data-ice="returnParams">
-    <h4>Return:</h4>
-    <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>newDocument - the updated representation of the peritext document in which the contextualization was made</p>
-</td>
-      </tr>
-    </table>
-    <div data-ice="returnProperties">
-</div>
-  </div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-variable-contextualizeInlineDynamic">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    <span data-ice="name">contextualizeInlineDynamic</span><span data-ice="signature">(inputDocument: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, inputContextualization: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, settings: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>: <span>*</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/contextualizers/table/index.js.html#lineNumber127">source</a></span></span>
-    </span>
-  </h3>
-
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {contextualizeInlineDynamic} from &apos;<span><a href="file/src/contextualizers/table/index.js.html#lineNumber127">peritext/src/contextualizers/table/index.js</a></span>&apos;</code></pre></div>
-  
-  
-  <div data-ice="description"><p>Handle an inline contextualization for dynamic outputs</p>
-</div>
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  <div class="return-params" data-ice="returnParams">
-    <h4>Return:</h4>
-    <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>newDocument - the updated representation of the peritext document in which the contextualization was made</p>
-</td>
-      </tr>
-    </table>
-    <div data-ice="returnProperties">
-</div>
-  </div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-variable-contextualizeInlineDynamic">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    <span data-ice="name">contextualizeInlineDynamic</span><span data-ice="signature">(inputDocument: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, inputContextualization: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, settings: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>: <span>*</span></span>
-    <span class="right-info">
-      
-      
       <span data-ice="source"><span><a href="file/src/contextualizers/timeline/index.js.html#lineNumber35">source</a></span></span>
     </span>
   </h3>
@@ -4308,58 +4334,6 @@ then monitor source tree updating (with C.U.D.</p>
   
   
   <div data-ice="description"><p>Handle an inline contextualization for dynamic outputs</p>
-</div>
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  <div class="return-params" data-ice="returnParams">
-    <h4>Return:</h4>
-    <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>newDocument - the updated representation of the peritext document in which the contextualization was made</p>
-</td>
-      </tr>
-    </table>
-    <div data-ice="returnProperties">
-</div>
-  </div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-variable-contextualizeInlineStatic">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    <span data-ice="name">contextualizeInlineStatic</span><span data-ice="signature">(inputDocument: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, inputContextualization: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, settings: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>: <span>*</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/contextualizers/webpage/index.js.html#lineNumber18">source</a></span></span>
-    </span>
-  </h3>
-
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {contextualizeInlineStatic} from &apos;<span><a href="file/src/contextualizers/webpage/index.js.html#lineNumber18">peritext/src/contextualizers/webpage/index.js</a></span>&apos;</code></pre></div>
-  
-  
-  <div data-ice="description"><p>Handle an inline contextualization for static outputs</p>
 </div>
 
   
@@ -4409,6 +4383,58 @@ then monitor source tree updating (with C.U.D.</p>
   </h3>
 
   <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {contextualizeInlineStatic} from &apos;<span><a href="file/src/contextualizers/timeline/index.js.html#lineNumber13">peritext/src/contextualizers/timeline/index.js</a></span>&apos;</code></pre></div>
+  
+  
+  <div data-ice="description"><p>Handle an inline contextualization for static outputs</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>newDocument - the updated representation of the peritext document in which the contextualization was made</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-variable-contextualizeInlineStatic">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">contextualizeInlineStatic</span><span data-ice="signature">(inputDocument: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, inputContextualization: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, settings: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>: <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/contextualizers/table/index.js.html#lineNumber16">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {contextualizeInlineStatic} from &apos;<span><a href="file/src/contextualizers/table/index.js.html#lineNumber16">peritext/src/contextualizers/table/index.js</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>Handle an inline contextualization for static outputs</p>
@@ -4508,11 +4534,11 @@ then monitor source tree updating (with C.U.D.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/contextualizers/imagegallery/index.js.html#lineNumber16">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/contextualizers/webpage/index.js.html#lineNumber18">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {contextualizeInlineStatic} from &apos;<span><a href="file/src/contextualizers/imagegallery/index.js.html#lineNumber16">peritext/src/contextualizers/imagegallery/index.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {contextualizeInlineStatic} from &apos;<span><a href="file/src/contextualizers/webpage/index.js.html#lineNumber18">peritext/src/contextualizers/webpage/index.js</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>Handle an inline contextualization for static outputs</p>
@@ -4612,11 +4638,11 @@ then monitor source tree updating (with C.U.D.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/contextualizers/table/index.js.html#lineNumber16">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/contextualizers/imagegallery/index.js.html#lineNumber16">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {contextualizeInlineStatic} from &apos;<span><a href="file/src/contextualizers/table/index.js.html#lineNumber16">peritext/src/contextualizers/table/index.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {contextualizeInlineStatic} from &apos;<span><a href="file/src/contextualizers/imagegallery/index.js.html#lineNumber16">peritext/src/contextualizers/imagegallery/index.js</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>Handle an inline contextualization for static outputs</p>
@@ -4990,47 +5016,6 @@ then monitor source tree updating (with C.U.D.</p>
     
     
     
-    <span data-ice="name">getAssetUri</span><span data-ice="signature">(requestParams: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, callback: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(error: <span>error</span>, finalPath: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>)</span></span>): <span>*</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/connectors/filesystem/index.js.html#lineNumber256">source</a></span></span>
-    </span>
-  </h3>
-
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {getAssetUri} from &apos;<span><a href="file/src/connectors/filesystem/index.js.html#lineNumber256">peritext/src/connectors/filesystem/index.js</a></span>&apos;</code></pre></div>
-  
-  
-  <div data-ice="description"><p>Gets the absolute uri of an asset</p>
-</div>
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  <div data-ice="todo"><h4>TODO:</h4><ul><li><span>question : should it check for resource availability ?</span></li></ul></div>
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-variable-getAssetUri">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
     <span data-ice="name">getAssetUri</span><span data-ice="signature">(path: <span>array</span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, params: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(connectorError: <span>error</span>, uri: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>)</span></span>: <span>*</span></span>
     <span class="right-info">
       
@@ -5075,6 +5060,47 @@ then monitor source tree updating (with C.U.D.</p>
 
   
   
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-variable-getAssetUri">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">getAssetUri</span><span data-ice="signature">(requestParams: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, callback: <span><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span><span>(error: <span>error</span>, finalPath: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>)</span></span>): <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/connectors/filesystem/index.js.html#lineNumber256">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {getAssetUri} from &apos;<span><a href="file/src/connectors/filesystem/index.js.html#lineNumber256">peritext/src/connectors/filesystem/index.js</a></span>&apos;</code></pre></div>
+  
+  
+  <div data-ice="description"><p>Gets the absolute uri of an asset</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <div data-ice="todo"><h4>TODO:</h4><ul><li><span>question : should it check for resource availability ?</span></li></ul></div>
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="static-variable-getContextualizerContextualizations">
@@ -5591,11 +5617,11 @@ then monitor source tree updating (with C.U.D.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/core/getters.js.html#lineNumber71">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/peritext.js.html#lineNumber57">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {getResourceContextualizations} from &apos;<span><a href="file/src/core/getters.js.html#lineNumber71">peritext/src/core/getters.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {getResourceContextualizations} from &apos;<span><a href="file/src/peritext.js.html#lineNumber57">peritext/src/peritext.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -5631,11 +5657,11 @@ then monitor source tree updating (with C.U.D.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/peritext.js.html#lineNumber57">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/core/getters.js.html#lineNumber71">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {getResourceContextualizations} from &apos;<span><a href="file/src/peritext.js.html#lineNumber57">peritext/src/peritext.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {getResourceContextualizations} from &apos;<span><a href="file/src/core/getters.js.html#lineNumber71">peritext/src/core/getters.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -5883,11 +5909,11 @@ then monitor source tree updating (with C.U.D.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/core/getters.js.html#lineNumber47">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/peritext.js.html#lineNumber55">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {getTableOfSections} from &apos;<span><a href="file/src/core/getters.js.html#lineNumber47">peritext/src/core/getters.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {getTableOfSections} from &apos;<span><a href="file/src/peritext.js.html#lineNumber55">peritext/src/peritext.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -5923,11 +5949,11 @@ then monitor source tree updating (with C.U.D.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/peritext.js.html#lineNumber55">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/core/getters.js.html#lineNumber47">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {getTableOfSections} from &apos;<span><a href="file/src/peritext.js.html#lineNumber55">peritext/src/peritext.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {getTableOfSections} from &apos;<span><a href="file/src/core/getters.js.html#lineNumber47">peritext/src/core/getters.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -6138,11 +6164,11 @@ then monitor source tree updating (with C.U.D.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/core/converters/markdownConverter.js.html#lineNumber243">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/core/converters/markdownConverter.js.html#lineNumber248">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {markdownToJsAbstraction} from &apos;<span><a href="file/src/core/converters/markdownConverter.js.html#lineNumber243">peritext/src/core/converters/markdownConverter.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {markdownToJsAbstraction} from &apos;<span><a href="file/src/core/converters/markdownConverter.js.html#lineNumber248">peritext/src/core/converters/markdownConverter.js</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>Parses markdown contents in order to update section data with new contents (as a pseudo-DOM nested javascript object representation), notes, contextualizers and contextualizations</p>
@@ -6392,6 +6418,46 @@ then monitor source tree updating (with C.U.D.</p>
   </h3>
 
   <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {packSection} from &apos;<span><a href="file/src/peritext.js.html#lineNumber52">peritext/src/peritext.js</a></span>&apos;</code></pre></div>
+  
+  
+  
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-variable-packSection">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">packSection</span><span data-ice="signature">: <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/core/getters.js.html#lineNumber10">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {packSection} from &apos;<span><a href="file/src/core/getters.js.html#lineNumber10">peritext/src/core/getters.js</a></span>&apos;</code></pre></div>
   
   
   

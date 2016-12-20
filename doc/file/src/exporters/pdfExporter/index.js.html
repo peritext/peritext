@@ -97,6 +97,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getSection">getSection</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getTableOfFigures">getTableOfFigures</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getTableOfSections">getTableOfSections</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-packSection">packSection</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core/components/StaticComponents</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticBackCover.js~StaticBackCover.html">StaticBackCover</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticDocument.js~StaticDocument.html">StaticDocument</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticEndFigures.js~StaticEndFigures.html">StaticEndFigures</a></span></span></li>
@@ -254,7 +255,7 @@ export const exportDocumentToPdf = ({
       .execute()
       .then(function() {
         console.log(&apos;saved to pdf with PrinceXML&apos;);
-        return finalCallback();
+        return finalCallback(null, path + &apos;/&apos; + motherKey + &apos;.pdf&apos;);
       }, function(error) {
         console.log(&apos;Prince ERROR: &apos;, error);
         return finalCallback(error);

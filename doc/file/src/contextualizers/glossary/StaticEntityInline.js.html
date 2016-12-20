@@ -97,6 +97,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getSection">getSection</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getTableOfFigures">getTableOfFigures</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getTableOfSections">getTableOfSections</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-packSection">packSection</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core/components/StaticComponents</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticBackCover.js~StaticBackCover.html">StaticBackCover</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticDocument.js~StaticDocument.html">StaticDocument</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticEndFigures.js~StaticEndFigures.html">StaticEndFigures</a></span></span></li>
@@ -218,8 +219,8 @@ export default class StaticEntityInline extends React.Component {
     return (
       &lt;a
         className=&quot;peritext-static-entity-container-inline&quot;
-        name={&apos;peritext-static-entity-inline-&apos; + this.props.sectionId + &apos;-&apos; + this.props.contextualization.id}
-        id={&apos;peritext-static-entity-inline-&apos; + this.props.sectionId + &apos;-&apos; + this.props.contextualization.id}
+        name={this.props.contextualization.id}
+        id={this.props.contextualization.id}
         href={&apos;#peritext-static-entity-block-&apos; + this.props.entity.id}
         itemProp=&quot;mentions&quot;
         value=&quot;mentions&quot;

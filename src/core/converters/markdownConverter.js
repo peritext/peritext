@@ -194,6 +194,9 @@ let representContents = ()=>{return undefined;};
 
 mapMdJsonToPJson = (inputElement, contextualizations, elementPath) =>{
   const element = Object.assign({}, inputElement);
+  if (!element.attr) {
+    element.attr = {};
+  }
   if (element.text) {
     element.text = entities.decode(element.text);
   }
@@ -205,6 +208,7 @@ mapMdJsonToPJson = (inputElement, contextualizations, elementPath) =>{
     } else {
       element.tag = 'inlineC';
       const contextualizationId = element.attr.href;
+      element.attr.id = contextualizationId;
       const contextualization = contextualizations[contextualizationId];
       contextualization.nodePath = elementPath;
     }
@@ -218,6 +222,7 @@ mapMdJsonToPJson = (inputElement, contextualizations, elementPath) =>{
     contents = contents.join !== undefined ? contents.join(' ') : contents;
     element.children = [representContents(contents, contextualizations, elementPath)[0]];
     delete element.attr;
+    element.attr = {id: contextualizationId};
   }
   if (element.child) {
     element.children = element.child.map((child, elementIndex)=>{

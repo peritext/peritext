@@ -97,6 +97,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getSection">getSection</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getTableOfFigures">getTableOfFigures</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getTableOfSections">getTableOfSections</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-packSection">packSection</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">core/components/StaticComponents</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticBackCover.js~StaticBackCover.html">StaticBackCover</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticDocument.js~StaticDocument.html">StaticDocument</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/core/components/StaticComponents/StaticEndFigures.js~StaticEndFigures.html">StaticEndFigures</a></span></span></li>
@@ -378,6 +379,9 @@ let representContents = ()=&gt;{return undefined;};
 
 mapMdJsonToPJson = (inputElement, contextualizations, elementPath) =&gt;{
   const element = Object.assign({}, inputElement);
+  if (!element.attr) {
+    element.attr = {};
+  }
   if (element.text) {
     element.text = entities.decode(element.text);
   }
@@ -389,6 +393,7 @@ mapMdJsonToPJson = (inputElement, contextualizations, elementPath) =&gt;{
     } else {
       element.tag = &apos;inlineC&apos;;
       const contextualizationId = element.attr.href;
+      element.attr.id = contextualizationId;
       const contextualization = contextualizations[contextualizationId];
       contextualization.nodePath = elementPath;
     }
@@ -402,6 +407,7 @@ mapMdJsonToPJson = (inputElement, contextualizations, elementPath) =&gt;{
     contents = contents.join !== undefined ? contents.join(&apos; &apos;) : contents;
     element.children = [representContents(contents, contextualizations, elementPath)[0]];
     delete element.attr;
+    element.attr = {id: contextualizationId};
   }
   if (element.child) {
     element.children = element.child.map((child, elementIndex)=&gt;{
