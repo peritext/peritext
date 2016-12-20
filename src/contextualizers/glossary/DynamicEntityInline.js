@@ -6,7 +6,7 @@ import renderContents from './../../core/utils/componentsFactory';
 /**
  * dumb component and placeholder for rendering the structured representation of an entity citation
  */
-export default class StaticEntityInline extends React.Component {
+export default class DynamicEntityInline extends React.Component {
 
   /**
    * propTypes
@@ -32,11 +32,10 @@ export default class StaticEntityInline extends React.Component {
   render() {
     const itemType = bibToSchema(this.props.entity.bibType);
     return (
-      <a
+      <span
         className="peritext-static-entity-container-inline peritext-inline-contextualization"
         name={this.props.contextualization.id}
         id={this.props.contextualization.id}
-        href={'#peritext-static-entity-block-' + this.props.entity.id}
         itemProp="mentions"
         value="mentions"
         itemScope
@@ -65,7 +64,7 @@ export default class StaticEntityInline extends React.Component {
           >{this.props.entity.name}</span>
         }
         {<span>{renderContents(this.props.contents)}</span>}
-      </a>
+      </span>
     );
   }
 }
