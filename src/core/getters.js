@@ -7,7 +7,7 @@ export const getDocument = (document) => Object.assign({}, document);
 
 export const getDocumentMetadata = (document) => Object.assign({}, document.metadata);
 
-const packSection = (document, section) => {
+export const packSection = (document, section) => {
   const mappedContextualizations = section.contextualizations.map(key =>
     document.contextualizations[key]
   );
