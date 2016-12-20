@@ -19,7 +19,7 @@ export const jsToComponent = (node, index)=> {
     // Component class stored as referenced object
     // const Component = node.tag;
     const Component = components[node.tag];
-    return <Component key={index} {...node.props} />;
+    return <Component id={node.attr && node.attr.id} key={index} {...node.props} />;
   }
   // plain string tag name (p, span, ...)
   if (node.tag) {
