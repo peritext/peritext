@@ -200,7 +200,7 @@ const resolveDynamicNode = (inputNode, section, settings) =>{
       return thatNote.id === node.target;
     });
     node.props = {note};
-    node.tag = 'StaticNotePointer';
+    node.tag = 'DynamicNotePointer';
     node.special = true;
   }
   if (node.children) {

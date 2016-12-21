@@ -42,7 +42,7 @@ export class BlockCitationModel extends React.Component {
    */
   render() {
     return (
-      <p
+      <div
       id={this.props.contextualization.id}
       className="peritext-block-citation peritext-block-contextualization"
       itemProp="citation"
@@ -54,7 +54,7 @@ export class BlockCitationModel extends React.Component {
       <StructuredCOinS resource={this.props.resource} />
       {this.renderReference()}
       {this.renderAdditionnal(this.props)}
-    </p>);
+    </div>);
   }
 }
 

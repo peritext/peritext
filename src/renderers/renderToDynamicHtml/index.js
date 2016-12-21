@@ -104,10 +104,16 @@ export const renderDocument = ({
       // order contextualizations (ibid/opCit, ...)
       renderedDocument = resolveContextualizationsRelations(renderedDocument, finalSettings);
 
-      // this renders react components, it is not good
       renderedDocument = Object.keys(renderedDocument.contextualizations).reduce((doc, contId)=>{
         return resolveContextualizationImplementation(doc.contextualizations[contId], doc, 'dynamic', finalSettings);
       }, renderedDocument);
+
+      // transform input js abstraction of contents to a js abstraction specific to rendering settings
+      const sections = renderedDocument.summary.map(sectionKey => {
+        const section1 = renderedDocument.sections[sectionKey];
+        const contents = renderSectionContents(section1, 'contents', finalSettings);
+        return Object.assign({}, section1, {contents});
+      });
 
       cback(null, renderedDocument);
     }

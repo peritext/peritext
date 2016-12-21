@@ -64,7 +64,9 @@ export {computeReferences} from './core/utils/referenceUtils';
 
 export {resolveContextualizationImplementation} from './core/resolvers/resolveContextualizations';
 
-
+/*
+ * COMPONENTS EXPOSITION
+ */
 import * as coreComponents from './core/components';
 import StaticTable from './contextualizers/table/StaticTable';
 import StaticEntityBlock from './contextualizers/glossary/StaticEntityBlock';
@@ -72,8 +74,6 @@ import StaticEntityInline from './contextualizers/glossary/StaticEntityInline';
 import DynamicEntityInline from './contextualizers/glossary/DynamicEntityInline';
 import StaticImageGallery from './contextualizers/imagegallery/StaticImageGallery';
 import StaticWebsitePoster from './contextualizers/webpage/StaticWebsitePoster';
-
-
 import {
   BlockCitation as BlockCitationiso690fr,
   InlineCitation as InlineCitationiso690fr
