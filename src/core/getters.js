@@ -82,6 +82,31 @@ export const getContextualizerContextualizations = (document, contextualizerId) 
       contextualization.contextualizer === contextualizerId
     );
 
+export const retrieveContext = (document, contextualization) => {
+  const sectionId = contextualization.nodePath[0];
+  const contentCategory = contextualization.nodePath[1];
+  const blockNumber = contextualization.nodePath[2];
+  const contextBlock = document.sections[sectionId][contentCategory][blockNumber];
+  const previousBlock = (contentCategory === 'contents' && blockNumber > 0) ? document.sections[sectionId][contentCategory][blockNumber - 1] : undefined;
+  const nextBlock = (contentCategory === 'contents' && blockNumber < document.sections[sectionId][contentCategory].length - 1) ? document.sections[sectionId][contentCategory][blockNumber + 1] : undefined;
+  return {
+    previousBlock: previousBlock && JSON.parse(JSON.stringify(previousBlock)),
+    contextBlock: contextBlock && JSON.parse(JSON.stringify(contextBlock)),
+    nextBlock: nextBlock && JSON.parse(JSON.stringify(nextBlock))
+  };
+};
+
+export const getAllContextualizationsFromResource = (document, resourceId, preRenderContexts = true) =>
+  Object.keys(document.contextualizations)
+    .map(key => document.contextualizations[key])
+    .filter(contextualization => contextualization.resources.indexOf(resourceId) > -1)
+    .map(contextualization => ({
+      contextualization,
+      context: preRenderContexts && retrieveContext(document, contextualization),
+      sectionId: contextualization.nodePath[0],
+      sectionTitle: document.sections[contextualization.nodePath[0]].metadata.general.title.value
+    }));
+
 export const getGlossary = (document, preRenderContexts = true) => {
   const entitiesTypes = ['person', 'place', 'subject', 'concept', 'organization', 'technology', 'artefact'];
   const sections = Object.keys(document.sections).map(key => document.sections[key]);
@@ -98,17 +123,7 @@ export const getGlossary = (document, preRenderContexts = true) => {
         const targetBlockPath = contextualization.nodePath.slice(0, 3);
         let context;
         if (preRenderContexts) {
-          const sectionId = contextualization.nodePath[0];
-          const contentCategory = contextualization.nodePath[1];
-          const blockNumber = contextualization.nodePath[2];
-          const contextBlock = document.sections[sectionId][contentCategory][blockNumber];
-          const previousBlock = (blockNumber > 0) ? document.sections[sectionId][contentCategory][blockNumber - 1] : undefined;
-          const nextBlock = (blockNumber < document.sections[sectionId][contentCategory].length - 1) ? document.sections[sectionId][contentCategory][blockNumber + 1] : undefined;
-          context = {
-            previousBlock,
-            contextBlock,
-            nextBlock
-          };
+          context = retrieveContext(document, contextualization);
         }
         return localResults.concat({
           mentionId: '#peritext-static-entity-inline-' + sectionCitekey + '-' + contextualization.id,
