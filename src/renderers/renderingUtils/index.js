@@ -142,7 +142,11 @@ export const composeRenderedSections = (sections = [], document, settings = {}, 
         level: thisSection.metadata ? thisSection.metadata.general.generalityLevel.value : 0
       };
     });
-    const toc = {type: 'table-of-contents', contents: tocData};
+    const toc = {
+      type: 'table-of-contents',
+      title: messages.table_of_contents,
+      contents: tocData
+    };
     if (settings.contentsTablePosition === 'begining' && toc.contents.length) {
       renderedSections.splice(0, 0, toc);
     } else if (toc.contents.length) {
@@ -150,15 +154,20 @@ export const composeRenderedSections = (sections = [], document, settings = {}, 
     }
   }
   // handle forewords
-  renderedSections.splice(0, 0, Object.assign({}, document.forewords, {type: 'forewords'}));
+  renderedSections.splice(0, 0, Object.assign({}, document.forewords, {
+    type: 'forewords',
+    title: messages.forewords,
+  }));
   // handle cover
   if (settings.showCovers === 'yes') {
     renderedSections.splice(0, 0, {
       type: 'front-cover',
+      title: document.metadata.general.title.value,
       metadata: document.metadata
     });
     renderedSections.push({
       type: 'back-cover',
+      title: document.metadata.general.title.value,
       metadata: document.metadata
     });
   }

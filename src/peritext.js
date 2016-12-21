@@ -36,6 +36,12 @@ export const defaultParameters = parameters;
  * @property {function} exportSectionToPdf
  */
 export { exportDocumentToPdf } from './exporters/pdfExporter';
+
+/**
+ * Exposes section export to epub with print renderer function
+ * @property {function} exportSectionToEpub
+ */
+export { exportDocumentToEpub } from './exporters/epubExporter';
 /**
  * Exposes dynqmic rendering modules
  * @property {function} exportSectionToPdf

@@ -18,6 +18,7 @@ export { default as StaticReferencesList } from './StaticComponents/StaticRefere
 export { default as StaticSection } from './StaticComponents/StaticSection.js';
 export { default as StaticTableOfContents } from './StaticComponents/StaticTableOfContents.js';
 export { default as StaticTableOfFigures } from './StaticComponents/StaticTableOfFigures.js';
+export { default as StaticSectionFactory } from './StaticComponents/StaticSectionFactory.js';
 
 export { default as DynamicNotePointer } from './DynamicComponents/DynamicNotePointer.js';
 

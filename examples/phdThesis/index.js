@@ -4,6 +4,7 @@ import {
   contentsController,
   assetsController,
   exportDocumentToPdf,
+  exportDocumentToEpub,
   defaultParameters,
   defaultModels
 } from './../../src/peritext';
@@ -31,6 +32,12 @@ export default function runExample() {
       destinationFolder
     }, assetsController, assetsParams , (err, success)=>{
       console.log('done with phd thesis, errors : ', err);
+    });
+    exportDocumentToEpub({
+      document: results.document,
+      destinationFolder
+    }, assetsController, assetsParams , (err, success)=>{
+      console.log('epub is done with phd thesis, errors : ', err);
     });
   });
 }
