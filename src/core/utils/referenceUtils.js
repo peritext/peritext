@@ -1,3 +1,5 @@
+import {retrieveContext} from '../getters';
+
 /**
  * Utils - dedicated to representing a reference/bibliography section
  * @module utils/referenceUtils
@@ -82,11 +84,8 @@ export const computeReferences = (document, settings, preRenderContexts = true) 
                                       const previousBlock = (blockNumber > 0) ? document.sections[sectionId][contentCategory][blockNumber - 1] : undefined;
                                       const nextBlock = (blockNumber < document.sections[sectionId][contentCategory].length - 1) ? document.sections[sectionId][contentCategory][blockNumber + 1] : undefined;
                                       return Object.assign({}, contextualization, {
-                                        context: {
-                                          previousBlock: previousBlock && JSON.parse(JSON.stringify(previousBlock)),
-                                          nextBlock: nextBlock && JSON.parse(JSON.stringify(nextBlock)),
-                                          contextBlock: JSON.parse(JSON.stringify(contextBlock)),
-                                        }
+                                        sectionTitle: document.sections[sectionId].metadata.general.title.value,
+                                        context: retrieveContext(document, contextualization)
                                       });
                                     }
                                     return contextualization;
