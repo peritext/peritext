@@ -21,6 +21,9 @@ export const jsToComponent = (node, index)=> {
     const Component = components[node.tag];
     return <Component id={node.attr && node.attr.id} key={index} {...node.props} />;
   }
+  if (!node.tag) {
+    node.tag = 'div';
+  }
   // plain string tag name (p, span, ...)
   if (node.tag) {
     const Tag = node.tag;
