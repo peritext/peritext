@@ -114,7 +114,14 @@ export const contextualizeInlineStatic = (inputDocument, inputContextualization,
  * @return {Object} newDocument - the updated representation of the peritext document in which the contextualization was made
  */
 export const contextualizeBlockStatic = (inputDocument, inputContextualization, settings) => {
-  return Object.assign({}, inputDocument);
+  const document = Object.assign({}, inputDocument);
+  const contextualization = Object.assign({}, inputContextualization);
+  const sectionId = contextualization.nodePath[0];
+  const path = ['sections', ...contextualization.nodePath.slice()];
+  const node = getByPath(document, path);
+  const section = document.sections[sectionId];
+  section[path[2]][path[3]] = node;
+  return document;
 };
 
 /**
@@ -136,5 +143,12 @@ export const contextualizeInlineDynamic = (inputDocument, inputContextualization
  * @return {Object} newDocument - the updated representation of the peritext document in which the contextualization was made
  */
 export const contextualizeBlockDynamic = (inputDocument, inputContextualization, settings) => {
-  return Object.assign({}, inputDocument);
+  const document = Object.assign({}, inputDocument);
+  const contextualization = Object.assign({}, inputContextualization);
+  const sectionId = contextualization.nodePath[0];
+  const path = ['sections', ...contextualization.nodePath.slice()];
+  const node = getByPath(document, path);
+  const section = document.sections[sectionId];
+  section[path[2]][path[3]] = node;
+  return document;
 };
