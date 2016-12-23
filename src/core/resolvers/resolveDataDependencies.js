@@ -89,6 +89,7 @@ export default function resolveDataDependencies(
               key: propKey,
               data: prop
             };
+            // interpolate @assets statements with their value
             if (typeof prop.value === 'string' && prop.value.indexOf('@assets/') === 0) {
               assetsController.getAssetUri(prop.value.split('@assets/')[1], assetsParams, (err4, uri)=> {
                 prop.value = uri;
@@ -103,12 +104,13 @@ export default function resolveDataDependencies(
               key: domain,
               data: {}
             };
-            propObjects.forEach(propObject=> {
+            // update domainObject with updated objects
+            propObjects.forEach(propObject => {
               domainObject.data[propObject.key] = propObject.data;
             });
             domainCallback(propsError, domainObject);
           });
-        }, (domainErrors, domainObjects)=>{
+        }, (domainErrors, domainObjects) => {
           domainObjects.forEach((domainObject) => {
             sectio.metadata[domainObject.key] = domainObject.data;
           });
@@ -128,7 +130,7 @@ export default function resolveDataDependencies(
     const contextualizations = Object.keys(document.contextualizations).map(key => document.contextualizations[key]);
 
     waterfall([
-      (contextualizationsCallback)=> {
+      (contextualizationsCallback) => {
         asyncMap(contextualizations, (contextualization, contextualizationCallback)=> {
           res = undefined;
           const props = [];
