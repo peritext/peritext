@@ -77,7 +77,7 @@ export const renderDocument = ({
     // build html code
     (inputDocument,
       cback) =>{
-      let renderedDocument = Object.assign({}, document); // inputDocument
+      let renderedDocument = Object.assign({}, inputDocument); // inputDocument
       // build final css code (default + user-generated customizers)
       let style = '';
       const cssCustomizers = renderedDocument.customizers && renderedDocument.customizers.styles;
@@ -114,7 +114,6 @@ export const renderDocument = ({
         const contents = renderSectionContents(section1, 'contents', finalSettings);
         return Object.assign({}, section1, {contents});
       });
-
       cback(null, renderedDocument);
     }
   ], rendererCallback);
