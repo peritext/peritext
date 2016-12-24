@@ -40,7 +40,6 @@ export default class DynamicImageGallery extends React.Component {
               itemProp="citation"
               itemType={'http://schema.org/' + this.props.schematype}
               typeof={this.props.schematype}
-              resource={this.props.figureNumber ? 'peritext-figure-' + this.props.figureNumber : undefined }
               id={'peritext-figure-' + this.props.id}
             >
               <div className="peritext-static-image-gallery-figures-wrapper">

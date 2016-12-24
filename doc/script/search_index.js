@@ -12,6 +12,42 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "peritext/src/contextualizers/glossary/dynamicentityblock.js~dynamicentityblock",
+    "class/src/contextualizers/glossary/DynamicEntityBlock.js~DynamicEntityBlock.html",
+    "<span>DynamicEntityBlock</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/glossary/DynamicEntityBlock.js</span>",
+    "class"
+  ],
+  [
+    "peritext/src/contextualizers/glossary/dynamicentityinline.js~dynamicentityinline",
+    "class/src/contextualizers/glossary/DynamicEntityInline.js~DynamicEntityInline.html",
+    "<span>DynamicEntityInline</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/glossary/DynamicEntityInline.js</span>",
+    "class"
+  ],
+  [
+    "peritext/src/contextualizers/imagegallery/dynamicimagegallery.js~dynamicimagegallery",
+    "class/src/contextualizers/imagegallery/DynamicImageGallery.js~DynamicImageGallery.html",
+    "<span>DynamicImageGallery</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/imagegallery/DynamicImageGallery.js</span>",
+    "class"
+  ],
+  [
+    "peritext/src/core/components/dynamiccomponents/dynamicnotepointer.js~dynamicnotepointer",
+    "class/src/core/components/DynamicComponents/DynamicNotePointer.js~DynamicNotePointer.html",
+    "<span>DynamicNotePointer</span> <span class=\"search-result-import-path\">peritext/src/core/components/DynamicComponents/DynamicNotePointer.js</span>",
+    "class"
+  ],
+  [
+    "peritext/src/contextualizers/table/dynamictable.js~dynamictable",
+    "class/src/contextualizers/table/DynamicTable.js~DynamicTable.html",
+    "<span>DynamicTable</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/table/DynamicTable.js</span>",
+    "class"
+  ],
+  [
+    "peritext/src/contextualizers/webpage/dynamicwebsiteposter.js~dynamicwebsiteposter",
+    "class/src/contextualizers/webpage/DynamicWebsitePoster.js~DynamicWebsitePoster.html",
+    "<span>DynamicWebsitePoster</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/webpage/DynamicWebsitePoster.js</span>",
+    "class"
+  ],
+  [
     "peritext/src/referencers/iso690fr.js~inlinecitation",
     "class/src/referencers/iso690fr.js~InlineCitation.html",
     "<span>InlineCitation</span> <span class=\"search-result-import-path\">peritext/src/referencers/iso690fr.js</span>",
@@ -426,6 +462,18 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
+    "peritext/src/peritext.js~dynamicasidecomponents",
+    "variable/index.html#static-variable-dynamicAsideComponents",
+    "<span>dynamicAsideComponents</span> <span class=\"search-result-import-path\">peritext/src/peritext.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/exporters/epubexporter/index.js~exportdocumenttoepub",
+    "variable/index.html#static-variable-exportDocumentToEpub",
+    "<span>exportDocumentToEpub</span> <span class=\"search-result-import-path\">peritext/src/exporters/epubExporter/index.js</span>",
+    "variable"
+  ],
+  [
     "peritext/src/exporters/pdfexporter/index.js~exportdocumenttopdf",
     "variable/index.html#static-variable-exportDocumentToPdf",
     "<span>exportDocumentToPdf</span> <span class=\"search-result-import-path\">peritext/src/exporters/pdfExporter/index.js</span>",
@@ -435,6 +483,18 @@ window.esdocSearchIndex = [
     "peritext/src/core/utils/microdatautils.js~generateopenurl",
     "variable/index.html#static-variable-generateOpenUrl",
     "<span>generateOpenUrl</span> <span class=\"search-result-import-path\">peritext/src/core/utils/microDataUtils.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/core/getters.js~getallcontextualizationsfromresource",
+    "variable/index.html#static-variable-getAllContextualizationsFromResource",
+    "<span>getAllContextualizationsFromResource</span> <span class=\"search-result-import-path\">peritext/src/core/getters.js</span>",
+    "variable"
+  ],
+  [
+    "peritext/src/peritext.js~getallcontextualizationsfromresource",
+    "variable/index.html#static-variable-getAllContextualizationsFromResource",
+    "<span>getAllContextualizationsFromResource</span> <span class=\"search-result-import-path\">peritext/src/peritext.js</span>",
     "variable"
   ],
   [
@@ -792,6 +852,12 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
+    "peritext/src/core/getters.js~retrievecontext",
+    "variable/index.html#static-variable-retrieveContext",
+    "<span>retrieveContext</span> <span class=\"search-result-import-path\">peritext/src/core/getters.js</span>",
+    "variable"
+  ],
+  [
     "peritext/src/core/models/index.js~sectiontypemodels",
     "variable/index.html#static-variable-sectionTypeModels",
     "<span>sectionTypeModels</span> <span class=\"search-result-import-path\">peritext/src/core/models/index.js</span>",
@@ -874,6 +940,12 @@ window.esdocSearchIndex = [
     "variable/index.html#static-variable-webpage",
     "<span>webpage</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/index.js</span>",
     "variable"
+  ],
+  [
+    "peritext/src/core/components/staticcomponents/staticsectionfactory.js~yeldsection",
+    "function/index.html#static-function-yeldSection",
+    "<span>yeldSection</span> <span class=\"search-result-import-path\">peritext/src/core/components/StaticComponents/StaticSectionFactory.js</span>",
+    "function"
   ],
   [
     "builtinexternal/ecmascriptexternal.js~array",
@@ -1224,6 +1296,30 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/contextualizers/glossary/dynamicentityblock.js",
+    "file/src/contextualizers/glossary/DynamicEntityBlock.js.html",
+    "src/contextualizers/glossary/DynamicEntityBlock.js",
+    "file"
+  ],
+  [
+    "src/contextualizers/glossary/dynamicentityblock.js~dynamicentityblock#render",
+    "class/src/contextualizers/glossary/DynamicEntityBlock.js~DynamicEntityBlock.html#instance-method-render",
+    "src/contextualizers/glossary/DynamicEntityBlock.js~DynamicEntityBlock#render",
+    "method"
+  ],
+  [
+    "src/contextualizers/glossary/dynamicentityinline.js",
+    "file/src/contextualizers/glossary/DynamicEntityInline.js.html",
+    "src/contextualizers/glossary/DynamicEntityInline.js",
+    "file"
+  ],
+  [
+    "src/contextualizers/glossary/dynamicentityinline.js~dynamicentityinline#render",
+    "class/src/contextualizers/glossary/DynamicEntityInline.js~DynamicEntityInline.html#instance-method-render",
+    "src/contextualizers/glossary/DynamicEntityInline.js~DynamicEntityInline#render",
+    "method"
+  ],
+  [
     "src/contextualizers/glossary/staticentityblock.js",
     "file/src/contextualizers/glossary/StaticEntityBlock.js.html",
     "src/contextualizers/glossary/StaticEntityBlock.js",
@@ -1260,6 +1356,18 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/contextualizers/imagegallery/dynamicimagegallery.js",
+    "file/src/contextualizers/imagegallery/DynamicImageGallery.js.html",
+    "src/contextualizers/imagegallery/DynamicImageGallery.js",
+    "file"
+  ],
+  [
+    "src/contextualizers/imagegallery/dynamicimagegallery.js~dynamicimagegallery#render",
+    "class/src/contextualizers/imagegallery/DynamicImageGallery.js~DynamicImageGallery.html#instance-method-render",
+    "src/contextualizers/imagegallery/DynamicImageGallery.js~DynamicImageGallery#render",
+    "method"
+  ],
+  [
     "src/contextualizers/imagegallery/staticimagegallery.js",
     "file/src/contextualizers/imagegallery/StaticImageGallery.js.html",
     "src/contextualizers/imagegallery/StaticImageGallery.js",
@@ -1282,6 +1390,18 @@ window.esdocSearchIndex = [
     "file/src/contextualizers/index.js.html",
     "src/contextualizers/index.js",
     "file"
+  ],
+  [
+    "src/contextualizers/table/dynamictable.js",
+    "file/src/contextualizers/table/DynamicTable.js.html",
+    "src/contextualizers/table/DynamicTable.js",
+    "file"
+  ],
+  [
+    "src/contextualizers/table/dynamictable.js~dynamictable#render",
+    "class/src/contextualizers/table/DynamicTable.js~DynamicTable.html#instance-method-render",
+    "src/contextualizers/table/DynamicTable.js~DynamicTable#render",
+    "method"
   ],
   [
     "src/contextualizers/table/statictable.js",
@@ -1308,6 +1428,18 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/contextualizers/webpage/dynamicwebsiteposter.js",
+    "file/src/contextualizers/webpage/DynamicWebsitePoster.js.html",
+    "src/contextualizers/webpage/DynamicWebsitePoster.js",
+    "file"
+  ],
+  [
+    "src/contextualizers/webpage/dynamicwebsiteposter.js~dynamicwebsiteposter#render",
+    "class/src/contextualizers/webpage/DynamicWebsitePoster.js~DynamicWebsitePoster.html#instance-method-render",
+    "src/contextualizers/webpage/DynamicWebsitePoster.js~DynamicWebsitePoster#render",
+    "method"
+  ],
+  [
     "src/contextualizers/webpage/staticwebsiteposter.js",
     "file/src/contextualizers/webpage/StaticWebsitePoster.js.html",
     "src/contextualizers/webpage/StaticWebsitePoster.js",
@@ -1324,6 +1456,18 @@ window.esdocSearchIndex = [
     "file/src/contextualizers/webpage/index.js.html",
     "src/contextualizers/webpage/index.js",
     "file"
+  ],
+  [
+    "src/core/components/dynamiccomponents/dynamicnotepointer.js",
+    "file/src/core/components/DynamicComponents/DynamicNotePointer.js.html",
+    "src/core/components/DynamicComponents/DynamicNotePointer.js",
+    "file"
+  ],
+  [
+    "src/core/components/dynamiccomponents/dynamicnotepointer.js~dynamicnotepointer#render",
+    "class/src/core/components/DynamicComponents/DynamicNotePointer.js~DynamicNotePointer.html#instance-method-render",
+    "src/core/components/DynamicComponents/DynamicNotePointer.js~DynamicNotePointer#render",
+    "method"
   ],
   [
     "src/core/components/staticcomponents/staticbackcover.js",
@@ -1480,6 +1624,12 @@ window.esdocSearchIndex = [
     "class/src/core/components/StaticComponents/StaticSection.js~StaticSection.html#instance-method-render",
     "src/core/components/StaticComponents/StaticSection.js~StaticSection#render",
     "method"
+  ],
+  [
+    "src/core/components/staticcomponents/staticsectionfactory.js",
+    "file/src/core/components/StaticComponents/StaticSectionFactory.js.html",
+    "src/core/components/StaticComponents/StaticSectionFactory.js",
+    "file"
   ],
   [
     "src/core/components/staticcomponents/statictableofcontents.js",
@@ -1833,6 +1983,12 @@ window.esdocSearchIndex = [
     "src/core/validators/sectionvalidator.js",
     "file/src/core/validators/sectionValidator.js.html",
     "src/core/validators/sectionValidator.js",
+    "file"
+  ],
+  [
+    "src/exporters/epubexporter/index.js",
+    "file/src/exporters/epubExporter/index.js.html",
+    "src/exporters/epubExporter/index.js",
     "file"
   ],
   [

@@ -1,15 +1,18 @@
 import React, {PropTypes} from 'react';
 
 import {bibToSchema} from '../../utils/microDataUtils';
-import { intlShape, defineMessages } from 'react-intl';
+import {
+  intlShape,
+  // defineMessages
+} from 'react-intl';
 
-const translate = defineMessages({
-  tableofcontents: {
-    id: 'forewords',
-    description: 'Forewords',
-    defaultMessage: 'Forewords',
-  }
-});
+// const translate = defineMessages({
+//   tableofcontents: {
+//     id: 'forewords',
+//     description: 'Forewords',
+//     defaultMessage: 'Forewords',
+//   }
+// });
 
 import {
   StructuredMetadataPlaceholder,
@@ -44,7 +47,7 @@ class StaticForewords extends React.Component {
   render() {
     const bibType = bibToSchema(this.props.section.metadata.general.bibType.value);
     const id = this.props.section.metadata.general.id.value;
-    const { formatMessage } = this.context.intl;
+    // const { formatMessage } = this.context.intl;
     return (
       <section
         className={'peritext-static-section-container peritext-static-forewords-container'}

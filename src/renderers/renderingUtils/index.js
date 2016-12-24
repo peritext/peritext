@@ -9,10 +9,6 @@ import {
 import {
   getGlossary,
 } from './../../core/getters';
-import {
-  StaticFootnote,
-  StaticNotePointer
-} from './../../core/components';
 
 /**
  * Resolves a sections' list against rendering settings by modifying contents, adding output-related pseudo-sections, and updating css styles

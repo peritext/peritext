@@ -14,8 +14,8 @@
  * @return {Object} newDocument - the updated representation of the peritext document in which the contextualization was made
  */
  export const contextualizeInlineStatic = (inputDocument, contextualization, settings) => {
-  return Object.assign({}, inputDocument);
-};
+   return Object.assign({}, inputDocument);
+ };
 
 /**
  * Handle a block contextualization for static outputs
@@ -25,8 +25,8 @@
  * @return {Object} newDocument - the updated representation of the peritext document in which the contextualization was made
  */
  export const contextualizeBlockStatic = (inputDocument, contextualization, settings) => {
-  return Object.assign({}, inputDocument);
-};
+   return Object.assign({}, inputDocument);
+ };
 
 /**
  * Handle an inline contextualization for dynamic outputs
@@ -36,15 +36,15 @@
  * @return {Object} newDocument - the updated representation of the peritext document in which the contextualization was made
  */
  export const contextualizeInlineDynamic = (inputDocument, inputContextualization, settings) => {
-  const document = Object.assign({}, inputDocument);
-  const contextualization = Object.assign({}, inputContextualization);
-  const sectionId = contextualization.nodePath[0];
-  const path = ['sections', ...contextualization.nodePath.slice()];
-  const node = getByPath(document, path);
-  const section = document.sections[sectionId];
-  section[path[2]][path[3]] = node;
-  return document;
-};
+   const document = Object.assign({}, inputDocument);
+   const contextualization = Object.assign({}, inputContextualization);
+   const sectionId = contextualization.nodePath[0];
+   const path = ['sections', ...contextualization.nodePath.slice()];
+   const node = getByPath(document, path);
+   const section = document.sections[sectionId];
+   section[path[2]][path[3]] = node;
+   return document;
+ };
 
 /**
  * Handle a block contextualization for dynamic outputs
@@ -54,12 +54,12 @@
  * @return {Object} newDocument - the updated representation of the peritext document in which the contextualization was made
  */
  export const contextualizeBlockDynamic = (inputDocument, inputContextualization, settings) => {
-  const document = Object.assign({}, inputDocument);
-  const contextualization = Object.assign({}, inputContextualization);
-  const sectionId = contextualization.nodePath[0];
-  const path = ['sections', ...contextualization.nodePath.slice()];
-  const node = getByPath(document, path);
-  const section = document.sections[sectionId];
-  section[path[2]][path[3]] = node;
-  return document;
-};
+   const document = Object.assign({}, inputDocument);
+   const contextualization = Object.assign({}, inputContextualization);
+   const sectionId = contextualization.nodePath[0];
+   const path = ['sections', ...contextualization.nodePath.slice()];
+   const node = getByPath(document, path);
+   const section = document.sections[sectionId];
+   section[path[2]][path[3]] = node;
+   return document;
+ };

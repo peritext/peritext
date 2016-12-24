@@ -78,11 +78,6 @@ export const computeReferences = (document, settings, preRenderContexts = true) 
                                     // render contextualization content if asked (containing block, + former and previous)
                                     if (preRenderContexts) {
                                       const sectionId = contextualization.nodePath[0];
-                                      const contentCategory = contextualization.nodePath[1];
-                                      const blockNumber = contextualization.nodePath[2];
-                                      const contextBlock = document.sections[sectionId][contentCategory][blockNumber];
-                                      const previousBlock = (blockNumber > 0) ? document.sections[sectionId][contentCategory][blockNumber - 1] : undefined;
-                                      const nextBlock = (blockNumber < document.sections[sectionId][contentCategory].length - 1) ? document.sections[sectionId][contentCategory][blockNumber + 1] : undefined;
                                       return Object.assign({}, contextualization, {
                                         sectionTitle: document.sections[sectionId].metadata.general.title.value,
                                         context: retrieveContext(document, contextualization)

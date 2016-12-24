@@ -69,7 +69,7 @@ export const renderDocument = ({
     }, (inputDocument, cback) =>{
       let renderedDocument = Object.assign({}, inputDocument);
       // temp hack - for now resolveDataDependencies does not process document wide customizers (todo)
-      let documentLevelSection = document.sections[document.metadata.general.id.value];
+      const documentLevelSection = document.sections[document.metadata.general.id.value];
       renderedDocument.metadata = Object.assign({}, documentLevelSection.metadata);
       // build final css code (default + user-generated customizers)
       const cssCustomizers = documentLevelSection.customizers.styles;

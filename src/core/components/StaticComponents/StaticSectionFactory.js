@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
 import {
   StaticBackCover,
   StaticEndNotes,
@@ -9,9 +9,7 @@ import {
   StaticReferencesList,
   StaticSection,
   StaticTableOfContents,
-  StaticTableOfFigures,
-  StructuredMetadataPlaceholder,
-  StaticSectionFactory
+  StaticTableOfFigures
 } from '../index';
 
 export default function yeldSection(section, index, settings) {

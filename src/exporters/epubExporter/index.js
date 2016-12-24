@@ -14,9 +14,6 @@ import {resolve} from 'path';
 import {waterfall} from 'async';
 import {
   readFile,
-  writeFile,
-  exists,
-  mkdir
 } from 'fs';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
@@ -26,7 +23,6 @@ import {resolveSettings} from './../../core/utils/modelUtils';
 import {settingsModels} from './../../core/models';
 import resolveDataDependencies from './../../core/resolvers/resolveDataDependencies';
 import {
-  resolveContextualizationImplementation,
   resolveContextualizationsRelations
 } from './../../core/resolvers/resolveContextualizations';
 import {
@@ -86,7 +82,7 @@ export const exportDocumentToEpub = ({
     }, (inputDocument, cback) =>{
       let renderedDocument = Object.assign({}, inputDocument);
       // temp hack - for now resolveDataDependencies does not process document wide customizers (todo)
-      let documentLevelSection = document.sections[document.metadata.general.id.value];
+      const documentLevelSection = document.sections[document.metadata.general.id.value];
       renderedDocument.metadata = Object.assign({}, documentLevelSection.metadata);
       // build final css code (default + user-generated customizers)
       const cssCustomizers = documentLevelSection.customizers.styles;
@@ -132,8 +128,6 @@ export const exportDocumentToEpub = ({
         <IntlProvider locale={lang} messages={messages}>
           {StaticSectionFactory(section, index, finalSettings)}
         </IntlProvider>);
-        if (!section.title)
-          console.log(section.type);
         return {
           title: section.title || (section.metadata && section.metadata.general.title.value) || section.type,
           author: section.metadata
@@ -152,7 +146,7 @@ export const exportDocumentToEpub = ({
         }).join(', ') : undefined,
         publisher: renderedDocument.metadata.general.publisher ? renderedDocument.metadata.general.publisher.value : undefined,
         content,
-        css: style
+        css: finalStyle
       };
 
       const epubPath = path + '/' + motherKey + '.epub';

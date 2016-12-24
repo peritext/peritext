@@ -38,6 +38,19 @@ export function renderObjectMetadata(document, inputMetaHead) {
   }).join('\n');
 }
 
+export function resolveDocumentContextualizationsRelations(document, settings = []) {
+  const finalSettings = resolveSettings(settings, document.metadata.general.bibType.value, settingsModels);
+  return resolveContextualizationsRelations(document, finalSettings);
+}
+
+export function renderSectionContents(section, settings) {
+  return Object.assign(section, {
+    contents: setDynamicSectionContents(section, 'contents', settings)
+  }, {
+    notes: setDynamicSectionContents(section, 'notes', settings)
+  });
+}
+
 
 /**
  * Renders a section representation as a string representation of an html page
@@ -109,25 +122,12 @@ export const renderDocument = ({
       }, renderedDocument);
 
       // transform input js abstraction of contents to a js abstraction specific to rendering settings
-      const sections = renderedDocument.summary.map(sectionKey => {
-        const section1 = renderedDocument.sections[sectionKey];
-        const contents = renderSectionContents(section1, 'contents', finalSettings);
-        return Object.assign({}, section1, {contents});
-      });
+      // const sections = renderedDocument.summary.map(sectionKey => {
+      //   const section1 = renderedDocument.sections[sectionKey];
+      //   const contents = renderSectionContents(section1, 'contents', finalSettings);
+      //   return Object.assign({}, section1, {contents});
+      // });
       cback(null, renderedDocument);
     }
   ], rendererCallback);
 };
-
-export function resolveDocumentContextualizationsRelations(document, settings = []) {
-  const finalSettings = resolveSettings(settings, document.metadata.general.bibType.value, settingsModels);
-  return resolveContextualizationsRelations(document, finalSettings);
-}
-
-export function renderSectionContents(section, settings) {
-  return Object.assign(section, {
-    contents: setDynamicSectionContents(section, 'contents', settings)
-  }, {
-    notes: setDynamicSectionContents(section, 'notes', settings)
-  });
-}

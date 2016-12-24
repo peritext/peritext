@@ -350,22 +350,20 @@ export default function resolveDataDependencies(
             if (dataErr) {
               data[key] = dataErr;
               return dataCallback(null, key);
-            } else {
-              const raw = dataResult && dataResult.stringContents;
-              const ext = dataResult.extname;
-              // todo : handle other file formats
-              if (raw && ext === '.csv') {
-                const json = csvParse(raw);
-                data[key] = {
-                  format: 'json',
-                  data: json
-                };
-                return dataCallback(null, key);
-              }else {
-                console.log('unhandled file format ', ext);
-                return dataCallback(null, key);
-              }
             }
+            const raw = dataResult && dataResult.stringContents;
+            const ext = dataResult.extname;
+            // todo : handle other file formats
+            if (raw && ext === '.csv') {
+              const json = csvParse(raw);
+              data[key] = {
+                format: 'json',
+                data: json
+              };
+              return dataCallback(null, key);
+            }
+            console.log('unhandled file format ', ext);
+            return dataCallback(null, key);
           });
         }, (finalErr, keys) =>{
           document.data = data;
