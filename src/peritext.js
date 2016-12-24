@@ -95,3 +95,16 @@ export const components = Object.assign({}, coreComponents, {
   BlockCitationiso690fr,
   InlineCitationiso690fr
 });
+
+/*
+ * Map of components for populating asides in dynamic mode
+ * the key corresponds to a given "contextualizerType" specified in a contextualization object
+ * and the value is a react component class
+ */
+export const dynamicAsideComponents = {
+  imagegallery: require('./contextualizers/imagegallery/DynamicImageGallery'),
+  glossary: require('./contextualizers/glossary/DynamicEntityBlock'),
+  table: require('./contextualizers/table/DynamicTable'),
+  timeline: require('./contextualizers/table/DynamicTable'),
+  webpage: require('./contextualizers/webpage/DynamicWebsitePoster')
+};
