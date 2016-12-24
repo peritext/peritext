@@ -13,7 +13,7 @@
  * @param {Object} settings - the specific rendering settings to use for resolving the contextualization
  * @return {Object} newDocument - the updated representation of the peritext document in which the contextualization was made
  */
-export const contextualizeInlineStatic = (inputDocument, contextualization, settings) => {
+ export const contextualizeInlineStatic = (inputDocument, contextualization, settings) => {
   return Object.assign({}, inputDocument);
 };
 
@@ -24,7 +24,7 @@ export const contextualizeInlineStatic = (inputDocument, contextualization, sett
  * @param {Object} settings - the specific rendering settings to use for resolving the contextualization
  * @return {Object} newDocument - the updated representation of the peritext document in which the contextualization was made
  */
-export const contextualizeBlockStatic = (inputDocument, contextualization, settings) => {
+ export const contextualizeBlockStatic = (inputDocument, contextualization, settings) => {
   return Object.assign({}, inputDocument);
 };
 
@@ -35,7 +35,7 @@ export const contextualizeBlockStatic = (inputDocument, contextualization, setti
  * @param {Object} settings - the specific rendering settings to use for resolving the contextualization
  * @return {Object} newDocument - the updated representation of the peritext document in which the contextualization was made
  */
-export const contextualizeInlineDynamic = (inputDocument, inputContextualization, settings) => {
+ export const contextualizeInlineDynamic = (inputDocument, inputContextualization, settings) => {
   const document = Object.assign({}, inputDocument);
   const contextualization = Object.assign({}, inputContextualization);
   const sectionId = contextualization.nodePath[0];
@@ -53,7 +53,7 @@ export const contextualizeInlineDynamic = (inputDocument, inputContextualization
  * @param {Object} settings - the specific rendering settings to use for resolving the contextualization
  * @return {Object} newDocument - the updated representation of the peritext document in which the contextualization was made
  */
-export const contextualizeBlockDynamic = (inputDocument, inputContextualization, settings) => {
+ export const contextualizeBlockDynamic = (inputDocument, inputContextualization, settings) => {
   const document = Object.assign({}, inputDocument);
   const contextualization = Object.assign({}, inputContextualization);
   const sectionId = contextualization.nodePath[0];
