@@ -163,8 +163,8 @@ export const exportDocumentToEpub = ({
               console.log('Ebook Generated Successfully!');
               cback(null, epubPath);
             }, function(err) {
-            console.error('Failed to generate Ebook because of ', err);
-            cback(err, epubPath);
-          });
+              console.error('Failed to generate Ebook because of ', err);
+              cback(err, epubPath);
+            });
     }], finalCallback);
 };

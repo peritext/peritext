@@ -343,7 +343,7 @@ export default function resolveDataDependencies(
       }
     // end of waterfall for document-wide resolutions
     ], (documentWideErrors)=>{
-      if (resolveDataDependencies) {
+      if (resolveData) {
         asyncMapSeries(Object.keys(data), (key, dataCallback) =>{
           const toResolve = data[key];
           toResolve.read(toResolve.params, (dataErr, dataResult) =>{
