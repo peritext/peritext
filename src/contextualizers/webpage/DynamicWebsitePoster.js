@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react';
+import Iframe from 'react-iframe';
 import {StructuredHyperLink} from './../../core/components';
 
 import renderContents from './../../core/utils/componentsFactory';
@@ -17,8 +18,11 @@ export default class DynamicWebsitePoster extends React.Component {
    */
   static propTypes = {
     schematype: PropTypes.string,
-    resource: PropTypes.object.isRequired,
-    captionContent: PropTypes.array,
+    resources: PropTypes.array.isRequired,
+    // captionContent: PropTypes.oneOfType([
+    //   PropTypes.array,
+    //   PropTypes.string
+    // ]),
     figureNumber: PropTypes.number,
     id: PropTypes.string
   };
@@ -39,7 +43,7 @@ export default class DynamicWebsitePoster extends React.Component {
     const contents = [
       {
         node: 'text',
-        text: this.props.resource.url
+        text: this.props.resources[0].url
       }
     ];
     return (
@@ -50,7 +54,7 @@ export default class DynamicWebsitePoster extends React.Component {
               itemProp="citation"
               itemType={'http://schema.org/' + this.props.schematype}
               typeof={this.props.schematype}
-              resource={'#' + this.props.resource.id}
+              resource={'#' + this.props.resources[0].id}
               id={'peritext-figure-' + this.props.id}
             >
               <span
@@ -58,14 +62,14 @@ export default class DynamicWebsitePoster extends React.Component {
                 property="name"
                 style={invisibleStyle}
               >
-                {this.props.resource.title}
+                {this.props.resources[0].title}
               </span>
-              <iframe url={this.porps.resource.url} />
+              <Iframe url={this.props.resources[0].url} />
               <figcaption
                 itemProp="description"
                 property="description"
               >
-                {renderContents(this.props.captionContent)} – <StructuredHyperLink contents={contents} resource={this.props.resource}/>
+                {renderContents(this.props.captionContent)} – <StructuredHyperLink contents={contents} resource={this.props.resources[0]}/>
               </figcaption>
             </figure>
           );

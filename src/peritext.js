@@ -105,6 +105,6 @@ export const dynamicAsideComponents = {
   imagegallery: require('./contextualizers/imagegallery/DynamicImageGallery'),
   glossary: require('./contextualizers/glossary/DynamicEntityBlock'),
   table: require('./contextualizers/table/DynamicTable'),
-  timeline: require('./contextualizers/table/DynamicTable'),
+  timeline: require('./contextualizers/timeline/DynamicTimeline'),
   webpage: require('./contextualizers/webpage/DynamicWebsitePoster')
 };

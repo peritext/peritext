@@ -1,6 +1,8 @@
 import React, {PropTypes} from 'react';
 import {StaticImageFigure} from './../../core/components';
 
+import ImageGallery from 'react-image-gallery';
+
 import renderContents from './../../core/utils/componentsFactory';
 
 /**
@@ -17,7 +19,7 @@ export default class DynamicImageGallery extends React.Component {
    */
   static propTypes = {
     schematype: PropTypes.string,
-    resources: PropTypes.array,
+    resources: PropTypes.array.isRequired,
     captionContent: PropTypes.array,
     id: PropTypes.string
   };
@@ -32,6 +34,27 @@ export default class DynamicImageGallery extends React.Component {
    * @return {ReactElement} markup
    */
   render() {
+
+    const images = this.props.resources.map(resource => ({
+      original: resource.imageurl,
+      thumbnail: resource.imageurl
+    }))
+    /*
+    Model : [
+      {
+        original: 'http://lorempixel.com/1000/600/nature/1/',
+        thumbnail: 'http://lorempixel.com/250/150/nature/1/',
+        originalClass: 'featured-slide',
+        thumbnailClass: 'featured-thumb',
+        originalAlt: 'original-alt',
+        thumbnailAlt: 'thumbnail-alt',
+        thumbnailLabel: 'Optional',
+        description: 'Optional description...',
+        srcSet: 'Optional srcset (responsive images src)',
+        sizes: 'Optional sizes (image sizes relative to the breakpoint)'
+      }
+    ];
+    */
     return (
             <figure
               role="group"
@@ -42,10 +65,12 @@ export default class DynamicImageGallery extends React.Component {
               typeof={this.props.schematype}
               id={'peritext-figure-' + this.props.id}
             >
-              <div className="peritext-static-image-gallery-figures-wrapper">
-                {this.props.resources.map((resource)=>{
+              <div className="peritext-dynamic-image-gallery-figures-wrapper">
+                <ImageGallery items={images}/>
+                {
+                /*this.props.resources.map((resource)=>{
                   return <StaticImageFigure resource={resource} key={resource.id} />;
-                })}
+                })*/}
               </div>
               <figcaption
                 itemProp="description"
