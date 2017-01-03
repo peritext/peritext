@@ -1,9 +1,13 @@
+import {
+  computeReferences
+} from './utils/referenceUtils';
+
 
 export const getDocument = (document) => Object.assign({}, document);
 
 export const getDocumentMetadata = (document) => Object.assign({}, document.metadata);
 
-const packSection = (document, section) => {
+export const packSection = (document, section) => {
   const mappedContextualizations = section.contextualizations.map(key =>
     document.contextualizations[key]
   );
@@ -51,13 +55,17 @@ export const getTableOfSections = (document) =>
     };
   });
 
+export const getDocumentBibliography = (document, settings, preRenderContexts) =>
+  computeReferences(document, settings, preRenderContexts);
+
 export const getTableOfFigures = (document) =>
   Object.keys(document.contextualizations)
   .map(key => document.contextualizations[key])
   .filter(contextualization => contextualization.figureId)
   .map(contextualization => ({
     figureId: contextualization.figureId,
-    figureNumber: contextualization.figureNumber
+    figureNumber: contextualization.figureNumber,
+    contextualization
   }));
 
 export const getResourceContextualizations = (document, resourceId) =>
@@ -74,7 +82,32 @@ export const getContextualizerContextualizations = (document, contextualizerId) 
       contextualization.contextualizer === contextualizerId
     );
 
-export const getGlossary = (document) => {
+export const retrieveContext = (document, contextualization) => {
+  const sectionId = contextualization.nodePath[0];
+  const contentCategory = contextualization.nodePath[1];
+  const blockNumber = contextualization.nodePath[2];
+  const contextBlock = document.sections[sectionId][contentCategory][blockNumber];
+  const previousBlock = (contentCategory === 'contents' && blockNumber > 0) ? document.sections[sectionId][contentCategory][blockNumber - 1] : undefined;
+  const nextBlock = (contentCategory === 'contents' && blockNumber < document.sections[sectionId][contentCategory].length - 1) ? document.sections[sectionId][contentCategory][blockNumber + 1] : undefined;
+  return {
+    previousBlock: previousBlock && JSON.parse(JSON.stringify(previousBlock)),
+    contextBlock: contextBlock && JSON.parse(JSON.stringify(contextBlock)),
+    nextBlock: nextBlock && JSON.parse(JSON.stringify(nextBlock))
+  };
+};
+
+export const getAllContextualizationsFromResource = (document, resourceId, preRenderContexts = true) =>
+  Object.keys(document.contextualizations)
+    .map(key => document.contextualizations[key])
+    .filter(contextualization => contextualization.resources.indexOf(resourceId) > -1)
+    .map(contextualization => ({
+      contextualization,
+      context: preRenderContexts && retrieveContext(document, contextualization),
+      sectionId: contextualization.nodePath[0],
+      sectionTitle: document.sections[contextualization.nodePath[0]].metadata.general.title.value
+    }));
+
+export const getGlossary = (document, preRenderContexts = true) => {
   const entitiesTypes = ['person', 'place', 'subject', 'concept', 'organization', 'technology', 'artefact'];
   const sections = Object.keys(document.sections).map(key => document.sections[key]);
   // get all glossary contextualizations
@@ -88,11 +121,18 @@ export const getGlossary = (document) => {
       .reduce((localResults, contextualizationKey)=> {
         const contextualization = document.contextualizations[contextualizationKey];
         const targetBlockPath = contextualization.nodePath.slice(0, 3);
+        let context;
+        if (preRenderContexts) {
+          context = retrieveContext(document, contextualization);
+        }
         return localResults.concat({
-          mentionId: '#peritext-content-entity-inline-' + sectionCitekey + '-' + contextualization.id,
+          mentionId: '#peritext-static-entity-inline-' + sectionCitekey + '-' + contextualization.id,
+          id: contextualization.id,
           entity: document.resources[contextualization.resources[0]].id,
           alias: document.contextualizers[contextualization.contextualizer].alias,
-          targetBlockPath
+          targetBlockPath,
+          nodePath: contextualization.nodePath,
+          context
         });
       }, []));
   }, []);

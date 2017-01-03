@@ -4,8 +4,10 @@ import {
   contentsController,
   assetsController,
   exportDocumentToPdf,
+  exportDocumentToEpub,
   defaultParameters,
-  defaultModels
+  defaultModels,
+  renderToDynamicDocument
 } from './../../src/peritext';
 import {writeFileSync} from 'fs';
 
@@ -24,13 +26,17 @@ export default function runExample() {
       contentsController.updateFromSource(params, defaultModels, defaultParameters, callback);
     }
   ], (err, results)=>{
-    writeFileSync(__dirname + '/output/serialized.json', JSON.stringify(results, null, 2));
-    // const sections = results.sections;
     exportDocumentToPdf({
       document: results.document,
       destinationFolder
     }, assetsController, assetsParams , (err, success)=>{
-      console.log('done with book, errors : ', err);
+      console.log('pdf is done with book, errors : ', err);
+    });
+    exportDocumentToEpub({
+      document: results.document,
+      destinationFolder
+    }, assetsController, assetsParams , (err, success)=>{
+      console.log('epub is done with book, errors : ', err);
     });
   });
 }

@@ -33,9 +33,9 @@ export default class StaticEntityInline extends React.Component {
     const itemType = bibToSchema(this.props.entity.bibType);
     return (
       <a
-        className="peritext-static-entity-container-inline"
-        name={'peritext-content-entity-inline-' + this.props.sectionId + '-' + this.props.contextualization.id}
-        id={'peritext-static-entity-inline-' + this.props.sectionId + '-' + this.props.contextualization.id}
+        className="peritext-static-entity-container-inline peritext-inline-contextualization"
+        name={this.props.contextualization.id}
+        id={this.props.contextualization.id}
         href={'#peritext-static-entity-block-' + this.props.entity.id}
         itemProp="mentions"
         value="mentions"

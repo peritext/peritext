@@ -1,7 +1,7 @@
 {
-  "coverage": "86.84%",
-  "expectCount": 190,
-  "actualCount": 165,
+  "coverage": "84.36%",
+  "expectCount": 211,
+  "actualCount": 178,
   "files": {
     "src/referencers/iso690fr.js": {
       "expectCount": 10,
@@ -11,6 +11,36 @@
     "src/core/utils/citationUtils/citationModels.js": {
       "expectCount": 6,
       "actualCount": 6,
+      "undocumentLines": []
+    },
+    "src/contextualizers/glossary/DynamicEntityBlock.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/contextualizers/glossary/DynamicEntityInline.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/contextualizers/imagegallery/DynamicImageGallery.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/core/components/DynamicComponents/DynamicNotePointer.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/contextualizers/table/DynamicTable.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/contextualizers/webpage/DynamicWebsitePoster.js": {
+      "expectCount": 2,
+      "actualCount": 2,
       "undocumentLines": []
     },
     "src/core/components/StaticComponents/StaticBackCover.js": {
@@ -159,19 +189,22 @@
       "undocumentLines": []
     },
     "src/peritext.js": {
-      "expectCount": 14,
+      "expectCount": 17,
       "actualCount": 4,
       "undocumentLines": [
-        58,
+        88,
+        104,
+        67,
+        64,
+        66,
         60,
-        54,
+        65,
+        63,
         59,
-        57,
-        53,
-        56,
-        55,
-        52,
-        50
+        62,
+        61,
+        58,
+        56
       ]
     },
     "src/core/utils/microDataUtils.js": {
@@ -193,8 +226,8 @@
       "expectCount": 3,
       "actualCount": 1,
       "undocumentLines": [
-        217,
-        193
+        219,
+        198
       ]
     },
     "src/core/utils/referenceUtils.js": {
@@ -207,7 +240,7 @@
       "actualCount": 1,
       "undocumentLines": []
     },
-    "src/contextualizers/webpage/index.js": {
+    "src/contextualizers/imagegallery/index.js": {
       "expectCount": 4,
       "actualCount": 4,
       "undocumentLines": []
@@ -222,17 +255,17 @@
       "actualCount": 4,
       "undocumentLines": []
     },
-    "src/contextualizers/table/index.js": {
-      "expectCount": 4,
-      "actualCount": 4,
-      "undocumentLines": []
-    },
     "src/contextualizers/citation/index.js": {
       "expectCount": 4,
       "actualCount": 4,
       "undocumentLines": []
     },
-    "src/contextualizers/imagegallery/index.js": {
+    "src/contextualizers/table/index.js": {
+      "expectCount": 4,
+      "actualCount": 4,
+      "undocumentLines": []
+    },
+    "src/contextualizers/webpage/index.js": {
       "expectCount": 4,
       "actualCount": 4,
       "undocumentLines": []
@@ -247,30 +280,39 @@
       "actualCount": 5,
       "undocumentLines": []
     },
+    "src/exporters/epubExporter/index.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
     "src/exporters/pdfExporter/index.js": {
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []
     },
+    "src/core/getters.js": {
+      "expectCount": 13,
+      "actualCount": 0,
+      "undocumentLines": [
+        99,
+        78,
+        6,
+        58,
+        8,
+        42,
+        110,
+        71,
+        37,
+        61,
+        47,
+        10,
+        85
+      ]
+    },
     "src/core/controllers/assetsController.js": {
       "expectCount": 2,
       "actualCount": 2,
       "undocumentLines": []
-    },
-    "src/core/getters.js": {
-      "expectCount": 9,
-      "actualCount": 0,
-      "undocumentLines": [
-        70,
-        2,
-        4,
-        38,
-        77,
-        63,
-        33,
-        54,
-        43
-      ]
     },
     "src/core/utils/modelUtils.js": {
       "expectCount": 5,
@@ -337,8 +379,8 @@
       "actualCount": 1,
       "undocumentLines": [
         30,
-        122,
-        117
+        46,
+        41
       ]
     },
     "src/renderers/renderToStaticHtml/index.js": {
@@ -372,6 +414,13 @@
       "expectCount": 2,
       "actualCount": 2,
       "undocumentLines": []
+    },
+    "src/core/components/StaticComponents/StaticSectionFactory.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        15
+      ]
     }
   }
 }

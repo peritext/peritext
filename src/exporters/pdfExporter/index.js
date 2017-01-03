@@ -60,7 +60,9 @@ export const exportDocumentToPdf = ({
     },
     // write the section to a static html file
     (html, writeCb)=> {
-      writeFile(path + '/' + motherKey + '.html', html, 'utf-8', writeCb);
+      const htmlPath = path + '/' + motherKey + '.html';
+      console.log('writing html static output at ', path + '/' + motherKey + '.html');
+      writeFile(htmlPath, html, 'utf-8', writeCb);
     }
   ], (err)=> {
     if (!err) {
@@ -70,7 +72,7 @@ export const exportDocumentToPdf = ({
       .execute()
       .then(function() {
         console.log('saved to pdf with PrinceXML');
-        return finalCallback();
+        return finalCallback(null, path + '/' + motherKey + '.pdf');
       }, function(error) {
         console.log('Prince ERROR: ', error);
         return finalCallback(error);

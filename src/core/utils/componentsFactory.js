@@ -3,6 +3,7 @@
  * @module utils/modelUtils
  */
 import React from 'react';
+import {components} from '../../peritext';
 
 /**
  * Consumes a peritext content's pseudo-dom node (described as a js object) and returns a react component
@@ -16,13 +17,17 @@ export const jsToComponent = (node, index)=> {
   }
   if (node.special && node.tag) {
     // Component class stored as referenced object
-    const Component = node.tag;
-    return <Component key={index} {...node.props} />;
+    // const Component = node.tag;
+    const Component = components[node.tag];
+    return <Component id={node.attr && node.attr.id} key={index} {...node.props} />;
   }
-  // plain string tag name
+  if (!node.tag) {
+    node.tag = 'div';
+  }
+  // plain string tag name (p, span, ...)
   if (node.tag) {
     const Tag = node.tag;
-    return (<Tag key={index} id={node.attr && node.attr.id} href={node.attr && node.attr.href}>
+    return (<Tag key={index} className={node.attr && node.attr.className} id={node.attr && node.attr.id} href={node.attr && node.attr.href}>
       {node.children && node.children.map(jsToComponent)}
     </Tag>);
   }

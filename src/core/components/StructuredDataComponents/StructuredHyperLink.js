@@ -52,7 +52,7 @@ export default class StructuredHyperLink extends React.Component {
                 {this.props.resource.title}
               </span>
               <span
-                itemrop="name"
+                itemProp="name"
                 property="name"
                 value={this.props.resource.url}
                 style={invisibleStyle}

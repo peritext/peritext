@@ -194,6 +194,9 @@ let representContents = ()=>{return undefined;};
 
 mapMdJsonToPJson = (inputElement, contextualizations, elementPath) =>{
   const element = Object.assign({}, inputElement);
+  if (!element.attr) {
+    element.attr = {};
+  }
   if (element.text) {
     element.text = entities.decode(element.text);
   }
@@ -205,6 +208,8 @@ mapMdJsonToPJson = (inputElement, contextualizations, elementPath) =>{
     } else {
       element.tag = 'inlineC';
       const contextualizationId = element.attr.href;
+      element.attr.id = contextualizationId;
+      element.attr.className = 'peritext-inline-contextualization';
       const contextualization = contextualizations[contextualizationId];
       contextualization.nodePath = elementPath;
     }
@@ -218,6 +223,7 @@ mapMdJsonToPJson = (inputElement, contextualizations, elementPath) =>{
     contents = contents.join !== undefined ? contents.join(' ') : contents;
     element.children = [representContents(contents, contextualizations, elementPath)[0]];
     delete element.attr;
+    element.attr = {id: contextualizationId, className: 'peritext-block-contextualization'};
   }
   if (element.child) {
     element.children = element.child.map((child, elementIndex)=>{
@@ -229,7 +235,10 @@ mapMdJsonToPJson = (inputElement, contextualizations, elementPath) =>{
 };
 
 representContents = (mdContent, contextualizations, elementPath) =>{
-  return html2json(marked(mdContent)).child.map((child, blockIndex)=> {
+  return html2json(marked(mdContent)).child
+  // filtering out empty line break elements (todo : check if this does not hurt any use case)
+  .filter(child => !(child.node === 'text' && child.text === '\n'))
+  .map((child, blockIndex)=> {
     return mapMdJsonToPJson(child, contextualizations, elementPath.concat(blockIndex));
   });
 };

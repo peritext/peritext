@@ -151,7 +151,3 @@ Eventually, Peritext flexibly handles outputing academic documents to real outpu
 `exporters` take as argument a representation served by `renderers` (e.g. static html) and output a file (`pdf`, `xml`, `html`, ...).
 
 For uses of Peritext as a library in web applications, it finally provides a set of `getters` and `setters` functions that facilitate working with ``RCC document representation`` objects in applications.
-
-[Check outputs examples (WIP!)](https://github.com/peritext/peritext/blob/master/examples/phdThesis/output/les_formats.pdf)
-
-[Check lectio app to see an example of read-only utilisation of Peritext as a web library (WIP!)](https://github.com/peritext/peritext-lectio).

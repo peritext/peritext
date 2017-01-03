@@ -3,8 +3,7 @@
  * @module resolvers/resolveDataDependencies
  */
 import {map as asyncMap, mapSeries as asyncMapSeries, waterfall} from 'async';
-const CsvConverter = require('csvtojson').Converter;
-const csvConverter = new CsvConverter({});
+import {csvParse} from 'd3-dsv';
 
 /**
  * Resolves interpolations in metadata, resources, and contextualizations,
@@ -34,6 +33,7 @@ export default function resolveDataDependencies(
     waterfall([
       // styles resolution
       (stylesResolutionCallback)=> {
+        console.log('resolving', section.metadata.general.title.value);
         if (section.customizers && section.customizers.styles) {
           const styles = [];
           for (const prop in section.customizers.styles) {
@@ -89,6 +89,7 @@ export default function resolveDataDependencies(
               key: propKey,
               data: prop
             };
+            // interpolate @assets statements with their value
             if (typeof prop.value === 'string' && prop.value.indexOf('@assets/') === 0) {
               assetsController.getAssetUri(prop.value.split('@assets/')[1], assetsParams, (err4, uri)=> {
                 prop.value = uri;
@@ -103,22 +104,23 @@ export default function resolveDataDependencies(
               key: domain,
               data: {}
             };
-            propObjects.forEach(propObject=> {
+            // update domainObject with updated objects
+            propObjects.forEach(propObject => {
               domainObject.data[propObject.key] = propObject.data;
             });
             domainCallback(propsError, domainObject);
           });
-        }, (domainErrors, domainObjects)=>{
+        }, (domainErrors, domainObjects) => {
           domainObjects.forEach((domainObject) => {
             sectio.metadata[domainObject.key] = domainObject.data;
           });
           metadataCallback(domainErrors, sectio);
         });
       }
-    // waterfall callback for all sections
+    // waterfall callback for each section
     ], (errs, sectio)=> {
       // fill document section keys with updated sections
-      document.sections[sectio.metadata.general.id.value] = sectio;
+      document.sections[sectio.metadata.general.id.value] = Object.assign({}, sectio);
       allSectionsCallback(errs);
     });
   // sections final callback
@@ -128,7 +130,7 @@ export default function resolveDataDependencies(
     const contextualizations = Object.keys(document.contextualizations).map(key => document.contextualizations[key]);
 
     waterfall([
-      (contextualizationsCallback)=> {
+      (contextualizationsCallback) => {
         asyncMap(contextualizations, (contextualization, contextualizationCallback)=> {
           res = undefined;
           const props = [];
@@ -339,39 +341,37 @@ export default function resolveDataDependencies(
           resourcesResolutionCallback(resourceErrors);
         });
       }
+    // end of waterfall for document-wide resolutions
     ], (documentWideErrors)=>{
-      if (resolveDataDependencies) {
+      if (resolveData) {
         asyncMapSeries(Object.keys(data), (key, dataCallback) =>{
           const toResolve = data[key];
           toResolve.read(toResolve.params, (dataErr, dataResult) =>{
             if (dataErr) {
               data[key] = dataErr;
-              dataCallback(null, key);
-            } else {
-              const raw = dataResult && dataResult.stringContents;
-              const ext = dataResult.extname;
-              // todo : handle other file formats
-              if (raw && ext === '.csv') {
-                csvConverter.fromString(raw, (parseErr, json)=>{
-                  data[key] = {
-                    format: 'json',
-                    data: json
-                  };
-                  dataCallback(parseErr, key);
-                });
-              }else {
-                console.log('unhandled file format ', ext);
-                dataCallback(null, key);
-              }
+              return dataCallback(null, key);
             }
+            const raw = dataResult && dataResult.stringContents;
+            const ext = dataResult.extname;
+            // todo : handle other file formats
+            if (raw && ext === '.csv') {
+              const json = csvParse(raw);
+              data[key] = {
+                format: 'json',
+                data: json
+              };
+              return dataCallback(null, key);
+            }
+            console.log('unhandled file format ', ext);
+            return dataCallback(null, key);
           });
         }, (finalErr, keys) =>{
           document.data = data;
-          callback(finalErr, document);
+          return callback(finalErr, document);
         });
       } else {
         document.data = data;
-        callback(documentWideErrors, document);
+        return callback(documentWideErrors, document);
       }
     });
   });

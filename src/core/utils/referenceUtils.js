@@ -1,3 +1,5 @@
+import {retrieveContext} from '../getters';
+
 /**
  * Utils - dedicated to representing a reference/bibliography section
  * @module utils/referenceUtils
@@ -35,11 +37,10 @@ const isBibliographical = (bibType) =>{
 /**
  * Filter and order a list of resources against bibliography settings
  * @param {array} sections - the sections to handle for building the list
- * @param {Object} document - the reference to the overall document
  * @param {Object} settings - the rendering settings, among which are bibliography-making related settings
  * @return {array} references - the resulting list
  */
-export const computeReferences = (sections, document, settings) =>{
+export const computeReferences = (document, settings, preRenderContexts = true) =>{
   if (settings.referenceScope === 'document') {
     const references = [];
     for (const key in document.resources) {
@@ -47,7 +48,6 @@ export const computeReferences = (sections, document, settings) =>{
         references.push(document.resources[key]);
       }
     }
-
     // handle filters
     const filters = (settings.referenceFilters || []) && settings.referenceFilters.split(' ');
     const filteredReferences = filters.reduce((outputReferences, filter)=> {
@@ -73,7 +73,18 @@ export const computeReferences = (sections, document, settings) =>{
                                   .map(key => document.contextualizations[key])
                                   .filter(contextualization =>
                                     contextualization.resources.indexOf(reference.id) > -1
-                                  );
+                                  )
+                                  .map(contextualization => {
+                                    // render contextualization content if asked (containing block, + former and previous)
+                                    if (preRenderContexts) {
+                                      const sectionId = contextualization.nodePath[0];
+                                      return Object.assign({}, contextualization, {
+                                        sectionTitle: document.sections[sectionId].metadata.general.title.value,
+                                        context: retrieveContext(document, contextualization)
+                                      });
+                                    }
+                                    return contextualization;
+                                  });
       return Object.assign(reference, {contextualizations});
     });
 

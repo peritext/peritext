@@ -1,6 +1,18 @@
 import React, {PropTypes} from 'react';
 
 import {bibToSchema} from '../../utils/microDataUtils';
+import {
+  intlShape,
+  // defineMessages
+} from 'react-intl';
+
+// const translate = defineMessages({
+//   tableofcontents: {
+//     id: 'forewords',
+//     description: 'Forewords',
+//     defaultMessage: 'Forewords',
+//   }
+// });
 
 import {
   StructuredMetadataPlaceholder,
@@ -13,7 +25,7 @@ import renderContents from '../../utils/componentsFactory';
 /**
  * dumb component for rendering the structured representation of a static section
  */
-export default class StaticForewords extends React.Component {
+class StaticForewords extends React.Component {
 
   /**
    * propTypes
@@ -35,6 +47,7 @@ export default class StaticForewords extends React.Component {
   render() {
     const bibType = bibToSchema(this.props.section.metadata.general.bibType.value);
     const id = this.props.section.metadata.general.id.value;
+    // const { formatMessage } = this.context.intl;
     return (
       <section
         className={'peritext-static-section-container peritext-static-forewords-container'}
@@ -62,3 +75,7 @@ export default class StaticForewords extends React.Component {
     );
   }
 }
+
+StaticForewords.contextTypes = { intl: intlShape };
+
+export default StaticForewords;

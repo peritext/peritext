@@ -33,11 +33,11 @@ export default class StaticEntityBlock extends React.Component {
   renderMentions() {
     const self = this;
     return Object.keys(this.props.entity.aliases).map(function(alias, aliasIndex) {
-      return (<p key={alias} className="peritext-static-entity-block-page-mentions-container">
+      return (<p key={alias} className="peritext-static-entity-block-page-mentions-container peritext-block-contextualization">
         <span>{alias === 'no-alias' ? '' : alias + ' : '}</span>
         {self.props.entity.aliases[alias].map((entry, index)=> {
           return (<span key={entry.mentionId}>
-              p. <a className="peritext-static-entity-block-page-pointer" href={entry.mentionId}></a>
+              p. <a className="peritext-static-entity-block-page-pointer" href={'#' + entry.id}></a>
             </span>);
         }).reduce((accu, elem) => {
           return accu === null ? [elem] : [...accu, ', ', elem];

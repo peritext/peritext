@@ -9,10 +9,6 @@ import {
 import {
   getGlossary,
 } from './../../core/getters';
-import {
-  StaticFootnote,
-  StaticNotePointer
-} from './../../core/components';
 
 /**
  * Resolves a sections' list against rendering settings by modifying contents, adding output-related pseudo-sections, and updating css styles
@@ -70,7 +66,7 @@ export const composeRenderedSections = (sections = [], document, settings = {}, 
 
   // build references/bibliography
   if (settings.referenceScope === 'document') {
-    const refs = computeReferences(sections, document, settings);
+    const refs = computeReferences(document, settings);
     if (refs.length) {
       renderedSections.push({
         type: 'references',
@@ -142,7 +138,11 @@ export const composeRenderedSections = (sections = [], document, settings = {}, 
         level: thisSection.metadata ? thisSection.metadata.general.generalityLevel.value : 0
       };
     });
-    const toc = {type: 'table-of-contents', contents: tocData};
+    const toc = {
+      type: 'table-of-contents',
+      title: messages.table_of_contents,
+      contents: tocData
+    };
     if (settings.contentsTablePosition === 'begining' && toc.contents.length) {
       renderedSections.splice(0, 0, toc);
     } else if (toc.contents.length) {
@@ -150,15 +150,20 @@ export const composeRenderedSections = (sections = [], document, settings = {}, 
     }
   }
   // handle forewords
-  renderedSections.splice(0, 0, Object.assign({}, document.forewords, {type: 'forewords'}));
+  renderedSections.splice(0, 0, Object.assign({}, document.forewords, {
+    type: 'forewords',
+    title: messages.forewords,
+  }));
   // handle cover
   if (settings.showCovers === 'yes') {
     renderedSections.splice(0, 0, {
       type: 'front-cover',
+      title: document.metadata.general.title.value,
       metadata: document.metadata
     });
     renderedSections.push({
       type: 'back-cover',
+      title: document.metadata.general.title.value,
       metadata: document.metadata
     });
   }
@@ -176,9 +181,9 @@ const resolveStaticNode = (inputNode, section, settings) =>{
     });
     node.props = {note};
     if (settings.notesPosition === 'footnotes') {
-      node.tag = StaticFootnote;
+      node.tag = 'StaticFootnote';
     } else {
-      node.tag = StaticNotePointer;
+      node.tag = 'StaticNotePointer';
     }
     node.special = true;
   }
@@ -190,11 +195,8 @@ const resolveStaticNode = (inputNode, section, settings) =>{
   return node;
 };
 
-export const setStaticSectionContents = (section, key, settings) =>{
-  return section[key].map(node => {
-    return resolveStaticNode(node, section, settings);
-  });
-};
+export const setStaticSectionContents = (section, key, settings) =>
+  section[key].map(node => resolveStaticNode(node, section, settings));
 
 const resolveDynamicNode = (inputNode, section, settings) =>{
   const node = Object.assign({}, inputNode);
@@ -203,7 +205,7 @@ const resolveDynamicNode = (inputNode, section, settings) =>{
       return thatNote.id === node.target;
     });
     node.props = {note};
-    node.tag = StaticNotePointer;
+    node.tag = 'DynamicNotePointer';
     node.special = true;
   }
   if (node.children) {
@@ -214,8 +216,5 @@ const resolveDynamicNode = (inputNode, section, settings) =>{
   return node;
 };
 
-export const setDynamicSectionContents = (section, key, settings) =>{
-  return section[key].map(node => {
-    return resolveDynamicNode(node, section, settings);
-  });
-};
+export const setDynamicSectionContents = (section, key, settings) =>
+  section[key].map(node => resolveDynamicNode(node, section, settings));

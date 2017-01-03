@@ -28,4 +28,8 @@ gulp.task('build', function(){
     ])
     .pipe(strip())
     .pipe(gulp.dest('build'));
+  gulp.src([
+      'src/**/*.css'
+    ])
+    .pipe(gulp.dest('build'));
 });

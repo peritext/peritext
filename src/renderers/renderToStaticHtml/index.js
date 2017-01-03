@@ -68,8 +68,12 @@ export const renderDocument = ({
     // build html code
     }, (inputDocument, cback) =>{
       let renderedDocument = Object.assign({}, inputDocument);
+      // temp hack - for now resolveDataDependencies does not process document wide customizers (todo)
+      const documentLevelSection = document.sections[document.metadata.general.id.value];
+      renderedDocument.metadata = Object.assign({}, documentLevelSection.metadata);
       // build final css code (default + user-generated customizers)
-      const cssCustomizers = renderedDocument.customizers && renderedDocument.customizers.styles;
+      const cssCustomizers = documentLevelSection.customizers.styles;
+      // const cssCustomizers = renderedDocument.customizers && renderedDocument.customizers.styles;
       if (cssCustomizers !== undefined) {
         for (const name in cssCustomizers) {
           if (name !== 'screen.css') {

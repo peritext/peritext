@@ -13,7 +13,7 @@ import { get as getByPath } from 'object-path';
  * @return {Object} newDocument - the updated representation of the peritext document in which the contextualization was made
  */
 export const contextualizeInlineStatic = (inputDocument, inputContextualization, settings) => {
-  const formatter = require('./../../referencers/' + settings.citationStyle + '.js');
+  // const formatter = require('./../../referencers/' + settings.citationStyle + '.js');
   const document = Object.assign({}, inputDocument);
   const contextualization = Object.assign({}, inputContextualization);
   const path = ['sections', ...contextualization.nodePath.slice()];
@@ -30,7 +30,7 @@ export const contextualizeInlineStatic = (inputDocument, inputContextualization,
     const citation = {
       node: 'element',
       special: true,
-      tag: formatter.InlineCitation,
+      tag: 'InlineCitation' + settings.citationStyle, // formatter.InlineCitation,
       props
     };
     const children = node.children.slice();
@@ -60,7 +60,7 @@ export const contextualizeInlineStatic = (inputDocument, inputContextualization,
   } else {
     node.special = true;
     node.node = 'element';
-    node.tag = formatter.InlineCitation;
+    node.tag = 'InlineCitation' + settings.citationStyle; // formatter.InlineCitation;
     node.props = props;
   }
   return document;
@@ -74,7 +74,7 @@ export const contextualizeInlineStatic = (inputDocument, inputContextualization,
  * @return {Object} newDocument - the updated representation of the peritext document in which the contextualization was made
  */
 export const contextualizeBlockStatic = (inputDocument, inputContextualization, settings) => {
-  const formatter = require('./../../referencers/' + settings.citationStyle + '.js');
+  // const formatter = require('./../../referencers/' + settings.citationStyle + '.js');
   const document = Object.assign({}, inputDocument);
   const contextualization = Object.assign({}, inputContextualization);
   const path = ['sections', ...contextualization.nodePath.slice()];
@@ -87,7 +87,7 @@ export const contextualizeBlockStatic = (inputDocument, inputContextualization, 
     opCit: contextualization.sectionOpCit
   };
   node.special = true;
-  node.tag = formatter.BlockCitation;
+  node.tag = 'BlockCitation' + settings.citationStyle; // formatter.BlockCitation;
   node.props = props;
 
   return document;
