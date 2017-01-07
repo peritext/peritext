@@ -84,7 +84,8 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockStatic">contextualizeBlockStatic</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineDynamic">contextualizeInlineDynamic</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineStatic">contextualizeInlineStatic</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">contextualizers/timeline</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockDynamic">contextualizeBlockDynamic</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">contextualizers/timeline</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/contextualizers/timeline/DynamicTimeline.js~DynamicTimeline.html">DynamicTimeline</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockDynamic">contextualizeBlockDynamic</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockStatic">contextualizeBlockStatic</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineDynamic">contextualizeInlineDynamic</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineStatic">contextualizeInlineStatic</a></span></span></li>
@@ -196,7 +197,9 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/contextualizers/imagegallery/DynamicImageGallery.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React, {PropTypes} from &apos;react&apos;;
-import {StaticImageFigure} from &apos;./../../core/components&apos;;
+// import {StaticImageFigure} from &apos;./../../core/components&apos;;
+
+import ImageGallery from &apos;react-image-gallery&apos;;
 
 import renderContents from &apos;./../../core/utils/componentsFactory&apos;;
 
@@ -214,7 +217,7 @@ export default class DynamicImageGallery extends React.Component {
    */
   static propTypes = {
     schematype: PropTypes.string,
-    resources: PropTypes.array,
+    resources: PropTypes.array.isRequired,
     captionContent: PropTypes.array,
     id: PropTypes.string
   };
@@ -229,6 +232,27 @@ export default class DynamicImageGallery extends React.Component {
    * @return {ReactElement} markup
    */
   render() {
+
+    const images = this.props.resources.map(resource =&gt; ({
+      original: resource.imageurl,
+      thumbnail: resource.imageurl
+    }));
+    /*
+    Model : [
+      {
+        original: &apos;http://lorempixel.com/1000/600/nature/1/&apos;,
+        thumbnail: &apos;http://lorempixel.com/250/150/nature/1/&apos;,
+        originalClass: &apos;featured-slide&apos;,
+        thumbnailClass: &apos;featured-thumb&apos;,
+        originalAlt: &apos;original-alt&apos;,
+        thumbnailAlt: &apos;thumbnail-alt&apos;,
+        thumbnailLabel: &apos;Optional&apos;,
+        description: &apos;Optional description...&apos;,
+        srcSet: &apos;Optional srcset (responsive images src)&apos;,
+        sizes: &apos;Optional sizes (image sizes relative to the breakpoint)&apos;
+      }
+    ];
+    */
     return (
             &lt;figure
               role=&quot;group&quot;
@@ -239,10 +263,8 @@ export default class DynamicImageGallery extends React.Component {
               typeof={this.props.schematype}
               id={&apos;peritext-figure-&apos; + this.props.id}
             &gt;
-              &lt;div className=&quot;peritext-static-image-gallery-figures-wrapper&quot;&gt;
-                {this.props.resources.map((resource)=&gt;{
-                  return &lt;StaticImageFigure resource={resource} key={resource.id} /&gt;;
-                })}
+              &lt;div className=&quot;peritext-dynamic-image-gallery-figures-wrapper&quot;&gt;
+                &lt;ImageGallery items={images}/&gt;
               &lt;/div&gt;
               &lt;figcaption
                 itemProp=&quot;description&quot;

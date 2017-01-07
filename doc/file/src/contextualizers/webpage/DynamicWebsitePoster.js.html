@@ -84,7 +84,8 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockStatic">contextualizeBlockStatic</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineDynamic">contextualizeInlineDynamic</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineStatic">contextualizeInlineStatic</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">contextualizers/timeline</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockDynamic">contextualizeBlockDynamic</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">contextualizers/timeline</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/contextualizers/timeline/DynamicTimeline.js~DynamicTimeline.html">DynamicTimeline</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockDynamic">contextualizeBlockDynamic</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockStatic">contextualizeBlockStatic</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineDynamic">contextualizeInlineDynamic</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineStatic">contextualizeInlineStatic</a></span></span></li>
@@ -196,6 +197,7 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/contextualizers/webpage/DynamicWebsitePoster.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React, {PropTypes} from &apos;react&apos;;
+import Iframe from &apos;react-iframe&apos;;
 import {StructuredHyperLink} from &apos;./../../core/components&apos;;
 
 import renderContents from &apos;./../../core/utils/componentsFactory&apos;;
@@ -214,8 +216,11 @@ export default class DynamicWebsitePoster extends React.Component {
    */
   static propTypes = {
     schematype: PropTypes.string,
-    resource: PropTypes.object.isRequired,
-    captionContent: PropTypes.array,
+    resources: PropTypes.array.isRequired,
+    captionContent: PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.string
+    ]),
     figureNumber: PropTypes.number,
     id: PropTypes.string
   };
@@ -236,7 +241,7 @@ export default class DynamicWebsitePoster extends React.Component {
     const contents = [
       {
         node: &apos;text&apos;,
-        text: this.props.resource.url
+        text: this.props.resources[0].url
       }
     ];
     return (
@@ -247,7 +252,7 @@ export default class DynamicWebsitePoster extends React.Component {
               itemProp=&quot;citation&quot;
               itemType={&apos;http://schema.org/&apos; + this.props.schematype}
               typeof={this.props.schematype}
-              resource={&apos;#&apos; + this.props.resource.id}
+              resource={&apos;#&apos; + this.props.resources[0].id}
               id={&apos;peritext-figure-&apos; + this.props.id}
             &gt;
               &lt;span
@@ -255,14 +260,14 @@ export default class DynamicWebsitePoster extends React.Component {
                 property=&quot;name&quot;
                 style={invisibleStyle}
               &gt;
-                {this.props.resource.title}
+                {this.props.resources[0].title}
               &lt;/span&gt;
-              &lt;iframe url={this.porps.resource.url} /&gt;
+              &lt;Iframe url={this.props.resources[0].url} /&gt;
               &lt;figcaption
                 itemProp=&quot;description&quot;
                 property=&quot;description&quot;
               &gt;
-                {renderContents(this.props.captionContent)} &#x2013; &lt;StructuredHyperLink contents={contents} resource={this.props.resource}/&gt;
+                {renderContents(this.props.captionContent)} &#x2013; &lt;StructuredHyperLink contents={contents} resource={this.props.resources[0]}/&gt;
               &lt;/figcaption&gt;
             &lt;/figure&gt;
           );

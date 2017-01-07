@@ -84,7 +84,8 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockStatic">contextualizeBlockStatic</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineDynamic">contextualizeInlineDynamic</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineStatic">contextualizeInlineStatic</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">contextualizers/timeline</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockDynamic">contextualizeBlockDynamic</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">contextualizers/timeline</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/contextualizers/timeline/DynamicTimeline.js~DynamicTimeline.html">DynamicTimeline</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockDynamic">contextualizeBlockDynamic</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeBlockStatic">contextualizeBlockStatic</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineDynamic">contextualizeInlineDynamic</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-contextualizeInlineStatic">contextualizeInlineStatic</a></span></span></li>
@@ -199,19 +200,19 @@
 import {bibToSchema} from &apos;./../../core/utils/microDataUtils&apos;;
 
 /**
- * dumb component and placeholder for rendering the structured representation of an entity long citation (in a glossary for example)
+ * dumb component and placeholder for rendering the structured representation of an resource long citation (in a glossary for example)
  */
 export default class DynamicEntityBlock extends React.Component {
 
   /**
    * propTypes
-   * @property {object} entity - the entity resource to contextualize
+   * @property {object} resource - the resource resource to contextualize
    * @property {object} contextualizer - the contextualizer params to use for contextualization
    * @property {object} contextualization - the contextualization object
    * @property {object} settings - the set of settings to use for rendering
    */
   static propTypes = {
-    entity: PropTypes.object,
+    resources: PropTypes.array,
     contextualizer: PropTypes.object,
     contextualization: PropTypes.object,
     settings: PropTypes.object
@@ -228,45 +229,46 @@ export default class DynamicEntityBlock extends React.Component {
    * @return {ReactElement} markup
    */
   render() {
-    const itemType = bibToSchema(this.props.entity.bibType);
+    const entity = this.props.resources[0];
+    const itemType = bibToSchema(entity.bibType);
     return (
       &lt;section
-        className=&quot;peritext-static-entity-block-container&quot;
-        name={&apos;peritext-static-entity-block-&apos; + this.props.entity.id}
-        id={&apos;peritext-static-entity-block-&apos; + this.props.entity.id}
+        className=&quot;peritext-static-resource-block-container&quot;
+        name={&apos;peritext-static-resource-block-&apos; + entity.id}
+        id={&apos;peritext-static-resource-block-&apos; + entity.id}
         itemProp=&quot;mentions&quot;
         value=&quot;mentions&quot;
         itemScope
         itemType={&apos;http://schema.org/&apos; + itemType}
         typeof={itemType}
-        resource={this.props.entity.id}
+        resource={entity.id}
       &gt;
         &lt;h5
-          className=&quot;peritext-static-entity-block-name&quot;&gt;
+          className=&quot;peritext-static-resource-block-name&quot;&gt;
           {itemType === &apos;Person&apos; ?
             [&lt;span
               itemProp=&quot;familyName&quot;
               property=&quot;familyName&quot;
               key=&quot;familyName&quot;
-            &gt;{this.props.entity.lastname}&lt;/span&gt;,
+            &gt;{entity.lastname}&lt;/span&gt;,
             &lt;span key=&quot;separator1&quot;&gt; (&lt;/span&gt;,
             &lt;span
               itemProp=&quot;givenName&quot;
               property=&quot;givenName&quot;
               key=&quot;givenName&quot;
-            &gt;{this.props.entity.firstname}&lt;/span&gt;,
+            &gt;{entity.firstname}&lt;/span&gt;,
             &lt;span key=&quot;separator2&quot;&gt;)&lt;/span&gt;]
             :
             &lt;span
               property=&quot;name&quot;
               itemProp=&quot;name&quot;
-            &gt;{this.props.entity.name}&lt;/span&gt;
+            &gt;{entity.name}&lt;/span&gt;
           }
         &lt;/h5&gt;
 
-        {this.props.entity.description &amp;&amp; this.props.contextualizer.showdescription === &apos;yes&apos; ?
-          &lt;p className=&quot;peritext-static-entity-block-description&quot;&gt;
-            {this.props.entity.description}
+        {entity.description &amp;&amp; entity.showdescription === &apos;yes&apos; ?
+          &lt;p className=&quot;peritext-static-resource-block-description&quot;&gt;
+            {entity.description}
           &lt;/p&gt;
           : &apos;&apos;}
       &lt;/section&gt;
