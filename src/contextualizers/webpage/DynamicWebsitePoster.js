@@ -19,10 +19,10 @@ export default class DynamicWebsitePoster extends React.Component {
   static propTypes = {
     schematype: PropTypes.string,
     resources: PropTypes.array.isRequired,
-    // captionContent: PropTypes.oneOfType([
-    //   PropTypes.array,
-    //   PropTypes.string
-    // ]),
+    captionContent: PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.string
+    ]),
     figureNumber: PropTypes.number,
     id: PropTypes.string
   };

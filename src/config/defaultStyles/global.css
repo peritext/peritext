@@ -14,3 +14,80 @@ q
     /*quotes : '\00AB\2003' '\2003\00BB' '\2039 ' ' \203A';*/
     quotes: '«' ' »' '\2039 ' ' \203A';
 }
+
+.peritext-dynamic-timeline-container
+{
+
+    display: flex;
+    overflow: hidden;
+
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+    flex-flow: column nowrap;
+  overflow: hidden;
+
+}
+.peritext-dynamic-timeline-container .visualizations-container
+{
+    display: flex;
+
+    flex-flow: row nowrap;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+}
+.peritext-dynamic-timeline-container .layers-container
+{
+  flex: 5;
+  position: relative;
+  overflow: hidden;
+}
+
+.peritext-dynamic-timeline-container .timeline-layer
+{
+    position: relative;
+}
+
+.peritext-dynamic-timeline-container .layer-title-container
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.peritext-dynamic-timeline-container .mini-timeline-container
+{
+  background: lightgrey;
+  flex: 1;
+  position: relative;
+}
+
+.peritext-dynamic-timeline-container .mini-timeline-block
+{
+  background: grey;
+  position : absolute;
+  width: 100%;
+  height: 10%;
+  top: 0;
+  left: 0;
+}
+
+.peritext-dynamic-timeline-container .visualization-item
+{
+  position : absolute;
+  left: 20%;
+  width: 10px;
+  height: 10px;
+  background: black;
+  border-radius: 50%;
+}
+
+.peritext-dynamic-timeline-container .visualization-item:nth-child(even)
+{
+  left: 40%;
+}

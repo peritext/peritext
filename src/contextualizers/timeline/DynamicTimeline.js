@@ -1,6 +1,9 @@
 import React, {PropTypes} from 'react';
+
 import renderContents from './../../core/utils/componentsFactory';
 
+import mapData from './mapData';
+import { timeParse } from 'd3-time-format';
 
 /**
  * dumb static-oriented component for displaying a table
@@ -12,14 +15,17 @@ export default class DynamicTimeline extends React.Component {
    * @property {array} resources - array of resources used
    * @property {string} captionContent - what to display as caption
    * @property {number} figureNumber - in static mode, the number of the figure
-   * @property {object} data - the resource data to use
+   * @property {object} data - the resource dataset(s) to use (several if several resources involved)
    * @property {string} id - the id to use for identifying the contextualization
    */
   static propTypes = {
+    captionContent: PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.string
+    ]),
     schematype: PropTypes.string,
     resources: PropTypes.array,
-    captionContent: PropTypes.array,
-    data: PropTypes.object,
+    datasets: PropTypes.object,
     contextualization: PropTypes.object,
     id: PropTypes.string
   };
@@ -34,44 +40,125 @@ export default class DynamicTimeline extends React.Component {
    * @return {ReactElement} markup
    */
   render() {
-    if (!this.props.data || !this.props.data.data || !this.props.data.data.length) {
-      return <span>No data</span>;
+    if (!this.props.datasets) {
+      return <span>No data (yet ?)</span>;
     }
-    const headers = Object.keys(this.props.data.data[0]);
-    const objects = this.props.data.data;
+    const parseTime = timeParse(this.props.contextualization.dateformat);
+    this.layers = this.props.contextualization.layer
+                .map(layer =>
+                  // resolve data accessors
+                  mapData(layer, this.props.resources, this.props.datasets, parseTime)
+                );
+    const startAt = this.props.contextualization.startat;
+    const endAt = this.props.contextualization.endat;
+
+    this.minimumDate = Infinity;
+    // calculating a minimum
+    this.layers.forEach(layer => {
+      layer.items.forEach(item => {
+        if (item.date < this.minimumDate) {
+          this.minimumDate = item.date;
+        }
+      })
+    });
+
+    this.maximumDate = -Infinity;
+    // calculating a maximum
+    this.layers.forEach(layer => {
+      layer.items.forEach(item => {
+        if (item.date > this.maximumDate) {
+          this.maximumDate = item.date;
+        }
+      })
+    });
+
+    if (startAt) {
+      this.startAt = parseTime(startAt);
+    } else {
+      this.startAt = this.minimumDate;
+    }
+    if (endAt) {
+      this.endAt = parseTime(endAt);
+    } else {
+      this.endAt = this.maximumDate;
+    }
+    console.log('minimum', this.minimumDate, 'start', this.startAt);
     return (
             <figure
               role="group"
-              className="peritext-static-table-container peritext-figure-container"
+              className="peritext-dynamic-timeline-container peritext-figure-container"
               itemScope
               itemProp="citation"
               itemType={'http://schema.org/' + this.props.schematype}
               typeof={this.props.schematype}
               id={'peritext-figure-' + this.props.id}
             >
-              <pre>
-                <code>
-                {JSON.stringify(this.props.contextualization, null, 2)}
-                </code>
-              </pre>
-              <table className="peritext-static-table-table">
-                <thead>
-                  <tr>
-                    {headers.map((header, index)=>{
-                      return <th key={index}>{header}</th>;
+              <section className="visualizations-container">
+                <div className="mini-timeline-container">
+                  <div
+                    className="mini-timeline-block"
+                    style={{
+                      top: (this.startAt - this.minimumDate) / (this.maximumDate - this.minimumDate) * 100 + '%',
+                      height: (this.endAt - this.startAt) * 100 + '%'
+                    }}
+                  />
+                  {this.layers.map((layer, index) => {
+                      return layer.items
+                      .map((item, index2) => {
+                        return (
+                          <div
+                            className="visualization-item"
+                            style={{
+                              top: (item.date - this.minimumDate) / (this.maximumDate - this.minimumDate) * 100 + '%'
+                            }}
+                            title={item.label + ' ' + item.date.toString()}
+                            key={index2}>
+                          </div>
+                        );
+                      })
                     })}
-                  </tr>
-                </thead>
-                <tbody>
-                  {objects.map((object, oIndex)=>{
-                    return (<tr key={oIndex}>
-                      {headers.map((header, hIndex)=>{
-                        return <th key={hIndex}>{object[header]}</th>;
-                      })}
-                    </tr>);
-                  })}
-                </tbody>
-              </table>
+                </div>
+                <div
+                  className="layers-container"
+                  style={{
+                    display: 'flex',
+                    flexFlow: 'row nowrap',
+                    width: '100%',
+                    height: '100%'
+                  }}
+                >
+                {
+                  this.layers.map((layer, index) => (
+                    <div
+                      className="timeline-layer"
+                      key={index}
+                      style={{
+                        width: (100 / this.layers.length) + '%',
+                        height: '100%'
+                      }}
+                    >
+                      <h3 className="layer-title-container">{layer.title}</h3>
+                      {
+                        layer.items
+                        .filter(item => item.date >= this.startAt && item.date <= this.endAt)
+                        .map((item, index2) => {
+                          return (
+                            <div
+                              className="visualization-item"
+                              style={{
+                                top: (item.date - this.startAt) / (this.endAt - this.startAt) * 100 + '%'
+                              }}
+                              title={item.label + ' ' + item.date.toString()}
+                              key={index2}>
+                            </div>
+                          );
+                        })
+                      }
+                    </div>
+                  ))
+                }
+                </div>
+              </section>
               <figcaption
                 itemProp="description"
                 property="description">
