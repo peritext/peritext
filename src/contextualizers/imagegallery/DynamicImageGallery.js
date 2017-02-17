@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-import {StaticImageFigure} from './../../core/components';
+// import {StaticImageFigure} from './../../core/components';
 
 import ImageGallery from 'react-image-gallery';
 
@@ -38,7 +38,7 @@ export default class DynamicImageGallery extends React.Component {
     const images = this.props.resources.map(resource => ({
       original: resource.imageurl,
       thumbnail: resource.imageurl
-    }))
+    }));
     /*
     Model : [
       {
@@ -67,10 +67,6 @@ export default class DynamicImageGallery extends React.Component {
             >
               <div className="peritext-dynamic-image-gallery-figures-wrapper">
                 <ImageGallery items={images}/>
-                {
-                /*this.props.resources.map((resource)=>{
-                  return <StaticImageFigure resource={resource} key={resource.id} />;
-                })*/}
               </div>
               <figcaption
                 itemProp="description"

@@ -42,6 +42,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "peritext/src/contextualizers/timeline/dynamictimeline.js~dynamictimeline",
+    "class/src/contextualizers/timeline/DynamicTimeline.js~DynamicTimeline.html",
+    "<span>DynamicTimeline</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/timeline/DynamicTimeline.js</span>",
+    "class"
+  ],
+  [
     "peritext/src/contextualizers/webpage/dynamicwebsiteposter.js~dynamicwebsiteposter",
     "class/src/contextualizers/webpage/DynamicWebsitePoster.js~DynamicWebsitePoster.html",
     "<span>DynamicWebsitePoster</span> <span class=\"search-result-import-path\">peritext/src/contextualizers/webpage/DynamicWebsitePoster.js</span>",
@@ -1420,6 +1426,18 @@ window.esdocSearchIndex = [
     "file/src/contextualizers/table/index.js.html",
     "src/contextualizers/table/index.js",
     "file"
+  ],
+  [
+    "src/contextualizers/timeline/dynamictimeline.js",
+    "file/src/contextualizers/timeline/DynamicTimeline.js.html",
+    "src/contextualizers/timeline/DynamicTimeline.js",
+    "file"
+  ],
+  [
+    "src/contextualizers/timeline/dynamictimeline.js~dynamictimeline#render",
+    "class/src/contextualizers/timeline/DynamicTimeline.js~DynamicTimeline.html#instance-method-render",
+    "src/contextualizers/timeline/DynamicTimeline.js~DynamicTimeline#render",
+    "method"
   ],
   [
     "src/contextualizers/timeline/index.js",
