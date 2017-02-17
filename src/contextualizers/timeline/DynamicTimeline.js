@@ -41,7 +41,7 @@ export default class DynamicTimeline extends React.Component {
    */
   render() {
     if (!this.props.datasets) {
-      return <span>No data (yet ?)</span>;
+      return (<span>No data (yet ?)</span>);
     }
     const parseTime = timeParse(this.props.contextualization.dateformat);
     this.layers = this.props.contextualization.layer
@@ -59,7 +59,7 @@ export default class DynamicTimeline extends React.Component {
         if (item.date < this.minimumDate) {
           this.minimumDate = item.date;
         }
-      })
+      });
     });
 
     this.maximumDate = -Infinity;
@@ -69,7 +69,7 @@ export default class DynamicTimeline extends React.Component {
         if (item.date > this.maximumDate) {
           this.maximumDate = item.date;
         }
-      })
+      });
     });
 
     if (startAt) {
@@ -103,7 +103,7 @@ export default class DynamicTimeline extends React.Component {
                     }}
                   />
                   {this.layers.map((layer, index) => {
-                      return layer.items
+                    return layer.items
                       .map((item, index2) => {
                         return (
                           <div
@@ -115,8 +115,8 @@ export default class DynamicTimeline extends React.Component {
                             key={index2}>
                           </div>
                         );
-                      })
-                    })}
+                      });
+                  })}
                 </div>
                 <div
                   className="layers-container"
