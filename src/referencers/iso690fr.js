@@ -135,7 +135,16 @@ export class BlockCitation extends BlockCitationModel {
           </span>
         );
       }
-      const pages = (Array.isArray(this.props.resource.pages)) ? this.props.resource.pages : this.props.resource.pages.split('-');
+      // const pages = (Array.isArray(this.props.resource.pages)) ? this.props.resource.pages : this.props.resource.pages.split('-');
+      let pages;
+      if (Array.isArray(this.props.resource.pages)) {
+        pages = this.props.resource.pages.slice();
+      } else if (typeof this.props.resource.pages === 'string') {
+        const matchPages = this.props.resource.pages.match(/([\d]+)-?([\d]+)?/g);
+        if (matchPages) {
+          pages = matchPages.slice(1).map(page => +page);
+        }
+      }
       return (
         <span className="peritext-citation-detailed-reference-container">
           {this.renderAuthors()}
@@ -143,10 +152,10 @@ export class BlockCitation extends BlockCitationModel {
           <StructuredCite value={this.props.resource.title} />
           <span>. </span>
           <StructuredParentJournal resource={this.props.resource} pattern="${journal}, ${date}, vol. ${volume}, n° ${issue}, ISSN : ${issn}" />
-          {this.props.resource.pages ? ', pp. ' : ''}
-          {this.props.resource.pages ? <StructuredSpan htmlClass="peritext-citation-pages-in-publication" property="pageStart" value={pages[0]} /> : ''}
-          {this.props.resource.pages ? '-' : ''}
-          {this.props.resource.pages ? <StructuredSpan htmlClass="peritext-citation-pages-in-publication" property="pageEnd" value={pages[1]} /> : ''}
+          {pages ? ', pp. ' : ''}
+          {pages ? <StructuredSpan htmlClass="peritext-citation-pages-in-publication" property="pageStart" value={pages[0]} /> : ''}
+          {pages ? '-' : ''}
+          {pages ? <StructuredSpan htmlClass="peritext-citation-pages-in-publication" property="pageEnd" value={pages[1]} /> : ''}
         </span>
       );
     default:
